@@ -1,10 +1,10 @@
 import S from '@sanity/desk-tool/structure-builder'
 import {
-  FiLayers as BlogIcon,
-  GoChecklist as ApprovedIcon,
-  GoEye as ReviewIcon,
-  GoCircleSlash as RejectedIcon,
-  FiFolder as AllIcon,
+  FiHome as BlogIcon,
+  FiCheck as ApprovedIcon,
+  FiEye as ReviewIcon,
+  FiX as RejectedIcon,
+  FiGrid as AllIcon,
   FiSmile as AuthorIcon,
 } from "react-icons/fi"
 
@@ -18,45 +18,45 @@ export const icons = {
   AllIcon,
 }
 
-const blog = S.listItem()
-  .title('Blog')
+const places = S.listItem()
+  .title('Places')
   .icon(BlogIcon)
   .child(
     S.list()
-      .title('/blog')
+      .title('/places')
       .items([
         S.listItem()
-          .title('Published posts')
+          .title('Published places')
           .schemaType('post')
           .icon(BlogIcon)
           .child(
-            S.documentList('post')
-              .title('Published posts')
+            S.documentList('place')
+              .title('Published places')
               .menuItems(S.documentTypeList('post').getMenuItems())
               // Only show posts with publish date earlier than now and that is not drafts
-              .filter('_type == "post" && publishedAt < now() && !(_id in path("drafts.**"))')
+              .filter('_type == "place" && publishedAt < now() && !(_id in path("drafts.**"))')
               .child((documentId) =>
                 S.document()
                   .documentId(documentId)
-                  .schemaType('post')
+                  .schemaType('place')
                   .views([S.view.form(), PreviewIFrame()])
               )
           ),
-        S.documentTypeListItem('post').title('All posts').icon(AllIcon),
+        S.documentTypeListItem('place').title('All places').icon(AllIcon),
         S.listItem()
-          .title('Posts by category')
+          .title('Places by category')
           .child(
             // List out all categories
             S.documentTypeList('category')
-              .title('Posts by category')
+              .title('Places by category')
               .child(catId =>
                 // List out project documents where the _id for the selected
                 // category appear as a _ref in the project’s categories array
                 S.documentList()
-                  .schemaType('post')
-                  .title('Posts')
+                  .schemaType('place')
+                  .title('Places')
                   .filter(
-                    '_type == "post" && $catId in categories[]._ref'
+                    '_type == "place" && $catId in categories[]._ref'
                   )
                   .params({ catId })
               )
@@ -67,4 +67,4 @@ const blog = S.listItem()
       ])
   )
 
-export default blog
+export default places

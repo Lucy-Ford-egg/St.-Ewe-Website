@@ -11,6 +11,7 @@ import author from './documents/author'
 import category from './documents/category'
 import post from './documents/post'
 import page from './documents/page'
+import place from './documents/place'
 import siteSettings from './documents/siteSettings'
 import route from './documents/route'
 
@@ -52,6 +53,7 @@ export default createSchema({
       cta,
       siteSettings,
       post,
+      place,
       navMenu,
       page,
       category,
