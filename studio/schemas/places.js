@@ -4,6 +4,14 @@ import { defineField, defineType } from 'sanity'
 
 import locationType from './location'
 import categoriesType from './categories'
+// Builder modules
+import heroType from './modules/hero'
+import imageWithCaptionType from './modules/imageWithCaption'
+import textBlockType from './modules/textBlock'
+import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
+import heroCallToActionType from './modules/heroCallToAction'
+import mapType from './modules/map'
+import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
 
 /**
  * This file is the schema definition for a post.
@@ -22,6 +30,14 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -39,24 +55,12 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'content',
-      title: 'Content',
-      type: 'array',
-      of: [{ type: 'block' }],
-    }),
-    defineField({
       name: 'excerpt',
       title: 'Excerpt',
+      rows: 2,
       type: 'text',
     }),
-    defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
+    
     defineField({
       name: 'date',
       title: 'Date',
@@ -80,7 +84,25 @@ export default defineType({
           to: [{ type: categoriesType.name }],
         },
      ]
-      // to: [{ type:  }],
+    }),
+    defineField({
+      name: 'pageBuilder',
+      type: 'array',
+      title: 'Page builder',
+      of: [
+        { type: heroType.name, title: "Hero Module"}, // hero.js (same applies for the other types)
+        { type: imageWithCaptionType.name, title: "Image w/caption Module"},
+        { type: textBlockType.name, title: "Text Module"},
+        { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
+        { type: heroCallToActionType.name, title: "Hero Call to Action Module"},
+        { type: mapType.name, title: "Map Module"},
+        {type: twoColumnTitleTextCtaType.name, title: "Two Column. Title,Text, Cta Module"}
+        // { type: 'callToAction' },
+        // { type: 'gallery' },
+        // { type: 'form' },
+        // { type: 'video' },
+        // etc...
+        ]
     }),
   ],
   preview: {
