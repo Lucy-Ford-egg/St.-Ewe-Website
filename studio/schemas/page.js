@@ -10,6 +10,7 @@ import textBlockType from './modules/textBlock'
 import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
 import heroCallToActionType from './modules/heroCallToAction'
 import mapType from './modules/map'
+import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
 
 
 /**
@@ -74,7 +75,8 @@ export default defineType({
         { type: textBlockType.name, title: "Text Module"},
         { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
         { type: heroCallToActionType.name, title: "Hero Call to Action Module"},
-        { type: mapType.name, title: "Map Module"}
+        { type: mapType.name, title: "Map Module"},
+        {type: twoColumnTitleTextCtaType.name, title: "Two Column. Title,Text, Cta Module"}
         // { type: 'callToAction' },
         // { type: 'gallery' },
         // { type: 'form' },

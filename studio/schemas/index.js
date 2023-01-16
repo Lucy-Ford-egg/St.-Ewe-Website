@@ -11,6 +11,8 @@ import imageCarouselCaptionLinkType from '../schemas/modules/imageCarouselCaptio
 import linkGroupType from '../schemas/modules/linkGroup'
 import heroCallToActionType from '../schemas/modules/heroCallToAction'
 import mapType from '../schemas/modules/map'
+import titleTextType from '../schemas/components/titleText'
+import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
 
 export const schemaTypes = [
   locationType, 
@@ -25,5 +27,8 @@ export const schemaTypes = [
   imageCarouselCaptionLinkType, 
   linkGroupType, 
   heroCallToActionType,
-  mapType
+  mapType,
+  twoColumnTitleTextCtaType,
+  // Components
+  titleTextType
 ]
