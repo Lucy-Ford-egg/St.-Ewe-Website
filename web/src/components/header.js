@@ -1,9 +1,10 @@
-import React from "react"
+import React, {useState} from "react"
 import { styled, alpha } from '@mui/material/styles'
 import { Link } from "gatsby"
 import { Container, Grid, InputBase, InputAdornment, Menu, MenuItem, Typography, AppBar, Toolbar, Box, IconButton, Button } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
+import MainNavigation from "./mainNavigation";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -35,9 +36,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     [theme.breakpoints.up('sm')]: {
       width: '4ch',
       '&:focus': {
-        width: '10ch',
+        width: '4ch',
       },
     },
+    "&:hover":{
+      color: theme.palette.primary.main,
+
+    }
   },
   '& .MuiInputBase-input::placeholder': {
     fontFamily: 'inherit',
@@ -48,8 +53,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const Header = () => {
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [searchHover, setSearchHover] = useState('Explore…')
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -168,7 +174,6 @@ const Header = () => {
     
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', lg: 'none' }, justifyContent: "flex-end" }}>
             <Menu
-              id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
@@ -193,26 +198,16 @@ const Header = () => {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none',  lg: 'flex' }, justifyContent: 'flex-end' }}>
-            {pages.map((page) => (
-              <Button
-                key={page.title}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, mx: { xs: 1, md: 1 }, color: "secondary.main", display: 'block', fontWeight: '400', textTransform: "unset"}}
-              >
-                {page.title}
-              </Button>
-            ))}
-          </Box>
+          <MainNavigation handleCloseNavMenu={handleCloseNavMenu}/>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Search sx={{fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize'}}>
+            <Search sx={{fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize'}} onMouseOver={e => setSearchHover("ArchiHols")} onMouseLeave={e => setSearchHover("Explore...")} onMouseDown={e => setSearchHover("")}>
               <StyledInputBase
                 endAdornment={
                   <InputAdornment position="start">
                     <SearchIcon />
                   </InputAdornment>}
-                placeholder="Explore…"
+                placeholder={searchHover}
                 inputProps={{ 'aria-label': 'search' }}
                 sx={{color: 'secondary.main'}}
               />
