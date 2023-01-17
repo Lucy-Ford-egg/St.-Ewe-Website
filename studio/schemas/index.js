@@ -12,6 +12,7 @@ import linkGroupType from '../schemas/modules/linkGroup'
 import heroCallToActionType from '../schemas/modules/heroCallToAction'
 import mapType from '../schemas/modules/map'
 import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
+import menusType from '../schemas/menus'
 //Components
 import titleTextType from '../schemas/components/titleText'
 import imageCaptionType from '../schemas/components/imageCaption'
@@ -19,13 +20,17 @@ import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 
 export const schemaTypes = [
+  menusType,
+  // Taxonomies
+  categoriesType,
   locationType, 
-  placeType, 
-  categoriesType, 
-  newsType, 
   authorType,
+  // Objects
+  placeType, 
+  newsType, 
   postType, 
-  pageType, 
+  pageType,
+  // Modules
   imageWithCaptionType,
   textBlockType, 
   imageCarouselCaptionLinkType, 
