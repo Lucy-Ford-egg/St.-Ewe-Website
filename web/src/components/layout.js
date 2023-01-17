@@ -1,60 +1,34 @@
-import React from "react";
-import Header from "./header";
-import Footer from "./footer";
-import "../styles/layout.css";
+import * as React from "react"
+import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      scrolled: false
-    };
-  }
+import Navbar from "./navbar"
+import "./layout.scss"
+import Header from "./header"
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.toggleBodyClass);
-    this.toggleBodyClass();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.toggleBodyClass);
-  }
-
-  toggleBodyClass = () => {
-    if (this.state.scrolled && window.scrollY <= 10) {
-      this.setState({ scrolled: false });
-    } else if (!this.state.scrolled && window.scrollY > 10) {
-      this.setState({ scrolled: true });
+const Layout = ({ children }) => {
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
     }
-  };
+  `)
 
-  render() {
-    const {
-      children,
-      onHideNav,
-      onShowNav,
-      showNav,
-      siteTitle,
-      navMenuItems,
-      textWhite = true
-    } = this.props;
-    const { scrolled } = this.state;
-    return (
-      <>
-        <Header
-          navMenuItems={navMenuItems}
-          siteTitle={siteTitle}
-          onHideNav={onHideNav}
-          onShowNav={onShowNav}
-          showNav={showNav}
-          scrolled={scrolled}
-          textWhite={textWhite}
-        />
-        <>{children}</>
-        <Footer siteTitle={siteTitle} />
-      </>
-    );
-  }
+  return (
+    <div className="container-fluid p-0">
+      <Header/>
+      <main>
+        {children}
+      </main>
+    </div>
+  )
 }
 
-export default Layout;
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default Layout

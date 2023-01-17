@@ -1,72 +1,40 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Errors from "../components/errors";
-import Page from "../templates/page";
+import * as React from "react"
+import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
-// export const query = graphql`
-//   fragment SanityImage on SanityMainImage {
-//     alt
-//     crop {
-//       _key
-//       _type
-//       top
-//       bottom
-//       left
-//       right
-//     }
-//     hotspot {
-//       _key
-//       _type
-//       x
-//       y
-//       height
-//       width
-//     }
-//     asset {
-//       _id
-//       metadata {
-//         lqip
-//         dimensions {
-//           aspectRatio
-//           width
-//           height
-//         }
-//       }
-//     }
-//   }
+import Layout from "../components/layout"
+import { Seo } from "../components/seo"
+import Header from "../components/header"
 
-//   query FrontpageQuery {
-//     page: sanityPage(_id: { regex: "/(drafts.|)frontpage/" }) {
-//       ...PageInfo
-//     }
+const IndexPage = () => (
+  <Layout>
+  
+    <section className="py-5 text-center container">
+      <div className="row py-lg-5">
+        <div className="col-lg-6 col-md-8 mx-auto">
+          <h1 className="fw-light">Hello world ! </h1>
+          <p className="lead text-muted"> Welcome to this Boostrap 5 Gatsby Starter</p>
+          <StaticImage
+            src="../images/gatsby-astronaut.png"
+            width={300}
+            quality={95}
+            formats={["AUTO", "WEBP"]}
+            alt="A Gatsby astronaut"
+            className="img-fluid"
+          />
 
-//     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-//       primaryColor {
-//         hex
-//       }
-//       secondaryColor {
-//         hex
-//       }
-//       title
-//       openGraph {
-//         title
-//         description
-//         image {
-//           ...SanityImage
-//         }
-//       }
-//     }
-//   }
-// `;
+        </div>
+      </div>
+      <div className="row">
+        <Link to="/about/" className="btn btn-primary my-2">About</Link>
+        <Link to="/page-2/" className="btn btn-secondary my-2">Go to page 2</Link>
+      </div>
+    </section>
+  </Layout>
+)
 
-const IndexPage = props => {
-  const { data, errors } = props;
+export default IndexPage
 
-  if (errors) {
-    return <Errors errors={errors} />;
-  }
-
-  return <Page />;
-};
-//<Page data={data} />
-export default IndexPage;
+export const Head = () => (
+    <Seo />
+)
