@@ -5,6 +5,8 @@
  */
 
 // You can delete this file if you're not using it
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-    setHtmlAttributes({ lang: "en" })
-}
+// exports.onRenderBody = ({ setHtmlAttributes }) => {
+//     setHtmlAttributes({ lang: "en" })
+// }
+
+export { wrapRootElement } from './gatsby-browser'

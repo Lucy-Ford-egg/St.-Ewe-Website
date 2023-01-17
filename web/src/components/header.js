@@ -23,17 +23,22 @@ const Search = styled('div')(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
+  fontFamily: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
+    fontFamily: 'inherit',
+    color: 'inherit',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '4ch',
       '&:focus': {
-        width: '20ch',
+        width: '10ch',
       },
+    },
+    '& :placeholder': {
+      color: 'inherit',
     },
   },
 }));
@@ -63,46 +68,8 @@ const Header = () => {
   ]
 
   return (
-    // <Container maxWidth="xl">
-    //   <Grid container spacing={2} sx={{ py: 4 }}>
-    //     <Grid item xs={8} md={4}>
-    //      
-    //     </Grid>
-    //     <Grid item xs={4} md={6}>
-    //     <Menu
-    //           anchorEl={anchorElNav}
-    //           anchorOrigin={{
-    //             vertical: 'bottom',
-    //             horizontal: 'left',
-    //           }}
-    //           keepMounted
-    //           transformOrigin={{
-    //             vertical: 'top',
-    //             horizontal: 'left',
-    //           }}
-    //           open={Boolean(anchorElNav)}
-    //           onClose={handleCloseNavMenu}
-    //           // sx={{
-    //           //   display: { xs: 'none', md: 'block' },
-    //           // }}
-    //         >
-    //           {pages.map((page) => {
-    //             return(
-    //               <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-    //                 <Typography variant="body1" textAlign="center">{page.title}</Typography>
-    //               </MenuItem>
-    //             )}
-    //           )}
-    //         </Menu>
-    //     </Grid>
-    //     <Grid item xs={4} md={2}>
-    //       
-    //     </Grid>
-    //   </Grid>
-    // </Container>
-
-    <AppBar position="static" sx={{backgroundColor: "white !important"}}>
-      <Container maxWidth="xl">
+    <AppBar position="static" color="white">
+      <Container maxWidth="xl" sx={{ py: 1}}>
         <Toolbar disableGutters>
           <Link to="/">
              <svg id="archihols-logo" xmlns="http://www.w3.org/2000/svg" width="185.136" height="50.478" viewBox="0 0 185.136 50.478">
@@ -223,12 +190,12 @@ const Header = () => {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
             {pages.map((page) => (
               <Button
                 key={page.title}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "red", display: 'block'}}
+                sx={{ my: 2, mx: 2, color: "secondary.main", display: 'block'}}
               >
                 {page.title}
               </Button>
@@ -236,7 +203,7 @@ const Header = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Search>
+            <Search sx={{fontFamily: 'Blacker Display', color: 'secondary.main'}}>
               <StyledInputBase
                 endAdornment={
                   <InputAdornment position="start">
