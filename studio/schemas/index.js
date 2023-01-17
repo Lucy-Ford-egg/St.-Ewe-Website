@@ -1,3 +1,7 @@
+import navigationType from '../schemas/navigation'
+import navItemType from '../schemas/navItem'
+import linkType from '../schemas/link'
+
 import locationType from '../schemas/location'
 import categoriesType from '../schemas/categories'
 import placeType from '../schemas/place'
@@ -12,7 +16,6 @@ import linkGroupType from '../schemas/modules/linkGroup'
 import heroCallToActionType from '../schemas/modules/heroCallToAction'
 import mapType from '../schemas/modules/map'
 import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
-import menusType from '../schemas/menus'
 //Components
 import titleTextType from '../schemas/components/titleText'
 import imageCaptionType from '../schemas/components/imageCaption'
@@ -20,7 +23,9 @@ import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 
 export const schemaTypes = [
-  menusType,
+  navigationType,
+  navItemType,
+  linkType,
   // Taxonomies
   categoriesType,
   locationType, 
