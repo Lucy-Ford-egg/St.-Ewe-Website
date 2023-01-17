@@ -101,7 +101,7 @@ const Header = () => {
     //   </Grid>
     // </Container>
 
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor: "white !important"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link to="/">
@@ -228,7 +228,7 @@ const Header = () => {
               <Button
                 key={page.title}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: "red", display: 'block'}}
               >
                 {page.title}
               </Button>
