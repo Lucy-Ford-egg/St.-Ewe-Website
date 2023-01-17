@@ -22,25 +22,28 @@ const Search = styled('div')(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
   fontFamily: 'inherit',
+  fontSize: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    width: '4ch',
     fontFamily: 'inherit',
     color: 'inherit',
+    fontSize: 'inherit',
     [theme.breakpoints.up('sm')]: {
       width: '4ch',
       '&:focus': {
         width: '10ch',
       },
     },
-    '& :placeholder': {
-      color: 'inherit',
-    },
   },
+  '& .MuiInputBase-input::placeholder': {
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    color: 'inherit',
+  }
 }));
 
 const Header = () => {
@@ -163,7 +166,7 @@ const Header = () => {
              </svg>
           </Link>
     
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: "flex-end" }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', lg: 'none' }, justifyContent: "flex-end" }}>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -179,7 +182,7 @@ const Header = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', lg: 'none' },
               }}
             >
               {pages.map((page) => (
@@ -190,12 +193,12 @@ const Header = () => {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none',  lg: 'flex' }, justifyContent: 'flex-end' }}>
             {pages.map((page) => (
               <Button
                 key={page.title}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, mx: 2, color: "secondary.main", display: 'block'}}
+                sx={{ my: 2, mx: { xs: 1, md: 1 }, color: "secondary.main", display: 'block', fontWeight: '400', textTransform: "unset"}}
               >
                 {page.title}
               </Button>
@@ -203,7 +206,7 @@ const Header = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Search sx={{fontFamily: 'Blacker Display', color: 'secondary.main'}}>
+            <Search sx={{fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize'}}>
               <StyledInputBase
                 endAdornment={
                   <InputAdornment position="start">
@@ -211,6 +214,7 @@ const Header = () => {
                   </InputAdornment>}
                 placeholder="Explore…"
                 inputProps={{ 'aria-label': 'search' }}
+                sx={{color: 'secondary.main'}}
               />
             </Search>
           </Box>
@@ -223,7 +227,7 @@ const Header = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', lg: 'none' },
               }}
             >
               <MenuIcon />
