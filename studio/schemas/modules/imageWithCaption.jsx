@@ -1,15 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import sizes from '../sizes'
 
-// Render a div that wraps the default preview component
-function MyPreviewComponent(props) {
-  return (
-    <div style={{border: '1px solid green'}}>
-      {props.renderDefault(props)}
-    </div>
-  )
-}
-
 export default defineType({
   name: "imageWithCaption",
   type: "object",
@@ -31,26 +22,8 @@ export default defineType({
   fields: [
     defineField({
       name: 'image',
-      type: 'image',
+      type: 'imageCaption',
       title: 'Image',
-      options: {
-        hotspot: true,
-      },
-      components: {
-        preview: MyPreviewComponent, // Add custom preview component
-      }, 
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text'
-        }),
-        defineField({
-          name: 'caption',
-          type: 'string',
-          title: 'Caption'
-        })
-      ]
     }),
     defineField({
       title: 'Image Size',
@@ -61,7 +34,6 @@ export default defineType({
           ...sizes
         ],
       },
-      
       validation: (rule) => rule.required(),
     }),
     defineField({

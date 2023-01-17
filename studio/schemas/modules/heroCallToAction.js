@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import sizes from '../sizes'
+// import sizes from '../sizes'
 
 export default defineType({
   name: "heroCallToAction",
@@ -21,18 +21,8 @@ export default defineType({
   fields: [
     defineField({
       name: 'image',
-      type: 'image',
+      type: 'imageCaption',
       title: 'Image',
-      options: {
-        hotspot: true,
-      }, 
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text'
-        })
-      ]
     }),
     defineField({
       name: 'title',

@@ -6,39 +6,14 @@ export default defineType({
   title: "Link",
   fields: [
     defineField({
-        name: 'link',
-        type: 'object',
+        name: 'externalLinkGroup',
+        type: 'externalLink',
         title: 'External link',
-        fields: [
-          {
-            name: 'href',
-            type: 'url',
-            title: 'URL'
-          },
-          {
-            title: 'Open in new tab',
-            name: 'blank',
-            description: 'Read https://css-tricks.com/use-target_blank/',
-            type: 'boolean'
-          }
-        ]
     }),
     defineField({
-      name: 'internalLink',
-        type: 'object',
-        title: 'Internal link',
-        fields: [
-          {
-            name: 'reference',
-            type: 'reference',
-            title: 'Reference',
-            to: [
-              { type: 'places' },
-              { type: 'news' },
-              // other types you may want to link to
-            ]
-          }
-        ]
+        name: 'internalLinkGroup',
+        type: 'internalLink',
+        title: 'Internal Link'
     }),
   ]
 })

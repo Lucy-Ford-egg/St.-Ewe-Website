@@ -5,7 +5,6 @@ import { defineField, defineType } from 'sanity'
 import locationType from './location'
 import categoriesType from './categories'
 // Builder modules
-import heroType from './modules/hero'
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
 import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
@@ -24,8 +23,8 @@ import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
  */
 
 export default defineType({
-  name: 'places',
-  title: 'Places',
+  name: 'place',
+  title: 'Place',
   icon: MdHolidayVillage,
   type: 'document',
   fields: [
@@ -90,7 +89,6 @@ export default defineType({
       type: 'array',
       title: 'Page builder',
       of: [
-        { type: heroType.name, title: "Hero Module"}, // hero.js (same applies for the other types)
         { type: imageWithCaptionType.name, title: "Image w/caption Module"},
         { type: textBlockType.name, title: "Text Module"},
         { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },

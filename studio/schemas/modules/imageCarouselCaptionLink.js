@@ -24,22 +24,10 @@ export default defineType({
       title: 'Carousel Images',
       type: 'array',
       of: [{ 
-        type: 'image', 
+        type: 'imageCaption', 
         options: {
           hotspot: true,
         },
-        fields: [
-          defineField({
-            name: 'alt',
-            type: 'string',
-            title: 'Alternative text'
-          }),
-          defineField({
-            name: 'caption',
-            type: 'string',
-            title: 'Caption'
-          })
-        ] 
       }],
     }),
     defineField({
