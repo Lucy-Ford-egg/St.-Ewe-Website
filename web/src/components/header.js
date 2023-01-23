@@ -1,10 +1,11 @@
 import React, {useState} from "react"
 import { styled, alpha } from '@mui/material/styles'
-import { Link } from "gatsby"
-import { Container, Grid, InputBase, InputAdornment, Menu, MenuItem, Typography, AppBar, Toolbar, Box, IconButton, Button } from "@mui/material"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import { Container, InputBase, InputAdornment, Menu, MenuItem, Typography, AppBar, Toolbar, Box, IconButton, useMediaQuery } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import MainNavigation from "./mainNavigation";
+import MobileMainNavigation from "./mobileMainNavigation";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -76,9 +77,41 @@ const Header = () => {
     { title: "All #One List" }, { title: "Opening Soon" }, { title: "Blog" }, { title: "Features Gallery" }, { title: "About" }, { title: "Contact" }
   ]
 
+  const mobile = useMediaQuery('(min-width:600px)');
+
+  const data = useStaticQuery(graphql`
+  query MainNavigationQuery {
+    allSanityNavigation {
+      nodes {
+        items {
+          navigationItemUrl {
+            internalLink {
+              ... on SanityPage {
+                id
+                slug {
+                  current
+                }
+              }
+              ... on SanityPost {
+                id
+                slug {
+                  current
+                }
+              }
+            }
+            externalUrl
+          }
+          text
+        }
+      }
+    }
+  }
+  `)
+
   return (
+    
     <AppBar position="static" color="white">
-      <Container maxWidth="xl" sx={{ py: 1}}>
+      <Container maxWidth="xl" sx={{ py: 1}} >
         <Toolbar disableGutters>
           <Link to="/">
              <svg id="archihols-logo" xmlns="http://www.w3.org/2000/svg" width="185.136" height="50.478" viewBox="0 0 185.136 50.478">
@@ -172,35 +205,12 @@ const Header = () => {
              </svg>
           </Link>
     
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', lg: 'none' }, justifyContent: "flex-end" }}>
-            <Menu
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', lg: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          <MobileMainNavigation menu={data} anchorElNav={anchorElNav} handleCloseNavMenu={handleCloseNavMenu} />
 
-          <MainNavigation handleCloseNavMenu={handleCloseNavMenu}/>
+          <MainNavigation menu={data} handleCloseNavMenu={handleCloseNavMenu}/>
 
           <Box sx={{ flexGrow: 0 }}>
+          {mobile ? 
             <Search sx={{fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize'}} onMouseOver={e => setSearchHover("ArchiHols")} onMouseLeave={e => setSearchHover("Explore...")} onMouseDown={e => setSearchHover("")}>
               <StyledInputBase
                 endAdornment={
@@ -212,7 +222,9 @@ const Header = () => {
                 sx={{color: 'secondary.main'}}
               />
             </Search>
-          </Box>
+            : <SearchIcon />}
+
+          </Box> 
 
           <IconButton
               size="large"
@@ -229,8 +241,9 @@ const Header = () => {
             </IconButton>
           
         </Toolbar>
-      </Container>
+        </Container>
     </AppBar>
+
   )
 }
 

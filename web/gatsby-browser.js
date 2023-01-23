@@ -7,11 +7,16 @@
 import React from "react"
 import { ThemeProvider } from '@mui/material/styles';
 import clientTheme from "./src/gatsby-theme-material-ui-top-layout/theme"
-import CssBaseline from '@mui/material/CssBaseline';
+import { CssBaseline, GlobalStyles } from '@mui/material';
 
 export const wrapRootElement = ({ element }) => (
-    <ThemeProvider theme={clientTheme}>
-      <CssBaseline/>
-      {element}
-    </ThemeProvider>
-  )
+  <ThemeProvider theme={clientTheme}>
+    <GlobalStyles styles={{
+      // '& *': {
+      //   border: '1px solid red',
+      // }
+    }} />
+    <CssBaseline />
+    {element}
+  </ThemeProvider>
+)
