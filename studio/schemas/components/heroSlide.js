@@ -24,7 +24,9 @@ export default defineType({
       name: 'text',
       type: 'text',
       rows: 6,
-      title: 'Text'
+      title: 'Text',
+      description: 'The text is restricted to 170 characters as to not break the design',
+      validation: Rule => Rule.required().min(50).max(170)
     }),
     defineField({
       name: 'linkGroup',

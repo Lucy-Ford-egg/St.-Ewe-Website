@@ -1,11 +1,14 @@
-import { createTheme } from "@mui/material"
+import { createTheme, responsiveFontSizes } from "@mui/material"
 import blackerDisplayWoff from '../assets/fonts/blacker-display/Blacker-Display-Bold-trial.woff'
 
-//Blacker-Display-Bold-trial.woff
 
 const clientSpacing = [0, 9, 11, 13, 16, 24, 34, 41, 51, 61, 74,]
 
-const clientTheme = createTheme({
+let defaultTheme = createTheme({
+  spacing: [...clientSpacing]
+})
+
+let clientTheme = createTheme({
   spacing: [...clientSpacing],
   typography: {
     fontFamily: [
@@ -96,9 +99,23 @@ const clientTheme = createTheme({
         }
       `,
     },
-    
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 100,
+          textTransform: 'unset',
+          display: 'block',
+          width: 'max-content',
+          padding: `${defaultTheme.spacing(2)} ${defaultTheme.spacing(5)}`
+        },
+        containedPrimary: {
+          color: 'white'
+        },
+      }
+    }
   },
-  
 });
+
+clientTheme = responsiveFontSizes(clientTheme);
 
 export default clientTheme

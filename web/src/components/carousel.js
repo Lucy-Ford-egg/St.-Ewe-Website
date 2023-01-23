@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Container, Typography, Box, SvgIcon } from '@mui/material'
+import { Container, Typography, Box, SvgIcon, Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2';
 
 const variants = {
@@ -50,18 +50,18 @@ export const Carousel = ({ carousel }) => {
     setPage([page + newDirection, newDirection]);
   };
 
-  useEffect(() => {
-    const setDirection = -1
-    const timer = setTimeout(() => {
-      console.log('This will run after 3 second!')
-      paginate(setDirection)
-    }, 3000);
-    return () => clearTimeout(timer);
-  });
+  // useEffect(() => {
+  //   const setDirection = -1
+  //   const timer = setTimeout(() => {
+  //     console.log('This will run after 3 second!')
+  //     paginate(setDirection)
+  //   }, 3000);
+  //   return () => clearTimeout(timer);
+  // });
   
 
   return (
-    <Box sx={{ height: {xs: '100vh', md: '85vh'} }}>
+    <Box sx={{ height: {xs: '85vh', md: '85vh'} }}>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={page}
@@ -93,11 +93,12 @@ export const Carousel = ({ carousel }) => {
             <Box sx={{
               gridColumn: '1/1', gridRow: '1/1', height: '100%', display: 'flex',
               zIndex: 2,
-              position: 'relative'
+              position: 'relative',
+              alignItems: 'flex-end'
             }}>
-              <Container maxWidth="lg" sx={{ height: '100%'}}>
-                <Grid container sx={{ height: '100%' }}>
-                  <Grid xs={12} sm={8} md={6} p={9} sx={{ backdropFilter: 'blur(10px)', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <Container maxWidth="lg" sx={{ height: {xs: 'auto', md: '100%'}, px:{xs: 0, md: 8}}}>
+                <Grid container sx={{ height: {xs: 'auto', md: '100%'} }}>
+                  <Grid xs={12} sm={8} md={6} sx={{ py:{ xs: 8, md: 9}, px: {xs: 4, md: 9}, backdropFilter: 'blur(10px)', height: {xs: 'auto', md: '100%'}, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <Typography color="primary.main" variant="subtitle1" pb={{ xs: 4 }}>{carousel[imageIndex].subtitle}</Typography>
                     <motion.div initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -107,15 +108,18 @@ export const Carousel = ({ carousel }) => {
                     <motion.div initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.2 }}>
-                    <Typography color="white.main" variant="body2" dangerouslySetInnerHTML={{ __html: carousel[imageIndex].text }}></Typography>
+                      <Typography color="white.main" variant="body2" dangerouslySetInnerHTML={{ __html: carousel[imageIndex].text }} sx={{marginBottom: 6}}></Typography>
                     </motion.div>
+                    <Button variant="contained" color="primary">See the list</Button>
                   </Grid>
                 </Grid>
               </Container>
             </Box>
 
-            <Box sx={{gridColumn: '1/1', gridRow: '1/1', minHeight: {xs: '100vh', md: '85vh'} }}>
-              <GatsbyImage style={{height: 'inherit'}} image={getImage(carousel[imageIndex].image.asset.gatsbyImageData)} alt="alt tag" />
+
+
+            <Box sx={{gridColumn: '1/1', gridRow: '1/1', minHeight: {xs: '85vh', md: '85vh'} }}>
+              <GatsbyImage style={{minHeight: 'inherit'}} image={getImage(carousel[imageIndex].image.asset.gatsbyImageData)} alt="alt tag" />
             </Box>
 
           </Box>
@@ -123,7 +127,7 @@ export const Carousel = ({ carousel }) => {
         </motion.div>
       </AnimatePresence>
 
-      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2, height: '100%', top: '50%', transform: 'translateY(-50%)', px: {xs: 2, sm: 4, md: 8} }}>
+      <Container maxWidth="xl" sx={{ display: {xs: 'none', md: 'block' }, position: "relative", zIndex: 2, height: '100%', top: '50%', transform: 'translateY(-50%)', px: {xs: 2, sm: 4, md: 8} }}>
         <Box display="flex" flexDirection="column" justifyContent="center" sx={{height: '100%'}}>
           <Box display="flex" justifyContent="space-between">
             <div className="next" onClick={() => paginate(1)}>
@@ -139,6 +143,19 @@ export const Carousel = ({ carousel }) => {
               </SvgIcon>
             </div>
           </Box>
+        </Box>
+      </Container>
+
+      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2, bottom: 0, px: {xs: 2, sm: 4, md: 8}, pb: {xs: 7}}}>
+        <Box display="flex" flexDirection="row" justifyContent="flex-end" sx={{position: 'relative', }}>
+          {carousel.map((dot, index) => {
+            let dotColour = index === imageIndex ? "#C3B187" : "rgba(255,255,255,0.45)"
+            return (
+              <SvgIcon color={dotColour} key={`dot-${index}`} sx={{ width: 22, height: 22}}>
+                <circle id="dot" cx="5.5" cy="5.5" r="5.5" fill={dotColour}/>
+              </SvgIcon>
+            )
+          })}
         </Box>
       </Container>
 
