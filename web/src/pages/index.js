@@ -8,7 +8,7 @@ import Header from "../components/header"
 
 const IndexPage = () => (
   <Layout>
-  
+    
     
   </Layout>
 )
