@@ -1,5 +1,4 @@
 import { defineField, defineType } from 'sanity'
-import sizes from '../sizes'
 
 export default defineType({
   name: "imageCarouselCaptionLink",
