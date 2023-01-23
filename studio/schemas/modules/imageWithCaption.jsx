@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
 import sizes from '../sizes'
 
 export default defineType({
@@ -15,7 +16,8 @@ export default defineType({
       const {title, subtitle, image} = selection
       return {
         title: `Image with caption module`,
-        subtitle: `Image Size ${subtitle} - ${image.alt}`
+        subtitle: `Image Size ${subtitle} - ${image.alt}`,
+        icon: MdOutlinePhotoSizeSelectActual
       }
     }
   },

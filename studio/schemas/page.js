@@ -10,7 +10,8 @@ import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
 import heroCallToActionType from './modules/heroCallToAction'
 import mapType from './modules/map'
 import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
-
+import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
+import placesGridType from './modules/placesGrid'
 
 /**
  * This file is the schema definition for a post.
@@ -74,11 +75,9 @@ export default defineType({
         { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
         { type: heroCallToActionType.name, title: "Hero Call to Action Module"},
         { type: mapType.name, title: "Map Module"},
-        {type: twoColumnTitleTextCtaType.name, title: "Two Column. Title,Text, Cta Module"}
-        // { type: 'callToAction' },
-        // { type: 'gallery' },
-        // { type: 'form' },
-        // { type: 'video' },
+        { type: twoColumnTitleTextCtaType.name, title: "Two Column. Title,Text, Cta Module"},
+        { type: imageCarouselSubtitleTitleTextLinkType.name, title: "Hero Carousel. Subtitle, Title, Text, Cta Module"},
+        { type: placesGridType.name, title: "Places Grid Module" }
         // etc...
         ]
     }),

@@ -1,10 +1,10 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoLibrary} from "react-icons/md"
+import {MdViewCarousel} from "react-icons/md"
 
 export default defineType({
-  name: "imageCarouselCaptionLink",
+  name: "imageCarouselSubtitleTitleTextLink",
   type: "object",
-  title: "Image carousel w/caption & link Module",
+  title: "Hero image carousel w/subtitle, title, text & link module",
   preview: {
     select: {
       title: 'title',
@@ -13,9 +13,9 @@ export default defineType({
     prepare(selection) {
       const {title, subtitle} = selection
       return {
-        title: `Image carousel w/caption & link module`,
+        title: `Hero image carousel w/subtitle, title, text & link module`,
         subtitle: `Number of images: ${subtitle.length}`,
-        icon: MdOutlinePhotoLibrary
+        icon: MdViewCarousel
       }
     }
   },
@@ -25,19 +25,11 @@ export default defineType({
       title: 'Carousel Images',
       type: 'array',
       of: [{ 
-        type: 'imageCaption', 
+        type: 'heroSlide', 
         options: {
           hotspot: true,
         },
       }],
-    }),
-    defineField({
-      title: 'Link',
-      name: 'carouselLinkGroup',
-      type: 'linkGroup',
-      // validation: Rule => Rule.uri({
-      //   scheme: ['http', 'https', 'mailto', 'tel']
-      // })
     }),
   ]
 })

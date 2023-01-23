@@ -1,10 +1,24 @@
 import { defineField, defineType } from 'sanity'
-import sizes from '../sizes'
+import {MdEditNote} from "react-icons/md";
 
 export default defineType({
   name: "textBlock",
-  type: 'object',
   title: "Text Module",
+  type: 'object',
+  preview: {
+    select: {
+      title: '',
+      subtitle: 'title'
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+      return {
+        title: `Text Module`,
+        subtitle: ``,
+        icon: MdEditNote,
+      }
+    }
+  },
   fields: [
     defineField({
       name: 'content',

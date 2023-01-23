@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import sizes from '../sizes'
+import {MdViewColumn} from "react-icons/md";
 
 export default defineType({
   name: "twoColumnTitleTextCta",
@@ -15,7 +15,8 @@ export default defineType({
       debugger
       return {
         title: `Two Column, Title, Text, Call to Action module`,
-        subtitle: title
+        subtitle: title,
+        icon: MdViewColumn
       }
     }
   },

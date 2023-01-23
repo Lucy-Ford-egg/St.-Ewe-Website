@@ -13,6 +13,7 @@ export default defineType({
       to: [
         { type: 'place' },
         { type: 'news' },
+        { type: 'page' },
         // other types you may want to link to
       ]
     })

@@ -16,11 +16,16 @@ import linkGroupType from '../schemas/modules/linkGroup'
 import heroCallToActionType from '../schemas/modules/heroCallToAction'
 import mapType from '../schemas/modules/map'
 import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
+import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
+import placesGridType from '../schemas/modules/placesGrid'
+
 //Components
 import titleTextType from '../schemas/components/titleText'
+import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageCaptionType from '../schemas/components/imageCaption'
 import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
+import heroSlideType from './components/heroSlide'
 
 export const schemaTypes = [
   navigationType,
@@ -43,9 +48,13 @@ export const schemaTypes = [
   heroCallToActionType,
   mapType,
   twoColumnTitleTextCtaType,
+  imageCarouselSubtitleTitleTextLinkType,
+  placesGridType,
   // Components
   titleTextType,
+  titleSubtitleTextType,
   imageCaptionType,
   externalLinkType,
-  internalLinkType
+  internalLinkType,
+  heroSlideType
 ]

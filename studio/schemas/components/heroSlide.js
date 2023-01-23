@@ -1,30 +1,19 @@
 import { defineField, defineType } from 'sanity'
-import {MdSmartButton} from "react-icons/md"
 
 export default defineType({
-  name: "heroCallToAction",
+  name: "heroSlide",
   type: "object",
-  title: "Hero Image, Title, Text, Call to Action Module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'imageSize',
-      
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Hero Call to action caption module`,
-        subtitle: title,
-        icon: MdSmartButton
-      }
-    }
-  },
+  title: "Title Text",
   fields: [
     defineField({
       name: 'image',
       type: 'imageCaption',
       title: 'Image',
+    }),
+    defineField({
+      name: 'subtitle',
+      type: 'string',
+      title: 'Subtitle'
     }),
     defineField({
       name: 'title',
