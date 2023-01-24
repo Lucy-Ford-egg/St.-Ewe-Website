@@ -50,14 +50,14 @@ export const Carousel = ({ carousel }) => {
     setPage([page + newDirection, newDirection]);
   };
 
-  // useEffect(() => {
-  //   const setDirection = -1
-  //   const timer = setTimeout(() => {
-  //     console.log('This will run after 3 second!')
-  //     paginate(setDirection)
-  //   }, 3000);
-  //   return () => clearTimeout(timer);
-  // });
+  useEffect(() => {
+    const setDirection = -1
+    const timer = setTimeout(() => {
+      console.log('This will run after 3 second!')
+      paginate(setDirection)
+    }, 3000);
+    return () => clearTimeout(timer);
+  });
   
 
   return (
