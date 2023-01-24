@@ -1,15 +1,12 @@
 import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-
+import { graphql } from "gatsby"
+import {Seo} from "../components/seo"
 import Layout from "../components/layout"
-import { Seo } from "../components/seo"
-import Header from "../components/header"
+import Modules from "../utils/modules"
 
-const IndexPage = () => (
+const IndexPage = ({ data }) => (
   <Layout>
-    
-    
+    <Modules modules={data.sanityPage.pageBuilder}/>
   </Layout>
 )
 
@@ -18,3 +15,30 @@ export default IndexPage
 export const Head = () => (
     <Seo />
 )
+
+export const query = graphql`
+  query {
+    sanityPage(slug: {current: {eq: "homepage"}}) {
+      title
+      slug {
+        current
+      }
+      pageBuilder {
+        ... on SanityImageCarouselSubtitleTitleTextLink {
+          _key
+          _type
+          carousel {
+            title
+            text
+            subtitle
+            image {
+              asset {
+                gatsbyImageData(width: 1440, height: 765)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
