@@ -1,5 +1,6 @@
 import React from 'react'
 import {Carousel} from '../components/carousel'
+import {PlacesGrid} from '../components/placesGrid'
 
 
 const Modules = ({ modules }) => {
@@ -19,9 +20,9 @@ const Modules = ({ modules }) => {
                     if (isModule(module, 'imageCarouselSubtitleTitleTextLink')) {
                         return <Carousel {...module} key={module._key + i } />
                     }
-                    // else if (isModule(child.__typename, "_Modules_Content")) {
-                    //     return  <SideBySide {...child} key={child + i} />
-                    // }
+                    else if (isModule(module, "placesGrid")) {
+                        return  <PlacesGrid {...module} key={module._key + i} />
+                    }
                     else
                         return null
 

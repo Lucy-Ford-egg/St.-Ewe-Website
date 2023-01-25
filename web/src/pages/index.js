@@ -29,8 +29,12 @@ export const query = graphql`
           _type 
           carousel {
           ... CarouselFragment
-
           }
+        }
+        ... on SanityPlacesGrid {
+          _key
+          _type
+          ... PlacesGridFragment
         }
       }
     }

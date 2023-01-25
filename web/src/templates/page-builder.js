@@ -27,6 +27,11 @@ export const query = graphql`
           ... CarouselFragment
           }
         }
+        ... on SanityPlacesGrid {
+          _key
+          _type
+          ... PlacesGridFragment
+        }
       }
     }
   }
