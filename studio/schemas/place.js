@@ -63,7 +63,8 @@ export default defineType({
     defineField({
       name: 'date',
       title: 'Date',
-      type: 'datetime',
+      type: 'date',
+      dateFormat: 'M MMM YYYY',
       initialValue: () => new Date().toISOString(),
     }),
     defineField({

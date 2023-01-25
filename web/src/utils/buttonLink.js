@@ -5,9 +5,11 @@ import { Button } from '@mui/material';
 const ButtonLink = ({linkGroup}) => {
 
   let linkType = '';
-  debugger
+
   if(linkGroup.internalLinkGroup !== null){
-    linkType = <Link className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1esatjf-MuiButtonBase-root-MuiButton-root" to={linkGroup.internalLinkGroup.reference.slug.current}>{linkGroup.internalLinkGroup.label}</Link>
+    linkType = <Button variant="contained" component={Link} to={linkGroup.internalLinkGroup.reference.slug.current}>
+          {linkGroup.internalLinkGroup.label}
+        </Button>
   }
   else{
     linkType = <Button variant="contained" color="primary" className="" href={linkGroup.externalLinkGroup.href}>{linkGroup.externalLinkGroup.label}</Button>
