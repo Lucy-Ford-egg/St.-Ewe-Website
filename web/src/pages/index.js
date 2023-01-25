@@ -26,16 +26,10 @@ export const query = graphql`
       pageBuilder {
         ... on SanityImageCarouselSubtitleTitleTextLink {
           _key
-          _type
+          _type 
           carousel {
-            title
-            text
-            subtitle
-            image {
-              asset {
-                gatsbyImageData(width: 1440, height: 765)
-              }
-            }
+          ... CarouselFragment
+
           }
         }
       }

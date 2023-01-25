@@ -1,9 +1,12 @@
 import React, { useState, useEffect} from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { graphql } from "gatsby"
 import { wrap } from "popmotion";
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Container, Typography, Box, SvgIcon, Button } from '@mui/material'
+import { Container, Typography, Box, SvgIcon } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2';
+import ButtonLink from '../utils/buttonLink'
+
 
 const variants = {
   enter: (direction) => {
@@ -50,14 +53,14 @@ export const Carousel = ({ carousel }) => {
     setPage([page + newDirection, newDirection]);
   };
 
-  useEffect(() => {
-    const setDirection = -1
-    const timer = setTimeout(() => {
-      console.log('This will run after 3 second!')
-      paginate(setDirection)
-    }, 3000);
-    return () => clearTimeout(timer);
-  });
+  // useEffect(() => {
+  //   const setDirection = -1
+  //   const timer = setTimeout(() => {
+  //     console.log('This will run after 3 second!')
+  //     paginate(setDirection)
+  //   }, 3000);
+  //   return () => clearTimeout(timer);
+  // });
   
 
   return (
@@ -110,7 +113,7 @@ export const Carousel = ({ carousel }) => {
                       transition={{ duration: 0.5, delay: 0.2 }}>
                       <Typography color="white.main" variant="body2" dangerouslySetInnerHTML={{ __html: carousel[imageIndex].text }} sx={{marginBottom: 6}}></Typography>
                     </motion.div>
-                    <Button variant="contained" color="primary">See the list</Button>
+                    <ButtonLink linkGroup={carousel[imageIndex].linkGroup } variant="contained" color="primary"/>
                   </Grid>
                 </Grid>
               </Container>
@@ -127,27 +130,30 @@ export const Carousel = ({ carousel }) => {
         </motion.div>
       </AnimatePresence>
 
-      <Container maxWidth="xl" sx={{ display: {xs: 'none', md: 'block' }, position: "relative", zIndex: 2, height: '100%', top: '50%', transform: 'translateY(-50%)', px: {xs: 2, sm: 4, md: 8} }}>
-        <Box display="flex" flexDirection="column" justifyContent="center" sx={{height: '100%'}}>
-          <Box display="flex" justifyContent="space-between">
-            <div className="next" onClick={() => paginate(1)}>
+      
+       <Box display="flex" alignItems="center" flexDirection="column" sx={{position: 'relative', height: '100%', bottom: 0, }}>
+          <Box className="next" onClick={() => paginate(1)} display="flex" alignItems="center" justifyContent="flex-start" sx={{ display: {xs: 'none', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', left: 0, transform: 'translateY(-50%)', px: {xs: 2, sm: 4, md: 8} }}>
+
               <SvgIcon sx={{ width: 22, height: 66}}>
                 <path id="Union_2" data-name="Union 2" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15788.986 -2632.95)" fill="none" stroke="#fff" stroke-width="3"/>
               </SvgIcon>
-            </div>
-            <div className="prev" onClick={() => paginate(-1)}>
+          
+          </Box>
+
+          <Box className="prev" onClick={() => paginate(-1)} display="flex" alignItems="center" justifyContent="flex-end" sx={{ display: {xs: 'none', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', right: 0, transform: 'translateY(-50%)', px: {xs: 2, sm: 4, md: 8} }}>
+         
               <SvgIcon sx={{ width: 22, height: 66}}>
                 <g id="arrow" transform="translate(23.145 45.555) rotate(180)">
                   <path id="Union_1" data-name="Union 1" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15787.001 -2633.999)" fill="none" stroke="#fff" stroke-width="3"/>
                 </g>
               </SvgIcon>
-            </div>
+       
           </Box>
         </Box>
-      </Container>
+       
 
       <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2, bottom: 0, px: {xs: 2, sm: 4, md: 8}, pb: {xs: 7}}}>
-        <Box display="flex" flexDirection="row" justifyContent="flex-end" sx={{position: 'relative', }}>
+        <Box display="flex" flexDirection="row" justifyContent="flex-end" sx={{position: 'relative', bottom: 0, right: 0 }}>
           {carousel.map((dot, index) => {
             let dotColour = index === imageIndex ? "#C3B187" : "rgba(255,255,255,0.45)"
             return (
@@ -162,3 +168,34 @@ export const Carousel = ({ carousel }) => {
     </Box>
   );
 };
+
+export const query = graphql`
+  fragment CarouselFragment on SanityHeroSlide {
+    title
+    text
+    subtitle
+    image {
+      asset {
+        gatsbyImageData(width: 1440, height: 765)
+      }
+    }
+    linkGroup {
+      externalLinkGroup {
+        href
+        blank
+        label
+      }
+      internalLinkGroup {
+        reference {
+          ... on SanityPage {
+            id
+            slug {
+              current
+            }
+          }
+        }
+        label
+      }
+    }
+  }
+`

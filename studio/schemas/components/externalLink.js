@@ -6,6 +6,11 @@ export default defineType({
   title: 'External link',
   fields: [
     defineField({
+      name: 'label',
+      type: 'string',
+      title: 'Link Label'
+    }),
+    defineField({
       name: 'href',
       type: 'url',
       title: 'URL'

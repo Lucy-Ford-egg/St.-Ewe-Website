@@ -7,6 +7,11 @@ export default defineType({
   title: 'Internal link',
   fields: [
     defineField({
+      name: 'label',
+      type: 'string',
+      title: 'Link Label'
+    }),
+    defineField({
       name: 'reference',
       type: 'reference',
       title: 'Reference',

@@ -109,7 +109,10 @@ let clientTheme = createTheme({
           padding: `${defaultTheme.spacing(2)} ${defaultTheme.spacing(5)}`
         },
         containedPrimary: {
-          color: 'white'
+          color: 'white',
+          '&:hover':{
+            cursor: 'pointer'
+          },
         },
       }
     }
