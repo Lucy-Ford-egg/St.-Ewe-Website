@@ -17,24 +17,24 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
 
   const variants = {
     hovered: { opacity: 1, y: 0, height: 'auto' },
-    unhovered: { opacity: 0, y: -10, height: 0 },
+    unhovered: { opacity: 0, y: -10, height: 0  },
   }
 
   const cardBody = {
-    hovered: { height: 'auto', position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', bottom: 0, backgroundColor: clientTheme.palette.primary.main },
-    unhovered: { height: 'auto', position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', position: 'relative', bottom: 0, backgroundColor: clientTheme.palette.white.main },
+    hovered: {   backgroundColor: clientTheme.palette.primary.main },
+    unhovered: {  backgroundColor: clientTheme.palette.white.main },
   }
 
   const featuredImage = {
-    hovered: { transform: 'scale(1.5)', overflow: 'hidden' },
-    unhovered: { transform: 'scale(1)', overflow: 'hidden' },
+    hovered: { transform: 'scale(1.5)', overflow: 'hidden', display: 'flex', height: 223 },
+    unhovered: { transform: 'scale(1)', overflow: 'hidden', display: 'flex', height: 323 },
   }
 
   return (
-    <Card sx={{ cursor: 'pointer', maxWidth: 525 }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
+    <Card sx={{ cursor: 'pointer', maxWidth: 525, display: 'flex', flexDirection: 'column', height: '100%' }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
       <motion.div animate={hovered ? "hovered" : "unhovered"}
         variants={featuredImage}>
-          <GatsbyImage  image={getImage(image)} alt="alt tag" />
+          <GatsbyImage style={{height: '100%'}} image={getImage(image)} alt="alt tag" />
       </motion.div>
       <motion.div animate={hovered ? "hovered" : "unhovered"}
         variants={cardBody}>
@@ -49,7 +49,7 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
           </Typography>
           <motion.div animate={hovered ? "hovered" : "unhovered"}
             variants={variants}>
-            <Typography variant="body2" color="text.main">
+            <Typography variant="body1" color="text.main">
               {excerpt}
             </Typography>
           </motion.div>

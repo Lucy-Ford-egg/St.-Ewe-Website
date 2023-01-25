@@ -16,7 +16,7 @@ export const PlacesGrid = ({ gridTitleSubtitleText, reference }) => {
         <Typography variant="body1">{gridTitleSubtitleText.text}</Typography>
       </Container>
 
-      <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 9 }, display: 'flex' }}>
 
         {Array.isArray(reference) &&
           <Grid container spacing={2}>
