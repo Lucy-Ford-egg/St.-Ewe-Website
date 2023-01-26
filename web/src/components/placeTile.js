@@ -5,15 +5,21 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Card, CardActions, CardContent, Box, Button, Typography } from '@mui/material';
 import clientTheme from '../gatsby-theme-material-ui-top-layout/theme'
 
-export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
+export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
 
   const [hovered, setHovered] = useState(false)
-  // const [textHeight, setTextHeight] = useState(null)
 
-  // useEffect(() => {
-  //   setTextHeight()
-  // }, [])
-  
+  const renderTaxonomies = (categories) => {
+    debugger
+    const taxonomies = categories.map((tax, i ) => {
+      return( 
+        tax.name
+      )
+    })
+    return(
+      taxonomies.join(', ')
+    )
+  }
 
   const variants = {
     hovered: { opacity: 1, y: 0, height: 'auto' },
@@ -54,7 +60,7 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
          
           <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>
             <Box display="flex" justifyContent="space-between" >
-              <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{category}</Typography>
+              <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{renderTaxonomies(categories)}</Typography>
               <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{date}</Typography>
             </Box>
           </motion.div>

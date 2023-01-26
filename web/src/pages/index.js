@@ -1,19 +1,19 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import {Seo} from "../components/seo"
+import { Seo } from "../components/seo"
 import Layout from "../components/layout"
 import Modules from "../utils/modules"
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <Modules modules={data.sanityPage.pageBuilder}/>
+    <Modules allPlace={data.allSanityPlace.nodes} modules={data.sanityPage.pageBuilder} />
   </Layout>
 )
 
 export default IndexPage
 
 export const Head = () => (
-    <Seo />
+  <Seo />
 )
 
 export const query = graphql`
@@ -36,6 +36,24 @@ export const query = graphql`
           _type
           ... PlacesGridFragment
         }
+      }
+    }
+    allSanityPlace {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        date(formatString: "M MMM YYYY")
+        categories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
       }
     }
   }

@@ -3,7 +3,7 @@ import {Carousel} from '../components/carousel'
 import {PlacesGrid} from '../components/placesGrid'
 
 
-const Modules = ({ modules }) => {
+const Modules = ({ modules, allPlace }) => {
 
     function isModule(moduletype, testname) {
         if (moduletype?._type?.indexOf(testname) >= 0) {
@@ -21,7 +21,7 @@ const Modules = ({ modules }) => {
                         return <Carousel {...module} key={module._key + i } />
                     }
                     else if (isModule(module, "placesGrid")) {
-                        return  <PlacesGrid {...module} key={module._key + i} />
+                        return  <PlacesGrid {...module} allPlace={allPlace} key={module._key + i} />
                     }
                     else
                         return null
