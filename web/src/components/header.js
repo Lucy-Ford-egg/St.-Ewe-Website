@@ -110,7 +110,7 @@ const Header = () => {
 
   return (
     
-    <AppBar position="static" color="white">
+    <AppBar position="static" color="white" sx={{boxShadow: '0px 3px 3px 13px rgba(0,0,0,0, 0.8)'}}>
       <Container maxWidth="xl" sx={{ py: 2, px: {xs: 2, sm: 4, md: 8}}}>
         <Toolbar disableGutters sx={{display: 'flex', alignItems: 'center'}}>
           <Link to="/" style={{display: 'flex'}}>
