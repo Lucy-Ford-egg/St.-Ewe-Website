@@ -45,16 +45,16 @@ export const Filter = () => {
         <motion.div variants={filterBox} initial="hidden" animate={open}>
           <Box sx={{p: {xs: 9}, backgroundColor: "primary.main"}} display="flex">
 
-            <Box display="flex" flexWrap="wrap"> 
+            <Box display="flex" flexWrap="wrap" justifyContent="space-between" sx={{columnGap: 20, rowGap: 20, flexGrow: 1}}> 
               {data.allSanityCategories.nodes.map((taxonomy, i) => {
                 return(
-                  <Button variant="text" color="secondary">{taxonomy.name}</Button>
+                  <Button variant="contained" disableElevation sx={{borderRadius: 0, color:"white", backgroundColor: "primary.mid" }}>{taxonomy.name}</Button>
                 )
               })}
             </Box>
 
-            <Box display="flex" alignItems="center" justifyContent="flex-end" sx={{width: '100%'}}>
-              <IconButton aria-label="close filter" color="secondary" onClick={e => handleClick("hidden")}>
+            <Box display="flex" alignItems="center" justifyContent="flex-end" sx={{flexGrow: 1}}>
+              <IconButton aria-label="close filter" color="white" onClick={e => handleClick("hidden")}>
                 <CloseIcon />
               </IconButton>
             </Box>

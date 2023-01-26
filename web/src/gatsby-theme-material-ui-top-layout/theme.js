@@ -75,6 +75,8 @@ let clientTheme = createTheme({
   palette: {
     primary: {
       main: "#C3B187", // Gold
+      mid: "#BFAD83",
+      dark: "#B8A67D",
     },
     secondary: {
       main: '#2E2E2E', // Black
