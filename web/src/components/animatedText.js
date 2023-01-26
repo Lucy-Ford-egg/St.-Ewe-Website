@@ -40,7 +40,7 @@ export const AnimatedText = ({ text, titleSize, titleWidth }) => {
   const MotionTitle = motion(Component)
 
   return (
-    <MotionTitle variants={sentance} initial="hidden" animate="visible" variant={titleSize} align="center" sx={{ width: titleWidth, pb: { xs: 8 } }}>
+    <MotionTitle variants={sentance} initial="hidden" animate="visible" variant={titleSize} align="center" sx={{ width: titleWidth, mx: "auto", pb: { xs: 8 } }}>
       {text.split('').map((char, i) => {
         return (
           <motion.span key={`${char}-${i}`} variants={letter}>{char}</motion.span>
