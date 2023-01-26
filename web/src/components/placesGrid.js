@@ -19,9 +19,9 @@ export const PlacesGrid = ({ gridTitleSubtitleText, places }) => {
       <Container maxWidth="lg" sx={{ py: { xs: 9 }, display: 'flex' }}>
 
         {Array.isArray(places) &&
-          <Grid container spacing={9}>
+          <Grid container spacing={{xs: 6, md: 9}}>
             {places.map((tile, i) => {
-              return <Grid key={`${tile.title}-${i}`} item xs={6}>
+              return <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
                 <PlaceTile title={tile.title} image={tile.coverImage.asset.gatsbyImageData} category='cat' date={tile.date} to={tile.slug.current} excerpt={tile.excerpt} />
               </Grid>
 

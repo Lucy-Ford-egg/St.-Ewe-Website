@@ -43,14 +43,14 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
 
   return (
     <Link to={to} style={{textDecoration: 'none'}}>
-    <Card elevation={0} sx={{ cursor: 'pointer', maxWidth: 525, display: 'flex', flexDirection: 'column', height: 614 }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
+    <Card elevation={0} sx={{ cursor: 'pointer', maxWidth: 525, display: 'flex', flexDirection: 'column', height: {xs: 'auto', md: 614} }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
       <motion.div style={{flexGrow: 1 }} animate={hovered ? "hovered" : "unhovered"}
         variants={featuredImageWrapper}>
           <GatsbyImage style={{transform: hovered ? 'scale(1.1) translateY(-10px)' : 'scale(1) translateY(0px)', transition: 'all 0.2s ease-in-out 0s'}} image={getImage(image)} alt={image.alt} />
       </motion.div>
       <motion.div style={{flexGrow: 1 }} animate={hovered ? "hovered" : "unhovered"}
         variants={cardBody}>
-        <CardContent sx={{ px: { xs: 5, md: 5 }, pt: { xs: 6, md: 6 }}}>
+        <CardContent sx={{ px: { xs: 0, md: 5 }, pt: { xs: 6, md: 6 }}}>
          
           <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>
             <Box display="flex" justifyContent="space-between" >
@@ -63,14 +63,23 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
           <Typography variant="h3" component="h4" sx={{ textDecoration: 'none', py: { xs: 3, md: 6 } }}>
             {title}
           </Typography>
-          <motion.div animate={hovered ? "hovered" : "unhovered"}
-            variants={variants}>
-            <Typography variant="body1" color="text.main" style={{textDecoration: 'none'}}>
-              {excerpt}
-            </Typography>
-          </motion.div>
+          <Box sx={{display: {xs: 'none', md: 'block'}}}>
+            <motion.div animate={hovered ? "hovered" : "unhovered"}
+              variants={variants}>
+              <Typography variant="body1" color="text.main" style={{textDecoration: 'none'}}>
+                {excerpt}
+              </Typography>
+            </motion.div>
+          </Box>
+
+          <Box sx={{display: {xs: 'block', md: 'none'}}}>
+              <Typography variant="body1" color="text.main" style={{textDecoration: 'none'}}>
+                {excerpt}
+              </Typography>
+          </Box>
+
         </CardContent>
-        <CardActions sx={{ px: { xs: 5, md: 5 }, pb: { xs: 8, md: 9 } }}>
+        <CardActions sx={{ px: { xs: 0, md: 5 }, pb: { xs: 8, md: 9 } }}>
           <Button variant="contained" to={to} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s' }}>Read More</Button>
         </CardActions>
       </motion.div>
