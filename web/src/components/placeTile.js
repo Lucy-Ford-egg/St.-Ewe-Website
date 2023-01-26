@@ -17,34 +17,60 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
 
   const variants = {
     hovered: { opacity: 1, y: 0, height: 'auto' },
-    unhovered: { opacity: 0, y: -10, height: 0  },
+    unhovered: { opacity: 0, y: -10, height: 0 },
+  }
+
+  const textColour = {
+    hovered: { color: clientTheme.palette.white.main },
+    unhovered: { color: clientTheme.palette.text.main },
   }
 
   const cardBody = {
-    hovered: {   backgroundColor: clientTheme.palette.primary.main },
-    unhovered: {  backgroundColor: clientTheme.palette.white.main },
+    hovered: {   backgroundColor: clientTheme.palette.primary.main, flexGrow: 4 },
+    unhovered: {  backgroundColor: clientTheme.palette.white.main},
+  }
+
+  const featuredImageWrapper = {
+    hovered: { 
+      overflow: 'hidden', 
+      display: 'flex',
+    },
+    unhovered: {
+      overflow: 'hidden', 
+      display: 'flex', 
+    },
   }
 
   const featuredImage = {
-    hovered: { transform: 'scale(1.5)', overflow: 'hidden', display: 'flex', height: 223 },
-    unhovered: { transform: 'scale(1)', overflow: 'hidden', display: 'flex', height: 323 },
+    hovered: { transform: 'scale(1.2)' },
+    unhovered: { transform: 'scale(1)' },
   }
+  
+  // const GatsbyImageMotion = React.forwardRef((props, ref) => (
+    
+  // ))
+
+  // const MotionComponent = motion(GatsbyImageMotion)
 
   return (
-    <Card sx={{ cursor: 'pointer', maxWidth: 525, display: 'flex', flexDirection: 'column', height: '100%' }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
-      <motion.div animate={hovered ? "hovered" : "unhovered"}
-        variants={featuredImage}>
-          <GatsbyImage style={{height: '100%'}} image={getImage(image)} alt="alt tag" />
+    <Card sx={{ cursor: 'pointer', maxWidth: 525, display: 'flex', flexDirection: 'column', height: 614 }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
+      <motion.div style={{flexGrow: 1 }} animate={hovered ? "hovered" : "unhovered"}
+        variants={featuredImageWrapper}>
+          <GatsbyImage style={{transform: hovered ? 'scale(1.1) translateY(-10px)' : 'scale(1) translateY(0px)', transition: 'all 0.2s ease-in-out 0s'}} image={getImage(image)} alt={image.alt} />
       </motion.div>
-      <motion.div animate={hovered ? "hovered" : "unhovered"}
+      <motion.div style={{flexGrow: 1 }} animate={hovered ? "hovered" : "unhovered"}
         variants={cardBody}>
-        <CardContent sx={{ px: { xs: 5, md: 5 }, pt: { xs: 6, md: 6 }, height: "100%"}}>
-          <Box display="flex" justifyContent="space-between" >
-            <Typography variant="subtitle1" sx={{ color: hovered ? "#ffffff" : "text.main", transition: 'all 0.2s ease-in 0s' }}>{category}</Typography>
-            <Typography variant="subtitle1" sx={{ color: hovered ? "#ffffff" : "text.main", transition: 'all 0.2s ease-in 0s' }}>{date}</Typography>
-          </Box>
+        <CardContent sx={{ px: { xs: 5, md: 5 }, pt: { xs: 6, md: 6 }}}>
+         
+          <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>
+            <Box display="flex" justifyContent="space-between" >
+              <Typography variant="subtitle1" sx={{ color: "inherit" }}>{category}</Typography>
+              <Typography variant="subtitle1" sx={{ color: "inherit" }}>{date}</Typography>
+            </Box>
+          </motion.div>
+          
 
-          <Typography variant="h2" component="h4" sx={{ py: { xs: 3, md: 6 } }}>
+          <Typography variant="h3" component="h4" sx={{ py: { xs: 3, md: 6 } }}>
             {title}
           </Typography>
           <motion.div animate={hovered ? "hovered" : "unhovered"}
@@ -67,7 +93,7 @@ export const query = graphql`
   fragment PlaceFragment on SanityPlacesGrid {
     _key
     _type
-    reference {
+    places {
       coverImage {
         asset {
           gatsbyImageData(width: 525, height: 323)

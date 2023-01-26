@@ -26,14 +26,16 @@ export default defineType({
       title: 'Add a Title, subtitle, text' 
     }),
     defineField({
-      name: 'reference',
-      type: 'reference',
-      title: 'Reference',
+      name: 'places',
+      title: 'Add Places',
+      type: 'array',
       description: 'Leave empty to show the latest places or add specific places to a grid.',
-      to: [
-        { type: 'place' },
-        // other types you may want to link to
-      ]
-    })
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'place' }],
+        },
+     ]
+    }),
   ]
 })

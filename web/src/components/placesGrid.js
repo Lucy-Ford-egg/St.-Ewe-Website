@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Container, Grid, Typography } from '@mui/material';
 import { PlaceTile } from '../components/placeTile'
 
-export const PlacesGrid = ({ gridTitleSubtitleText, reference }) => {
+export const PlacesGrid = ({ gridTitleSubtitleText, places }) => {
 
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 9 } }}>
@@ -18,9 +18,9 @@ export const PlacesGrid = ({ gridTitleSubtitleText, reference }) => {
 
       <Container maxWidth="lg" sx={{ py: { xs: 9 }, display: 'flex' }}>
 
-        {Array.isArray(reference) &&
-          <Grid container spacing={2}>
-            {reference.map((tile, i) => {
+        {Array.isArray(places) &&
+          <Grid container spacing={9}>
+            {places.map((tile, i) => {
               return <Grid key={`${tile.title}-${i}`} item xs={6}>
                 <PlaceTile title={tile.title} image={tile.coverImage.asset.gatsbyImageData} category='cat' date={tile.date} to={tile.slug.current} excerpt={tile.excerpt} />
               </Grid>
@@ -28,9 +28,6 @@ export const PlacesGrid = ({ gridTitleSubtitleText, reference }) => {
             })}
           </Grid>
         }
-
-
-        {reference.hasOwnProperty('title') && <PlaceTile title={reference.title} image={reference.coverImage.asset.gatsbyImageData} category="categroy" date={reference.date} to={reference.slug.current} excerpt={reference.excerpt}/>}
       </Container>
     </Container>
   )
