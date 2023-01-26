@@ -41,18 +41,8 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
     },
   }
 
-  const featuredImage = {
-    hovered: { transform: 'scale(1.2)' },
-    unhovered: { transform: 'scale(1)' },
-  }
-  
-  // const GatsbyImageMotion = React.forwardRef((props, ref) => (
-    
-  // ))
-
-  // const MotionComponent = motion(GatsbyImageMotion)
-
   return (
+    <Link to={to} style={{textDecoration: 'none'}}>
     <Card sx={{ cursor: 'pointer', maxWidth: 525, display: 'flex', flexDirection: 'column', height: 614 }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
       <motion.div style={{flexGrow: 1 }} animate={hovered ? "hovered" : "unhovered"}
         variants={featuredImageWrapper}>
@@ -64,18 +54,18 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
          
           <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>
             <Box display="flex" justifyContent="space-between" >
-              <Typography variant="subtitle1" sx={{ color: "inherit" }}>{category}</Typography>
-              <Typography variant="subtitle1" sx={{ color: "inherit" }}>{date}</Typography>
+              <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{category}</Typography>
+              <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{date}</Typography>
             </Box>
           </motion.div>
           
 
-          <Typography variant="h3" component="h4" sx={{ py: { xs: 3, md: 6 } }}>
+          <Typography variant="h3" component="h4" sx={{ textDecoration: 'none', py: { xs: 3, md: 6 } }}>
             {title}
           </Typography>
           <motion.div animate={hovered ? "hovered" : "unhovered"}
             variants={variants}>
-            <Typography variant="body1" color="text.main">
+            <Typography variant="body1" color="text.main" style={{textDecoration: 'none'}}>
               {excerpt}
             </Typography>
           </motion.div>
@@ -85,6 +75,7 @@ export const PlaceTile = ({ category, title, image, excerpt, date, to }) => {
         </CardActions>
       </motion.div>
     </Card>
+    </Link>
   )
 
 }
