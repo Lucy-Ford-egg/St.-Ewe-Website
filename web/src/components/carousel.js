@@ -65,7 +65,7 @@ export const Carousel = ({ carousel }) => {
 
   return (
     <Container maxWidth="fluid" disableGutters={true}>
-      <Box sx={{ height: {xs: '85vh', md: '765px', position: 'relative'}}}>
+      <Box sx={{ height: {xs: '85vh', md: '85vh', lg: '765px'}, position: 'relative'}}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={page}
