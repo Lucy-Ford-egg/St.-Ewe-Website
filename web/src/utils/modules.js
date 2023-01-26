@@ -21,6 +21,7 @@ const Modules = ({ modules, allPlace }) => {
                         return <Carousel {...module} key={module._key + i } />
                     }
                     else if (isModule(module, "placesGrid")) {
+                        debugger
                         return  <PlacesGrid {...module} allPlace={allPlace} key={module._key + i} />
                     }
                     else

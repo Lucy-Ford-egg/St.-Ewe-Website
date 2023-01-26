@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Container, Grid, Typography } from "@mui/material"
 import { PlaceTile } from "../components/placeTile"
+import { AnimatedText } from "./animatedText"
 
 export const PlacesGrid = ({ gridTitleSubtitleText, places, allPlace }) => {
   return (
@@ -17,20 +18,18 @@ export const PlacesGrid = ({ gridTitleSubtitleText, places, allPlace }) => {
             {gridTitleSubtitleText.subtitle}
           </Typography>
         )}
-        <Typography variant="h2" align="center" sx={{ pb: { xs: 8 } }}>
-          {gridTitleSubtitleText.title}
-        </Typography>
+       <AnimatedText text={gridTitleSubtitleText.title} titleSize={gridTitleSubtitleText.titleSize ? gridTitleSubtitleText.titleSize : "h2"} titleWidth={gridTitleSubtitleText.titleWidth ? gridTitleSubtitleText.titleWidth : "100%"}/> 
         {gridTitleSubtitleText.subtitlePosition && (
           <Typography variant="subtitle1" color="primary.main" align="center">
             {gridTitleSubtitleText.subtitle}
           </Typography>
         )}
       </Container>
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Typography variant="body1">{gridTitleSubtitleText.text}</Typography>
       </Container>
 
-      <Container maxWidth="lg" sx={{ py: { xs: 9 }, display: "flex" }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
         {places.length === 0 && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {allPlace.map((tile, i) => {
@@ -39,7 +38,7 @@ export const PlacesGrid = ({ gridTitleSubtitleText, places, allPlace }) => {
                   <PlaceTile
                     title={tile.title}
                     image={tile.coverImage.asset.gatsbyImageData}
-                    category="cat"
+                    category={tile.categories}
                     date={tile.date}
                     to={tile.slug.current}
                     excerpt={tile.excerpt}
@@ -80,6 +79,8 @@ export const query = graphql`
       subtitlePosition
       text
       title
+      titleSize
+      titleWidth
     }
   }
 `

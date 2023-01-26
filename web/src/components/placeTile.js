@@ -10,13 +10,14 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
   const [hovered, setHovered] = useState(false)
 
   const renderTaxonomies = (categories) => {
-    const taxonomies = categories.map((tax, i ) => {
+   
+    const taxonomies = categories?.map((tax, i ) => {
       return( 
         tax.name
       )
     })
     return(
-      taxonomies.join(', ')
+      taxonomies && taxonomies.join(', ')
     )
   }
 
