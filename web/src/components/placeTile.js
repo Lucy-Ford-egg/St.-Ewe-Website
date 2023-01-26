@@ -10,7 +10,6 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
   const [hovered, setHovered] = useState(false)
 
   const renderTaxonomies = (categories) => {
-    debugger
     const taxonomies = categories.map((tax, i ) => {
       return( 
         tax.name
@@ -66,13 +65,13 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
           </motion.div>
           
 
-          <Typography variant="h3" component="h4" sx={{ textDecoration: 'none', py: { xs: 3, md: 6 } }}>
+          <Typography variant="h3" component="h4" sx={{ textDecoration: 'none', py: { xs: 3, md: 4 } }}>
             {title}
           </Typography>
           <Box sx={{display: {xs: 'none', md: 'block'}}}>
             <motion.div animate={hovered ? "hovered" : "unhovered"}
               variants={variants}>
-              <Typography variant="body1" color="text.main" style={{textDecoration: 'none'}}>
+              <Typography variant="body1" color="text.main" sx={{ textDecoration: 'none', py: { xs: 3, md: 4 } }}>
                 {excerpt}
               </Typography>
             </motion.div>
@@ -85,7 +84,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
           </Box>
 
         </CardContent>
-        <CardActions sx={{ px: { xs: 0, md: 5 }, pb: { xs: 8, md: 9 } }}>
+        <CardActions sx={{ px: { xs: 0, md: 5 }, pt: 0, pb: { xs: 8, md: 9 } }}>
           <Button variant="contained" to={to} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s' }}>Read More</Button>
         </CardActions>
       </motion.div>
