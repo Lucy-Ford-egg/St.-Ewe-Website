@@ -12,7 +12,7 @@ export default defineType({
     },
     prepare(selection) {
       const {title, subtitle} = selection
-      debugger
+
       return {
         title: `Two Column, Title, Text, Call to Action module`,
         subtitle: title,

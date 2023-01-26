@@ -1,6 +1,6 @@
 import React from 'react'
 import {Carousel} from '../components/carousel'
-import {PlacesGrid} from '../components/placesGrid'
+import {Places} from '../components/places'
 
 
 const Modules = ({ modules, allPlace }) => {
@@ -21,8 +21,8 @@ const Modules = ({ modules, allPlace }) => {
                         return <Carousel {...module} key={module._key + i } />
                     }
                     else if (isModule(module, "placesGrid")) {
-                        debugger
-                        return  <PlacesGrid {...module} allPlace={allPlace} key={module._key + i} />
+                   
+                        return  <Places {...module} allPlace={allPlace} key={module._key + i} />
                     }
                     else
                         return null

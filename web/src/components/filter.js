@@ -1,14 +1,27 @@
 import React, {useState} from "react"
 import {Container, Box, Button, IconButton} from "@mui/material"
 import { motion } from "framer-motion"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import AppsIcon from '@mui/icons-material/Apps';
 import CloseIcon from '@mui/icons-material/Close';
 
 
-export const Filter = () => {
+export const Filter = ({allPlace, filterPlaces, setFilterPlaces}) => {
 
   const [open, setOpen] = useState("hidden");
+
+
+  const doFilterPlaces = (taxonomy, e) => {
+    const results = e.categories.some(function(o){return o.name === taxonomy})
+    return results
+  }
+
+  const addToFilter = (taxonomy) => {
+   
+    const filtered = allPlace.filter(e => doFilterPlaces(taxonomy, e));
+    console.log('filterd', filtered)
+    setFilterPlaces([...filtered])
+  }
 
   const handleClick = (filter) => {
     setOpen(filter);
@@ -45,10 +58,10 @@ export const Filter = () => {
         <motion.div variants={filterBox} initial="hidden" animate={open}>
           <Box sx={{p: {xs: 9}, backgroundColor: "primary.main"}} display="flex">
 
-            <Box display="flex" flexWrap="wrap" justifyContent="space-between" sx={{columnGap: 20, rowGap: 20, flexGrow: 1}}> 
+            <Box display="flex" flexWrap="wrap" justifyContent="space-between" sx={{columnGap: 3, rowGap: 3, flexGrow: 1}}> 
               {data.allSanityCategories.nodes.map((taxonomy, i) => {
                 return(
-                  <Button variant="contained" disableElevation sx={{borderRadius: 0, color:"white", backgroundColor: "primary.mid" }}>{taxonomy.name}</Button>
+                  <Button key={taxonomy.name} onClick={e => addToFilter(taxonomy.name) }variant="contained" disableElevation sx={{borderRadius: 0, color:"white", backgroundColor: "primary.mid" }}>{taxonomy.name}</Button>
                 )
               })}
             </Box>
