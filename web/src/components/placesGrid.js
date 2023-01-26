@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { Container, Grid, Typography } from "@mui/material"
 import { PlaceTile } from "../components/placeTile"
 import { AnimatedText } from "./animatedText"
+import { Filter } from "./filter"
 
 export const PlacesGrid = ({ gridTitleSubtitleText, places, allPlace }) => {
   return (
@@ -28,6 +29,8 @@ export const PlacesGrid = ({ gridTitleSubtitleText, places, allPlace }) => {
       <Container maxWidth="md">
         <Typography variant="body1">{gridTitleSubtitleText.text}</Typography>
       </Container>
+
+      <Filter />
 
       <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
         {places.length === 0 && (

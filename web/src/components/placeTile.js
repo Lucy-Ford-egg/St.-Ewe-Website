@@ -49,10 +49,10 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
 
   return (
     <Link to={to} style={{textDecoration: 'none'}}>
-    <Card elevation={0} sx={{ cursor: 'pointer', maxWidth: 525, display: 'flex', flexDirection: 'column', height: {xs: 'auto', md: 614} }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
+    <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', height: {xs: 'auto', md: 614} }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
       <motion.div style={{flexGrow: 1 }} animate={hovered ? "hovered" : "unhovered"}
         variants={featuredImageWrapper}>
-          <GatsbyImage style={{transform: hovered ? 'scale(1.1) translateY(-10px)' : 'scale(1) translateY(0px)', transition: 'all 0.2s ease-in-out 0s'}} image={getImage(image)} alt={image.alt} />
+          <GatsbyImage style={{transform: hovered ? 'scale(1.1) translateY(-10px)' : 'scale(1) translateY(0px)', transition: 'all 0.2s ease-in-out 0s', width: "100%"}} image={getImage(image)} alt={image.alt} />
       </motion.div>
       <motion.div style={{flexGrow: 1 }} animate={hovered ? "hovered" : "unhovered"}
         variants={cardBody}>
