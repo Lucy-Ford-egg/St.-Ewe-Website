@@ -7,7 +7,6 @@ import Grid2 from '@mui/material/Unstable_Grid2'
 
 export const ImageCaption = ({ image, imageSize }) => {
 
-debugger
   const imageWrapper = {
     hovered: {
       opacity: 1,

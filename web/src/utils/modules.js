@@ -17,7 +17,7 @@ const Modules = ({ modules, allPlace }) => {
     }
 
     if (modules != null) {
-        debugger
+  
         return (
             <>
                 {modules.map((module, i) => {

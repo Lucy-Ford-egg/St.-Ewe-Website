@@ -16,7 +16,8 @@ let clientTheme = createTheme({
       sm: 640,
       md: 900,
       lg: 1200,
-      xl: 1330 
+      xl: 1330 ,
+      xxl: 1440
     }
   },
   typography: {
