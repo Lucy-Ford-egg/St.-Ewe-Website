@@ -22,24 +22,53 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
   }
 
   const variants = {
-    hovered: { opacity: 1, y: 0, height: 'auto' },
-    unhovered: { opacity: 0, y: -10, height: 0 },
+    hovered: { 
+      opacity: 1, 
+      y: 0, 
+      height: 'auto',
+      transition: {
+        type: "spring",
+        stiffness: 80
+      } 
+    },
+    unhovered: { 
+      opacity: 0, 
+      y: -10, 
+      height: 0 
+    },
   }
 
   const textColour = {
-    hovered: { color: clientTheme.palette.white.main },
-    unhovered: { color: clientTheme.palette.text.main },
+    hovered: { 
+      color: clientTheme.palette.white.main 
+    },
+    unhovered: { 
+      color: clientTheme.palette.text.main 
+    },
   }
 
   const cardBody = {
-    hovered: {   backgroundColor: clientTheme.palette.primary.main, flexGrow: 4 },
-    unhovered: {  backgroundColor: clientTheme.palette.white.main},
+    hovered: {   
+      backgroundColor: clientTheme.palette.primary.main, 
+      flexGrow: 4,
+      transition: {
+        type: "spring",
+        stiffness: 80
+      }
+    },
+    unhovered: {  
+      backgroundColor: clientTheme.palette.white.main
+    },
   }
 
   const featuredImageWrapper = {
     hovered: { 
       overflow: 'hidden', 
       display: 'flex',
+      transition: {
+        type: "spring",
+        stiffness: 80
+      }
     },
     unhovered: {
       overflow: 'hidden', 
