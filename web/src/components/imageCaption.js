@@ -67,7 +67,7 @@ export const ImageCaption = ({ image, imageSize }) => {
         <Grid2 item xsOffset={matrix[imageSize].image.offset.xs} mdOffset={matrix[imageSize].image.offset.md}  xs={matrix[imageSize].image.xs} md={matrix[imageSize].image.md}>
           <motion.div style={{}} animate={"hovered"}
             variants={imageWrapper}>
-            <GatsbyImage image={getImage(image.asset[imageSize])} alt={image.asset.alt} />
+            <GatsbyImage image={getImage(image.asset[imageSize])} alt={image.alt} />
           </motion.div>
         </Grid2>
         <Grid2 xsOffset={matrix[imageSize].caption.offset.xs} mdOffset={matrix[imageSize].caption.offset.md} item xs={matrix[imageSize].caption.xs} md={matrix[imageSize].caption.md}>
