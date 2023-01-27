@@ -27,7 +27,7 @@ const MainNavigation = (props) => {
                 key={menuItem.text}
                 sx={{ my: 2, mx: { xs: 1, md: 1 }, px: { xs: 1, md: 1 }, color: "secondary.main", display: 'block', fontWeight: '500', textTransform: "unset" }}
               >
-                <StyledLink to={menuItem.navigationItemUrl.internalLink.slug.current}>{menuItem.text}</StyledLink>
+                <StyledLink to={`/${menuItem.navigationItemUrl.internalLink.slug.current}`}>{menuItem.text}</StyledLink>
               </Box>
             )
           }
