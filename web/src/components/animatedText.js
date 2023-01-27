@@ -22,6 +22,8 @@ export const AnimatedText = ({ text, titleSize, titleWidth }) => {
     }
   }
 
+  // transition={{ type: "spring", stiffness: 100 }}
+  
   const letter = {
     hidden: {
       opacity: 0,

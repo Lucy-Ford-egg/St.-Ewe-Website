@@ -15,6 +15,14 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
     }
+    allSanityPlace {
+      nodes {
+        title
+        slug {
+          current
+        }
+      }
+    }
   }
   `)
   data.allSanityPage.nodes.forEach(node => {
@@ -23,6 +31,14 @@ exports.createPages = async function ({ actions, graphql }) {
       path: node.slug.current,
       component: require.resolve(`./src/templates/page-builder.js`),
       context: { slug: node.slug.current },
+    })
+  })
+  data.allSanityPlace.nodes.forEach(node => {
+
+    actions.createPage({
+      path: `places/${node.slug.current}`,
+      component: require.resolve(`./src/templates/place-builder.js`),
+      context: { slug: `places/${node.slug.current}` },
     })
   })
 }
