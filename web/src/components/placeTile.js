@@ -89,7 +89,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
   }
 
   return (
-    <Link to={`/${to}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/places/${to}`} style={{ textDecoration: 'none' }}>
       <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 } }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
         <motion.div style={{}} animate={hovered ? "hovered" : "unhovered"}
           variants={featuredImageWrapper}>
@@ -132,7 +132,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
           </motion.div>
 
           <CardActions sx={{ px: { xs: 0, md: 5 }, pt: 0, pb: { xs: 8, md: 9 }, }}>
-            <Button variant="contained" to={`/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s' }}>Read More</Button>
+            <Button variant="contained" to={`/places/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s' }}>Read More</Button>
           </CardActions>
           
 

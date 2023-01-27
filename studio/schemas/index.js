@@ -9,6 +9,7 @@ import newsType  from '../schemas/news'
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
 import pageType from '../schemas/page'
+import moduleSpacingType from '../schemas/moduleSpacing'
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
 import imageCarouselCaptionLinkType from '../schemas/modules/imageCarouselCaptionLink'
@@ -27,10 +28,12 @@ import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 import heroSlideType from './components/heroSlide'
 
+
 export const schemaTypes = [
   navigationType,
   navItemType,
   linkType,
+  moduleSpacingType,
   // Taxonomies
   categoriesType,
   locationType, 

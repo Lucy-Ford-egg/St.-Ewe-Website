@@ -10,6 +10,15 @@ let defaultTheme = createTheme({
 
 let clientTheme = createTheme({
   spacing: [...clientSpacing],
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 640,
+      md: 900,
+      lg: 1200,
+      xl: 1330 
+    }
+  },
   typography: {
     fontFamily: [
       'Montserrat',
@@ -48,6 +57,7 @@ let clientTheme = createTheme({
     },
     subtitle2:{
       fontSize: 16,
+      fontWeight: 400,
       textTransform: 'uppercase',
       letterSpacing: 0.93
     },
@@ -65,6 +75,7 @@ let clientTheme = createTheme({
     },
     caption:{
       fontSize: 11,
+      lineHeight: 2.14
     },
     overline:{
       fontSize: 16,

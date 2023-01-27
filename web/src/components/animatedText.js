@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import { motion } from "framer-motion"
 import { Typography } from "@mui/material"
 
-export const AnimatedText = ({ text, titleSize, titleWidth }) => {
+export const AnimatedText = ({ text, titleSize, titleWidth, subtitlePosition }) => {
   // const [loaded, setLoaded] = useState(false)
 
   // useEffect(() => {
@@ -27,7 +27,7 @@ export const AnimatedText = ({ text, titleSize, titleWidth }) => {
   const letter = {
     hidden: {
       opacity: 0,
-      y: 50
+      y: -100
     },
     visible: {
       opacity: 1,
@@ -42,7 +42,7 @@ export const AnimatedText = ({ text, titleSize, titleWidth }) => {
   const MotionTitle = motion(Component)
 
   return (
-    <MotionTitle variants={sentance} initial="hidden" animate="visible" variant={titleSize} align="center" sx={{ width: {xs: '100%', md: titleWidth}, mx: "auto", pb: { xs: 8 } }}>
+    <MotionTitle variants={sentance} initial="hidden" animate="visible" variant={titleSize} align="center" sx={{ width: {xs: '100%', md: titleWidth}, mx: "auto", pb: { xs: subtitlePosition !== null ? 5 : 8 } }}>
       {text.split('').map((char, i) => {
         return (
           <motion.span key={`${char}-${i}`} variants={letter}>{char}</motion.span>

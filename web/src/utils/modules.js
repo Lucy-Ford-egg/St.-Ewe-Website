@@ -1,6 +1,8 @@
 import React from 'react'
 import {Carousel} from '../components/carousel'
 import {Places} from '../components/places'
+import {ImageCaption} from '../components/imageCaption'
+import {Text} from '../components/text'
 
 
 const Modules = ({ modules, allPlace }) => {
@@ -14,6 +16,7 @@ const Modules = ({ modules, allPlace }) => {
     }
 
     if (modules != null) {
+        debugger
         return (
             <>
                 {modules.map((module, i) => {
@@ -21,8 +24,13 @@ const Modules = ({ modules, allPlace }) => {
                         return <Carousel {...module} key={module._key + i } />
                     }
                     else if (isModule(module, "placesGrid")) {
-                   
                         return  <Places {...module} allPlace={allPlace} key={module._key + i} />
+                    }
+                    else if (isModule(module, "imageWithCaption")) {
+                        return  <ImageCaption {...module} key={module._key + i} />
+                    }
+                    else if (isModule(module, "textBlock")) {
+                        return  <Text {...module} key={module._key + i} />
                     }
                     else
                         return null

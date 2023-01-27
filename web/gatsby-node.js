@@ -38,7 +38,7 @@ exports.createPages = async function ({ actions, graphql }) {
     actions.createPage({
       path: `places/${node.slug.current}`,
       component: require.resolve(`./src/templates/place-builder.js`),
-      context: { slug: `places/${node.slug.current}` },
+      context: { slug: `${node.slug.current}` },
     })
   })
 }
