@@ -1,34 +1,28 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import { motion } from "framer-motion"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Container, Card, CardActions, CardContent, Box, Grid, Typography } from '@mui/material';
+// import { motion } from "framer-motion"
+import { Container, Typography } from '@mui/material';
 
 export const Text = ({ _rawContent }) => {
 
 debugger
-  const imageWrapper = {
-    hovered: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        bounce: 0
-      }
-    },
-    unhovered: {
-      opacity: 0,
-      y: -10,
-    },
-  }
+  // const imageWrapper = {
+  //   hovered: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       type: "spring",
+  //       bounce: 0
+  //     }
+  //   },
+  //   unhovered: {
+  //     opacity: 0,
+  //     y: -10,
+  //   },
+  // }
 
   return (
     <Container maxWidth="sm">
-      {/* <Grid container spacing={9} justifyContent="flex-end" sx={{py:{xs: 4}}}>
-        <Grid item xs={6} md={3}>
-          
-        </Grid>
-      </Grid> */}
       {_rawContent.map((content, i) => {
         
         let contentArray = []
@@ -43,7 +37,6 @@ debugger
           return contentArray
         
       })}
-      {/* <Typography variant="caption">{_rawContent}</Typography> */}
     </Container>
   )
 
