@@ -186,9 +186,7 @@ export const query = graphql`
       }
     }
     carouselLinkGroup {
-      internalLinkGroup {
-        label
-      }
+      
       externalLinkGroup {
         href
         label
