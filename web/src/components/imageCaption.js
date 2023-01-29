@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { graphql } from "gatsby"
 import { motion } from "framer-motion"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
@@ -7,6 +7,20 @@ import Grid2 from '@mui/material/Unstable_Grid2'
 
 export const ImageCaption = ({ image, imageSize }) => {
 
+  const [whatImageSize, setWhatImageSize] = useState(null)
+
+  const storeImage = useCallback(
+    () => {
+      return(setWhatImageSize(image.asset[imageSize]))
+    },
+    [],
+  )
+
+  useEffect(() => {
+    return (storeImage())
+
+  }, [storeImage])
+  
   const imageWrapper = {
     hovered: {
       opacity: 1,
@@ -62,12 +76,12 @@ export const ImageCaption = ({ image, imageSize }) => {
   }
   return (
     <Container maxWidth="xl">
-      <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }}>
+      <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }} rowSpacing={{ xs: 4, sm: 4, md: 4 }}>
 
         <Grid2 item xsOffset={matrix[imageSize].image.offset.xs} mdOffset={matrix[imageSize].image.offset.md}  xs={matrix[imageSize].image.xs} md={matrix[imageSize].image.md}>
           <motion.div style={{}} animate={"hovered"}
             variants={imageWrapper}>
-            <GatsbyImage image={getImage(image.asset[imageSize])} alt={image.alt} />
+            <GatsbyImage image={getImage(whatImageSize)} alt={image.alt} />
           </motion.div>
         </Grid2>
         <Grid2 xsOffset={matrix[imageSize].caption.offset.xs} mdOffset={matrix[imageSize].caption.offset.md} item xs={matrix[imageSize].caption.xs} md={matrix[imageSize].caption.md}>

@@ -65,7 +65,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
 
   return (
-    <Container maxWidth="fluid" disableGutters={true} sx={{overflowX: 'hidden'}}>
+    <Container maxWidth="fluid" disableGutters={true}>
       <Box sx={{ height: { xs: '85vh', md: '85vh', lg: '663px' }, position: 'relative' }}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
@@ -136,7 +136,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
           </Box>
         </Container>
 
-        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2, bottom: clientTheme.spacing(10), py:{xs: 9, md: 6}, pr: {xs: 9, md: 0}, mr: {xs: 9, md:0 }}}>
+        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2, bottom: clientTheme.spacing(10), py:{xs: 9, md: 6}, pr: {xs: 9, md: 0}, mr: {xs: 9, md:0 }, overflowX: 'hidden'}}>
           <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }}>
             <Grid2 xs={12} md={2}>
               <Box display="flex" flexDirection="column" justifyContent="flex-start" sx={{ position: 'relative', right: 0, pb: { xs: 7 }, columnGap: 9, pt: {xs: 2, md: 2}}}>
