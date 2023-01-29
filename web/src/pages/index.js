@@ -36,7 +36,21 @@ export const query = graphql`
           _type
           ... PlacesGridFragment
         }
-      
+        ... on SanityImageWithCaption {
+          _key
+          _type
+          ... ImageCaptionFragment
+        }
+        ... on SanityTextBlock{
+          _key
+          _type
+          ... TextFragment
+        }
+        ... on SanityImageCarouselCaptionLink{
+          _key
+          _type 
+          ... GalleryCarouselFragment
+        }
       }
     }
     allSanityPlace {
