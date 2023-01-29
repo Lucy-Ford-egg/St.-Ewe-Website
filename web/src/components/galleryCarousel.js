@@ -4,7 +4,6 @@ import { graphql } from "gatsby"
 import { wrap } from "popmotion";
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Container, Typography, Box, SvgIcon } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2';
 import ButtonLink from '../utils/buttonLink'
 import clientTheme from "../gatsby-theme-material-ui-top-layout/theme";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
@@ -42,7 +41,7 @@ const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
-export const GalleryCarousel = ({ carousel }) => {
+export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -66,7 +65,7 @@ export const GalleryCarousel = ({ carousel }) => {
 
 
   return (
-    <Container maxWidth="fluid" disableGutters={true}>
+    <Container maxWidth="fluid" disableGutters={true} sx={{overflowX: 'hidden'}}>
       <Box sx={{ height: { xs: '85vh', md: '85vh', lg: '663px' }, position: 'relative' }}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
@@ -105,7 +104,7 @@ export const GalleryCarousel = ({ carousel }) => {
 
 
         <Box display="flex" alignItems="center" flexDirection="column" sx={{ position: 'relative', height: '100%', bottom: 0, }}>
-          <Box className="next" onClick={() => paginate(1)} display="flex" alignItems="center" justifyContent="flex-start" sx={{ display: { xs: 'none', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', left: 0, transform: 'translateY(-50%)', px: { xs: 2, sm: 4, md: 8 } }}>
+          <Box className="next" onClick={() => paginate(-1)} display="flex" alignItems="center" justifyContent="flex-start" sx={{ display: { xs: 'none', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', left: 0, transform: 'translateY(-50%)', px: { xs: 2, sm: 4, md: 8 } }}>
 
             <SvgIcon sx={{ width: 22, height: 66 }}>
               <path id="Union_2" data-name="Union 2" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15788.986 -2632.95)" fill="none" stroke="#fff" stroke-width="3" />
@@ -113,7 +112,7 @@ export const GalleryCarousel = ({ carousel }) => {
 
           </Box>
 
-          <Box className="prev" onClick={() => paginate(-1)} display="flex" alignItems="center" justifyContent="flex-end" sx={{ display: { xs: 'none', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', right: 0, transform: 'translateY(-50%)', px: { xs: 2, sm: 4, md: 8 } }}>
+          <Box className="prev" onClick={() => paginate(1)} display="flex" alignItems="center" justifyContent="flex-end" sx={{ display: { xs: 'none', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', right: 0, transform: 'translateY(-50%)', px: { xs: 2, sm: 4, md: 8 } }}>
 
             <SvgIcon sx={{ width: 22, height: 66 }}>
               <g id="arrow" transform="translate(23.145 45.555) rotate(180)">
@@ -137,10 +136,16 @@ export const GalleryCarousel = ({ carousel }) => {
           </Box>
         </Container>
 
-        <Container maxWidth="xxl" disableGutters={true} sx={{ position: "relative", zIndex: 2, bottom: clientTheme.spacing(10), py:{xs: 9, md: 6}}}>
+        <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2, bottom: clientTheme.spacing(10), py:{xs: 9, md: 6}, pr: {xs: 9, md: 0}, mr: {xs: 9, md:0 }}}>
           <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }}>
-            <Grid2 mdOffset={3} xs={12} md={10} sx={{overflowX: 'hidden'}}>
-              <Box display="flex" flexDirection="row" justifyContent="flex-start" sx={{ position: 'relative', right: 0, pb: { xs: 7 }, columnGap: 9 }}>
+            <Grid2 xs={12} md={2}>
+              <Box display="flex" flexDirection="column" justifyContent="flex-start" sx={{ position: 'relative', right: 0, pb: { xs: 7 }, columnGap: 9, pt: {xs: 2, md: 2}}}>
+                <Typography variant="caption">{carousel[imageIndex].caption}</Typography>
+                {carouselLinkGroup && <Box sx={{mt: {xs: 4}, ml: {xs: 0, md: -5}}}><ButtonLink linkGroup={carouselLinkGroup} buttonType="text"/></Box>}
+              </Box>
+            </Grid2>
+            <Grid2 mdOffset={1} xs={12} md={9} sx={{overflowX: 'hidden'}}>
+              <Box className="scrollBar" display="flex" flexDirection="row" justifyContent="flex-start" sx={{ position: 'relative', right: 0, pb: { xs: 7 }, columnGap: 9, pt: {xs: 2, md: 2}, overflowX: 'scroll'}}>
                 {carousel.map((thumb, index) => {
                   let currentThumb = index === imageIndex;
                   let thumbDirection = (selectedIndex) => {
@@ -152,7 +157,7 @@ export const GalleryCarousel = ({ carousel }) => {
                   return (
                     <Box display="flex" sx={{position: 'relative', minWidth: '180px'}} onClick={() => paginate(thumbDirection(index))}>
                       {currentThumb && 
-                        <SvgIcon color={clientTheme.palette.primary.main} sx={{ width: 19, height: 19, position: 'absolute', right: 0, top: 0, zIndex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end' }}>
+                        <SvgIcon color={clientTheme.palette.primary.main} sx={{ width: 19, height: 19, position: 'absolute', right: '-14px', top: -3, zIndex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end' }}>
                         <circle id="dot" cx="5.5" cy="5.5" r="5.5" fill={clientTheme.palette.primary.main} />
                       </SvgIcon>}
                       <GatsbyImage key={`thumbnail-${index}`} style={{ minHeight: 'inherit' }} image={getImage(thumb.asset.thumbnail)} alt="alt tag" />
@@ -183,6 +188,11 @@ export const query = graphql`
     carouselLinkGroup {
       internalLinkGroup {
         label
+      }
+      externalLinkGroup {
+        href
+        label
+        blank
       }
     }
   }

@@ -111,7 +111,10 @@ let clientTheme = createTheme({
           font-weight: normal;
           src: local('Blacker Display Bold'), url(${blackerDisplayWoff}) format('woff');
         }
-      `,
+        .scrollBar {
+          scrollbar-color: red yellow;
+        }
+      `
     },
     MuiButton: {
       styleOverrides: {
