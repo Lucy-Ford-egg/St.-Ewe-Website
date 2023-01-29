@@ -97,14 +97,14 @@ export const ImageCaption = ({ image, imageSize }) => {
     <Container maxWidth="xl">
       <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }} rowSpacing={{ xs: 4, sm: 4, md: 4 }}>
 
-        { imageOffset && imageGrid && <Grid2 item xsOffset={imageOffset.xs} mdOffset={imageOffset.md} xs={imageGrid.xs} md={imageGrid.md}>
+        {imageOffset && imageGrid && <Grid2 item xsOffset={imageOffset.xs} mdOffset={imageOffset.md} xs={imageGrid.xs} md={imageGrid.md}>
           <motion.div style={{}} animate={"hovered"}
             variants={imageWrapper}>
             <GatsbyImage image={getImage(whatImageSize)} alt={image.alt} />
           </motion.div>
         </Grid2>
-}
-{ captionOffset && captionGrid && <Grid2 xsOffset={captionOffset.xs} mdOffset={captionOffset.md} item xs={captionGrid.xs} md={captionGrid.md}>
+        }
+        {captionOffset && captionGrid && <Grid2 xsOffset={captionOffset.xs} mdOffset={captionOffset.md} item xs={captionGrid.xs} md={captionGrid.md}>
           <Typography variant="caption">{image.caption}</Typography>
         </Grid2>}
 
