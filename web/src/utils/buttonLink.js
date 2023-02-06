@@ -6,9 +6,9 @@ const ButtonLink = ({linkGroup, buttonType = "contained", color = "primary"}) =>
 
   let linkType = '';
 
-  if(linkGroup.internalLinkGroup !== null){
-    linkType = <Button variant={buttonType} color={color} component={Link} to={linkGroup.internalLinkGroup.reference?.slug.current}>
-          {linkGroup.internalLinkGroup.label}
+  if(linkGroup?.internalLinkGroup !== null){
+    linkType = <Button variant={buttonType} color={color} component={Link} to={linkGroup?.internalLinkGroup.reference?.slug.current}>
+          {linkGroup?.internalLinkGroup.label}
         </Button>
   }
   else{

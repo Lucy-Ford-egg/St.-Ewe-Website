@@ -16,6 +16,7 @@
     "gatsby": "^5.1.0",
     "gatsby-plugin-gatsby-cloud": "^5.1.0",
     "gatsby-plugin-image": "^3.4.0",
+    "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^5.1.0",
     "gatsby-plugin-material-ui": "^4.0.2",
     "gatsby-plugin-offline": "^6.1.0",
