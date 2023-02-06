@@ -1,6 +1,7 @@
 import React, {useMemo, useState} from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
-import { Typography, Button, FormHelperText, Box, TextField, useFormControl, FormControl } from "@mui/material"
+import { Typography, Button, FormHelperText, Box, TextField, useFormControl } from "@mui/material"
+import FormControl from "@mui/material/FormControl"
 import CheckIcon from '@mui/icons-material/Check';
 import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 
