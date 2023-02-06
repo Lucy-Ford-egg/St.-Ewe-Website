@@ -120,7 +120,7 @@ export const query = graphql`
       caption
       asset {
         xl: gatsbyImageData(width: 1330, height: 748)
-        lg: gatsbyImageData(width: 870, height: 498)
+        lg: gatsbyImageData(width: 849, height: 486)
       }
       alt
     }
