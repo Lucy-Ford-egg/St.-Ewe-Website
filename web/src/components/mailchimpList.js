@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useMemo, useState} from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
-import { TextField, FormHelperText, Box, OutlinedInput } from "@mui/material"
+import { Button, FormHelperText, Box, OutlinedInput, useFormControl, FormControl } from "@mui/material"
 
 export const MailchimpList = () => {
   // Since `addToMailchimp` returns a promise, you
@@ -10,47 +10,43 @@ export const MailchimpList = () => {
   // these values can be pulled from React state, form fields,
   // or wherever.  (Personally, I recommend storing in state).
 
-  // // 1. via `.then`
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   addToMailchimp(email, listFields) // listFields are optional if you are only capturing the email address.
-  //   .then(data => {
-  //     // I recommend setting data to React state
-  //     // but you can do whatever you want (including ignoring this `then()` altogether)
-  //     console.log(data)
-  //   })
-  //   .catch(() => {
-  //     // unnecessary because Mailchimp only ever
-  //     // returns a 200 status code
-  //     // see below for how to handle errors
-  //   })
-  // }
+  const [MCResult, setMCResult] = useState(
+    {
+      result: '',
+      msg: ''
+    })
 
   // 2. via `async/await`
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await addToMailchimp(email, listFields)
+    debugger
+    const result = await addToMailchimp()
     // I recommend setting `result` to React state
     // but you can do whatever you want
+    setMCResult(result)
   }
   function MyFormHelperText() {
+
     const { focused } = useFormControl() || {};
 
-    const helperText = React.useMemo(() => {
+    const helperText = useMemo(() => {
       if (focused) {
         return "Don't worry, we don't spam you";
       }
 
-      return 'Helper text';
+      return '';
     }, [focused]);
 
     return <FormHelperText>{helperText}</FormHelperText>;
   }
   return (
-    <Box component="form" noValidate autoComplete="off" onSubmit={() => handleSubmit(email, { listFields })}>
-      <FormControl sx={{ width: '25ch' }}>
-        <OutlinedInput placeholder="Please enter text" />
-        <MyFormHelperText />
+    <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit()}>
+      <FormControl sx={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
+        <Box>
+          <OutlinedInput sx={{minWidth: 286, maxWidth: 350}} name="email" type="email" placeholder="Please enter text" />
+          <MyFormHelperText />
+        </Box>
+        <Button sx={{mx: {xs: 6, md: 6, minWidth: 145}}} variant="contained" color="secondary" type="submit">Join</Button>
       </FormControl>
     </Box>
   )
