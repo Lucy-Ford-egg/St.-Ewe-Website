@@ -2,6 +2,7 @@ import React, {useMemo, useState} from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { Typography, Button, FormHelperText, Box, TextField, useFormControl, FormControl } from "@mui/material"
 import CheckIcon from '@mui/icons-material/Check';
+import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 
 export const MailchimpList = () => {
   // Since `addToMailchimp` returns a promise, you
@@ -44,7 +45,9 @@ export const MailchimpList = () => {
         <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}>
           <FormControl sx={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
             <Box>
-              <TextField id="email" variant="filled" color="white" disableUnderline={true} fullWidth={true} hiddenLabel={true} required sx={{borderRadius: 0, minWidth: 286, maxWidth: 350}} name="email" type="email" placeholder="Enter your email address" />
+              <TextField id="email" variant="standard" color="white" inputProps={{disableUnderline: true}} fullWidth={true} hiddenLabel={true} required sx={{backgroundColor: clientTheme.palette.white.main, borderRadius: 0, minWidth: 286, maxWidth: 350, p: {xs: 2, md: 2},
+    
+  }} name="email" type="email" placeholder="Enter your email address" />
               <MyFormHelperText />
             </Box>
             <Button sx={{mx: {xs: 6, md: 6, minWidth: 145}}} variant="contained" color="secondary" type="submit">Join</Button>

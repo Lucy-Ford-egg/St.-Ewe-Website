@@ -132,6 +132,9 @@ let clientTheme = createTheme({
     MuiTextFeild:{
       styleOverrides: {
         root: {
+          '& fieldset': {
+            borderRadius: 0,
+          },
           borderRadius: 0
         }
       }
