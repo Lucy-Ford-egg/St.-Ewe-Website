@@ -129,6 +129,13 @@ let clientTheme = createTheme({
         },
       },
     },
+    MuiTextFeild:{
+      styleOverrides: {
+        root: {
+          borderRadius: 0
+        }
+      }
+    },
     MuiButton: {
       styleOverrides: {
         root: {

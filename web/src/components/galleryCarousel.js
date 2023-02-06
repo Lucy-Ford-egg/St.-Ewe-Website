@@ -100,7 +100,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
             >
 
               <Box sx={{ gridColumn: '1/1', gridRow: '1/1', minHeight: { xs: '287px', md: 'min-content' } }}>
-                <GatsbyImage style={{ minHeight: 'inherit' }} image={getImage(carousel[imageIndex].asset.mainImage)} alt="alt tag" />
+                <GatsbyImage style={{ minHeight: 'inherit' }} image={getImage(carousel[imageIndex].asset.mainImage)} alt={carousel[imageIndex].asset.altText} />
               </Box>
 
             </motion.div>
@@ -112,7 +112,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
           <Box className="next" onClick={(e) => paginate(-1, e)} display="flex" alignItems="center" justifyContent="flex-start" sx={{ display: { xs: 'flex', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', left: 0, transform: 'translateY(-50%)', px: { xs: 7, sm: 4, md: 8 } }}>
 
             <SvgIcon sx={{ width: {xs: 14, md: 22}, height: {xs: 40, md: 66} }}>
-              <path id="Union_2" data-name="Union 2" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15788.986 -2632.95)" fill="none" stroke="#fff" stroke-width="3" />
+              <path id="Union_2" data-name="Union 2" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15788.986 -2632.95)" fill="none" stroke="#fff" strokeWidth="3" />
             </SvgIcon>
 
           </Box>
@@ -121,7 +121,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
             <SvgIcon sx={{ width: {xs: 14, md: 22}, height: {xs: 40, md: 66} }}>
               <g id="arrow" transform="translate(23.145 45.555) rotate(180)">
-                <path id="Union_1" data-name="Union 1" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15787.001 -2633.999)" fill="none" stroke="#fff" stroke-width="3" />
+                <path id="Union_1" data-name="Union 1" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15787.001 -2633.999)" fill="none" stroke="#fff" strokeWidth="3" />
               </g>
             </SvgIcon>
 
@@ -165,7 +165,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
                         <SvgIcon color={clientTheme.palette.primary.main} sx={{ width: 19, height: 19, position: 'absolute', right: '-14px', top: -3, zIndex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end' }}>
                         <circle id="dot" cx="5.5" cy="5.5" r="5.5" fill={clientTheme.palette.primary.main} />
                       </SvgIcon>}
-                      <GatsbyImage aspectRatio={isMobile ? '414/87' : '19/9' } key={`thumbnail-${index}`} style={{ minHeight: 'inherit' }} image={getImage(thumb.asset.thumbnail)} alt="alt tag" />
+                      <GatsbyImage layout="constrained" aspectRatio={isMobile ? 414/87 : 19/9 } key={`thumbnail-${index}`} style={{ minHeight: 'inherit' }} image={getImage(thumb.asset.thumbnail)} alt={thumb.asset.altText} />
                     </Box>
                   )
                 })}
@@ -188,6 +188,7 @@ export const query = graphql`
       asset {
         mainImage: gatsbyImageData(width: 1440, height: 663)
         thumbnail: gatsbyImageData(width: 180, height: 135)
+        altText
       }
     }
     carouselLinkGroup {

@@ -5,7 +5,7 @@ import { ImageCaption } from '../components/imageCaption'
 import { Text } from '../components/text'
 import { GalleryCarousel } from '../components/galleryCarousel'
 import { HeroCallToAction } from '../components/heroCallToAction'
-import { HeroNewsletter } from '../components/HeroNewsletter'
+import { HeroNewsletter } from '../components/heroNewsletter'
 
 
 const Modules = ({ modules, allPlace }) => {

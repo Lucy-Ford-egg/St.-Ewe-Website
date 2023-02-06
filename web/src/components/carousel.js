@@ -136,7 +136,7 @@ export const Carousel = ({ carousel }) => {
             <Box className="next" onClick={() => paginate(1)} display="flex" alignItems="center" justifyContent="flex-start" sx={{ display: {xs: 'none', md: 'flex' }, position: "absolute", zIndex: 2, height: '100%', top: '50%', left: 0, transform: 'translateY(-50%)', px: {xs: 2, sm: 4, md: 8} }}>
 
                 <SvgIcon sx={{ width: 22, height: 66}}>
-                  <path id="Union_2" data-name="Union 2" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15788.986 -2632.95)" fill="none" stroke="#fff" stroke-width="3"/>
+                  <path id="Union_2" data-name="Union 2" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15788.986 -2632.95)" fill="none" stroke="#fff" strokeWidth="3"/>
                 </SvgIcon>
             
             </Box>
@@ -145,7 +145,7 @@ export const Carousel = ({ carousel }) => {
             
                 <SvgIcon sx={{ width: 22, height: 66}}>
                   <g id="arrow" transform="translate(23.145 45.555) rotate(180)">
-                    <path id="Union_1" data-name="Union 1" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15787.001 -2633.999)" fill="none" stroke="#fff" stroke-width="3"/>
+                    <path id="Union_1" data-name="Union 1" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15787.001 -2633.999)" fill="none" stroke="#fff" strokeWidth="3"/>
                   </g>
                 </SvgIcon>
             
