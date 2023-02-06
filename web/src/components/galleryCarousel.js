@@ -69,41 +69,43 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
   return (
     <Container maxWidth="fluid" disableGutters={true}>
-      <Box sx={{ height: { xs: '287px', md: '85vh', lg: '663px' }, position: 'relative' }}>
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={page}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
+      <Box sx={{ position: 'relative' }}>
+        <Box sx={{ position: 'relative', height: { xs: '287px', md: '85vh', lg: '663px' } }}>
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={page}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 }
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
 
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1);
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1);
-              }
-            }}
-            style={{ position: 'absolute', maxWidth: '100vw', height: '100%' }}
+                if (swipe < -swipeConfidenceThreshold) {
+                  paginate(1);
+                } else if (swipe > swipeConfidenceThreshold) {
+                  paginate(-1);
+                }
+              }}
+              style={{ position: 'absolute', maxWidth: '100vw', height: 'fit-content' }}
 
-          >
+            >
 
-            <Box sx={{ gridColumn: '1/1', gridRow: '1/1', minHeight: { xs: '287px', md: 'min-content' } }}>
-              <GatsbyImage style={{ minHeight: 'inherit' }} image={getImage(carousel[imageIndex].asset.mainImage)} alt="alt tag" />
-            </Box>
+              <Box sx={{ gridColumn: '1/1', gridRow: '1/1', minHeight: { xs: '287px', md: 'min-content' } }}>
+                <GatsbyImage style={{ minHeight: 'inherit' }} image={getImage(carousel[imageIndex].asset.mainImage)} alt="alt tag" />
+              </Box>
 
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </Box>
 
 
         <Box display="flex" alignItems="center" flexDirection="column" sx={{ position: 'relative', height: '100%', bottom: 0, }}>
