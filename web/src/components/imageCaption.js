@@ -54,7 +54,7 @@ export const ImageCaption = ({ image, imageSize }) => {
 
   const storeImage = useCallback(
     () => {
-      debugger
+   
       setWhatImageSize(image.asset[imageSize])
       setCaptionGrid({
         xs: matrix[imageSize]?.caption.xs,
@@ -95,12 +95,12 @@ export const ImageCaption = ({ image, imageSize }) => {
 
   return (
     <Container maxWidth="xl">
-      <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }} rowSpacing={{ xs: 4, sm: 4, md: 4 }}>
+      <Grid2 container columnSpacing={{ xs: 0, sm: 9, md: 9 }} rowSpacing={{ xs: 4, sm: 4, md: 4 }}>
 
         {imageOffset && imageGrid && <Grid2 item xsOffset={imageOffset.xs} mdOffset={imageOffset.md} xs={imageGrid.xs} md={imageGrid.md}>
           <motion.div style={{}} animate={"hovered"}
             variants={imageWrapper}>
-            <GatsbyImage image={getImage(whatImageSize)} alt={image.alt} />
+            <GatsbyImage layout='contained' image={getImage(whatImageSize)} alt={image.alt} />
           </motion.div>
         </Grid2>
         }

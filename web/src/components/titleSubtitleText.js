@@ -18,7 +18,7 @@ export const TitleSubtitleText = ({ title, subtitle, text, subtitlePosition, tit
   }
 
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 9 } }}>
+    <Container maxWidth={false} sx={{ py: { xs: 4, md: 9 } }}>
       <Container maxWidth="md">
         {subtitlePosition === null && (
           <Typography

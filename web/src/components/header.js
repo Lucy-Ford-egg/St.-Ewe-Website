@@ -111,7 +111,7 @@ const Header = () => {
   return (
     
     <AppBar position="static" color="white" sx={{boxShadow: '0px 3px 3px 13px rgba(0,0,0,0, 0.8)'}}>
-      <Container maxWidth="xl" sx={{ py: 2, px: {xs: 2, sm: 4, md: 8}}}>
+      <Container maxWidth="xl" sx={{ py: 2 }}>
         <Toolbar disableGutters sx={{display: 'flex', alignItems: 'center'}}>
           <Link to="/" style={{display: 'flex'}}>
              <svg id="archihols-logo" xmlns="http://www.w3.org/2000/svg" width="185.136" height="50.478" viewBox="0 0 185.136 50.478">

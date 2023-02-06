@@ -114,7 +114,20 @@ let clientTheme = createTheme({
         .scrollBar {
           scrollbar-color: red yellow;
         }
+        // *{
+        //   border: 1px solid red;
+        // }
+        
+       
       `
+    },
+    MuiContainer:{
+      styleOverrides: {
+        maxWidthXl:{
+          paddingLeft: 30,
+          paddingRight: 30,
+        },
+      },
     },
     MuiButton: {
       styleOverrides: {

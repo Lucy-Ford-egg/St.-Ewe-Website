@@ -22,21 +22,23 @@ export const Text = ({ _rawContent }) => {
   // }
 
   return (
-    <Container maxWidth="sm">
-      {_rawContent.map((content, i) => {
-        
-        let contentArray = []
-        
-          if(content.style.indexOf('h1','h2','h3','h4')){
-            contentArray = [...contentArray, <Typography sx={{my: {xs: 7}, maxWidth: 'max-content'}} variant={content.style}>{content.children.map((child, i) => child.text)}</Typography>]
-          } 
-          if(content.style === 'normal'){  
-            contentArray = [...contentArray, <Typography sx={{my: {xs: 7}}} variant="body1">{content.children.map((child, i) => child.text)}</Typography>]
-          }
+    <Container maxWidth="xl" sx={{py: {xs: 6, md: 6} }}>
+      <Container maxWidth="sm">
+        {_rawContent.map((content, i) => {
 
-          return contentArray
-        
-      })}
+          let contentArray = []
+
+            if(content.style.indexOf('h1','h2','h3','h4')){
+              contentArray = [...contentArray, <Typography sx={{my: {xs: 7}, maxWidth: 'max-content'}} variant={content.style}>{content.children.map((child, i) => child.text)}</Typography>]
+            } 
+            if(content.style === 'normal'){  
+              contentArray = [...contentArray, <Typography sx={{my: {xs: 7}}} variant="body1">{content.children.map((child, i) => child.text)}</Typography>]
+            }
+
+            return contentArray
+          
+        })}
+      </Container>
     </Container>
   )
 
