@@ -186,6 +186,23 @@ export const query = graphql`
       }
     }
     carouselLinkGroup {
+      internalLinkGroup {
+        label
+        reference {
+          ... on SanityPlace {
+            id
+          }
+          ... on SanityPage {
+            id
+          }
+          ... on SanityNews {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
       
       externalLinkGroup {
         href

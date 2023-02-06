@@ -57,20 +57,20 @@ export const ImageCaption = ({ image, imageSize }) => {
       debugger
       setWhatImageSize(image.asset[imageSize])
       setCaptionGrid({
-        xs: matrix[imageSize].caption.xs,
-        md: matrix[imageSize].caption.md
+        xs: matrix[imageSize]?.caption.xs,
+        md: matrix[imageSize]?.caption.md
       })
       setCaptionOffset({
-        xs: matrix[imageSize].caption.offset.xs,
-        md: matrix[imageSize].caption.offset.md
+        xs: matrix[imageSize]?.caption.offset.xs,
+        md: matrix[imageSize]?.caption.offset.md
       })
       setImageOffset({
-        xs: matrix[imageSize].image.offset.xs,
-        md: matrix[imageSize].image.offset.md
+        xs: matrix[imageSize]?.image.offset.xs,
+        md: matrix[imageSize]?.image.offset.md
       })
       setImageGrid({
-        xs: matrix[imageSize].image.xs,
-        md: matrix[imageSize].image.md
+        xs: matrix[imageSize]?.image.xs,
+        md: matrix[imageSize]?.image.md
       })
     },
     [image, imageSize],
