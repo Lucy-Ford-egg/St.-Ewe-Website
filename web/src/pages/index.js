@@ -51,6 +51,11 @@ export const query = graphql`
           _type 
           ... GalleryCarouselFragment
         }
+        ... on SanityHeroCallToAction{
+          _key
+          _type
+          ...HeroCallToActionFragment
+        }
       }
     }
     allSanityPlace {
