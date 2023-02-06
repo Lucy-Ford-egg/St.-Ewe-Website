@@ -35,7 +35,7 @@ export const HeroNewsletter = ({ title, text, image, linkGroup }) => {
 
       </Container>
       <Container maxWidth="xl" disableGutters={isMobile ? true : false} sx={{ px: {xs: 0}, gridColumn: '1/13', gridRow: '1/6' }}>
-        <GatsbyImage layout="constrained" aspectRatio={133 / 33} style={{ minHeight: '100%' }} image={getImage(image.asset)} alt="alt tag" />
+        <GatsbyImage layout="constrained" aspectRatio={133 / 33} style={{ minHeight: '100%' }} image={getImage(image.asset)} alt={image.asset.altText} />
       </Container>
     </Container>
   )

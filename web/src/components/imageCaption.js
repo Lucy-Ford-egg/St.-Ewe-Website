@@ -100,7 +100,7 @@ export const ImageCaption = ({ image, imageSize }) => {
         {imageOffset && imageGrid && <Grid2 item xsOffset={imageOffset.xs} mdOffset={imageOffset.md} xs={imageGrid.xs} md={imageGrid.md}>
           <motion.div style={{}} animate={"hovered"}
             variants={imageWrapper}>
-            <GatsbyImage layout='contained' image={getImage(whatImageSize)} alt={image.alt} />
+            <GatsbyImage layout='contained' image={getImage(whatImageSize)} alt={image.altText} />
           </motion.div>
         </Grid2>
         }
@@ -121,8 +121,9 @@ export const query = graphql`
       asset {
         xl: gatsbyImageData(width: 1330, height: 748)
         lg: gatsbyImageData(width: 849, height: 486)
+        altText
       }
-      alt
+      
     }
     imageSize
     portrait
