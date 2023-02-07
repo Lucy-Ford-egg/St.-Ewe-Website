@@ -75,7 +75,9 @@ export const Footer = () => {
             </Box>
           </Grid>
           <Grid item xs={12} md={7} sx={{order: {xs: 3, md: 4}}}>
-              
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: {xs: 'flex-start', md: 'flex-end'} }} >
+              <Typography sx={{fontFamily: 'Montserrat', color: 'rgba(255,255,255, 0.6)'}} variant="h6">Accreditation &amp; Affiliations</Typography>
+            </Box>
           </Grid>
 
         </Grid>
