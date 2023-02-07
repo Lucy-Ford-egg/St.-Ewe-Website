@@ -11,7 +11,7 @@ import ButtonLink from '../utils/buttonLink'
 const variants = {
   enter: (direction) => {
     return {
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? 50 : -50,
       opacity: 0
     };
   },
@@ -23,7 +23,7 @@ const variants = {
   exit: (direction) => {
     return {
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: direction < 0 ? 50 : -50,
       opacity: 0
     };
   }
