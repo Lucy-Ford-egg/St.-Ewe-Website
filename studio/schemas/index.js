@@ -19,7 +19,7 @@ import mapType from '../schemas/modules/map'
 import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
 import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
 import placesGridType from '../schemas/modules/placesGrid'
-import heroNewsletterType from './modules/heroNewsletter'
+import heroNewsletterType from '../schemas/modules/heroNewsletter'
 
 //Components
 import titleTextType from '../schemas/components/titleText'
