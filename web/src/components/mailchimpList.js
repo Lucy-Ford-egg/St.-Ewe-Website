@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react'
+import React, { useMemo, useState } from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { Typography, Button, FormHelperText, Box, TextField, useFormControl } from "@mui/material"
 import FormControl from "@mui/material/FormControl"
@@ -19,12 +19,12 @@ export const MailchimpList = () => {
   const handleSubmit = async (e) => {
     debugger
     e.preventDefault();
-    
+
     const addResult = await addToMailchimp(e.currentTarget[0].value)
     // I recommend setting `result` to React state
     // but you can do whatever you want
     debugger
-    setMCResult({MCResult, ...addResult})
+    setMCResult({ MCResult, ...addResult })
   }
   function MyFormHelperText() {
 
@@ -42,27 +42,28 @@ export const MailchimpList = () => {
   }
   return (
     <Box>
-      {!MCResult && 
+      {!MCResult &&
         <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}>
-          <FormControl sx={{ width: '100%', display: 'flex', flexDirection: {xs: 'column' , md: 'row' }}}>
+          <FormControl sx={{ width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
             <Box>
-              <TextField id="email" variant="standard" color="white" inputProps={{disableUnderline: true}} fullWidth={true} hiddenLabel={true} required sx={{backgroundColor: clientTheme.palette.white.main, borderRadius: 0, minWidth: 280, maxWidth: 350, p: {xs: 2, md: 2}, mb: {xs: 6, md: 0}
-    
-  }} name="email" type="email" placeholder="Enter your email address" />
+              <TextField id="email" disableUnderline={true} variant="outlined" color="white" inputProps={{ sx:{ border: 'none'}  }} fullWidth={true} hiddenLabel={true} required sx={{
+                backgroundColor: clientTheme.palette.white.main, borderColor: 'white', borderRadius: 0, minWidth: 280, maxWidth: 350, mb: { xs: 6, md: 0 }
+
+              }} name="email" type="email" placeholder="Enter your email address" />
               <MyFormHelperText />
             </Box>
-            <Button sx={{mx: {xs: 6, md: 6, minWidth: 145}}} variant="contained" color="secondary" type="submit">Join</Button>
+            <Button sx={{ mx: { xs: 6, md: 6, minWidth: { xs: '100%', md: 145 }, width: { xs: '100% !important', md: 'fit-content' } } }} variant="contained" color="secondary" type="submit">Join</Button>
           </FormControl>
         </Box>
       }
       {
         MCResult?.result === 'success' && <Box display="flex" alignItems="center">
-          
-          <Typography sx={{pr: {xs: 4, md: 4},py: {xs: 4, md: 4}}} variant="h4" component="p">{MCResult.msg}</Typography>
-          <CheckIcon color="white"/>
-          </Box>
-      } 
+
+          <Typography sx={{ pr: { xs: 4, md: 4 }, py: { xs: 4, md: 4 } }} variant="h4" component="p">{MCResult.msg}</Typography>
+          <CheckIcon color="white" />
+        </Box>
+      }
     </Box>
-    
+
   )
 }
