@@ -46,7 +46,7 @@ export const MailchimpList = () => {
         <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}>
           <FormControl sx={{ width: '100%', display: 'flex', flexDirection: {xs: 'column' , md: 'row' }}}>
             <Box>
-              <TextField id="email" variant="standard" color="white" inputProps={{disableUnderline: true}} fullWidth={true} hiddenLabel={true} required sx={{backgroundColor: clientTheme.palette.white.main, borderRadius: 0, minWidth: 286, maxWidth: 350, p: {xs: 2, md: 2},
+              <TextField id="email" variant="standard" color="white" inputProps={{disableUnderline: true}} fullWidth={true} hiddenLabel={true} required sx={{backgroundColor: clientTheme.palette.white.main, borderRadius: 0, minWidth: 280, maxWidth: 350, p: {xs: 2, md: 2}, mb: {xs: 6, md: 0}
     
   }} name="email" type="email" placeholder="Enter your email address" />
               <MyFormHelperText />
