@@ -6,8 +6,8 @@ const ButtonLink = ({linkGroup, buttonType = "contained", color = "primary"}) =>
 
   let linkType = false;
 
-  if(linkGroup && linkGroup.internalLinkGroup){
-    linkType = <Button variant={buttonType} color={color} component={Link} to={linkGroup?.internalLinkGroup?.reference?.slug.current}  aria-label={`Link to ${linkGroup?.internalLinkGroup?.label}`}>
+  if(linkGroup && linkGroup.internalLinkGroup && linkGroup?.internalLinkGroup?.reference && linkGroup?.internalLinkGroup?.reference?.slug && linkGroup?.internalLinkGroup?.reference?.slug?.current){
+    linkType = <Button variant={buttonType} color={color} component={Link} to={linkGroup?.internalLinkGroup?.reference?.slug?.current}  aria-label={`Link to ${linkGroup?.internalLinkGroup?.label}`}>
           {linkGroup?.internalLinkGroup && linkGroup?.internalLinkGroup?.label}
         </Button>
   }
