@@ -100,12 +100,12 @@ export const ImageCaption = ({ image, imageSize }) => {
         {imageOffset && imageGrid && <Grid2 item xsOffset={imageOffset.xs} mdOffset={imageOffset.md} xs={imageGrid.xs} md={imageGrid.md}>
           <motion.div style={{}} animate={"hovered"}
             variants={imageWrapper}>
-            <GatsbyImage layout='contained' image={getImage(whatImageSize)} alt={image.altText} />
+            <GatsbyImage layout='contained' image={getImage(whatImageSize)} alt={image?.altText} />
           </motion.div>
         </Grid2>
         }
         {captionOffset && captionGrid && <Grid2 xsOffset={captionOffset.xs} mdOffset={captionOffset.md} item xs={captionGrid.xs} md={captionGrid.md}>
-          <Typography variant="caption">{image.caption}</Typography>
+          <Typography variant="caption">{image?.caption}</Typography>
         </Grid2>}
 
       </Grid2>

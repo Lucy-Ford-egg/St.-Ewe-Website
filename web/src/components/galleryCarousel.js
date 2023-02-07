@@ -187,7 +187,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
           <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }}>
             <Grid2 xs={12} md={2}>
               <Box display="flex" flexDirection="column" justifyContent="flex-start" sx={{ position: 'relative', right: 0, pb: { xs: 7 }, columnGap: 9, pt: { xs: 2, md: 2 } }}>
-                <Typography variant="caption">{carousel[imageIndex].caption}</Typography>
+                <Typography variant="caption">{carousel[imageIndex]?.caption}</Typography>
                 {carouselLinkGroup && <Box sx={{ mt: { xs: 4 }, ml: { xs: 0, md: -5 } }}><ButtonLink linkGroup={carouselLinkGroup} buttonType="text" /></Box>}
               </Box>
             </Grid2>
