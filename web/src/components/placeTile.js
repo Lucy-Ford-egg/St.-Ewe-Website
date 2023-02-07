@@ -105,7 +105,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
 
               <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>
                 <Box display="flex" justifyContent="space-between" >
-                  <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{renderTaxonomies(categories)}</Typography>
+                  <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{categories && renderTaxonomies(categories)}</Typography>
                   <Typography variant="subtitle1" sx={{ textDecoration: 'none', color: "inherit" }}>{date}</Typography>
                 </Box>
               </motion.div>
