@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-// import { motion } from "framer-motion"
 import { Container, Typography, Box, useMediaQuery } from '@mui/material';
 import ButtonLink from '../utils/buttonLink';
 import {ArchIcon} from '../components/archIcon'
@@ -10,20 +9,7 @@ import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 export const HeroCallToAction = ({ title, text, image, linkGroup }) => {
 
   const adornment = true
-  // const imageWrapper = {
-  //   hovered: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       type: "spring",
-  //       bounce: 0
-  //     }
-  //   },
-  //   unhovered: {
-  //     opacity: 0,
-  //     y: -10,
-  //   },
-  // }
+
   const isMobile = useMediaQuery('(min-width:600px)');
 
   return (

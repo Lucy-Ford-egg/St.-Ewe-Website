@@ -1,13 +1,8 @@
-import React, {useState} from "react"
+import React from "react"
 import { motion } from "framer-motion"
 import { Typography } from "@mui/material"
 
 export const AnimatedText = ({ text, titleSize, titleWidth, subtitlePosition }) => {
-  // const [loaded, setLoaded] = useState(false)
-
-  // useEffect(() => {
-  //   setLoaded(true)
-  // }, [setLoaded])
   
   const sentance = {
     hidden: {
@@ -21,8 +16,6 @@ export const AnimatedText = ({ text, titleSize, titleWidth, subtitlePosition }) 
       }
     }
   }
-
-  // transition={{ type: "spring", stiffness: 100 }}
   
   const letter = {
     hidden: {

@@ -1,25 +1,8 @@
 import React from 'react'
 import { graphql } from "gatsby"
-// import { motion } from "framer-motion"
 import { Container, Typography } from '@mui/material';
 
 export const Text = ({ _rawContent }) => {
-
-
-  // const imageWrapper = {
-  //   hovered: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: {
-  //       type: "spring",
-  //       bounce: 0
-  //     }
-  //   },
-  //   unhovered: {
-  //     opacity: 0,
-  //     y: -10,
-  //   },
-  // }
 
   return (
     <Container maxWidth="xl" sx={{py: {xs: 6, md: 6} }}>
