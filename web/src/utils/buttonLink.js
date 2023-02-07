@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 
 const ButtonLink = ({linkGroup, buttonType = "contained", color = "primary"}) => {
 
-  let linkType = '';
+  let linkType = false;
 
   if(linkGroup && linkGroup.internalLinkGroup){
     linkType = <Button variant={buttonType} color={color} component={Link} to={linkGroup?.internalLinkGroup?.reference?.slug.current}  aria-label={`Link to ${linkGroup?.internalLinkGroup?.label}`}>
@@ -15,7 +15,7 @@ const ButtonLink = ({linkGroup, buttonType = "contained", color = "primary"}) =>
     linkType = <Button variant={buttonType} color={color} className="" href={linkGroup?.externalLinkGroup?.href} aria-label={`Link to ${linkGroup?.externalLinkGroup?.label}`}>{linkGroup?.externalLinkGroup && linkGroup?.externalLinkGroup?.label}</Button>
   }
   else{
-    return false
+    return linkType
   }
 
   return(linkType)
