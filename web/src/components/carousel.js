@@ -123,7 +123,7 @@ export const Carousel = ({ carousel }) => {
 
 
               <Box sx={{gridColumn: '1/1', gridRow: '1/1', minHeight: {xs: '85vh', md: '85vh'} }}>
-                <GatsbyImage style={{minHeight: 'inherit'}} image={getImage(carousel[imageIndex].image.asset.gatsbyImageData)} alt={carousel[imageIndex].image.asset.altText} />
+                <GatsbyImage style={{minHeight: 'inherit'}} image={getImage(carousel[imageIndex]?.image?.asset.gatsbyImageData)} alt={carousel[imageIndex].image?.asset.altText} />
               </Box>
 
             </Box>

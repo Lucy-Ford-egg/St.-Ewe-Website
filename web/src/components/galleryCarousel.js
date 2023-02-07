@@ -104,7 +104,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
               >
 
                 <Box sx={{ gridColumn: '1/1', gridRow: '1/1', minHeight: { xs: '287px', md: 'min-content' } }}>
-                  <GatsbyImage aspectRatio={480 / 221} style={{ height: '100%' }} image={getImage(carousel[imageIndex].asset.mainImage)} alt={carousel[imageIndex].asset.altText} />
+                  <GatsbyImage aspectRatio={480 / 221} style={{ height: '100%' }} image={getImage(carousel[imageIndex].asset?.mainImage)} alt={carousel[imageIndex].asset?.altText} />
                 </Box>
 
               </motion.div>
@@ -207,7 +207,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
                         <SvgIcon color={clientTheme.palette.primary.main} sx={{ width: {xs: 19, sm: 19}, height: {xs: 19, sm: 19}, position: 'absolute', right: '-14px', top: -3, zIndex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end' }}>
                           <circle id="dot" cx="5.5" cy="5.5" r="5.5" fill={clientTheme.palette.primary.main} />
                         </SvgIcon>}
-                      <GatsbyImage layout="constrained" aspectRatio={isMobile ? 414 / 87 : 19 / 9} key={`thumbnail-${index}`} style={{ minHeight: 'inherit' }} image={getImage(thumb.asset.thumbnail)} alt={thumb.asset.altText} />
+                      <GatsbyImage layout="constrained" aspectRatio={isMobile ? 414 / 87 : 19 / 9} key={`thumbnail-${index}`} style={{ minHeight: 'inherit' }} image={getImage(thumb?.asset.thumbnail)} alt={thumb.asset?.altText} />
                     </Box>
                   )
                 })}
