@@ -68,7 +68,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
 
   return (
-    <Container maxWidth="fluid" disableGutters={true}>
+    <Container maxWidth="xl" disableGutters={true}>
       <Box sx={{ position: 'relative' }}>
         <Box sx={{ position: 'relative', height: { xs: '287px', md: '85vh', lg: '663px' } }}>
           <AnimatePresence initial={false} custom={direction}>
