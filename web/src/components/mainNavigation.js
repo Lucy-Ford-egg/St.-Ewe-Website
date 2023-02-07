@@ -18,23 +18,19 @@ const MainNavigation = (props) => {
 
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
-      {menu.allSanityNavigation.nodes.map((page) => {
 
+      {menu.sanityNavigation.items.map((menuItem) => {
         return (
-          page.items.map((menuItem) => {
-            return (
-              <Box
-                key={menuItem.text}
-                sx={{ my: 2, mx: { xs: 1, md: 1 }, px: { xs: 1, md: 1 }, color: "secondary.main", display: 'block', fontWeight: '500', textTransform: "unset" }}
-              >
-                <StyledLink to={`/${menuItem.navigationItemUrl.internalLink.slug.current}`}>{menuItem.text}</StyledLink>
-              </Box>
-            )
-          }
-          )
+          <Box
+            key={menuItem.text}
+            sx={{ my: 2, mx: { xs: 1, md: 1 }, px: { xs: 1, md: 1 }, color: "secondary.main", display: 'block', fontWeight: '500', textTransform: "unset" }}
+          >
+            <StyledLink to={`/${menuItem.navigationItemUrl.internalLink.slug.current}`}>{menuItem.text}</StyledLink>
+          </Box>
         )
+      })
       }
-      )}
+
     </Box>
   )
 }

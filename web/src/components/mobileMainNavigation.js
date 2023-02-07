@@ -35,20 +35,15 @@ const MobileMainNavigation = (props) => {
         }}
         TransitionComponent={Fade}
       >
-        {menu.allSanityNavigation.nodes.map((page) => {
 
+        {menu.sanityNavigation.items.map((menuItem) => {
           return (
-            page.items.map((menuItem) => {
-              return (
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                  <StyledLink to="/">{menuItem.text}</StyledLink>
-                </MenuItem>
-              )
-            }
-            )
+            <MenuItem key={menuItem.title} onClick={handleCloseNavMenu}>
+              <StyledLink to="/">{menuItem.text}</StyledLink>
+            </MenuItem>
           )
-        }
-        )}
+        })}
+
       </Menu>
     </Box>
 
