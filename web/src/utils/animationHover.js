@@ -5,7 +5,7 @@ export const animationHover = (lineColor) => {
 	  display: 'inline-block',
     textDecoration:' none',
 	  backgroundSize:' 0 100%',
-	  transition: 'background-size .3s ease',
+	  // transition: 'background-size .3s ease',
     backgroundColor: 'transparent',
 	  backgroundImage: `linear-gradient(transparent calc(100% - 1px), ${lineColor} 1px)`,
 	  backgroundRepeat: 'no-repeat',
