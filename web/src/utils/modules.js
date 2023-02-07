@@ -1,6 +1,7 @@
 import React from 'react'
 import { Carousel } from '../components/carousel'
 import { Places } from '../components/places'
+import { Posts } from '../components/posts'
 import { ImageCaption } from '../components/imageCaption'
 import { Text } from '../components/text'
 import { GalleryCarousel } from '../components/galleryCarousel'
@@ -8,7 +9,7 @@ import { HeroCallToAction } from '../components/heroCallToAction'
 import { HeroNewsletter } from '../components/heroNewsletter'
 
 
-const Modules = ({ modules, allPlace }) => {
+const Modules = ({ modules, allPlace, allPost }) => {
 
     function isModule(moduletype, testname) {
         if (moduletype?._type?.indexOf(testname) >= 0) {
@@ -28,6 +29,9 @@ const Modules = ({ modules, allPlace }) => {
                     }
                     else if (isModule(module, "placesGrid")) {
                         return <Places {...module} allPlace={allPlace} key={module._key + i} />
+                    }
+                    else if (isModule(module, "postsGrid")) {
+                        return <Posts {...module} allPost={allPost} key={module._key + i} />
                     }
                     else if (isModule(module, "imageWithCaption")) {
                         return <ImageCaption {...module} key={module._key + i} />

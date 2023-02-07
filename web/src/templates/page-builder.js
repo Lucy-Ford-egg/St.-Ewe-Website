@@ -7,7 +7,7 @@ export default function PageBuilder({ data }) {
  
   return (
     <Layout>
-      <Modules allPlace={data.allSanityPlace.nodes} modules={data.sanityPage.pageBuilder}/>
+      <Modules allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
     </Layout>
   )
 }
@@ -57,9 +57,32 @@ export const query = graphql`
           _type
           ...HeroNewsletterFragment
         }
+        ... on SanityPostsGrid {
+          _key
+          _type
+          ... PostsGridFragment
+        }
       }
     }
     allSanityPlace {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        date(formatString: "M MMM YYYY")
+        categories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
+      }
+    }
+    allSanityPost {
       nodes {
         coverImage {
           asset {

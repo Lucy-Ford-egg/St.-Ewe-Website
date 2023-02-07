@@ -19,6 +19,7 @@ import mapType from '../schemas/modules/map'
 import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
 import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
 import placesGridType from '../schemas/modules/placesGrid'
+import postsGridType from '../schemas/modules/postsGrid'
 import heroNewsletterType from '../schemas/modules/heroNewsletter'
 
 //Components
@@ -54,6 +55,7 @@ export const schemaTypes = [
   twoColumnTitleTextCtaType,
   imageCarouselSubtitleTitleTextLinkType,
   placesGridType,
+  postsGridType,
   heroNewsletterType,
   // Components
   titleTextType,

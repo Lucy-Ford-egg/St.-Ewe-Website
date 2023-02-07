@@ -13,7 +13,9 @@ import mapType from './modules/map'
 import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
 import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
 import placesGridType from './modules/placesGrid'
-import heroNewsletterType from "./modules/heroNewsletter";
+import postsGridType from './modules/postsGrid'
+import heroNewsletterType from "./modules/heroNewsletter"
+
 
 /**
  * This file is the schema definition for a post.
@@ -101,7 +103,8 @@ export default defineType({
         { type: twoColumnTitleTextCtaType.name, title: "Two Column. Title,Text, Cta Module"},
         { type: imageCarouselSubtitleTitleTextLinkType.name, title: "Hero Carousel. Subtitle, Title, Text, Cta Module"},
         { type: placesGridType.name, title: "Places Grid Module" },
-        { type: heroNewsletterType.name, title: "Hero Newsletter Module"}
+        { type: heroNewsletterType.name, title: "Hero Newsletter Module"},
+        { type: postsGridType.name, title: "Posts Grid Module" },
         // { type: 'callToAction' },
         // { type: 'gallery' },
         // { type: 'form' },

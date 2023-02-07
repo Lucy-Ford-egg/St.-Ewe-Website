@@ -5,16 +5,16 @@ import Layout from "../components/layout"
 import Modules from "../utils/modules"
 import {TitleSubtitleText} from "../components/titleSubtitleText"
 
-export default function PlaceBuilder({ data, moduleSpacing  }) {
+export default function BlogPost({ data, moduleSpacing  }) {
  
   return (
     <Layout>
       
       <Container maxWidth="xl" sx={{ pt: { xs: 9 } }}>
-        <TitleSubtitleText title={data.sanityPlace.title} subtitle={data.sanityPlace.location.name} text={data.sanityPlace.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
+        <TitleSubtitleText title={data.sanityPost.title} subtitle={data.sanityPost.category?.name} text={data.sanityPost?.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
       </Container>
       
-      <Modules allPlace={data.allSanityPlace.nodes} modules={data.sanityPlace?.pageBuilder}/>
+      <Modules allPost={data.allSanityPost.nodes} modules={data.sanityPost?.pageBuilder}/>
     
     </Layout>
   )
@@ -22,15 +22,12 @@ export default function PlaceBuilder({ data, moduleSpacing  }) {
 
 export const query = graphql`
   query($slug: String!) {
-    sanityPlace(slug: {current: {eq: $slug}}) {
+    sanityPost(slug: {current: {eq: $slug}}) {
       title
-      excerpt
       categories{
         name
       }
-      location{
-        name
-      }
+      excerpt
       slug {
         current
       }
@@ -80,6 +77,24 @@ export const query = graphql`
       }
     }
     allSanityPlace {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        date(formatString: "M MMM YYYY")
+        categories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
+      }
+    }
+    allSanityPost {
       nodes {
         coverImage {
           asset {

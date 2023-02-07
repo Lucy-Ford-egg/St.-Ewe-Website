@@ -4,6 +4,16 @@ import { defineField, defineType } from 'sanity'
 
 import authorType from './author'
 import categoriesType from './categories'
+import imageWithCaptionType from './modules/imageWithCaption'
+import textBlockType from './modules/textBlock'
+import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
+import heroCallToActionType from './modules/heroCallToAction'
+import mapType from './modules/map'
+import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
+import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
+import placesGridType from './modules/placesGrid'
+import postsGridType from './modules/postsGrid'
+import heroNewsletterType from './modules/heroNewsletter'
 
 /**
  * This file is the schema definition for a post.
@@ -39,10 +49,10 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'content',
-      title: 'Content',
-      type: 'array',
-      of: [{ type: 'block' }],
+      name: 'excerpt',
+      title: 'Excerpt',
+      rows: 2,
+      type: 'text',
     }),
    
     defineField({
@@ -64,6 +74,25 @@ export default defineType({
       title: 'Author',
       type: 'reference',
       to: [{ type: authorType.name }],
+    }),
+    defineField({
+      name: 'pageBuilder',
+      type: 'array',
+      title: 'Page builder',
+      of: [
+        { type: imageWithCaptionType.name, title: "Image w/caption Module"},
+        { type: textBlockType.name, title: "Text Module"},
+        { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
+        { type: heroCallToActionType.name, title: "Hero Call to Action Module"},
+        { type: mapType.name, title: "Map Module"},
+        { type: twoColumnTitleTextCtaType.name, title: "Two Column. Title,Text, Cta Module"},
+        { type: imageCarouselSubtitleTitleTextLinkType.name, title: "Hero Carousel. Subtitle, Title, Text, Cta Module"},
+        { type: placesGridType.name, title: "Places Grid Module" },
+        { type: heroNewsletterType.name, title: "Hero Newsletter Module"},
+        { type: postsGridType.name, title: "Posts Grid Module" },
+    
+        // etc...
+        ]
     }),
     
     defineField({
