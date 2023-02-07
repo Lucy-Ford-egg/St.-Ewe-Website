@@ -114,6 +114,25 @@ let clientTheme = createTheme({
         .scrollBar {
           scrollbar-color: red yellow;
         }
+        a{
+          color: inherit;
+          text-decoration: none;
+        }
+        .link-animation{
+          transition: all 0.2s ease-in 0s;
+		      position: relative;
+		      display: inline-block;
+          text-decoration: none;
+		      background-size: 0 100%;
+		      transition: background-size .3s ease;
+		      background-image: linear-gradient(transparent calc(100% - 1px),hsla(0,0%,100%,.5) 1px);
+		      background-repeat: no-repeat;
+		      cursor: pointer;
+		      &:hover{
+		      	background-size: 100% 100%;
+		      	color: rgba(255,255,255,1);
+		      }
+        }
         // *{
         //   border: 1px solid red;
         // }

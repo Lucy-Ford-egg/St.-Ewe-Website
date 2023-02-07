@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { styled } from '@mui/material/styles'
 import { Box } from "@mui/material"
+import { animationHover } from "../utils/animationHover"
 
 const StyledLink = styled(Link)(({ theme }) => ({
   color: 'inherit',
@@ -9,7 +10,8 @@ const StyledLink = styled(Link)(({ theme }) => ({
   textTransform: 'unset',
   '&:hover': {
     color: theme.palette.primary.main
-  }
+  },
+  ...animationHover('black')
 }));
 
 
