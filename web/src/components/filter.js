@@ -63,39 +63,25 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
       display: 'block'
     }
   }
-  // debugger
-  // const sortCategories = () => {
-  //   debugger
-  //   
-  //   setCategoriesUsed([categoriesUsed, )
-  // }
-
 
   const sortCategories = useCallback(
     () => {
 
       const dataSet = type === 'posts' ? data.allSanityPost.nodes : data.allSanityPlace.nodes
-      
         const array = dataSet.map((taxonomy, i) => {
-
           return (taxonomy.categories.filter(tax => tax.name && tax.name.length > 0))    
         })
-
         var flattenArray = [].concat.apply([], array);
-        debugger
         const unique = [...new Map(flattenArray.map(item => [item['name'], item])).values()]
         return unique
       
-    }
+    },[type, data.allSanityPlace, data.allSanityPost]
   )
   
   
 
   useEffect(() => {
-    //sortCategories()
-
     const array = sortCategories()
-debugger
     setCategoriesUsed(array)
 
   }, [sortCategories])
