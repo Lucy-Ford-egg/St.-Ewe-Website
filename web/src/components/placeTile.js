@@ -111,7 +111,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
               </motion.div>
 
 
-              <Typography variant="h3" component="h4" sx={{ textDecoration: 'none', py: { xs: 3, md: 4 } }}>
+              <Typography variant="h3" component="h4" sx={{ minHeight: 112, textDecoration: 'none', py: { xs: 3, md: 4 } }}>
                 {title}
               </Typography>
               <Box sx={{ display: { xs: 'none', md: 'block', maxHeight: {xs: 100}, overflow: 'hidden' } }}>

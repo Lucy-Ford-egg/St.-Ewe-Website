@@ -5,11 +5,11 @@ import { Filter } from "./filter"
 
 export const PlacesGrid = ({ places, allPlace }) => {
 
-  const [filterPlaces, setFilterPlaces] = useState(allPlace)
+  const [filterPlaces, setFilterData] = useState(allPlace)
 
   const updatePlaces = useCallback(() => { 
-    setFilterPlaces(filterPlaces);
-  },[filterPlaces, setFilterPlaces],)
+    setFilterData(filterPlaces);
+  },[filterPlaces, setFilterData],)
 
   useEffect(() => {
     updatePlaces()
@@ -18,7 +18,7 @@ export const PlacesGrid = ({ places, allPlace }) => {
   return (
     <Container maxWidth="xl">
       
-      <Filter allPlace={allPlace} filterPlaces={filterPlaces} setFilterPlaces={setFilterPlaces}/>
+      <Filter type="places" allData={allPlace} filterData={filterPlaces} setFilterData={setFilterData}/>
 
       <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
         {places.length === 0 && (

@@ -5,11 +5,11 @@ import { Filter } from "./filter"
 
 export const PostsGrid = ({ posts, allPost }) => {
 
-  const [filtersPosts, setfiltersPosts] = useState(allPost)
+  const [filtersPosts, setFilterData] = useState(allPost)
 
   const updatePosts = useCallback(() => { 
-    setfiltersPosts(filtersPosts);
-  },[filtersPosts, setfiltersPosts],)
+    setFilterData(filtersPosts);
+  },[filtersPosts, setFilterData],)
 
   useEffect(() => {
     updatePosts()
@@ -18,7 +18,7 @@ export const PostsGrid = ({ posts, allPost }) => {
   return (
     <Container maxWidth="xl">
       
-      <Filter allPost={allPost} filtersPosts={filtersPosts} setfiltersPosts={setfiltersPosts}/>
+      <Filter type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/>
 
       <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
         {posts.length === 0 && (
