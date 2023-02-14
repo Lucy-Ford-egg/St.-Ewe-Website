@@ -24,7 +24,13 @@ export default defineType({
       name: 'content',
       title: 'Text Module',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [{ 
+        type: 'block', 
+          lists: [
+            {title: 'Bullet', value: 'bullet'},
+            {title: 'Numbered', value: 'number'}
+          ] // yes please, both bullet and numbered
+        }],
     }),
   ],
 })

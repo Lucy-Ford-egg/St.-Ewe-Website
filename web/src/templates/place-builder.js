@@ -77,6 +77,11 @@ export const query = graphql`
           _type
           ... PostsGridFragment
         }
+        ... on SanityTwoColumnTitleTextCta {
+          _key
+          _type
+          ... MultiColumnTitleTextLinkFragment
+        }
       }
     }
     allSanityPlace {

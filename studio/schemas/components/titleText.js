@@ -12,9 +12,22 @@ export default defineType({
     }),
     defineField({
       name: 'text',
-      type: 'text',
-      rows: 6,
-      title: 'Text'
-    })
+      title: 'Text',
+      type: 'array',
+      of: [{ 
+        type: 'block',
+        lists: [
+          {title: 'Bullet', value: 'bullet'},
+          {title: 'Numbered', value: 'number'}
+        ] // yes please, both bullet and numbered
+      }],
+      marks: {
+        decorators: [
+          {title: 'Strong', value: 'strong'},
+          {title: 'Emphasis', value: 'em'},
+          {title: 'Code', value: 'code'}
+        ]
+      }
+    }),
   ]
 })

@@ -15,7 +15,7 @@ export default defineType({
 
       return {
         title: `Two Column, Title, Text, Call to Action module`,
-        subtitle: title,
+        subtitle: `Used for Booking Information and Special Features`,
         icon: MdViewColumn
       }
     }
