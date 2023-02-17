@@ -7,8 +7,21 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
-      title: 'Title'
+      type: 'array',
+      title: 'Title',
+      of: [{ 
+        type: 'block',
+        lists: [], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          // { title: 'Heading 3', value: 'h3' },
+          // { title: 'Heading 4', value: 'h4' },
+        ],
+        marks: {
+          decorators: [],
+          annotations: []
+        }
+      }],   
     }),
     defineField({
       name: 'text',

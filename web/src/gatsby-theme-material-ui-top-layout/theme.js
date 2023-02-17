@@ -133,6 +133,20 @@ let clientTheme = createTheme({
 		      	color: rgba(255,255,255,1);
 		      }
         }
+        .white-text{
+          p, li{
+            color: white;
+          }
+          .underline{
+            border-bottom: 1px solid white;
+          }
+          .portableTextInlineLink{
+            color: white;
+            text-decoration: none;
+            background-position: bottom 6px left 0px;
+
+          }
+        }
         // *{
         //   border: 1px solid red;
         // }

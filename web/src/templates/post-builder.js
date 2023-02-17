@@ -79,6 +79,11 @@ export const query = graphql`
           _type
           ... MultiColumnTitleTextLinkFragment
         }
+        ... on SanityMap{
+          _key
+          _type
+          ... MapFragment
+        }
       }
     }
     allSanityPlace {

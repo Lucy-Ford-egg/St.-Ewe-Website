@@ -8,6 +8,7 @@ import { GalleryCarousel } from '../components/galleryCarousel'
 import { HeroCallToAction } from '../components/heroCallToAction'
 import { HeroNewsletter } from '../components/heroNewsletter'
 import {MultiColumnTitleTextLink} from '../components/multiColumnTitleTextLink'
+import {Map} from '../components/map'
 
 
 const Modules = ({ modules, allPlace, allPost }) => {
@@ -51,6 +52,9 @@ const Modules = ({ modules, allPlace, allPost }) => {
                     }
                     else if (isModule(module, "twoColumnTitleTextCta")) {
                         return <MultiColumnTitleTextLink {...module} key={module._key + i} />
+                    }
+                    else if (isModule(module, "map")) {
+                        return <Map {...module} key={module._key + i} />
                     }
                     
                     else
