@@ -14,6 +14,8 @@ import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubti
 import placesGridType from './modules/placesGrid'
 import postsGridType from './modules/postsGrid'
 import heroNewsletterType from './modules/heroNewsletter'
+import categoryFeatureType from './modules/categoryFeature'
+
 
 /**
  * This file is the schema definition for a post.
@@ -90,7 +92,7 @@ export default defineType({
         { type: placesGridType.name, title: "Places Grid Module" },
         { type: heroNewsletterType.name, title: "Hero Newsletter Module"},
         { type: postsGridType.name, title: "Posts Grid Module" },
-    
+        { type: categoryFeatureType.name, title: "Category Feature Module" },
         // etc...
         ]
     }),

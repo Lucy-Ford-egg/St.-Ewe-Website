@@ -21,6 +21,8 @@ import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCaro
 import placesGridType from '../schemas/modules/placesGrid'
 import postsGridType from '../schemas/modules/postsGrid'
 import heroNewsletterType from '../schemas/modules/heroNewsletter'
+import categoryFeatureType from '../schemas/modules/categoryFeature'
+
 
 //Components
 import titleTextType from '../schemas/components/titleText'
@@ -57,6 +59,7 @@ export const schemaTypes = [
   placesGridType,
   postsGridType,
   heroNewsletterType,
+  categoryFeatureType,
   // Components
   titleTextType,
   titleSubtitleTextType,
