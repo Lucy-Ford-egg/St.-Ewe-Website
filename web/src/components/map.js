@@ -1,35 +1,45 @@
 import React from "react"
 import { graphql } from "gatsby"
 import GoogleMapReact from 'google-map-react'
-import {Container} from "@mui/material"
+import {Container, Box} from "@mui/material"
+import CircleIcon from '@mui/icons-material/Circle';
+import { mapStyles } from "../utils/mapStyles"; 
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => <CircleIcon/>;
 
-export const Map = () => {
+export const Map = ({map}) => {
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627
+      lat: map.lat,
+      lng: map.lng
     },
-    zoom: 11
+    zoom: 12
   };
 
+  const mapOptions = {
+    panControl: false,
+    mapTypeControl: false,
+    scrollwheel: false,
+    styles: mapStyles
+  }
+
   return (
-    <Container maxWidth="false" sx={{ px: { xs: 0 }, py: { xs: 9, md: 9 }, backgroundColor: 'primary.main' }}>
-    // Important! Always set the container height explicitly
-    <div style={{ height: '100vh', width: '100%' }}>
+    <Container maxWidth="false" sx={{ px: { xs: 0 }, backgroundColor: 'primary.main' }}>
+    
+    <Box sx={{height: {xs: 466, width: '100%'}}}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "" }}
+        bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_MAPS_API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
+        options={mapOptions} 
       >
         <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
+          lat={map.lat}
+          lng={map.lng}
           text="My Marker"
         />
       </GoogleMapReact>
-    </div>
+    </Box>
     </Container>
   );
 }
