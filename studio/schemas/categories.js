@@ -13,12 +13,18 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-    // defineField({
-    //   name: 'picture',
-    //   title: 'Picture',
-    //   type: 'image',
-    //   options: { hotspot: true },
-    //   validation: (rule) => rule.required(),
-    // }),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      validation: (rule) => rule.required().max(253),
+    }),
+    defineField({
+      name: 'picture',
+      title: 'Picture',
+      type: 'image',
+      options: { hotspot: true },
+      validation: (rule) => rule.required(),
+    }),
   ],
 })

@@ -9,11 +9,13 @@ import { HeroCallToAction } from '../components/heroCallToAction'
 import { HeroNewsletter } from '../components/heroNewsletter'
 import {MultiColumnTitleTextLink} from '../components/multiColumnTitleTextLink'
 import {Map} from '../components/map'
+import { CategoryFeature } from '../components/categoryFeature'
 
 
 const Modules = ({ modules, allPlace, allPost }) => {
 
     function isModule(moduletype, testname) {
+        console.log(`Modules - ${moduletype} | ${testname}`)
         if (moduletype?._type?.indexOf(testname) >= 0) {
             return true
         } else {
@@ -55,6 +57,12 @@ const Modules = ({ modules, allPlace, allPost }) => {
                     }
                     else if (isModule(module, "map")) {
                         return <Map {...module} key={module._key + i} />
+                    }
+                    else if (isModule(module, "twoColumnTitleTextCta")) {
+                        return <MultiColumnTitleTextLink {...module} key={module._key + i} />
+                    }
+                    else if (isModule(module, "categoryFeature")) {
+                        return <CategoryFeature {...module} key={module._key + i} />
                     }
                     
                     else

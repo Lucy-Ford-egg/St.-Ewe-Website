@@ -61,6 +61,27 @@ export const query = graphql`
           _type
           ...HeroNewsletterFragment
         }
+        ... on SanityPostsGrid {
+          _key
+          _type
+          ... PostsGridFragment
+        }
+        ... on SanityTwoColumnTitleTextCta {
+          _key
+          _type
+          ... MultiColumnTitleTextLinkFragment
+        }
+        ... on SanityMap{
+          _key
+          _type
+          ... MapFragment
+        }
+        ... on SanityCategoryFeature{
+          _key
+          _type
+          ... CategoryFeatureFragment
+        }
+        
       }
     }
     allSanityPlace {

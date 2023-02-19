@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import { Container, Grid, Box, useMediaQuery } from '@mui/material'
+import { Container, Grid, Box } from '@mui/material'
 import { RenderPortableText } from './renderPortableText'
 import ButtonLink from "../utils/buttonLink"
 

@@ -87,6 +87,11 @@ export const query = graphql`
           _type
           ... MapFragment
         }
+        ... on SanityCategoryFeature{
+          _key
+          _type
+          ... CategoryFeatureFragment
+        }
       }
     }
     allSanityPlace {

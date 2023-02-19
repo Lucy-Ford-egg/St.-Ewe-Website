@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useMemo} from "react"
 import { graphql } from "gatsby"
 import { Container, Typography, Box } from "@mui/material"
 import { AnimatedText } from "./animatedText"
@@ -7,6 +7,7 @@ import {ArchIcon} from "../components/archIcon"
 
 export const TitleSubtitleText = ({ title, subtitle, text, subtitlePosition, titleSize, titleWidth, adornment }) => {
 
+  const animatedTitle = useMemo(() => <AnimatedText subtitlePosition={subtitlePosition} text={title} titleSize={titleSize ? titleSize : "h2"} titleWidth={titleWidth ? titleWidth : "100%"} />, [])
   return (
     <Container maxWidth={false} sx={{ py: { xs: 4, md: 9 } }}>
       <Container maxWidth="md">
@@ -20,7 +21,7 @@ export const TitleSubtitleText = ({ title, subtitle, text, subtitlePosition, tit
             {subtitle}
           </Typography>
         )}
-        <AnimatedText subtitlePosition={subtitlePosition} text={title} titleSize={titleSize ? titleSize : "h2"} titleWidth={titleWidth ? titleWidth : "100%"} />
+        {animatedTitle}
         {subtitlePosition && (
           <Typography variant="subtitle2" color="primary.main" align="center" sx={{ pb: subtitlePosition !== null ? 8 : 8 }}>
             {subtitle}
