@@ -30,7 +30,11 @@ export default defineType({
             {title: 'Bullet', value: 'bullet'},
             {title: 'Numbered', value: 'number'}
           ] // yes please, both bullet and numbered
-        }],
+        },
+        {
+          type: 'blockquote',
+        }
+      ],
     }),
   ],
 })

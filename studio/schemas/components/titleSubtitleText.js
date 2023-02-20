@@ -7,6 +7,7 @@ export default defineType({
   name: "titleSubtitleText",
   type: "object",
   title: "Title, Subtitle, Text",
+  description: "** The data structure is due to change - please don't use just yet **",
   initialValue: {
     titleWidth: {
       list: "100%"

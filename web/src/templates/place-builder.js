@@ -10,7 +10,7 @@ export default function PlaceBuilder({ data, moduleSpacing  }) {
   return (
     <Layout>
       
-      <Container maxWidth="xl" sx={{ pt: { xs: 9 } }}>
+      <Container maxWidth="xl" sx={{ pt: { xs: 9, md: 9 } }}>
         <TitleSubtitleText title={data.sanityPlace.title} subtitle={`${data.sanityPlace.location.name}, ${data.sanityPlace.location.country}`} text={data.sanityPlace.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
       </Container>
       

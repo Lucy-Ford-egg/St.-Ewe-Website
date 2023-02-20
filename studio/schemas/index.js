@@ -31,6 +31,7 @@ import imageCaptionType from '../schemas/components/imageCaption'
 import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 import heroSlideType from './components/heroSlide'
+import blockquoteType from './components/blockquote'
 
 export const schemaTypes = [
   navigationType,
@@ -67,4 +68,5 @@ export const schemaTypes = [
   externalLinkType,
   internalLinkType,
   heroSlideType,
+  blockquoteType,
 ]
