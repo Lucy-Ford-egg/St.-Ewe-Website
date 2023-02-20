@@ -1,13 +1,16 @@
 import React from 'react'
 import { graphql } from "gatsby"
 import { Container, Typography } from '@mui/material';
+import { RenderPortableText } from './renderPortableText';
+import clientTheme from '../gatsby-theme-material-ui-top-layout/theme';
 
 export const Text = ({ _rawContent }) => {
 
   return (
     <Container maxWidth="xl" sx={{py: {xs: 6, md: 6} }}>
       <Container maxWidth="sm">
-        {_rawContent.map((content, i) => {
+        <RenderPortableText variant={false} value={_rawContent} textColor={clientTheme.palette.secondary.main} />
+        {/* {.map((content, i) => {
 
           let contentArray = []
 
@@ -20,7 +23,7 @@ export const Text = ({ _rawContent }) => {
 
             return contentArray
           
-        })}
+        })} */}
       </Container>
     </Container>
   )
