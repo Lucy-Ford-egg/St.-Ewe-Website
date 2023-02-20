@@ -61,25 +61,13 @@ export const mapStyles = [
     },
     {
         "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#761111"
-            },
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
         "elementType": "geometry.fill",
         "stylers": [
             {
                 "visibility": "on"
             },
             {
-                "color": "#a89260"
+                "color": "#c3b187"
             }
         ]
     },
@@ -97,7 +85,7 @@ export const mapStyles = [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "visibility": "off"
+                "visibility": "on"
             }
         ]
     },
@@ -115,31 +103,10 @@ export const mapStyles = [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#8a2d2d"
+                "visibility": "on"
             },
             {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural.terrain",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#905353"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape.natural.terrain",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#816565"
-            },
-            {
-                "visibility": "off"
+                "color": "#a89260"
             }
         ]
     },
