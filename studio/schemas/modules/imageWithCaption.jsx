@@ -46,12 +46,6 @@ export default defineType({
         initialValue: false,
     }),
     defineField({
-      name: 'editorTitle',
-      type: 'string',
-      title: 'Editor Title',
-      description: 'Add a title to make it easier to know which sections are which.'
-    }),
-    defineField({
       name: 'moduleSpacing',
       type: 'moduleSpacing',
       title: 'Change the space between modules',
