@@ -183,16 +183,20 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
         </Box>
 
-        <Container maxWidth="xl" sx={{ display: { xs: 'none', md: 'block' }, position: "relative", zIndex: 2, pr: { xs: 9, md: 0 }, mr: { xs: 9, md: 0 }, overflowX: 'hidden' }}>
+        <Container maxWidth="xl" sx={{ display: { xs: 'none', md: 'block' }, position: "relative", zIndex: 2, pb: { xs: 7 }, pr: { xs: 9, md: 0 }, mr: { xs: 9, md: 0 }, overflowX: 'hidden' }}>
           <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }}>
             <Grid2 xs={12} md={2}>
-              <Box display="flex" flexDirection="column" justifyContent="flex-start" sx={{ position: 'relative', right: 0, pb: { xs: 7 }, columnGap: 9, pt: { xs: 2, md: 2 } }}>
+              <Box display="flex" flexDirection="column" justifyContent="flex-start" sx={{ position: 'relative', right: 0,  columnGap: 9, pt: { xs: 2, md: 2 } }}>
                 <Typography variant="caption">{carousel[imageIndex]?.caption}</Typography>
-                {carouselLinkGroup && <Box sx={{ mt: { xs: 4 }, ml: { xs: 0, md: -5 } }}><ButtonLink linkGroup={carouselLinkGroup} buttonType="text" /></Box>}
+                {carouselLinkGroup && 
+                  <Box sx={{ mt: { xs: 4 }, ml: { xs: 0, md: -5, height: '100%', flexDirection: 'column', alignItems: 'flex-end' } }}>
+                    <ButtonLink linkGroup={carouselLinkGroup} buttonType="text" />
+                  </Box>
+                }
               </Box>
             </Grid2>
             <Grid2 mdOffset={1} xs={12} md={9} sx={{ overflowX: 'hidden' }}>
-              <Box className="scrollBar" display="flex" flexDirection="row" justifyContent="flex-start" sx={{ position: 'relative', right: 0, pb: { xs: 7 }, columnGap: 9, pt: { xs: 2, md: 2 }, overflowX: 'scroll' }}>
+              <Box className="scrollBar" display="flex" flexDirection="row" justifyContent="flex-start" sx={{ position: 'relative', right: 0,  columnGap: 9, pt: { xs: 2, md: 2 }, overflowX: 'scroll' }}>
                 {carousel.map((thumb, index) => {
                   let currentThumb = index === imageIndex;
                   let thumbDirection = (selectedIndex) => {
@@ -238,13 +242,19 @@ export const query = graphql`
       internalLinkGroup {
         label
         reference {
+          ... on SanityNews {
+            id
+            slug {
+              current
+            }
+          }
           ... on SanityPlace {
             id
+            slug {
+              current
+            }
           }
           ... on SanityPage {
-            id
-          }
-          ... on SanityNews {
             id
             slug {
               current
