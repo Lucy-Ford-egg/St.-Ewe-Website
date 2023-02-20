@@ -58,15 +58,15 @@ export const Carousel = ({ carousel }) => {
     handleResize();
 
 
-    if (typeof window !== `undefined`) {
+    // if (typeof window !== `undefined`) {
+    //   window.addEventListener('resize', handleResize)
+    // }
 
-      window.addEventListener('resize', handleResize)
-
-      return _ => {
-        window.removeEventListener('resize', handleResize)
-    
-      }
-    }
+    // return _ => {
+    //   if (typeof window !== `undefined`) {
+    //     window.removeEventListener('resize', handleResize)
+    //   }
+    // }
   }, [])
   
 
