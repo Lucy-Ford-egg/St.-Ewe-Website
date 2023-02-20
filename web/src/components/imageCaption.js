@@ -121,6 +121,7 @@ export const query = graphql`
       asset {
         xl: gatsbyImageData(width: 1330, height: 748)
         lg: gatsbyImageData(width: 849, height: 486)
+        md: gatsbyImageData(width: 525 )
         altText
       }
       
