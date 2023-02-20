@@ -161,9 +161,9 @@ let clientTheme = createTheme({
 
           }
         }
-        *{
-          border: 1px solid red;
-        }
+        // *{
+        //   border: 1px solid red;
+        // }
         
        
       `
