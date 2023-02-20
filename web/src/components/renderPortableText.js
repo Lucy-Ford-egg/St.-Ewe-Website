@@ -8,7 +8,7 @@ export const RenderPortableText = ({value, variant, textColor = 'white'}) => {
  
   const standardPortableText = {
     types: {
-      span:  ({ value }) => <Typography sx={{color: textColor}} variant={variant ? variant : 'body1'}>{value.text}</Typography>,
+      //span:  ({ value }) => <Typography sx={{color: textColor}} variant={variant ? variant : 'body1'}>{value.text}</Typography>,
       image: ({ value }) => <img src={value.imageUrl} />,
       callToAction: ({ value, isInline }) =>
         isInline ? (
