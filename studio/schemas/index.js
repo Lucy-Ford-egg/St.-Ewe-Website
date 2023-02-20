@@ -22,7 +22,7 @@ import placesGridType from '../schemas/modules/placesGrid'
 import postsGridType from '../schemas/modules/postsGrid'
 import heroNewsletterType from '../schemas/modules/heroNewsletter'
 import categoryFeatureType from '../schemas/modules/categoryFeature'
-
+import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 
 //Components
 import titleTextType from '../schemas/components/titleText'
@@ -31,7 +31,6 @@ import imageCaptionType from '../schemas/components/imageCaption'
 import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 import heroSlideType from './components/heroSlide'
-
 
 export const schemaTypes = [
   navigationType,
@@ -60,11 +59,12 @@ export const schemaTypes = [
   postsGridType,
   heroNewsletterType,
   categoryFeatureType,
+  heroInfoCallToActionType,
   // Components
   titleTextType,
   titleSubtitleTextType,
   imageCaptionType,
   externalLinkType,
   internalLinkType,
-  heroSlideType
+  heroSlideType,
 ]

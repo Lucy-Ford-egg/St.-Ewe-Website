@@ -15,6 +15,7 @@ import placesGridType from './modules/placesGrid'
 import postsGridType from './modules/postsGrid'
 import heroNewsletterType from './modules/heroNewsletter'
 import categoryFeatureType from './modules/categoryFeature'
+import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 
 
 /**
@@ -85,7 +86,7 @@ export default defineType({
         { type: heroNewsletterType.name, title: "Hero Newsletter Module"},
         { type: postsGridType.name, title: "Posts Grid Module" },
         { type: categoryFeatureType.name, title: "Category Feature Module" },
-        
+        { type: heroInfoCallToActionType.name, title: "Hero Info Cta Module" },
         
         // etc...
         ]

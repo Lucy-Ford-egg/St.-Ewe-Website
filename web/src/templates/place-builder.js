@@ -92,6 +92,11 @@ export const query = graphql`
           _type
           ... CategoryFeatureFragment
         }
+        ... on SanityHeroInfoCallToAction {
+          _key
+          _type
+          ... HeroInfoCallToActionFragment
+        }
       }
     }
     allSanityPlace {

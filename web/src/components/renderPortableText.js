@@ -5,9 +5,10 @@ import CircleIcon from '@mui/icons-material/Circle';
 import {PortableTextInlineLink} from "../utils/portableInlineLink"
 
 export const RenderPortableText = ({value, variant, textColor = 'white'}) => {
-  
+ 
   const standardPortableText = {
     types: {
+      span:  ({ value }) => <Typography sx={{color: textColor}} variant={variant ? variant : 'body1'}>{value.text}</Typography>,
       image: ({ value }) => <img src={value.imageUrl} />,
       callToAction: ({ value, isInline }) =>
         isInline ? (
@@ -54,7 +55,7 @@ export const RenderPortableText = ({value, variant, textColor = 'white'}) => {
     },
   }
   return(
-    <Box className="white-text">
+    <Box className={`${textColor}-text`}>
       {variant !== false ? <PortableText value={value} components={basicPortableText} /> : <PortableText value={value} components={standardPortableText} />}
     </Box>
   )

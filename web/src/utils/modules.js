@@ -10,6 +10,7 @@ import { HeroNewsletter } from '../components/heroNewsletter'
 import {MultiColumnTitleTextLink} from '../components/multiColumnTitleTextLink'
 import {Map} from '../components/map'
 import { CategoryFeature } from '../components/categoryFeature'
+import { HeroInfoCallToAction } from '../components/heroInfoCallToAction'
 
 
 const Modules = ({ modules, allPlace, allPost }) => {
@@ -63,6 +64,9 @@ const Modules = ({ modules, allPlace, allPost }) => {
                     }
                     else if (isModule(module, "categoryFeature")) {
                         return <CategoryFeature {...module} key={module._key + i} />
+                    }
+                    else if (isModule(module, "heroInfoCallToAction")) {
+                        return <HeroInfoCallToAction {...module} key={module._key + i} />
                     }
                     
                     else

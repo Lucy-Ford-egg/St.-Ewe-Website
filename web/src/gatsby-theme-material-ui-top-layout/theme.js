@@ -147,9 +147,23 @@ let clientTheme = createTheme({
 
           }
         }
-        // *{
-        //   border: 1px solid red;
-        // }
+        .#2E2E2E-text{
+          p, li{
+            color: #2E2E2E;
+          }
+          .underline{
+            border-bottom: 1px solid #2E2E2E;
+          }
+          .portableTextInlineLink{
+            color: #2E2E2E;
+            text-decoration: none;
+            background-position: bottom 6px left 0px;
+
+          }
+        }
+        *{
+          border: 1px solid red;
+        }
         
        
       `
