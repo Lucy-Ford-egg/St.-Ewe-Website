@@ -1,44 +1,29 @@
 import { defineField, defineType } from 'sanity'
-import titleSize from '../titleSize'
-import widths from '../widths'
 import moduleSpacing from '../moduleSpacingSizes'
 
 export default defineType({
   name: "titleSubtitleText",
   type: "object",
   title: "Title, Subtitle, Text",
-  description: "** The data structure is due to change - please don't use just yet **",
-  initialValue: {
-    titleWidth: {
-      list: "100%"
-    }
-  },
   fields: [
     defineField({
-      name: 'title',
-      type: 'string',
-      title: 'Title'
-    }),
-    defineField({
-      title: 'Select title size',
-      name: 'titleSize',
-      type: 'string',
-      options: {
-        list: [
-          ...titleSize
+      name: 'displayTitle',
+      type: 'array',
+      title: 'Display Title',
+      of: [{ 
+        type: 'block',
+        lists: [], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          // { title: 'Heading 3', value: 'h3' },
+          // { title: 'Heading 4', value: 'h4' },
         ],
-      },
-    }),
-    defineField({
-      title: 'Adjust the width of the title',
-      name: 'titleWidth',
-      type: 'string',
-      description: 'Sometimes adjusting the width of the title nudging text onto 2 lines makes for a nicer design',
-      options: {
-        list: [
-          ...widths
-        ],
-      },
+        marks: {
+          decorators: [],
+          annotations: []
+        }
+      }],
+      description: "Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",   
     }),
     defineField({
       name: 'subtitle',

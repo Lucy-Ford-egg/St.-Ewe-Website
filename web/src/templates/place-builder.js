@@ -11,7 +11,7 @@ export default function PlaceBuilder({ data, moduleSpacing  }) {
     <Layout>
       
       <Container maxWidth="xl" sx={{ pt: { xs: 9, md: 9 } }}>
-        <TitleSubtitleText title={data.sanityPlace.title} subtitle={`${data.sanityPlace.location.name}, ${data.sanityPlace.location.country}`} text={data.sanityPlace.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
+        <TitleSubtitleText title={data.sanityPlace.displayTitle} subtitle={`${data.sanityPlace.location.name}, ${data.sanityPlace.location.country}`} text={data.sanityPlace.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
       </Container>
       
       <Modules allPlace={data.allSanityPlace.nodes} modules={data.sanityPlace?.pageBuilder}/>
@@ -24,6 +24,9 @@ export const query = graphql`
   query($slug: String!) {
     sanityPlace(slug: {current: {eq: $slug}}) {
       title
+      displayTitle {
+        _rawChildren(resolveReferences: {maxDepth: 10})
+      }
       excerpt
       categories{
         name
@@ -108,6 +111,9 @@ export const query = graphql`
           }
         }
         title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
         date(formatString: "M MMM YYYY")
         categories {
           name

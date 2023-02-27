@@ -11,7 +11,7 @@ export default function BlogPost({ data, moduleSpacing  }) {
     <Layout>
       
       <Container maxWidth="xl" sx={{ pt: { xs: 9 } }}>
-        <TitleSubtitleText title={data.sanityPost.title} subtitle={data.sanityPost.category?.name} text={data.sanityPost?.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
+        <TitleSubtitleText title={data.sanityPost.displayTitle} subtitle={data.sanityPost.category?.name} text={data.sanityPost?.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
       </Container>
       
       <Modules allPost={data.allSanityPost.nodes} modules={data.sanityPost?.pageBuilder}/>
@@ -24,6 +24,9 @@ export const query = graphql`
   query($slug: String!) {
     sanityPost(slug: {current: {eq: $slug}}) {
       title
+      displayTitle {
+            _rawChildren(resolveReferences: {maxDepth: 10})
+          }
       categories{
         name
       }
@@ -104,6 +107,9 @@ export const query = graphql`
           }
         }
         title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
         date(formatString: "M MMM YYYY")
         categories {
           name
@@ -122,6 +128,9 @@ export const query = graphql`
           }
         }
         title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
         date(formatString: "M MMM YYYY")
         categories {
           name

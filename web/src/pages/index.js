@@ -20,6 +20,9 @@ export const query = graphql`
   query {
     sanityPage(slug: {current: {eq: "homepage"}}) {
       title
+      displayTitle {
+        _rawChildren(resolveReferences: {maxDepth: 10})
+      }
       slug {
         current
       }
@@ -96,6 +99,9 @@ export const query = graphql`
           }
         }
         title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
         date(formatString: "M MMM YYYY")
         categories {
           name

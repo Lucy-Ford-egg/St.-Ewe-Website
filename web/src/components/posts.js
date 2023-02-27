@@ -9,7 +9,7 @@ export const Posts = ({ gridTitleSubtitleText, posts, allPost}) => {
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 9 } }}>
 
-      <TitleSubtitleText title={gridTitleSubtitleText.title} subtitle={gridTitleSubtitleText.subtitle} text={gridTitleSubtitleText.text} titleSize={gridTitleSubtitleText.titleSize} subtitlePosition={gridTitleSubtitleText.subtitlePosition} titleWidth={gridTitleSubtitleText.titleWidth}/>
+      <TitleSubtitleText title={gridTitleSubtitleText.displayTitle} subtitle={gridTitleSubtitleText.subtitle} text={gridTitleSubtitleText.text} titleSize={gridTitleSubtitleText.titleSize} subtitlePosition={gridTitleSubtitleText.subtitlePosition} titleWidth={gridTitleSubtitleText.titleWidth}/>
 
       <PostsGrid allPost={allPost} posts={posts}/>
 
