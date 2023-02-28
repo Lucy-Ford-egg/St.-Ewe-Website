@@ -71,9 +71,6 @@ let clientTheme = createTheme({
       lineHeight: 2.14,
       fontWeight: 700
     },
-    button:{
-
-    },
     caption:{
       fontSize: 11,
       lineHeight: 2.14
@@ -193,6 +190,7 @@ let clientTheme = createTheme({
           textTransform: 'unset',
           display: 'block',
           width: 'max-content',
+          minWidth: 145,
           padding: `${defaultTheme.spacing(2)} ${defaultTheme.spacing(5)}`
         },
         containedPrimary: {
