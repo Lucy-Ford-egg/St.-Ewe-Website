@@ -9,7 +9,7 @@ export const Places = ({ gridTitleSubtitleText, places, allPlace}) => {
   return (
     <Container maxWidth="xl" sx={{ py: { xs: 9 } }}>
 
-      <TitleSubtitleText title={gridTitleSubtitleText.displayTitle} subtitle={gridTitleSubtitleText.subtitle} text={gridTitleSubtitleText.text} titleSize={gridTitleSubtitleText.titleSize} subtitlePosition={gridTitleSubtitleText.subtitlePosition} titleWidth={gridTitleSubtitleText.titleWidth}/>
+      <TitleSubtitleText displayTitle={gridTitleSubtitleText.displayTitle} subtitle={gridTitleSubtitleText.subtitle} text={gridTitleSubtitleText.text} subtitlePosition={gridTitleSubtitleText.subtitlePosition} showAdornment={gridTitleSubtitleText.showAdornment}/>
 
       <PlacesGrid allPlace={allPlace} places={places}/>
 
@@ -22,6 +22,7 @@ export const query = graphql`
     ...PlaceFragment
     gridTitleSubtitleText {
       ...TitleSubtitleTextFragment
+      
     }
   }
 `

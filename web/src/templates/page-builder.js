@@ -15,7 +15,6 @@ export default function PageBuilder({ data }) {
 export const query = graphql`
   query($slug: String!) {
     sanityPage(slug: {current: {eq: $slug}}) {
-      title
       slug {
         current
       }
@@ -81,6 +80,11 @@ export const query = graphql`
           _key
           _type
           ... HeroInfoCallToActionFragment
+        }
+        ... on SanityTitleSubtitleText {
+          _key
+          _type
+          ...TitleSubtitleTextFragment
         }
       }
     }

@@ -16,6 +16,8 @@ import postsGridType from './modules/postsGrid'
 import heroNewsletterType from './modules/heroNewsletter'
 import categoryFeatureType from './modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
+import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
+
 
 
 /**
@@ -41,26 +43,26 @@ export default defineType({
       descrition: 'Just for editor purposes. Not shown on the frontend but still necesscary',
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'displayTitle',
-      type: 'array',
-      title: 'Display Title',
-      of: [{ 
-        type: 'block',
-        lists: [], // yes please, both bullet and numbered
-        styles: [
-          // { title: 'Heading 2', value: 'h2' },
-          // { title: 'Heading 3', value: 'h3' },
-          // { title: 'Heading 4', value: 'h4' },
-        ],
-        marks: {
-          decorators: [],
-          annotations: []
-        }
-      }],
-      validation: (rule) => rule.required(),
-      description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",   
-    }),
+    // defineField({
+    //   name: 'displayTitle',
+    //   type: 'array',
+    //   title: 'Display Title',
+    //   of: [{ 
+    //     type: 'block',
+    //     lists: [], // yes please, both bullet and numbered
+    //     styles: [
+    //       // { title: 'Heading 2', value: 'h2' },
+    //       // { title: 'Heading 3', value: 'h3' },
+    //       // { title: 'Heading 4', value: 'h4' },
+    //     ],
+    //     marks: {
+    //       decorators: [],
+    //       annotations: []
+    //     }
+    //   }],
+    //   validation: (rule) => rule.required(),
+    //   description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",   
+    // }),
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -71,19 +73,6 @@ export default defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'text',
-    }),
-    defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: 'date',
@@ -108,9 +97,23 @@ export default defineType({
         { type: postsGridType.name, title: "Posts Grid Module" },
         { type: categoryFeatureType.name, title: "Category Feature Module" },
         { type: heroInfoCallToActionType.name, title: "Hero Info Cta Module" },
+        { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
         
         // etc...
         ]
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+    }),
+    defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'categories',

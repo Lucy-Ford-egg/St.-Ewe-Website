@@ -1,62 +1,10 @@
 import React from "react"
-import { motion } from "framer-motion"
-import { Typography, Box } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 
-export const AnimatedText = ({ title, titleSize, subtitlePosition }) => {
-
-  const sentance = {
-    hidden: {
-      opacity: 1
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.25,
-        staggerChildren: 0.04
-      }
-    }
-  }
-  
-  const letter = {
-    hidden: {
-      opacity: 0,
-      y: -100
-    },
-    visible: {
-      opacity: 1,
-      y: 0
-    }
-  }
-
-  const Component = React.forwardRef((props, ref) => {
-    // <Typography {...props}  />
-    
-    return(
-      <Typography {...props}  />
-    // <RenderPortableText ref={ref} value={props.children} variant={false} textColor={clientTheme.palette.secondary.main}/>
-    )
-  }) 
-
-  const MotionTitle = motion(Component)
-
+export const AnimatedText = ({ displayTitle, subtitlePosition, children }) => {
+debugger
   return (
-    <MotionTitle variants={sentance} initial="hidden" animate="visible" variant={titleSize} align="center" sx={{ mx: "auto", pb: { xs: subtitlePosition !== null ? 5 : 8 } }}>
-      {title && title[0]?._rawChildren[0].text?.split('').map((char, i) => {
-        debugger
-
-        if(char === `\n`){
-          return <Box sx={{width: {xs: "100%"}}}/>
-        }
-        else{
-          return <motion.span key={`${char}-${i}`} variants={letter}>{char}</motion.span>
-        }
-        
-        
-      })}
-    </MotionTitle>
+    <RenderPortableText subtitlePosition={subtitlePosition} animate={true} value={displayTitle} variant={false} textColor={clientTheme.palette.secondary.main}/>
   )
 }
-
-//dangerouslySetInnerHTML={{__html: gridTitleSubtitleText.title}}

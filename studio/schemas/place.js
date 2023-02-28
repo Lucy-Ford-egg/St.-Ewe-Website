@@ -17,6 +17,7 @@ import postsGridType from './modules/postsGrid'
 import heroNewsletterType from "./modules/heroNewsletter"
 import categoryFeatureType from './modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
+import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 
 /**
  * This file is the schema definition for a post.
@@ -81,13 +82,6 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      rows: 2,
-      type: 'text',
-    }),
-    
-    defineField({
       name: 'date',
       title: 'Date',
       type: 'date',
@@ -129,12 +123,20 @@ export default defineType({
         { type: postsGridType.name, title: "Posts Grid Module" },
         { type: categoryFeatureType.name, title: "Category Feature Module" },
         { type: heroInfoCallToActionType.name, title: "Hero Info Cta Module" },
+        { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
+        
         // { type: 'callToAction' },
         // { type: 'gallery' },
         // { type: 'form' },
         // { type: 'video' },
         // etc...
         ]
+    }),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      rows: 2,
+      type: 'text',
     }),
   ],
   preview: {

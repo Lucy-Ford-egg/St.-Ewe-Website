@@ -4,22 +4,11 @@ import { motion } from "framer-motion"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Card, CardActions, CardContent, Box, Button, Typography } from '@mui/material';
 import clientTheme from '../gatsby-theme-material-ui-top-layout/theme'
+import { renderTaxonomies } from '../utils/metaDataHelpers';
 
 export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
 
   const [hovered, setHovered] = useState(false)
-
-  const renderTaxonomies = (categories) => {
-
-    const taxonomies = categories?.map((tax, i) => {
-      return (
-        tax.name
-      )
-    })
-    return (
-      taxonomies && taxonomies.join(', ')
-    )
-  }
 
   const variants = {
     hovered: {

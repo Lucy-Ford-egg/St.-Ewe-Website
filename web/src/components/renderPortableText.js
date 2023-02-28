@@ -3,8 +3,10 @@ import { PortableText } from '@portabletext/react'
 import { Typography, Box, List, ListItem, ListItemIcon } from '@mui/material'
 import CircleIcon from '@mui/icons-material/Circle';
 import { PortableTextInlineLink } from "../utils/portableInlineLink"
+import { motion } from "framer-motion"
 
-export const RenderPortableText = ({ value, variant, textColor = 'white' }) => {
+
+export const RenderPortableText = ({ value, variant, textColor = 'white', animate = false, subtitlePosition = null }) => {
 
   const standardPortableText = {
     types: {
@@ -65,29 +67,75 @@ export const RenderPortableText = ({ value, variant, textColor = 'white' }) => {
     },
   }
 
+  const animatePortableText = {
+    block: {
+      normal: ({ children }) => <AnimateBlock sx={{ my: {xs: 7}, color: textColor }} variant="h2">{children}</AnimateBlock>,
+      h1: ({ children }) => <AnimateBlock sx={{ my: {xs: 7}, color: textColor }} variant="h1">{children}</AnimateBlock>,
+      h2: ({ children }) => <AnimateBlock sx={{ my: {xs: 7}, color: textColor }} variant="h2">{children}</AnimateBlock>,
+      h3: ({ children }) => <AnimateBlock sx={{ my: {xs: 7}, color: textColor }} variant="h3">{children}</AnimateBlock>,
+    },
+  }
+
   const basicPortableText = {
     block: {
       normal: ({ value }) => <Box sx={{ mb: { xs: 5 } }}><Typography sx={{ whiteSpace: 'pre-line' }} variant={variant ? variant : 'body1'}>{value.children[0].text}</Typography></Box>,
     },
   }
+
+  
   return (
     <Box className={`${textColor}-text`}>
-      {variant !== false ? <PortableText value={value} components={basicPortableText} /> : <PortableText value={value} components={standardPortableText} />}
+      {variant !== false ? <PortableText value={value} components={basicPortableText} /> : <PortableText value={value} components={animate === true ? animatePortableText : standardPortableText} />}
     </Box>
+  )
+ 
+}
+
+const AnimateBlock = ({children, subtitlePosition, variant}) => {
+  debugger
+    const Component = React.forwardRef((props, ref) => {    
+      return(
+        <Typography variant={variant} {...props}/>
+      )
+    }) 
+
+    const MotionTitle = motion(Component)
+  
+    const sentance = {
+      hidden: {
+        opacity: 1
+      },
+      visible: {
+        opacity: 1,
+        transition: {
+          delay: 0.25,
+          staggerChildren: 0.04
+        }
+      }
+    }
+    
+    const letter = {
+      hidden: {
+        opacity: 0,
+        y: -100
+      },
+      visible: {
+        opacity: 1,
+        y: 0
+      }
+    }
+
+  return (
+    <MotionTitle variants={sentance} initial="hidden" animate="visible" align="center" sx={{ mx: "auto", pb: { xs: subtitlePosition !== null ? 5 : 8 } }}>
+    {children && children.map((node, i) => {
+      return (
+        typeof node === 'string' || node instanceof String ? node.split('').map((char, i) => {
+          return <motion.span key={`${char}-${i}`} variants={letter}>{char}</motion.span>
+        }) : <Box sx={{width: {xs: "100%"}}}/>
+      ) 
+    })}
+  </MotionTitle>
+
   )
 }
 
-{/* {.map((content, i) => {
-
-          let contentArray = []
-
-            if(content.style.indexOf('h1','h2','h3','h4')){
-              contentArray = [...contentArray, <Typography sx={{my: {xs: 7}, maxWidth: 'max-content'}} variant={content.style}>{content.children.map((child, i) => child.text)}</Typography>]
-            } 
-            if(content.style === 'normal'){  
-              contentArray = [...contentArray, <Typography sx={{my: {xs: 7}}} variant="body1">{content.children.map((child, i) => child.text)}</Typography>]
-            }
-
-            return contentArray
-          
-        })} */}

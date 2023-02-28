@@ -16,6 +16,7 @@ import postsGridType from './modules/postsGrid'
 import heroNewsletterType from './modules/heroNewsletter'
 import categoryFeatureType from './modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
+import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 
 
 /**
@@ -116,7 +117,8 @@ export default defineType({
         { type: postsGridType.name, title: "Posts Grid Module" },
         { type: categoryFeatureType.name, title: "Category Feature Module" },
         { type: heroInfoCallToActionType.name, title: "Hero Info Cta Module" },
-        
+        { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
+
         // etc...
         ]
     }),

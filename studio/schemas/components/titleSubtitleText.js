@@ -14,9 +14,10 @@ export default defineType({
         type: 'block',
         lists: [], // yes please, both bullet and numbered
         styles: [
-          // { title: 'Heading 2', value: 'h2' },
-          // { title: 'Heading 3', value: 'h3' },
-          // { title: 'Heading 4', value: 'h4' },
+          { title: 'Normal', value: 'h2'},
+          { title: 'Heading 1', value: 'h1' },
+          { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
         ],
         marks: {
           decorators: [],
@@ -28,13 +29,20 @@ export default defineType({
     defineField({
       name: 'subtitle',
       type: 'string',
-      title: 'Subtitle'
+      title: 'Subtitle',
+      description: 'Leave empty to pull in categories linked to the that page or over-ride by adding content. For place pages it will be populated with the loaction. For Posts it will be populated with the categories.'
     }),
     defineField({
       name: 'subtitlePosition',
       type: 'boolean',
       title: 'Subtitle Below Title',
       description: 'Set this to display the subtitle below the title'
+    }),
+    defineField({
+      name: 'showAdornment',
+      type: 'boolean',
+      title: 'Icon and line separator',
+      description: 'Set this to display an icon with the separating lines.'
     }),
     defineField({
       name: 'text',

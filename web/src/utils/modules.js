@@ -11,9 +11,10 @@ import {MultiColumnTitleTextLink} from '../components/multiColumnTitleTextLink'
 import {Map} from '../components/map'
 import { CategoryFeature } from '../components/categoryFeature'
 import { HeroInfoCallToAction } from '../components/heroInfoCallToAction'
+import {TitleSubtitleText} from '../components/titleSubtitleText'
 
 
-const Modules = ({ modules, allPlace, allPost }) => {
+const Modules = ({ modules, allPlace, allPost, placeLocation }) => {
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -64,6 +65,9 @@ const Modules = ({ modules, allPlace, allPost }) => {
                     }
                     else if (isModule(module, "heroInfoCallToAction")) {
                         return <HeroInfoCallToAction {...module} key={module._key + i} />
+                    }
+                    else if (isModule(module, "titleSubtitleText")) {
+                        return <TitleSubtitleText placeLocation={placeLocation} {...module} key={module._key + i} />
                     }
                     
                     else
