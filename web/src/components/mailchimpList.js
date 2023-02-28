@@ -17,13 +17,13 @@ export const MailchimpList = () => {
 
   // 2. via `async/await`
   const handleSubmit = async (e) => {
-    debugger
+
     e.preventDefault();
 
     const addResult = await addToMailchimp(e.currentTarget[0].value)
     // I recommend setting `result` to React state
     // but you can do whatever you want
-    debugger
+
     setMCResult({ MCResult, ...addResult })
   }
   function MyFormHelperText() {

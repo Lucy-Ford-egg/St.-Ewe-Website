@@ -5,7 +5,7 @@ import { AnimatedText } from "./animatedText"
 import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 import {ArchIcon} from "../components/archIcon"
 
-export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePosition, titleSize, adornment }) => {
+export const TitleSubtitleText = ({ title, subtitle, text, subtitlePosition, titleSize, adornment }) => {
 
   return (
     <Container maxWidth={false} sx={{ py: { xs: 4, md: 6 } }}>
@@ -20,7 +20,7 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
             {subtitle}
           </Typography>
         )}
-        <AnimatedText subtitlePosition={subtitlePosition} title={displayTitle} titleSize={titleSize ? titleSize : "h2"} />
+        <AnimatedText subtitlePosition={subtitlePosition} title={title} titleSize={titleSize ? titleSize : "h2"} />
         {subtitlePosition && (
           <Typography variant="subtitle2" color="primary.main" align="center" sx={{ pb: subtitlePosition !== null ? 8 : 8 }}>
             {subtitle}
@@ -54,6 +54,5 @@ export const query = graphql`
       displayTitle {
         _rawChildren(resolveReferences: {maxDepth: 10})
       }
-      
   }
 `

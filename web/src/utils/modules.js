@@ -53,9 +53,6 @@ const Modules = ({ modules, allPlace, allPost }) => {
                     else if (isModule(module, "heroNewsletter")) {
                         return <HeroNewsletter {...module} key={module._key + i} />
                     }
-                    else if (isModule(module, "twoColumnTitleTextCta")) {
-                        return <MultiColumnTitleTextLink {...module} key={module._key + i} />
-                    }
                     else if (isModule(module, "map")) {
                         return <Map {...module} key={module._key + i} />
                     }

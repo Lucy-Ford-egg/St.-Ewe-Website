@@ -16,9 +16,6 @@ export const query = graphql`
   query($slug: String!) {
     sanityPage(slug: {current: {eq: $slug}}) {
       title
-      displayTitle {
-        _rawChildren(resolveReferences: {maxDepth: 10})
-      }
       slug {
         current
       }
