@@ -23,7 +23,7 @@ import postsGridType from '../schemas/modules/postsGrid'
 import heroNewsletterType from '../schemas/modules/heroNewsletter'
 import categoryFeatureType from '../schemas/modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
-
+import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 //Components
 import titleTextType from '../schemas/components/titleText'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
@@ -61,6 +61,7 @@ export const schemaTypes = [
   heroNewsletterType,
   categoryFeatureType,
   heroInfoCallToActionType,
+  imageTextCallToActionImageType,
   // Components
   titleTextType,
   titleSubtitleTextType,

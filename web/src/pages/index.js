@@ -85,6 +85,11 @@ export const query = graphql`
           _type
           ... HeroInfoCallToActionFragment
         }
+        ... on SanityImageTextCallToActionImage {
+          _key
+          _type
+          ... ImageTextCallToActionImage
+        }
       }
     }
     allSanityPlace {

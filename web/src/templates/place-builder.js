@@ -96,6 +96,11 @@ export const query = graphql`
           _type
           ...TitleSubtitleTextFragment
         }
+        ... on SanityImageTextCallToActionImage {
+          _key
+          _type
+          ... ImageTextCallToActionImage
+        }
       }
     }
     allSanityPlace {

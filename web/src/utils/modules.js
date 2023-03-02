@@ -12,7 +12,7 @@ import {Map} from '../components/map'
 import { CategoryFeature } from '../components/categoryFeature'
 import { HeroInfoCallToAction } from '../components/heroInfoCallToAction'
 import {TitleSubtitleText} from '../components/titleSubtitleText'
-
+import {ImageTextCallToActionImage} from '../components/imageTextCallToActionImage'
 
 const Modules = ({ modules, allPlace, allPost, placeLocation }) => {
 
@@ -69,7 +69,9 @@ const Modules = ({ modules, allPlace, allPost, placeLocation }) => {
                     else if (isModule(module, "titleSubtitleText")) {
                         return <TitleSubtitleText placeLocation={placeLocation} {...module} key={module._key + i} />
                     }
-                    
+                    else if (isModule(module, "imageTextCallToActionImage")) {
+                        return <ImageTextCallToActionImage {...module} key={module._key + i} />
+                    }
                     else
                         return null
 
