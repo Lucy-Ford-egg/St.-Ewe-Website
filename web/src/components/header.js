@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { styled, alpha } from '@mui/material/styles'
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { Container, InputBase, InputAdornment, Menu, MenuItem, Typography, AppBar, Toolbar, Box, IconButton, useMediaQuery } from "@mui/material"
+import { Container, InputBase, Menu, MenuItem, Typography, AppBar, Toolbar, Box, IconButton, useMediaQuery } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import MainNavigation from "./mainNavigation";
 import MobileMainNavigation from "./mobileMainNavigation";
+import { SearchOverlay } from "./searchOverlay";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -57,6 +58,7 @@ const Header = () => {
   const [searchHover, setSearchHover] = useState('Explore…')
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [showSearch, setShowSearch] = useState(true)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -109,7 +111,7 @@ const Header = () => {
   `)
 
   return (
-
+<>
     <AppBar position="static" color="white" sx={{ boxShadow: '0px 3px 3px 13px rgba(0,0,0,0, 0.8)' }}>
       <Container maxWidth="xl" sx={{ py: 2 }}>
         <Toolbar disableGutters sx={{ display: 'flex', alignItems: 'center' }}>
@@ -211,17 +213,9 @@ const Header = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             {mobile ?
-              <Search sx={{ fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize' }} onMouseOver={e => setSearchHover("ArchiHols")} onMouseLeave={e => setSearchHover("Explore...")} onMouseDown={e => setSearchHover("")}>
-                <StyledInputBase
-                  endAdornment={
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>}
-                  placeholder={searchHover}
-                  inputProps={{ 'aria-label': 'search' }}
-                  sx={{ color: 'secondary.main' }}
-                />
-              </Search>
+              <Box sx={{width: 160, display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}><Typography onClick={e => setShowSearch(true)} sx={{ fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize', pr: 2, "&:hover":{ cursor: 'pointer'}
+              }} onMouseOver={e => setSearchHover("ArchiHols")} onMouseLeave={e => setSearchHover("Explore...")}>{searchHover}</Typography><SearchIcon onClick={e => setShowSearch(true)}  /></Box>
+                
               : <SearchIcon />}
 
           </Box>
@@ -241,6 +235,9 @@ const Header = () => {
         </Toolbar>
       </Container>
     </AppBar>
+
+    {showSearch && <SearchOverlay showSearch={showSearch} setShowSearch={setShowSearch}/>}
+    </>
 
   )
 }

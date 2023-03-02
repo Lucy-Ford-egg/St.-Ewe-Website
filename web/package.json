@@ -17,6 +17,7 @@
     "gatsby": "^5.1.0",
     "gatsby-plugin-gatsby-cloud": "^5.1.0",
     "gatsby-plugin-image": "^3.4.0",
+    "gatsby-plugin-local-search": "^2.0.1",
     "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^5.1.0",
     "gatsby-plugin-material-ui": "^4.0.2",
@@ -32,6 +33,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.7.1",
+    "react-use-flexsearch": "^0.1.1",
     "sass": "1.49.11"
   },
   "devDependencies": {

@@ -92,7 +92,7 @@ export const RenderPortableText = ({ value, variant, textColor = 'white', animat
 }
 
 const AnimateBlock = ({children, subtitlePosition, variant}) => {
-  debugger
+
     const Component = React.forwardRef((props, ref) => {    
       return(
         <Typography variant={variant} {...props}/>

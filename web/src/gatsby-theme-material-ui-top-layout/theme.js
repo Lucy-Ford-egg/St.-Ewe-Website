@@ -108,6 +108,23 @@ let clientTheme = createTheme({
           font-weight: normal;
           src: local('Blacker Display Bold'), url(${blackerDisplayWoff}) format('woff');
         }
+        #searchInput{
+          &:focus {
+            border: none;
+            outline: none;
+          }
+          &::placeholder {
+            font-size: 51px;
+            font-family: "Blacker Display Bold";
+          }
+          font-size: 51px;
+          font-family: "Blacker Display Bold";
+          border: none;
+          background-color: transparent;
+          height: 51px;
+          padding-top: 3rem;
+          padding-bottom: 3rem;
+        } 
         .scrollBar {
           scrollbar-color: red yellow;
         }

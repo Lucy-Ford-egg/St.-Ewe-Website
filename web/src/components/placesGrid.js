@@ -3,7 +3,7 @@ import { Container, Grid } from "@mui/material"
 import { PlaceTile } from "../components/placeTile"
 import { Filter } from "./filter"
 
-export const PlacesGrid = ({ places, allPlace }) => {
+export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = true }) => {
 
   const [filterPlaces, setFilterData] = useState(allPlace)
 
@@ -18,12 +18,12 @@ export const PlacesGrid = ({ places, allPlace }) => {
   return (
     <Container maxWidth="xl">
       
-      <Filter type="places" allData={allPlace} filterData={filterPlaces} setFilterData={setFilterData}/>
+      {showFilter && <Filter type="places" allData={allPlace} filterData={filterPlaces} setFilterData={setFilterData}/>}
 
       <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
-        {places.length === 0 && (
+        {places?.length === 0 && searching === false && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
-            {filterPlaces.map((tile, i) => {
+            {filterPlaces?.map((tile, i) => {
               return (
                 <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
                   <PlaceTile
@@ -46,9 +46,9 @@ export const PlacesGrid = ({ places, allPlace }) => {
                 <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
                   <PlaceTile
                     title={tile.title}
-                    image={tile.coverImage.asset.gatsbyImageData}
+                    image={searching === true ? tile.coverImage : tile.coverImage.asset.gatsbyImageData}
                     categories={tile.categories}
-                    date={tile.date}
+                    date={tile?.date}
                     to={tile.slug.current}
                     excerpt={tile.excerpt}
                   />
