@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react"
-import { Container, Grid } from "@mui/material"
+import { Container, Grid, useMediaQuery } from "@mui/material"
 import { PlaceTile } from "../components/placeTile"
 import { Filter } from "./filter"
 
 export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = true }) => {
 
   const [filterPlaces, setFilterData] = useState(allPlace)
+
+  const mobile = useMediaQuery('(max-width:600px)');
 
   const updatePlaces = useCallback(() => { 
     setFilterData(filterPlaces);
@@ -16,13 +18,13 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
   }, [updatePlaces]);
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth={mobile ? false : "xl"}>
       
       {showFilter && <Filter type="places" allData={allPlace} filterData={filterPlaces} setFilterData={setFilterData}/>}
 
-      <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 9 }, px: {xs: 0} }}>
         {places?.length === 0 && searching === false && (
-          <Grid container spacing={{ xs: 6, md: 9 }}>
+          <Grid container spacing={{ xs: 0, md: 9 }}>
             {filterPlaces?.map((tile, i) => {
               return (
                 <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>

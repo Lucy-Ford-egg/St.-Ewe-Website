@@ -90,7 +90,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
 
           <motion.div style={{ }} animate={hovered ? "hovered" : "unhovered"}
             variants={cardBody}>
-            <CardContent sx={{ px: { xs: 0, md: 5 }, pt: { xs: 6, md: 6 } }}>
+            <CardContent sx={{ px: { xs: 5, md: 5 }, pt: { xs: 6, md: 6 } }}>
 
               <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>
                 <Box display="flex" justifyContent="space-between" >
@@ -100,7 +100,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
               </motion.div>
 
 
-              <Typography variant="h3" component="h4" sx={{ minHeight: 112, textDecoration: 'none', py: { xs: 3, md: 4 } }}>
+              <Typography variant="h3" component="h4" sx={{ minHeight: {xs: 'min-content', md: 112 }, textDecoration: 'none', py: { xs: 3, md: 4 } }}>
                 {title}
               </Typography>
               <Box sx={{ display: { xs: 'none', md: 'block', maxHeight: {xs: 100}, overflow: 'hidden' } }}>
@@ -120,7 +120,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
             </CardContent>
           </motion.div>
 
-          <CardActions sx={{ px: { xs: 0, md: 5 }, pt: 0, pb: { xs: 8, md: 9 }, }}>
+          <CardActions sx={{ px: { xs: 5, md: 5 }, pt: 0, pb: { xs: 8, md: 9 }, }}>
             <Button variant="contained" to={`/places/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s' }}>Read More</Button>
           </CardActions>
           

@@ -108,6 +108,10 @@ let clientTheme = createTheme({
           font-weight: normal;
           src: local('Blacker Display Bold'), url(${blackerDisplayWoff}) format('woff');
         }
+        html{
+          min-height:100%;
+          position: relative;
+        }
         #searchInput{
           &:focus {
             border: none;

@@ -44,44 +44,47 @@ export const SearchOverlay = ({showSearch, setShowSearch}) => {
   }
 
   return (
-    <Container sx={{ position: 'absolute', left: 0, top: 0, bottom: 0, right: 0, height: '100%', zIndex: 9, backgroundColor: '#F5F5F5', pt: { xs: 4 } }} maxWidth="fluid">
+    <Box sx={{ position: 'absolute', left: 0, top: 0, bottom: 0, right: 0, height: '100%', zIndex: 9, backgroundColor: '#F5F5F5', pt: { xs: 4 } }}>
 
       <Container maxWidth="xl">
-        <Grid container justifyContent="center" spacing={2}>
+        <Container>
+          <Grid container justifyContent="center">
 
-          <Grid item xs={12} sx={{display: "flex", justifyContent: "flex-end"}}>
-            <IconButton aria-label="close" sx={{height: 'fit-content'}} onClick={e => setShowSearch(false)}>
-              <CloseIcon />
-            </IconButton>
-          </Grid>
+            <Grid item xs={12} sx={{display: "flex", justifyContent: "flex-end"}}>
+              <IconButton aria-label="close" sx={{height: 'fit-content', pr: 0}} onClick={e => setShowSearch(false)}>
+                <CloseIcon />
+              </IconButton>
+            </Grid>
 
-          <Grid item xs={8}>
-            <Box sx={{mt: 6, mb: 8}}>
-              <InputUnstyled id="searchInput" value={query} placeholder="Type Here" onChange={e => handleChange(e.target.value)} />
-            </Box>
-            <Typography variant="h5">Most Popular</Typography>
-            <List sx={{mb: 6}} dense="true">
-              {topThreeCategories(data.allSanityPlace.nodes).slice(0, 3).map((node) => {
-                return (
-                  <ListItem sx={{px: 0}}>
-                    <ListItemText
-                      primaryTypographyProps={{variant:"body1", sx:{"&:hover":{
-                        cursor: "pointer",
-                        fontWeight: "bold"
-                      }}}}
-                      primary={node}
-                      onClick={e => updateFromPopular(e)}
-                    />
-                  </ListItem>
-                )
-              })}
-            </List>
+            <Grid item xs={12} md={8}>
+              <Box sx={{mt: 6, mb: 8}}>
+                <InputUnstyled id="searchInput" value={query} placeholder="Type Here" onChange={e => handleChange(e.target.value)} />
+              </Box>
+              <Typography variant="h5">Most Popular</Typography>
+              <List sx={{mb: 6}} dense="true">
+                {topThreeCategories(data.allSanityPlace.nodes).slice(0, 3).map((node) => {
+                  return (
+                    <ListItem sx={{px: 0}}>
+                      <ListItemText
+                        primaryTypographyProps={{variant:"body1", sx:{"&:hover":{
+                          cursor: "pointer",
+                          fontWeight: "bold"
+                        }}}}
+                        primary={node}
+                        onClick={e => updateFromPopular(e)}
+                      />
+                    </ListItem>
+                  )
+                })}
+              </List>
+            </Grid>
+
           </Grid>
-        </Grid>
+        </Container>
       </Container>
-
-      <PlacesGrid showFilter={false} places={results} searching={true} />
-
-    </Container>
+      <Container maxWidth="xl">
+        <PlacesGrid showFilter={false} places={results} searching={true} />
+      </Container>
+    </Box>
   )
 }

@@ -1,57 +1,11 @@
 import React, { useState } from "react"
-import { styled, alpha } from '@mui/material/styles'
 import { Link, graphql, useStaticQuery } from "gatsby"
-import { Container, InputBase, Menu, MenuItem, Typography, AppBar, Toolbar, Box, IconButton, useMediaQuery } from "@mui/material"
+import { Container, Typography, AppBar, Toolbar, Box, IconButton, useMediaQuery } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import MainNavigation from "./mainNavigation";
 import MobileMainNavigation from "./mobileMainNavigation";
 import { SearchOverlay } from "./searchOverlay";
-
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  fontFamily: 'inherit',
-  fontSize: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '4ch',
-    fontFamily: 'inherit',
-    color: 'inherit',
-    fontSize: 'inherit',
-    [theme.breakpoints.up('sm')]: {
-      width: '4ch',
-      '&:focus': {
-        width: '4ch',
-      },
-    },
-    "&:hover": {
-      color: theme.palette.primary.main,
-
-    }
-  },
-  '& .MuiInputBase-input::placeholder': {
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    color: 'inherit',
-  }
-}));
 
 const Header = () => {
 
@@ -74,10 +28,6 @@ const Header = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const pages = [
-    { title: "All #One List" }, { title: "Opening Soon" }, { title: "Blog" }, { title: "Features Gallery" }, { title: "About" }, { title: "Contact" }
-  ]
 
   const mobile = useMediaQuery('(min-width:600px)');
 
@@ -211,12 +161,16 @@ const Header = () => {
 
           <MainNavigation menu={data} handleCloseNavMenu={handleCloseNavMenu} />
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, alignItems: 'center' }}>
             {mobile ?
-              <Box sx={{width: 160, display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}><Typography onClick={e => setShowSearch(true)} sx={{ fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize', pr: 2, "&:hover":{ cursor: 'pointer'}
-              }} onMouseOver={e => setSearchHover("ArchiHols")} onMouseLeave={e => setSearchHover("Explore...")}>{searchHover}</Typography><SearchIcon onClick={e => setShowSearch(true)}  /></Box>
+              <Box sx={{width: 160, display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+                <Typography onClick={e => setShowSearch(true)} sx={{ fontFamily: 'Blacker Display', fontStyle: 'italic', fontSize: 'h5.fontSize', pr: 2, "&:hover":{ cursor: 'pointer'}
+              }} onMouseOver={e => setSearchHover("ArchiHols")} onMouseLeave={e => setSearchHover("Explore...")}>{searchHover}</Typography><SearchIcon onClick={e => setShowSearch(true)}  />
+              </Box>
                 
-              : <SearchIcon />}
+              : <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+                  <SearchIcon onClick={e => setShowSearch(true)}/>
+                  </Box>}
 
           </Box>
 
