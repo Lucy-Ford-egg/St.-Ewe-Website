@@ -24,8 +24,17 @@ export default defineType({
   fields: [
     defineField({
       name: 'image',
-      type: 'imageCaption',
+      type: 'image',
       title: 'Image',
+    }),
+    defineField({
+      name: 'mobileImage',
+      type: 'image',
+      title: 'Mobile Image',
+      description: 'Set this and use the Sanity hotspot crop feature to use this image for mobile',
+      options: {
+        hotspot: true
+      }
     }),
     defineField({
       name: 'text',

@@ -1,13 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, withArtDirection } from "gatsby-plugin-image"
+import Image from "gatsby-plugin-sanity-image"
 import { Container, Box } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2';
 import ButtonLink from '../utils/buttonLink'
 import { RenderPortableText } from "./renderPortableText";
 import clientTheme from "../gatsby-theme-material-ui-top-layout/theme";
-import { Opacity } from "@mui/material";
+
+
 const variants = {
   enter: (direction) => {
     return {
@@ -29,7 +31,14 @@ const variants = {
   }
 };
 
-export const HeroInfoCallToAction = ({ editor, image, linkGroup }) => {
+export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) => {
+
+  // const images = withArtDirection(getImage(image), [
+  //   {
+  //     media: "(max-width: 600px)",
+  //     image: getImage(mobileImage),
+  //   },
+  // ])
 
   return (
     <Container maxWidth="fluid" disableGutters={true}>
@@ -42,7 +51,7 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup }) => {
             position: 'relative',
             alignItems: 'flex-end'
           }}>
-            <Container maxWidth="lg" sx={{ height: { xs: 'auto', md: '100%' }, px: { xs: 0, md: 8 } }}>
+            <Container maxWidth="lg" sx={{ height: { xs: 'auto', md: '100%' }}}>
               <Grid container sx={{ height: { xs: 'auto', md: '100%' } }}>
                 <Grid xs={12} sm={12} md={6} sx={{ py: { xs: 8, md: 9 }, px: { xs: 4, md: 9 }, backgroundColor: {xs: 'unset', md: 'rgba(255,255,255,0.2)'}, backdropFilter: {xs: 'unset', md: 'blur(10px)'}, height: { xs: 'auto', md: '100%' }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               
@@ -62,8 +71,38 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup }) => {
 
 
 
-          <Box sx={{ gridColumn: '1/1', gridRow: {xs: '1/1', md: '1/2'}, minHeight: { xs: '85vh', md: '85vh' } }}>
-            <GatsbyImage style={{ minHeight: '100%', maxHeight: '100%' }} image={getImage(image?.asset.gatsbyImageData)} alt={image?.asset.altText} />
+          <Box sx={{ gridColumn: '1/1', gridRow: {xs: '1/1', md: '1/2'}, minHeight: { xs: 'unset', md: '85vh' } }}>
+            {/* <GatsbyImage imgStyle={{ objectPosition: `${mobileImage?.crop?.left + mobileImage?.crop?.right}rem ${mobileImage?.crop?.top}rem`, objectFit: 'cover'}} style={{ minHeight: {xs: 'unset', md: '100%'}, maxHeight: {xs: 'unset', md: '100%'} }} image={images} alt={image?.asset.altText} /> */}
+            <Box sx={{display:{xs: 'block', md: 'none'}}}>
+              <Image
+              // pass asset, hotspot, and crop fields
+              {...mobileImage}
+              // tell Sanity how large to make the image (does not set any CSS)
+              width={600}
+              // style it how you want it
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+            </Box>
+
+            <Box sx={{display:{xs: 'none', md: 'block'}}}>
+              <Image
+              // pass asset, hotspot, and crop fields
+              {...image}
+              // tell Sanity how large to make the image (does not set any CSS)
+              // width={600}
+              // style it how you want it
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+            </Box>
+
           </Box>
 
         </Box>
@@ -79,10 +118,10 @@ export const query = graphql`
       _rawChildren
     }
     image {
-      asset {
-        gatsbyImageData(width: 1440, height: 634)
-        altText
-      }
+      ...ImageWithPreview
+    }
+    mobileImage {
+      ...ImageWithPreview
     }
     linkGroup {
       externalLinkGroup {
