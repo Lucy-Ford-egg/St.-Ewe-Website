@@ -28,7 +28,7 @@ export const HeroNewsletter = ({ title, text, image, linkGroup }) => {
       <Container maxWidth="sm" sx={{ backgroundColor: 'primary.main', gridColumn: {xs: '2/12', md: '2/8'}, gridRow: {xs: '2/5', md: '2/6'}, position: 'relative', zIndex: 1, pt: {xs: 6, md: 6}, pb: {xs: 6, md: 3}, px: {xs: 6, md: 10}, mb: {xs: 0, md: -8} }}>
 
         <Typography align="left" sx={{textAlign: {xs: 'center', md: 'left'}, my: { xs: 5 } }} variant='h3'>{title}</Typography>
-        <Box sx={{maxWidth: 346}}>
+        <Box sx={{maxWidth: 300}}>
           <Typography align="left" sx={{textAlign: {xs: 'center', md: 'left'}, my: { xs: 5 } }} variant='body1' color='white.main' dangerouslySetInnerHTML={{__html: text}}/>
         </Box>
         <MailchimpList/>
