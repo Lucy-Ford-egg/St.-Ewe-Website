@@ -17,6 +17,7 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
         {subtitlePosition === null && (
           <Typography
             variant="subtitle1"
+            component="h5"
             color="primary.main"
             align="center"
             sx={{ pb: { xs: 5 } }}
@@ -26,7 +27,7 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
         )}
         { displayTitle && <AnimatedText subtitlePosition={subtitlePosition} displayTitle={displayTitle} titleSize={titleSize ? titleSize : "h2"} />}
         
-          <Typography variant="subtitle2" color="primary.main" align="center" sx={{ pb: subtitlePosition !== null ? 8 : 8 }}>
+          <Typography component="h6" variant="subtitle2" color="primary.main" align="center" sx={{ pb: subtitlePosition !== null ? 8 : 8 }}>
             {subtitle ? subtitle : renderSubtitle()}
           </Typography>
         

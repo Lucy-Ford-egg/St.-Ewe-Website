@@ -78,13 +78,13 @@ export const CategoryFeatureTile = ({ node, i }) => {
     }}>
 
       <Box sx={{ position: 'relative', zIndex: 0, gridColumn: '1/2', gridRow: '1/2' }}>
-        <Link to={`/${node.name.toLowerCase()}`}>
+        <Link aria-label={`${node.name} category page`} to={`/${node.name.toLowerCase()}`}>
           <GatsbyImage style={{ height: '100%', minHeight: 527, maxHeight: 527 }} image={getImage(node.picture?.asset.gatsbyImageData)} alt={node.picture?.asset?.altText} />
         </Link>
       </Box>
 
       <motion.div initial="hidden" animate={showOverlay ? "visible" : "hidden"} variants={overlay} style={{ zIndex: 1, position: 'relative', gridColumn: '1/2', gridRow: '1/2', }}>
-        <Link to={`/${node.name.toLowerCase()}`}>
+        <Link aria-label={`${node.name} category page`} to={`/${node.name.toLowerCase()}`}>
           <MotionInner initial="hidden" animate={showOverlay ? "visible" : "hidden"} variants={inner} sx={{
             display: 'flex',
             flexDirection: 'column', minHeight: 527, maxHeight: 527, height: '100%', backgroundColor: clientTheme.palette.primary.main, p: { xs: 6 }
