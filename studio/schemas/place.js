@@ -43,12 +43,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      description: 'This image shows in the tile as the cover image.'
     }),
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      descrition: 'Just for editor purposes. Not shown on the frontend but still necesscary',
+      descrition: 'Just for editor purposes. Not shown on the frontend but still necessary',
       validation: (rule) => rule.required(),
     }),
     defineField({

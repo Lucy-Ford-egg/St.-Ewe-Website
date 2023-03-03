@@ -180,12 +180,15 @@ let clientTheme = createTheme({
           }
         }
         // Inforced module spacing
-        main{
-          & > .titleSubtitleText{
-            padding-top: ${defaultTheme.spacing(9)} !important;
-          }
-        }
         .section{
+          &:first-child{
+            &.carousel{
+              margin-top: 0 !important;
+            }
+            &.titleSubtitleText{
+              padding-top: ${defaultTheme.spacing(9)} !important;
+            }
+          }
           &.multiColumnTitleTextLink{
             & + .map{
               margin-top: 0 !important;

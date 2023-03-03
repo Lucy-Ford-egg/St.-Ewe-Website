@@ -102,7 +102,7 @@ export const Carousel = ({ carousel }) => {
 
 
   return (
-    <Container maxWidth="fluid" disableGutters={true} sx={{height: {xs: 650, md: imageHeight}}}>
+    <Container className="section carousel" maxWidth="fluid" disableGutters={true} sx={{mt:{xs: 10, md: 11 }, height: {xs: 650, md: imageHeight}}}>
       <Box sx={{ position: 'relative', height: '100%' }}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
