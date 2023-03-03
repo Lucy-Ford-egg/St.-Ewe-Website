@@ -79,7 +79,7 @@ export const CategoryFeatureTile = ({ node, i }) => {
 
       <Box sx={{ position: 'relative', zIndex: 0, gridColumn: '1/2', gridRow: '1/2' }}>
         <Link to={`/${node.name.toLowerCase()}`}>
-          <GatsbyImage style={{ height: '100%', minHeight: 527, maxHeight: 527 }} image={getImage(node.picture?.asset.gatsbyImageData)} />
+          <GatsbyImage style={{ height: '100%', minHeight: 527, maxHeight: 527 }} image={getImage(node.picture?.asset.gatsbyImageData)} alt={node.picture?.asset?.altText} />
         </Link>
       </Box>
 
@@ -107,9 +107,9 @@ export const query = graphql`
       picture {
         asset {
           gatsbyImageData(
-           
             height: 527
           )
+          altText
         }
       }
       excerpt
