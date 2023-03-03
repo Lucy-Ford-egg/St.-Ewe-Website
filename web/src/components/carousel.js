@@ -140,9 +140,9 @@ export const Carousel = ({ carousel }) => {
                 position: 'relative',
                 alignItems: 'flex-end'
               }}>
-                <Container maxWidth="lg" sx={{ height: { xs: 'auto', md: '100%' }, px: { xs: 0, md: 8 } }}>
+                <Container maxWidth="lg" sx={{ height: { xs: 'auto', md: '100%' }}}>
                   <Grid container sx={{ height: { xs: 'auto', md: '100%' } }}>
-                    <Grid xs={12} sm={12} md={6} sx={{ py: { xs: 8, md: 9 }, px: { xs: 4, md: 9 }, backdropFilter: 'blur(10px)', height: { xs: 'auto', md: '100%' }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <Grid xs={12} sm={12} md={6} sx={{ py: { xs: 8, md: 9 }, px: { xs: 6, md: 9 }, backdropFilter: 'blur(10px)', height: { xs: 'auto', md: '100%' }, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                       <Typography color="primary.main" variant="subtitle1" pb={{ xs: 4 }}>{carousel[imageIndex].subtitle}</Typography>
                       <motion.div initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
