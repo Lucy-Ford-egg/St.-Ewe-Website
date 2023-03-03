@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Modules from "../utils/modules"
 
-export default function PlaceBuilder({ data, moduleSpacing  }) {
+export default function PlaceBuilder({ data }) {
  
   return (
     <Layout>

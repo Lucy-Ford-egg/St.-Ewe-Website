@@ -1,7 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
 import sizes from '../sizes'
-import moduleSpacing from '../moduleSpacingSizes'
 
 export default defineType({
   name: "imageWithCaption",
@@ -44,16 +43,6 @@ export default defineType({
         name: 'portrait',
         type: 'boolean',
         initialValue: false,
-    }),
-    defineField({
-      name: 'moduleSpacing',
-      type: 'moduleSpacing',
-      title: 'Change the space between modules',
-      description: 'Some modules require different space between them. You can independently set the top and bottom space.'
-    }),
-    
-
-    
-    
+    }),    
   ]
 })

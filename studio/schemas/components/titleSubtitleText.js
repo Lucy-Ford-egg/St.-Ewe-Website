@@ -1,5 +1,4 @@
 import { defineField, defineType } from 'sanity'
-import moduleSpacing from '../moduleSpacingSizes'
 
 export default defineType({
   name: "titleSubtitleText",
@@ -50,16 +49,6 @@ export default defineType({
       rows: 6,
       title: 'Text',
       description: 'Add some textual content. Optional'
-    }),
-    defineField({
-      title: 'Module Spacing',
-      name: 'moduleSpacing',
-      type: 'string',
-      options: {
-        list: [
-          ...moduleSpacing
-        ],
-      },
     }),
   ]
 })
