@@ -14,7 +14,7 @@ export default defineType({
     prepare(selection) {
       const {title, subtitle} = selection
       return {
-        title: `Hero Call to action caption module`,
+        title: `Hero Call to Action Module`,
         subtitle: title,
         icon: MdSmartButton
       }
