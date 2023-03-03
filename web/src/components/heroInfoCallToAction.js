@@ -63,7 +63,7 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
 
 
 
-          <Box sx={{ gridColumn: '1/1', gridRow: { xs: '1/1', md: '1/2' }, minHeight: { xs: 'unset', md: '85vh' } }}>
+          <Box sx={{ gridColumn: '1/1', gridRow: { xs: '1/1', md: '1/2' } }}>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
               {mobileImage ? <Image
                 // pass asset, hotspot, and crop fields
@@ -76,18 +76,16 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
                   height: "100%",
                   objectFit: "cover",
                 }}
-              /> : <Image
+              /> :  <Image
               // pass asset, hotspot, and crop fields
               {...image}
-              // tell Sanity how large to make the image (does not set any CSS)
-              // width={600}
-              // style it how you want it
+              height={634}
               style={{
                 width: "100%",
-                height: "100%",
+                height: 634,
                 objectFit: "cover",
               }}
-              alt={image?.altText}
+              alt={image.altText}
             />}
             </Box>
 
@@ -95,12 +93,11 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
               <Image
                 // pass asset, hotspot, and crop fields
                 {...image}
-                // tell Sanity how large to make the image (does not set any CSS)
-                // width={600}
+                height={634}
                 // style it how you want it
                 style={{
                   width: "100%",
-                  height: "100%",
+                  height: 634,
                   objectFit: "cover",
                 }}
                 alt={image.altText}
