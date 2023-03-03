@@ -188,10 +188,7 @@ let clientTheme = createTheme({
     },
     MuiContainer:{
       styleOverrides: {
-        maxWidthXl:{
-          paddingLeft: 30,
-          paddingRight: 30,
-        },
+        
       },
     },
     MuiTextFeild:{
