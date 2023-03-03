@@ -71,7 +71,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
 
   return (
-    <Container className="section galleryCarousel" sx={{mt: {xs: 2, md: 11}}} maxWidth="xl" disableGutters={true}>
+    <Container className="section galleryCarousel" sx={{mt: {xs: 10, md: 11}}} maxWidth="xl" disableGutters={true}>
       <Box sx={{ position: 'relative' }}>
         <Box sx={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: { xs: '79% auto', md: '79% auto', } }}>
           <Box sx={{ display: {xs: 'none', sm: 'grid'}, gridColumn: '1/13', gridRow: { xs: '1/3' } }}>

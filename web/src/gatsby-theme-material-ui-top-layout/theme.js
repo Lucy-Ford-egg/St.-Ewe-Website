@@ -180,6 +180,11 @@ let clientTheme = createTheme({
           }
         }
         // Inforced module spacing
+        main{
+          & > .titleSubtitleText{
+            padding-top: ${defaultTheme.spacing(9)} !important;
+          }
+        }
         .section{
           &.multiColumnTitleTextLink{
             & + .map{
@@ -195,6 +200,12 @@ let clientTheme = createTheme({
               & + .text{
                 padding-top: ${defaultTheme.spacing(6)} !important;
               }
+            }
+          }
+
+          &.titleSubtitleText{
+            & + .imageCaption{
+              margin-top: ${defaultTheme.spacing(9)} !important;
             }
           }
         }

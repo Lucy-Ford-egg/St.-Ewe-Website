@@ -2,11 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { graphql } from "gatsby"
 import { motion } from "framer-motion"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Container, Typography } from '@mui/material';
+import { Container, Typography, useMediaQuery } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2'
 
 export const ImageCaption = ({ image, imageSize }) => {
 
+  const isMobile = useMediaQuery('(min-width:600px)');
   const [whatImageSize, setWhatImageSize] = useState(null)
   const [captionGrid, setCaptionGrid] = useState(null)
   const [captionOffset, setCaptionOffset] = useState(null)
@@ -118,7 +119,7 @@ export const ImageCaption = ({ image, imageSize }) => {
   }
 
   return (
-    <Container className={`section imageCaption ${imageSize}-${image?.caption !== undefined && "withCaption"}`} sx={{mt: {xs: 2, md: 11}}} maxWidth="xl" disableGutters={true}>
+    <Container className={`section imageCaption ${imageSize}-${image?.caption !== undefined && "withCaption"}`} sx={{mt: {xs: 10, md: 11}}} maxWidth="xl" disableGutters={isMobile ? false : true}>
       <Grid2 container columnSpacing={{ xs: 0, sm: 0, md: 9 }} rowSpacing={{ xs: 4, sm: 4, md: 4 }}>
 
         {imageOffset && imageGrid && <Grid2 item xsOffset={imageOffset.xs} smOffset={imageOffset.sm} mdOffset={imageOffset.md} xs={imageGrid.xs} md={imageGrid.md}>
@@ -129,7 +130,7 @@ export const ImageCaption = ({ image, imageSize }) => {
         </Grid2>
         }
         {captionOffset && captionGrid && <Grid2 xsOffset={captionOffset.xs} smOffset={captionOffset.sm} mdOffset={captionOffset.md} item xs={captionGrid.xs} md={captionGrid.md}>
-          <Typography variant="caption" component="p">{image?.caption}</Typography>
+        <Container maxWidth="xl"><Typography variant="caption" component="p">{image?.caption}</Typography></Container>
         </Grid2>}
 
       </Grid2>

@@ -12,7 +12,7 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
     return placeLocation ? placeLocation && renderLocation(placeLocation) : postCategory && renderTaxonomies(postCategory)
   }
   return (
-    <Container maxWidth={false} sx={{ py: { xs: 4, md: 6 } }}>
+    <Container className="section titleSubtitleText" maxWidth={false} sx={{ pt: { xs: 10, md: 11 } }}>
       <Container maxWidth="md">
         {subtitlePosition === null && (
           <Typography

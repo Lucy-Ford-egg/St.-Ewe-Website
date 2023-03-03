@@ -7,25 +7,27 @@ import ButtonLink from "../utils/buttonLink"
 export const MultiColumnTitleTextLink = ({ columns, linkGroup }) => {
 
   return (
-    <Container className="section multiColumnTitleTextLink" maxWidth="false" sx={{ px: { xs: 0 }, mt: { xs: 2, md: 11 }, backgroundColor: 'primary.main' }}>
+    <Container className="section multiColumnTitleTextLink" maxWidth="false" sx={{ px: { xs: 0 }, mt: { xs: 10, md: 11 }, backgroundColor: 'primary.main' }}>
       
-        <Container maxWidth="lg" sx={{py: { xs: 2, md: 11 }}}>
-          <Grid container spacing={9} rowSpacing="0px">
-            {columns && columns.map((node, i) => {
-
-              return (
-                <Grid key={`column-${i}`} item xs={12} md={6}>
-                  <Box sx={{ maxWidth: { xs: '100%', md: '80%' }, mb: { xs: 4 } }}>
-                    <RenderPortableText variant="h3" value={node._rawTitle} />
-                  </Box>
-                  <RenderPortableText variant={false} value={node._rawText} />
-                </Grid>
-              )
-            })}
-            <Grid item xs={12}>
-              <ButtonLink linkGroup={linkGroup} variant="contained" color="secondary" />
+        <Container maxWidth="xl" sx={{py: { xs: 10, md: 11 }}}>
+          <Container maxWidth="lg">
+            <Grid container spacing={{xs: 10, md: 9}} rowSpacing="0px">
+              {columns && columns.map((node, i) => {
+              
+                return (
+                  <Grid key={`column-${i}`} item xs={12} md={6}>
+                    <Box sx={{ maxWidth: { xs: '100%', md: '80%' }, mb: { xs: 4 } }}>
+                      <RenderPortableText variant="h3" value={node._rawTitle} />
+                    </Box>
+                    <RenderPortableText variant={false} value={node._rawText} />
+                  </Grid>
+                )
+              })}
+              <Grid item xs={12}>
+                <ButtonLink linkGroup={linkGroup} variant="contained" color="secondary" />
+              </Grid>
             </Grid>
-          </Grid>
+          </Container>
 
         </Container>
     
