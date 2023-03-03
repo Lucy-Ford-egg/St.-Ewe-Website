@@ -37,6 +37,14 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -79,15 +87,7 @@ export default defineType({
       title: 'Excerpt',
       rows: 2,
       type: 'text',
-    }),
-   
-    defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      description: 'Small snippet of text shown on the blog tile when hovered.'
     }),
     defineField({
       name: 'date',
@@ -105,6 +105,7 @@ export default defineType({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
+      description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
         { type: imageWithCaptionType.name, title: "Image w/caption Module"},
         { type: textBlockType.name, title: "Text Module"},

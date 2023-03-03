@@ -10,7 +10,7 @@ export default defineType({
       defineField({
         name: "title",
         type: "string",
-        title: "Title"
+        title: "Title",
       }),
       defineField({
         name: 'navId',
@@ -21,7 +21,8 @@ export default defineType({
         name: "items",
         type: "array",
         title: "Navigation items",
-        of: [{ type: "navigationItem" }]
+        of: [{ type: "navigationItem" }],
+       
       })        
     ]
 })

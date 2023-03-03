@@ -112,6 +112,7 @@ export default defineType({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
+      description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
         { type: imageWithCaptionType.name, title: "Image w/caption Module"},
         { type: textBlockType.name, title: "Text Module"},

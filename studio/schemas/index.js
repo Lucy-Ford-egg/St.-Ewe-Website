@@ -43,7 +43,7 @@ export const schemaTypes = [
   authorType,
   // Objects
   placeType, 
-  newsType, 
+
   postType, 
   pageType,
   // Modules

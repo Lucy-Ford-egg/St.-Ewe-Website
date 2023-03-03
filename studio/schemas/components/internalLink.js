@@ -17,7 +17,7 @@ export default defineType({
       title: 'Reference',
       to: [
         { type: 'place' },
-        { type: 'news' },
+        { type: 'post' },
         { type: 'page' },
         // other types you may want to link to
       ]

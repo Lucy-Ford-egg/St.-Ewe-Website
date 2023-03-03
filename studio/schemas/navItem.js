@@ -10,12 +10,14 @@ export default defineType({
         defineField({
             name: "text",
             type: "string",
-            title: "Navigation Text"
+            title: "Navigation Text",
+            validation: Rule => Rule.required(),
           }),
           defineField({
             name: "navigationItemUrl",
             type: "link", 
-            title: "Navigation Item URL"
+            title: "Navigation Item URL",
+            validation: Rule => Rule.required(),
           })
     ]
 })
