@@ -13,7 +13,7 @@ export const MultiColumnTitleTextLink = ({ columns, linkGroup }) => {
           <Container maxWidth="lg">
             <Grid container spacing={{xs: 10, md: 9}} rowSpacing="0px">
               {columns && columns.map((node, i) => {
-              
+
                 return (
                   <Grid key={`column-${i}`} item xs={12} md={6}>
                     <Box sx={{ maxWidth: { xs: '100%', md: '80%' }, mb: { xs: 4 } }}>
@@ -49,7 +49,7 @@ export const query = graphql`
       internalLinkGroup {
         label
         reference {
-          ... on SanityNews {
+          ... on SanityPost {
             id
             slug {
               current

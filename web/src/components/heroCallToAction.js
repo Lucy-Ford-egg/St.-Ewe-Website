@@ -51,7 +51,7 @@ export const query = graphql`
       internalLinkGroup {
         label
         reference {
-          ... on SanityNews {
+          ... on SanityPost {
             id
             slug {
               current
