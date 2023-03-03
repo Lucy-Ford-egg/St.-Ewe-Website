@@ -73,7 +73,7 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
           <Box sx={{ gridColumn: '1/1', gridRow: { xs: '1/1', md: '1/2' }, minHeight: { xs: 'unset', md: '85vh' } }}>
             {/* <GatsbyImage imgStyle={{ objectPosition: `${mobileImage?.crop?.left + mobileImage?.crop?.right}rem ${mobileImage?.crop?.top}rem`, objectFit: 'cover'}} style={{ minHeight: {xs: 'unset', md: '100%'}, maxHeight: {xs: 'unset', md: '100%'} }} image={images} alt={image?.asset.altText} /> */}
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-              <Image
+              {mobileImage ? <Image
                 // pass asset, hotspot, and crop fields
                 {...mobileImage}
                 // tell Sanity how large to make the image (does not set any CSS)
@@ -84,7 +84,18 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
                   height: "100%",
                   objectFit: "cover",
                 }}
-              />
+              /> : <Image
+              // pass asset, hotspot, and crop fields
+              {...image}
+              // tell Sanity how large to make the image (does not set any CSS)
+              // width={600}
+              // style it how you want it
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />}
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
