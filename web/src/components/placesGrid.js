@@ -18,11 +18,11 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
   }, [updatePlaces]);
 
   return (
-    <Container maxWidth={mobile ? false : "xl"}>
+    <Container className="section placesGrid" sx={{pt: {xs: 10, md: 11}}} maxWidth={mobile ? false : "xl"}>
       
       {showFilter && <Filter type="places" allData={allPlace} filterData={filterPlaces} setFilterData={setFilterData}/>}
 
-      <Container maxWidth="lg" sx={{ py: { xs: 9 }, px: {xs: 0} }}>
+      <Container maxWidth="lg" sx={{ px: {xs: 0} }}>
         {places?.length === 0 && searching === false && (
           <Grid container spacing={{ xs: 0, md: 9 }}>
             {filterPlaces?.map((tile, i) => {
