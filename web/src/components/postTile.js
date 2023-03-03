@@ -132,7 +132,7 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
           </motion.div>
 
           <CardActions sx={{ px: { xs: 0, md: 5 }, pt: 0, pb: { xs: 8, md: 9 }, }}>
-            <Button variant="contained" to={`/posts/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s' }}>Read More</Button>
+            <Button variant="contained" to={`/posts/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s', textAlign: 'center' }}>Read More</Button>
           </CardActions>
           
 
