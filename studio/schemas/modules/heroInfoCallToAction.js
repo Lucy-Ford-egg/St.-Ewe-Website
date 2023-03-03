@@ -24,13 +24,13 @@ export default defineType({
   fields: [
     defineField({
       name: 'image',
-      type: 'image',
+      type: 'imageCaption',
       title: 'Image',
       validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'mobileImage',
-      type: 'image',
+      type: 'imageCaption',
       title: 'Mobile Image',
       description: 'Set this and use the Sanity hotspot crop feature to use this image for mobile',
       options: {

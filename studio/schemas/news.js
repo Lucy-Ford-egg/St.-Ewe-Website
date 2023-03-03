@@ -52,7 +52,7 @@ export default defineType({
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
-      type: 'image',
+      type: 'imageCaption',
       options: {
         hotspot: true,
       },
