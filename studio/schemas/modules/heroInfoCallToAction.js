@@ -26,6 +26,7 @@ export default defineType({
       name: 'image',
       type: 'image',
       title: 'Image',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'mobileImage',
@@ -53,6 +54,7 @@ export default defineType({
         //   annotations: []
         // }
       }],
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'linkGroup',

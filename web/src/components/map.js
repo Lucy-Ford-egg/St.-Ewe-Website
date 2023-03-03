@@ -24,9 +24,9 @@ export const Map = ({map}) => {
   }
 
   return (
-    <Container maxWidth="false" sx={{ px: { xs: 0 }, backgroundColor: 'primary.main' }}>
+    <Container className="section map" maxWidth="false" sx={{ px: { xs: 0 }, mt: { xs: 2, md: 11}, backgroundColor: 'primary.main' }}>
     
-    <Box sx={{height: {xs: 466, width: '100%'}}}>
+    <Box sx={{height: {xs: 466, md: 466}, width: '100%'}}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_MAPS_API_KEY }}
         defaultCenter={defaultProps.center}

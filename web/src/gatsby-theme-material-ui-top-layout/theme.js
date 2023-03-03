@@ -2,7 +2,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material"
 import blackerDisplayWoff from '../assets/fonts/blacker-display/Blacker-Display-Bold-trial.woff'
 
 
-const clientSpacing = [0, 9, 11, 13, 16, 24, 34, 41, 51, 61, 74,]
+const clientSpacing = [0, 9, 11, 13, 16, 24, 34, 41, 51, 61, 74, 109, 159]
 
 let defaultTheme = createTheme({
   spacing: [...clientSpacing]
@@ -177,6 +177,25 @@ let clientTheme = createTheme({
             text-decoration: none;
             background-position: bottom 6px left 0px;
 
+          }
+        }
+        // Inforced module spacing
+        .section{
+          &.multiColumnTitleTextLink{
+            & + .map{
+              margin-top: 0 !important;
+            }
+          }
+         
+          &.imageCaption{
+            & + .text{
+              padding-top: ${defaultTheme.spacing(9)} !important;
+            }
+            &.xl-withCaption{
+              & + .text{
+                padding-top: ${defaultTheme.spacing(6)} !important;
+              }
+            }
           }
         }
         // *{

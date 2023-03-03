@@ -32,13 +32,6 @@ const variants = {
 
 export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) => {
 
-  // const images = withArtDirection(getImage(image), [
-  //   {
-  //     media: "(max-width: 600px)",
-  //     image: getImage(mobileImage),
-  //   },
-  // ])
-
   return (
     <Container maxWidth="fluid" disableGutters={true}>
       <Box sx={{ position: 'relative' }}>

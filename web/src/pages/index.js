@@ -90,6 +90,11 @@ export const query = graphql`
           _type
           ... ImageTextCallToActionImage
         }
+        ... on SanityImageWithLink {
+          _key
+          _type
+          ... ImageLinkFragment
+        }
       }
     }
     allSanityPlace {

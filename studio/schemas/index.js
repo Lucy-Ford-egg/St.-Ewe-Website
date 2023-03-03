@@ -24,6 +24,7 @@ import heroNewsletterType from '../schemas/modules/heroNewsletter'
 import categoryFeatureType from '../schemas/modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
+import imageWithLinkType from '../schemas/modules/imageWithLink'
 //Components
 import titleTextType from '../schemas/components/titleText'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
@@ -62,6 +63,7 @@ export const schemaTypes = [
   categoryFeatureType,
   heroInfoCallToActionType,
   imageTextCallToActionImageType,
+  imageWithLinkType,
   // Components
   titleTextType,
   titleSubtitleTextType,

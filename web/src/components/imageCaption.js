@@ -118,7 +118,7 @@ export const ImageCaption = ({ image, imageSize }) => {
   }
 
   return (
-    <Container maxWidth="xl" disableGutters={true}>
+    <Container className={`section imageCaption ${imageSize}-${image?.caption !== undefined && "withCaption"}`} sx={{mt: {xs: 2, md: 11}}} maxWidth="xl" disableGutters={true}>
       <Grid2 container columnSpacing={{ xs: 0, sm: 0, md: 9 }} rowSpacing={{ xs: 4, sm: 4, md: 4 }}>
 
         {imageOffset && imageGrid && <Grid2 item xsOffset={imageOffset.xs} smOffset={imageOffset.sm} mdOffset={imageOffset.md} xs={imageGrid.xs} md={imageGrid.md}>

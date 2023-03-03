@@ -7,10 +7,10 @@ import ButtonLink from "../utils/buttonLink"
 export const MultiColumnTitleTextLink = ({ columns, linkGroup }) => {
 
   return (
-    <Container maxWidth="false" sx={{ px: { xs: 0 }, py: { xs: 9, md: 9 }, backgroundColor: 'primary.main' }}>
-      <Container maxWidth="xl">
-        <Container maxWidth="lg">
-          <Grid container spacing={9} rowSpacing={6}>
+    <Container className="section multiColumnTitleTextLink" maxWidth="false" sx={{ px: { xs: 0 }, mt: { xs: 2, md: 11 }, backgroundColor: 'primary.main' }}>
+      
+        <Container maxWidth="lg" sx={{py: { xs: 2, md: 11 }}}>
+          <Grid container spacing={9} rowSpacing="0px">
             {columns && columns.map((node, i) => {
 
               return (
@@ -28,7 +28,7 @@ export const MultiColumnTitleTextLink = ({ columns, linkGroup }) => {
           </Grid>
 
         </Container>
-      </Container>
+    
     </Container>
   )
 

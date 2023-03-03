@@ -71,7 +71,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
 
   return (
-    <Container maxWidth="xl" disableGutters={true}>
+    <Container className="section galleryCarousel" sx={{mt: {xs: 2, md: 11}}} maxWidth="xl" disableGutters={true}>
       <Box sx={{ position: 'relative' }}>
         <Box sx={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: { xs: '79% auto', md: '79% auto', } }}>
           <Box sx={{ display: {xs: 'none', sm: 'grid'}, gridColumn: '1/13', gridRow: { xs: '1/3' } }}>
@@ -183,7 +183,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
 
         </Box>
 
-        <Container maxWidth="xl" sx={{ display: { xs: 'none', md: 'block' }, position: "relative", zIndex: 2, pb: { xs: 7 }, pr: { xs: 9, md: 0 }, mr: { xs: 9, md: 0 }, overflowX: 'hidden' }}>
+        <Container maxWidth="xl" sx={{ display: { xs: 'none', md: 'block' }, position: "relative", zIndex: 2, pr: { xs: 9, md: 0 }, mr: { xs: 9, md: 0 }, pt:{ xs: 5}, overflowX: 'hidden' }}>
           <Grid2 container columnSpacing={{ xs: 9, sm: 9, md: 9 }}>
             <Grid2 xs={12} md={2}>
               <Box display="flex" flexDirection="column" justifyContent="flex-start" sx={{ position: 'relative', right: 0,  columnGap: 9, pt: { xs: 2, md: 2 } }}>

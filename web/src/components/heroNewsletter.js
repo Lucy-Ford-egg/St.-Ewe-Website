@@ -24,7 +24,7 @@ export const HeroNewsletter = ({ title, text, image, linkGroup }) => {
   const isMobile = useMediaQuery('(min-width:600px)');
 
   return (
-    <Container maxWidth="xl"  disableGutters={isMobile ? true : false} sx={{ px: {xs: 0}, py: { xs: 2, md: 6 }, display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: {xs: '30px 1fr 1fr 1fr 30px', md: 'repeat(6, 1fr)'}, gridColumnGap: {xs: 0, md: 50} }}>
+    <Container maxWidth="xl"  disableGutters={isMobile ? true : false} sx={{ px: {xs: 0}, py: { xs: 2, md: 8 }, display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gridTemplateRows: {xs: '30px 1fr 1fr 1fr 30px', md: 'repeat(6, 1fr)'}, gridColumnGap: {xs: 0, md: 50} }}>
       <Container maxWidth="sm" sx={{ backgroundColor: 'primary.main', gridColumn: {xs: '2/12', md: '2/8'}, gridRow: {xs: '2/5', md: '2/6'}, position: 'relative', zIndex: 1, pt: {xs: 6, md: 6}, pb: {xs: 6, md: 3}, px: {xs: 6, md: 10}, mb: {xs: 0, md: -8} }}>
 
         <Typography align="left" sx={{textAlign: {xs: 'center', md: 'left'}, my: { xs: 5 } }} variant='h3'>{title}</Typography>

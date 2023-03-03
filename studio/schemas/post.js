@@ -18,7 +18,7 @@ import categoryFeatureType from './modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
-
+import imageWithLinkType from '../schemas/modules/imageWithLink'
 
 /**
  * This file is the schema definition for a post.
@@ -119,7 +119,9 @@ export default defineType({
         { type: categoryFeatureType.name, title: "Category Feature Module" },
         { type: heroInfoCallToActionType.name, title: "Hero Info Cta Module" },
         { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
-        { type: imageTextCallToActionImageType.name, title: "Image, Text, Cta, Image Module" },
+        { type: imageTextCallToActionImageType.name, title: "Image, Text, Cta, Image Module - Advert Compatible" },
+        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
+
         // etc...
         ]
     }),
