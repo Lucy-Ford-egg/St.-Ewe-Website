@@ -22,16 +22,20 @@ export default defineType({
     defineField({
       name: 'picture',
       title: 'Picture',
-      type: 'image',
+      type: 'imageCaption',
       options: { hotspot: true },
-      fields: [
-        defineField({
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text'
-        }),
-      ],
       validation: (rule) => rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      title: 'name',
+      media: 'picture',
+    },
+    prepare({ title, media }) {
+    
+
+      return { title, media }
+    },
+  },
 })
