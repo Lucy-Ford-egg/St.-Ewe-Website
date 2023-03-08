@@ -4,7 +4,7 @@ import {MdOutlineImage} from "react-icons/md"
 export default defineType({
   name: "imageWithLink",
   type: "object",
-  title: "Image w/link Module",
+  title: "Linked Image Module - Advert Compatible - Advert Compatible",
   description: "Similar to the image with caption module but has a link. Checkbox to denote advert.",
   preview: {
     select: {

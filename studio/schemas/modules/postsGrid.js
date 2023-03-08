@@ -4,7 +4,7 @@ import {MdWebStories} from "react-icons/md"
 export default defineType({
   name: "postsGrid",
   type: "object",
-  title: "Blog Posts grid module",
+  title: "Posts Grid module",
   preview: {
     select: {
       title: 'title',
