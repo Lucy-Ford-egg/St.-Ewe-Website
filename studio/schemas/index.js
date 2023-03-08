@@ -24,6 +24,7 @@ import categoryFeatureType from '../schemas/modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 import imageWithLinkType from '../schemas/modules/imageWithLink'
+import instagramEmbedType from '../schemas/modules/instagramEmbed'
 //Components
 import titleTextType from '../schemas/components/titleText'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
@@ -32,6 +33,7 @@ import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 import heroSlideType from './components/heroSlide'
 import blockquoteType from './components/blockquote'
+import instagramUrlType from './components/instagramUrl'
 
 export const schemaTypes = [
   navigationType,
@@ -62,6 +64,7 @@ export const schemaTypes = [
   heroInfoCallToActionType,
   imageTextCallToActionImageType,
   imageWithLinkType,
+  instagramEmbedType,
   // Components
   titleTextType,
   titleSubtitleTextType,
@@ -70,4 +73,5 @@ export const schemaTypes = [
   internalLinkType,
   heroSlideType,
   blockquoteType,
+  instagramUrlType
 ]

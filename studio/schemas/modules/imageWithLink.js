@@ -15,7 +15,7 @@ export default defineType({
     prepare(selection) {
       const {isAdvert} = selection
       return {
-        title: `Linked Image module`,
+        title: `Linked Image Module - Advert Compatible - Advert Compatible`,
         subtitle: `${isAdvert === true ? "Advert" : "Non Advert"}`,
         icon: MdOutlineImage
       }

@@ -5,7 +5,7 @@ import sizes from '../sizes'
 export default defineType({
   name: "imageWithCaption",
   type: "object",
-  title: "Image w/caption Module",
+  title: "Image, Caption Module",
   preview: {
     select: {
       title: 'title',
@@ -15,7 +15,7 @@ export default defineType({
     prepare(selection) {
       const {title, subtitle, image} = selection
       return {
-        title: `Image with caption module`,
+        title: `Image, Caption Module`,
         subtitle: `Image Size ${subtitle} - ${image.alt}`,
         icon: MdOutlinePhotoSizeSelectActual
       }

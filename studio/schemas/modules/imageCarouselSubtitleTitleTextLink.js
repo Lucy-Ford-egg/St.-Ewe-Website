@@ -4,7 +4,7 @@ import {MdViewCarousel} from "react-icons/md"
 export default defineType({
   name: "imageCarouselSubtitleTitleTextLink",
   type: "object",
-  title: "Hero image carousel w/subtitle, title, text & link module",
+  title: "Hero Image Carousel, Subtitle, Title, Text, CTA Module",
   preview: {
     select: {
       title: 'title',
@@ -13,7 +13,7 @@ export default defineType({
     prepare(selection) {
       const {title, subtitle} = selection
       return {
-        title: `Hero image carousel w/subtitle, title, text & link module`,
+        title: `Hero Image Carousel, Subtitle, Title, Text, CTA Module`,
         subtitle: `Number of images: ${subtitle.length}`,
         icon: MdViewCarousel
       }

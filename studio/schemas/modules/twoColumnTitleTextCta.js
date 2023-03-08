@@ -4,7 +4,7 @@ import { MdDashboard } from "react-icons/md";
 export default defineType({
   name: "twoColumnTitleTextCta",
   type: "object",
-  title: "Two Column, Title, Text, Call to Action Module",
+  title: "Two Column, Title, Text, CTA Module",
   preview: {
     select: {
       title: 'title',
@@ -14,7 +14,7 @@ export default defineType({
       const {title, subtitle} = selection
 
       return {
-        title: `Two Column, Title, Text, Call to Action module`,
+        title: `Two Column, Title, Text, CTA Module`,
         subtitle: `Used for Booking Information and Special Features`,
         icon: MdDashboard
       }

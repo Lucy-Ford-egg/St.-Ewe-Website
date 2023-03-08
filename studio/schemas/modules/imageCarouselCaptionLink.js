@@ -4,7 +4,7 @@ import {MdOutlinePhotoLibrary} from "react-icons/md"
 export default defineType({
   name: "imageCarouselCaptionLink",
   type: "object",
-  title: "Image carousel w/caption & link Module",
+  title: "Image Carousel, Caption, Link Module",
   preview: {
     select: {
       title: 'title',
@@ -13,7 +13,7 @@ export default defineType({
     prepare(selection) {
       const {title, subtitle} = selection
       return {
-        title: `Image carousel w/caption & link module`,
+        title: `Image Carousel, Caption, Link Module`,
         subtitle: `Number of images: ${subtitle.length}`,
         icon: MdOutlinePhotoLibrary
       }

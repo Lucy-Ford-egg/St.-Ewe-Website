@@ -4,7 +4,7 @@ import { MdCenterFocusWeak } from "react-icons/md"
 export default defineType({
   name: "imageTextCallToActionImage",
   type: "object",
-  title: "Image, Text, Call to Action, Image Module",
+  title: "Image, Text, Image, CTA Module - Advert Compatible",
   description: "Useful for adverts. The ad logo can be used in the logo field with text below. Or this same component can be used as a non-ad module by not clicking the 'Is Advert' feild.",
   preview: {
     select: {
@@ -15,7 +15,7 @@ export default defineType({
     prepare(selection) {
       const { title, subtitle } = selection
       return {
-        title: `Hero Call to action caption module`,
+        title: `Image, Text, Image, CTA Module - Advert Compatible`,
         subtitle: title,
         icon: MdCenterFocusWeak
       }

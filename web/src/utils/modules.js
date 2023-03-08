@@ -14,6 +14,7 @@ import { HeroInfoCallToAction } from '../components/heroInfoCallToAction'
 import {TitleSubtitleText} from '../components/titleSubtitleText'
 import {ImageTextCallToActionImage} from '../components/imageTextCallToActionImage'
 import { ImageLink } from '../components/imageLink'
+import {InstagramEmbed} from '../components/InstagramEmbed'
 
 const Modules = ({ modules, allPlace, allPost, placeLocation }) => {
 
@@ -75,6 +76,9 @@ const Modules = ({ modules, allPlace, allPost, placeLocation }) => {
                     }
                     else if (isModule(module, "imageWithLink")) {
                         return <ImageLink {...module} key={module._key + i} />
+                    }
+                    else if (isModule(module, "instagramEmbed")) {
+                        return <InstagramEmbed {...module} key={module._key + i} />
                     }
                    
                     else

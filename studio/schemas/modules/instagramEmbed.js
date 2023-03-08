@@ -1,9 +1,9 @@
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: "map",
+  name: "instagramEmbed",
   type: "object",
-  title: "Map, Marker Module",
+  title: "Instagram Embed Module",
   preview: {
     select: {
       title: 'title',
@@ -11,15 +11,15 @@ export default defineType({
     prepare(selection) {
       const {title } = selection
       return {
-        title: `Map, Marker Module`,
+        title: `Instagram Embed Module`,
       }
     }
   },
   fields: [
     defineField({
-      name: 'map',
-      type: 'geopoint',
-      title: 'Map'
+      name: 'instagramUrl',
+      type: 'instagramUrl',
+      title: 'Instagram Url'
     })
   ]
 })

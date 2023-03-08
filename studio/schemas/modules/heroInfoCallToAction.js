@@ -4,7 +4,7 @@ import { MdCenterFocusWeak } from "react-icons/md"
 export default defineType({
   name: "heroInfoCallToAction",
   type: "object",
-  title: "Hero Image, Text, Call to Action Module",
+  title: "Hero, Info, CTA, Caption Module",
   description: "As the text is on the left selecting an image with some clear space to the left and visual focus to the right would be correct.",
   preview: {
     select: {
@@ -15,7 +15,7 @@ export default defineType({
     prepare(selection) {
       const { title, subtitle } = selection
       return {
-        title: `Hero Call to action caption module`,
+        title: `Hero, Info, CTA, Caption Module`,
         subtitle: title,
         icon: MdCenterFocusWeak
       }

@@ -4,7 +4,7 @@ import {MdMailOutline} from "react-icons/md"
 export default defineType({
   name: "heroNewsletter",
   type: "object",
-  title: "Hero Newsletter Module",
+  title: "Hero Newsletter, CTA, Caption Module",
   description: "This module requires activation to work. Check the box below. Users fill in their email on the frontend and the data is set to the corresponding list within you MailChimp account.",
   preview: {
     select: {
@@ -15,7 +15,7 @@ export default defineType({
     prepare(selection) {
       const {title, subtitle} = selection
       return {
-        title: `Hero Call to action caption module`,
+        title: `Hero Newsletter, CTA, Caption Module`,
         subtitle: title,
         icon: MdMailOutline
       }

@@ -95,7 +95,11 @@ export const query = graphql`
           _key
           _type
           ... ImageLinkFragment
-
+        }
+        ... on SanityInstagramEmbed {
+          _key
+          _type
+          ... InstagramEmbedFragment
         }
       }
     }
