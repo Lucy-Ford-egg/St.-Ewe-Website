@@ -1,9 +1,10 @@
 import { defineField, defineType } from 'sanity'
+import {MdShortText} from "react-icons/md"
 
 export default defineType({
   name: "titleSubtitleText",
   type: "object",
-  title: "Title, Subtitle, Text",
+  title: "Title, Subtitle, Text Module",
   fields: [
     defineField({
       name: 'displayTitle',
@@ -50,5 +51,20 @@ export default defineType({
       title: 'Text',
       description: 'Add some textual content. Optional'
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      // subtitle: 'imageSize',
+      
+    },
+    prepare(selection) {
+      const {displayTitle, subtitle} = selection
+      return {
+        title: `Title, Subtitle, Text Module`,
+        subtitle: displayTitle,
+        icon: MdShortText
+      }
+    }
+  },
 })

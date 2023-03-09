@@ -110,7 +110,7 @@ export default defineType({
         { type: imageWithCaptionType.name, title: "Image, Caption Module"},
         { type: textBlockType.name, title: "Text Module"},
         { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
-        { type: heroCallToActionType.name, title: "Hero Call to Action Module"},
+        { type: heroCallToActionType.name, title: "Hero Image, Title, Text, CTA Module"},
         { type: mapType.name, title: "Map, Marker Module"},
         { type: twoColumnTitleTextCtaType.name, title: "Two Column, Title, Text, CTA Module"},
         { type: imageCarouselSubtitleTitleTextLinkType.name, title: "Hero Image Carousel, Subtitle, Title, Text, CTA Module"},
@@ -121,7 +121,7 @@ export default defineType({
         { type: heroInfoCallToActionType.name, title: "Hero, Info, CTA, Caption Module" },
         { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
         { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
-        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible - Advert Compatible - Advert Compatible" },
+        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
 
         // etc...
         ]

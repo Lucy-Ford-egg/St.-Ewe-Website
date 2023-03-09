@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import {SiInstagram} from "react-icons/si"
 
 export default defineType({
   name: "instagramEmbed",
@@ -12,6 +13,7 @@ export default defineType({
       const {title } = selection
       return {
         title: `Instagram Embed Module`,
+        icon: SiInstagram
       }
     }
   },
