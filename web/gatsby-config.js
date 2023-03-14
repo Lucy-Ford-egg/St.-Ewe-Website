@@ -15,7 +15,7 @@ module.exports = {
         // Sanity project info (required)
         projectId: process.env.SANITY_PROJECT_ID,
         dataset: process.env.SANITY_DATASET,
-        customImageTypes: ['SanityImageCaption', 'SanityCoverImage'],
+        customImageTypes: ['SanityImageCaption', 'SanityCoverImage', 'SanityImageAlt'],
       },
     },
     {

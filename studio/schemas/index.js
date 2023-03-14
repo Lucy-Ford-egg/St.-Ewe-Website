@@ -5,7 +5,6 @@ import linkType from '../schemas/link'
 import locationType from '../schemas/location'
 import categoriesType from '../schemas/categories'
 import placeType from '../schemas/place'
-import newsType  from '../schemas/news'
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
 import pageType from '../schemas/page'
@@ -29,6 +28,7 @@ import instagramEmbedType from '../schemas/modules/instagramEmbed'
 import titleTextType from '../schemas/components/titleText'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageCaptionType from '../schemas/components/imageCaption'
+import imageAltType from '../schemas/components/imageAlt'
 import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 import heroSlideType from './components/heroSlide'
@@ -69,6 +69,7 @@ export const schemaTypes = [
   titleTextType,
   titleSubtitleTextType,
   imageCaptionType,
+  imageAltType,
   externalLinkType,
   internalLinkType,
   heroSlideType,
