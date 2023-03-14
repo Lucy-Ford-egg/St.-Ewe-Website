@@ -2,6 +2,9 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "upgrade"}`,
 });
 
+const isProd = process.env.NODE_ENV === "production"
+const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() === "true"
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Boostrap 5 Sass Starter`,
@@ -30,6 +33,8 @@ module.exports = {
         // If the Sanity GraphQL API was deployed using `--tag <name>`,
         // use `graphqlTag` to specify the tag name. Defaults to `default`.
         graphqlTag: 'default',
+        watchMode: !isProd, // watchMode only in dev mode
+        overlayDrafts: !isProd || previewEnabled, // drafts in dev & Gatsby Cloud Preview
       },
     },
     `gatsby-plugin-material-ui`,
