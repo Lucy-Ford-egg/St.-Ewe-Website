@@ -35,7 +35,8 @@ export default defineType({
           type: 'reference',
           to: [{ type: 'post' }],
         },
-     ]
+     ],
+     validation: Rule => Rule.required().min(2)
     }),
   ]
 })
