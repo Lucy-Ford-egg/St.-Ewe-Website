@@ -8,7 +8,7 @@ export const Places = ({ gridTitleSubtitleText, places, allPlace, showFilter}) =
   return (
     <>
 
-      <TitleSubtitleText displayTitle={gridTitleSubtitleText.displayTitle} subtitle={gridTitleSubtitleText.subtitle} text={gridTitleSubtitleText.text} subtitlePosition={gridTitleSubtitleText.subtitlePosition} showAdornment={gridTitleSubtitleText.showAdornment}/>
+      <TitleSubtitleText displayTitle={gridTitleSubtitleText?.displayTitle} subtitle={gridTitleSubtitleText?.subtitle} text={gridTitleSubtitleText?.text} subtitlePosition={gridTitleSubtitleText?.subtitlePosition} showAdornment={gridTitleSubtitleText?.showAdornment}/>
 
       <PlacesGrid allPlace={allPlace} places={places} showFilter={showFilter}/>
 
