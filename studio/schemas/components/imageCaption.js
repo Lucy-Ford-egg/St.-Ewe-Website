@@ -8,7 +8,8 @@ export default defineType({
     defineField({
       name: 'alt',
       type: 'string',
-      title: 'Alternative text'
+      title: 'Alternative text',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       name: 'caption',
@@ -16,4 +17,5 @@ export default defineType({
       title: 'Caption'
     })
   ],
+  validation: Rule => Rule.required(),
 })

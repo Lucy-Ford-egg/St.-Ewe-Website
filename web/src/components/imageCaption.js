@@ -76,7 +76,7 @@ export const ImageCaption = ({ image, imageSize }) => {
   const storeImage = useCallback(
     () => {
    
-      setWhatImageSize(image.asset[imageSize])
+      setWhatImageSize(image?.asset[imageSize])
       setCaptionGrid({
         xs: matrix[imageSize]?.caption.xs,
         sm: matrix[imageSize]?.caption.sm,
