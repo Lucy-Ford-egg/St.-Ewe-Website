@@ -7,7 +7,7 @@ import {TitleSubtitleText} from "../components/titleSubtitleText"
 export const Posts = ({ gridTitleSubtitleText, posts, allPost}) => {
   
   return (
-    <Container maxWidth="xl" sx={{ py: { xs: 9 } }}>
+    <Container className="section posts" maxWidth="xl" sx={{ pt: { xs: 10, md: 11 }}}>
 
       <TitleSubtitleText displayTitle={gridTitleSubtitleText?.displayTitle} subtitle={gridTitleSubtitleText?.subtitle} text={gridTitleSubtitleText?.text} titleSize={gridTitleSubtitleText?.titleSize} subtitlePosition={gridTitleSubtitleText?.subtitlePosition} titleWidth={gridTitleSubtitleText?.titleWidth}/>
 

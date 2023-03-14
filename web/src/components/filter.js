@@ -89,7 +89,7 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
   
 
   return(
-    <Container maxWidth="lg" sx={{mt: 9}}>
+    <Container maxWidth="lg">
 
         <motion.div variants={filterBox} initial="hidden" animate={open}>
           <Box sx={{flexDirection: {xs: 'column', md: 'row'}, p: {xs: 4, md: 9}, backgroundColor: "primary.main"}} display="flex">

@@ -8,7 +8,7 @@ export const CategoryFeature = ({categories, gridTitleSubtitleText, columns }) =
 
   const titleSubtitle = useMemo(() => <TitleSubtitleText {...gridTitleSubtitleText}/>, [])
   return (
-    <Container maxWidth="false" sx={{ px: { xs: 0 }, py: { xs: 9, md: 9 }}}>
+    <Container className="section categoryFeature" maxWidth="false" sx={{ px: { xs: 0 }, pt: { xs: 10, md: 11 }}}>
       <Container maxWidth="xl">
 
           

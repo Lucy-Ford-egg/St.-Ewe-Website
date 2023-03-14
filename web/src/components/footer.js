@@ -36,10 +36,10 @@ export const Footer = () => {
       return <IconButton href={node.navigationItemUrl.externalUrl} color="white" aria-label="pinterest link"><FaPinterestP /></IconButton>
     }
     return false
-
+  
   }
   return (
-    <Container maxWidth="fluid" disableGutters={true} sx={{ backgroundColor: 'secondary.main', py: { xs: 9, md: 9 } }}>
+    <Container maxWidth="fluid" disableGutters={true} sx={{ backgroundColor: 'secondary.main', mt: {xs: 10, md: 11}, py: { xs: 9, md: 9 } }}>
 
       <Container maxWidth="xl">
         <Grid container rowSpacing={6}>

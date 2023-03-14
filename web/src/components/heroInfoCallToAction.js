@@ -33,7 +33,7 @@ const variants = {
 export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) => {
 
   return (
-    <Container maxWidth="fluid" disableGutters={true}>
+    <Container className="section heroInfoCallToAction" maxWidth="fluid" disableGutters={true} sx={{ pt: { xs: 10, md: 11 }}}>
       <Box sx={{ position: 'relative' }}>
 
         <Box sx={{ display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '2fr' }}>

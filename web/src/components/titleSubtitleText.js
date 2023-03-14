@@ -27,9 +27,9 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
         )}
         { displayTitle && <AnimatedText subtitlePosition={subtitlePosition} displayTitle={displayTitle} titleSize={titleSize ? titleSize : "h2"} />}
         
-          <Typography component="h6" variant="subtitle2" color="primary.main" align="center" sx={{ pb: subtitlePosition !== null ? 8 : 8 }}>
+          {subtitle && <Typography component="h6" variant="subtitle2" color="primary.main" align="center" sx={{ pb: subtitlePosition !== null ? 8 : 8 }}>
             {subtitle ? subtitle : renderSubtitle()}
-          </Typography>
+          </Typography> }
         
       </Container>
 
@@ -37,15 +37,16 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
         <Typography align="center" variant="body1">{text}</Typography>
       </Container>
 
-      {showAdornment &&
+      
         <Container maxWidth="sm" sx={{py: {xs: 6}}}>
-          <Box display="flex" justifyContent="center" alignItems="center">
+        {showAdornment && <Box display="flex" justifyContent="center" alignItems="center">
             <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.secondary.main}`, mx: {xs: 7} }}></Box>
             <ArchIcon />
             <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.secondary.main}`, mx: {xs: 7} }}></Box>
           </Box>
+         }
         </Container>
-      }
+     
 
     </Container>
     }</>

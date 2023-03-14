@@ -186,15 +186,26 @@ let clientTheme = createTheme({
               margin-top: 0 !important;
             }
             &.titleSubtitleText{
-              padding-top: ${defaultTheme.spacing(9)} !important;
+              // padding-top: ${defaultTheme.spacing(9)} !important;
+            }
+            &.posts{
+              padding-top: 0 !important;
+            }
+          }
+          &.map{
+            & + .multiColumnTitleTextLink{
+              margin-top: 0 !important;
             }
           }
           &.multiColumnTitleTextLink{
             & + .map{
               margin-top: 0 !important;
             }
+            & + .carousel{
+              margin-top: 0 !important;
+            }
           }
-         
+          
           &.imageCaption{
             & + .text{
               padding-top: ${defaultTheme.spacing(9)} !important;
@@ -209,6 +220,12 @@ let clientTheme = createTheme({
           &.titleSubtitleText{
             & + .imageCaption{
               margin-top: ${defaultTheme.spacing(9)} !important;
+            }
+            & + .placesGrid{
+              padding-top: ${defaultTheme.spacing(9)} !important;
+            }
+            & + .component-postsGrid{
+              padding-top: ${defaultTheme.spacing(9)} !important;
             }
           }
         }

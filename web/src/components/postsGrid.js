@@ -3,7 +3,7 @@ import { Container, Grid } from "@mui/material"
 import { PostTile } from "../components/postTile"
 import { Filter } from "./filter"
 
-export const PostsGrid = ({ posts, allPost }) => {
+export const PostsGrid = ({ posts, allPost, searching = false }) => {
 
   const [filtersPosts, setFilterData] = useState(allPost)
 
@@ -16,12 +16,12 @@ export const PostsGrid = ({ posts, allPost }) => {
   }, [updatePosts]);
 
   return (
-    <Container maxWidth="xl">
+    <Container className="component-postsGrid" maxWidth="xl">
       
-      <Filter type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/>
+      <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/>
 
-      <Container maxWidth="lg" sx={{ py: { xs: 9 } }}>
-        {posts.length === 0 && (
+      <Container maxWidth="lg" sx={{ pt: { xs: 9 } }}>
+        {posts && searching === false && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {filtersPosts?.map((tile, i) => {
               return (
@@ -39,7 +39,7 @@ export const PostsGrid = ({ posts, allPost }) => {
             })}
           </Grid>
         )}
-        {Array.isArray(posts) && (
+        {Array.isArray(posts) && searching === true && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {posts.map((tile, i) => {
               return (
