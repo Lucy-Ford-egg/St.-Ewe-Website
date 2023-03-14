@@ -29,12 +29,12 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
               return (
                 <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
                   <PlaceTile
-                    title={tile.title}
-                    image={tile.coverImage.asset.gatsbyImageData}
-                    category={tile.categories}
-                    date={tile.date}
-                    to={tile.slug.current}
-                    excerpt={tile.excerpt}
+                    title={tile?.title}
+                    image={tile.coverImage?.asset.gatsbyImageData}
+                    category={tile?.categories}
+                    date={tile?.date}
+                    to={tile?.slug.current}
+                    excerpt={tile?.excerpt}
                   />
                 </Grid>
               )
