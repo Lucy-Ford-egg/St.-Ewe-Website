@@ -79,7 +79,7 @@ export const CategoryFeatureTile = ({ node, i }) => {
 
       <Box sx={{ position: 'relative', zIndex: 0, gridColumn: '1/2', gridRow: '1/2' }}>
         <Link aria-label={`${node.name} category page`} to={`/${node.name.toLowerCase()}`}>
-          <GatsbyImage style={{ height: '100%', minHeight: 527, maxHeight: 527 }} image={getImage(node.picture?.asset.gatsbyImageData)} alt={node.picture?.asset?.altText} />
+          <GatsbyImage style={{ height: '100%', minHeight: 527, maxHeight: 527 }} image={getImage(node.picture?.asset?.gatsbyImageData)} alt={node.picture?.asset?.altText} />
         </Link>
       </Box>
 

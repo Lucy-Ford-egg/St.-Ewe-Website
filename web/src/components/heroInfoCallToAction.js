@@ -65,28 +65,34 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
 
           <Box sx={{ gridColumn: '1/1', gridRow: { xs: '1/1', md: '1/2' } }}>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-              {mobileImage ? <Image
-                // pass asset, hotspot, and crop fields
-                {...mobileImage}
-                // tell Sanity how large to make the image (does not set any CSS)
-                width={600}
-                alt={mobileImage?.altText}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              /> :  <Image
-              // pass asset, hotspot, and crop fields
-              {...image}
-              height={634}
-              style={{
-                width: "100%",
-                height: 634,
-                objectFit: "cover",
-              }}
-              alt={image.altText}
-            />}
+              {mobileImage &&
+                <Box sx={{ display: { xs: 'block', md: 'none'} }}>
+                  <Image
+                    // pass asset, hotspot, and crop fields
+                    {...mobileImage}
+                    // tell Sanity how large to make the image (does not set any CSS)
+                    width={600}
+                    alt={mobileImage?.altText}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </Box>}
+              <Box sx={{ display: { xs: 'none', md: 'block'} }}>
+                {image && <Image
+                  // pass asset, hotspot, and crop fields
+                  {...image}
+                  height={634}
+                  style={{
+                    width: "100%",
+                    height: 634,
+                    objectFit: "cover",
+                  }}
+                  alt={image?.altText}
+                />}
+              </Box>
             </Box>
 
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -100,7 +106,7 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
                   height: 634,
                   objectFit: "cover",
                 }}
-                alt={image.altText}
+                alt={image?.altText}
               />
             </Box>
 

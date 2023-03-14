@@ -34,7 +34,7 @@ export const HeroCallToAction = ({ title, text, image, linkGroup }) => {
 
       </Container>
       <Container maxWidth="xl" disableGutters={isMobile ? true : false} sx={{ px: {xs: 0}, gridColumn: '1/4', gridRow: '1/6' }}>
-        {image && <GatsbyImage layout="constrained" aspectRatio={133/8} style={{ minHeight: '100%' }} image={getImage(image.asset)} alt={image.asset?.altText} />}
+        {image && <GatsbyImage layout="constrained" aspectRatio={133/8} style={{ minHeight: '100%' }} image={getImage(image?.asset)} alt={image.asset?.altText} />}
       </Container>
     </Container>
   )

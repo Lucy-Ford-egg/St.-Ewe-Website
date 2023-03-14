@@ -81,10 +81,10 @@ export const Carousel = ({ carousel }) => {
   };
 
   const renderImages = (node) => {
-    const images = withArtDirection(getImage(node?.image?.asset.gatsbyImageData), [
+    const images = withArtDirection(getImage(node?.image?.asset?.gatsbyImageData), [
       {
         media: "(max-width: 600px)",
-        image: getImage(node?.mobile?.asset.gatsbyImageData),
+        image: getImage(node?.mobile?.asset?.gatsbyImageData),
       },
     ])
     return images
@@ -132,7 +132,7 @@ export const Carousel = ({ carousel }) => {
             <Box className="slide" >
              <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '2fr', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: 'min-content', height: 'min-content'}}>
               <Box sx={{ gridColumn: '1/2', gridRow: '1/2', position: 'relative', zIndex: 1, ".art-directed": { width: '100%', height: '650px' } }} ref={imageRef}>
-                <GatsbyImage className="art-directed" image={renderImages(carousel[imageIndex])} alt={carousel[imageIndex].image?.asset.altText} />
+                <GatsbyImage className="art-directed" image={renderImages(carousel[imageIndex])} alt={carousel[imageIndex].image?.asset?.altText} />
               </Box>
               <Box sx={{
                 gridColumn: '1/2', gridRow: '1/2', height: '100%', display: 'flex',

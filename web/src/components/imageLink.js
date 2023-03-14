@@ -25,7 +25,8 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
       {link === "external" && <a href={linkGroup}></a>}
       <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', }}>
         {isAdvert && <Container maxWidth="lg" sx={{display: 'flex', justifyContent: 'flex-end'}}><Typography variant="caption" component="p">Advertisment</Typography></Container>}
-        {mobileImage ? <Image
+        <Box sx={{display:{xs: 'block', md: 'none'}}}>
+        {mobileImage && <Image
           // pass asset, hotspot, and crop fields
           {...mobileImage}
           // tell Sanity how large to make the image (does not set any CSS)
@@ -36,7 +37,10 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
             height: "100%",
             objectFit: "cover",
           }}
-        /> : <Image
+        />}
+        </Box>
+        <Box sx={{display:{xs: 'none', md: 'block'}}}>
+        {image && <Image
           // pass asset, hotspot, and crop fields
           {...image}
           // tell Sanity how large to make the image (does not set any CSS)
@@ -49,11 +53,12 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
             objectFit: "cover",
           }}
         />}
+        </Box>
       </Box>
 
       <Box sx={{ display: { xs: 'none', md: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', } }}>
         {isAdvert && <Container maxWidth="lg" sx={{display: 'flex', justifyContent: 'flex-end'}}><Typography variant="caption" component="p">Advertisment</Typography></Container>}
-        <Image
+        {image && <Image
           // pass asset, hotspot, and crop fields
           {...image}
           // tell Sanity how large to make the image (does not set any CSS)
@@ -65,7 +70,7 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
             height: "100%",
             objectFit: "cover",
           }}
-        />
+        />}
 
       </Box>
     </Container>

@@ -82,7 +82,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
       <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 } }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
         <motion.div style={{}} animate={hovered ? "hovered" : "unhovered"}
           variants={featuredImageWrapper}>
-          <GatsbyImage style={{ transform: hovered ? 'scale(1) translateY(-10px)' : 'scale(1.2) translateY(0px)', transition: 'all 0.2s ease-in-out 0s', width: "100%", height: '100%' }} image={getImage(image)} alt={image?.altText} />
+          {image && <GatsbyImage style={{ transform: hovered ? 'scale(1) translateY(-10px)' : 'scale(1.2) translateY(0px)', transition: 'all 0.2s ease-in-out 0s', width: "100%", height: '100%' }} image={getImage(image)} alt={image?.altText} />}
         </motion.div>
 
         <motion.div style={{ position: "relative" }} animate={hovered ? "hovered" : "unhovered"}

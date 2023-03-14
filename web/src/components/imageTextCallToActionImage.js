@@ -15,7 +15,7 @@ export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, i
       <Grid container spacing={{xs: 2, sm: 6, md: 6}} sx={{justifyContent: 'space-between', py: {xs: 6}}}>
         <Grid item sx={12} sm={6} md={5}>
           <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%'}}>
-            <Image
+            {image && <Image
               // pass asset, hotspot, and crop fields
               {...logo}
               // tell Sanity how large to make the image (does not set any CSS)
@@ -26,7 +26,7 @@ export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, i
                 maxHeight: "70px",
                 objectFit: "cover",
               }}
-            />
+            />}
             <RenderPortableText textColor={clientTheme.palette.secondary.main} variant={false} value={_rawText} />
             <ButtonLink linkGroup={linkGroup} variant="contained" color="secondary" />
           </Box>

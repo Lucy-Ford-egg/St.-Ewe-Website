@@ -141,7 +141,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
               >
 
                 <Box sx={{ gridColumn: '1/1', gridRow: '1/1' }}>
-                  <GatsbyImage aspectRatio={414 / 287} style={{ height: '100%' }} image={getImage(carousel[imageIndex].asset.mainImageMobile)} alt={carousel[imageIndex].asset.altText} />
+                  <GatsbyImage aspectRatio={414 / 287} style={{ height: '100%' }} image={getImage(carousel[imageIndex]?.asset?.mainImageMobile)} alt={carousel[imageIndex]?.asset?.altText} />
                 </Box>
 
               </motion.div>
