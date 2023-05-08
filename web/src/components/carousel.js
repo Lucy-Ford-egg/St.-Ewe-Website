@@ -11,17 +11,17 @@ import ButtonLink from '../utils/buttonLink'
 const variants = {
   enter: (direction) => {
     return {
-      x: direction > 0 ? 50 : -50,
+      //x: direction > 0 ? 50 : -50,
       opacity: 0
     };
   },
   center: {
-    x: 0,
+    //x: 0,
     opacity: 1
   },
   exit: (direction) => {
     return {
-      x: direction < 0 ? 50 : -50,
+      //x: direction < 0 ? 50 : -50,
       opacity: 0
     };
   }
