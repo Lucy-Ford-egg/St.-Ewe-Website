@@ -41,6 +41,7 @@ export default defineType({
       name: 'showFilter',
       type: 'boolean',
       title: 'Show Filter?',
+      initialValue: false,
       description: 'By checking this the module will display with the filter. Defaults to false'
     }),
   ]

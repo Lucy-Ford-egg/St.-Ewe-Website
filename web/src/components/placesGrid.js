@@ -42,7 +42,7 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
               })}
             </Grid>
           )}
-          {Array.isArray(places) && searching === true && (
+          {places && searching === true && (
             <Grid container spacing={{ xs: 0, md: 9 }}>
               {places.map((tile, i) => {
                 return (
