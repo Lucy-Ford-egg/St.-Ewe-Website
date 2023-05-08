@@ -36,7 +36,7 @@ export default defineType({
           to: [{ type: 'post' }],
         },
      ],
-     validation: Rule => Rule.required().min(2)
+     // validation: Rule => Rule.required().min(2)
     }),
   ]
 })
