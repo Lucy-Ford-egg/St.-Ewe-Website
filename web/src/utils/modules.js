@@ -16,7 +16,7 @@ import {ImageTextCallToActionImage} from '../components/imageTextCallToActionIma
 import { ImageLink } from '../components/imageLink'
 import {InstagramEmbed} from '../components/InstagramEmbed'
 
-const Modules = ({ modules, allPlace, allPost, placeLocation }) => {
+const Modules = ({ modules, allPlace, allPost, placeLocation, pageContext }) => {
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -39,7 +39,7 @@ const Modules = ({ modules, allPlace, allPost, placeLocation }) => {
                         return <Places {...module} allPlace={allPlace} key={module._key + i} />
                     }
                     else if (isModule(module, "postsGrid")) {
-                        return <Posts {...module} allPost={allPost} key={module._key + i} />
+                        return <Posts {...module} allPost={allPost} key={module._key + i} pageContext={pageContext} />
                     }
                     else if (isModule(module, "imageWithCaption")) {
                         return <ImageCaption {...module} key={module._key + i} />

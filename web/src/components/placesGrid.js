@@ -5,26 +5,28 @@ import { Filter } from "./filter"
 
 export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = true }) => {
 
-  const [filterPlaces, setFilterData] = useState(allPlace)
+  const [filterPlaces, setFilterData] = useState(null)
 
   const mobile = useMediaQuery('(max-width:600px)');
 
+
   const updatePlaces = useCallback(() => {
-    setFilterData(filterPlaces);
-  }, [filterPlaces, setFilterData],)
+    const thePlaces = allPlace ? allPlace : filterPlaces
+    setFilterData(thePlaces);
+  }, [ setFilterData],)
 
   useEffect(() => {
     updatePlaces()
   }, [updatePlaces]);
 
   return (
-    <>{places?.length >= 1 &&
+    <>{allPlace?.length >= 1 &&
       <Container className="section placesGrid" sx={{ pt: { xs: 10, md: 11 } }} maxWidth={mobile ? false : "xl"}>
 
         {showFilter && <Filter type="places" allData={allPlace} filterData={filterPlaces} setFilterData={setFilterData} />}
 
         <Container maxWidth="lg" sx={{ px: { xs: 0 } }}>
-          {places && searching === false && (
+          {filterPlaces && searching === false && (
             <Grid container spacing={{ xs: 0, md: 9 }}>
               {filterPlaces?.map((tile, i) => {
                 return (
@@ -42,9 +44,9 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
               })}
             </Grid>
           )}
-          {places && searching === true && (
+          {/* {allPlace && searching === true && (
             <Grid container spacing={{ xs: 0, md: 9 }}>
-              {places.map((tile, i) => {
+              {allPlace.map((tile, i) => {
                 return (
                   <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
                     <PlaceTile
@@ -59,7 +61,7 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
                 )
               })}
             </Grid>
-          )}
+          )} */}
         </Container>
       </Container>
     }</>

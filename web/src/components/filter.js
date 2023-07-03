@@ -18,11 +18,11 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
   }
 
   const addToFilter = (taxonomy) => {
-
     setSelectedFilters(taxonomy)
     
     const filtered = allData.filter(e => doFilterPlaces(taxonomy, e));
     console.log('filterd', filtered)
+
     setFilterData([...filtered])
   }
 
@@ -89,7 +89,7 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
   
 
   return(
-    <Container className="component-filter" maxWidth="lg">
+    <Container className="component-filter" maxWidth="lg" sx={{py: 8}}>
 
         <motion.div variants={filterBox} initial="hidden" animate={open}>
           <Box sx={{flexDirection: {xs: 'column', md: 'row'}, p: {xs: 4, md: 9}, backgroundColor: "primary.main"}} display="flex">

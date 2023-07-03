@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Container, Grid } from "@mui/material"
+import { Pagination } from "../components/pagination"
 import { PostTile } from "../components/postTile"
 import { Filter } from "./filter"
 
-export const PostsGrid = ({ posts, allPost, searching = false }) => {
 
-  const [filtersPosts, setFilterData] = useState(allPost)
+export const PostsGrid = ({ posts, allPost, searching = false, pageContext }) => {
+
+const [filtersPosts, setFilterData] = useState(null)
 
   const updatePosts = useCallback(() => { 
-    setFilterData(filtersPosts);
+    const thePlaces = allPost ? allPost : filtersPosts
+    setFilterData(thePlaces);
   },[filtersPosts, setFilterData],)
 
   useEffect(() => {
     updatePosts()
   }, [updatePosts]);
+
 
   return (
     <Container className="component-postsGrid" maxWidth="xl">
@@ -21,7 +25,7 @@ export const PostsGrid = ({ posts, allPost, searching = false }) => {
       <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/>
 
       <Container maxWidth="lg" sx={{ pt: { xs: 9 } }}>
-        {posts && searching === false && (
+        {filtersPosts && searching === false && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {filtersPosts?.map((tile, i) => {
               return (
@@ -39,7 +43,7 @@ export const PostsGrid = ({ posts, allPost, searching = false }) => {
             })}
           </Grid>
         )}
-        {Array.isArray(posts) && searching === true && (
+        {/* {Array.isArray(posts) && searching === true && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {posts.map((tile, i) => {
               return (
@@ -56,8 +60,9 @@ export const PostsGrid = ({ posts, allPost, searching = false }) => {
               )
             })}
           </Grid>
-        )}
+        )} */}
       </Container>
+      <Pagination pageContext={pageContext}/>
     </Container>
   )
 }

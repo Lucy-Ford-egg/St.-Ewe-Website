@@ -33,20 +33,20 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
         
       </Container>
 
-      <Container maxWidth="sm">
+      {text && <Container maxWidth="sm">
         <Typography align="center" variant="body1">{text}</Typography>
-      </Container>
+      </Container>}
 
       
-        <Container maxWidth="sm" sx={{py: {xs: 6}}}>
-        {showAdornment && <Box display="flex" justifyContent="center" alignItems="center">
+      {showAdornment && <Container maxWidth="sm" sx={{py: {xs: 6}}}>
+        <Box display="flex" justifyContent="center" alignItems="center">
             <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.secondary.main}`, mx: {xs: 7} }}></Box>
             <ArchIcon />
             <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.secondary.main}`, mx: {xs: 7} }}></Box>
           </Box>
-         }
+         
         </Container>
-     
+     }
 
     </Container>
     }</>

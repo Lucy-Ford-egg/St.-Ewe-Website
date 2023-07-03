@@ -3,8 +3,8 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Modules from "../utils/modules"
 
-export default function PageBuilder({ data }) {
- 
+export default function PageBuilder({ data, pageContext }) {
+
   return (
     <Layout>
       <Modules allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
@@ -124,7 +124,7 @@ export const query = graphql`
         excerpt
       }
     }
-    allSanityPost {
+    allSanityPost(limit: 2) {
       nodes {
         coverImage {
           asset {

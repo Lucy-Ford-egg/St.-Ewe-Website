@@ -1,12 +1,12 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import {Container} from "@mui/material"
 import Layout from "../components/layout"
 import Modules from "../utils/modules"
-import {TitleSubtitleText} from "../components/titleSubtitleText"
 
-export default function BlogPost({ data, moduleSpacing, pageContext  }) {
-  console.log(pageContext)    
+
+export default function Blog({ data, moduleSpacing, pageContext  }) {
+
   return (
     <Layout>
       
@@ -14,19 +14,40 @@ export default function BlogPost({ data, moduleSpacing, pageContext  }) {
         <TitleSubtitleText displayTitle={data.sanityPost.displayTitle} subtitle={data.sanityPost.category?.name} text={data.sanityPost?.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
       </Container> */}
       
-      <Modules allPost={data.allSanityPost.nodes} modules={data.sanityPost?.pageBuilder} pageContext={pageContext}/>
-      
+      {/* <PostsGrid posts={data.allSanityPost.nodes} allPost={data.allSanityPost.nodes} pageContext={pageContext}/> */}
+     
+      <Modules posts={data.allSanityPost.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage?.pageBuilder} pageContext={pageContext}/>
+     
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!, $slug: String!) {
-    sanityPost(slug: {current: {eq: $slug}}) {
-      categories{
-        name
+  query($skip: Int!, $limit: Int!) {
+    allSanityPost(sort: { date: DESC }
+      limit: $limit
+      skip: $skip) {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
+        date(formatString: "M MMM YYYY")
+        categories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
       }
-      excerpt
+    }
+    sanityPage(slug: {current: {eq: "blog"}}) {
       slug {
         current
       }
@@ -93,6 +114,11 @@ export const query = graphql`
           _type
           ... HeroInfoCallToActionFragment
         }
+        ... on SanityTitleSubtitleText {
+          _key
+          _type
+          ...TitleSubtitleTextFragment
+        }
         ... on SanityImageTextCallToActionImage {
           _key
           _type
@@ -102,52 +128,12 @@ export const query = graphql`
           _key
           _type
           ... ImageLinkFragment
-
         }
-      }
-    }
-    allSanityPlace {
-      nodes {
-        coverImage {
-          asset {
-            gatsbyImageData(width: 525, height: 323)
-          }
+        ... on SanityInstagramEmbed {
+          _key
+          _type
+          ... InstagramEmbedFragment
         }
-        title
-        displayTitle {
-          _rawChildren(resolveReferences: {maxDepth: 10})
-        }
-        date(formatString: "M MMM YYYY")
-        categories {
-          name
-        }
-        slug {
-          current
-        }
-        excerpt
-      }
-    }
-    allSanityPost(sort: { date: DESC }
-      limit: $limit
-      skip: $skip) {
-      nodes {
-        coverImage {
-          asset {
-            gatsbyImageData(width: 525, height: 323)
-          }
-        }
-        title
-        displayTitle {
-          _rawChildren(resolveReferences: {maxDepth: 10})
-        }
-        date(formatString: "M MMM YYYY")
-        categories {
-          name
-        }
-        slug {
-          current
-        }
-        excerpt
       }
     }
   }
