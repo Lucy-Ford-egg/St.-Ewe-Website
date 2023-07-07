@@ -16,6 +16,7 @@ import {ImageTextCallToActionImage} from '../components/imageTextCallToActionIma
 import { ImageLink } from '../components/imageLink'
 import {InstagramEmbed} from '../components/InstagramEmbed'
 
+
 const Modules = ({ modules, allPlace, allPost, placeLocation, pageContext }) => {
 
     function isModule(moduletype, testname) {
@@ -77,7 +78,7 @@ const Modules = ({ modules, allPlace, allPost, placeLocation, pageContext }) => 
                     else if (isModule(module, "imageWithLink")) {
                         return <ImageLink {...module} key={module._key + i} />
                     }
-                    else if (isModule(module, "instagramEmbed")) {
+                    else if (isModule(module, "instagramModule")) {
                         return <InstagramEmbed {...module} key={module._key + i} />
                     }
                    

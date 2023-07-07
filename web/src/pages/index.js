@@ -95,11 +95,6 @@ export const query = graphql`
           _type
           ... ImageLinkFragment
         }
-        ... on SanityInstagramEmbed {
-          _key
-          _type
-          ... InstagramEmbedFragment
-        }
       }
     }
     allSanityPlace {

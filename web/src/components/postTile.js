@@ -71,23 +71,6 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
     },
   }
 
-  const featuredImageWrapper = {
-    hovered: {
-      overflow: 'hidden',
-      display: 'flex',
-      flexBasis: '25%',
-      transition: {
-        type: "spring",
-        bounce: 0
-      }
-    },
-    unhovered: {
-      overflow: 'hidden',
-      display: 'flex',
-      flexBasis: '50%',
-    },
-  }
-
   return (
     <Link to={`${to}`} style={{ textDecoration: 'none' }}>
       <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 } }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>

@@ -60,31 +60,12 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
     },
   }
 
-  const featuredImageWrapper = {
-    hovered: {
-      overflow: 'hidden',
-      display: 'flex',
-      flexBasis: '25%',
-      transition: {
-        type: "spring",
-        bounce: 0
-      }
-    },
-    unhovered: {
-      overflow: 'hidden',
-      display: 'flex',
-      flexBasis: '50%',
-    },
-  }
-
   return (
     <Link to={`/places/${to}`} style={{ textDecoration: 'none' }}>
       <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 } }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
-        <motion.div style={{}} animate={hovered ? "hovered" : "unhovered"}
-          variants={featuredImageWrapper}>
-          {image && <GatsbyImage style={{ transform: hovered ? 'scale(1) translateY(-10px)' : 'scale(1.2) translateY(0px)', transition: 'all 0.2s ease-in-out 0s', width: "100%", height: '100%' }} image={getImage(image)} alt={image?.altText} />}
-        </motion.div>
-
+       
+          {image && <GatsbyImage style={{ width: "100%", height: '100%' }} image={getImage(image)} alt={image?.altText} />}
+        
         <motion.div style={{ position: "relative" }} animate={hovered ? "hovered" : "unhovered"}
           variants={cardBodyColour}>
 
