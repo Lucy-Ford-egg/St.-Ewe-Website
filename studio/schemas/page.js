@@ -2,7 +2,7 @@ import { MdAutoStories } from "react-icons/md";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
-import locationType from './location'
+// import locationType from './location'
 import categoriesType from './categories'
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
@@ -19,7 +19,8 @@ import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 import imageWithLinkType from '../schemas/modules/imageWithLink'
-import instagramEmbedType from "../schemas/modules/instagramEmbed";
+
+
 
 /**
  * This file is the schema definition for a post.
@@ -81,11 +82,7 @@ export default defineType({
         { type: heroInfoCallToActionType.name, title: "Hero, Info, CTA, Caption Module" },
         { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
         { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
-        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
-        { type: instagramEmbedType.name, title: "Instagram Embed Module" }
-        
-        
-        
+        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },    
         // etc...
         ]
     }),

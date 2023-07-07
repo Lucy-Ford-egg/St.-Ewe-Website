@@ -10,6 +10,7 @@ import postType  from '../schemas/post'
 import pageType from '../schemas/page'
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
+import embedBlockType from '../schemas/modules/embedBlock'
 import imageCarouselCaptionLinkType from '../schemas/modules/imageCarouselCaptionLink'
 import linkGroupType from '../schemas/modules/linkGroup'
 import heroCallToActionType from '../schemas/modules/heroCallToAction'
@@ -23,7 +24,8 @@ import categoryFeatureType from '../schemas/modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 import imageWithLinkType from '../schemas/modules/imageWithLink'
-import instagramEmbedType from '../schemas/modules/instagramEmbed'
+import instagramModuleType from '../schemas/modules/instagramModule'
+
 //Components
 import titleTextType from '../schemas/components/titleText'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
@@ -33,7 +35,9 @@ import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 import heroSlideType from './components/heroSlide'
 import blockquoteType from './components/blockquote'
-import instagramUrlType from './components/instagramUrl'
+import instagramEmbedsType from './components/instagramEmbeds'
+
+
 
 export const schemaTypes = [
   navigationType,
@@ -51,6 +55,7 @@ export const schemaTypes = [
   // Modules
   imageWithCaptionType,
   textBlockType, 
+  embedBlockType,
   imageCarouselCaptionLinkType, 
   linkGroupType,
   heroCallToActionType,
@@ -64,7 +69,7 @@ export const schemaTypes = [
   heroInfoCallToActionType,
   imageTextCallToActionImageType,
   imageWithLinkType,
-  instagramEmbedType,
+  instagramModuleType,
   // Components
   titleTextType,
   titleSubtitleTextType,
@@ -74,5 +79,5 @@ export const schemaTypes = [
   internalLinkType,
   heroSlideType,
   blockquoteType,
-  instagramUrlType
+  instagramEmbedsType
 ]

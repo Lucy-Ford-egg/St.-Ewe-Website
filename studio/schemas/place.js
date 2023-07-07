@@ -20,6 +20,7 @@ import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 import imageWithLinkType from '../schemas/modules/imageWithLink'
+import instagramEmbedsType from "./modules/instagramModule";
 /**
  * This file is the schema definition for a post.
  *
@@ -129,7 +130,7 @@ export default defineType({
         { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
         { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
         { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
-
+        { type: instagramEmbedsType.name, title: "Instagram Embed Module" }
         // etc...
         ]
     }),
