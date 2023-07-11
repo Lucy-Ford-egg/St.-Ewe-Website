@@ -1,8 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import {Container} from "@mui/material"
 import Layout from "../components/layout"
-import Modules from "../utils/modules"
+import Modules from "../components/modules"
 
 
 export default function Blog({ data, moduleSpacing, pageContext  }) {
@@ -10,12 +9,6 @@ export default function Blog({ data, moduleSpacing, pageContext  }) {
   return (
     <Layout>
       
-      {/* <Container maxWidth="xl" sx={{ pt: { xs: 9 } }}>
-        <TitleSubtitleText displayTitle={data.sanityPost.displayTitle} subtitle={data.sanityPost.category?.name} text={data.sanityPost?.excerpt} titleSize="h1" subtitlePosition={true} titleWidth="100%" adornment={true}/>
-      </Container> */}
-      
-      {/* <PostsGrid posts={data.allSanityPost.nodes} allPost={data.allSanityPost.nodes} pageContext={pageContext}/> */}
-     
       <Modules posts={data.allSanityPost.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage?.pageBuilder} pageContext={pageContext}/>
      
     </Layout>

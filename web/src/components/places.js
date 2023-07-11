@@ -3,14 +3,14 @@ import { graphql } from "gatsby"
 import {PlacesGrid} from "../components/placesGrid"
 import {TitleSubtitleText} from "../components/titleSubtitleText"
 
-export const Places = ({ gridTitleSubtitleText, places, allPlace, showFilter}) => {
+export const Places = ({ gridTitleSubtitleText, places, allPlace, showFilter, pageContext}) => {
   
   return (
     <>
 
       <TitleSubtitleText displayTitle={gridTitleSubtitleText?.displayTitle} subtitle={gridTitleSubtitleText?.subtitle} text={gridTitleSubtitleText?.text} subtitlePosition={gridTitleSubtitleText?.subtitlePosition} showAdornment={gridTitleSubtitleText?.showAdornment}/>
 
-      <PlacesGrid allPlace={allPlace} places={places} showFilter={showFilter}/>
+      <PlacesGrid allPlace={allPlace} places={places} showFilter={showFilter}  pageContext={pageContext}/>
 
     </>
   )

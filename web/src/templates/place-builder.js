@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import Modules from "../utils/modules"
+import Modules from "../components/modules"
 
 export default function PlaceBuilder({ data }) {
  

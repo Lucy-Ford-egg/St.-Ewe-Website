@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback } from "react"
 import { Container, Grid, useMediaQuery } from "@mui/material"
 import { PlaceTile } from "../components/placeTile"
 import { Filter } from "./filter"
+import { Pagination } from "./pagination"
 
-export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = true }) => {
+export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = true, pageContext }) => {
 
   const [filterPlaces, setFilterData] = useState(null)
 
@@ -63,6 +64,7 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
             </Grid>
           )} */}
         </Container>
+        {/* <Pagination pageContext={pageContext}/> */}
       </Container>
     }</>
   )

@@ -1,29 +1,51 @@
 import React from "react"
-import { graphql } from 'gatsby'
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Modules from "../components/modules"
 
-export default function BlogPost({ data, moduleSpacing, pageContext  }) {
-  console.log("pageContext", pageContext)
-  console.log("data", data)
-  debugger    
-  //allPost={pageContext.allPosts} modules={data.sanityPost?.pageBuilder} 
+
+export default function PlacesList({ data, moduleSpacing, pageContext  }) {
+debugger
   return (
     <Layout>
-    
-      <Modules modules={data.sanityPost.pageBuilder} pageContext={pageContext}/>
-      
+     
+      <Modules 
+        allPlace={data.allSanityPlace.nodes} 
+        posts={pageContext?.posts} 
+        allPost={pageContext?.posts} 
+        modules={data.sanityPage?.pageBuilder} 
+        pageContext={pageContext}/>
+     
     </Layout>
   )
 }
 
 export const query = graphql`
-  query( $slug: String!) {
-    sanityPost(slug: {current: {eq: $slug}}) {
-      categories{
-        name
+  query($skip: Int!, $limit: Int!) {
+    allSanityPlace(sort: { date: DESC }
+      limit: $limit
+      skip: $skip) {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
+        date(formatString: "M MMM YYYY")
+        categories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
       }
-      excerpt
+    }
+    sanityPage(slug: {current: {eq: "the-list"}}) {
       slug {
         current
       }
@@ -70,6 +92,11 @@ export const query = graphql`
           _type
           ... PostsGridFragment
         }
+        ... on SanityFeatureGrid {
+          _key
+          _type
+          ... FeaturesGridFragment
+        }
         ... on SanityTwoColumnTitleTextCta {
           _key
           _type
@@ -90,6 +117,11 @@ export const query = graphql`
           _type
           ... HeroInfoCallToActionFragment
         }
+        ... on SanityTitleSubtitleText {
+          _key
+          _type
+          ...TitleSubtitleTextFragment
+        }
         ... on SanityImageTextCallToActionImage {
           _key
           _type
@@ -99,7 +131,6 @@ export const query = graphql`
           _key
           _type
           ... ImageLinkFragment
-
         }
       }
     }

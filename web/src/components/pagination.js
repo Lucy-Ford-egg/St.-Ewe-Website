@@ -4,14 +4,14 @@ import { Button } from "gatsby-theme-material-ui"
 import EastIcon from "@mui/icons-material/East"
 import WestIcon from "@mui/icons-material/West"
 
-export const Pagination = (props) => {
-  const {pageContext} = props
+export const Pagination = props => {
+  const { pageContext } = props
   const theme = useTheme()
-  
+
   debugger
   const renderDots = () => {
     let dots = []
-    
+
     for (let i = 0; i < pageContext.numberOfPages; i++) {
       dots = [
         ...dots,
@@ -27,30 +27,28 @@ export const Pagination = (props) => {
               fontSize: 14,
               fontWeight: 500,
               color:
-              pageContext.humanPageNumber === i + 1
+                pageContext.humanPageNumber === i + 1
                   ? theme.palette.white.main
                   : theme.palette.secondary.main,
               backgroundColor:
-              pageContext.humanPageNumber === i + 1
+                pageContext.humanPageNumber === i + 1
                   ? theme.palette.primary.main
                   : "transparent",
               mx: 18,
             }}
             key={`dot-${i}`}
-            
           >
             {i + 1}
           </Box>
         ),
       ]
     }
-  
 
     return dots
   }
 
   return (
-    <Container maxWidth="lg" sx={{py: 8}}>
+    <Container maxWidth="lg" sx={{ py: 8 }}>
       <Box
         sx={{
           display: "flex",
@@ -65,8 +63,14 @@ export const Pagination = (props) => {
             alignItems: "center",
           }}
         >
-          <WestIcon sx={{ mx: 5 }} />
-          <Button disabled={pageContext.humanPageNumber === 1 ? true : false} variant="text" sx={{ fontWeight: 500 }} to={pageContext && pageContext.previousPagePath}>
+          <Button
+          color="secondary"
+            disabled={pageContext.humanPageNumber === 1 ? true : false}
+            variant="text"
+            sx={{ fontWeight: 500, display: "inline-flex" }}
+            to={pageContext && pageContext.previousPagePath}
+            startIcon={<WestIcon sx={{ mx: 5 }} />}
+          >
             Recent News
           </Button>
         </Box>
@@ -86,10 +90,20 @@ export const Pagination = (props) => {
             alignItems: "center",
           }}
         >
-          <Button disabled={pageContext.humanPageNumber === pageContext.numberOfPages ? true : false} variant="text" sx={{ fontWeight: 500 }} to={pageContext && pageContext.nextPagePath}>
+          <Button
+          color="secondary"
+            disabled={
+              pageContext.humanPageNumber === pageContext.numberOfPages
+                ? true
+                : false
+            }
+            variant="text"
+            sx={{ fontWeight: 500, display: "inline-flex" }}
+            to={pageContext && pageContext.nextPagePath}
+            endIcon={<EastIcon sx={{ mx: 5 }} />}
+          >
             Older News
           </Button>
-          <EastIcon sx={{ mx: 5 }} />
         </Box>
       </Box>
     </Container>

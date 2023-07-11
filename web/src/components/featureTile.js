@@ -5,8 +5,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Card, CardActions, CardContent, Box, Button, Typography } from '@mui/material';
 import clientTheme from '../gatsby-theme-material-ui-top-layout/theme'
 
-export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
-
+export const FeatureTile = ({ categories, title, image, excerpt, date, to, context }) => {
+  console.log("context",context)
   const [hovered, setHovered] = useState(false)
 
   const renderTaxonomies = (categories) => {
@@ -72,7 +72,7 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
   }
 
   return (
-    <Link to={`/blog/${to}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/features-gallery/${to}`} style={{ textDecoration: 'none' }}>
       <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 } }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
         {/* <motion.div style={{}} animate={hovered ? "hovered" : "unhovered"}
           variants={featuredImageWrapper}> */}
@@ -115,7 +115,7 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
           </motion.div>
 
           <CardActions sx={{ px: { xs: 0, md: 5 }, pt: 0, pb: 9 }}>
-            <Button variant="contained" to={`/blog/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s', textAlign: 'center' }}>Read More</Button>
+            <Button variant="contained" to={`/features-gallery/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s', textAlign: 'center' }}>Read More</Button>
           </CardActions>
           
 
@@ -129,10 +129,11 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
 }
 
 export const query = graphql`
-  fragment PostFragment on SanityPostsGrid {
+
+  fragment FeatureFragment on SanityFeatureGrid {
     _key
     _type
-    posts {
+    features {
       coverImage {
         asset {
           gatsbyImageData(width: 525, height: 323)

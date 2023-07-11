@@ -1,23 +1,25 @@
 import React from 'react'
-import { Carousel } from '../components/carousel'
-import { Places } from '../components/places'
-import { Posts } from '../components/posts'
-import { ImageCaption } from '../components/imageCaption'
-import { Text } from '../components/text'
-import { GalleryCarousel } from '../components/galleryCarousel'
-import { HeroCallToAction } from '../components/heroCallToAction'
-import { HeroNewsletter } from '../components/heroNewsletter'
-import {MultiColumnTitleTextLink} from '../components/multiColumnTitleTextLink'
-import {Map} from '../components/map'
-import { CategoryFeature } from '../components/categoryFeature'
-import { HeroInfoCallToAction } from '../components/heroInfoCallToAction'
-import {TitleSubtitleText} from '../components/titleSubtitleText'
-import {ImageTextCallToActionImage} from '../components/imageTextCallToActionImage'
-import { ImageLink } from '../components/imageLink'
-import {InstagramEmbed} from '../components/InstagramEmbed'
+
+import { Carousel } from './carousel'
+import { Places } from './places'
+import { Posts } from './posts'
+import { Features } from './features'
+import { ImageCaption } from './imageCaption'
+import { Text } from './text'
+import { GalleryCarousel } from './galleryCarousel'
+import { HeroCallToAction } from './heroCallToAction'
+import { HeroNewsletter } from './heroNewsletter'
+import {MultiColumnTitleTextLink} from './multiColumnTitleTextLink'
+import {Map} from './map'
+import { CategoryFeature } from './categoryFeature'
+import { HeroInfoCallToAction } from './heroInfoCallToAction'
+import {TitleSubtitleText} from './titleSubtitleText'
+import {ImageTextCallToActionImage} from './imageTextCallToActionImage'
+import { ImageLink } from './imageLink'
+import {InstagramEmbed} from './InstagramEmbed'
 
 
-const Modules = ({ modules, allPlace, allPost, placeLocation, pageContext }) => {
+const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageContext }) => {
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -37,10 +39,13 @@ const Modules = ({ modules, allPlace, allPost, placeLocation, pageContext }) => 
                         return <Carousel {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "placesGrid")) {
-                        return <Places {...module} allPlace={allPlace} key={module._key + i} />
+                        return <Places {...module} allPlace={allPlace} key={module._key + i} pageContext={pageContext} />
                     }
                     else if (isModule(module, "postsGrid")) {
                         return <Posts {...module} allPost={allPost} key={module._key + i} pageContext={pageContext} />
+                    }
+                    else if (isModule(module, "featureGrid")) {
+                        return <Features {...module} allFeature={allFeature} key={module._key + i} pageContext={pageContext} />
                     }
                     else if (isModule(module, "imageWithCaption")) {
                         return <ImageCaption {...module} key={module._key + i} />
@@ -94,3 +99,5 @@ const Modules = ({ modules, allPlace, allPost, placeLocation, pageContext }) => 
 }
 
 export default Modules
+
+

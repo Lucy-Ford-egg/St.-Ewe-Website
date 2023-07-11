@@ -1,8 +1,8 @@
-import { MdAutoStories } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
-// import locationType from './location'
+import authorType from './author'
 import categoriesType from './categories'
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
@@ -13,15 +13,13 @@ import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
 import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
 import placesGridType from './modules/placesGrid'
 import postsGridType from './modules/postsGrid'
-import featuresGridType from '../schemas/modules/featuresGrid'
+import featuresGridType from './modules/featuresGrid'
 import heroNewsletterType from './modules/heroNewsletter'
 import categoryFeatureType from './modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 import imageWithLinkType from '../schemas/modules/imageWithLink'
-
-
 
 /**
  * This file is the schema definition for a post.
@@ -34,17 +32,46 @@ import imageWithLinkType from '../schemas/modules/imageWithLink'
  */
 
 export default defineType({
-  name: "page",
-  title: "Page",
-  icon: MdAutoStories,
+  name: 'feature',
+  title: 'Feature',
+  icon: MdFavorite,
   type: 'document',
   fields: [
+    defineField({
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'imageCaption',
+      options: {
+        hotspot: true,
+      },
+      validation: Rule => Rule.required(),
+    }),
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       descrition: 'Just for editor purposes. Not shown on the frontend but still necesscary',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'displayTitle',
+      type: 'array',
+      title: 'Display Title',
+      of: [{ 
+        type: 'block',
+        lists: [], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          // { title: 'Heading 3', value: 'h3' },
+          // { title: 'Heading 4', value: 'h4' },
+        ],
+        marks: {
+          decorators: [],
+          annotations: []
+        }
+      }],
+      validation: (rule) => rule.required(),
+      description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",   
     }),
     defineField({
       name: 'slug',
@@ -58,10 +85,23 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      rows: 2,
+      type: 'text',
+      description: 'Small snippet of text shown on the blog tile when hovered.'
+    }),
+    defineField({
       name: 'date',
       title: 'Date',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: authorType.name }],
     }),
     defineField({
       name: 'pageBuilder',
@@ -79,15 +119,17 @@ export default defineType({
         { type: placesGridType.name, title: "Places Grid Module" },
         { type: heroNewsletterType.name, title: "Hero Newsletter, CTA, Caption Module"},
         { type: postsGridType.name, title: "Posts Grid Module" },
-        { type: featuresGridType.name, title:"Features Grid Module"},  
+        { type: featuresGridType.name, title: "Features Grid Module" },
         { type: categoryFeatureType.name, title: "Category Feature Module" },
         { type: heroInfoCallToActionType.name, title: "Hero, Info, CTA, Caption Module" },
         { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
         { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
-        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },  
+        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
+
         // etc...
         ]
     }),
+    
     defineField({
       name: 'categories',
       title: 'Categories',
@@ -104,14 +146,14 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      location: 'location.name',
+      author: 'author.name',
       date: 'date',
       media: 'coverImage',
     },
-    prepare({ title, media, location, date }) {
+    prepare({ title, media, author, date }) {
       const subtitles = [
-        location && `in ${location}`,
-        date && `published on ${format(parseISO(date), 'LLL d, yyyy')}`,
+        location && `by ${author}`,
+        date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
       return { title, media, subtitle: subtitles.join(' ') }

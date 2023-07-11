@@ -7,6 +7,7 @@ import categoriesType from '../schemas/categories'
 import placeType from '../schemas/place'
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
+import featureType  from '../schemas/feature'
 import pageType from '../schemas/page'
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
@@ -19,6 +20,7 @@ import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
 import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
 import placesGridType from '../schemas/modules/placesGrid'
 import postsGridType from '../schemas/modules/postsGrid'
+import featuresGridType from '../schemas/modules/featuresGrid'
 import heroNewsletterType from '../schemas/modules/heroNewsletter'
 import categoryFeatureType from '../schemas/modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
@@ -49,7 +51,7 @@ export const schemaTypes = [
   authorType,
   // Objects
   placeType, 
-
+  featureType,
   postType, 
   pageType,
   // Modules
@@ -64,6 +66,7 @@ export const schemaTypes = [
   imageCarouselSubtitleTitleTextLinkType,
   placesGridType,
   postsGridType,
+  featuresGridType,
   heroNewsletterType,
   categoryFeatureType,
   heroInfoCallToActionType,

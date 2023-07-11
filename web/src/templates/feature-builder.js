@@ -1,25 +1,24 @@
 import React from "react"
-import { graphql } from 'gatsby'
+import { graphql, Link } from "gatsby"
+import {Container} from "@mui/material"
 import Layout from "../components/layout"
 import Modules from "../components/modules"
 
-export default function BlogPost({ data, moduleSpacing, pageContext  }) {
-  console.log("pageContext", pageContext)
-  console.log("data", data)
-  debugger    
-  //allPost={pageContext.allPosts} modules={data.sanityPost?.pageBuilder} 
+export default function FeaturePost({ data, moduleSpacing, pageContext  }) {
+  console.log(pageContext)    
+  debugger
   return (
     <Layout>
-    
-      <Modules modules={data.sanityPost.pageBuilder} pageContext={pageContext}/>
+      
+      <Modules modules={data.sanityFeature.pageBuilder} pageContext={pageContext}/>
       
     </Layout>
   )
 }
 
 export const query = graphql`
-  query( $slug: String!) {
-    sanityPost(slug: {current: {eq: $slug}}) {
+  query($slug: String!) {
+    sanityFeature(slug: {current: {eq: $slug}}) {
       categories{
         name
       }
@@ -99,7 +98,6 @@ export const query = graphql`
           _key
           _type
           ... ImageLinkFragment
-
         }
       }
     }

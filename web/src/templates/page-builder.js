@@ -1,13 +1,13 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import Modules from "../utils/modules"
+import Modules from "../components/modules"
 
 export default function PageBuilder({ data, pageContext }) {
 
   return (
     <Layout>
-      <Modules allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
+      <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
     </Layout>
   )
 }
@@ -60,6 +60,11 @@ export const query = graphql`
           _key
           _type
           ... PostsGridFragment
+        }
+        ... on SanityFeatureGrid {
+          _key
+          _type
+          ... FeaturesGridFragment
         }
         ... on SanityTwoColumnTitleTextCta {
           _key
@@ -121,6 +126,27 @@ export const query = graphql`
       }
     }
     allSanityPost(limit: 2) {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
+        date(formatString: "M MMM YYYY")
+        categories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
+      }
+    }
+    allSanityFeature(limit: 2) {
       nodes {
         coverImage {
           asset {
