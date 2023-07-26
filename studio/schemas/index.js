@@ -4,6 +4,8 @@ import linkType from '../schemas/link'
 
 import locationType from '../schemas/location'
 import categoriesType from '../schemas/categories'
+import featureCategoriesType from '../schemas/featureCategories'
+import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
@@ -46,13 +48,16 @@ export const schemaTypes = [
   navItemType,
   linkType,
   // Taxonomies
-  categoriesType,
+  
   locationType, 
   authorType,
   // Objects
   placeType, 
+  placeCategoriesType,
   featureType,
-  postType, 
+  featureCategoriesType,
+  postType,
+  categoriesType, 
   pageType,
   // Modules
   imageWithCaptionType,

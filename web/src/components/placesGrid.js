@@ -6,35 +6,40 @@ import { Pagination } from "./pagination"
 
 export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = true, pageContext }) => {
 
-  const [filterPlaces, setFilterData] = useState(null)
+  const [filterPlaces, setFilterData] = useState( allPlace )
 
   const mobile = useMediaQuery('(max-width:600px)');
 
 
-  const updatePlaces = useCallback(() => {
-    const thePlaces = allPlace ? allPlace : filterPlaces
-    setFilterData(thePlaces);
-  }, [ setFilterData],)
+  // const updatePlaces = useCallback(() => {
+   
+  //   allPlace && setFilterData(allPlace)
+  //   // const thePlaces = allPlace ? allPlace : filterPlaces
+  //   //filterPlaces && setFilterData(filterPlaces);
+  // }, [ setFilterData],)
 
   useEffect(() => {
-    updatePlaces()
-  }, [updatePlaces]);
+    // debugger
+    // updatePlaces()
+    allPlace && setFilterData(allPlace)
+  }, [setFilterData, allPlace]);
 
   return (
-    <>{allPlace?.length >= 1 &&
+    <>{filterPlaces &&
       <Container className="section placesGrid" sx={{ pt: { xs: 10, md: 11 } }} maxWidth={mobile ? false : "xl"}>
 
         {showFilter && <Filter type="places" allData={allPlace} filterData={filterPlaces} setFilterData={setFilterData} />}
 
         <Container maxWidth="lg" sx={{ px: { xs: 0 } }}>
-          {filterPlaces && searching === false && (
+          {filterPlaces && (
             <Grid container spacing={{ xs: 0, md: 9 }}>
-              {filterPlaces?.map((tile, i) => {
+              {filterPlaces.map((tile, i) => {
+                
                 return (
                   <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
                     <PlaceTile
                       title={tile?.title}
-                      image={tile.coverImage?.asset.gatsbyImageData}
+                      image={tile.coverImage?.asset?.gatsbyImageData}
                       category={tile?.categories}
                       date={tile?.date}
                       to={tile?.slug?.current}
@@ -45,6 +50,7 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
               })}
             </Grid>
           )}
+          
           {/* {allPlace && searching === true && (
             <Grid container spacing={{ xs: 0, md: 9 }}>
               {allPlace.map((tile, i) => {

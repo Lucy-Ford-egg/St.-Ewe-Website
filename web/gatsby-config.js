@@ -106,12 +106,12 @@ module.exports = {
               nodes {
                 title
                 excerpt
-                categories {
+                categories: placeCategories {
                   name
                 }
                 coverImage {
                   asset {
-                    gatsbyImageData
+                    gatsbyImageData(width: 525, height: 323)
                   }
                 }
                 slug {
@@ -130,7 +130,7 @@ module.exports = {
         // List of keys to index. The values of the keys are taken from the
         // normalizer function below.
         // Default: all fields
-        index: ['title', 'excerpt','categories'],
+        index: ['title', 'excerpt', 'categories'],
 
         // List of keys to store and make available in your UI. The values of
         // the keys are taken from the normalizer function below.
@@ -147,7 +147,7 @@ module.exports = {
             slug: node.slug.current,
             title: node.title,
             excerpt: node.excerpt,
-            coverImage : node.coverImage.asset.gatsbyImageData,
+            coverImage : node.coverImage,
             categories: node.categories
 
 

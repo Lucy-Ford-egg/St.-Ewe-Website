@@ -6,6 +6,17 @@
 
 const { paginate } = require('gatsby-awesome-pagination');
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type categories implements Node {
+      name: String
+    }
+  `
+  createTypes(typeDefs)
+}
+
+
 exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions
   const { data } = await graphql(`
@@ -32,7 +43,7 @@ exports.createPages = async function ({ actions, graphql }) {
             }
           }
           date(formatString: "M MMM YYYY")
-          categories {
+          categories: placeCategories {
             name
           }
           excerpt

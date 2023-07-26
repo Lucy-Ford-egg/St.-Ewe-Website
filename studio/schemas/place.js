@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
 import locationType from './location'
-import categoriesType from './categories'
+import placeCategoriesType from './placeCategories'
 // Builder modules
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
@@ -99,13 +99,13 @@ export default defineType({
     }),
     
     defineField({
-      name: 'categories',
-      title: 'Categories',
+      name: 'placeCategories',
+      title: 'Place Categories',
       type: 'array',
       of: [
         {
           type: 'reference',
-          to: [{ type: categoriesType.name }],
+          to: [{ type: placeCategoriesType.name }],
         },
      ]
     }),

@@ -170,7 +170,7 @@ const Header = () => {
                 
               : <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
                   <SearchIcon onClick={e => setShowSearch(true)}/>
-                  </Box>}
+                </Box>}
 
           </Box>
 

@@ -127,7 +127,7 @@ export const query = graphql`
       }
       title
       date(formatString: "M MMM YYYY")
-      categories {
+      placeCategories {
         name
       }
       slug {

@@ -130,7 +130,7 @@ export default defineType({
     
     defineField({
       name: 'categories',
-      title: 'Categories',
+      title: 'Post Categories',
       type: 'array',
       of: [
         {

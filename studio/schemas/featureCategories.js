@@ -2,8 +2,8 @@ import { MdCategory } from "react-icons/md";
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'categories',
-  title: 'Post Categories',
+  name: 'featureCategories',
+  title: 'Feature Categories',
   icon: MdCategory,
   type: 'document',
   fields: [

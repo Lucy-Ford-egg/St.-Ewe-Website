@@ -41,7 +41,7 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
     }
     allSanityPlace {
       nodes {
-        categories {
+        categories: placeCategories {
           name
         }
       }

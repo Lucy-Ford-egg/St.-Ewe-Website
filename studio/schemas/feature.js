@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
 import authorType from './author'
-import categoriesType from './categories'
+import featureCategoriesType from './featureCategories'
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
 import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
@@ -132,12 +132,12 @@ export default defineType({
     
     defineField({
       name: 'categories',
-      title: 'Categories',
+      title: 'Feature Categories',
       type: 'array',
       of: [
         {
           type: 'reference',
-          to: [{ type: categoriesType.name }],
+          to: [{ type: featureCategoriesType.name }],
         },
      ]
       // to: [{ type:  }],

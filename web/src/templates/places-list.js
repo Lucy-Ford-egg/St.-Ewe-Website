@@ -36,7 +36,7 @@ export const query = graphql`
           _rawChildren(resolveReferences: {maxDepth: 10})
         }
         date(formatString: "M MMM YYYY")
-        categories {
+        categories: placeCategories {
           name
         }
         slug {
