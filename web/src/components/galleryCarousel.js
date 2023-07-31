@@ -12,7 +12,7 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 const variants = {
   enter: (direction) => {
     return {
-      x: direction > 0 ? 50 : -50,
+      //x: direction > 0 ? 50 : -50,
       display: 'none',
       opacity: 0
     };
@@ -20,14 +20,14 @@ const variants = {
   center: {
     zIndex: 1,
     display: 'block',
-    x: 0,
+    //x: 0,
     opacity: 1
   },
   exit: (direction) => {
     return {
       zIndex: 0,
       display: 'none',
-      x: direction < 0 ? 50 : -50,
+      //x: direction < 0 ? 50 : -50,
       opacity: 0
     };
   }
@@ -84,7 +84,7 @@ export const GalleryCarousel = ({ carousel, carouselLinkGroup }) => {
                 animate="center"
                 exit="exit"
                 transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  //x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.2 }
                 }}
                 drag="x"
