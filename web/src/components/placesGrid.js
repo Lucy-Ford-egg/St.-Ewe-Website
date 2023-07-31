@@ -19,8 +19,7 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
   // }, [ setFilterData],)
 
   useEffect(() => {
-    // debugger
-    // updatePlaces()
+
     allPlace && setFilterData(allPlace)
   }, [setFilterData, allPlace]);
 

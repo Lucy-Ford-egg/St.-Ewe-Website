@@ -35,6 +35,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
         return (
             <>
                 {modules.map((module, i) => {
+                    debugger
                     if (isModule(module, 'imageCarouselSubtitleTitleTextLink')) {
                         return <Carousel {...module} key={module._key + i} />
                     }
@@ -45,7 +46,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
                         return <Posts {...module} allPost={allPost} key={module._key + i} pageContext={pageContext} />
                     }
                     else if (isModule(module, "featureGrid")) {
-                        return <Features {...module} allFeature={allFeature} key={module._key + i} pageContext={pageContext} />
+                        return <Features {...module} disableTopPadding={i === 0 ? true : false}  allFeature={allFeature} key={module._key + i} pageContext={pageContext} />
                     }
                     else if (isModule(module, "imageWithCaption")) {
                         return <ImageCaption {...module} key={module._key + i} />
@@ -75,7 +76,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
                         return <HeroInfoCallToAction {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "titleSubtitleText")) {
-                        return <TitleSubtitleText placeLocation={placeLocation} {...module} key={module._key + i} />
+                        return <TitleSubtitleText disableTopPadding={i === 0 ? true : false} placeLocation={placeLocation} {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "imageTextCallToActionImage")) {
                         return <ImageTextCallToActionImage {...module} key={module._key + i} />

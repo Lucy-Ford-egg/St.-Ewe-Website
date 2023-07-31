@@ -5,8 +5,7 @@ import Layout from "../components/layout"
 import Modules from "../components/modules"
 
 export default function FeaturePost({ data, moduleSpacing, pageContext  }) {
-  console.log(pageContext)    
-  debugger
+
   return (
     <Layout>
       

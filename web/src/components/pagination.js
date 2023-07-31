@@ -8,7 +8,7 @@ export const Pagination = props => {
   const { pageContext } = props
   const theme = useTheme()
 
-  debugger
+
   const renderDots = () => {
     let dots = []
 

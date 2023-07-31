@@ -4,10 +4,7 @@ import Layout from "../components/layout"
 import Modules from "../components/modules"
 
 export default function BlogPost({ data, moduleSpacing, pageContext  }) {
-  console.log("pageContext", pageContext)
-  console.log("data", data)
-  debugger    
-  //allPost={pageContext.allPosts} modules={data.sanityPost?.pageBuilder} 
+
   return (
     <Layout>
     

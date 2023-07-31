@@ -5,7 +5,7 @@ import Modules from "../components/modules"
 
 
 export default function PlacesList({ data, moduleSpacing, pageContext  }) {
-debugger
+
   return (
     <Layout>
      

@@ -28,7 +28,7 @@ export default defineType({
         // status: 'status'
       },
       prepare(selection) {
-        debugger
+      
         const {title, subtitle} = selection
         return {
           title: title,

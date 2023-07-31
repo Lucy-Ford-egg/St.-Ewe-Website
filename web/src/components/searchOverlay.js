@@ -38,7 +38,7 @@ export const SearchOverlay = ({ showSearch, setShowSearch }) => {
 
   const [query, setQuery] = useState("")
   const results = useFlexSearch(query, index, store)
-debugger
+
   const handleChange = (value, setSubmitting) => {
     setQuery(value)
     //setSubmitting(false)

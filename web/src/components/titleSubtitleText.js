@@ -6,15 +6,15 @@ import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 import {ArchIcon} from "../components/archIcon"
 import { renderTaxonomies, renderLocation } from "../utils/metaDataHelpers"
 
-export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePosition, titleSize, showAdornment, placeLocation = '', postCategory = '' }) => {
+export const TitleSubtitleText = ({ disableTopPadding, displayTitle, subtitle, text, subtitlePosition, titleSize, showAdornment, placeLocation = '', postCategory = '' }) => {
 
   const renderSubtitle = () => {
     return placeLocation ? placeLocation && renderLocation(placeLocation) : postCategory && renderTaxonomies(postCategory)
   }
   return (
-    <>{displayTitle && <Container className="section titleSubtitleText" maxWidth={false} sx={{ pt: { xs: 10, md: 11 } }}>
+    <>{displayTitle && <Container className="section titleSubtitleText" maxWidth={false} sx={{ pt: { xs: disableTopPadding === true ? 0 : 10, md: disableTopPadding === true ? 0 :11 } }}>
       <Container maxWidth="md">
-        {subtitlePosition === null && (
+        {subtitlePosition === false && (
           <Typography
             variant="subtitle1"
             component="h5"
@@ -25,9 +25,9 @@ export const TitleSubtitleText = ({ displayTitle, subtitle, text, subtitlePositi
             {subtitle}
           </Typography>
         )}
-        { displayTitle && <AnimatedText subtitlePosition={subtitlePosition} displayTitle={displayTitle} titleSize={titleSize ? titleSize : "h2"} />}
+        { displayTitle  && <AnimatedText subtitlePosition={subtitlePosition} displayTitle={displayTitle} titleSize={titleSize ? titleSize : "h2"} />}
         
-          {subtitle && <Typography component="h6" variant="subtitle2" color="primary.main" align="center" sx={{ pb: subtitlePosition !== null ? 8 : 8 }}>
+          {subtitle && subtitlePosition === true && <Typography component="h6" variant="subtitle2" color="primary.main" align="center"  sx={{ pb: { xs: 5, md: 8 } }}>
             {subtitle ? subtitle : renderSubtitle()}
           </Typography> }
         

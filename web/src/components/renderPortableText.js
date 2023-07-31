@@ -103,13 +103,15 @@ const AnimateBlock = ({children, subtitlePosition, variant}) => {
   
     const sentance = {
       hidden: {
-        opacity: 1
+        //opacity: 1
+        //y: -100
       },
       visible: {
-        opacity: 1,
+        //opacity: 1,
+        //y: 0,
         transition: {
-          delay: 0.25,
-          staggerChildren: 0.04
+         delay: 0.25,
+         //staggerChildren: 0.01,
         }
       }
     }
@@ -117,16 +119,18 @@ const AnimateBlock = ({children, subtitlePosition, variant}) => {
     const letter = {
       hidden: {
         opacity: 0,
-        y: -100
+        y: "5rem",
+        display: "inline"
       },
       visible: {
         opacity: 1,
-        y: 0
+        y: 0,
+        display: "inline"
       }
     }
 
   return (
-    <MotionTitle variants={sentance} initial="hidden" animate="visible" align="center" sx={{ mx: "auto", pb: { xs: subtitlePosition !== null ? 5 : 8 } }}>
+    <MotionTitle variants={sentance} initial="hidden" animate="visible" align="center" sx={{ mx: "auto", pb: { xs: subtitlePosition === true ? 5 : 8 } }}>
     {children && children.map((node, i) => {
       return (
         typeof node === 'string' || node instanceof String ? node.split('').map((char, i) => {
