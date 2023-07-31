@@ -1,8 +1,10 @@
 import React, { useState } from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import {graphql, useStaticQuery } from "gatsby"
+import { Link } from "gatsby-theme-material-ui"
 import { Container, Typography, AppBar, Toolbar, Box, IconButton, useMediaQuery } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import MainNavigation from "./mainNavigation";
 import MobileMainNavigation from "./mobileMainNavigation";
 import { SearchOverlay } from "./searchOverlay";
@@ -62,10 +64,14 @@ const Header = () => {
 
   return (
 <>
-    <AppBar position="static" color="white" sx={{ boxShadow: '0px 3px 3px 13px rgba(0,0,0,0, 0.8)' }}>
+    <AppBar position="static" color={ anchorElNav ? "primary" : "white"} sx={{ boxShadow: '0px 3px 3px 13px rgba(0,0,0,0, 0.8)' }}>
       <Container maxWidth="xl" sx={{ py: 2 }}>
         <Toolbar disableGutters sx={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="/" style={{ display: 'flex' }} aria-label="Return to home page">
+          <Link to="/" sx={{ display: 'flex', svg:{
+            path: {
+              fill: anchorElNav && "white",
+            }
+          } }} aria-label="Return to home page">
             <svg id="archihols-logo" xmlns="http://www.w3.org/2000/svg" width="185.136" height="50.478" viewBox="0 0 185.136 50.478">
               <g id="Group_147" data-name="Group 147">
                 <path id="Path_14" data-name="Path 14" d="M164.973,101.048a3.507,3.507,0,0,0,2.51-1.047,3.587,3.587,0,0,0,0-5.053,3.52,3.52,0,0,0-2.51-1.047,3.674,3.674,0,0,0-.731.076l-2.627,2.644c-.078.155-.163.309-.257.457l1.611-1.622a2.82,2.82,0,0,1,4.006,0,2.865,2.865,0,0,1,0,4.033,2.82,2.82,0,0,1-4.006,0l-1.937-1.95c-.048.062-.1.125-.154.185l3.174,3.2A3.325,3.325,0,0,0,164.973,101.048Z" transform="translate(-124.007 -72.235)" fill="#c3b187" />
@@ -169,7 +175,7 @@ const Header = () => {
               </Box>
                 
               : <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-                  <SearchIcon onClick={e => setShowSearch(true)}/>
+                  <SearchIcon color={ anchorElNav ? "white" : "secondary"} onClick={e => setShowSearch(true)}/>
                 </Box>}
 
           </Box>
@@ -183,7 +189,7 @@ const Header = () => {
               display: { xs: 'block', lg: 'none' },
             }}
           >
-            <MenuIcon />
+            { anchorElNav ? <CloseIcon color="white"/> : <MenuIcon color="secondary"/>}
           </IconButton>
 
         </Toolbar>

@@ -15,7 +15,7 @@ export const NavigationLink = ({text, navigationItemUrl, buttonType = "contained
   let linkType = '';
 
   if(navigationItemUrl?.internalnavigationItemUrl !== null){
-    linkType = <Button sx={{...animationHover('white'), textAlign: 'center'}} variant={buttonType} color={color} component={Link} to={navigationItemUrl?.internalnavigationItemUrl.reference?.slug.current}  aria-label={`Link to ${text}`}>
+    linkType = <Button sx={{...animationHover('white'), textAlign: {xs: "left", md: "center"}}} variant={buttonType} color={color} component={Link} to={navigationItemUrl?.internalnavigationItemUrl.reference?.slug.current}  aria-label={`Link to ${text}`}>
           {text}
         </Button>
   }
