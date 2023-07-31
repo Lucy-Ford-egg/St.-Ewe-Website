@@ -65,7 +65,7 @@ export const Pagination = props => {
         >
           <Button
           color="secondary"
-            disabled={pageContext.humanPageNumber === 1 ? true : false}
+            disabled={pageContext && pageContext.humanPageNumber === 1 ? true : false}
             variant="text"
             sx={{ fontWeight: 500, display: "inline-flex" }}
             to={pageContext && pageContext.previousPagePath}
@@ -93,7 +93,7 @@ export const Pagination = props => {
           <Button
           color="secondary"
             disabled={
-              pageContext.humanPageNumber === pageContext.numberOfPages
+              pageContext && pageContext.humanPageNumber === pageContext.numberOfPages
                 ? true
                 : false
             }
