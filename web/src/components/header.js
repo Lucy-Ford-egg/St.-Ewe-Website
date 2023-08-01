@@ -64,7 +64,7 @@ const Header = () => {
 
   return (
 <>
-    <AppBar position="static" color={ anchorElNav ? "primary" : "white"} sx={{ boxShadow: '0px 3px 3px 13px rgba(0,0,0,0, 0.8)' }}>
+    <AppBar position="static" color={ anchorElNav ? "primary" : "white"} sx={{ boxShadow: anchorElNav ? '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)' : '0px 0px 13px -1px rgba(0,0,0,0.2)' }}>
       <Container maxWidth="xl" sx={{ py: 2 }}>
         <Toolbar disableGutters sx={{ display: 'flex', alignItems: 'center' }}>
           <Link to="/" sx={{ display: 'flex', svg:{
