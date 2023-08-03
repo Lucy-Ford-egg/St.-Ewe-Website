@@ -5,20 +5,6 @@ export default defineType({
   name: "textBlock",
   title: "Text Module",
   type: 'object',
-  preview: {
-    select: {
-      title: '',
-      subtitle: 'title'
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Text Module`,
-        subtitle: ``,
-        icon: MdEditNote,
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'content',
@@ -37,4 +23,19 @@ export default defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'content',
+      subtitle: ''
+    },
+    prepare(selection) {
+
+      const {title, subtitle} = selection
+      return {
+        title: title[0].children[0].text,
+        subtitle: `Module: Text Module`,
+        icon: MdEditNote,
+      }
+    }
+  },
 })

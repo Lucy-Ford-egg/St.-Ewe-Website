@@ -5,21 +5,6 @@ export default defineType({
   name: "heroCallToAction",
   type: "object",
   title: "Hero Image, Title, Text, Call to Action Module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'imageSize',
-      
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Hero Image, Title, Text, Call to Action Module`,
-        subtitle: title,
-        icon: MdSmartButton
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'image',
@@ -42,5 +27,20 @@ export default defineType({
       title: 'Call To Action',
       type: 'linkGroup'
     })
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'image',
+      
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+      return {
+        title: title,
+        subtitle: `${subtitle.alt} | Module: Hero Image, Title, Text, Call to Action Module`,
+        icon: MdSmartButton
+      }
+    }
+  },
 })

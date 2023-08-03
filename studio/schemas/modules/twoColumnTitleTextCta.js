@@ -5,21 +5,6 @@ export default defineType({
   name: "twoColumnTitleTextCta",
   type: "object",
   title: "Two Column, Title, Text, CTA Module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'imageSize'
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-
-      return {
-        title: `Two Column, Title, Text, CTA Module`,
-        subtitle: `Used for Booking Information and Special Features`,
-        icon: MdDashboard
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'columns',
@@ -36,6 +21,21 @@ export default defineType({
       title: 'Call To Action',
       type: 'linkGroup'
     })
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'columns',
+      subtitle: 'imageSize'
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+debugger
+      return {
+        title: title && title !== "undefined" ? title[0].title[0].children[0].text : "Empty Columns",
+        subtitle: `Used for Booking Information and Special Features | Module : Two Column, Title, Text, CTA Module`,
+        icon: MdDashboard
+      }
+    }
+  },
 })
 

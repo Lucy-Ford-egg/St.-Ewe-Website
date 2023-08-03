@@ -6,21 +6,6 @@ export default defineType({
   name: "imageWithCaption",
   type: "object",
   title: "Image, Caption Module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'imageSize',
-      image: 'image'
-    },
-    prepare(selection) {
-      const {title, subtitle, image} = selection
-      return {
-        title: `Image, Caption Module`,
-        subtitle: `Image Size ${subtitle} - ${image.alt}`,
-        icon: MdOutlinePhotoSizeSelectActual
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'image',
@@ -44,5 +29,19 @@ export default defineType({
         type: 'boolean',
         initialValue: false,
     }),    
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'image',
+      subtitle: 'imageSize',
+    },
+    prepare(selection) {
+      const {title, subtitle } = selection
+      return {
+        title: `${title.alt}`,
+        subtitle: `Image Size ${subtitle} | Module: Image, Caption Module`,
+        icon: MdOutlinePhotoSizeSelectActual
+      }
+    }
+  },
 })

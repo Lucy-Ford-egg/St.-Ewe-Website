@@ -6,21 +6,6 @@ export default defineType({
   type: "object",
   title: "Linked Image Module - Advert Compatible",
   description: "Similar to the image with caption module but has a link. Checkbox to denote advert.",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'imageSize',
-      image: 'image'
-    },
-    prepare(selection) {
-      const {isAdvert} = selection
-      return {
-        title: `Linked Image Module - Advert Compatible`,
-        subtitle: `${isAdvert === true ? "Advert" : "Non Advert"}`,
-        icon: MdOutlineImage
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'image',
@@ -49,5 +34,20 @@ export default defineType({
       title: 'Show as Advert',
       description: 'By checking this the caption of advert is added to the module to distinguish it as an advert.'
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'isAdvert',
+      image: 'image'
+    },
+    prepare(selection) {
+      const {title, subtitle, image} = selection
+      return {
+        title: `${image.alt}`,
+        subtitle: `| Module: Linked Image Module  - Advert Captioned - ${subtitle}`,
+        icon: MdOutlineImage
+      }
+    }
+  },
 })

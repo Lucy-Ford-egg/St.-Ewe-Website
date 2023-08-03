@@ -58,7 +58,7 @@ export default defineType({
       const { title, subtitle } = selection
       return {
         title: title[0].children[0].text,
-        subtitle: `Image added - ${subtitle.alt}. Hero, Info, CTA, Caption Module`,
+        subtitle: `Image added - ${subtitle !== "undefined" && subtitle?.alt} | Module: Hero, Info, CTA, Caption Module`,
         icon: MdCenterFocusWeak
       }
     }

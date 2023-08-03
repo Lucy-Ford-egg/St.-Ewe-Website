@@ -86,6 +86,7 @@ let clientTheme = createTheme({
       main: "#C3B187", // Gold
       mid: "#BFAD83",
       dark: "#B8A67D",
+      accessible: "#83744d" // Accessible gold for small type
     },
     secondary: {
       main: '#2E2E2E', // Black

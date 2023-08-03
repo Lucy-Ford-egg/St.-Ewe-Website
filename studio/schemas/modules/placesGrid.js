@@ -38,9 +38,10 @@ export default defineType({
     },
     prepare(selection) {
       const {title, subtitle} = selection
+
       return {
-        title: title.displayTitle[0].children[0].text,
-        subtitle: `${subtitle.length > 0 ? "All Places" : "Curated Places"} - Places Grid module`,
+        title: title ? title?.displayTitle[0].children[0].text : "Empty Title",
+        subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Places" : "All Places"} | Module: Places Grid module`,
         icon: MdGridView
       }
     }

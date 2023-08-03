@@ -53,11 +53,8 @@ export const schemaTypes = [
   authorType,
   // Objects
   placeType, 
-  placeCategoriesType,
   featureType,
-  featureCategoriesType,
   postType,
-  categoriesType, 
   pageType,
   // Modules
   imageWithCaptionType,
@@ -87,5 +84,10 @@ export const schemaTypes = [
   internalLinkType,
   heroSlideType,
   blockquoteType,
-  instagramEmbedsType
+  instagramEmbedsType,
+  // Categories
+ 
+  placeCategoriesType,
+  featureCategoriesType,
+  categoriesType, 
 ]

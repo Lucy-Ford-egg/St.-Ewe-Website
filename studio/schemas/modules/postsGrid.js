@@ -5,20 +5,6 @@ export default defineType({
   name: "postsGrid",
   type: "object",
   title: "Posts Grid module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'carousel'
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Posts Grid module`,
-        subtitle: ``,
-        icon: MdWebStories
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'gridTitleSubtitleText',
@@ -38,5 +24,20 @@ export default defineType({
      ],
      // validation: Rule => Rule.required().min(2)
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'gridTitleSubtitleText',
+      subtitle: 'posts'
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+debugger
+      return {
+        title: title ? title?.displayTitle[0].children[0].text : "Empty Title",
+        subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Posts" : "All Posts"} | Module: Module: Posts Grid module`,
+        icon: MdWebStories
+      }
+    }
+  },
 })

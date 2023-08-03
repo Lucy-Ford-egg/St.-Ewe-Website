@@ -5,20 +5,6 @@ export default defineType({
   name: "imageCarouselSubtitleTitleTextLink",
   type: "object",
   title: "Hero Image Carousel, Subtitle, Title, Text, CTA Module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'carousel'
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Number of images: ${subtitle.length}`,
-        subtitle: `Hero Image Carousel, Subtitle, Title, Text, CTA Module`,
-        icon: MdViewCarousel
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'carousel',
@@ -31,5 +17,19 @@ export default defineType({
         },
       }],
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'carousel'
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+      return {
+        title: `First Image: ${subtitle[0].alt}`,
+        subtitle: `Number of images: ${subtitle.length} | Module: Hero Image Carousel, Subtitle, Title, Text, CTA Module`,
+        icon: MdViewCarousel
+      }
+    }
+  },
 })

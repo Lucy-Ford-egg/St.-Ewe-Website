@@ -60,10 +60,10 @@ export default defineType({
     },
     prepare(selection) {
       const {title, subtitle} = selection
-      debugger
+   
       return {
         title: title[0].children[0].text,
-        subtitle: `${subtitle ? subtitle : "Category"} Title, Subtitle, Text Module`,
+        subtitle: `${subtitle ? subtitle : "Category"} | Module: Title, Subtitle, Text Module`,
         icon: MdShortText
       }
     }

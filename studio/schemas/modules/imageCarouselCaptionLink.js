@@ -5,20 +5,6 @@ export default defineType({
   name: "imageCarouselCaptionLink",
   type: "object",
   title: "Image Carousel, Caption, Link Module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'carousel'
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Image Carousel, Caption, Link Module`,
-        subtitle: `Number of images: ${subtitle.length}`,
-        icon: MdOutlinePhotoLibrary
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'carousel',
@@ -39,5 +25,19 @@ export default defineType({
       //   scheme: ['http', 'https', 'mailto', 'tel']
       // })
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'carousel'
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+      return {
+        title: `First Image: ${subtitle[0].alt}`,
+        subtitle: `Number of images: ${subtitle.length} | Module: Image Carousel, Caption, Link Module`,
+        icon: MdOutlinePhotoLibrary
+      }
+    }
+  },
 })
