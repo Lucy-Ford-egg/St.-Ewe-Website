@@ -6,11 +6,11 @@ import { PortableTextInlineLink } from "../utils/portableInlineLink"
 import { motion } from "framer-motion"
 
 
-export const RenderPortableText = ({ value, variant, textColor = 'white', animate = false, subtitlePosition = null }) => {
+export const RenderPortableText = ({ value, variant, textColor = 'white', animate = false, subtitlePosition = null, component }) => {
 
   const standardPortableText = {
     types: {
-      span: ({ value }) => <Typography sx={{ color: textColor }} variant={variant ? variant : 'body1'}>{value.text}</Typography>,
+      span: ({ value }) => <Typography sx={{ color: textColor }} variant={variant ? variant : 'body1'} component={component}>{value.text}</Typography>,
       image: ({ value }) => <img src={value.imageUrl} />,
       callToAction: ({ value, isInline }) =>
         isInline ? (

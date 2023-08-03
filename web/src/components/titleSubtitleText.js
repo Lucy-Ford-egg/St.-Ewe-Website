@@ -17,7 +17,7 @@ export const TitleSubtitleText = ({ disableTopPadding, displayTitle, subtitle, t
         {subtitlePosition === false && (
           <Typography
             variant="subtitle1"
-            component="h5"
+            component="h2"
             color="primary.accessible"
             align="center"
             sx={{ pb: { xs: 5 } }}
@@ -25,9 +25,9 @@ export const TitleSubtitleText = ({ disableTopPadding, displayTitle, subtitle, t
             {subtitle}
           </Typography>
         )}
-        { displayTitle  && <AnimatedText subtitlePosition={subtitlePosition} displayTitle={displayTitle} titleSize={titleSize ? titleSize : "h2"} />}
+        { displayTitle  && <AnimatedText subtitlePosition={subtitlePosition} displayTitle={displayTitle} component="h1" titleSize={titleSize ? titleSize : "h2"} />}
         
-          {subtitle && subtitlePosition === true && <Typography component="h6" variant="subtitle2" color="primary.accessible" align="center"  sx={{ pb: { xs: 5, md: 8 } }}>
+          {subtitle && subtitlePosition === true && <Typography component="h2" variant="subtitle2" color="primary.accessible" align="center"  sx={{ pb: { xs: 5, md: 8 } }}>
             {subtitle ? subtitle : renderSubtitle()}
           </Typography> }
         
