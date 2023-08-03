@@ -63,7 +63,7 @@ export default defineType({
       debugger
       return {
         title: title[0].children[0].text,
-        subtitle: `${subtitle} Title, Subtitle, Text Module`,
+        subtitle: `${subtitle ? subtitle : "Category"} Title, Subtitle, Text Module`,
         icon: MdShortText
       }
     }
