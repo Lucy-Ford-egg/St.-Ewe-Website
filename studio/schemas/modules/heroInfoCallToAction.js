@@ -6,21 +6,6 @@ export default defineType({
   type: "object",
   title: "Hero, Info, CTA, Caption Module",
   description: "As the text is on the left selecting an image with some clear space to the left and visual focus to the right would be correct.",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'imageSize',
-
-    },
-    prepare(selection) {
-      const { title, subtitle } = selection
-      return {
-        title: `Hero, Info, CTA, Caption Module`,
-        subtitle: title,
-        icon: MdCenterFocusWeak
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'image',
@@ -61,5 +46,21 @@ export default defineType({
       title: 'Call To Action',
       type: 'linkGroup'
     })
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'text',
+      subtitle: 'image',
+
+    },
+    prepare(selection) {
+  
+      const { title, subtitle } = selection
+      return {
+        title: title[0].children[0].text,
+        subtitle: `Image added - ${subtitle.alt}. Hero, Info, CTA, Caption Module`,
+        icon: MdCenterFocusWeak
+      }
+    }
+  },
 })

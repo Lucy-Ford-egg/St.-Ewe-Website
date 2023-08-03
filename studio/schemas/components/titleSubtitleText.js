@@ -54,15 +54,16 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
-      // subtitle: 'imageSize',
+      title: 'displayTitle',
+      subtitle: 'subtitle',
       
     },
     prepare(selection) {
-      const {displayTitle, subtitle} = selection
+      const {title, subtitle} = selection
+      debugger
       return {
-        title: `Title, Subtitle, Text Module`,
-        subtitle: displayTitle,
+        title: title[0].children[0].text,
+        subtitle: `${subtitle} Title, Subtitle, Text Module`,
         icon: MdShortText
       }
     }

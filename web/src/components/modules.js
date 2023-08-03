@@ -76,7 +76,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
                         return <HeroInfoCallToAction {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "titleSubtitleText")) {
-                        return <TitleSubtitleText disableTopPadding={i === 0 ? true : false} placeLocation={placeLocation} {...module} key={module._key + i} />
+                        return <TitleSubtitleText disableTopPadding={i === 0 ? false : true} placeLocation={placeLocation} {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "imageTextCallToActionImage")) {
                         return <ImageTextCallToActionImage {...module} key={module._key + i} />

@@ -5,20 +5,6 @@ export default defineType({
   name: "placesGrid",
   type: "object",
   title: "Places grid module",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'carousel'
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Places Grid module`,
-        subtitle: ``,
-        icon: MdGridView
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'gridTitleSubtitleText',
@@ -44,5 +30,19 @@ export default defineType({
       initialValue: false,
       description: 'By checking this the module will display with the filter. Defaults to false'
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'gridTitleSubtitleText',
+      subtitle: 'places'
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+      return {
+        title: title.displayTitle[0].children[0].text,
+        subtitle: `${subtitle.length > 0 ? "All Places" : "Curated Places"} - Places Grid module`,
+        icon: MdGridView
+      }
+    }
+  },
 })

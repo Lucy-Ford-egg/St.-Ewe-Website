@@ -6,20 +6,6 @@ export default defineType({
   type: "object",
   title: "Category Feature module",
   description: "Displays a title, image and excerpt of text for 3 categorys.",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'description'
-    },
-    prepare(selection) {
-      const {title, subtitle} = selection
-      return {
-        title: `Category Feature module`,
-        subtitle: ``,
-        icon: MdViewColumn
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'gridTitleSubtitleText',
@@ -39,5 +25,19 @@ export default defineType({
      ],
      validation: Rule => Rule.required().min(3).max(3)
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'gridTitleSubtitleText',
+      subtitle: 'categories'
+    },
+    prepare(selection) {
+      const {title, subtitle} = selection
+      return {
+        title: title.displayTitle[0].children[0].text,
+        subtitle: `Caterogies added - ${subtitle.length} Category Feature module`,
+        icon: MdViewColumn
+      }
+    }
+  },
 })

@@ -13,8 +13,8 @@ export default defineType({
     prepare(selection) {
       const {title, subtitle} = selection
       return {
-        title: `Hero Image Carousel, Subtitle, Title, Text, CTA Module`,
-        subtitle: `Number of images: ${subtitle.length}`,
+        title: `Number of images: ${subtitle.length}`,
+        subtitle: `Hero Image Carousel, Subtitle, Title, Text, CTA Module`,
         icon: MdViewCarousel
       }
     }

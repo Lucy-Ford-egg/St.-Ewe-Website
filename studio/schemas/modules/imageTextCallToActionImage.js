@@ -6,21 +6,6 @@ export default defineType({
   type: "object",
   title: "Image, Text, Image, CTA Module - Advert Compatible",
   description: "Useful for adverts. The ad logo can be used in the logo field with text below. Or this same component can be used as a non-ad module by not clicking the 'Is Advert' feild.",
-  preview: {
-    select: {
-      title: 'title',
-      subtitle: 'imageSize',
-
-    },
-    prepare(selection) {
-      const { title, subtitle } = selection
-      return {
-        title: `Image, Text, Image, CTA Module - Advert Compatible`,
-        subtitle: title,
-        icon: MdCenterFocusWeak
-      }
-    }
-  },
   fields: [
     defineField({
       name: 'logo',
@@ -64,5 +49,21 @@ export default defineType({
       title: 'Show as Advert',
       description: 'By checking this the caption of advert is added to the module to distinguish it as an advert.'
     }),
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'text',
+      subtitle: 'isAdvert',
+
+    },
+    prepare(selection) {
+    
+      const { title, subtitle } = selection
+      return {
+        title: title[0].children[0].text,
+        subtitle: `Image, Text, Image, CTA Module - Advert Compatible - ${subtitle} `,
+        icon: MdCenterFocusWeak
+      }
+    }
+  },
 })

@@ -174,7 +174,7 @@ exports.createPages = async function ({ actions, graphql }) {
 
   placePosts.forEach(node => {
     createPage({
-      path: `the-list/${node.slug.current}`,
+      path: `places/${node.slug.current}`,
       component: require.resolve(`./src/templates/place-builder.js`),
       context: { 
         slug: `${node.slug.current}`,
