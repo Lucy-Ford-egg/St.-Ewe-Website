@@ -6,7 +6,7 @@ import { Filter } from "./filter"
 
 
 export const PostsGrid = ({ posts, allPost, searching = false, pageContext }) => {
-
+  debugger
 const [filtersPosts, setFilterData] = useState(null)
 
   const updatePosts = useCallback(() => { 

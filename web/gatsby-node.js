@@ -18,6 +18,14 @@ exports.createSchemaCustomization = ({ actions }) => {
       metaTitle: String
       metaDescription: String
     }
+    type SanityPost implements Node {
+      metaTitle: String
+      metaDescription: String
+    }
+    type SanityPlace implements Node {
+      metaTitle: String
+      metaDescription: String
+    }
    
   `
   createTypes(typeDefs)
@@ -27,66 +35,45 @@ exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions
   const { data } = await graphql(`
     query SanityAllData {
-      allSanityPlace {
+      allSanityPage(filter: {slug: {current: {nin: ["blog", "features-gallery", "the-list" ]}}}) {
         nodes {
+          id
           title
           slug {
             current
           }
-          coverImage {
-            asset {
-              gatsbyImageData(width: 525, height: 323)
-              altText
-            }
-          }
-          date(formatString: "M MMM YYYY")
-          categories: placeCategories {
-            name
-          }
-          excerpt
         }
       }
       allSanityPost {
         nodes {
+          id
           title
           slug {
             current
           }
-          coverImage {
-            asset {
-              gatsbyImageData(width: 525, height: 323)
-              altText
-            }
+        }
+      }
+      allSanityPlace {
+        nodes {
+          id
+          title
+          slug {
+            current
           }
-          date(formatString: "M MMM YYYY")
-          categories {
-            name
-          }
-          excerpt
         }
       }
       allSanityFeature {
         nodes {
           title
+          id
           slug {
             current
           }
-          coverImage {
-            asset {
-              gatsbyImageData(width: 525, height: 323)
-              altText
-            }
-          }
-          date(formatString: "M MMM YYYY")
-          categories {
-            name
-          }
-          excerpt
         }
       }
     }
   `)
-
+   
   // Fetch your items (blog posts, categories, etc).
   const blogPosts = data.allSanityPost.nodes
   const featurePosts = data.allSanityFeature.nodes
@@ -96,10 +83,11 @@ exports.createPages = async function ({ actions, graphql }) {
   paginate({
     createPage, // The Gatsby `createPage` function
     items: blogPosts, // An array of objects
-    itemsPerPage: 4, // How many items you want per page
+    itemsPerPage: 2, // How many items you want per page
     pathPrefix: "/blog", // Creates pages like `/blog`, `/blog/2`, etc
-    component: require.resolve(`./src/templates/{SanityPage.slug__current}.jsx`), // Just like `createPage()`
+    component: require.resolve(`./src/templates/postPageBuilder.jsx`), // Just like `createPage()`
     context: {
+      slug: "blog",
       features: featurePosts,
     },
   })
@@ -107,8 +95,9 @@ exports.createPages = async function ({ actions, graphql }) {
   blogPosts.forEach(node => {
     createPage({
       path: `blog/${node.slug.current}`,
-      component: require.resolve(`./src/templates/{SanityPost.slug__current}.jsx`),
+      component: require.resolve(`./src/templates/postBuilder.jsx`),
       context: {
+        id: node.id,
         slug: `${node.slug.current}`,
         title: node.title,
         coverImage: node.coverImage,
@@ -126,59 +115,66 @@ exports.createPages = async function ({ actions, graphql }) {
     items: featurePosts,
     itemsPerPage: 4,
     pathPrefix: "/features-gallery",
-    component: require.resolve(`./src/templates/features-gallery.jsx`),
-    context: { posts: blogPosts },
+    component: require.resolve(`./src/templates/featuresPageBuilder.jsx`),
+    context: { 
+      slug: "features-gallery",
+      posts: blogPosts },
   })
 
-  // featurePosts.forEach(node => {
-  //   createPage({
-  //     path: `features-gallery/${node.slug.current}`,
-  //     component: require.resolve(`./src/templates/feature-builder.jsx`),
-  //     context: {
-  //       slug: `${node.slug.current}`,
-  //       title: node.title,
-  //       coverImage: node.coverImage,
-  //       date: node.date,
-  //       categories: node.categories,
-  //       excerpt: node.excerpt,
-  //       allPosts: blogPosts,
-  //       allFeatures: featurePosts,
-  //     },
-  //   })
-  // })
+  featurePosts.forEach(node => {
+    createPage({
+      path: `features-gallery/${node.slug.current}`,
+      component: require.resolve(`./src/templates/featuresBuilder.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        title: node.title,
+        coverImage: node.coverImage,
+        date: node.date,
+        categories: node.categories,
+        excerpt: node.excerpt,
+        allPosts: blogPosts,
+        allFeatures: featurePosts,
+      },
+    })
+  })
 
-  // data.allSanityPage.nodes.forEach(node => {
-  //   createPage({
-  //     path: node.slug.current,
-  //     component: require.resolve(`./src/templates/page-builder.jsx`),
-  //     context: {
-  //       slug: `${node.slug.current}`,
-  //       allPosts: blogPosts,
-  //       allFeatures: featurePosts,
-  //     },
-  //   })
-  // })
+  data.allSanityPage.nodes.forEach(node => {
+    createPage({
+      path: node.slug.current,
+      component: require.resolve(`./src/templates/pageBuilder.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        allPosts: blogPosts,
+        allFeatures: featurePosts,
+      },
+    })
+  })
 
   paginate({
     createPage,
     items: placePosts,
     itemsPerPage: 100,
     pathPrefix: "/the-list",
-    component: require.resolve(`./src/templates/places-list.jsx`),
-    context: { posts: blogPosts },
+    component: require.resolve(`./src/templates/pageBuilder.jsx`),
+    context: { 
+      slug: "the-list",
+      posts: blogPosts },
   })
 
-  // placePosts.forEach(node => {
-  //   createPage({
-  //     path: `places/${node.slug.current}`,
-  //     component: require.resolve(`./src/templates/place-builder.jsx`),
-  //     context: {
-  //       slug: `${node.slug.current}`,
-  //       allPosts: blogPosts,
-  //       allFeatures: featurePosts,
-  //     },
-  //   })
-  // })
+  placePosts.forEach(node => {
+    createPage({
+      path: `places/${node.slug.current}`,
+      component: require.resolve(`./src/templates/placeBuilder.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        allPosts: blogPosts,
+        allFeatures: featurePosts,
+      },
+    })
+  })
 }
 // console.log("STUDIO_URL_DEV", process.env.STUDIO_URL_DEV)
 // exports.onCreateDevServer = ({ app }) => {

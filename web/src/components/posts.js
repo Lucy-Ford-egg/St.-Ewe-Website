@@ -5,7 +5,7 @@ import {PostsGrid} from "../components/postsGrid"
 import {TitleSubtitleText} from "../components/titleSubtitleText"
 
 export const Posts = ({ gridTitleSubtitleText, posts, allPost, pageContext}) => {
-  
+ 
   return (
     <Container className="section posts" maxWidth="xl" sx={{ pt: { xs: 10, md: 11 }}}>
 

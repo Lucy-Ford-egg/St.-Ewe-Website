@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => (
 )
 
 export const Head = ({ data, location }) => {
-  return <Seo pageContext={data.sanityPage} location={location} />
+  return <Seo seoContext={data.sanityPage} location={location} />
 }
 
 export const query = graphql`
