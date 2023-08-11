@@ -1,7 +1,7 @@
 import { MdOutlineChat } from "react-icons/md";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
-
+import openGraph from '../schemas/openGraph'
 import authorType from './author'
 import categoriesType from './categories'
 import imageWithCaptionType from './modules/imageWithCaption'
@@ -35,7 +35,18 @@ export default defineType({
   title: 'Post',
   icon: MdOutlineChat,
   type: 'document',
-  fields: [
+  groups: [
+    {
+      name: 'pageContent',
+      title: 'Page Content',
+      default: true,
+    },
+    {
+      name: 'og',
+      title: 'SEO',
+    },
+  ],
+  fields: [...openGraph.fields,
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
@@ -44,6 +55,7 @@ export default defineType({
         hotspot: true,
       },
       validation: Rule => Rule.required(),
+       group: 'pageContent',
     }),
     defineField({
       name: 'title',
@@ -51,6 +63,7 @@ export default defineType({
       type: 'string',
       descrition: 'Just for editor purposes. Not shown on the frontend but still necesscary',
       validation: (rule) => rule.required(),
+       group: 'pageContent',
     }),
     defineField({
       name: 'displayTitle',
@@ -70,7 +83,8 @@ export default defineType({
         }
       }],
       validation: (rule) => rule.required(),
-      description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",   
+      description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",
+       group: 'pageContent',   
     }),
     defineField({
       name: 'slug',
@@ -82,25 +96,29 @@ export default defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
+       group: 'pageContent',
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
       rows: 2,
       type: 'text',
-      description: 'Small snippet of text shown on the blog tile when hovered.'
+      description: 'Small snippet of text shown on the blog tile when hovered.',
+       group: 'pageContent',
     }),
     defineField({
       name: 'date',
       title: 'Date',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+       group: 'pageContent',
     }),
     defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: [{ type: authorType.name }],
+       group: 'pageContent',
     }),
     defineField({
       name: 'pageBuilder',
@@ -125,7 +143,8 @@ export default defineType({
         { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
 
         // etc...
-        ]
+        ],
+         group: 'pageContent',
     }),
     
     defineField({
@@ -137,7 +156,8 @@ export default defineType({
           type: 'reference',
           to: [{ type: categoriesType.name }],
         },
-     ]
+     ],
+      group: 'pageContent',
       // to: [{ type:  }],
     }),
   ],

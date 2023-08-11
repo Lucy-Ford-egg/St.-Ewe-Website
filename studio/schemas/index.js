@@ -44,6 +44,11 @@ import instagramEmbedsType from './components/instagramEmbeds'
 
 
 export const schemaTypes = [
+
+  // Settings
+
+
+  // Navigation
   navigationType,
   navItemType,
   linkType,

@@ -13,7 +13,7 @@ export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, i
     <Container maxWidth="lg">
 
       <Grid container spacing={{xs: 2, sm: 6, md: 6}} sx={{justifyContent: 'space-between', py: {xs: 6}}}>
-        <Grid item sx={12} sm={6} md={5}>
+        <Grid item xs={12} sm={6} md={5}>
           <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', height: '100%'}}>
             {image && <Image
               // pass asset, hotspot, and crop fields

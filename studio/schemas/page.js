@@ -1,7 +1,8 @@
 import { MdAutoStories } from "react-icons/md";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
-
+import openGraph from '../schemas/openGraph'
+import siteMeta from '../schemas/siteMeta'
 // import locationType from './location'
 import categoriesType from './categories'
 import imageWithCaptionType from './modules/imageWithCaption'
@@ -38,13 +39,35 @@ export default defineType({
   title: "Page",
   icon: MdAutoStories,
   type: 'document',
-  fields: [
+  groups: [
+    {
+      name: 'pageContent',
+      title: 'Page Content',
+      default: true,
+    },
+    {
+      name: 'og',
+      title: 'SEO',
+    },
+    {
+      name: 'meta',
+      title: 'Page Meta'
+    }
+  ],
+  fields: [...siteMeta.fields, ...openGraph.fields,
+    // {name: 'anothertitle', title: 'Title', type: 'string'},
+    // {name: 'icon', title: 'Icon', type: 'image'},
+    // {name: 'seoTitle', title: 'SEO title', type: 'string', group: 'seo'},
+    // {name: 'seoKeywords', title: 'Keywords', type: 'string', group: 'seo'},
+    // {name: 'seoSlug', title: 'Slug', type: 'slug', group: 'seo'},
+    // {name: 'seoImage', title: 'Image', type: 'image', group: 'seo'},
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
       descrition: 'Just for editor purposes. Not shown on the frontend but still necesscary',
       validation: (rule) => rule.required(),
+       group: 'pageContent',
     }),
     defineField({
       name: 'slug',
@@ -56,12 +79,14 @@ export default defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
+       group: 'pageContent',
     }),
     defineField({
       name: 'date',
       title: 'Date',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
+       group: 'pageContent'
     }),
     defineField({
       name: 'pageBuilder',
@@ -86,20 +111,22 @@ export default defineType({
         { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
         { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },  
         // etc...
-        ]
+        ],
+         group: 'pageContent',
     }),
-    defineField({
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: categoriesType.name }],
-        },
-     ]
-      // to: [{ type:  }],
-    }),
+    // defineField({
+    //   name: 'categories',
+    //   title: 'Categories',
+    //   type: 'array',
+    //   of: [
+    //     {
+    //       type: 'reference',
+    //       to: [{ type: categoriesType.name }],
+    //     },
+    //  ],
+    //   group: 'pageContent',
+    //   // to: [{ type:  }],
+    // }),
   ],
   preview: {
     select: {

@@ -92,6 +92,7 @@ const MobileMainNavigation = props => {
           {menu.sanityNavigation.items.map((menuItem, i) => {
             return (
               <MotionMenuItem
+                key={`mobileMenuItem-${i}`}
                 custom={i}
                 variants={listItem}
                 sx={{

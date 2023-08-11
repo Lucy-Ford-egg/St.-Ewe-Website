@@ -1,27 +1,50 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import {Container} from "@mui/material"
-import Layout from "../components/layout"
-import Modules from "../components/modules"
+import { graphql } from "gatsby"
 
-export default function FeaturePost({ data, moduleSpacing, pageContext  }) {
+import Modules from "../components/modules"
+import {Seo} from "../components/seo"
+
+export default function Blog({ data, moduleSpacing, pageContext  }) {
 
   return (
-    <Layout>
+    <>
       
-      <Modules modules={data.sanityFeature.pageBuilder} pageContext={pageContext}/>
-      
-    </Layout>
+      <Modules posts={data.allSanityPost.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage?.pageBuilder} pageContext={pageContext}/>
+     
+    </>
   )
 }
 
+export const Head = () => (
+  <Seo title={`Blog Page`} description={`Description of the blog page`}/>
+)
+
 export const query = graphql`
-  query($slug: String!) {
-    sanityFeature(slug: {current: {eq: $slug}}) {
-      categories{
-        name
+  query($skip: Int!, $limit: Int!) {
+    allSanityPost(sort: { date: DESC }
+      limit: $limit
+      skip: $skip) {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
+        date(formatString: "M MMM YYYY")
+        categories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
       }
-      excerpt
+    }
+    sanityPage(slug: {current: {eq: "blog"}}) {
       slug {
         current
       }
@@ -87,6 +110,11 @@ export const query = graphql`
           _key
           _type
           ... HeroInfoCallToActionFragment
+        }
+        ... on SanityTitleSubtitleText {
+          _key
+          _type
+          ...TitleSubtitleTextFragment
         }
         ... on SanityImageTextCallToActionImage {
           _key

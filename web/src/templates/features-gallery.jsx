@@ -1,13 +1,13 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
-import Modules from "../components/modules"
 
+import Modules from "../components/modules"
+import { Seo } from "../components/seo"
 
 export default function FeaturesGallery({ data, moduleSpacing, pageContext  }) {
 
   return (
-    <Layout>
+    <>
      
       <Modules 
         allFeature={data.allSanityFeature.nodes} 
@@ -16,9 +16,13 @@ export default function FeaturesGallery({ data, moduleSpacing, pageContext  }) {
         modules={data.sanityPage?.pageBuilder} 
         pageContext={pageContext}/>
      
-    </Layout>
+    </>
   )
 }
+
+export const Head = () => (
+  <Seo title={`Features Gallery Page`} description={`Description of the features gallery page`}/>
+)
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {

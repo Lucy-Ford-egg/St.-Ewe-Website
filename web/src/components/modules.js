@@ -33,9 +33,9 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
     if (modules != null) {
   
         return (
-            <>
+            <main data-content="main">
                 {modules.map((module, i) => {
-                    debugger
+               
                     if (isModule(module, 'imageCarouselSubtitleTitleTextLink')) {
                         return <Carousel {...module} key={module._key + i} />
                     }
@@ -92,7 +92,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
                         return null
 
                 })}
-            </>
+            </main>
         )
     } else {
         return null

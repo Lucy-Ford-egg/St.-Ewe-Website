@@ -11,7 +11,8 @@ module.exports = {
     description: `Architectural Holidays site for design minded luxury holidays`,
     author: `@edwardwilson`,
   },
-  plugins: [{
+  plugins: [
+    {
       resolve: `gatsby-plugin-gatsby-cloud`
     },
     {
@@ -39,7 +40,6 @@ module.exports = {
         overlayDrafts: !isProd || previewEnabled, // drafts in dev & Gatsby Cloud Preview
       },
     },
-    `gatsby-plugin-material-ui`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -57,9 +57,6 @@ module.exports = {
           precision: 6,
         },
       },
-    },
-    {
-      resolve: `gatsby-plugin-react-helmet`,
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -153,6 +150,7 @@ module.exports = {
 
           })),
       },
-    }
+    },
+    `gatsby-theme-material-ui`
   ]
 }

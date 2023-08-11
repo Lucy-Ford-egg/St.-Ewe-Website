@@ -32,7 +32,7 @@ export default defineType({
     },
     prepare(selection) {
       const {title, subtitle} = selection
-debugger
+
       return {
         title: title ? title?.displayTitle[0].children[0].text : "Empty Title",
         subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Posts" : "All Posts"} | Module: Module: Posts Grid module`,

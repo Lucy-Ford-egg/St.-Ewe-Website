@@ -29,7 +29,7 @@ export default defineType({
     },
     prepare(selection) {
       const {title, subtitle} = selection
-debugger
+
       return {
         title: title && title !== "undefined" ? title[0].title[0].children[0].text : "Empty Columns",
         subtitle: `Used for Booking Information and Special Features | Module : Two Column, Title, Text, CTA Module`,

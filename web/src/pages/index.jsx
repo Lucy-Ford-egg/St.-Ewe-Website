@@ -1,61 +1,64 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import Layout from "../components/layout"
+
 import Modules from "../components/modules"
 
 const IndexPage = ({ data }) => (
-  <Layout>
-    <Modules allPlace={data.allSanityPlace.nodes} modules={data.sanityPage.pageBuilder} />
-  </Layout>
+  
+    <Modules
+      allPlace={data.allSanityPlace.nodes}
+      modules={data.sanityPage.pageBuilder}
+    />
+
 )
 
-export default IndexPage
-
-export const Head = () => (
-  <Seo />
-)
+export const Head = ({ data, location }) => {
+  return <Seo pageContext={data.sanityPage} location={location} />
+}
 
 export const query = graphql`
   query {
-    sanityPage(slug: {current: {eq: "homepage"}}) {
+    sanityPage(slug: { current: { eq: "homepage" } }) {
       slug {
         current
       }
+      title
+      ...SeoPageFragment
       pageBuilder {
         ... on SanityImageCarouselSubtitleTitleTextLink {
           _key
-          _type 
+          _type
           carousel {
-          ... CarouselFragment
+            ...CarouselFragment
           }
         }
         ... on SanityPlacesGrid {
           _key
           _type
-          ... PlacesGridFragment
+          ...PlacesGridFragment
         }
         ... on SanityImageWithCaption {
           _key
           _type
-          ... ImageCaptionFragment
+          ...ImageCaptionFragment
         }
-        ... on SanityTextBlock{
+        ... on SanityTextBlock {
           _key
           _type
-          ... TextFragment
+          ...TextFragment
         }
-        ... on SanityImageCarouselCaptionLink{
+        ... on SanityImageCarouselCaptionLink {
           _key
-          _type 
-          ... GalleryCarouselFragment
+          _type
+          ...GalleryCarouselFragment
         }
-        ... on SanityHeroCallToAction{
+        ... on SanityHeroCallToAction {
           _key
           _type
           ...HeroCallToActionFragment
         }
-        ... on SanityHeroNewsletter{
+        ... on SanityHeroNewsletter {
           _key
           _type
           ...HeroNewsletterFragment
@@ -63,37 +66,37 @@ export const query = graphql`
         ... on SanityPostsGrid {
           _key
           _type
-          ... PostsGridFragment
+          ...PostsGridFragment
         }
         ... on SanityTwoColumnTitleTextCta {
           _key
           _type
-          ... MultiColumnTitleTextLinkFragment
+          ...MultiColumnTitleTextLinkFragment
         }
-        ... on SanityMap{
+        ... on SanityMap {
           _key
           _type
-          ... MapFragment
+          ...MapFragment
         }
-        ... on SanityCategoryFeature{
+        ... on SanityCategoryFeature {
           _key
           _type
-          ... CategoryFeatureFragment
+          ...CategoryFeatureFragment
         }
         ... on SanityHeroInfoCallToAction {
           _key
           _type
-          ... HeroInfoCallToActionFragment
+          ...HeroInfoCallToActionFragment
         }
         ... on SanityImageTextCallToActionImage {
           _key
           _type
-          ... ImageTextCallToActionImage
+          ...ImageTextCallToActionImage
         }
         ... on SanityImageWithLink {
           _key
           _type
-          ... ImageLinkFragment
+          ...ImageLinkFragment
         }
       }
     }
@@ -118,3 +121,4 @@ export const query = graphql`
     }
   }
 `
+export default IndexPage

@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import { Logo } from './plugins/logo/logo'
 import { googleMapsInput } from "@sanity/google-maps-input"
-// import {SeoPane} from "./plugins/sanity-plugin-seo-pane/"
+// import {structure, defaultDocumentNode} from './structure/deskStructure'
 
 export default defineConfig({
   name: 'default',
@@ -12,12 +12,16 @@ export default defineConfig({
   projectId: 'e1fodg96',
   dataset: 'production',
   plugins: [
-    deskTool(), 
+    deskTool(
+    //   {
+    //   structure,
+    //   defaultDocumentNode,
+    // }
+    ), 
     visionTool(), 
     googleMapsInput({
       apiKey: "AIzaSyD-iPk4tHZ8FEhcbTWFWLPopgVd6yqS0lI"
     }),
-    // SeoPane()
   ],
   schema: {
     types: schemaTypes,

@@ -25,3 +25,10 @@ fragment FeaturesGridFragment on SanityFeatureGrid {
   }
 }
 `
+export const allFeatures = graphql`
+fragment AllFeaturesGridFragment on SanityFeatureConnection {
+  nodes {
+   ...FeatureFragment
+  }
+}
+`

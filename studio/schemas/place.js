@@ -1,7 +1,7 @@
 import { MdHolidayVillage } from "react-icons/md";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
-
+import openGraph from '../schemas/openGraph'
 import locationType from './location'
 import placeCategoriesType from './placeCategories'
 // Builder modules
@@ -36,7 +36,18 @@ export default defineType({
   title: 'Place',
   icon: MdHolidayVillage,
   type: 'document',
-  fields: [
+  groups: [
+    {
+      name: 'pageContent',
+      title: 'Page Content',
+      default: true,
+    },
+    {
+      name: 'og',
+      title: 'SEO',
+    },
+  ],
+  fields: [...openGraph.fields,
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
@@ -44,7 +55,9 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      description: 'This image shows in the tile as the cover image.'
+      description: 'This image shows in the tile as the cover image.',
+      group: 'pageContent',
+
     }),
     defineField({
       name: 'title',
@@ -52,6 +65,7 @@ export default defineType({
       type: 'string',
       descrition: 'Just for editor purposes. Not shown on the frontend but still necessary',
       validation: (rule) => rule.required(),
+      group: 'pageContent',
     }),
     defineField({
       name: 'displayTitle',
@@ -71,7 +85,8 @@ export default defineType({
         }
       }],
       validation: (rule) => rule.required(),
-      description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",   
+      description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",
+      group: 'pageContent',   
     }),
     defineField({
       name: 'slug',
@@ -83,19 +98,23 @@ export default defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
+      group: 'pageContent',
     }),
+   
     defineField({
       name: 'date',
       title: 'Date',
       type: 'date',
       dateFormat: 'M MMM YYYY',
       initialValue: () => new Date().toISOString(),
+      group: 'pageContent',
     }),
     defineField({
       name: 'location',
       title: 'Location',
       type: 'reference',
       to: [{ type: locationType.name }],
+      group: 'pageContent',
     }),
     
     defineField({
@@ -107,7 +126,8 @@ export default defineType({
           type: 'reference',
           to: [{ type: placeCategoriesType.name }],
         },
-     ]
+     ],
+     group: 'pageContent',
     }),
     defineField({
       name: 'pageBuilder',
@@ -132,14 +152,17 @@ export default defineType({
         { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
         { type: instagramEmbedsType.name, title: "Instagram Embed Module" }
         // etc...
-        ]
+        ],
+        group: 'pageContent',
     }),
     defineField({
       name: 'excerpt',
       title: 'Excerpt',
       rows: 2,
       type: 'text',
+      group: 'pageContent',
     }),
+   
   ],
   preview: {
     select: {

@@ -1,20 +1,55 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+
 import Modules from "../components/modules"
+import {Seo} from "../components/seo"
 
-export default function PageBuilder({ data, pageContext }) {
-
+export default function PlacesList({ data, moduleSpacing, pageContext  }) {
+  
   return (
-    <Layout>
-      <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
-    </Layout>
+    <>
+     
+      <Modules 
+        allPlace={data.allSanityPlace.nodes} 
+        posts={pageContext?.posts} 
+        allPost={pageContext?.posts} 
+        modules={data.sanityPage?.pageBuilder} 
+        pageContext={pageContext}/>
+     
+    </>
   )
 }
 
+export const Head = () => (
+  <Seo title={`Places List Page`} description={`Description of the places list page`}/>
+)
+
 export const query = graphql`
-  query($slug: String!) {
-    sanityPage(slug: {current: {eq: $slug}}) {
+  query($skip: Int!, $limit: Int!) {
+    allSanityPlace(sort: { date: DESC }
+      limit: $limit
+      skip: $skip) {
+      nodes {
+        coverImage {
+          asset {
+            gatsbyImageData(width: 525, height: 323)
+          }
+        }
+        title
+        displayTitle {
+          _rawChildren(resolveReferences: {maxDepth: 10})
+        }
+        date(formatString: "M MMM YYYY")
+        categories: placeCategories {
+          name
+        }
+        slug {
+          current
+        }
+        excerpt
+      }
+    }
+    sanityPage(slug: {current: {eq: "the-list"}}) {
       slug {
         current
       }
@@ -101,70 +136,6 @@ export const query = graphql`
           _type
           ... ImageLinkFragment
         }
-       
-      }
-    }
-    allSanityPlace {
-      nodes {
-        coverImage {
-          asset {
-            gatsbyImageData(width: 525, height: 323)
-          }
-        }
-        title
-        displayTitle {
-          _rawChildren(resolveReferences: {maxDepth: 10})
-        }
-        date(formatString: "M MMM YYYY")
-        categories: placeCategories {
-          name
-        }
-        slug {
-          current
-        }
-        excerpt
-      }
-    }
-    allSanityPost(limit: 2) {
-      nodes {
-        coverImage {
-          asset {
-            gatsbyImageData(width: 525, height: 323)
-          }
-        }
-        title
-        displayTitle {
-          _rawChildren(resolveReferences: {maxDepth: 10})
-        }
-        date(formatString: "M MMM YYYY")
-        categories {
-          name
-        }
-        slug {
-          current
-        }
-        excerpt
-      }
-    }
-    allSanityFeature(limit: 2) {
-      nodes {
-        coverImage {
-          asset {
-            gatsbyImageData(width: 525, height: 323)
-          }
-        }
-        title
-        displayTitle {
-          _rawChildren(resolveReferences: {maxDepth: 10})
-        }
-        date(formatString: "M MMM YYYY")
-        categories {
-          name
-        }
-        slug {
-          current
-        }
-        excerpt
       }
     }
   }

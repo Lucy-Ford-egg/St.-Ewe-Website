@@ -22,7 +22,9 @@
     "react-icons": "^4.7.1",
     "react-is": "^18.2.0",
     "sanity": "^3.0.0",
-    "styled-components": "^5.2.0"
+    "sanity-plugin-seo-pane": "^2.0.1",
+    "styled-components": "^5.2.0",
+    "vite-plugin-node-polyfills": "^0.11.0"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^2.0.1",
