@@ -113,7 +113,7 @@ exports.createPages = async function ({ actions, graphql }) {
   paginate({
     createPage,
     items: featurePosts,
-    itemsPerPage: 4,
+    itemsPerPage: 2,
     pathPrefix: "/features-gallery",
     component: require.resolve(`./src/templates/featuresPageBuilder.jsx`),
     context: { 

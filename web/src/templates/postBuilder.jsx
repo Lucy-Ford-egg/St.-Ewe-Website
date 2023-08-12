@@ -5,7 +5,7 @@ import Modules from "../components/modules"
 import {Seo} from "../components/seo"
 
 const PostBuilder = ({ data, pageContext }) => {
-debugger
+
   return (
     <>
       { data && <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPost.pageBuilder}/>}

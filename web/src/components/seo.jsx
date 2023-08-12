@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 export const Seo = ({ location, children, data, seoContext }) => {
-  debugger
+ 
   const { metaDescription, metaTitle, ogDescription, ogTitle, ogImage } =
   seoContext
 
