@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import { Container, Typography } from '@mui/material';
+import { Container} from '@mui/material';
 import { RenderPortableText } from './renderPortableText';
 import clientTheme from '../gatsby-theme-material-ui-top-layout/theme';
 

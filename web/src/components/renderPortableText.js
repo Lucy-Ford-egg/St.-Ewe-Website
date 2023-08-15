@@ -11,7 +11,7 @@ export const RenderPortableText = ({ value, variant, textColor = 'white', animat
   const standardPortableText = {
     types: {
       span: ({ value }) => <Typography sx={{ color: textColor }} variant={variant ? variant : 'body1'} component={component}>{value.text}</Typography>,
-      image: ({ value }) => <img src={value.imageUrl} />,
+      image: ({ value }) => <img src={value.imageUrl} alt={value.imageAlt} />,
       callToAction: ({ value, isInline }) =>
         isInline ? (
           <a style={{ color: 'blue' }} href={value.url}>{value.text}</a>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect } from "react"
 import { Container, Grid, useMediaQuery } from "@mui/material"
 import { PlaceTile } from "../components/placeTile"
 import { Filter } from "./filter"
