@@ -48,7 +48,7 @@ export const Pagination = props => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
+    <Container maxWidth="lg" sx={{py: {xs: 8, md: 8} }}>
       <Box
         sx={{
           display: "flex",
@@ -67,11 +67,11 @@ export const Pagination = props => {
           color="secondary"
             disabled={pageContext && pageContext.humanPageNumber === 1 ? true : false}
             variant="text"
-            sx={{ fontWeight: 500, display: "inline-flex" }}
+            sx={{ fontWeight: 500, display: "inline-flex", minWidth: "auto" }}
             to={pageContext && pageContext.previousPagePath}
             startIcon={<WestIcon sx={{ mx: 5 }} />}
           >
-            Recent News
+            Recent
           </Button>
         </Box>
         <Box
@@ -98,11 +98,11 @@ export const Pagination = props => {
                 : false
             }
             variant="text"
-            sx={{ fontWeight: 500, display: "inline-flex" }}
+            sx={{ fontWeight: 500, display: "inline-flex",  minWidth: "auto" }}
             to={pageContext && pageContext.nextPagePath}
             endIcon={<EastIcon sx={{ mx: 5 }} />}
           >
-            Older News
+            Older
           </Button>
         </Box>
       </Box>

@@ -188,6 +188,7 @@ const Header = () => {
             sx={{
               display: { xs: 'block', lg: 'none' },
             }}
+            disableRipple={true}
           >
             { anchorElNav ? <CloseIcon color="white"/> : <MenuIcon color="secondary"/>}
           </IconButton>

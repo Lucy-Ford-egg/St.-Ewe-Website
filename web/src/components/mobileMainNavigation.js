@@ -133,7 +133,7 @@ const MobileMainNavigation = props => {
                       },
                     },
                   }}
-                  to="/"
+                  to={`/${menuItem.navigationItemUrl.internalLink.slug.current}`}
                 >
                   {menuItem.text}
                 </Link>

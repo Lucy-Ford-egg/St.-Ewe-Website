@@ -50,26 +50,8 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
             </Grid>
           )}
           
-          {/* {allPlace && searching === true && (
-            <Grid container spacing={{ xs: 0, md: 9 }}>
-              {allPlace.map((tile, i) => {
-                return (
-                  <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
-                    <PlaceTile
-                      title={tile?.title}
-                      image={searching === true ? tile.coverImage : tile.coverImage?.asset?.gatsbyImageData}
-                      categories={tile?.categories}
-                      date={tile?.date}
-                      to={tile?.slug?.current}
-                      excerpt={tile?.excerpt}
-                    />
-                  </Grid>
-                )
-              })}
-            </Grid>
-          )} */}
         </Container>
-        {/* <Pagination pageContext={pageContext}/> */}
+        <Pagination pageContext={pageContext}/>
       </Container>
     }</>
   )
