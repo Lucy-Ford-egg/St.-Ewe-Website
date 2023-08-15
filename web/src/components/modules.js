@@ -35,7 +35,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
         return (
             <main data-content="main">
                 {modules.map((module, i) => {
-               
+           
                     if (isModule(module, 'imageCarouselSubtitleTitleTextLink')) {
                         return <Carousel {...module} key={module._key + i} />
                     }
@@ -85,6 +85,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
                         return <ImageLink {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "instagramModule")) {
+                        
                         return <InstagramEmbed {...module} key={module._key + i} />
                     }
                    

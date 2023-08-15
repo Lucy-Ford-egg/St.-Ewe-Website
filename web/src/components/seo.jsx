@@ -20,7 +20,7 @@ export const Seo = ({ location, children, data, seoContext }) => {
   return (
     <>
       <html lang="en" />
-      <title>seo.title</title>
+      <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
 
       {/* <meta property="og:type" content="article" /> */}

@@ -102,6 +102,11 @@ query($slug: String!) {
         _type
         ... ImageLinkFragment
       }
+      ... on SanityInstagramModule {
+        _key
+        _type
+        ... InstagramEmbedFragment
+      }
     }
   }
   allSanityPlace {
