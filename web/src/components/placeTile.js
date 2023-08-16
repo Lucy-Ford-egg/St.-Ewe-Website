@@ -69,7 +69,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
 
         <motion.div style={{}} animate={hovered ? "hovered" : "unhovered"}
           variants={cardBody}>
-            <Link to={`/places/${to}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/places/${to}`} style={{ textDecoration: 'none', "&:hover": {cursor: "pointer"}, }}>
           <CardContent sx={{ px: { xs: 5, md: 5 }, pt: { xs: 6, md: 6 } }}>
 
             <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>

@@ -83,12 +83,13 @@ exports.createPages = async function ({ actions, graphql }) {
   paginate({
     createPage, // The Gatsby `createPage` function
     items: blogPosts, // An array of objects
-    itemsPerPage: 2, // How many items you want per page
+    itemsPerPage: 12, // How many items you want per page
     pathPrefix: "/blog", // Creates pages like `/blog`, `/blog/2`, etc
     component: require.resolve(`./src/templates/postPageBuilder.jsx`), // Just like `createPage()`
     context: {
       slug: "blog",
       features: featurePosts,
+      showPagination: true,
     },
   })
 
@@ -161,6 +162,7 @@ exports.createPages = async function ({ actions, graphql }) {
     context: { 
       slug: "the-list",
       posts: blogPosts },
+      showPagination: true,
   })
 
   placePosts.forEach(node => {

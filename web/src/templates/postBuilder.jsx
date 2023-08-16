@@ -8,7 +8,7 @@ const PostBuilder = ({ data, pageContext }) => {
 
   return (
     <>
-      { data && <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPost.pageBuilder}/>}
+      { data && <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPost.pageBuilder} pageContext={pageContext}/>}
     </>
   ) 
 }

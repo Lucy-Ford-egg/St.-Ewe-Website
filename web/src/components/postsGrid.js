@@ -10,7 +10,8 @@ export const PostsGrid = ({ posts, allPost, searching = false, pageContext }) =>
 const [filtersPosts, setFilterData] = useState(null)
 
   const updatePosts = useCallback(() => { 
-    const thePlaces = allPost ? allPost : filtersPosts
+
+    const thePlaces = filtersPosts ? filtersPosts : allPost
     setFilterData(thePlaces);
   },[filtersPosts, setFilterData],)
 
