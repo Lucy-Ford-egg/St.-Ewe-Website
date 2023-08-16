@@ -157,8 +157,8 @@ module.exports = {
           fonts: {
             google: [
               {
-                family: `DM Serif Display`,
-                variants: [`400`],
+                family: `PT Serif`,
+                variants: [`700`],
               },
             ],
             selfHosted: [
