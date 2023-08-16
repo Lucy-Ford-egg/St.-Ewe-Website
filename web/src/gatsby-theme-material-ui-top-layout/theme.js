@@ -5,7 +5,25 @@ import blackerDisplayWoff from '../assets/fonts/blacker-display/Blacker-Display-
 const clientSpacing = [0, 9, 11, 13, 16, 24, 34, 41, 51, 61, 74, 109, 159]
 
 let defaultTheme = createTheme({
-  spacing: [...clientSpacing]
+  spacing: [...clientSpacing],
+  palette: {
+    primary: {
+      main: "#C3B187", // Gold
+      mid: "#BFAD83",
+      dark: "#B8A67D",
+      accessible: "#83744d" // Accessible gold for small type
+    },
+    secondary: {
+      main: '#2E2E2E', // Black
+      light: '#101010'
+    },
+    tertiary: {
+      main: '#987284', //
+    },
+    white: {
+      main: '#ffffff'
+    },
+  },
 })
 
 let clientTheme = createTheme({
@@ -81,24 +99,7 @@ let clientTheme = createTheme({
       letterSpacing: 0.93
     },
   },
-  palette: {
-    primary: {
-      main: "#C3B187", // Gold
-      mid: "#BFAD83",
-      dark: "#B8A67D",
-      accessible: "#83744d" // Accessible gold for small type
-    },
-    secondary: {
-      main: '#2E2E2E', // Black
-      light: '#101010'
-    },
-    tertiary: {
-      main: '#987284', //
-    },
-    white: {
-      main: '#ffffff'
-    },
-  },
+  palette: defaultTheme.palette,
   components: {
     MuiCssBaseline: {
       styleOverrides: ` 
@@ -264,6 +265,7 @@ let clientTheme = createTheme({
         },
         containedPrimary: {
           color: 'white',
+          backgroundColor: defaultTheme.palette.primary.main,
           '&:hover':{
             cursor: 'pointer'
           },

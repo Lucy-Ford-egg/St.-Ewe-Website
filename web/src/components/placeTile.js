@@ -102,7 +102,7 @@ export const PlaceTile = ({ categories, title, image, excerpt, date, to }) => {
         </motion.div>
    
         <CardActions sx={{ px: { xs: 5, md: 5 }, pt: 0, pb: 9 }}>
-          <Button variant="contained" to={`/places/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s', textAlign: 'center' }}>Read More</Button>
+          <Button variant="contained" to={`/places/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.accessible" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s', textAlign: 'center' }}>Read More</Button>
         </CardActions>
 
 
