@@ -19,6 +19,7 @@ export default defineType({
         { type: 'place' },
         { type: 'post' },
         { type: 'page' },
+        { type: 'feature' },
         // other types you may want to link to
       ]
     })

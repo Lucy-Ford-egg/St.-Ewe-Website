@@ -10,7 +10,7 @@ export default defineType({
     name: 'internalLink',
     description: 'Select pages for navigation',
     type: 'reference',
-    to: [{ type: 'page' },{ type: 'post' }], 
+    to: [{ type: 'page' },{ type: 'post' }, {type: 'place'}, {type: 'feature'}], 
     }),
     defineType({
       name: 'externalUrl',

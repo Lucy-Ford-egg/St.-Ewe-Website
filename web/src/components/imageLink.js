@@ -1,28 +1,14 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React from 'react'
 import { graphql } from "gatsby"
 import Image from "gatsby-plugin-sanity-image"
 import { Container, Typography, Box } from '@mui/material';
+import {Link} from "gatsby-theme-material-ui"
 
 export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
 
-  const [link, setLink] = useState(null)
-  const checkLinkType = useCallback(
-    () => {
-      let linkType = "external"
-      linkType = linkGroup.internalLink ? "internal" : "external"
-      return setLink(linkType)
-    },
-    [linkGroup],
-  )
-
-  useEffect(() => {
-    checkLinkType();
-  }, [])
-
-
   return (
     <Container className="section imageLink" maxWidth="fluid" disableGutters={true} sx={{pt: { xs: 10, md: 11 }}}>
-      {link === "external" && <a href={linkGroup}></a>}
+      <Link to={linkGroup.internalLinkGroup === null ? linkGroup.externalLinkGroup.href : linkGroup.internalLinkGroup.url} target={linkGroup.externalLinkGroup.blank && "_blank"} rel={linkGroup.externalLinkGroup.blank && "noreferrer"}>
       <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', }}>
         {isAdvert && <Container maxWidth="lg" sx={{display: 'flex', justifyContent: 'flex-end'}}><Typography variant="caption" component="p">Advertisment</Typography></Container>}
         <Box sx={{display:{xs: 'block', md: 'none'}}}>
@@ -73,6 +59,7 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
         />}
 
       </Box>
+      </Link>
     </Container>
   )
 
