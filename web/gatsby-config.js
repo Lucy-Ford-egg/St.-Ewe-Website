@@ -161,6 +161,17 @@ module.exports = {
                 variants: [`400`],
               },
             ],
+            selfHosted: [
+              {
+                family: `Prociono`,
+                urls: {
+                  woff2: `/web/src/fonts/prociono/Prociono-Regular-webfont.woff`,
+                  woff: `/web/src/fonts/prociono/Prociono-Regular-webfont.woff`,
+                  //[format]: '/[filepath]/[filename],
+                },
+                //[cssProperty]: 'value',
+              },
+            ],
           },
         },
       },

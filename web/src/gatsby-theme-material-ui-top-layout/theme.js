@@ -45,32 +45,32 @@ let clientTheme = createTheme({
     backgroundColor: "white",
     h1:{
       fontSize: 74,
-      fontFamily: 'DM Serif Display',
+      fontFamily: 'Prociono',
       fontWeight: 700,
     },
     h2:{
       fontSize: 51,
-      fontFamily: 'DM Serif Display',
+      fontFamily: 'Prociono',
       fontWeight: 700,
     },
     h3:{
       fontSize: 34,
-      fontFamily: 'DM Serif Display',
+      fontFamily: 'Prociono',
       fontWeight: 700,
     },
     h4:{
       fontSize: 24,
-      fontFamily: 'DM Serif Display',
+      fontFamily: 'Prociono',
       fontWeight: 700,
     },
     h5:{
       fontSize: 19,
-      fontFamily: 'DM Serif Display',
+      fontFamily: 'Prociono',
       fontWeight: 700,
     },
     h6:{
       fontSize: 16,
-      fontFamily: 'DM Serif Display',
+      fontFamily: 'Prociono',
       fontWeight: 700,
     },
     subtitle1: {
@@ -119,10 +119,10 @@ let clientTheme = createTheme({
           }
           &::placeholder {
             font-size: 51px;
-            font-family: "DM Serif Display";
+            font-family: "Prociono";
           }
           font-size: 51px;
-          font-family: "DM Serif Display";
+          font-family: "Prociono";
           border: none;
           background-color: transparent;
           height: 51px;
