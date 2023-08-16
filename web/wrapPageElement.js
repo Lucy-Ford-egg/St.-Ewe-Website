@@ -12,9 +12,9 @@ const wrapPageElement = ({ element, props }) => (
     <Script
     id="gtag"
   src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GTAG}`}
-  strategy="post-hydrate"
+  strategy="off-main-thread"
 />
-<Script id="gtag-config" strategy="post-hydrate" forward={[`gtag`]}>
+<Script id="gtag-config" strategy="off-main-thread" forward={[`gtag`]}>
   {`
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments)};
