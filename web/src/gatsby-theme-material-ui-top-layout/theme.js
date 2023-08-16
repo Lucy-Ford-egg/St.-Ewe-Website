@@ -1,6 +1,4 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
-import blackerDisplayWoff from '../assets/fonts/blacker-display/Blacker-Display-Bold-trial.woff'
-
 
 const clientSpacing = [0, 9, 11, 13, 16, 24, 34, 41, 51, 61, 74, 109, 159]
 
@@ -151,6 +149,7 @@ let clientTheme = createTheme({
 		      &:hover{
 		      	background-size: 100% 100%;
 		      	color: rgba(255,255,255,1);
+            cursor: pointer;
 		      }
         }
         .white-text{
@@ -188,7 +187,7 @@ let clientTheme = createTheme({
               margin-top: 0 !important;
             }
             &.titleSubtitleText{
-              // padding-top: ${defaultTheme.spacing(9)} !important;
+              padding-top: ${defaultTheme.spacing(9)} !important;
             }
             &.posts{
               padding-top: 0 !important;
