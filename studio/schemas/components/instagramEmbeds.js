@@ -13,6 +13,7 @@ export default defineType({
       of: [{ 
         type: 'embedBlock', 
       }],
+      validation: Rule => Rule.required().min(1).max(4)
     }),
   ],  
 })

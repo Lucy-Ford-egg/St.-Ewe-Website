@@ -27,7 +27,8 @@ export default defineType({
     defineField({
       name: 'instagramEmbeds',
       type: 'instagramEmbeds',
-      title: 'Instagram Embed List'
+      title: 'Instagram Embed List',
+     
     }),
   ]
 })
