@@ -47,27 +47,33 @@ let clientTheme = createTheme({
     backgroundColor: "white",
     h1:{
       fontSize: 74,
-      fontFamily: 'Blacker Display Bold',
+      fontFamily: 'DM Serif Display',
+      fontWeight: 700,
     },
     h2:{
       fontSize: 51,
-      fontFamily: 'Blacker Display Bold',
+      fontFamily: 'DM Serif Display',
+      fontWeight: 700,
     },
     h3:{
       fontSize: 34,
-      fontFamily: 'Blacker Display Bold',
+      fontFamily: 'DM Serif Display',
+      fontWeight: 700,
     },
     h4:{
       fontSize: 24,
-      fontFamily: 'Blacker Display Bold',
+      fontFamily: 'DM Serif Display',
+      fontWeight: 700,
     },
     h5:{
       fontSize: 19,
-      fontFamily: 'Blacker Display Bold',
+      fontFamily: 'DM Serif Display',
+      fontWeight: 700,
     },
     h6:{
       fontSize: 16,
-      fontFamily: 'Blacker Display Bold',
+      fontFamily: 'DM Serif Display',
+      fontWeight: 700,
     },
     subtitle1: {
       fontSize: 11,
@@ -103,13 +109,7 @@ let clientTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: ` 
-        @font-face {
-          font-family: 'Blacker Display Bold';
-          font-display: swap;
-          font-style: normal;
-          font-weight: normal;
-          src: local('Blacker Display Bold'), url(${blackerDisplayWoff}) format('woff');
-        }
+        
         html{
           min-height:100%;
           position: relative;
@@ -121,10 +121,10 @@ let clientTheme = createTheme({
           }
           &::placeholder {
             font-size: 51px;
-            font-family: "Blacker Display Bold";
+            font-family: "DM Serif Display";
           }
           font-size: 51px;
-          font-family: "Blacker Display Bold";
+          font-family: "DM Serif Display";
           border: none;
           background-color: transparent;
           height: 51px;
