@@ -51,7 +51,7 @@ export const PlacesGrid = ({ places, allPlace, searching = false, showFilter = t
           )}
           
         </Container>
-        {pageContext.showPagination && <Pagination pageContext={pageContext}/>}
+        {pageContext?.showPagination && <Pagination pageContext={pageContext}/>}
       </Container>
     }</>
   )
