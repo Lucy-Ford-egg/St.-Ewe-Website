@@ -8,7 +8,7 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
 
   return (
     <Container className="section imageLink" maxWidth="fluid" disableGutters={true} sx={{pt: { xs: 10, md: 11 }}}>
-      <Link to={linkGroup.internalLinkGroup === null ? linkGroup.externalLinkGroup.href : linkGroup.internalLinkGroup.url} target={linkGroup.externalLinkGroup.blank && "_blank"} rel={linkGroup.externalLinkGroup.blank && "noreferrer"}>
+      <Link to={linkGroup.internalLinkGroup === null ? linkGroup.externalLinkGroup.href : linkGroup.internalLinkGroup.url} target={linkGroup.externalLinkGroup?.blank && "_blank"} rel={linkGroup.externalLinkGroup?.blank && "noreferrer"}>
       <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', }}>
         {isAdvert && <Container maxWidth="lg" sx={{display: 'flex', justifyContent: 'flex-end'}}><Typography variant="caption" component="p">Advertisment</Typography></Container>}
         <Box sx={{display:{xs: 'block', md: 'none'}}}>
