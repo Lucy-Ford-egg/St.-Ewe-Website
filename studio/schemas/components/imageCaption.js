@@ -6,12 +6,6 @@ export default defineType({
   title: "Image",
   fields: [
     defineField({
-      name: 'alt',
-      type: 'string',
-      title: 'Alternative text',
-      validation: Rule => Rule.required(),
-    }),
-    defineField({
       name: 'caption',
       type: 'string',
       title: 'Caption'

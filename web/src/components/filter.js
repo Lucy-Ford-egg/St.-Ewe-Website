@@ -7,7 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
-  debugger
+  
   const [open, setOpen] = useState("hidden");
   const [selectedFilters, setSelectedFilters] = useState(null)
   const [categoriesUsed, setCategoriesUsed] = useState(null)

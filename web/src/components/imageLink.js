@@ -15,6 +15,7 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
         {mobileImage && <Image
           // pass asset, hotspot, and crop fields
           {...mobileImage}
+          alt={mobileImage.asset?.altText}
           // tell Sanity how large to make the image (does not set any CSS)
           width={600}
           // style it how you want it
@@ -29,6 +30,7 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
         {image && <Image
           // pass asset, hotspot, and crop fields
           {...image}
+          alt={image.asset?.altText}
           // tell Sanity how large to make the image (does not set any CSS)
           // width={410}
           height={565}
@@ -47,6 +49,7 @@ export const ImageLink = ({ image, mobileImage, linkGroup, isAdvert }) => {
         {image && <Image
           // pass asset, hotspot, and crop fields
           {...image}
+          alt={image.asset?.altText}
           // tell Sanity how large to make the image (does not set any CSS)
           width={1440}
           height={565}
@@ -69,9 +72,15 @@ export const query = graphql`
   fragment ImageLinkFragment on SanityImageWithLink {
     image {
       ...ImageWithPreview
+      asset{
+        altText
+      }
     }
     mobileImage {
       ...ImageWithPreview
+      asset{
+        altText
+      }
     }
     isAdvert
     linkGroup {

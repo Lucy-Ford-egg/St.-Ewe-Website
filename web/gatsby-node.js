@@ -26,7 +26,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       metaTitle: String
       metaDescription: String
     }
-   
+    type SanityImageAsset implements Node {
+      altText: String
+    }
   `
   createTypes(typeDefs)
 }

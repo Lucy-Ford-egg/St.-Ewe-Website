@@ -8,7 +8,7 @@ import clientTheme from '../gatsby-theme-material-ui-top-layout/theme';
 
 export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, isAdvert }) => {
 
-
+debugger
   return (
     <Container maxWidth="lg">
 
@@ -18,6 +18,7 @@ export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, i
             {image && <Image
               // pass asset, hotspot, and crop fields
               {...logo}
+              alt={logo?.asset.altText}
               // tell Sanity how large to make the image (does not set any CSS)
               width={100}
               // style it how you want it
@@ -26,6 +27,7 @@ export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, i
                 maxHeight: "70px",
                 objectFit: "cover",
               }}
+             
             />}
             <RenderPortableText textColor={clientTheme.palette.secondary.main} variant={false} value={_rawText} />
             <ButtonLink linkGroup={linkGroup} variant="contained" color="secondary" />
@@ -37,6 +39,7 @@ export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, i
             <Image
               // pass asset, hotspot, and crop fields
               {...image}
+              alt={image?.asset.altText}
               // tell Sanity how large to make the image (does not set any CSS)
               width={410}
               height={320}
@@ -64,9 +67,15 @@ export const query = graphql`
     _rawText
     logo {
       ...ImageWithPreview
+      asset{
+        altText
+      }
     }
     image {
       ...ImageWithPreview
+      asset{
+        altText
+      }
     }
     isAdvert
     linkGroup {

@@ -34,7 +34,6 @@ import instagramModuleType from '../schemas/modules/instagramModule'
 import titleTextType from '../schemas/components/titleText'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageCaptionType from '../schemas/components/imageCaption'
-import imageAltType from '../schemas/components/imageAlt'
 import externalLinkType from './components/externalLink'
 import internalLinkType from './components/internalLink'
 import heroSlideType from './components/heroSlide'
@@ -84,7 +83,6 @@ export const schemaTypes = [
   titleTextType,
   titleSubtitleTextType,
   imageCaptionType,
-  imageAltType,
   externalLinkType,
   internalLinkType,
   heroSlideType,

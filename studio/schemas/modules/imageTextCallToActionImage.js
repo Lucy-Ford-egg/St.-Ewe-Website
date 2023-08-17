@@ -38,12 +38,6 @@ export default defineType({
       type: 'linkGroup'
     }),
     defineField({
-      name: 'image',
-      type: 'imageAlt',
-      title: 'Image',
-      validation: Rule => Rule.required(),
-    }),
-    defineField({
       name: 'isAdvert',
       type: 'boolean',
       title: 'Show as Advert',

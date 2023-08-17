@@ -72,7 +72,7 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
                     {...mobileImage}
                     // tell Sanity how large to make the image (does not set any CSS)
                     width={600}
-                    alt={mobileImage?.altText}
+                    alt={mobileImage?.asset?.altText}
                     style={{
                       width: "100%",
                       height: "100%",
@@ -84,13 +84,13 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
                 {image && <Image
                   // pass asset, hotspot, and crop fields
                   {...image}
+                  alt={image.asset?.altText}
                   height={634}
                   style={{
                     width: "100%",
                     height: 634,
                     objectFit: "cover",
                   }}
-                  alt={image?.altText}
                 />}
               </Box>
             </Box>
@@ -99,6 +99,7 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
               <Image
                 // pass asset, hotspot, and crop fields
                 {...image}
+                alt={image.asset?.altText}
                 height={634}
                 // style it how you want it
                 style={{
@@ -106,7 +107,6 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
                   height: 634,
                   objectFit: "cover",
                 }}
-                alt={image?.altText}
               />
             </Box>
 
@@ -126,9 +126,15 @@ export const query = graphql`
     }
     image {
       ...ImageWithPreview
+      asset{
+        altText
+      }
     }
     mobileImage {
       ...ImageWithPreview
+      asset{
+        altText
+      }
     }
     linkGroup {
       externalLinkGroup {
