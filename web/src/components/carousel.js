@@ -3,33 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { graphql } from "gatsby"
 import { wrap } from "popmotion";
 import { GatsbyImage, getImage, withArtDirection } from "gatsby-plugin-image"
-import { Container, Typography, Box, SvgIcon } from '@mui/material'
+import { Container, Typography, Box, SvgIcon, useMediaQuery, useTheme } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2';
 import ButtonLink from '../utils/buttonLink'
 
-
-const variants = {
-  enter: (direction) => {
-    return {
-      //x: direction > 0 ? 50 : -50,
-      opacity: 0
-    };
-  },
-  center: {
-    //x: 0,
-    opacity: 1
-  },
-  exit: (direction) => {
-    return {
-      //x: direction < 0 ? 50 : -50,
-      opacity: 0
-    };
-  }
-};
-
-
-
-//sx={{ maxWidth: '100vw', height: '85%', position: 'relative', top: 0 }}
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
  * less distance a user has swiped, the more velocity they need to register as a swipe.
@@ -45,29 +22,53 @@ export const Carousel = ({ carousel }) => {
   const [[page, direction], setPage] = useState([0, 0]);
 
   const [imageHeight, setImageHeight] = useState(null);
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('md'))
+
+  // const xAnimation = mobile ? { x: direction > 0 ? 50 : -50 }  : {}
+  
+
+  const variants = {
+    enter: (direction) => {
+      return {
+        
+        opacity: 0
+      };
+    },
+    center: {
+      
+      opacity: 1
+    },
+    exit: (direction) => {
+      return {
+        
+        opacity: 0
+      };
+    }
+  };
 
   const imageRef = useRef()
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const handleResize = () => {
-      setImageHeight(imageRef.current.clientHeight)
-    }
+  //   const handleResize = () => {
+  //     setImageHeight(imageRef.current.clientHeight)
+  //   }
 
-    handleResize();
+  //   handleResize();
 
 
-    // if (typeof window !== `undefined`) {
-    //   window.addEventListener('resize', handleResize)
-    // }
+  //   // if (typeof window !== `undefined`) {
+  //   //   window.addEventListener('resize', handleResize)
+  //   // }
 
-    // return _ => {
-    //   if (typeof window !== `undefined`) {
-    //     window.removeEventListener('resize', handleResize)
-    //   }
-    // }
-  }, [])
+  //   // return _ => {
+  //   //   if (typeof window !== `undefined`) {
+  //   //     window.removeEventListener('resize', handleResize)
+  //   //   }
+  //   // }
+  // }, [])
   
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -83,7 +84,7 @@ export const Carousel = ({ carousel }) => {
   const renderImages = (node) => {
     const images = withArtDirection(getImage(node?.image?.asset?.gatsbyImageData), [
       {
-        media: "(max-width: 600px)",
+        media: theme.breakpoints.down('md'),
         image: getImage(node?.mobile?.asset?.gatsbyImageData),
       },
     ])
@@ -94,16 +95,16 @@ export const Carousel = ({ carousel }) => {
   useEffect(() => {
     const setDirection = -1
     const timer = setTimeout(() => {
-      console.log('This will run after 3 second!')
+      // console.log('This will run after 3 second!')
       paginate(setDirection)
-    }, 3000);
+    }, 9000000);
     return () => clearTimeout(timer);
   });
 
 
   return (
-    <Container className="section carousel" maxWidth="fluid" disableGutters={true} sx={{mt:{xs: 10, md: 11 }, height: {xs: 650, md: imageHeight}}}>
-      <Box sx={{ position: 'relative', height: '100%' }}>
+    <Container className="section carousel" maxWidth="fluid" disableGutters={true} sx={{mt:{xs: 10, md: 11 }, height: {xs: 600, md: 664}}}>
+      <Box sx={{ position: 'relative', height: '100%', backgroundColor: "primary.main" }}>
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={page}
@@ -114,7 +115,7 @@ export const Carousel = ({ carousel }) => {
             exit="exit"
             transition={{
               x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
+              opacity: { duration: 0.1 }
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -128,10 +129,20 @@ export const Carousel = ({ carousel }) => {
                 paginate(-1);
               }
             }}
+            style={{height: '100%'}}
           >
-            <Box className="slide" >
-             <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '2fr', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: 'min-content', height: 'min-content'}}>
-              <Box sx={{ gridColumn: '1/2', gridRow: '1/2', position: 'relative', zIndex: 1, ".art-directed": { width: '100%', height: '650px' } }} ref={imageRef}>
+            <Box className="slide" sx={{height: '100%' }}>
+             <Box sx={{display: 'grid', gridTemplateColumns: '1fr', gridTemplateRows: '2fr', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', height: '100%' }}>
+              <Box sx={{ gridColumn: '1/2', gridRow: '1/2', position: 'relative', zIndex: 1, ".art-directed": { width: '100%', height: '100%', "&:after":{
+                  backgroundColor: "rgba(0,0,0,0.2)",
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  content: "''",
+                  zIndex: 1,
+                  top: 0,
+                  
+                } } }} ref={imageRef}>
                 <GatsbyImage className="art-directed" image={renderImages(carousel[imageIndex])} alt={carousel[imageIndex].image?.asset?.altText} />
               </Box>
               <Box sx={{
@@ -166,8 +177,10 @@ export const Carousel = ({ carousel }) => {
         </AnimatePresence>
 
 
-        <Container maxWidth="xl" sx={{ height: 'min-content', position: 'absolute', zIndex: 1, right: 0, left: 0, top: '50%', transform: 'translateY(-50%)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
-          <Box className="next" onClick={() => paginate(1)} display="flex" alignItems="center" justifyContent="flex-start" sx={{ display: { xs: 'none', md: 'flex' }, position: "relative", zIndex: 2 }}>
+        <Container maxWidth="xl" sx={{ height: 'min-content', position: 'absolute', zIndex: 6, right: 0, left: 0, top: '50%', transform: 'translateY(-50%)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
+          <Box className="next" onClick={() => paginate(1)} display="flex" alignItems="center" justifyContent="flex-start" sx={{ display: { xs: 'none', md: 'flex' }, position: "relative", zIndex: 2, "&:hover":{
+            cursor: "pointer"
+          } }}>
 
             <SvgIcon sx={{ width: 22, height: 66 }}>
               <path id="Union_2" data-name="Union 2" d="M-15786.88,2656.25l-.121.123.121-.123-.121-.123.121.123,21.956-22.25-21.956,22.25,21.956,22.251Z" transform="translate(15788.986 -2632.95)" fill="none" stroke="#fff" strokeWidth="3" />
@@ -175,7 +188,9 @@ export const Carousel = ({ carousel }) => {
 
           </Box>
 
-          <Box className="prev" onClick={() => paginate(-1)} display="flex" alignItems="center" justifyContent="flex-end" sx={{ display: { xs: 'none', md: 'flex' }, position: "relative", zIndex: 2 }}>
+          <Box className="prev" onClick={() => paginate(-1)} display="flex" alignItems="center" justifyContent="flex-end" sx={{ display: { xs: 'none', md: 'flex' }, position: "relative", zIndex: 2, "&:hover":{
+            cursor: "pointer"
+          } }}>
 
             <SvgIcon sx={{ width: 22, height: 66 }}>
               <g id="arrow" transform="translate(23.145 45.555) rotate(180)">
