@@ -14,7 +14,7 @@ export const TitleSubtitleText = ({ disableTopPadding, displayTitle, subtitle, t
   return (
     <>{displayTitle && <Container className="section titleSubtitleText" maxWidth={false} sx={{ pt: { xs: disableTopPadding === true ? 0 : 10, md: disableTopPadding === true ? 0 :11 } }}>
       <Container maxWidth="md">
-        {subtitlePosition === false && (
+        {subtitlePosition === false && subtitle &&  (
           <Typography
             variant="subtitle1"
             component="h2"

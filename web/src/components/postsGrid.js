@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react"
-import { Container, Grid } from "@mui/material"
+import { Container, Grid, useMediaQuery, useTheme } from "@mui/material"
 import { Pagination } from "../components/pagination"
 import { PostTile } from "../components/postTile"
 import { Filter } from "./filter"
@@ -8,6 +8,9 @@ import { Filter } from "./filter"
 export const PostsGrid = ({ posts, allPost, searching = false, pageContext }) => {
   
 const [filtersPosts, setFilterData] = useState(null)
+
+const theme = useTheme()
+const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const updatePosts = useCallback(() => { 
 
@@ -21,11 +24,11 @@ const [filtersPosts, setFilterData] = useState(null)
 
 
   return (
-    <Container className="component-postsGrid" maxWidth="xl">
+    <Container className="component-postsGrid" sx={{ pt: { xs: 10, md: 11 } }} maxWidth={mobile ? false : "xl"}>
       
       <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/>
 
-      <Container maxWidth="lg" sx={{ pt: { xs: 9 } }}>
+      <Container sx={{ px: { xs: 0 } }}>
         {filtersPosts && searching === false && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {filtersPosts?.map((tile, i) => {

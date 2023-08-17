@@ -31,9 +31,9 @@ export const CategoryFeatureTile = ({ node, i }) => {
 
   const Inner = forwardRef((props, ref) => (
     <Box ref={ref} {...props}>
-      <Typography sx={{ mb: { xs: 4 } }} align="center" variant="h3">{node.name}</Typography>
+      <Typography sx={{ mb: { xs: 4 }, maxWidth: {xs: "100%", sm: "60%", md: "100%"} }} align="center" variant="h3">{node.name}</Typography>
       <motion.div variants={innerText}>
-        <Typography sx={{ fontSize: { xs: 12, sm: 16, md: 12, lg: 16 } }} align="center" color="white.main">{node.excerpt}</Typography>
+        <Typography sx={{ fontSize: { xs: 12, sm: 16, md: 12, lg: 16 }, mx: "auto" ,maxWidth: {xs: "100%", sm: "60%", md: "100%"}, }} align="center" color="white.main">{node.excerpt}</Typography>
       </motion.div>
     </Box>
   ))
@@ -79,7 +79,7 @@ export const CategoryFeatureTile = ({ node, i }) => {
 
       <Box sx={{ position: 'relative', zIndex: 0, gridColumn: '1/2', gridRow: '1/2' }}>
         <Link aria-label={`${node.name} category page`} to={`/${node.name.toLowerCase()}`}>
-          <GatsbyImage style={{ height: '100%', minHeight: 527, maxHeight: 527 }} image={getImage(node.picture?.asset?.gatsbyImageData)} alt={node.picture?.asset?.altText} />
+          <GatsbyImage style={{ width: "100%", height: '100%', minHeight: 527, maxHeight: 527 }} image={getImage(node.picture?.asset?.gatsbyImageData)} alt={node.picture?.asset?.altText} />
         </Link>
       </Box>
 

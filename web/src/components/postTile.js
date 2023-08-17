@@ -84,7 +84,7 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
 
           <motion.div style={{ }} animate={hovered ? "hovered" : "unhovered"}
             variants={cardBody}>
-            <CardContent sx={{ px: { xs: 0, md: 5 }, pt: { xs: 6, md: 6 } }}>
+            <CardContent sx={{ px: { xs: 5, md: 5 }, pt: { xs: 6, md: 6 } }}>
 
               <motion.div animate={hovered ? "hovered" : "unhovered"} variants={textColour}>
                 <Box display="flex" justifyContent="space-between" >
@@ -114,11 +114,10 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
             </CardContent>
           </motion.div>
 
-          <CardActions sx={{ px: { xs: 0, md: 5 }, pt: 0, pb: 9 }}>
+          <CardActions sx={{ px: { xs: 5, md: 5 }, pt: 0, pb: 9 }}>
             <Button variant="contained" to={`/blog/${to}`} component={Link} size="small" sx={{ color: hovered ? "primary.main" : "white", backgroundColor: hovered ? "white !important" : "primary.main", transition: 'all 0.2s ease-in 0s', textAlign: 'center' }}>Read More</Button>
           </CardActions>
-          
-
+        
         </motion.div>
 
       </Card>

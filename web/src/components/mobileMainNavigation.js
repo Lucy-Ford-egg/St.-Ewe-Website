@@ -1,10 +1,11 @@
 import React from "react"
 import { Link } from "gatsby-theme-material-ui"
-import { Menu, MenuItem, Box, Fade} from "@mui/material"
+import { Menu, MenuItem, Box, Fade, useTheme, Typography } from "@mui/material"
 import { motion } from "framer-motion"
 
 const MobileMainNavigation = props => {
   const { menu, anchorElNav, handleCloseNavMenu } = props
+  const theme = useTheme() 
 
   const list = {
     hidden: {
@@ -135,7 +136,7 @@ const MobileMainNavigation = props => {
                   }}
                   to={`/${menuItem.navigationItemUrl.internalLink.slug.current}`}
                 >
-                  {menuItem.text}
+                  <Typography variant="body1" sx={{fontSize: {sm: theme.spacing(6)}}}>{menuItem.text}</Typography>
                 </Link>
               </MotionMenuItem>
             )
