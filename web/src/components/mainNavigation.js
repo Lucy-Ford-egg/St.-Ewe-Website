@@ -14,7 +14,7 @@ const MainNavigation = (props) => {
         return (
           <Box
             key={menuItem.text}
-            sx={{ my: 10, mx: { xs: 1, md: 1 }, px: { xs: 1, md: 1 }, color: "secondary.main", display: 'block', fontWeight: '500', textTransform: "unset" }}
+            sx={{ my: 4, mx: { xs: 1, md: 1 }, px: { xs: 1, md: 1 }, color: "secondary.main", display: 'block', fontWeight: '500', textTransform: "unset" }}
           >
             <Link sx={{
                color: 'inherit',
