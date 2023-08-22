@@ -28,14 +28,15 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
-      subtitle: 'carousel'
+      media: 'carousel'
     },
     prepare(selection) {
-      const {title, subtitle} = selection
+      const { media} = selection
+      debugger
       return {
-        title: `First Image: ${subtitle[0].alt}`,
-        subtitle: `Number of images: ${subtitle.length} | Module: Image Carousel, Caption, Link Module`,
+        title: `Number of images: ${media.length}`,
+        subtitle: `Module: Image Carousel, Caption, Link`,
+        media: media[0].asset,
         icon: MdOutlinePhotoLibrary
       }
     }

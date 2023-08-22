@@ -39,13 +39,14 @@ export default defineType({
     select: {
       title: 'title',
       subtitle: 'isAdvert',
-      image: 'image'
+      media: 'image'
     },
     prepare(selection) {
-      const {title, subtitle, image} = selection
+      const {title, subtitle, media} = selection
       return {
-        title: `${image.alt}`,
-        subtitle: `| Module: Linked Image Module  - Advert Captioned - ${subtitle}`,
+        title: subtitle ? "Marked as Advert" : "Not Marked as Advert",
+        subtitle: `Module: Linked Image Module`,
+        media: media,
         icon: MdOutlineImage
       }
     }

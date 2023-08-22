@@ -50,15 +50,15 @@ export default defineType({
   preview: {
     select: {
       title: 'text',
-      subtitle: 'image',
-
+      media: 'image'
     },
     prepare(selection) {
   
-      const { title, subtitle } = selection
+      const { title, media } = selection
       return {
         title: title[0].children[0].text,
-        subtitle: `Image added - ${subtitle !== "undefined" && subtitle?.alt} | Module: Hero, Info, CTA, Caption Module`,
+        subtitle: `Module: Hero, Info, CTA, Caption Module`,
+        media: media,
         icon: MdCenterFocusWeak
       }
     }

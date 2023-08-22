@@ -32,6 +32,12 @@ export default defineType({
       }],
       validation: Rule => Rule.required(),
     }),
+     defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      validation: Rule => Rule.required(),
+    }),
     defineField({
       name: 'linkGroup',
       title: 'Call To Action',
@@ -48,14 +54,15 @@ export default defineType({
     select: {
       title: 'text',
       subtitle: 'isAdvert',
+      media: 'image'
 
     },
     prepare(selection) {
-    
-      const { title, subtitle } = selection
+      const { title, subtitle, media } = selection
       return {
-        title: title[0].children[0].text,
-        subtitle: `Image, Text, Image, CTA Module - Advert Compatible - ${subtitle} `,
+        title:  subtitle ? "Marked as Advert" : "Not Marked as Advert",
+        subtitle: `Module: Image, Text, Image, CTA.`,
+        media:media,
         icon: MdCenterFocusWeak
       }
     }

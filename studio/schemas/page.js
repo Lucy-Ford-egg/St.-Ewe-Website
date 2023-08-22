@@ -114,19 +114,6 @@ export default defineType({
         ],
          group: 'pageContent',
     }),
-    // defineField({
-    //   name: 'categories',
-    //   title: 'Categories',
-    //   type: 'array',
-    //   of: [
-    //     {
-    //       type: 'reference',
-    //       to: [{ type: categoriesType.name }],
-    //     },
-    //  ],
-    //   group: 'pageContent',
-    //   // to: [{ type:  }],
-    // }),
   ],
   preview: {
     select: {

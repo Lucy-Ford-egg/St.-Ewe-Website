@@ -21,14 +21,18 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'carousel'
+      subtitle: 'carousel',
+      media: 'carousel'
     },
     prepare(selection) {
-      const {title, subtitle} = selection
+      const {title, subtitle, media} = selection
+      debugger
+
       return {
-        title: `First Image: ${subtitle[0].alt}`,
-        subtitle: `Number of images: ${subtitle.length} | Module: Hero Image Carousel, Subtitle, Title, Text, CTA Module`,
-        icon: MdViewCarousel
+        title: `Number of images: ${subtitle.length}`,
+        subtitle:  `Module: Hero Image Carousel, Subtitle, Title, Text, CTA`,
+        media: media[0].image,
+        icon: MdViewCarousel,
       }
     }
   },

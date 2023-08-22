@@ -32,14 +32,15 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'image',
       subtitle: 'imageSize',
+      media: 'image'
     },
     prepare(selection) {
-      const {title, subtitle } = selection
+      const { subtitle, media } = selection
       return {
-        title: `${title.alt}`,
-        subtitle: `Image Size ${subtitle} | Module: Image, Caption Module`,
+        title: `Image Size ${subtitle}`,
+        subtitle: `Module: Image, Caption`,
+        media: media,
         icon: MdOutlinePhotoSizeSelectActual
       }
     }

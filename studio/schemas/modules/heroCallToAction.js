@@ -31,14 +31,15 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'image',
+      media: 'image',
       
     },
     prepare(selection) {
-      const {title, subtitle} = selection
+      const {title, media} = selection
       return {
         title: title,
-        subtitle: `${subtitle.alt} | Module: Hero Image, Title, Text, Call to Action Module`,
+        subtitle: `Module: Hero Image, Title, Text, Call to Action`,
+        media: media,
         icon: MdSmartButton
       }
     }

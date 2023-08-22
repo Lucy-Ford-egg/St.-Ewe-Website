@@ -33,13 +33,14 @@ export default defineType({
     select: {
       title: 'title',
       subtitle: 'image',
-      
+      media: 'image',
     },
     prepare(selection) {
-      const {title, subtitle} = selection
+      const {title, subtitle, media} = selection
       return {
         title: title ? title : "Empty Title",
-        subtitle: `${subtitle.alt} | Module: Hero Newsletter, CTA, Caption Module`,
+        subtitle: `Module: Hero Newsletter, CTA, Caption Module`,
+        media: media,
         icon: MdMailOutline
       }
     }
