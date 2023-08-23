@@ -4,6 +4,7 @@ import {SEOPane} from 'sanity-plugin-seo-pane'
 import { resolveProductionUrl } from '../previews/resolveProductionUrl'
 import {MdOutlineDiscount} from 'react-icons/md'
 
+
 export const structure = (S, context) => {
   return(
   S.list()
