@@ -2,21 +2,30 @@
 // import { SeoPreview } from '../previews/index'
 import {SEOPane} from 'sanity-plugin-seo-pane'
 import { resolveProductionUrl } from '../previews/resolveProductionUrl'
-
+import {MdOutlineDiscount} from 'react-icons/md'
 
 export const structure = (S, context) => {
   return(
   S.list()
     .title('Site Content')
     .items([
-      S.listItem()
-        .title('Settings')
-        .child(
-          S.document()
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
-        ),
-      ...S.documentTypeListItems()
+      // S.listItem()
+      //   .title('Settings')
+      //   .child(
+      //     S.document()
+      //       .schemaType('siteSettings')
+      //       .documentId('siteSettings')
+      //   ),
+      // ...S.defaultInitialValueTemplateItems()
+      // Filter out document types of `media.tag`
+      ...S.documentTypeListItems().filter(template => {
+        if (template.spec.id === 'media.tag') {
+          template.spec.icon = MdOutlineDiscount
+          return false
+        }
+        return true
+      }),
+      // ...S.documentTypeListItems()
     ])
   )
 }
