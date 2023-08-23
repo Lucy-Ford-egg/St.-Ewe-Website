@@ -4,9 +4,10 @@ export const resolveProductionUrl = (document) => {
     return undefined
   }
   const routes = {
-    page: `${process.env.SANITY_STUDIO_FRONTEND}/${slug}/?preview=true`,
-    post: `${process.env.SANITY_STUDIO_FRONTEND}/blog/${slug}/?preview=true`,
-    feature: `${process.env.SANITY_STUDIO_FRONTEND}/features-gallery/${slug}/?preview=true`,
+    page: `${process.env.SANITY_STUDIO_FRONTEND}/${slug}`,
+    post: `${process.env.SANITY_STUDIO_FRONTEND}/blog/${slug}`,
+    feature: `${process.env.SANITY_STUDIO_FRONTEND}/features-gallery/${slug}`,
+    place: `${process.env.SANITY_STUDIO_FRONTEND}/places/${slug}`,
 
   }
   // ** Only show the preview option for documents for which a preview makes sense.
