@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link as GatsbyLink } from 'gatsby'
+// import {Link as GatsbyLink } from 'gatsby'
 import { Link } from '@mui/material';
 
 export const PortableTextInlineLink = ({value, children, color}) => {

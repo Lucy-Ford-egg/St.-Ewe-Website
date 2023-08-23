@@ -8,6 +8,14 @@ import {media} from 'sanity-plugin-media'
 import {structure, defaultDocumentNode} from './structure/deskStructure'
 import {resolveProductionUrl} from './previews/resolveProductionUrl'
 
+// import {createClient} from '@sanity/client'
+
+// const client = createClient({
+//   ...config,
+//   useCdn: false, // must be false for 'previewDrafts'
+//   perspective: 'previewDrafts', // 'raw' | 'published' | 'previewDrafts' 
+// })
+
 export default defineConfig({
   name: 'default',
   title: 'Architectural Holidays',
