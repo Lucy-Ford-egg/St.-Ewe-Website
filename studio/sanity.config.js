@@ -5,7 +5,8 @@ import {schemaTypes} from './schemas'
 import { Logo } from './plugins/logo/logo'
 import { googleMapsInput } from "@sanity/google-maps-input"
 import {media} from 'sanity-plugin-media'
-// import {structure, defaultDocumentNode} from './structure/deskStructure'
+
+import {structure, defaultDocumentNode} from './structure/deskStructure'
 
 export default defineConfig({
   name: 'default',
@@ -14,16 +15,17 @@ export default defineConfig({
   dataset: 'production',
   plugins: [
     deskTool(
-    //   {
-    //   structure,
-    //   defaultDocumentNode,
-    // }
+      {
+      structure,
+      defaultDocumentNode,
+    }
     ), 
     visionTool(),
     media(), 
     googleMapsInput({
       apiKey: "AIzaSyD-iPk4tHZ8FEhcbTWFWLPopgVd6yqS0lI"
     }),
+    
   ],
   schema: {
     types: schemaTypes,
