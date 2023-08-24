@@ -26,7 +26,6 @@ export default defineType({
     },
     prepare(selection) {
       const {title, subtitle, media} = selection
-      debugger
 
       return {
         title: `Number of images: ${subtitle.length}`,

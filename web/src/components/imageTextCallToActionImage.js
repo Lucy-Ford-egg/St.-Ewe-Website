@@ -8,7 +8,6 @@ import clientTheme from '../gatsby-theme-material-ui-top-layout/theme';
 
 export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, isAdvert }) => {
 
-debugger
   return (
     <Container maxWidth="lg">
 

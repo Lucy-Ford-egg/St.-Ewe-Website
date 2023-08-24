@@ -32,7 +32,6 @@ export default defineType({
     },
     prepare(selection) {
       const { media} = selection
-      debugger
       return {
         title: `Number of images: ${media.length}`,
         subtitle: `Module: Image Carousel, Caption, Link`,
