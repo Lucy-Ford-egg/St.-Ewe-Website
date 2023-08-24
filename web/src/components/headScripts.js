@@ -2,11 +2,11 @@ import React, { useState } from "react"
 import { Script } from "gatsby"
 
 export const HeadScripts = ({ location }) => {
-  console.log("location", location)
+  console.log("headSripts location", location)
 
   return (
     <>
-      {location.search !== `?preview=true&dataset=production` && (
+      {location.search === `?preview=true&dataset=production` || location.search === `?fetch=true` ? false : (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG}`}
