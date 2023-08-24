@@ -88,15 +88,16 @@ export const defaultDocumentNode = (S, {schemaType}) => {
           .title('Preview'),
       ])
     case `post`:
+      console.log("Document, --", document)
       return S.document().views([
         S.view.form(),
         S.view.component(SEOPane).options({
           // Retrieve the keywords and synonyms at the given dot-notated strings
           keywords: `seo.keywords`,
           synonyms: `seo.synonyms`,
-          url: (doc) => {
+          url: (document) => {
           
-            return(resolveProductionUrl(doc))},
+            return(resolveProductionUrl(document))},
       
           // Alternatively, specify functions (may be async) to extract values
           // keywords: doc => doc.seo?.keywords,
@@ -108,30 +109,5 @@ export const defaultDocumentNode = (S, {schemaType}) => {
     default:
       return S.document().views([S.view.form()])
   }
-  // if (schemaType === "page") {
-  //   return S.document().views([
-  //     S.view.form(),
-  //     S.view.component(WebPreview).title('Web Preview')
-  //   ])  
-  // }
-  // if (schemaType === "post") {
-     
-  // }
-  // return S.document().views([
-  //   // S.view.form(),
-  //   // S.view.component(SEOPane).options({
-  //   //   // Retrieve the keywords and synonyms at the given dot-notated strings
-  //   //   keywords: `seo.keywords`,
-  //   //   synonyms: `seo.synonyms`,
-  //   //   url: (doc) => resolveProductionUrl(doc),
-  
-  //   //   // Alternatively, specify functions (may be async) to extract values
-  //   //   // keywords: doc => doc.seo?.keywords,
-  //   //   // synonyms: async(doc) => client.fetch('some query to get synonyms', {id: doc._id}),
-  //   //   // url: async(doc) => client.fetch('some query to construct a url with refs', {id: doc._id})
-  //   // })
-  //   // .title('SEO')
-  // ])
  }
  
-//  export default S.defaults()
