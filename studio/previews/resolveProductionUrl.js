@@ -10,6 +10,7 @@ export const resolveProductionUrl = (document) => {
     place: `${process.env.SANITY_STUDIO_FRONTEND}/places/${slug}`,
 
   }
+  console.log("routes", routes[document._type])
   // ** Only show the preview option for documents for which a preview makes sense.
  
   return routes[document._type] ? routes[document._type] : undefined
