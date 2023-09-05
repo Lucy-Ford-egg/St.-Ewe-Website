@@ -32,7 +32,6 @@ export const structure = (S, context) => {
   )
 }
 //
-// const corsOrigin = host.includes('localhost') ? process.env.SANITY_STUDIO_FRONTEND_DEV : process.env.SANITY_STUDIO_FRONTEND_PROD
 const url = process.env.SANITY_STUDIO_FRONTEND
 // Customise this function to show the correct URL based on the current document
 function getPreviewUrl(document, context) {
