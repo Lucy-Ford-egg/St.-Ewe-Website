@@ -1,13 +1,16 @@
 export const resolveProductionUrl = (document) => {
+
+  const url = window.location.hostname.includes("localhost") ? "http://localhost:8000" : "https://architecturalholidays.netlify.app"
+
   const slug = document.slug?.current
   if (!slug) {
     return undefined
   }
   const routes = {
-    page: `${process.env.SANITY_STUDIO_FRONTEND}/${slug}`,
-    post: `${process.env.SANITY_STUDIO_FRONTEND}/blog/${slug}`,
-    feature: `${process.env.SANITY_STUDIO_FRONTEND}/features-gallery/${slug}`,
-    place: `${process.env.SANITY_STUDIO_FRONTEND}/places/${slug}`,
+    page: `${url}/${slug}`,
+    post: `${url}/blog/${slug}`,
+    feature: `${url}/features-gallery/${slug}`,
+    place: `${url}/places/${slug}`,
 
   }
   console.log("routes", routes[document._type])
