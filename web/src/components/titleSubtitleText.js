@@ -33,7 +33,7 @@ export const TitleSubtitleText = ({ disableTopPadding, displayTitle, subtitle, t
         
       </Container>
 
-      {text && <Container maxWidth="sm">
+      {text && <Container maxWidth="sm" sx={{mb: 8}}>
         <Typography align="center" variant="body1">{text}</Typography>
       </Container>}
 
