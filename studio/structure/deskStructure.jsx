@@ -32,10 +32,10 @@ export const structure = (S, context) => {
   )
 }
 //
-const url = process.env.SANITY_STUDIO_FRONTEND
+const url = window.location.hostname.includes("localhost") ? "http://localhost:8000" : "https://architecturalholidays.netlify.app"
 // Customise this function to show the correct URL based on the current document
 function getPreviewUrl(document, context) {
-console.log("GetOreview URL", document)
+console.log("URL", url )
   let slug = document.slug.current
 
   // if(document.slug.current === "homepage"){
