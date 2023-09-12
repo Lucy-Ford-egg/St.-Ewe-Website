@@ -36,7 +36,7 @@ const url = window.location.hostname.includes("localhost") ? "http://localhost:8
 // Customise this function to show the correct URL based on the current document
 function getPreviewUrl(document, context) {
 console.log("URL", url )
-  let slug = document.slug.current
+  let slug = document?.slug?.current
 
   // if(document.slug.current === "homepage"){
   //   return slug = ""
@@ -68,7 +68,7 @@ export const defaultDocumentNode = (S, {schemaType}) => {
             },
             attributes: {
               allow: 'fullscreen', // string, optional
-              referrerPolicy: 'origin', // string, optional
+              referrerPolicy: 'origin-when-cross-origin', // string, optional
               // sandbox: 'allow-same-origin', // string, optional
             }
           })
