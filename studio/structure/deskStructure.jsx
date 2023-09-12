@@ -49,30 +49,9 @@ console.log("URL", url )
   const previewUrl = `${url}/${slug}?${params}`
 
   return previewUrl
-    // ? `${window.location.host}/${document.slug.current}`
-    // : `${window.location.host}`
+
 }
 //!
-// Simple example of web preview
-
-// const WebPreview = ({document}) => {
-//   const {displayed} = document
-//   let slug = displayed.slug.current
-
-//   if(displayed.slug.current === "homepage"){
-//     return slug = ""
-//   }
-//  const dataset = "production"
-//   const params = new URLSearchParams()
-//         params.set('preview', 'true')
-//         params.set('dataset', dataset)
-  
-//   const previewUrl = `${url}/${slug}?${params}`
-        
-//   return (
-//     <iframe style={{width: "100%", height: 500}} src={previewUrl}/>
-//   )
-// }
 
 export const defaultDocumentNode = (S, {schemaType}) => {
   // Conditionally return a different configuration based on the schema type
@@ -84,6 +63,9 @@ export const defaultDocumentNode = (S, {schemaType}) => {
           .component(Iframe)
           .options({
             url: (document) => ( getPreviewUrl(document)),
+            reload: {
+              button: true,
+            },
           })
           .title('Preview'),
       ])
