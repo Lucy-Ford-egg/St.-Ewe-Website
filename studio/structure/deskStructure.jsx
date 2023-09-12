@@ -68,8 +68,8 @@ export const defaultDocumentNode = (S, {schemaType}) => {
             },
             attributes: {
               allow: 'fullscreen', // string, optional
-              referrerPolicy: 'origin-when-cross-origin', // string, optional
-              // sandbox: 'allow-same-origin', // string, optional
+              referrerPolicy: 'no-referrer', // string, optional
+              sandbox: 'allow-same-origin', // string, optional
             }
           })
           .title('Preview'),
