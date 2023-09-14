@@ -180,46 +180,4 @@ exports.createPages = async function ({ actions, graphql }) {
     })
   })
 }
-// console.log("STUDIO_URL_DEV", process.env.STUDIO_URL_DEV)
-// exports.onCreateDevServer = ({ app }) => {
-  
-//   app.use(express.static("public"))
-//   console.log("STUDIO_URL_DEV", process.env.STUDIO_URL_DEV)
-//   app.use(async (req, res, next) => {
-//     // Set Access-Control-Allow-Origin header
-//     // Is the SEO plugin trying to fetch and return HTML?
-//     // AND is the Studio on a different URL to the website?
-//     console.log("req.query", req.query)
-//     if (req.query.fetch) {
-//       // Allow requests from the Studio's URL
-      
-     
-//       res.setHeader("Access-Control-Allow-Origin", process.env.STUDIO_URL_DEV)
-//       res.setHeader("Access-Control-Allow-Credentials", "true")
-//     }
 
-//     // Initialise preview mode
-//     //res.setPreviewData({})
-
-//     // Return just the HTML if the SEO plugin is requesting it
-//     if (req.query.fetch) {
-//       // Create preview URL
-     
-//       const absoluteUrl = new URL(process.env.STUDIO_URL_DEV).toString()
-//       // Create preview headers from the setPreviewData above
-//       const previewHeader = res.getHeader("Set-Cookie")
-//       const previewHeaderString =
-//         typeof previewHeader === "string" || typeof previewHeader === "number"
-//           ? previewHeader.toString()
-//           : previewHeader?.join("; ")
-//       const headers = new Headers()
-//       headers.append("credentials", "include")
-//       headers.append("Cookie", previewHeaderString ?? "")
-//       const previewHtml = await fetch(absoluteUrl, { headers })
-//         .then(previewRes => previewRes.text())
-//         .catch(err => console.error(err))
-//       return res.send(previewHtml)
-//     }
-//     next()
-//   })
-// }
