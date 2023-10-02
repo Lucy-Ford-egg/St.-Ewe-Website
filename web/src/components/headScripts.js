@@ -3,10 +3,23 @@ import { Script } from "gatsby"
 
 export const HeadScripts = ({ location }) => {
   console.log("headSripts location", location)
+  // "?previewMode=true&previewDataset=production&validation=%5B%5D&isNewUnpublishedDoc=false"
 
+  const queryString = location.search
+
+// Use the URLSearchParams constructor to parse the query string
+const params = new URLSearchParams(queryString);
+
+// Convert the URLSearchParams object to a plain JavaScript object
+const queryObject = {};
+
+for (const [key, value] of params) {
+  queryObject[key] = value;
+}
+debugger
   return (
     <>
-      {location.search === `?preview=true&dataset=production` || location.search === `?fetch=true` ? false : (
+      {queryObject.previewMode === "true" ? <></> : (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG}`}
