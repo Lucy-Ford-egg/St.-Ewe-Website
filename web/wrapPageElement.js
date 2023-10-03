@@ -10,7 +10,6 @@ import { HeadScripts } from './src/components/headScripts'
 
 // Pass all props (hence the ...props) to the layout component so it has access to things like pageContext or location
 const wrapPageElement = ({ element, props }) => {
-  console.log("process.env.SANITY_TOKEN",process.env.SANITY_TOKEN)
 
   return (
     <SanityPreviewConnectorProvider token={process.env.SANITY_TOKEN}>
