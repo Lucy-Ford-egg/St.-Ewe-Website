@@ -16,7 +16,7 @@ const queryObject = {};
 for (const [key, value] of params) {
   queryObject[key] = value;
 }
-debugger
+
   return (
     <>
       {queryObject.previewMode === "true" ? <></> : (
