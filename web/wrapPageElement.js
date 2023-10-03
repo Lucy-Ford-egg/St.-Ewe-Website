@@ -12,17 +12,20 @@ import { HeadScripts } from './src/components/headScripts'
 const wrapPageElement = ({ element, props }) => {
 
   return (
-    <SanityPreviewConnectorProvider token={process.env.SANITY_TOKEN}>
+   
   <ThemeProvider theme={clientTheme}>
     <CssBaseline />
     <HeadScripts {...props} />
     <Layout {...props}>
+    <SanityPreviewConnectorProvider token={process.env.SANITY_TOKEN}>
       <PreviewProvider>
         {element} 
-      </PreviewProvider></Layout>
+      </PreviewProvider>
+      </SanityPreviewConnectorProvider>
+      </Layout>
     <PrivacyMessage />
   </ThemeProvider>
-  </SanityPreviewConnectorProvider>
+ 
 )
 }
 
