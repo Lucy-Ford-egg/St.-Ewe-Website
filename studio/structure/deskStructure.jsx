@@ -1,10 +1,8 @@
 import {Views} from './views/preview'
-
 import {SEOPane} from 'sanity-plugin-seo-pane'
 import {resolveProductionUrl} from '../previews/resolveProductionUrl'
-import {Iframe} from 'sanity-plugin-iframe-pane'
+
 import {
-  MdOutlineDiscount,
   MdCategory,
   MdHolidayVillage,
   MdOutlineMenu,
@@ -15,7 +13,7 @@ import {
   MdOutlineTagFaces,
 } from 'react-icons/md'
 
-export default (S, context) => {
+export const deskStructure = (S, context) => {
   return S.list()
     .title('Site Content')
     .items([
@@ -152,32 +150,6 @@ export default (S, context) => {
       // }),
     ])
 }
-
-// export const structure = (S, context) => {
-//   return(
-//   S.list()
-//     .title('Site Content')
-//     .items([
-//       // S.listItem()
-//       //   .title('Settings')
-//       //   .child(
-//       //     S.document()
-//       //       .schemaType('siteSettings')
-//       //       .documentId('siteSettings')
-//       //   ),
-//       // ...S.defaultInitialValueTemplateItems()
-//       // Filter out document types of `media.tag`
-//       ...S.documentTypeListItems().filter(template => {
-//         if (template.spec.id === 'media.tag') {
-//           template.spec.icon = MdOutlineDiscount
-//           return false
-//         }
-//         return true
-//       }),
-//       // ...S.documentTypeListItems()
-//     ])
-//   )
-// }
 //
 const url = window.location.hostname.includes('localhost')
   ? 'http://localhost:8000'
