@@ -68,7 +68,7 @@ export const IncludePreview = (props) => {
   }
   if (!sanityPreviewIsLoading && isNewUnpublishedDoc) {
     return (
-      <Container maxWidth="sm">
+      <Container sx={{my:8}} maxWidth="sm">
         <Typography variant="h3" align="center">Preview mode info</Typography>
         <Typography variant="body1" align="center">You have created a new document that isn't yet published. Please publish to access preview mode.</Typography>
       </Container>
