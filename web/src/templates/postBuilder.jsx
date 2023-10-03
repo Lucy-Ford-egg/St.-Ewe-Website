@@ -23,7 +23,7 @@ const PostBuilder = ({ data, pageContext }) => {
     slug: data.sanityPost.slug.current,
   })
 
-    const sanityConfig = { projectId: process.env.SANITY_PROJECT_ID, dataset: process.env.SANITY_DATASET }
+    const sanityConfig = { projectId: process.env.GATSBY_SANITY_PROJECT_ID, dataset: process.env.GATSBY_SANITY_DATASET }
 
 
   useEffect(() => {
