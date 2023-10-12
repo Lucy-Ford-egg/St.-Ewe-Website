@@ -1,12 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Script } from "gatsby"
 
-export const HeadScripts = ({ location }) => {
-  console.log("headSripts location", location)
+export const HeadScripts = (props) => {
+  const {activePreview} = props
+
+  const [preview, setPreview] = useState(false)
+
+  useEffect(() => {
+    setPreview( activePreview)
+
+  }, [activePreview])
+  
 
   return (
     <>
-      {location.search === `?preview=true&dataset=production` || location.search === `?fetch=true` ? false : (
+      {!preview ? 
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG}`}
@@ -24,7 +32,7 @@ export const HeadScripts = ({ location }) => {
             }}
           />
         </>
-      )}
+      : <></>}
     </>
   )
 }

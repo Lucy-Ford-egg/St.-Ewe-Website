@@ -1,14 +1,20 @@
 import React from "react"
 import { graphql } from "gatsby"
-
+import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
 import {Seo} from "../components/seo"
+import { pageQuery } from "../queries/documentQueries"
 
 const PageBuilder = ({ data, pageContext }) => {
 
+  const { slug } = data.sanityPage
+
   return (
     <>
-      { data && <Modules pageContext={pageContext} allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>}
+      { data &&  
+      <IncludePreview documentQueries={pageQuery} slug={slug} data={data}>
+        <Modules pageContext={pageContext} allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
+      </IncludePreview>}
     </>
   ) 
 }
