@@ -26,7 +26,7 @@ const assembleProjectUrl = ({ displayed, context, previewUrl, validation, isNewU
   // Append the slug to the base URL to get the final page preview URL
   const finalPagePreviewUrl = routes[displayed._type]
 
-  return `${finalPagePreviewUrl}?previewMode=true&previewDataset=${context.dataset}&validation=${validationArray}&isNewUnpublishedDoc=${isNewUnpublishedDoc}`
+  return `${finalPagePreviewUrl}`
 }
 
 // Component for rendering an iframe preview
@@ -44,6 +44,7 @@ const IframePreview = ({ document, options }) => {
 
   // Update the URL when the document prop changes
   useEffect(() => {
+
     const { displayed } = document
 
     setUrl(assembleProjectUrl({ displayed, context, previewUrl, validation, isNewUnpublishedDoc }))
@@ -116,7 +117,6 @@ const IframePreview = ({ document, options }) => {
           <iframe
             title="Iframe-preview-noa"
             src={url}
-            frameBorder="0"
             allow="clipboard-write"
             style={{ width: '100%', height: '100%' }}
           />

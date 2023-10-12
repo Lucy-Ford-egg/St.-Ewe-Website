@@ -1,25 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Script } from "gatsby"
 
-export const HeadScripts = ({ location }) => {
-  console.log("headSripts location", location)
-  // "?previewMode=true&previewDataset=production&validation=%5B%5D&isNewUnpublishedDoc=false"
+export const HeadScripts = (props) => {
+  const {activePreview} = props
 
-  const queryString = location.search
+  const [preview, setPreview] = useState(false)
 
-// Use the URLSearchParams constructor to parse the query string
-const params = new URLSearchParams(queryString);
+  useEffect(() => {
+    setPreview( activePreview)
 
-// Convert the URLSearchParams object to a plain JavaScript object
-const queryObject = {};
-
-for (const [key, value] of params) {
-  queryObject[key] = value;
-}
+  }, [activePreview])
+  
 
   return (
     <>
-      {queryObject.previewMode === "true" ? <></> : (
+      {!preview ? 
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG}`}
@@ -37,7 +32,7 @@ for (const [key, value] of params) {
             }}
           />
         </>
-      )}
+      : <></>}
     </>
   )
 }

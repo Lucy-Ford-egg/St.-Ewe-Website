@@ -1,14 +1,22 @@
 import { LiveQueryProvider } from "@sanity/preview-kit"
-import React, { useContext } from "react"
-import { getSanityPreviewClient } from "../../../sanityUtils/sanity"
+import React, { useContext, useEffect } from "react"
+import { getSanityClient, getSanityPreviewClient } from "../../../sanityUtils/sanity"
 import { PreviewContext } from "../../context/previewContext"
 
 export default function SanityPreviewConnectorProvider({ children, token }) {
   const { activePreview, previewContextData } = useContext(PreviewContext)
-  const client = getSanityPreviewClient(
-    { token },
-    previewContextData?.previewDataset
-  )
+
+  useEffect(() => {
+    async function getSanityUserData() {
+      const response = await getSanityClient()
+        .config({ withCredentials: true })
+        .users.getById("me")
+    }
+    getSanityUserData()
+  }, [])
+
+  const client = getSanityPreviewClient(previewContextData?.previewDataset)
+
 
   if (!activePreview) {
     // Return the regular children with no draft documents
@@ -17,7 +25,7 @@ export default function SanityPreviewConnectorProvider({ children, token }) {
 
   // Preview mode enabled
   return (
-    <LiveQueryProvider client={client} token={token}>
+    <LiveQueryProvider activePreview={activePreview ? true : false} client={client}>
       {children}
     </LiveQueryProvider>
   ) 

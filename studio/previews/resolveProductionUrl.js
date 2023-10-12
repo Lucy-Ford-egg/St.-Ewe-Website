@@ -2,8 +2,8 @@ export const resolveProductionUrl = (document) => {
 
   const url = process.env.SANITY_STUDIO_FRONTEND// window.location.hostname.includes("localhost") ? "http://localhost:8000" : "https://architecturalholidays.netlify.app"
   
-  console.log(`Frontend URL - ${url}`)
-  debugger
+  // console.log(`Frontend URL - ${url}`)
+
   const slug = document.slug?.current
   if (!slug) {
     return undefined

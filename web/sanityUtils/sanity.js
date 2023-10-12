@@ -25,3 +25,22 @@ export function getSanityPreviewClient(
   return client
 }
 
+export function getSanityClient(
+  preview,
+  previewDataset = envDataset
+) {
+  console.log("projectId", projectId)
+  console.log("envDataset", envDataset)
+  console.log("preview", preview)
+
+  const client = createClient({
+    projectId,
+    dataset: previewDataset,
+    apiVersion,
+    useCdn: false, // to ensure data is fresh    
+  })
+
+  console.log("Client - ", client)
+  return client
+}
+
