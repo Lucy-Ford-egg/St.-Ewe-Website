@@ -1,19 +1,22 @@
+import groq from 'groq'
+
 // * Helpful - https://www.sanity.io/docs/query-cheat-sheet
- 
-export const postQuery = `*[_type == "post" && slug.current == $slug][0] {
+
+
+export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
   ...,
   title,
   pageBuilder
 }`
 
-export const pageQuery = `*[_type == "page" && slug.current == $slug][0] {
+export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0] {
   ...,
   title,
   pageBuilder,
 }`
 
-export const placeQuery = `*[_type == "place" && slug.current == $slug][0] {
+export const placeQuery = groq`*[_type == "place" && slug.current == $slug][0] {
   ...,
   title,
-  pageBuilder,
+  pageBuilder
 }`

@@ -1,12 +1,20 @@
-import React, {useEffect, useContext} from "react"
+import React, { useEffect, useContext, cloneElement, Children } from "react"
 import { PreviewContext } from "../context/previewContext"
 import { useLiveQuery } from "@sanity/preview-kit"
 import { getSanityPreviewClient } from "../../sanityUtils/sanity"
 import { Container, Typography } from "@mui/material"
 
+
 export const IncludePreview = (props) => {
 
-  const {documentQueries, slug, data, children} = props
+  const { documentQueries, slug, data, children } = props
+
+  console.log(`DocumentQueries - ${documentQueries}`)
+  console.log(`What Slug - ${slug.current}`)
+
+  const [previewData, sanityPreviewIsLoading] = useLiveQuery(null, documentQueries, {
+    slug: slug.current,
+  })
 
   const {
     setActivePreview,
@@ -16,13 +24,6 @@ export const IncludePreview = (props) => {
     setIsNewUnpublishedDoc,
     isNewUnpublishedDoc,
   } = useContext(PreviewContext)
-
-  const [previewData, sanityPreviewIsLoading] = useLiveQuery(null, documentQueries, {
-    slug: slug.current,
-  })
-
-    const sanityConfig = { projectId: process.env.GATSBY_SANITY_PROJECT_ID, dataset: process.env.GATSBY_SANITY_DATASET }
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +35,25 @@ export const IncludePreview = (props) => {
 
     fetchData()
   }, [slug])
+  
+  const sanityConfig = { projectId: process.env.GATSBY_SANITY_PROJECT_ID, dataset: process.env.GATSBY_SANITY_DATASET }
+
+  console.log(`Preview Data - ${JSON.stringify(previewData)}`)
+  const AllModules = () => {
+ 
+    const renderChildren = () => {
+      return Children.map(props.children, (child) => {
+        return cloneElement(child, {
+          previewData: previewData,
+        });
+      });
+    };
+    return <div>{renderChildren()}</div>;
+  };
+
+
+
+  
 
 
   useEffect(() => {
@@ -68,12 +88,12 @@ export const IncludePreview = (props) => {
   }
   if (!sanityPreviewIsLoading && isNewUnpublishedDoc) {
     return (
-      <Container sx={{my:8}} maxWidth="sm">
+      <Container sx={{ my: 8 }} maxWidth="sm">
         <Typography variant="h3" align="center">Preview mode info</Typography>
         <Typography variant="body1" align="center">You have created a new document that isn't yet published. Please publish to access preview mode.</Typography>
       </Container>
     )
   }
-  return ([children])
-  
+  return (AllModules(children))
+
 }
