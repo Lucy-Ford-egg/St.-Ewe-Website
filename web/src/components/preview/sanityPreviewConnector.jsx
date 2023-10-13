@@ -21,10 +21,11 @@ export default function SanityPreviewConnectorProvider({ children, token }) {
 
 
   if (!activePreview) {
+    console.log(`No Active Preview`)
     // Return the regular children with no draft documents
     return <>{children}</> 
   }
-console.log(`Active Preview? - ${activePreview ? true : false}`)
+  console.log(`We Have Active Preview! `)
   // Preview mode enabled
   return (
     <LiveQueryProvider activePreview={activePreview ? true : false} client={client}>
