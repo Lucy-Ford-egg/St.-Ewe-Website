@@ -27,6 +27,8 @@ const assembleProjectUrl = ({ displayed, context, previewUrl, validation, isNewU
   const finalPagePreviewUrl = routes[displayed._type]
 
   return `${finalPagePreviewUrl}?previewMode=true&previewDataset=${context.dataset}&validation=${validationArray}&isNewUnpublishedDoc=${isNewUnpublishedDoc}`
+  // return `${finalPagePreviewUrl}`
+
 }
 
 // Component for rendering an iframe preview
