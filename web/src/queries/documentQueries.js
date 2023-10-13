@@ -20,3 +20,9 @@ export const placeQuery = groq`*[_type == "place" && slug.current == $slug][0] {
   title,
   pageBuilder
 }`
+
+export const featureQuery = groq`*[_type == "feature" && slug.current == $slug][0] {
+  ...,
+  title,
+  pageBuilder
+}`

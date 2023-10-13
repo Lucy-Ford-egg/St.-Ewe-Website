@@ -10,7 +10,10 @@ const PlaceBuilder = ({ data, pageContext }) => {
   const { slug } = data.sanityPlace
   return (
     <>
-      { data &&<IncludePreview documentQueries={placeQuery} slug={slug} data={data}> <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPlace.pageBuilder}/></IncludePreview>}
+      { data &&
+     <IncludePreview documentQueries={placeQuery} slug={slug}> 
+      <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPlace.pageBuilder}/>
+      </IncludePreview>}
     </>
   ) 
 }

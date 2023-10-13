@@ -3,11 +3,21 @@ import { graphql } from "gatsby"
 
 import Modules from "../components/modules"
 import {Seo} from "../components/seo"
+import { IncludePreview } from "../context/includePreview"
+
+import { featureQuery } from "../queries/documentQueries"
+
 
 const FeaturesBuilder = ({ data, pageContext }) => {
+
+  const { slug } = data.sanityFeature
+
   return (
     <>
-      { data && <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityFeature.pageBuilder}/>}
+      { data && 
+      <IncludePreview documentQueries={featureQuery} slug={slug}> 
+      <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityFeature.pageBuilder}/>
+      </IncludePreview>}
     </>
   ) 
 }
