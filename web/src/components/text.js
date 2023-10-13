@@ -5,12 +5,12 @@ import { RenderPortableText } from './renderPortableText';
 import clientTheme from '../gatsby-theme-material-ui-top-layout/theme';
 
 export const Text = (props) => {
-  const {_rawContent, content} = props
+  const {_rawContent, previewData} = props
 
   return (
     <Container className="section text" maxWidth="xl" sx={{pt: {xs: 10, md: 11} }}>
       <Container maxWidth="sm">
-        <RenderPortableText variant={false} value={content || _rawContent || []} textColor={clientTheme.palette.secondary.main} />
+        <RenderPortableText variant={false} value={previewData.content || _rawContent} textColor={clientTheme.palette.secondary.main} />
       </Container>
     </Container>
   )
