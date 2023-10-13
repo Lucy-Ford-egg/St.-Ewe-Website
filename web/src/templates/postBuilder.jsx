@@ -5,15 +5,15 @@ import {Seo} from "../components/seo"
 import {IncludePreview} from "../context/includePreview"
 import { postQuery } from "../queries/documentQueries"
 
-const PostBuilder = ({ data, pageContext }) => {
-  const { title, _rawBody, mainImage, slug } = data.sanityPost
+const PostBuilder = ({ data, pageContext}) => {
 
   return (
     <>
       { data && 
-      <IncludePreview documentQueries={postQuery} slug={slug} data={data}>
+      <IncludePreview documentQueries={postQuery} slug={data.sanityPost.slug}>
         <Modules allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPost.pageBuilder} pageContext={pageContext}/>
-      </IncludePreview>}
+      </IncludePreview>
+      }
     </>
   ) 
 }

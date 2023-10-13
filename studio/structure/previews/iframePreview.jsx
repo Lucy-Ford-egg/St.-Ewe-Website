@@ -4,7 +4,7 @@ import { useValidationStatus } from 'sanity'
 // Function to assemble the preview URL based on the displayed object
 const assembleProjectUrl = ({ displayed, context, previewUrl, validation, isNewUnpublishedDoc }) => {
   // Construct the base preview URL
-  
+
   const basePreviewUrl = previewUrl
   const slug = displayed?.slug?.current
   const validationArray = encodeURIComponent(JSON.stringify(validation))
@@ -26,7 +26,7 @@ const assembleProjectUrl = ({ displayed, context, previewUrl, validation, isNewU
   // Append the slug to the base URL to get the final page preview URL
   const finalPagePreviewUrl = routes[displayed._type]
 
-  return `${finalPagePreviewUrl}`
+  return `${finalPagePreviewUrl}?previewMode=true&previewDataset=${context.dataset}&validation=${validationArray}&isNewUnpublishedDoc=${isNewUnpublishedDoc}`
 }
 
 // Component for rendering an iframe preview
@@ -90,7 +90,7 @@ const IframePreview = ({ document, options }) => {
       </div>
     )
   }
-
+ 
   // Render the iframe preview
   return (
     <>
@@ -114,7 +114,10 @@ const IframePreview = ({ document, options }) => {
             transform: isMobilePreview ? 'scale(1.3)' : 'none', // Scale the iframe size if it's a mobile preview
           }}
         >
+          
           <iframe
+            
+            id="iframeid"
             title="Iframe-preview-noa"
             src={url}
             allow="clipboard-write"

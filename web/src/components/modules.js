@@ -19,7 +19,7 @@ import { ImageLink } from './imageLink'
 import {InstagramEmbed} from './InstagramEmbed'
 
 
-const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageContext }) => {
+const Modules = ({ previewData, modules, allPlace, allPost, allFeature, placeLocation, pageContext }) => {
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -33,6 +33,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
     if (modules != null) {
   
         return (
+            
             <main data-content="main">
                 {modules.map((module, i) => {
            
@@ -52,7 +53,8 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
                         return <ImageCaption {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "textBlock")) {
-                        return <Text {...module} key={module._key + i} />
+                    
+                        return <Text previewData={previewData && previewData.pageBuilder[i]} {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "imageCarouselCaptionLink")) {
                         return <GalleryCarousel {...module} key={module._key + i} />
@@ -94,6 +96,7 @@ const Modules = ({ modules, allPlace, allPost, allFeature, placeLocation, pageCo
 
                 })}
             </main>
+         
         )
     } else {
         return null

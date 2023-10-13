@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 
 export const RenderPortableText = ({ value, variant, textColor = 'white', animate = false, subtitlePosition = null, component }) => {
 
+  console.log(`Value Text - ${value && JSON.stringify(value)}`)
   const standardPortableText = {
     types: {
       span: ({ value }) => <Typography sx={{ color: textColor }} variant={variant ? variant : 'body1'} component={component}>{value.text}</Typography>,

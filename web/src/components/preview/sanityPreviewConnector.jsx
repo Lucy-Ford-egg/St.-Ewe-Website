@@ -11,8 +11,10 @@ export default function SanityPreviewConnectorProvider({ children, token }) {
       const response = await getSanityClient()
         .config({ withCredentials: true })
         .users.getById("me")
+        console.log(`Do we have a user? - ${JSON.stringify(response)}`)
     }
     getSanityUserData()
+   
   }, [])
 
   const client = getSanityPreviewClient(previewContextData?.previewDataset)
@@ -22,7 +24,7 @@ export default function SanityPreviewConnectorProvider({ children, token }) {
     // Return the regular children with no draft documents
     return <>{children}</> 
   }
-
+console.log(`Active Preview? - ${activePreview ? true : false}`)
   // Preview mode enabled
   return (
     <LiveQueryProvider activePreview={activePreview ? true : false} client={client}>

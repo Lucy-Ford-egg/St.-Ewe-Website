@@ -34,6 +34,7 @@
     "gatsby-theme-material-ui-top-layout": "^5.2.0",
     "gatsby-transformer-sharp": "^5.1.0",
     "google-map-react": "^2.2.0",
+    "groq": "^3.18.0",
     "popmotion": "^11.0.5",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

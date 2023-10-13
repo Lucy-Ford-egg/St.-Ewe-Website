@@ -14,7 +14,7 @@ export const HeadScripts = (props) => {
 
   return (
     <>
-      {!preview ? 
+      {/* {!preview ? 
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG}`}
@@ -32,7 +32,7 @@ export const HeadScripts = (props) => {
             }}
           />
         </>
-      : <></>}
+      : <></>} */}
     </>
   )
 }
