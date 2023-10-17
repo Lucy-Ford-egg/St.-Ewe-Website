@@ -6,23 +6,45 @@ import groq from 'groq'
 export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
   ...,
   title,
-  pageBuilder
+  image {
+    asset->,
+  },
+  mobileImage {
+    asset->,
+  },
 }`
 
 export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0] {
   ...,
   title,
-  pageBuilder,
+  text,
+  image {
+    asset->,
+  },
+  mobileImage {
+    asset->,
+  },
 }`
 
 export const placeQuery = groq`*[_type == "place" && slug.current == $slug][0] {
   ...,
   title,
-  pageBuilder
+  image {
+    asset->,
+  },
+  mobileImage {
+    asset->,
+  },
 }`
 
 export const featureQuery = groq`*[_type == "feature" && slug.current == $slug][0] {
   ...,
   title,
-  pageBuilder
+  pageBuilder,
+  image {
+    asset->,
+  },
+  mobileImage {
+    asset->,
+  },
 }`

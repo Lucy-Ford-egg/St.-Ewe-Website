@@ -1,13 +1,15 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getImage} from 'gatsby-plugin-image';
 import { Container, Typography, Box, useMediaQuery } from '@mui/material';
 import ButtonLink from '../utils/buttonLink';
 import {ArchIcon} from '../components/archIcon'
 import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
+import { getGatsbyImageData } from "gatsby-source-sanity"
 
-export const HeroCallToAction = ({ title, text, image, linkGroup }) => {
-
+export const HeroCallToAction = (props) => {
+  const {title, text, image, linkGroup, previewData, sanityConfig} = props
+debugger
   const adornment = true
 
   const isMobile = useMediaQuery('(min-width:600px)');
@@ -16,8 +18,8 @@ export const HeroCallToAction = ({ title, text, image, linkGroup }) => {
     <Container className="section heroCallToAction" maxWidth="false" sx={{ px: {xs: 0}, pt: { xs: 10, md: 11 }, display: 'grid', gridTemplateColumns: '5% auto 5%', gridTemplateRows: {xs: '30px 1fr 1fr 1fr 30px', md: 'repeat(6, 80px)'} }}>
       <Container maxWidth="sm" sx={{ backgroundColor: 'primary.main', gridColumn: {xs: '2/2', md: '1/4'}, gridRow: {xs: '2/5', md: '2/8'}, position: 'relative', zIndex: 1, pt: {xs: 6, md: 6}, pb: {xs: 6, md: 6}, px: {xs: 0, md: 10} }}>
 
-        <Typography align="center" sx={{textAlign: 'center', my: { xs: 5 } }} variant='h2'>{title}</Typography>
-        <Typography align="center" sx={{textAlign: 'center', my: { xs: 5 }, maxWidth: 'max-content' }} variant='body1' color='white.main' dangerouslySetInnerHTML={{__html: text}}/>
+        <Typography align="center" sx={{textAlign: 'center', my: { xs: 5 } }} variant='h2'>{previewData && previewData.title ? previewData.title : title}</Typography>
+        <Typography align="center" sx={{textAlign: 'center', my: { xs: 5 }, maxWidth: 'max-content' }} variant='body1' color='white.main' dangerouslySetInnerHTML={{__html: previewData && previewData.text ? previewData.text : text}}/>
         <Box display="flex" alignItems="center" justifyContent="center">
           <ButtonLink linkGroup={linkGroup } variant="contained" color="secondary"/>
         </Box>
@@ -33,8 +35,20 @@ export const HeroCallToAction = ({ title, text, image, linkGroup }) => {
       }
 
       </Container>
+      
       <Container maxWidth="xl" disableGutters={isMobile ? true : false} sx={{ px: {xs: 0}, gridColumn: '1/4', gridRow: '1/6' }}>
-        {image && <GatsbyImage layout="constrained" aspectRatio={133/8} style={{ minHeight: '100%' }} image={getImage(image?.asset)} alt={image.asset?.altText} />}
+        {image && 
+        <GatsbyImage
+          image={
+             getGatsbyImageData(
+              previewData?.image?.asset?._ref,
+              {maxWidth: 1024},
+              sanityConfig
+            ) || getImage(image?.asset)
+          }
+          layout="constrained" aspectRatio={133/8} style={{ minHeight: '100%' }} 
+          alt={image.asset?.altText}
+        />}
       </Container>
     </Container>
   )
@@ -74,6 +88,7 @@ export const query = graphql`
     }
     image {
       asset {
+        _id
         gatsbyImage(width: 1330, height: 480)
         altText
       }

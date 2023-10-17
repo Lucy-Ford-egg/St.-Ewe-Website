@@ -19,7 +19,7 @@ import { ImageLink } from './imageLink'
 import {InstagramEmbed} from './InstagramEmbed'
 
 
-const Modules = ({ previewData, modules, allPlace, allPost, allFeature, placeLocation, pageContext }) => {
+const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFeature, placeLocation, pageContext }) => {
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -54,13 +54,13 @@ const Modules = ({ previewData, modules, allPlace, allPost, allFeature, placeLoc
                     }
                     else if (isModule(module, "textBlock")) {
                     
-                        return <Text previewData={previewData && previewData.pageBuilder[i]} {...module} key={module._key + i} />
+                        return <Text previewData={previewData && previewData.pageBuilder[i]} sanityConfig={sanityConfig} {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "imageCarouselCaptionLink")) {
                         return <GalleryCarousel {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "heroCallToAction")) {
-                        return <HeroCallToAction {...module} key={module._key + i} />
+                        return <HeroCallToAction previewData={previewData && previewData.pageBuilder && previewData.pageBuilder[i]} sanityConfig={sanityConfig} {...module} key={module._key + i} />
                     }
                     else if (isModule(module, "heroNewsletter")) {
                         return <HeroNewsletter {...module} key={module._key + i} />

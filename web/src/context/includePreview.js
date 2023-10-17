@@ -29,8 +29,9 @@ export const IncludePreview = (props) => {
     const fetchData = async () => {
       console.log("slug:", slug.current)
       const client = getSanityPreviewClient()
+      debugger
       const post = await client.fetch(documentQueries, { slug: slug.current })
-      console.log("post:", post)
+      console.log("Fetched Data:", post)
     }
 
     fetchData()
@@ -45,6 +46,7 @@ export const IncludePreview = (props) => {
       return Children.map(props.children, (child) => {
         return cloneElement(child, {
           previewData: previewData,
+          sanityConfig: sanityConfig
         });
       });
     };
