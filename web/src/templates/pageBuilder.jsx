@@ -7,12 +7,10 @@ import { pageQuery } from "../queries/documentQueries"
 
 const PageBuilder = ({ data, pageContext }) => {
 
-  const { slug } = data.sanityPage
-
   return (
     <>
       { data &&  
-      <IncludePreview documentQueries={pageQuery} slug={slug} data={data}>
+      <IncludePreview documentQueries={pageQuery} slug={data.sanityPage.slug} data={data}>
         <Modules pageContext={pageContext} allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
       </IncludePreview>}
     </>
