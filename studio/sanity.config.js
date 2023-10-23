@@ -10,7 +10,7 @@ import {deskStructure} from './structure/deskStructure'
 export default defineConfig({
   name: 'default',
   title: 'Architectural Holidays',
-  projectId: 'e1fodg96',
+  projectId: 'mq5c1tyr',
   dataset: 'production',
   plugins: [
     deskTool({ structure: deskStructure }),
