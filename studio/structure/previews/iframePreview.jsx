@@ -1,10 +1,41 @@
 import React, { useState, useEffect } from 'react'
 import { useValidationStatus } from 'sanity'
 
+
+export const getUrl = ({previewUrl, displayed, context, validation}) => {
+
+
+  const basePreviewUrl = previewUrl
+  const {slug, _type} = displayed
+  const checkHome = (slug) => {
+    if (slug.current.includes('home-page')) {
+      return `${basePreviewUrl}`
+    }
+    else{
+      return `${basePreviewUrl}/${slug}`
+    }
+   
+  }
+  const routes = {
+    page: checkHome(slug),
+    post: `${basePreviewUrl}/blog/${slug}`,
+    feature: `${basePreviewUrl}/features-gallery/${slug}`,
+    place: `${basePreviewUrl}/places/${slug}`,
+
+  }
+  
+  // Append the slug to the base URL to get the final page preview URL
+  const finalPagePreviewUrl = routes[_type]
+
+  return `${finalPagePreviewUrl}?previewMode=true&previewDataset=${context.dataset}`
+  // return `${finalPagePreviewUrl}`
+}
+
+
 // Function to assemble the preview URL based on the displayed object
 const assembleProjectUrl = ({ displayed, context, previewUrl, validation, isNewUnpublishedDoc }) => {
   // Construct the base preview URL
-
+ 
   const basePreviewUrl = previewUrl
   const slug = displayed?.slug?.current
   const validationArray = encodeURIComponent(JSON.stringify(validation))
@@ -15,8 +46,17 @@ const assembleProjectUrl = ({ displayed, context, previewUrl, validation, isNewU
     return ''
   }
 
+  const checkHome = (slug) => {
+    if (slug.includes('home-page')) {
+      return `${basePreviewUrl}`
+    }
+    else{
+      return `${basePreviewUrl}/${slug}`
+    }
+   
+  }
   const routes = {
-    page: `${basePreviewUrl}/${slug}`,
+    page: checkHome(slug),
     post: `${basePreviewUrl}/blog/${slug}`,
     feature: `${basePreviewUrl}/features-gallery/${slug}`,
     place: `${basePreviewUrl}/places/${slug}`,
