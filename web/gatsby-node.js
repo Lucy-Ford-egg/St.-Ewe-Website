@@ -142,7 +142,7 @@ exports.createPages = async function ({ actions, graphql }) {
     })
   })
 
-  data.allSanityPage.nodes.forEach(node => {
+  data?.allSanityPage?.nodes.forEach(node => {
     createPage({
       path: node.slug.current,
       component: require.resolve(`./src/templates/pageBuilder.jsx`),
