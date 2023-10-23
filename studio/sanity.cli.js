@@ -3,7 +3,7 @@ import {nodePolyfills} from 'vite-plugin-node-polyfills'
 
 export default defineCliConfig({
   api: {
-    projectId: 'mq5c1tyr',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID,
     dataset: 'production',
     vite: (prev) => ({
       ...prev,

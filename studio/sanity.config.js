@@ -11,7 +11,7 @@ import {theme} from 'https://themer.sanity.build/api/hues?default=484947;600;dar
 export default defineConfig({
   name: 'default',
   title: 'Heligan Campsite',
-  projectId: 'mq5c1tyr',
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
   dataset: 'production',
   theme,
   plugins: [
