@@ -9,7 +9,7 @@ import {deskStructure} from './structure/deskStructure'
 
 export default defineConfig({
   name: 'default',
-  title: 'Architectural Holidays',
+  title: 'Heligan Campsite',
   projectId: 'mq5c1tyr',
   dataset: 'production',
   plugins: [

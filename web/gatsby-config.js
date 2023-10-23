@@ -7,8 +7,8 @@ const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() 
 
 module.exports = {
   siteMetadata: {
-    title: `Architectural Holidays`,
-    description: `Architectural Holidays site for design minded luxury holidays`,
+    title: `Heligan Campsite`,
+    description: `Heligan Campsite site for design minded luxury holidays`,
     author: `@edwardwilson`,
   },
   plugins: [

@@ -71,7 +71,7 @@ export const Footer = () => {
 
           <Grid item xs={12} md={5} sx={{order: {xs: 4, md: 3}}}>
             <Box sx={{ display: 'flex' }}>
-              <Typography color="primary.main" variant="caption">{`Copyright © ${new Date().getFullYear()}  Architectural Holidays  |  Designed & Developed by `} <a className="link-animation" href="https://www.gendall.co.uk">Gendall</a></Typography>
+              <Typography color="primary.main" variant="caption">{`Copyright © ${new Date().getFullYear()}  Heligan Campsite  |  Designed & Developed by `} <a className="link-animation" href="https://www.gendall.co.uk">Gendall</a></Typography>
             </Box>
           </Grid>
           <Grid item xs={12} md={7} sx={{order: {xs: 3, md: 4}}}>
