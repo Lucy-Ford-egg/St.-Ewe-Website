@@ -121,7 +121,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'pageTitle',
       location: 'location.name',
       date: 'date',
       media: 'coverImage',
