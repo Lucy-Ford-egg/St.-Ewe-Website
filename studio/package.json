@@ -17,24 +17,24 @@
   ],
   "dependencies": {
     "@sanity/google-maps-input": "^3.0.1",
-    "@sanity/vision": "^3.0.0",
+    "@sanity/vision": "^3.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-is": "^18.2.0",
-    "sanity": "^3.0.0",
+    "sanity": "^3.18.1",
     "sanity-plugin-gatsby-cloud-preview": "^1.0.3",
-    "sanity-plugin-iframe-pane": "^2.5.5",
+    "sanity-plugin-iframe-pane": "^2.6.0",
     "sanity-plugin-media": "^2.2.2",
     "sanity-plugin-seo-pane": "^2.0.1",
-    "styled-components": "^5.2.0",
-    "vite-plugin-node-polyfills": "^0.11.0"
+    "styled-components": "^6.1.0",
+    "vite-plugin-node-polyfills": "^0.15.0"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^2.0.1",
-    "eslint": "^8.6.0",
-    "prettier": "^2.8.2",
-    "typescript": "^4.0.0"
+    "@sanity/eslint-config-studio": "^3.0.1",
+    "eslint": "^8.52.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
   },
   "prettier": {
     "semi": false,
