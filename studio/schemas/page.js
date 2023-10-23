@@ -3,8 +3,9 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import openGraph from '../schemas/openGraph'
 import siteMeta from '../schemas/siteMeta'
-// import locationType from './location'
-import categoriesType from './categories'
+
+// Modules
+import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
 import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
@@ -45,16 +46,17 @@ export default defineType({
       title: 'Page Content',
       default: true,
     },
-    {
-      name: 'og',
-      title: 'SEO',
-    },
-    {
-      name: 'meta',
-      title: 'Page Meta'
-    }
+    // {
+    //   name: 'og',
+    //   title: 'SEO',
+    // },
+    // {
+    //   name: 'meta',
+    //   title: 'Page Meta'
+    // }
   ],
-  fields: [...siteMeta.fields, ...openGraph.fields,
+  fields: [
+    // ...siteMeta.fields, ...openGraph.fields,
     // {name: 'anothertitle', title: 'Title', type: 'string'},
     // {name: 'icon', title: 'Icon', type: 'image'},
     // {name: 'seoTitle', title: 'SEO title', type: 'string', group: 'seo'},
@@ -62,10 +64,10 @@ export default defineType({
     // {name: 'seoSlug', title: 'Slug', type: 'slug', group: 'seo'},
     // {name: 'seoImage', title: 'Image', type: 'image', group: 'seo'},
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'pageTitle',
+      title: 'Page Title',
       type: 'string',
-      descrition: 'Just for editor purposes. Not shown on the frontend but still necesscary',
+      description: 'Just for editor purposes. Not shown on the frontend but still necesscary',
       validation: (rule) => rule.required(),
        group: 'pageContent',
     }),
@@ -73,8 +75,9 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description: 'The slug is what your page name is called in url. Either click the generate button to format your page title into hyphenated lowercase or type your own slug. (when typing your own slug use caution not to use a duplicate slug)',
       options: {
-        source: 'title',
+        source: 'pageTitle',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
@@ -94,6 +97,7 @@ export default defineType({
       title: 'Page builder',
       description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
+        { type: headerSectionAccommodationSearchType.name },
         { type: imageWithCaptionType.name, title: "Image, Caption Module"},
         { type: textBlockType.name, title: "Text Module"},
         { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },

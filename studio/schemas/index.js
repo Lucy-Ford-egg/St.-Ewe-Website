@@ -1,7 +1,6 @@
 import navigationType from '../schemas/navigation'
 import navItemType from '../schemas/navItem'
 import linkType from '../schemas/link'
-
 import locationType from '../schemas/location'
 import categoriesType from '../schemas/categories'
 import featureCategoriesType from '../schemas/featureCategories'
@@ -11,6 +10,9 @@ import authorType from '../schemas/author'
 import postType  from '../schemas/post'
 import featureType  from '../schemas/feature'
 import pageType from '../schemas/page'
+
+// Modules
+import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
 import embedBlockType from '../schemas/modules/embedBlock'
@@ -61,6 +63,8 @@ export const schemaTypes = [
   postType,
   pageType,
   // Modules
+  headerSectionAccommodationSearchType,
+  // Old Modules
   imageWithCaptionType,
   textBlockType, 
   embedBlockType,
