@@ -61,8 +61,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `architectural-holidays`,
-        short_name: `architectural-holidays`,
+        name: `heligan-campsite`,
+        short_name: `heligan-campsite`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,

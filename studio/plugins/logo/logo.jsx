@@ -1,3 +1,3 @@
 export const Logo = () => (
-  <img src="../static/architectural-holidays-logo.svg" alt="archihols logo"/>
+  <img src="../static/heligan-campsite-logo.svg" alt="archihols logo"/>
 )
