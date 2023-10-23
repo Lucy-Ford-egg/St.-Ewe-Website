@@ -1,5 +1,5 @@
 import {createClient} from "@sanity/client"
-import imageUrlBuilder from "@sanity"
+import {imageUrlBuilder} from "@sanity"
 
 export const client = createClient({
 projectId: process.env.SANITY_STUDIO_PROJECT_ID,
