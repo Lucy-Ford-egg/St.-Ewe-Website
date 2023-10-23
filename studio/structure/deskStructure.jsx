@@ -1,5 +1,4 @@
 import {Views} from './views/preview'
-import {SEOPane} from 'sanity-plugin-seo-pane'
 import {resolveProductionUrl} from '../previews/resolveProductionUrl'
 
 import {
@@ -12,6 +11,7 @@ import {
   MdOutlineMyLocation,
   MdOutlineTagFaces,
 } from 'react-icons/md'
+
 
 export const deskStructure = (S, context) => {
   return S.list()
@@ -48,7 +48,6 @@ export const deskStructure = (S, context) => {
             .child((id) => S.document().schemaType('page').documentId(id).views(Views(S, context)))
             .defaultOrdering([{field: 'title', direction: 'asc'}])
         ),
-
       S.listItem()
         .title('Places')
         .icon(MdHolidayVillage)
@@ -132,6 +131,7 @@ export const deskStructure = (S, context) => {
           )
           .defaultOrdering([{field: 'title', direction: 'asc'}])
         ),
+        
       
           
 
@@ -148,7 +148,8 @@ export const deskStructure = (S, context) => {
       //     return true
       //   }
       // }),
-    ])
+    ],
+    )
 }
 //
 const url = window.location.hostname.includes('localhost')
@@ -156,7 +157,7 @@ const url = window.location.hostname.includes('localhost')
   : 'https://architecturalholidays.netlify.app'
 // Customise this function to show the correct URL based on the current document
 function getPreviewUrl(document, context) {
-  console.log('URL', url)
+  //console.log('URL', url)
   let slug = document?.slug?.current
 
   // if(document.slug.current === "homepage"){
@@ -173,49 +174,50 @@ function getPreviewUrl(document, context) {
 }
 //!
 
-export const defaultDocumentNode = (S, {schemaType}) => {
-  // Conditionally return a different configuration based on the schema type
-  switch (schemaType) {
-    // case `page`:
-    //   return S.document().views([
-    //     S.view.form(),
-    //     S.view
-    //       .component(Iframe)
-    //       .options({
-    //         url: (document) => ( getPreviewUrl(document)),
-    //         reload: {
-    //           button: true,
-    //         },
-    //         attributes: {
-    //           allow: 'fullscreen', // string, optional
-    //           referrerPolicy: 'no-referrer', // string, optional
-    //           sandbox: 'allow-same-origin', // string, optional
-    //         }
-    //       })
-    //       .title('Preview'),
-    //   ])
-    case `post`:
-      console.log('Document, --', document)
-      return S.document().views([
-        S.view.form(),
-        S.view
-          .component(SEOPane)
-          .options({
-            // Retrieve the keywords and synonyms at the given dot-notated strings
-            keywords: `seo.keywords`,
-            synonyms: `seo.synonyms`,
-            url: (document) => {
-              return resolveProductionUrl(document)
-            },
+// export const defaultDocumentNode = (S, {schemaType}) => {
+//   // Conditionally return a different configuration based on the schema type
+//   switch (schemaType) {
+//     // case `page`:
+//     //   return S.document().views([
+//     //     S.view.form(),
+//     //     S.view
+//     //       .component(Iframe)
+//     //       .options({
+//     //         url: (document) => ( getPreviewUrl(document)),
+//     //         reload: {
+//     //           button: true,
+//     //         },
+//     //         attributes: {
+//     //           allow: 'fullscreen', // string, optional
+//     //           referrerPolicy: 'no-referrer', // string, optional
+//     //           sandbox: 'allow-same-origin', // string, optional
+//     //         }
+//     //       })
+//     //       .title('Preview'),
+//     //   ])
+//     case `post`:
+//       console.log('Document, --', document)
+//       return S.document().views([
+//         S.view.form(),
+//         S.view
+//           .component(SEOPane)
+//           .options({
+//             // Retrieve the keywords and synonyms at the given dot-notated strings
+//             keywords: `seo.keywords`,
+//             synonyms: `seo.synonyms`,
+//             url: (document) => {
+//               return resolveProductionUrl(document)
+//             },
 
-            // Alternatively, specify functions (may be async) to extract values
-            // keywords: doc => doc.seo?.keywords,
-            // synonyms: async(doc) => client.fetch('some query to get synonyms', {id: doc._id}),
-            // url: async(doc) => client.fetch('some query to construct a url with refs', {id: doc._id})
-          })
-          .title('SEO'),
-      ])
-    default:
-      return S.document().views([S.view.form()])
-  }
-}
+//             // Alternatively, specify functions (may be async) to extract values
+//             // keywords: doc => doc.seo?.keywords,
+//             // synonyms: async(doc) => client.fetch('some query to get synonyms', {id: doc._id}),
+//             // url: async(doc) => client.fetch('some query to construct a url with refs', {id: doc._id})
+//           })
+//           .title('SEO'),
+        
+//       ])
+//     default:
+//       return S.document().views([S.view.form()])
+//   }
+// }

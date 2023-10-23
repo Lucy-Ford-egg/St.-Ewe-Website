@@ -1,5 +1,6 @@
 import IframePreview from '../previews/iframePreview'
 import {SEOPane} from 'sanity-plugin-seo-pane'
+// const SEOPane = require('sanity-plugin-seo-pane') 
 
 
 const remoteURL = 'https://architecturalholidays.netlify.app' // either production or a specialized deploy branch for previews
@@ -23,7 +24,7 @@ export const Views = (S, context) => {
         // Retrieve the keywords and synonyms at the given dot-notated strings
         keywords: `seo.keywords`,
         synonyms: `seo.synonyms`,
-        url: previewUrl,
+        url: (doc) => previewUrl,
     
         // Alternatively, specify functions (may be async) to extract values
         // keywords: doc => doc.seo?.keywords,
