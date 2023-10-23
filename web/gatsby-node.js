@@ -77,9 +77,9 @@ exports.createPages = async function ({ actions, graphql }) {
   `)
    
   // Fetch your items (blog posts, categories, etc).
-  const blogPosts = data.allSanityPost.nodes
-  const featurePosts = data.allSanityFeature.nodes
-  const placePosts = data.allSanityPlace.nodes
+  const blogPosts = data?.allSanityPost?.nodes || []
+  const featurePosts = data?.allSanityFeature?.nodes || []
+  const placePosts = data?.allSanityPlace?.nodes || []
 
   // Create your paginated pages
   paginate({

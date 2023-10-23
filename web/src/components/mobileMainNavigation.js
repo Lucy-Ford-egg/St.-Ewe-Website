@@ -90,7 +90,7 @@ const MobileMainNavigation = props => {
         }}
       >
         <motion.div variants={list} initial="hidden" animate="visible">
-          {menu.sanityNavigation.items.map((menuItem, i) => {
+          {menu?.sanityNavigation?.items && menu.sanityNavigation.items.map((menuItem, i) => {
             return (
               <MotionMenuItem
                 key={`mobileMenuItem-${i}`}

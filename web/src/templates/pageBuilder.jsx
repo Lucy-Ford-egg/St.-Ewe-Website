@@ -27,8 +27,8 @@ query($slug: String!) {
     slug {
       current
     }
-    title
-    ...SeoPageFragment
+    pageTitle
+    #...SeoPageFragment
     pageBuilder {
       ... on SanityImageCarouselSubtitleTitleTextLink {
         _key

@@ -10,7 +10,7 @@ const MainNavigation = (props) => {
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'flex-end' }}>
 
-      {menu.sanityNavigation.items.map((menuItem, i) => {
+      {menu?.sanityNavigation?.items && menu.sanityNavigation.items.map((menuItem, i) => {
         return (
           <Box
             key={menuItem.text}

@@ -16,14 +16,14 @@ const FeaturesPageBuilder = ({ data, pageContext }) => {
     <>
       { data && 
       <IncludePreview documentQueries={featureQuery} slug={slug}> 
-      <Modules pageContext={pageContext} allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
+      <Modules pageContext={pageContext} allFeature={data?.allSanityFeature.nodes} allPlace={data?.allSanityPlace.nodes} allPost={data?.allSanityPost.nodes} modules={data?.sanityPage.pageBuilder}/>
       </IncludePreview>}
     </>
   ) 
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityPage} location={location} />
+  return <Seo seoContext={data?.sanityPage} location={location} />
 }
 
 export const query = graphql`
@@ -33,8 +33,8 @@ query ($skip: Int!, $limit: Int!, $slug: String!) {
     slug {
       current
     }
-    title
-    ...SeoPageFragment
+    pageTitle
+    #...SeoPageFragment
     pageBuilder {
       ... on SanityImageCarouselSubtitleTitleTextLink {
         _key

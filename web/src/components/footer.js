@@ -46,7 +46,7 @@ export const Footer = () => {
           
           <Grid item xs={6} md={3} sx={{order: {xs: 2, md: 1}}}>
             <Box sx={{ ml: { xs: -5, md: 0 }, display: 'flex', alignItems: 'center', justifyContent: {xs: 'flex-end', md: 'flex-start'} }} >
-            {data.socialMenu.items.map((node, i) => {
+            {data?.socialMenu?.items && data.socialMenu.items.map((node, i) => {
               return (
                 <Box key={`footer-menu-item-${i}`} >
                   {renderSocialIcon(node)}
@@ -59,7 +59,7 @@ export const Footer = () => {
 
           <Grid item xs={6} md={9} sx={{order: {xs: 1, md: 2}}}>
             <Box display="flex" sx={{ order: { xs: 0, md: 1 }, flexDirection: { xs: 'column', md: 'row' }, justifyContent: { xs: 'flex-start', md: 'flex-end' } }}>
-              {data.footerMenu.items.map((node, i) => {
+              {data?.footerMenu?.items && data.footerMenu.items.map((node, i) => {
                 return (
                   <Box key={`footer-menu-item-${i}`} sx={{ ml: { xs: -5, md: 0 } }} >
                     <NavigationLink text={node.text} linkGroup={node} buttonType="text" color="white" />

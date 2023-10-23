@@ -5,7 +5,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata"
 export const Seo = ({ location, children, data, seoContext }) => {
  
   const { metaDescription, metaTitle, ogDescription, ogTitle, ogImage } =
-  seoContext
+  seoContext && seoContext || {metaDescription: null, metaTitle: null, ogDescription: null, ogTitle: null, ogImage: null}
 
   const { title: defaultTitle, description: defaultDescription } =
     useSiteMetadata()

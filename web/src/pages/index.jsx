@@ -7,8 +7,8 @@ import Modules from "../components/modules"
 const IndexPage = ({ data }) => (
   
     <Modules
-      allPlace={data.allSanityPlace.nodes}
-      modules={data.sanityPage.pageBuilder}
+      allPlace={data?.allSanityPlace?.nodes}
+      modules={data?.sanityPage?.pageBuilder}
     />
 
 )
@@ -23,8 +23,8 @@ export const query = graphql`
       slug {
         current
       }
-      title
-      ...SeoPageFragment
+      pageTitle
+      #...SeoPageFragment
       pageBuilder {
         ... on SanityImageCarouselSubtitleTitleTextLink {
           _key
