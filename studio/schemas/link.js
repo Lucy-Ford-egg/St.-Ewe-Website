@@ -1,22 +1,47 @@
 import { defineField, defineType } from 'sanity'
+import { MdAddLink } from "react-icons/md";
+
 
 export default defineType({
-  name: 'link',
+  name: 'linkDefined',
   type: 'object',
   title: 'Link',
+  icon: MdAddLink,
   fields: [
     defineType({
-    title: 'Internal Link',
-    name: 'internalLink',
-    description: 'Select pages for navigation',
-    type: 'reference',
-    to: [{ type: 'page' },{ type: 'post' }, {type: 'place'}, {type: 'feature'}], 
+        name: 'link',
+        type: 'object',
+        title: 'Link',
+        fields: [
+          {
+            name: 'external',
+            type: 'url',
+            title: 'URL',
+            hidden: ({ parent, value }) => !value && parent?.internal
+          },
+          {
+            name: 'internal',
+            type: 'reference',
+            to: [{ type: 'post' }, { type: 'page' },],
+            hidden: ({ parent, value }) => !value && parent?.external
+          }
+        ],
     }),
-    defineType({
-      name: 'externalUrl',
-      title: 'External URL',
-      description:"Use fully qualified URLS for external link",
-      type: 'url',
-    }),
-  ]
+  ],
+  preview: {
+    select: {
+      internal: 'link.internal',
+      external: 'link.external',
+    },
+    prepare(selection) {
+      const {internal, external} = selection
+      debugger
+
+      return {
+        title: internal ? "Internal Link" : "External Link",
+        //subtitle: `${children && children.length} Child Items`,
+        icon: MdAddLink,
+      }
+    }
+  },
 });

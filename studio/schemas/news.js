@@ -92,7 +92,7 @@ export default defineType({
     },
     prepare({ title, media, author, date }) {
       const subtitles = [
-        location && `by ${author}`,
+        author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 

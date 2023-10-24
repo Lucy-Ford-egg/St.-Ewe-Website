@@ -22,7 +22,6 @@ export default defineType({
         type: "array",
         title: "Navigation items",
         of: [{ type: "navigationItem" }],
-       
       })        
     ]
 })

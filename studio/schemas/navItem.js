@@ -11,29 +11,36 @@ export default defineType({
       defineField({
           name: "text",
           type: "string",
-          title: "Navigation Text",
+          title: "Navigation Label",
           validation: Rule => Rule.required(),
         }),
         defineField({
-          name: "navigationItemUrl",
-          type: "link", 
+          name: "link",
+          type: "linkDefined", 
           title: "Navigation Item URL",
-          validation: Rule => Rule.required(),
-        })
+          hidden: ({ parent, value }) => !value && parent?.childItems
+        }),
+        defineField({
+          name: "childItems",
+          type: "array",
+          title: "Child Navigation items",
+          of: [{ type: "linkDefined" }],
+        }),
   ],
     preview: {
       select: {
         title: 'text',
         subtitle: 'navigationItemUrl',
+        children: 'childItems'
         // status: 'status'
       },
       prepare(selection) {
       
-        const {title, subtitle} = selection
+        const {title, subtitle, children} = selection
         return {
-          title: title,
-          subtitle: subtitle._type,
-          icon: MdAddLink,
+          title: `${title}` ,
+          subtitle: children && children.length >= 1 ? `${children.length} Child Items` : `No Child Items`,
+          // icon: MdAddLink,
         }
       }
     },

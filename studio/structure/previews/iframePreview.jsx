@@ -27,7 +27,7 @@ export const getUrl = ({previewUrl, displayed, context, validation}) => {
   // Append the slug to the base URL to get the final page preview URL
   const finalPagePreviewUrl = routes[_type]
 
-  return `${finalPagePreviewUrl}?previewMode=true&previewDataset=${context.dataset}`
+  return `${finalPagePreviewUrl}?previewMode=true&previewDataset=${context.dataset}`.toString()
   // return `${finalPagePreviewUrl}`
 }
 

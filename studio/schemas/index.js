@@ -1,14 +1,13 @@
 import navigationType from '../schemas/navigation'
 import navItemType from '../schemas/navItem'
-import linkType from '../schemas/link'
-import locationType from '../schemas/location'
+import linkDefinedType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import featureCategoriesType from '../schemas/featureCategories'
+import settingsType from '../schemas/settings'
+
 import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
-import featureType  from '../schemas/feature'
 import pageType from '../schemas/page'
 
 // Modules
@@ -24,9 +23,7 @@ import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
 import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
 import placesGridType from '../schemas/modules/placesGrid'
 import postsGridType from '../schemas/modules/postsGrid'
-import featuresGridType from '../schemas/modules/featuresGrid'
 import heroNewsletterType from '../schemas/modules/heroNewsletter'
-import categoryFeatureType from '../schemas/modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 import imageWithLinkType from '../schemas/modules/imageWithLink'
@@ -48,18 +45,15 @@ export const schemaTypes = [
 
   // Settings
 
-
+  settingsType,
   // Navigation
   navigationType,
   navItemType,
-  linkType,
+  linkDefinedType,
   // Taxonomies
-  
-  locationType, 
   authorType,
   // Objects
   placeType, 
-  featureType,
   postType,
   pageType,
   // Modules
@@ -76,9 +70,7 @@ export const schemaTypes = [
   imageCarouselSubtitleTitleTextLinkType,
   placesGridType,
   postsGridType,
-  featuresGridType,
   heroNewsletterType,
-  categoryFeatureType,
   heroInfoCallToActionType,
   imageTextCallToActionImageType,
   imageWithLinkType,
@@ -95,6 +87,5 @@ export const schemaTypes = [
   // Categories
  
   placeCategoriesType,
-  featureCategoriesType,
   categoriesType, 
 ]

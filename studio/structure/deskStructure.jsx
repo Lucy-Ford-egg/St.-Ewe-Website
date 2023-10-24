@@ -1,5 +1,4 @@
 import {Views} from './views/preview'
-import {resolveProductionUrl} from '../previews/resolveProductionUrl'
 
 import {
   MdCategory,
@@ -7,8 +6,6 @@ import {
   MdOutlineMenu,
   MdOutlineChat,
   MdAutoStories,
-  MdFavorite,
-  MdOutlineMyLocation,
   MdOutlineTagFaces,
 } from 'react-icons/md'
 
@@ -17,6 +14,30 @@ export const deskStructure = (S, context) => {
   return S.list()
     .title('Site Content')
     .items([
+
+      S.listItem()
+				.title('Site Settings')
+				.schemaType('settings')
+				.child(
+					S.document()
+						.id('settings')
+						.schemaType('settings')
+						.title('Site Settings')
+				),
+
+      // S.listItem()
+      //   .title('Settings')
+      //   .icon(MdOutlineMenu)
+      //   .child(
+      //     S.documentTypeList('settings')
+      //       .title('Settings')
+      //       .child((id) =>
+      //         S.document().schemaType('settings').documentId(id).views(Views(S, context))
+      //       )
+      //       .defaultOrdering([{field: 'title', direction: 'asc'}])
+      //   ),
+        S.divider(),
+
       S.listItem()
         .title('Navigation')
         .icon(MdOutlineMenu)
@@ -57,31 +78,8 @@ export const deskStructure = (S, context) => {
             .child((id) => S.document().schemaType('place').documentId(id).views(Views(S, context)))
             .defaultOrdering([{field: 'title', direction: 'asc'}])
         ),
-
-      S.listItem()
-        .title('Features')
-        .icon(MdFavorite)
-        .child(
-          S.documentTypeList('feature')
-            .title('Features')
-            .child((id) =>
-              S.document().schemaType('feature').documentId(id).views(Views(S, context))
-            )
-            .defaultOrdering([{field: 'title', direction: 'asc'}])
-        ),
         S.divider(),
-      S.listItem()
-        .title('Locations')
-        .icon(MdOutlineMyLocation)
-        .child(
-          S.documentTypeList('location')
-            .title('Locations')
-            .child((id) =>
-              S.document().schemaType('location').documentId(id).views(Views(S, context))
-            )
-            .defaultOrdering([{field: 'title', direction: 'asc'}])
-        ),
-
+  
       S.listItem()
         .title('Authors')
         .icon(MdOutlineTagFaces)
@@ -104,21 +102,7 @@ export const deskStructure = (S, context) => {
             S.document().schemaType('categories').documentId(id).views(Views(S, context))
           )
           .defaultOrdering([{field: 'title', direction: 'asc'}])
-        ),
-
-        S.listItem()
-        .title('Feature Categories')
-        .icon(MdCategory)
-        .child(
-          S.documentTypeList('featureCategories')
-          .title('Feature Categories')
-          .child((id) =>
-            S.document().schemaType('featureCategories').documentId(id).views(Views(S, context))
-          )
-          .defaultOrdering([{field: 'title', direction: 'asc'}])
-        ),
-
-       
+        ),   
 
         S.listItem()
         .title('Place Categories')

@@ -35,20 +35,4 @@ export default defineType({
      ]
     }),
   ],
-  // preview: {
-  //   select: {
-  //     title: 'title',
-  //     author: 'author.name',
-  //     date: 'date',
-  //     media: 'coverImage',
-  //   },
-  //   prepare({ title, media, author, date }) {
-  //     const subtitles = [
-  //       location && `by ${author}`,
-  //       date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
-  //     ].filter(Boolean)
-
-  //     return { title, media, subtitle: subtitles.join(' ') }
-  //   },
-  // },
 })

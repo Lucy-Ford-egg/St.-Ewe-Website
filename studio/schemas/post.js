@@ -14,7 +14,6 @@ import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubti
 import placesGridType from './modules/placesGrid'
 import postsGridType from './modules/postsGrid'
 import heroNewsletterType from './modules/heroNewsletter'
-import categoryFeatureType from './modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
@@ -136,7 +135,6 @@ export default defineType({
         { type: placesGridType.name, title: "Places Grid Module" },
         { type: heroNewsletterType.name, title: "Hero Newsletter, CTA, Caption Module"},
         { type: postsGridType.name, title: "Posts Grid Module" },
-        { type: categoryFeatureType.name, title: "Category Feature Module" },
         { type: heroInfoCallToActionType.name, title: "Hero, Info, CTA, Caption Module" },
         { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
         { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
@@ -170,7 +168,7 @@ export default defineType({
     },
     prepare({ title, media, author, date }) {
       const subtitles = [
-        location && `by ${author}`,
+        author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 

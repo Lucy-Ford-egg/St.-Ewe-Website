@@ -3,7 +3,6 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import openGraph from '../schemas/openGraph'
 import authorType from './author'
-import featureCategoriesType from './featureCategories'
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
 import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
@@ -13,7 +12,6 @@ import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
 import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
 import placesGridType from './modules/placesGrid'
 import postsGridType from './modules/postsGrid'
-import featuresGridType from './modules/featuresGrid'
 import heroNewsletterType from './modules/heroNewsletter'
 import categoryFeatureType from './modules/categoryFeature'
 import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
@@ -137,8 +135,6 @@ export default defineType({
         { type: placesGridType.name, title: "Places Grid Module" },
         { type: heroNewsletterType.name, title: "Hero Newsletter, CTA, Caption Module"},
         { type: postsGridType.name, title: "Posts Grid Module" },
-        { type: featuresGridType.name, title: "Features Grid Module" },
-        { type: categoryFeatureType.name, title: "Category Feature Module" },
         { type: heroInfoCallToActionType.name, title: "Hero, Info, CTA, Caption Module" },
         { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
         { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
@@ -147,20 +143,6 @@ export default defineType({
         // etc...
         ],
         group: 'pageContent',
-    }),
-    
-    defineField({
-      name: 'categories',
-      title: 'Feature Categories',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: featureCategoriesType.name }],
-        },
-     ],
-     group: 'pageContent',
-      // to: [{ type:  }],
     }),
   ],
   preview: {
@@ -172,7 +154,7 @@ export default defineType({
     },
     prepare({ title, media, author, date }) {
       const subtitles = [
-        location && `by ${author}`,
+        author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
