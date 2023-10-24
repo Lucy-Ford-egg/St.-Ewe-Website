@@ -1,8 +1,10 @@
 import navigationType from '../schemas/navigation'
 import navItemType from '../schemas/navItem'
-import linkDefinedType from '../schemas/link'
+import linkDefinedType from '../schemas/linkDefined'
+import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
 import settingsType from '../schemas/settings'
+import designSystemColorType from '../schemas/designSystemColor'
 
 import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
@@ -46,9 +48,11 @@ export const schemaTypes = [
   // Settings
 
   settingsType,
+  designSystemColorType,
   // Navigation
   navigationType,
   navItemType,
+  linkType,
   linkDefinedType,
   // Taxonomies
   authorType,
