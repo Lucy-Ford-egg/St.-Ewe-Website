@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Carousel } from './carousel'
+import { HeaderSectionAccommodationSearch } from './headerSectionAccommodationSearch'
 import { Places } from './places'
 import { Posts } from './posts'
 import { ImageCaption } from './imageCaption'
@@ -35,7 +35,16 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
             
             <main data-content="main">
                 {modules.map((module, i) => {
-           
+debugger
+                    if (isModule(module, 'headerSectionAccommodationSearch')) {
+                        return (
+                        <HeaderSectionAccommodationSearch
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
                     // if (isModule(module, 'imageCarouselSubtitleTitleTextLink')) {
                     //     return <Carousel {...module} key={module._key + i} />
                     // }

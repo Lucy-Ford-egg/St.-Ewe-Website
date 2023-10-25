@@ -163,11 +163,11 @@ module.exports = {
             ],
             selfHosted: [
               {
-                family: `Sentient`,
+                family: `Sentient-Bold`,
                 urls: {
-                  woff2: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff2`,
-                  woff: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff`,
-                  ttf: `../web/src/fonts/sentient/fonts/Sentient-Bold.ttf`,
+                  woff2: `${__dirname}/src/fonts/sentient/fonts/Sentient-Bold.woff2`,
+                  woff: `${__dirname}/src/fonts/sentient/fonts/Sentient-Bold.woff`,
+                  ttf: `${__dirname}/src/fonts/sentient/fonts/Sentient-Bold.ttf`,
                   //[format]: '/[filepath]/[filename],
                 },
                 //[cssProperty]: 'value',

@@ -22,10 +22,6 @@ let defaultTheme = createTheme({
     }
   },
   typography: {
-    fontFamily: [
-         'League Spartan',
-         'sans-serif',
-       ].join(','),
     fontSize: 16,
     body1: {
       fontFamily: 'League Spartan',
@@ -53,50 +49,32 @@ let defaultTheme = createTheme({
       lineHeight: 1.5,
     },
     h1: {
-      fontSize: 41,
-      fontFamily: 'Sentient',
+      fontSize: clientSpacing[15],
+      fontFamily: 'Sentient-Bold',
     },
     h2: {
-      fontSize: 35,
-      fontFamily: 'Sentient',
+      fontSize: clientSpacing[11],
+      fontFamily: 'Sentient-Bold',
     },
     h3: {
-      fontSize: 25,
-      fontFamily: 'Sentient',
+      fontSize: clientSpacing[9],
+      fontFamily: 'Sentient-Bold',
     },
     h4: {
-      fontSize: 24,
-      fontFamily: 'Sentient',
+      fontSize: clientSpacing[7],
+      fontFamily: 'Sentient-Bold',
       letterSpacing: '0em',
     },
     h5: {
-      fontSize: 20,
-      fontFamily: 'Sentient',
+      fontSize: clientSpacing[5],
+      fontFamily: 'Sentient-Bold',
     },
     h6: {
-      fontSize: 17,
-      fontFamily: 'Sentient',
+      fontSize: clientSpacing[4],
+      fontFamily: 'Sentient-Bold',
       letterSpacing: '0em',
     },
   },
-  // palette: {
-  //   primary: {
-  //     main: "#C3B187", // Gold
-  //     mid: "#BFAD83",
-  //     dark: "#B8A67D",
-  //     accessible: "#83744d" // Accessible gold for small type
-  //   },
-  //   secondary: {
-  //     main: '#2E2E2E', // Black
-  //     light: '#101010'
-  //   },
-  //   tertiary: {
-  //     main: '#987284', //
-  //   },
-  //   white: {
-  //     main: '#ffffff'
-  //   },
-  // },
 })
 
 let clientTheme = createTheme({
@@ -111,73 +89,7 @@ let clientTheme = createTheme({
       xxl: 1440
     }
   },
-  // typography: {
-  //   fontFamily: [
-  //     'Montserrat',
-  //     'sans-serif',
-  //   ].join(','),
-  //   color: "black",
-  //   backgroundColor: "white",
-  //   h1:{
-  //     fontSize: 74,
-  //     fontFamily: 'PT Serif',
-  //     fontWeight: 700,
-  //   },
-  //   h2:{
-  //     fontSize: 51,
-  //     fontFamily: 'PT Serif',
-  //     fontWeight: 700,
-  //   },
-  //   h3:{
-  //     fontSize: 34,
-  //     fontFamily: 'PT Serif',
-  //     fontWeight: 700,
-  //   },
-  //   h4:{
-  //     fontSize: 24,
-  //     fontFamily: 'PT Serif',
-  //     fontWeight: 700,
-  //   },
-  //   h5:{
-  //     fontSize: 19,
-  //     fontFamily: 'PT Serif',
-  //     fontWeight: 700,
-  //   },
-  //   h6:{
-  //     fontSize: 16,
-  //     fontFamily: 'PT Serif',
-  //     fontWeight: 700,
-  //   },
-  //   subtitle1: {
-  //     fontSize: 11,
-  //     textTransform: 'uppercase',
-  //     letterSpacing: 0.93
-  //   },
-  //   subtitle2:{
-  //     fontSize: 16,
-  //     fontWeight: 400,
-  //     textTransform: 'uppercase',
-  //     letterSpacing: 0.93
-  //   },
-  //   body1:{
-  //     fontSize: 16,
-  //     lineHeight: 2.14
-  //   },
-  //   body2:{
-  //     fontSize: 16,
-  //     lineHeight: 2.14,
-  //     fontWeight: 700
-  //   },
-  //   caption:{
-  //     fontSize: 11,
-  //     lineHeight: 2.14
-  //   },
-  //   overline:{
-  //     fontSize: 16,
-  //     textTransform: 'uppercase',
-  //     letterSpacing: 0.93
-  //   },
-  // },
+  typography: defaultTheme.typography,
   palette: defaultTheme.palette,
   components: {
     MuiCssBaseline: {

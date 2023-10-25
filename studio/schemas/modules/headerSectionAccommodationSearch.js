@@ -21,7 +21,7 @@ export default defineType({
       description: 'Add some textual content. Optional'
     }),
     defineField({
-      name: 'search',
+      name: 'showSearch',
       type: 'boolean',
       title: 'Show Search',
       initialValue: true, 
