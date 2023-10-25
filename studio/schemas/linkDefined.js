@@ -9,6 +9,12 @@ export default defineType({
   icon: MdAddLink,
   fields: [
     defineField({
+      name: "text",
+      type: "string",
+      title: "Navigation Label",
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
       name: 'link',
       type: 'link',
       title: 'Link',

@@ -3,7 +3,8 @@ import navItemType from '../schemas/navItem'
 import linkDefinedType from '../schemas/linkDefined'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import settingsType from '../schemas/settings'
+import siteSettingsType from '../schemas/siteSettings'
+import {ballotSetupType} from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 
 import placeCategoriesType from '../schemas/placeCategories'
@@ -47,7 +48,8 @@ export const schemaTypes = [
 
   // Settings
 
-  settingsType,
+  siteSettingsType,
+  ballotSetupType,
   designSystemColorType,
   // Navigation
   navigationType,

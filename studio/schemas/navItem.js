@@ -8,12 +8,6 @@ export default defineType({
     title: 'Navigation Item',
     type: 'object',
     fields: [
-      defineField({
-          name: "text",
-          type: "string",
-          title: "Navigation Label",
-          validation: Rule => Rule.required(),
-        }),
         defineField({
           name: "link",
           type: "linkDefined", 
@@ -29,16 +23,16 @@ export default defineType({
   ],
     preview: {
       select: {
-        title: 'text',
+        link: 'link',
         subtitle: 'navigationItemUrl',
         children: 'childItems'
         // status: 'status'
       },
       prepare(selection) {
-      
-        const {title, subtitle, children} = selection
+      debugger
+        const {link, subtitle, children} = selection
         return {
-          title: `${title}` ,
+          title: `${link.text}` ,
           subtitle: children && children.length >= 1 ? `${children.length} Child Items` : `No Child Items`,
           // icon: MdAddLink,
         }

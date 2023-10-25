@@ -1,5 +1,6 @@
 import {Views} from './views/preview'
 import { DesignSystemColorsMenu } from './designSystemColorsMenu'
+import { SiteSettingsMenu } from './siteSettingsMenu'
 import {
   MdCategory,
   MdHolidayVillage,
@@ -15,16 +16,8 @@ export const deskStructure = (S, context) => {
     .title('Site Content')
     .items([
 
-      S.listItem()
-				.title('Site Settings')
-				.schemaType('settings')
-				.child(
-					S.document()
-						.id('settings')
-						.schemaType('settings')
-						.title('Site Settings')
-				),
-        DesignSystemColorsMenu(S),
+      SiteSettingsMenu(S),
+      DesignSystemColorsMenu(S),
       // S.listItem()
       //   .title('Settings')
       //   .icon(MdOutlineMenu)
