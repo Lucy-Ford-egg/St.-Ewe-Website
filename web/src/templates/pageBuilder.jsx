@@ -11,7 +11,7 @@ const PageBuilder = ({ data, pageContext }) => {
     <>
       { data &&  
       <IncludePreview documentQueries={pageQuery} slug={data.sanityPage.slug} data={data}>
-        <Modules pageContext={pageContext} allFeature={data.allSanityFeature.nodes} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/>
+        {/* <Modules pageContext={pageContext} allPlace={data.allSanityPlace.nodes} allPost={data.allSanityPost.nodes} modules={data.sanityPage.pageBuilder}/> */}
       </IncludePreview>}
     </>
   ) 
@@ -72,11 +72,6 @@ query($slug: String!) {
         _type
         ... PostsGridFragment
       }
-      ... on SanityFeatureGrid {
-        _key
-        _type
-        ... FeaturesGridFragment
-      }
       ... on SanityTwoColumnTitleTextCta {
         _key
         _type
@@ -86,11 +81,6 @@ query($slug: String!) {
         _key
         _type
         ... MapFragment
-      }
-      ... on SanityCategoryFeature{
-        _key
-        _type
-        ... CategoryFeatureFragment
       }
       ... on SanityHeroInfoCallToAction {
         _key
@@ -153,25 +143,6 @@ query($slug: String!) {
       }
       slug {
         current
-      }
-      excerpt
-    }
-  }
-  allSanityFeature {
-    nodes {
-      title
-      slug {
-        current
-      }
-      coverImage {
-        asset {
-          gatsbyImageData(width: 525, height: 323)
-          altText
-        }
-      }
-      date(formatString: "M MMM YYYY")
-      categories {
-        name
       }
       excerpt
     }

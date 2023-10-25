@@ -7,7 +7,7 @@ import Modules from "../components/modules"
 const IndexPage = ({ data }) => (
   
     <Modules
-      allPlace={data?.allSanityPlace?.nodes}
+      // allPlace={data?.allSanityPlace?.nodes}
       modules={data?.sanityPage?.pageBuilder}
     />
 
@@ -19,7 +19,7 @@ export const Head = ({ data, location }) => {
 
 export const query = graphql`
   query {
-    sanityPage(slug: { current: { eq: "homepage" } }) {
+    sanityPage(slug: { current: { eq: "home-page" } }) {
       slug {
         current
       }
@@ -77,11 +77,6 @@ export const query = graphql`
           _key
           _type
           ...MapFragment
-        }
-        ... on SanityCategoryFeature {
-          _key
-          _type
-          ...CategoryFeatureFragment
         }
         ... on SanityHeroInfoCallToAction {
           _key
