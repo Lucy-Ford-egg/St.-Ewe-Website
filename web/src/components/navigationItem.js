@@ -1,11 +1,14 @@
 import React, { useState } from "react"
-import { Link, Button as GatsbyButton } from "gatsby-theme-material-ui"
+import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import { animationHover } from "../utils/animationHover"
-import { Box, Typography, Menu, MenuItem, useTheme, Button } from "@mui/material"
+import { Link, Box, Typography, Menu, MenuItem, useTheme, Button, useMediaQuery, Accordion, AccordionSummary, AccordionDetails } from "@mui/material"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const NavigationItem = (props) => {
 
+  const { childNode, text, key, to } = props
+
+  //Desktop Menu
   const [anchorEl, setAnchorEl] = useState(null);
   const open = anchorEl;
   const handleClick = (event) => {
@@ -18,84 +21,242 @@ export const NavigationItem = (props) => {
     setAnchorEl(null);
   };
 
-  const { childNode, text } = props
+  // tablet Menu
+  const [expanded, setExpanded] = useState('panel1');
+
+  const handleChange =
+    (panel) => (event, newExpanded) => {
+      setExpanded(newExpanded ? panel : false);
+    };
+
+
   const theme = useTheme()
+  const mobile = useMediaQuery("(max-width:600px)")
+  const tablet = useMediaQuery("(max-width:884px)")
+
 
   return (
     <Box
-      sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "secondary.main", display: 'block', fontWeight: '500', textTransform: "unset" }}
+      sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "secondary.main", display: 'flex', textTransform: "unset" }}
     >
-      <Button
-        id="demo-customized-button"
-        aria-controls={open ? 'demo-customized-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        variant="text"
-        disableElevation
-        onClick={handleClick}
-        onMouseEnter={handleHover}
-        //onMouseLeave={handleHoverOut}
-        sx={{
-          color: theme.palette.text.primary,
-        }}
-        endIcon={childNode.length >=1 && <ExpandMoreIcon/>}
-      >
+      {childNode.length >= 1 && !mobile &&
+        <Box sx={{
+          mx: theme.spacing(2)
+        }}>
+          <Button
+            id="demo-customized-button"
+            aria-controls={open ? 'demo-customized-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            variant="text"
+            disableElevation
+            onClick={handleClick}
+            // onMouseEnter={handleHover} // Disabled for the moment to get it all styled
+            //onMouseLeave={handleHoverOut}
+            sx={{
+              color: theme.palette.text.primary,
+              textAlign: { xs: 'left', md: 'center' },
+              justifyContent: { xs: 'left', md: 'center' },
+              fontWeight: open === 'true' ? 500 : 400,
+            }}
+            endIcon={childNode.length >= 1 && <ExpandMoreIcon />}
+            size="large"
+          >{text}</Button>
 
 
-        {/* <Link sx={{
-        color: 'inherit',
-        textDecoration: 'none',
-        textTransform: 'unset',
-        '&:hover': {
-          color: theme.palette.primary.main,
-          cursor: "pointer",
-        },
-        ...animationHover('black')
-      }} activeStyle={{ color: theme.palette.primary.main }} to={`/${menuItem?.link?.link?.internal?.slug.current}`}> */}
-        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-          {text}
-        </Typography>
-        {/* </Link> */}
-      </Button>
-      {childNode.length >=1 && 
-      <Menu
-        id="demo-customized-menu"
-        MenuListProps={{
-          'aria-labelledby': 'demo-customized-button',
-        }}
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        {childNode.map((node, i) => {
+          <Menu
+            id="demo-customized-menu"
+            MenuListProps={{
+              'aria-labelledby': 'demo-customized-button',
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            slotProps={{
+              paper: {
+                elevation: 0
+              }
+            }}
+            sx={{ mt: theme.spacing(2) }}
+          >
+            {childNode.map((node, i) => {
 
-          return (
-            <MenuItem key={`submenu-${i}-${node.text}`} onClick={handleClose} disableRipple>
-              {node.link.internal ? (
-                <GatsbyButton variant="text" to={node.link.internal?.slug?.current}>{node.text}</GatsbyButton>
-              ) : node.link.external ? (
-                <a href={node.link.external}>{node.text}</a>
-              ) : null}
+              return (
+                <MenuItem key={`submenu-${i}-${node.text}`} onClick={handleClose} disableRipple sx={{
+                  px: theme.spacing(2)
+                }}>
+                  {node.link.internal ? (
+                    <GatsbyButton variant="text" to={node.link.internal?.slug?.current} sx={{
+                      px: 0,
+                      justifyContent: 'left',
+                      fontWeight: 400,
+                    }}
+                      size="large"
+                    >{node.text}</GatsbyButton>
+                  ) : node.link.external ? (
+                    <Link size="large" href={node.link.external} sx={{
+                      px: 0,
+                      justifyContent: 'left',
+                      fontWeight: 400,
+                    }}>{node.text}</Link>
+                  ) : null}
+                </MenuItem>
+              )
+            })}
+          </Menu>
+        </Box>}
 
-              {/* {node.link.internal &&
-              <Link sx={{
-                color: 'inherit',
-                textDecoration: 'none',
-                textTransform: 'unset',
-                '&:hover': {
-                  color: theme.palette.primary.main,
-                  cursor: "pointer",
-                },
-                ...animationHover('black')
-              }} activeStyle={{ color: theme.palette.primary.main }} to={`/${node.link.internal?.slug.current}`}>
-                {node.text}
-              </Link>} */}
-            </MenuItem>
-          )
-        })}
+      {childNode.length === 0 && !mobile &&
+        <Box>
+          <GatsbyButton
+            id="demo-customized-button"
+            aria-controls={open ? 'demo-customized-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            variant="text"
+            disableElevation
+            //onClick={handleClick}
+            // onMouseEnter={handleHover} // Disabled for the moment to get it all styled
+            //onMouseLeave={handleHoverOut}
+            sx={{
+              color: theme.palette.text.primary,
+              borderBottom: `1px solid ${open ? theme.palette.text.primary : `transparent`}`,
+              textAlign: { xs: 'left', md: 'center' },
+              justifyContent: { xs: 'left', md: 'center' },
+              fontWeight: 400,
+            }}
+            endIcon={childNode.length >= 1 && <ExpandMoreIcon />}
+            size="large"
+            to={to.link?.internal ? to.link.internal.slug.current : to.link.external}
+          >{text}</GatsbyButton>
 
 
-      </Menu>}
+          <Menu
+            id="demo-customized-menu"
+            MenuListProps={{
+              'aria-labelledby': 'demo-customized-button',
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            sx={{
+              backgroundColor: theme.palette.background.main,
+            }}
+          >
+            {childNode.map((node, i) => {
+
+              return (
+                <MenuItem key={`submenu-${i}-${node.text}`} onClick={handleClose} disableRipple>
+                  {node.link.internal ? (
+                    <GatsbyButton size="large" color="primary" variant="text" to={node.link.internal?.slug?.current} sx={{
+                      // color: `${theme.palette.text.primary} !important`,  
+                    }}>{node.text}</GatsbyButton>
+                  ) : node.link.external ? (
+                    <Link size="large" href={node.link.external}>{node.text}</Link>
+                  ) : null}
+                </MenuItem>
+              )
+            })}
+          </Menu>
+        </Box>}
+
+
+      {// Mobile Menus
+      }
+      {
+        childNode.length === 0 && mobile &&
+
+        <Button
+          id="demo-customized-button"
+          aria-controls={open ? 'demo-customized-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+          variant="text"
+          disableElevation
+          onClick={handleClick}
+          // onMouseEnter={handleHover} // Disabled for the moment to get it all styled
+          //onMouseLeave={handleHoverOut}
+          sx={{
+            color: theme.palette.text.primary,
+            borderBottom: `1px solid ${open ? theme.palette.text.primary : `transparent`}`,
+            textAlign: { xs: 'left', md: 'center' },
+            justifyContent: { xs: 'left', md: 'center' },
+            px: theme.spacing(1),
+            fontWeight: 400,
+          }}
+          endIcon={childNode.length >= 1 && <ExpandMoreIcon />} size="large"
+        >{text}</Button>
+      }
+
+
+
+      {childNode.length >= 1 && mobile &&
+
+        <Accordion disableGutters elevation={0} expanded={expanded === `${key}`} onChange={handleChange(`${key}`)} sx={{
+          backgroundColor: theme.palette.background.default,
+          '& .MuiAccordionSummary-content': {
+            my: theme.spacing(1),
+          }
+        }}>
+          <AccordionSummary aria-controls={`${key}d-content`} id={`${key}d-content`} sx={{
+            px: theme.spacing(0),
+          }}>
+
+            <Button
+              id="demo-customized-button"
+              variant="text"
+              disableElevation
+              sx={{
+                color: theme.palette.text.primary,
+                borderBottom: `1px solid ${expanded === `${key}` ? theme.palette.text.primary : `transparent`}`,
+                textAlign: { xs: 'left', md: 'center' },
+                justifyContent: { xs: 'left', md: 'center' },
+                fontWeight: expanded === `${key}` ? '500' : '400',
+                px: theme.spacing(1),
+              }}
+              endIcon={childNode.length >= 1 && expanded === `${key}` ? <ExpandMoreIcon /> : <ExpandMoreIcon sx={{ transform: 'rotate(-90deg)' }} />}
+              size="large" >{text}</Button>
+
+          </AccordionSummary>
+          {childNode.map((node, i) => {
+
+            return (
+
+              <AccordionDetails sx={{
+                py: theme.spacing(0),
+                px: theme.spacing(0),
+              }}>
+
+                {node.link.internal ? (
+                  <GatsbyButton size="large" variant="text" to={node.link.internal?.slug?.current}
+                    sx={{
+                      justifyContent: "flex-start",
+                      color: theme.palette.text.primary,
+                      py: theme.spacing(1),
+                      fontWeight: 400,
+                    }}>{node.text}</GatsbyButton>
+                ) : node.link.external ? (
+                  <Link xs={{
+                    fontWeight: 400,
+                  }} href={node.link.external}>{node.text}</Link>
+                ) : null}
+
+              </AccordionDetails>
+
+            )
+          })}
+        </Accordion>
+      }
+
+
 
     </Box>
   )

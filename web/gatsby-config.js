@@ -157,16 +157,17 @@ module.exports = {
           fonts: {
             google: [
               {
-                family: `PT Serif`,
-                variants: [`700`],
+                family: `League Spartan`,
+                variants: [`400`, `500`, `700`],
               },
             ],
             selfHosted: [
               {
-                family: `Prociono`,
+                family: `Sentient`,
                 urls: {
-                  woff2: `../web/src/fonts/prociono/Prociono-Regular-webfont.woff`,
-                  woff: `../web/src/fonts/prociono/Prociono-Regular-webfont.woff`,
+                  woff2: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff2`,
+                  woff: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff`,
+                  ttf: `../web/src/fonts/sentient/fonts/Sentient-Bold.ttf`,
                   //[format]: '/[filepath]/[filename],
                 },
                 //[cssProperty]: 'value',
