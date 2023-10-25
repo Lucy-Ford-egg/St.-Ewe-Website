@@ -94,7 +94,10 @@ let clientTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: ` 
-        
+        .gemaSearch{
+          width:100%;
+          border:none;
+        }
         // html{
         //   min-height:100%;
         //   position: relative;

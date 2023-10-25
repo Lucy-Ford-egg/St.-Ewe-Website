@@ -20,12 +20,22 @@ export default defineType({
       title: 'Text',
       description: 'Add some textual content. Optional'
     }),
+
+    defineField({
+      name: 'searchColour',
+      type: 'reference',
+      title: 'Search Background Colour',
+      initialValue: '#DCE5E1', 
+      to:[{type: 'designSystemColor'}]
+    }), 
+    
     defineField({
       name: 'showSearch',
       type: 'boolean',
       title: 'Show Search',
       initialValue: true, 
-    }), 
+    }),
+      
     defineField({
       name: 'image',
       type: 'image',
