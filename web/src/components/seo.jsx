@@ -78,15 +78,4 @@ export const query = graphql`
       }
     }
   }
-  fragment SeoFeaturesFragment on SanityFeature {
-    metaDescription
-    metaTitle
-    ogDescription
-    ogTitle
-    ogImage {
-      asset {
-        url
-      }
-    }
-  }
 `

@@ -1,27 +1,88 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
 
-const clientSpacing = [0, 9, 11, 13, 16, 24, 34, 41, 51, 61, 74, 109, 159]
+const clientSpacing = [0, 8, 12, 14, 16, 20, 24, 28, 33, 35, 41, 48, 50, 58, 67, 72, 84, 96, 102]
 
 let defaultTheme = createTheme({
   spacing: [...clientSpacing],
   palette: {
     primary: {
-      main: "#C3B187", // Gold
-      mid: "#BFAD83",
-      dark: "#B8A67D",
-      accessible: "#83744d" // Accessible gold for small type
+      main: '#d63544',
     },
     secondary: {
-      main: '#2E2E2E', // Black
-      light: '#101010'
+      main: '#698f68',
     },
-    tertiary: {
-      main: '#987284', //
+    text: {
+      primary: 'rgba(93, 83, 64, 1)',
     },
-    white: {
-      main: '#ffffff'
+    background: {
+      default: '#f6f6ee',
+    },
+    white:{
+      main: '#ffffff',
+    }
+  },
+  typography: {
+    fontSize: 16,
+    body1: {
+      fontSize: 16,
+      lineHeight: 1.43,
+      letterSpacing: '0em',
+    },
+    body2: {
+      fontSize: 14,
+      letterSpacing: '0em',
+    },
+    button: {
+      lineHeight: 1.43,
+    },
+    caption: {
+      fontSize: 12,
+      lineHeight: 1.5,
+      letterSpacing: '0em',
+    },
+    overline: {
+      fontSize: 14,
+      lineHeight: 1.5,
+    },
+    h1: {
+      fontSize: 41,
+    },
+    h2: {
+      fontSize: 35,
+    },
+    h3: {
+      fontSize: 25,
+    },
+    h4: {
+      fontSize: 24,
+      letterSpacing: '0em',
+    },
+    h5: {
+      fontSize: 20,
+    },
+    h6: {
+      fontSize: 17,
+      letterSpacing: '0em',
     },
   },
+  // palette: {
+  //   primary: {
+  //     main: "#C3B187", // Gold
+  //     mid: "#BFAD83",
+  //     dark: "#B8A67D",
+  //     accessible: "#83744d" // Accessible gold for small type
+  //   },
+  //   secondary: {
+  //     main: '#2E2E2E', // Black
+  //     light: '#101010'
+  //   },
+  //   tertiary: {
+  //     main: '#987284', //
+  //   },
+  //   white: {
+  //     main: '#ffffff'
+  //   },
+  // },
 })
 
 let clientTheme = createTheme({
@@ -36,73 +97,73 @@ let clientTheme = createTheme({
       xxl: 1440
     }
   },
-  typography: {
-    fontFamily: [
-      'Montserrat',
-      'sans-serif',
-    ].join(','),
-    color: "black",
-    backgroundColor: "white",
-    h1:{
-      fontSize: 74,
-      fontFamily: 'PT Serif',
-      fontWeight: 700,
-    },
-    h2:{
-      fontSize: 51,
-      fontFamily: 'PT Serif',
-      fontWeight: 700,
-    },
-    h3:{
-      fontSize: 34,
-      fontFamily: 'PT Serif',
-      fontWeight: 700,
-    },
-    h4:{
-      fontSize: 24,
-      fontFamily: 'PT Serif',
-      fontWeight: 700,
-    },
-    h5:{
-      fontSize: 19,
-      fontFamily: 'PT Serif',
-      fontWeight: 700,
-    },
-    h6:{
-      fontSize: 16,
-      fontFamily: 'PT Serif',
-      fontWeight: 700,
-    },
-    subtitle1: {
-      fontSize: 11,
-      textTransform: 'uppercase',
-      letterSpacing: 0.93
-    },
-    subtitle2:{
-      fontSize: 16,
-      fontWeight: 400,
-      textTransform: 'uppercase',
-      letterSpacing: 0.93
-    },
-    body1:{
-      fontSize: 16,
-      lineHeight: 2.14
-    },
-    body2:{
-      fontSize: 16,
-      lineHeight: 2.14,
-      fontWeight: 700
-    },
-    caption:{
-      fontSize: 11,
-      lineHeight: 2.14
-    },
-    overline:{
-      fontSize: 16,
-      textTransform: 'uppercase',
-      letterSpacing: 0.93
-    },
-  },
+  // typography: {
+  //   fontFamily: [
+  //     'Montserrat',
+  //     'sans-serif',
+  //   ].join(','),
+  //   color: "black",
+  //   backgroundColor: "white",
+  //   h1:{
+  //     fontSize: 74,
+  //     fontFamily: 'PT Serif',
+  //     fontWeight: 700,
+  //   },
+  //   h2:{
+  //     fontSize: 51,
+  //     fontFamily: 'PT Serif',
+  //     fontWeight: 700,
+  //   },
+  //   h3:{
+  //     fontSize: 34,
+  //     fontFamily: 'PT Serif',
+  //     fontWeight: 700,
+  //   },
+  //   h4:{
+  //     fontSize: 24,
+  //     fontFamily: 'PT Serif',
+  //     fontWeight: 700,
+  //   },
+  //   h5:{
+  //     fontSize: 19,
+  //     fontFamily: 'PT Serif',
+  //     fontWeight: 700,
+  //   },
+  //   h6:{
+  //     fontSize: 16,
+  //     fontFamily: 'PT Serif',
+  //     fontWeight: 700,
+  //   },
+  //   subtitle1: {
+  //     fontSize: 11,
+  //     textTransform: 'uppercase',
+  //     letterSpacing: 0.93
+  //   },
+  //   subtitle2:{
+  //     fontSize: 16,
+  //     fontWeight: 400,
+  //     textTransform: 'uppercase',
+  //     letterSpacing: 0.93
+  //   },
+  //   body1:{
+  //     fontSize: 16,
+  //     lineHeight: 2.14
+  //   },
+  //   body2:{
+  //     fontSize: 16,
+  //     lineHeight: 2.14,
+  //     fontWeight: 700
+  //   },
+  //   caption:{
+  //     fontSize: 11,
+  //     lineHeight: 2.14
+  //   },
+  //   overline:{
+  //     fontSize: 16,
+  //     textTransform: 'uppercase',
+  //     letterSpacing: 0.93
+  //   },
+  // },
   palette: defaultTheme.palette,
   components: {
     MuiCssBaseline: {
@@ -166,75 +227,9 @@ let clientTheme = createTheme({
 
           }
         }
-        .#2E2E2E-text{
-          p, li{
-            color: #2E2E2E;
-          }
-          .underline{
-            border-bottom: 1px solid #2E2E2E;
-          }
-          .portableTextInlineLink{
-            color: #2E2E2E;
-            text-decoration: none;
-            background-position: bottom 6px left 0px;
-
-          }
-        }
-        // Inforced module spacing
-        .section{
-          &:first-child{
-            &.carousel{
-              margin-top: 0 !important;
-            }
-            &.titleSubtitleText{
-              padding-top: ${defaultTheme.spacing(9)} !important;
-            }
-            &.posts{
-              padding-top: 0 !important;
-            }
-          }
-          &.map{
-            & + .multiColumnTitleTextLink{
-              margin-top: 0 !important;
-            }
-          }
-          &.multiColumnTitleTextLink{
-            & + .map{
-              margin-top: 0 !important;
-            }
-            & + .carousel{
-              margin-top: 0 !important;
-            }
-          }
-          
-          &.imageCaption{
-            & + .text{
-              padding-top: ${defaultTheme.spacing(9)} !important;
-            }
-            &.xl-withCaption{
-              & + .text{
-                padding-top: ${defaultTheme.spacing(6)} !important;
-              }
-            }
-          }
-
-          &.titleSubtitleText{
-            & + .imageCaption{
-              margin-top: ${defaultTheme.spacing(9)} !important;
-            }
-            & + .placesGrid{
-              padding-top: ${defaultTheme.spacing(9)} !important;
-            }
-            & + .component-postsGrid{
-              padding-top: ${defaultTheme.spacing(9)} !important;
-            }
-          }
-        }
         // *{
         //   border: 1px solid red;
         // }
-        
-       
       `
     },
     MuiContainer:{
@@ -257,10 +252,30 @@ let clientTheme = createTheme({
         root: {
           borderRadius: 100,
           textTransform: 'unset',
-          display: 'block',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           width: 'max-content',
           minWidth: 145,
-          padding: `${defaultTheme.spacing(2)} ${defaultTheme.spacing(5)}`
+          padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(5)}`,
+          endIcon:{
+            margin: '0 !important'
+          },
+        },
+        sizeLarge:{
+          display: "flex",
+          padding: "0.5rem 1.3125rem",
+          justifyContent: "center",
+          alignItems: "center",
+          
+        },
+        outlineTertiary:{
+          color: defaultTheme.palette.text.primary,
+          backgroundColor: defaultTheme.palette.background.main,
+          border: `1px solid ${defaultTheme.palette.text.primary}`,
+          '&:hover':{
+            cursor: 'pointer'
+          },
         },
         containedPrimary: {
           color: 'white',
