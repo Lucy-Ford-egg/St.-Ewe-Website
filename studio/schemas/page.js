@@ -6,6 +6,10 @@ import siteMeta from '../schemas/siteMeta'
 
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
+import unitsListsSectionType from './modules/unitsListsSection'
+import featureSectionType from './modules/featureSection'
+import videoSectionType from './modules/videoSection'
+
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
 import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
@@ -96,6 +100,9 @@ export default defineType({
       description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
         { type: headerSectionAccommodationSearchType.name },
+        { type: unitsListsSectionType.name },
+        { type: featureSectionType.name},
+        { type: videoSectionType.name}, 
         { type: imageWithCaptionType.name, title: "Image, Caption Module"},
         { type: textBlockType.name, title: "Text Module"},
         { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
