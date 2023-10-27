@@ -2,10 +2,21 @@ import { defineField, defineType } from 'sanity'
 import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
 
 export default defineType({
-  name: "headerSectionAccommodationSearch",
+  name: "featureSection",
   type: "object",
-  title: "Header Section w/Accommodation Search",
+  title: "Feature Section",
   fields: [
+    defineField({
+      name: 'icon',
+      type: 'string',
+      title: 'Icon',
+    }), 
+    defineField({
+      name: 'subtitle',
+      type: 'string',
+      title: 'Subtitle',
+      hidden: ({ parent, value }) => !value && parent?.icon
+    }),
     defineField({
       name: 'title',
       type: 'string',
@@ -19,27 +30,23 @@ export default defineType({
       title: 'Text',
       description: 'Add some textual content. Optional'
     }),
-
     defineField({
-      name: 'searchColour',
-      type: 'reference',
-      title: 'Search Background Colour',
-      initialValue: '#DCE5E1', 
-      to:[{type: 'designSystemColor'}]
-    }), 
-
-    defineField({
-      name: 'showSearch',
+      name: 'mirror',
       type: 'boolean',
-      title: 'Show Search',
-      initialValue: true, 
+      title: 'Image positioned on the right',
+      description: 'Select this to reverse the order to have Image on the right and text on the right.'
     }),
-      
+
     defineField({
       name: 'image',
       type: 'image',
       title: 'Image',
       validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: 'topPadding',
+      type: 'boolean',
+      title: 'Remove top padding',
     }),   
   ],
   preview: {
@@ -51,8 +58,8 @@ export default defineType({
     prepare(selection) {
       const { title, media, showSearch } = selection
       return {
-        title: `${title} ${showSearch && '| Search active'}`,
-        subtitle: `Header Section w/Accommodation Search`,
+        title: `${title}`,
+        subtitle: `Feature Section`,
         media: media,
         icon: MdOutlinePhotoSizeSelectActual
       }

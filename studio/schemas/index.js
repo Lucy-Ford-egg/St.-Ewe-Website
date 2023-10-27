@@ -6,6 +6,7 @@ import categoriesType from '../schemas/categories'
 import siteSettingsType from '../schemas/siteSettings'
 import {ballotSetupType} from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
+import videoIdType from '../schemas/videoId'
 
 import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
@@ -15,6 +16,10 @@ import pageType from '../schemas/page'
 
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
+import unitsListsSectionType from './modules/unitsListsSection'
+import featureSectionType from './modules/featureSection'
+import videoSectionType from './modules/videoSection'
+
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
 import embedBlockType from '../schemas/modules/embedBlock'
@@ -51,6 +56,7 @@ export const schemaTypes = [
   siteSettingsType,
   ballotSetupType,
   designSystemColorType,
+  videoIdType,
   // Navigation
   navigationType,
   navItemType,
@@ -64,6 +70,9 @@ export const schemaTypes = [
   pageType,
   // Modules
   headerSectionAccommodationSearchType,
+  unitsListsSectionType,
+  featureSectionType,
+  videoSectionType,
   // Old Modules
   imageWithCaptionType,
   textBlockType, 
