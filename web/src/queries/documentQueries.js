@@ -16,6 +16,7 @@ export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
 
 export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0] {
   ...,
+  pageBuilder[] {..., searchColour->},
   title,
   text,
   image {
@@ -24,6 +25,7 @@ export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0] {
   mobileImage {
     asset->,
   },
+ 
 }`
 
 export const placeQuery = groq`*[_type == "place" && slug.current == $slug][0] {

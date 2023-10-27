@@ -1,6 +1,10 @@
 import React from 'react'
 
 import { HeaderSectionAccommodationSearch } from './headerSectionAccommodationSearch'
+import { UnitsListsSection } from './unitsListsSection'
+import { FeatureSection } from './featureSection'
+import { VideoSection } from './videoSection'
+
 import { Places } from './places'
 import { Posts } from './posts'
 import { ImageCaption } from './imageCaption'
@@ -35,10 +39,38 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
             
             <main data-content="main">
                 {modules.map((module, i) => {
-debugger
+
                     if (isModule(module, 'headerSectionAccommodationSearch')) {
                         return (
                         <HeaderSectionAccommodationSearch
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'unitsListsSection')) {
+                        return (
+                        <UnitsListsSection
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'featureSection')) {
+                        return (
+                        <FeatureSection
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'videoSection')) {
+                  
+                        return (
+                        <VideoSection
                             previewData={previewData && previewData.pageBuilder[i]} 
                             sanityConfig={sanityConfig}
                             key={module._key + i}

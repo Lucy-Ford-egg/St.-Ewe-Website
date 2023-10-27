@@ -26,7 +26,7 @@ let defaultTheme = createTheme({
     body1: {
       fontFamily: 'League Spartan',
       fontSize: 16,
-      lineHeight: 1.43,
+      lineHeight: 1.5,
       letterSpacing: '0em',
     },
     body2: {
@@ -94,10 +94,6 @@ let clientTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: ` 
-        .gemaSearch{
-          width:100%;
-          border:none;
-        }
         // html{
         //   min-height:100%;
         //   position: relative;

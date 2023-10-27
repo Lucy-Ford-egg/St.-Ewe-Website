@@ -41,6 +41,15 @@ query {
           _type
           ...HeaderSectionAccommodationSearchFragment
         }
+        ... on SanityUnitsListsSection {
+          ...UnitsListsSectionFragment
+        }
+        ... on SanityFeatureSection {
+          ...FeatureSectionFragment
+        }
+        ... on SanityVideoSection {
+          ...VideoSectionFragment
+        }
       }
     }
     allSanityPlace {
