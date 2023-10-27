@@ -21,14 +21,15 @@ export const VideoSection = props => {
         px: {xs: 0, sm: theme.spacing(12)}, alignItems: 'center'
       }}>
         <Grid item xs={12} sm={12}>
-          <Box>
+          <Box sx={{iframe: {width: '100%'}}}>
             {video && (
              <Vimeo
              video={video.url}
              autoplay
-             width={`100%`}
+             width="100%"
              height={`749px`}
-             controls={false}
+             controls={true}
+             playsInline={true}
            />
               // <GatsbyImage
               //   image={
