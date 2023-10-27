@@ -1,16 +1,16 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
+import {MdViewModule} from "react-icons/md"
 
 export default defineType({
-  name: "featureSection",
+  name: "featuresListSection",
   type: "object",
-  title: "Feature Section",
+  title: "Features List Section",
   fields: [
     defineField({
       name: 'icon',
       type: 'icons',
       title: 'Icon',
-    }),  
+    }), 
     defineField({
       name: 'subtitle',
       type: 'string',
@@ -23,6 +23,7 @@ export default defineType({
       title: 'Title',
       validation: Rule => Rule.required(),
     }), 
+
     defineField({
       name: 'text',
       type: 'text',
@@ -30,38 +31,39 @@ export default defineType({
       title: 'Text',
       description: 'Add some textual content. Optional'
     }),
+    
     defineField({
-      name: 'mirror',
-      type: 'boolean',
-      title: 'Image positioned on the right',
-      description: 'Select this to reverse the order to have Image on the right and text on the right.'
-    }),
+      name: 'textAlign',
+      type: 'textAlign',
+      title: 'Choose Text Alignment',
+    }), 
 
-    defineField({
-      name: 'image',
-      type: 'image',
-      title: 'Image',
-      validation: Rule => Rule.required(),
-    }),
     defineField({
       name: 'topPadding',
       type: 'boolean',
       title: 'Remove top padding',
-    }),   
+    }),
+    defineField({
+      title: 'Tiles',
+      name: 'featuresTile',
+      type: 'array',
+      of: [{type: 'featuresTile'}]
+    })
+  
   ],
   preview: {
     select: {
       title: 'title',
-      media: 'image',
-      showSearch: 'showSearch'
+      textAlign: 'textAlign'
+
     },
     prepare(selection) {
-      const { title, media, showSearch } = selection
+      const { title, media, showSearch, textAlign } = selection
       return {
-        title: `${title}`,
-        subtitle: `Feature Section`,
-        media: media,
-        icon: MdOutlinePhotoSizeSelectActual
+        title: `${title} ${showSearch && '| Search active'}`,
+        subtitle: `Features List Section | Text align ${textAlign}`,
+        // media: media,
+        icon: MdViewModule
       }
     }
   },

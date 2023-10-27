@@ -9,6 +9,7 @@ import headerSectionAccommodationSearchType from './modules/headerSectionAccommo
 import unitsListsSectionType from './modules/unitsListsSection'
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
+import featuresListSectionType from './modules/featuresListSection'
 
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
@@ -102,7 +103,8 @@ export default defineType({
         { type: headerSectionAccommodationSearchType.name },
         { type: unitsListsSectionType.name },
         { type: featureSectionType.name},
-        { type: videoSectionType.name}, 
+        { type: videoSectionType.name},
+        { type: featuresListSectionType.name }, 
         { type: imageWithCaptionType.name, title: "Image, Caption Module"},
         { type: textBlockType.name, title: "Text Module"},
         { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },

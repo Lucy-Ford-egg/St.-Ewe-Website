@@ -4,6 +4,7 @@ import { HeaderSectionAccommodationSearch } from './headerSectionAccommodationSe
 import { UnitsListsSection } from './unitsListsSection'
 import { FeatureSection } from './featureSection'
 import { VideoSection } from './videoSection'
+import { FeaturesListSection } from './featuresListSection'
 
 import { Places } from './places'
 import { Posts } from './posts'
@@ -71,6 +72,15 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
                   
                         return (
                         <VideoSection
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'featuresListSection')) {
+                        return (
+                        <FeaturesListSection
                             previewData={previewData && previewData.pageBuilder[i]} 
                             sanityConfig={sanityConfig}
                             key={module._key + i}

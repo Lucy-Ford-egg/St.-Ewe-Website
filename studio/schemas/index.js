@@ -3,10 +3,12 @@ import navItemType from '../schemas/navItem'
 import linkDefinedType from '../schemas/linkDefined'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import siteSettingsType from '../schemas/siteSettings'
-import {ballotSetupType} from '../schemas/siteSettings'
+import siteSettingsType, { ballotSetupType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 import videoIdType from '../schemas/videoId'
+import iconsType from '../schemas/icons'
+import textAlignType from '../schemas/textAlign'
+import featuresTileType from '../schemas/modules/featuresTile'
 
 import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
@@ -19,6 +21,7 @@ import headerSectionAccommodationSearchType from './modules/headerSectionAccommo
 import unitsListsSectionType from './modules/unitsListsSection'
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
+import featuresListSectionType from './modules/featuresListSection'
 
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
@@ -38,6 +41,7 @@ import imageWithLinkType from '../schemas/modules/imageWithLink'
 import instagramModuleType from '../schemas/modules/instagramModule'
 
 //Components
+
 import titleTextType from '../schemas/components/titleText'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageCaptionType from '../schemas/components/imageCaption'
@@ -56,6 +60,8 @@ export const schemaTypes = [
   siteSettingsType,
   ballotSetupType,
   designSystemColorType,
+  iconsType,
+  textAlignType,
   videoIdType,
   // Navigation
   navigationType,
@@ -73,6 +79,7 @@ export const schemaTypes = [
   unitsListsSectionType,
   featureSectionType,
   videoSectionType,
+  featuresListSectionType,
   // Old Modules
   imageWithCaptionType,
   textBlockType, 
@@ -91,6 +98,8 @@ export const schemaTypes = [
   imageWithLinkType,
   instagramModuleType,
   // Components
+  featuresTileType,
+// Old Components
   titleTextType,
   titleSubtitleTextType,
   imageCaptionType,

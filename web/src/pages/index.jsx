@@ -50,6 +50,9 @@ query {
         ... on SanityVideoSection {
           ...VideoSectionFragment
         }
+        ... on SanityFeaturesListSection {
+          ...FeaturesListSectionFragment
+        }
       }
     }
     allSanityPlace {
