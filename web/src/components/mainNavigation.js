@@ -1,6 +1,5 @@
 import React from "react"
-
-import {Container, useTheme } from "@mui/material"
+import {Container, useTheme, Button } from "@mui/material"
 
 import { NavigationItem } from "./navigationItem"
 
@@ -10,7 +9,7 @@ const MainNavigation = (props) => {
   const { handleCloseNavMenu, menu } = props
 
   return (
-    <Container sx={{ marginTop :{xs: 0, sm: `${theme.spacing(3)} !important`, md: 0}, width: { sm: '100%', md: 'auto' }, flexBasis: { sm: '100%', md: 'auto' }, flexGrow: 1, order: { sm: 1, md: 0 }, display: { sm: 'flex' }, flexDirection: { xs: 'column', sm: 'row' }, justifyContent: { xs: 'flex-start', sm: 'space-between', md: 'flex-end' } }}>
+    <Container sx={{ marginTop :{xs: 0, sm: 0, md: 0}, width: { sm: '100%', lg: 'auto' }, flexBasis: { sm: '100%', lg: 'auto' }, flexGrow: 1, order: { sm: 0, md: 1, lg: 0 }, display: { sm: 'flex' }, flexDirection: { xs: 'column', sm: 'row' }, justifyContent: { xs: 'flex-start', sm: 'space-between', md: 'flex-end' } }}>
 
       {menu?.sanityNavigation?.items && menu.sanityNavigation.items.map((menuItem, i) => {
 
@@ -26,6 +25,7 @@ const MainNavigation = (props) => {
         )
       })
       }
+       
 
     </Container>
   )

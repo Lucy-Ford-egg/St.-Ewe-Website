@@ -31,8 +31,8 @@ export const NavigationItem = (props) => {
 
 
   const theme = useTheme()
-  const mobile = useMediaQuery("(max-width:600px)")
-  const tablet = useMediaQuery("(max-width:884px)")
+  const mobile = useMediaQuery("(max-width:640px)")
+  const tablet = useMediaQuery("(max-width:900px)")
 
 
   return (
@@ -40,9 +40,7 @@ export const NavigationItem = (props) => {
       sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "secondary.main", display: 'flex', textTransform: "unset" }}
     >
       {childNode.length >= 1 && !mobile &&
-        <Box sx={{
-          mx: theme.spacing(2)
-        }}>
+        <Box>
           <Button
             id="demo-customized-button"
             aria-controls={open ? 'demo-customized-menu' : undefined}

@@ -29,7 +29,7 @@ export const IncludePreview = (props) => {
     const fetchData = async () => {
       console.log("slug:", slug.current)
       const client = getSanityPreviewClient()
-      debugger
+      
       const post = await client.fetch(documentQueries, { slug: slug.current })
       console.log("Fetched Data:", post)
     }

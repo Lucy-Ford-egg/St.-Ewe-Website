@@ -10,7 +10,7 @@ export const HeadScripts = (props) => {
     setPreview( activePreview)
 
   }, [activePreview])
-  debugger
+
 
 console.log(`Preview Active = ${preview}`)
   return (

@@ -9,21 +9,23 @@ import {
   Box,
   IconButton,
   useMediaQuery,
-  Button
+  Button,
+  useTheme,
 } from "@mui/material"
 import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 import MainNavigation from "./mainNavigation"
-// import tabletMainNavigation from "./tabletMainNavigation"
+// import mdMainNavigation from "./mdMainNavigation"
 // import { SearchOverlay } from "./searchOverlay"
 
 const Header = () => {
-  
+
   const [anchorElNav, setAnchorElNav] = useState(false)
   const [anchorElUser, setAnchorElUser] = useState(null)
   const [showSearch, setShowSearch] = useState(false)
 
+  const theme = useTheme()
   const toggleOpenNavMenu = toggle => {
     setAnchorElNav(toggle)
   }
@@ -39,8 +41,16 @@ const Header = () => {
     setAnchorElUser(null)
   }
 
-  const mobile = useMediaQuery("(max-width:600px)")
-  const tablet = useMediaQuery("(max-width:884px)")
+  const sm = useMediaQuery("(max-width:640px)")
+  const md = useMediaQuery("(max-width:900px)")
+  const lg = useMediaQuery("(min-width:1200px)")
+
+  // xs: 0,
+  // sm: 640,
+  // md: 900,
+  // lg: 1200,
+  // xl: 1330 ,
+  // xxl: 1440
 
   const data = useStaticQuery(graphql`
     query MainNavigationQuery {
@@ -112,7 +122,7 @@ const Header = () => {
         <Container maxWidth="xl" sx={{ py: 2 }}>
           <Toolbar
             disableGutters
-            sx={{ display: "flex", alignItems: "center", justifyContent: { xs: 'space-between', md: 'flex-end' }, flexWrap: {sm: 'wrap', md: 'no-wrap'} }}
+            sx={{ display: "flex", alignItems: "center", justifyContent: { xs: 'space-between', lg: 'flex-end' }, flexWrap: { sm: 'wrap', md: 'no-wrap' } }}
           >
             <Link
               to="/"
@@ -181,14 +191,14 @@ const Header = () => {
 
             </Link>
 
-            {/* <tabletMainNavigation menu={data} anchorElNav={anchorElNav} handleCloseNavMenu={handleCloseNavMenu} /> */}
+            {/* <mdMainNavigation menu={data} anchorElNav={anchorElNav} handleCloseNavMenu={handleCloseNavMenu} /> */}
 
-            {!mobile && <MainNavigation
+            {!md && <MainNavigation
               menu={data}
               handleCloseNavMenu={handleCloseNavMenu}
             />}
 
-            <Box sx={{ flexGrow: 0, alignItems: "center" }}>
+            <Box sx={{ flexGrow: 0, alignItems: "center", order: { xs: 0, sm: 1, md: 0, lg: 1 } }}>
               <Box
                 sx={{
                   display: "flex",
@@ -197,9 +207,9 @@ const Header = () => {
                   gap: '1rem',
                 }}
               >
-                {!mobile && <Button
+                {!sm && <Button
                   to="www.gendall.co.uk"
-                  variant="outline"
+                  variant="outlined"
                   color="tertiary"
                   size="large"
                   endIcon={<LoginIcon />}
@@ -220,7 +230,7 @@ const Header = () => {
                   onClick={e => toggleOpenNavMenu(!anchorElNav)}
                   color="inherit"
                   sx={{
-                    display: { xs: "block", sm: "none", lg: "none" },
+                    display: { xs: "block", sm: "block", md: "none", lg: "none" },
                   }}
                   disableRipple={true}
                 >
@@ -237,10 +247,28 @@ const Header = () => {
 
           </Toolbar>
         </Container>
-        {mobile && anchorElNav && <MainNavigation
+        {md && anchorElNav && <><MainNavigation
           menu={data}
           handleCloseNavMenu={handleCloseNavMenu}
-        />}
+        />
+          <Container maxWidth="large">
+            <Button
+              to="www.gendall.co.uk"
+              variant="text"
+              color="primary"
+              size="large"
+              endIcon={<LoginIcon />}
+              sx={{ 
+                display: { xs: 'flex', sm: 'none' }, 
+                textAlign: { xs: 'left', md: 'center' },
+                justifyContent: { xs: 'left', sm: 'center' }, 
+                fontWeight: 400, 
+                px: theme.spacing(1),
+                 }}>ManageBooking
+                
+            </Button>
+          </Container>
+        </>}
       </AppBar>
     </>
   )

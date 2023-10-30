@@ -11,6 +11,9 @@ let defaultTheme = createTheme({
     secondary: {
       main: '#698f68',
     },
+    tertiary: {
+      main: 'rgba(93, 83, 64, 1)',
+    },
     text: {
       primary: 'rgba(93, 83, 64, 1)',
     },
@@ -196,7 +199,7 @@ let clientTheme = createTheme({
         },
         sizeLarge:{
           display: "flex",
-          padding: "0.5rem 1.3125rem",
+          padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(5)}`, //"0.5rem 1.3125rem",
           justifyContent: "center",
           alignItems: "center",
           fontSize: defaultTheme.spacing(4)
