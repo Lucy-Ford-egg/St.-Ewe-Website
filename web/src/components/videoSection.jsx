@@ -16,20 +16,17 @@ export const VideoSection = props => {
   } = props
 
   return (
-    <Container maxWidth="xl" sx={{pb: theme.spacing(10), pt: topPadding ? 0 : theme.spacing(10)}}>
+    <Container maxWidth="xl" sx={{pb: {xs: theme.spacing(0), md: theme.spacing(10)}, pt: topPadding ? 0 : {xs: theme.spacing(10), md: theme.spacing(10)}, height: 'min-content'}}>
       <Grid container sx={{
-        px: {xs: 0, sm: theme.spacing(12)}, alignItems: 'center'
+        px: {xs: 0}, alignItems: 'center'
       }}>
         <Grid item xs={12} sm={12}>
-          <Box sx={{iframe: {width: '100%'}}}>
+          <Box sx={{iframe: {width: '100%', height: {xs: `215px`, md:`749px`}} }}>
             {video && (
              <Vimeo
              video={video.url}
              autoplay
-             width="100%"
-             height={`749px`}
              controls={true}
-             playsInline={true}
            />
               // <GatsbyImage
               //   image={

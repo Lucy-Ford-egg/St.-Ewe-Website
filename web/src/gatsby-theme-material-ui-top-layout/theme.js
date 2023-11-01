@@ -97,72 +97,37 @@ let clientTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: ` 
-        // html{
-        //   min-height:100%;
-        //   position: relative;
-        // }
-        // #searchInput{
-        //   &:focus {
-        //     border: none;
-        //     outline: none;
-        //   }
-        //   &::placeholder {
-        //     font-size: 51px;
-        //     font-family: "PT Serif";
-        //   }
-        //   font-size: 51px;
-        //   font-family: "PT Serif";
-        //   border: none;
-        //   background-color: transparent;
-        //   height: 51px;
-        //   padding-top: 3rem;
-        //   padding-bottom: 3rem;
-        // } 
-        // .scrollBar {
-        //   scrollbar-color: red yellow;
-        // }
-        // a{
-        //   color: inherit;
-        //   text-decoration: none;
-        // }
-        // .link-animation{
-        //   transition: all 0.2s ease-in 0s;
-		    //   position: relative;
-		    //   display: inline-block;
-        //   text-decoration: none;
-		    //   background-size: 0 100%;
-		    //   transition: background-size .3s ease;
-		    //   background-image: linear-gradient(transparent calc(100% - 1px),hsla(0,0%,100%,.5) 1px);
-		    //   background-repeat: no-repeat;
-		    //   cursor: pointer;
-		    //   &:hover{
-		    //   	background-size: 100% 100%;
-		    //   	color: rgba(255,255,255,1);
-        //     cursor: pointer;
-		    //   }
-        // }
-        // .white-text{
-        //   p, li{
-        //     color: white;
-        //   }
-        //   .underline{
-        //     border-bottom: 1px solid white;
-        //   }
-        //   .portableTextInlineLink{
-        //     color: white;
-        //     text-decoration: none;
-        //     background-position: bottom 6px left 0px;
-
-        //   }
-        // }
-        // *{
-        //   border: 1px solid red;
-        // }
+        @keyframes arrowAnimation {
+          0%,
+          50%,
+          100% {
+            translateX: 10px;
+            opacity: 1
+          }
+          25%,
+          75% {
+            translateX: 0px;
+            opacity: 0.2
+          }
+        }
       `
     },
     MuiContainer:{
       styleOverrides: {
         
+      },
+    },
+    MuiDivider:{
+      styleOverrides:{
+        root: {
+          borderColor: defaultTheme.palette.tertiary.main,
+        },
+        light:{
+          borderColor: defaultTheme.palette.background.default,
+        },
+        accent:{
+          borderColor: defaultTheme.palette.primary.main,
+        }
       },
     },
     MuiTextFeild:{
@@ -213,11 +178,25 @@ let clientTheme = createTheme({
           },
         },
         textPrimary:{
-          color: defaultTheme.palette.text.primary,
+          color: defaultTheme.palette.primary.main,
           borderRadius: 0,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(1)}`,
           '&:hover':{
-            color: defaultTheme.palette.text.primary,
+            color: defaultTheme.palette.tertiary.main,
+            backgroundColor: 'transparent',
+            '& .MuiSvgIcon-root':{
+              color: defaultTheme.palette.tertiary.main,
+              // animation: 'arrowAnimation 2s ease 0s infinite normal forwards',
+              // transition: 'all 0.2s ease-in-out 0s',
+            },
+          },
+        },
+        textTertiary:{
+          color: defaultTheme.palette.tertiary.main,
+          borderRadius: 0,
+          padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(1)}`,
+          '&:hover':{
+            color: defaultTheme.palette.tertiary.main,
             backgroundColor: 'transparent'
           },
         },
@@ -225,7 +204,8 @@ let clientTheme = createTheme({
           color: 'white',
           backgroundColor: defaultTheme.palette.primary.main,
           '&:hover':{
-            cursor: 'pointer'
+            cursor: 'pointer',
+            
           },
         },
       }

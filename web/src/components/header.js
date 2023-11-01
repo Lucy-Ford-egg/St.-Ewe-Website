@@ -235,9 +235,9 @@ const Header = () => {
                   disableRipple={true}
                 >
                   {anchorElNav ? (
-                    <CloseIcon color="secondary" />
+                    <CloseIcon color="tertiary" />
                   ) : (
-                    <MenuIcon color="secondary" />
+                    <MenuIcon color="tertiary" />
                   )}
                 </IconButton>
 
@@ -247,27 +247,12 @@ const Header = () => {
 
           </Toolbar>
         </Container>
-        {md && anchorElNav && <><MainNavigation
+        {md && anchorElNav && <>
+        <MainNavigation
           menu={data}
           handleCloseNavMenu={handleCloseNavMenu}
         />
-          <Container maxWidth="large">
-            <Button
-              to="www.gendall.co.uk"
-              variant="text"
-              color="primary"
-              size="large"
-              endIcon={<LoginIcon />}
-              sx={{ 
-                display: { xs: 'flex', sm: 'none' }, 
-                textAlign: { xs: 'left', md: 'center' },
-                justifyContent: { xs: 'left', sm: 'center' }, 
-                fontWeight: 400, 
-                px: theme.spacing(1),
-                 }}>ManageBooking
-                
-            </Button>
-          </Container>
+          
         </>}
       </AppBar>
     </>

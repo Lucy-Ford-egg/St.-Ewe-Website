@@ -7,6 +7,12 @@ export default defineType({
   title: "Feature Section",
   fields: [
     defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
       name: 'icon',
       type: 'icons',
       title: 'Icon',
@@ -31,36 +37,50 @@ export default defineType({
       description: 'Add some textual content. Optional'
     }),
     defineField({
+      name: 'links',
+      type: 'array',
+      title: 'Link(s)',
+      of: [
+        {type: 'linkDefined'}
+      ],
+      description: 'Add a link(s). Optional',
+      validation: Rule => Rule.min(1).max(2),
+    }),
+    defineField({
       name: 'mirror',
       type: 'boolean',
       title: 'Image positioned on the right',
       description: 'Select this to reverse the order to have Image on the right and text on the right.'
     }),
-
-    defineField({
-      name: 'image',
-      type: 'image',
-      title: 'Image',
-      validation: Rule => Rule.required(),
-    }),
     defineField({
       name: 'topPadding',
       type: 'boolean',
       title: 'Remove top padding',
-    }),   
+    }),
+    defineField({
+      name: 'highlighted',
+      type: 'boolean',
+      title: 'Make the section highlighted',
+      description: 'Adds a background colour to green and a pin-line border. Optional'
+    })   
   ],
   preview: {
     select: {
       title: 'title',
       media: 'image',
-      showSearch: 'showSearch'
+      showSearch: 'showSearch',
+      highlighted: 'highlighted'
     },
     prepare(selection) {
-      const { title, media, showSearch } = selection
+      const { title, media, showSearch, highlighted } = selection
+
+      const thumb = highlighted ? <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%',backgroundColor: '#698F68'}}>{<MdOutlinePhotoSizeSelectActual style={{color: 'white'}}/>}</span> : media
+
       return {
-        title: `${title}`,
+        title: title,
         subtitle: `Feature Section`,
-        media: media,
+        // media: media,
+        media: thumb,
         icon: MdOutlinePhotoSizeSelectActual
       }
     }

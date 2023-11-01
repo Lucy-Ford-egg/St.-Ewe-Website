@@ -25,6 +25,12 @@ export default defineType({
       title: 'Text',
       description: 'Add some textual content. Optional'
     }),
+    defineField({
+      name: 'link',
+      type: 'linkDefined',
+      title: 'Link',
+      description: 'Add a link. Optional'
+    })
   ],
   preview: {
     select: {

@@ -3,7 +3,7 @@ import navItemType from '../schemas/navItem'
 import linkDefinedType from '../schemas/linkDefined'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import siteSettingsType, { ballotSetupType } from '../schemas/siteSettings'
+import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, awardType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 import videoIdType from '../schemas/videoId'
 import iconsType from '../schemas/icons'
@@ -59,6 +59,9 @@ export const schemaTypes = [
 
   siteSettingsType,
   ballotSetupType,
+  companyDetailsType,
+  awardsWonType,
+  awardType,
   designSystemColorType,
   iconsType,
   textAlignType,

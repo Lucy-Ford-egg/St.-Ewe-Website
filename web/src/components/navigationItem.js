@@ -154,7 +154,7 @@ export const NavigationItem = (props) => {
               return (
                 <MenuItem key={`submenu-${i}-${node.text}`} onClick={handleClose} disableRipple>
                   {node.link.internal ? (
-                    <GatsbyButton size="large" color="primary" variant="text" to={node.link.internal?.slug?.current} sx={{
+                    <GatsbyButton size="large" color="tertiary" variant="text" to={node.link.internal?.slug?.current} sx={{
                       // color: `${theme.palette.text.primary} !important`,  
                     }}>{node.text}</GatsbyButton>
                   ) : node.link.external ? (
