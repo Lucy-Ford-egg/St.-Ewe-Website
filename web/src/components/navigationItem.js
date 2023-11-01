@@ -39,7 +39,7 @@ export const NavigationItem = (props) => {
     <Box
       sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "secondary.main", display: 'flex', textTransform: "unset" }}
     >
-      {childNode.length >= 1 && !mobile &&
+      {childNode && childNode.length >= 1 && !mobile &&
         <Box>
           <Button
             id="demo-customized-button"
@@ -85,7 +85,7 @@ export const NavigationItem = (props) => {
             }}
             sx={{ mt: theme.spacing(2) }}
           >
-            {childNode.map((node, i) => {
+            {childNode && childNode.map((node, i) => {
 
               return (
                 <MenuItem key={`submenu-${i}-${node.text}`} onClick={handleClose} disableRipple sx={{
@@ -112,7 +112,7 @@ export const NavigationItem = (props) => {
           </Menu>
         </Box>}
 
-      {childNode.length === 0 && !mobile &&
+      {childNode && childNode.length === 0 && !mobile &&
         <Box>
           <GatsbyButton
             id="demo-customized-button"
@@ -149,7 +149,7 @@ export const NavigationItem = (props) => {
               backgroundColor: theme.palette.background.main,
             }}
           >
-            {childNode.map((node, i) => {
+            {childNode && childNode.map((node, i) => {
 
               return (
                 <MenuItem key={`submenu-${i}-${node.text}`} onClick={handleClose} disableRipple>
@@ -170,7 +170,7 @@ export const NavigationItem = (props) => {
       {// Mobile Menus
       }
       {
-        childNode.length === 0 && mobile &&
+        childNode && childNode.length === 0 && mobile &&
 
         <Button
           id="demo-customized-button"
@@ -196,7 +196,7 @@ export const NavigationItem = (props) => {
 
 
 
-      {childNode.length >= 1 && mobile &&
+      {childNode && childNode.length >= 1 && mobile &&
 
         <Accordion disableGutters elevation={0} expanded={expanded === `${key}`} onChange={handleChange(`${key}`)} sx={{
           backgroundColor: theme.palette.background.default,
@@ -224,7 +224,7 @@ export const NavigationItem = (props) => {
               size="large" >{text}</Button>
 
           </AccordionSummary>
-          {childNode.map((node, i) => {
+          {childNode && childNode.map((node, i) => {
 
             return (
 

@@ -15,17 +15,19 @@ const wrapPageElement = ({ element, props }) => {
 
     <ThemeProvider theme={clientTheme}>
       <CssBaseline />      
-      <Layout {...props}>
+     
         
 
         <PreviewProvider>
           <SanityPreviewConnectorProvider token={process.env.SANITY_TOKEN}>
           <HeadScripts activePreview={props} />
+          <Layout {...props}>
             {element}
+            </Layout>
           </SanityPreviewConnectorProvider>
         </PreviewProvider>
 
-      </Layout>
+     
       <PrivacyMessage />
     </ThemeProvider>
 

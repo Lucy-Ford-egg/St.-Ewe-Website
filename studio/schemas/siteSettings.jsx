@@ -37,7 +37,8 @@ export const awardsWonType = defineType({
   type: 'array',
   title: 'Awards won',
   of: [{type: 'awardType'}],
-  description: 'Shown in the footer. Drag to reorder'
+  description: 'Shown in the footer. Drag to reorder',
+  validation: Rule => Rule.min(1).max(6)
 })
 
 export const ballotSetupType = defineType({

@@ -19,6 +19,7 @@ let defaultTheme = createTheme({
     },
     background: {
       default: '#f6f6ee',
+      main: '#f6f6ee',
     },
     white:{
       main: '#ffffff',
@@ -87,8 +88,8 @@ let clientTheme = createTheme({
       xs: 0,
       sm: 640,
       md: 900,
-      lg: 1200,
-      xl: 1330 ,
+      lg: 1180,
+      xl: 1300 ,
       xxl: 1440
     }
   },
