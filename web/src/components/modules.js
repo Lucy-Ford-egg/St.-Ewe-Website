@@ -5,6 +5,7 @@ import { UnitsListsSection } from './unitsListsSection'
 import { FeatureSection } from './featureSection'
 import { VideoSection } from './videoSection'
 import { FeaturesListSection } from './featuresListSection'
+import { CtaSection } from './ctaSection'
 
 import { Places } from './places'
 import { Posts } from './posts'
@@ -81,6 +82,15 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
                     if (isModule(module, 'featuresListSection')) {
                         return (
                         <FeaturesListSection
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'ctaSection')) {
+                        return (
+                        <CtaSection
                             previewData={previewData && previewData.pageBuilder[i]} 
                             sanityConfig={sanityConfig}
                             key={module._key + i}

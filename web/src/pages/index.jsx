@@ -53,6 +53,9 @@ query {
         ... on SanityFeaturesListSection {
           ...FeaturesListSectionFragment
         }
+        ... on SanityCtaSection {
+          ...CtaSectionFragment
+        }
       }
     }
     allSanityPlace {
