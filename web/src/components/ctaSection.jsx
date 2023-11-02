@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql } from "gatsby"
 import { Container, Box, useTheme, Typography, Grid } from "@mui/material"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
@@ -105,7 +106,7 @@ export const query = graphql`
     _type
     image {
       asset {
-        gatsbyImageData
+        gatsbyImageData(height: 467)
       }
     }
     title
