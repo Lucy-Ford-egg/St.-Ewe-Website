@@ -16,6 +16,7 @@ if (req.query.fetch) {
   console.log(`CMS Fetch - ${req.query.fetch}`)
   const baseOrigin = host.includes('localhost') ? STUDIO_URL_DEV : STUDIO_URL_PROD
   const absoluteUrl = new URL(slug, baseOrigin).toString()
+
   // Create preview headers from the setPreviewData above
   const previewHeader = res.getHeader('Set-Cookie')
   const previewHeaderString =
@@ -25,10 +26,10 @@ if (req.query.fetch) {
   const headers = new Headers()
   headers.append('credentials', 'include')
   headers.append('Cookie', previewHeaderString ?? '')
-  const previewHtml = await fetch(absoluteUrl, {headers})
-    .then((previewRes) => {
+
+  const previewHtml = await fetch(absoluteUrl, { headers }).then((previewRes) => {
     console.log(`Preview String ${previewRes.text()}`)
-    previewRes.text()})
-    .catch((err) => console.error(err))
+    previewRes.text()
+  }).catch((err) => console.error(err))
   return res.send(previewHtml)
 }
