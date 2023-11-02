@@ -31,5 +31,5 @@ if (req.query.fetch) {
     console.log(`Preview String ${previewRes.text()}`)
     previewRes.text()
   }).catch((err) => console.error(err))
-  return res.send(previewHtml)
+  //return res.send(previewHtml)
 }
