@@ -2,12 +2,9 @@ import React from "react"
 import { Container, Box, useTheme, Typography, Grid } from "@mui/material"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
-import { Icons } from "../components/icons"
 
 export const CtaSection = props => {
-  const { newsletterSetup, previewData, sanityConfig, icon = "bud" } = props
-
-  const { title, text, image } = newsletterSetup
+  const { title, text, image, previewData, sanityConfig, overlay, leftAlign } = props
 
   const theme = useTheme()
   return (
@@ -75,11 +72,6 @@ export const CtaSection = props => {
                   alignItems: "center",
                 }}
               >
-                <Icons
-                  type={
-                    previewData && previewData.icon ? previewData.icon : icon
-                  }
-                />
                 <Typography
                   color="text.main"
                   align="center"
@@ -106,3 +98,40 @@ export const CtaSection = props => {
     </Box>
   )
 }
+
+export const query = graphql`
+  fragment CtaSectionFragment on SanityCtaSection {
+    _key
+    _type
+    image {
+      asset {
+        gatsbyImageData
+      }
+    }
+    title
+    text
+    links {
+      link {
+        internal {
+          ... on SanityPage {
+            id
+            slug {
+              current
+            }
+          }
+          ... on SanityPost {
+            id
+            slug {
+              current
+            }
+          }
+        }
+        external
+      }
+      text
+    }
+    leftAlign
+    topPadding
+    overlay
+  }
+`
