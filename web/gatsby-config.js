@@ -165,9 +165,9 @@ module.exports = {
               {
                 family: `Sentient-Bold`,
                 urls: {
-                  woff2: `../fonts/sentient/fonts/Sentient-Bold.woff2`,
-                  woff: `../fonts/sentient/fonts/Sentient-Bold.woff`,
-                  ttf: `../fonts/sentient/fonts/Sentient-Bold.ttf`,
+                  woff2: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff2`,
+                  woff: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff`,
+                  ttf: `../web/src/fonts/sentient/fonts/Sentient-Bold.ttf`,
                   //[format]: '/[filepath]/[filename],
                 },
                 //[cssProperty]: 'value',
