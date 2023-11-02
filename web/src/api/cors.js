@@ -1,7 +1,7 @@
 // Is the SEO plugin trying to fetch and return HTML?
 // AND is the Studio on a different URL to the website?
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.query.fetch) {
     // Allow requests from the Studio's URL
     console.log("fetch", req.query.fetch)
