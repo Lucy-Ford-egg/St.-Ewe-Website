@@ -3,10 +3,11 @@ import navItemType from '../schemas/navItem'
 import linkDefinedType from '../schemas/linkDefined'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, awardType } from '../schemas/siteSettings'
+import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 import videoIdType from '../schemas/videoId'
 import iconsType from '../schemas/icons'
+import overlayType from '../schemas/overlay'
 import textAlignType from '../schemas/textAlign'
 import featuresTileType from '../schemas/modules/featuresTile'
 
@@ -22,6 +23,7 @@ import unitsListsSectionType from './modules/unitsListsSection'
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
+import ctaSectionType from './modules/ctaSection'
 
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
@@ -62,10 +64,12 @@ export const schemaTypes = [
   companyDetailsType,
   awardsWonType,
   awardType,
+  newsletterType,
   designSystemColorType,
   iconsType,
   textAlignType,
   videoIdType,
+  overlayType,
   // Navigation
   navigationType,
   navItemType,
@@ -83,6 +87,7 @@ export const schemaTypes = [
   featureSectionType,
   videoSectionType,
   featuresListSectionType,
+  ctaSectionType,
   // Old Modules
   imageWithCaptionType,
   textBlockType, 

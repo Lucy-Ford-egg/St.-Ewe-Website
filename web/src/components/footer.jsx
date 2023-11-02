@@ -5,12 +5,13 @@ import { Container, Grid, Box, Link, Typography, IconButton, useTheme, ListItem,
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { SocialIcon } from 'react-social-icons'
+import { Newsletter } from './newsletter'
 
 
 
 export const Footer = (props) => {
 
-  const { previewData, sanityConfig } = props
+  const { previewData, sanityConfig, showNewsletter = true } = props
 
   const theme = useTheme()
   const data = useStaticQuery(graphql`
@@ -74,7 +75,6 @@ export const Footer = (props) => {
         }
       }
     }
-
     sanitySiteSettings {
       companyDetails {
         address1
@@ -91,6 +91,15 @@ export const Footer = (props) => {
           }
         }
         url
+      }
+      newsletterSetup {
+        image {
+          asset {
+            gatsbyImageData(height: 566)
+          }
+        }
+        text
+        title
       }
     }
   }
@@ -111,7 +120,9 @@ export const Footer = (props) => {
 
   const address = [data.sanitySiteSettings.companyDetails.address1, data.sanitySiteSettings.companyDetails.address2, data.sanitySiteSettings.companyDetails.county, data.sanitySiteSettings.companyDetails.postcode]
   return (
-    <Box sx={{ backgroundColor: 'secondary.main', py: {xs: 11, md: 0} }}>
+    <>
+    {showNewsletter && <Newsletter newsletterSetup={data.sanitySiteSettings.newsletterSetup}/>}
+    <Box sx={{ backgroundColor: 'secondary.main', py: {xs: 11, md: 14} }}>
 
       <Container maxWidth="xl">
         <Divider sx={{ borderColor: 'background.main' }} />
@@ -302,6 +313,7 @@ export const Footer = (props) => {
       </Container>
 
     </Box>
+    </>
   )
 
 }

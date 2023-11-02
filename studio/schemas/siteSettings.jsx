@@ -61,6 +61,39 @@ export const ballotSetupType = defineType({
     ]
 })
 
+export const newsletterType = defineType({
+  name:'newsletterSetup',
+  type: 'object',
+  title: 'Newsletter Setup',
+  fields:[
+    defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: "title",
+      type: "string",
+      title: "Title",
+      description: "Title to show on the newsletter"
+    }),
+    defineField({
+      name: "text",
+      type: "string",
+      title: "Text",
+      description: "Text to show on the newsletter"
+    }),
+    defineField({
+      name: "consentText",
+      type: 'array', 
+      title: "Consent Text",
+      description: "Edit the consent text on the newsletter",
+      of: [{type: 'block'}],
+    }),
+  ]
+})
+
 export const companyDetailsType = defineType({
   name: 'companyDetails',
   title: 'Company Details',
@@ -120,6 +153,10 @@ export default defineType({
     {
       name: 'awardsWon',
       title: 'Awards Won'
+    },
+    {
+      name: 'newsletterSetup',
+      title: 'Newsletter Setup'
     }
   ],
   icon: MdOutlineMenu,
@@ -157,6 +194,12 @@ export default defineType({
       type: 'awardsWon',
       title: 'Awards Won',
       group: 'awardsWon',
+    }),
+    defineField({
+      name: 'newsletterSetup',
+      type: 'newsletterSetup',
+      title: 'Newsletter Setup',
+      group: 'newsletterSetup'
     })
   ]
 })

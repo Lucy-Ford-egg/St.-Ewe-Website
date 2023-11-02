@@ -7,13 +7,6 @@ export default defineCliConfig({
     projectId: process.env.SANITY_STUDIO_PROJECT_ID,
     dataset: 'production',
   },
-  graphql: [
-    {
-      playground: false,
-      workspace: 'prodcuction',
-      id: 'production-schema',
-    },
-  ],
   vite: (prev) => ({
     ...prev,
     plugins: [...prev.plugins, nodePolyfills({util: true})],

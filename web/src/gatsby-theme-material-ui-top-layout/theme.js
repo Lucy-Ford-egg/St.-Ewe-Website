@@ -131,6 +131,13 @@ let clientTheme = createTheme({
         }
       },
     },
+    MuiFilledInput:{
+      styleOverrides:{
+        root: {
+          backgroundColor: defaultTheme.palette.white.main,
+        },
+      },
+    },
     MuiTextFeild:{
       styleOverrides: {
         root: {

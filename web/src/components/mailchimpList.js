@@ -3,7 +3,6 @@ import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { Typography, Button, FormHelperText, Box, TextField, useFormControl } from "@mui/material"
 import FormControl from "@mui/material/FormControl"
 import CheckIcon from '@mui/icons-material/Check';
-import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 
 export const MailchimpList = () => {
   // Since `addToMailchimp` returns a promise, you
@@ -41,18 +40,20 @@ export const MailchimpList = () => {
     return <FormHelperText>{helperText}</FormHelperText>;
   }
   return (
-    <Box>
+    <Box sx={{
+      width: '100%'
+    }}>
       {!MCResult &&
-        <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}>
-          <FormControl sx={{ width: '100%', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
-            <Box>
+        <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}  sx={{ display: 'flex', width: '100%'}}>
+          <FormControl sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: {xs : 'center', md: 'unset'}, flexDirection: { xs: 'column', md: 'row' } }}>
+            <Box sx={{width: '100%'}}>
               <TextField id="email" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
-                backgroundColor: clientTheme.palette.white.main, borderColor: 'white', minWidth: 280, maxWidth: 350, mb: { xs: 6, md: 0 }
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%', md: 307}, maxWidth: 350, mb: { xs: 6, md: 0 }
 
               }} name="email" type="email" placeholder="Enter your email address" />
               <MyFormHelperText />
             </Box>
-            <Button sx={{ mx: { xs: 6, md: 6, minWidth: { xs: '100%', md: 145 }, width: { xs: '100% !important', md: 'fit-content' } } }} variant="contained" color="secondary" type="submit">Join</Button>
+            <Button sx={{ mx: { xs: 6, md: 6, minWidth: { xs: '100%', md: 145 }, width: { xs: '100% !important', md: 'fit-content' } } }} size="large" variant="contained" color="primary" type="submit">Signup</Button>
           </FormControl>
         </Box>
       }
