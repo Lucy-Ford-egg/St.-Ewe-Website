@@ -45,9 +45,9 @@ export default defineType({
     }),
     defineField({
       title: 'Tiles',
-      name: 'featuresTile',
+      name: 'servicesTile',
       type: 'array',
-      of: [{type: 'featuresTile'}]
+      of: [{type: 'servicesTile'}]
     })
   
   ],

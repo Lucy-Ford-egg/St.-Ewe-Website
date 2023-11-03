@@ -10,6 +10,7 @@ import iconsType from '../schemas/icons'
 import overlayType from '../schemas/overlay'
 import textAlignType from '../schemas/textAlign'
 import featuresTileType from '../schemas/modules/featuresTile'
+import servicesTileType from '../schemas/modules/servicesTile'
 
 import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
@@ -109,6 +110,7 @@ export const schemaTypes = [
   instagramModuleType,
   // Components
   featuresTileType,
+  servicesTileType,
 // Old Components
   titleTextType,
   titleSubtitleTextType,

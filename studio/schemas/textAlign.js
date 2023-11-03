@@ -6,9 +6,13 @@ export default {
     list: [
       {title: 'Left', value: 'left'},
       {title: 'Center', value: 'center'},
-      {title: 'Right', value: 'right'}
-
+      // {title: 'Right', value: 'right'}
     ], // &lt;-- predefined values
+    layout: 'radio',
+    direction: 'horizontal'
+  },
+  initialValue: {
+    title: 'Center'
   },
   preview: {
     select: {
