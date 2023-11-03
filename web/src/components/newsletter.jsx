@@ -14,7 +14,7 @@ export const Newsletter = props => {
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.highlight.main,
         display: "grid",
         gridTemplateColumns: "repeat(24,1fr)",
         alignItems: 'center',

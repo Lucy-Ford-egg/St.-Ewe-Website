@@ -9,7 +9,7 @@ let defaultTheme = createTheme({
       main: '#d63544',
     },
     secondary: {
-      main: '#698f68',
+      main: '#f6f6ee',
     },
     tertiary: {
       main: 'rgba(93, 83, 64, 1)',
@@ -23,7 +23,10 @@ let defaultTheme = createTheme({
     },
     white:{
       main: '#ffffff',
-    }
+    },
+    highlight: {
+      main: '#698f68',
+    },
   },
   typography: {
     fontSize: 16,
@@ -97,7 +100,10 @@ let clientTheme = createTheme({
   palette: defaultTheme.palette,
   components: {
     MuiCssBaseline: {
-      styleOverrides: ` 
+      styleOverrides: `
+      *{
+        border: 1px solid red,
+      } 
         @keyframes arrowAnimation {
           0%,
           50%,
@@ -111,6 +117,7 @@ let clientTheme = createTheme({
             opacity: 0.2
           }
         }
+        
       `
     },
     MuiContainer:{

@@ -51,7 +51,7 @@ export const HeroInfoCallToAction = ({ editor, image, linkGroup, mobileImage }) 
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}>
                     <Box sx={{ marginBottom: 6 }}>
-                      <RenderPortableText variant={false} value={editor[0]._rawChildren} textColor={clientTheme.palette.secondary.main} />
+                      <RenderPortableText variant={false} value={editor[0]._rawChildren} textColor={clientTheme.palette.highlight.main} />
                     </Box>
                   </motion.div>
 

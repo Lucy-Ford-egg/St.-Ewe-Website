@@ -55,7 +55,7 @@ export const FeatureSection = props => {
               md: highlighted ? theme.spacing(16) : theme.spacing(10),
             },
         backgroundColor: highlighted
-          ? theme.palette.secondary.main
+          ? theme.palette.highlight.main
           : "transparent",
       }}
     >

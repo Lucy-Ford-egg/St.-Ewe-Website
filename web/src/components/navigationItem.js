@@ -37,7 +37,7 @@ export const NavigationItem = (props) => {
 
   return (
     <Box
-      sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "secondary.main", display: 'flex', textTransform: "unset" }}
+      sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "highlight.main", display: 'flex', textTransform: "unset" }}
     >
       {childNode && childNode.length >= 1 && !mobile &&
         <Box>

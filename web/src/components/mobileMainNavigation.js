@@ -127,10 +127,10 @@ const MobileMainNavigation = props => {
                       transition: "all 0.2 ease-in-out 0",
                     },
                     "&:hover": {
-                      color: "secondary.main",
+                      color: "highlight.main",
                       backgroundColor: "transparent",
                       "&:before": {
-                        backgroundColor: "secondary.main",
+                        backgroundColor: "highlight.main",
                       },
                     },
                   }}

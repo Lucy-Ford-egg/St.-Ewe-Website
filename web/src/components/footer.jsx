@@ -122,7 +122,7 @@ export const Footer = (props) => {
   return (
     <>
     {showNewsletter && <Newsletter newsletterSetup={data.sanitySiteSettings.newsletterSetup}/>}
-    <Box sx={{ backgroundColor: 'secondary.main', py: {xs: 11, md: 14} }}>
+    <Box sx={{ backgroundColor: 'highlight.main', py: {xs: 11, md: 14} }}>
 
       <Container maxWidth="xl">
         <Divider sx={{ borderColor: 'background.main' }} />

@@ -10,7 +10,7 @@ export const Text = (props) => {
   return (
     <Container className="section text" maxWidth="xl" sx={{pt: {xs: 10, md: 11} }}>
       <Container maxWidth="sm">
-        <RenderPortableText variant={false} value={previewData && previewData.content || _rawContent} textColor={clientTheme.palette.secondary.main} />
+        <RenderPortableText variant={false} value={previewData && previewData.content || _rawContent} textColor={clientTheme.palette.highlight.main} />
       </Container>
     </Container>
   )

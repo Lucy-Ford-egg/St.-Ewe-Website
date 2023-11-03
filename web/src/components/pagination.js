@@ -29,7 +29,7 @@ export const Pagination = props => {
               color:
                 pageContext.humanPageNumber === i + 1
                   ? theme.palette.white.main
-                  : theme.palette.secondary.main,
+                  : theme.palette.highlight.main,
               backgroundColor:
                 pageContext.humanPageNumber === i + 1
                   ? theme.palette.primary.main

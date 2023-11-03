@@ -40,9 +40,9 @@ export const TitleSubtitleText = ({ disableTopPadding, displayTitle, subtitle, t
       
       {showAdornment && <Container maxWidth="sm" sx={{py: {xs: 6}}}>
         <Box display="flex" justifyContent="center" alignItems="center">
-            <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.secondary.main}`, mx: {xs: 7} }}></Box>
+            <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.highlight.main}`, mx: {xs: 7} }}></Box>
             <ArchIcon />
-            <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.secondary.main}`, mx: {xs: 7} }}></Box>
+            <Box display="span" sx={{ width: "85px", borderBottom: `1px solid ${clientTheme.palette.highlight.main}`, mx: {xs: 7} }}></Box>
           </Box>
          
         </Container>

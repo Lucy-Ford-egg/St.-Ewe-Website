@@ -28,7 +28,7 @@ export const ImageTextCallToActionImage = ({ logo, _rawText, image, linkGroup, i
               }}
              
             />}
-            <RenderPortableText textColor={clientTheme.palette.secondary.main} variant={false} value={_rawText} />
+            <RenderPortableText textColor={clientTheme.palette.highlight.main} variant={false} value={_rawText} />
             <ButtonLink linkGroup={linkGroup} variant="contained" color="secondary" />
           </Box>
         </Grid>
