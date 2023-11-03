@@ -24,6 +24,7 @@ import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
+import servicesSectionType from './modules/servicesSection'
 
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
@@ -88,6 +89,7 @@ export const schemaTypes = [
   videoSectionType,
   featuresListSectionType,
   ctaSectionType,
+  servicesSectionType,
   // Old Modules
   imageWithCaptionType,
   textBlockType, 

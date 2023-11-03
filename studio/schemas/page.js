@@ -11,6 +11,7 @@ import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
+import servicesSectionType from "./modules/servicesSection";
 
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
@@ -106,21 +107,8 @@ export default defineType({
         { type: featureSectionType.name},
         { type: videoSectionType.name},
         { type: featuresListSectionType.name }, 
-        { type: ctaSectionType.name }, 
-        { type: imageWithCaptionType.name, title: "Image, Caption Module"},
-        { type: textBlockType.name, title: "Text Module"},
-        { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
-        { type: heroCallToActionType.name, title: "Hero Image, Title, Text, CTA Module"},
-        { type: mapType.name, title: "Map, Marker Module"},
-        { type: twoColumnTitleTextCtaType.name, title: "Two Column, Title, Text, CTA Module"},
-        { type: imageCarouselSubtitleTitleTextLinkType.name, title: "Hero Image Carousel, Subtitle, Title, Text, CTA Module"},
-        { type: placesGridType.name, title: "Places Grid Module" },
-        { type: heroNewsletterType.name, title: "Hero Newsletter, CTA, Caption Module"},
-        { type: postsGridType.name, title: "Posts Grid Module" },
-        { type: heroInfoCallToActionType.name, title: "Hero, Info, CTA, Caption Module" },
-        { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
-        { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
-        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },  
+        { type: ctaSectionType.name },
+        {type: servicesSectionType.name}, 
         // etc...
         ],
          group: 'pageContent',
