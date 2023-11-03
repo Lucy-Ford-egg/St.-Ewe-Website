@@ -54,6 +54,8 @@ let defaultTheme = createTheme({
       fontFamily: 'League Spartan',
       fontSize: 14,
       lineHeight: 1.5,
+      textTransform: 'uppercase',
+      letterSpacing: 0.3,
     },
     h1: {
       fontSize: clientSpacing[15],
@@ -175,6 +177,7 @@ let clientTheme = createTheme({
           alignItems: 'center',
           justifyContent: 'center',
           width: 'max-content',
+          fontWeight: 400,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(5)}`,
         },
         sizeLarge:{
@@ -188,6 +191,14 @@ let clientTheme = createTheme({
           color: defaultTheme.palette.text.primary,
           backgroundColor: defaultTheme.palette.background.default,
           border: `1px solid ${defaultTheme.palette.text.primary}`,
+          '&:hover':{
+            cursor: 'pointer'
+          },
+        },
+        outlineSecondary:{
+          color: defaultTheme.palette.background.main,
+          backgroundColor: 'transparent',
+          border: `1px solid ${defaultTheme.palette.background.main}`,
           '&:hover':{
             cursor: 'pointer'
           },
@@ -224,6 +235,25 @@ let clientTheme = createTheme({
           },
         },
       }
+    },
+    MuiTypography:{
+      styleOverrides:{
+        root:{},
+        h2:{
+          [defaultTheme.breakpoints.up('xs')]: {
+            paddingTop: `${defaultTheme.spacing(6)} !important`,
+            paddingBottom: `${defaultTheme.spacing(6)} !important`,
+            marginTop: 0,
+            marginBottom: 0,
+            },
+          [defaultTheme.breakpoints.up('md')]: {
+          paddingTop: `${defaultTheme.spacing(6)} !important`,
+          paddingBottom: `${defaultTheme.spacing(6)} !important`,
+          marginTop: 0,
+          marginBottom: 0,
+          },
+        },
+      },
     }
   },
 });
