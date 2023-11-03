@@ -72,7 +72,7 @@ export const CtaSection = props => {
             gridRow: "1/auto",
             height: "100%",
           }}
-        >
+        >       
           <Container maxWidth="xl">
             <Box
               sx={{
@@ -81,6 +81,7 @@ export const CtaSection = props => {
               }}
             >
               {image && (
+                <>
                 <GatsbyImage
                   image={
                     getGatsbyImageData(
@@ -99,6 +100,17 @@ export const CtaSection = props => {
                     gridRow: "1/auto",
                   }}
                 />
+                { overlay && <Box className="overlay" sx={{
+                  width: '100%',
+                  height: "100%",
+                    minHeight: "100%",
+                    gridColumn: "1/25",
+                    gridRow: "1/auto",
+                    position: 'relative',
+                    zIndex: 1,
+                    backgroundColor: `rgba(36,36,36, ${overlay})`,
+                }}/>}
+                </>
               )}
             </Box>
           </Container>
@@ -138,14 +150,14 @@ export const CtaSection = props => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: leftAlign === true ? "flex-start" : "center",
-                  px: {xs: 4, md: 11},
-                  py: {xs:11, md: 11}
+                  px: {xs: 8, md: 11},
+                  py: {xs: 8, md: 11}
                 }}
               >
                 <Typography
                   color="background.main"
                   align={leftAlign === true ? "left" : "center"}
-                  sx={{ my: { xs: 5 } }}
+                  sx={{ my: { xs: 0, md: 5 } }}
                   variant="h2"
                 >
                   {previewData && previewData.title ? previewData.title : title}
