@@ -56,6 +56,9 @@ query {
         ... on SanityCtaSection {
           ...CtaSectionFragment
         }
+        ... on SanityServicesSection {
+          ...ServicesSectionFragment
+        }
       }
     }
     allSanityPlace {

@@ -53,7 +53,7 @@ export const MailchimpList = () => {
               }} name="email" type="email" placeholder="Enter your email address" />
               <MyFormHelperText />
             </Box>
-            <Button sx={{ mx: { xs: 6, md: 6, minWidth: { xs: '100%', md: 145 }, width: { xs: '100% !important', md: 'fit-content' } } }} size="large" variant="contained" color="primary" type="submit">Signup</Button>
+            <Button sx={{ mx: { xs: 6, md: 6, minWidth: { xs: '100%', md: 109 }, width: { xs: '100% !important' } } }} size="large" variant="contained" color="primary" type="submit">Signup</Button>
           </FormControl>
         </Box>
       }

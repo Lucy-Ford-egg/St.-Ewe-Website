@@ -39,13 +39,13 @@ export const FeatureSection = props => {
   const boxPy = highlighted
     ? { xs: theme.spacing(6), md: theme.spacing(10) }
     : false
-
+debugger
   return (
     <Container
       maxWidth={highlighted ? "fluid" : "xl"}
       sx={{
         pb: {
-          xs: theme.spacing(0),
+          xs: theme.spacing(10),
           md: highlighted ? theme.spacing(16) : theme.spacing(10),
         },
         pt: topPadding
@@ -54,6 +54,9 @@ export const FeatureSection = props => {
               xs: theme.spacing(10),
               md: highlighted ? theme.spacing(16) : theme.spacing(10),
             },
+        mt: topPadding
+          ? 0
+          : highlighted ? theme.spacing(10) : 0,
         backgroundColor: highlighted
           ? theme.palette.highlight.main
           : "transparent",
@@ -69,7 +72,7 @@ export const FeatureSection = props => {
           sx={{
             py: boxPy,
             mx: boxPx,
-            px: {xs: highlighted ? 6 : 0, md: 0},
+            px: { xs: highlighted ? 6 : 0, md: 0 },
             border: highlighted
               ? `1px solid ${theme.palette.background.default}`
               : `unset`,
@@ -77,7 +80,7 @@ export const FeatureSection = props => {
         >
           <Grid
             container
-            rowSpacing={6}
+            rowSpacing={{ xs: 6, sm: 6, md: 6 }}
             columnSpacing={{ xs: 13, sm: 13, md: 13 }}
             direction={mirror ? "row-reverse" : "row"}
             sx={{
@@ -112,31 +115,45 @@ export const FeatureSection = props => {
 
             <Grid item xs={12} sm={12} md={6}>
               <Box sx={{ pb: highlighted ? theme.spacing(10) : `unset` }}>
-                <Icons
-                  type={
-                    previewData && previewData.icon ? previewData.icon : icon
-                  }
-                />
-                <Typography
-                  color={textColour}
-                  sx={{ my: { xs: 5 } }}
-                  variant="h2"
-                >
+                {icon && (
+                  <Icons
+                    type={
+                      previewData && previewData.icon ? previewData.icon : icon
+                    }
+                  />
+                )}
+
+                {subtitle && (
+                  <Typography
+                    color={textColour}
+                    sx={{ mt: { xs: 4, md: 4 } }}
+                    variant="overline"
+                    component="p"
+                  >
+                    {previewData && previewData.subtitle
+                      ? previewData.subtitle
+                      : subtitle}
+                  </Typography>
+                )}
+
+                <Typography color={textColour} variant="h2">
                   {previewData && previewData.title ? previewData.title : title}
                 </Typography>
-                <Divider
-                  component="div"
-                  role="presentation"
-                  sx={{
-                    borderColor: highlighted
-                      ? theme.palette.background.default
-                      : theme.palette.primary.main,
-                    maxWidth: 305,
-                  }}
-                />
+                {text && (
+                  <Divider
+                    component="div"
+                    role="presentation"
+                    sx={{
+                      borderColor: highlighted
+                        ? theme.palette.background.default
+                        : theme.palette.primary.main,
+                      maxWidth: 305,
+                    }}
+                  />
+                )}
                 <Typography
                   color={textColour}
-                  sx={{ my: { xs: 5 } }}
+                  sx={{ py: { xs: 5, md: 6 } }}
                   variant="body1"
                 >
                   {previewData && previewData.text ? previewData.text : text}

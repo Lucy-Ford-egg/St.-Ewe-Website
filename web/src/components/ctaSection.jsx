@@ -124,7 +124,7 @@ export const CtaSection = props => {
           gridRow: "1/auto",
           position: "relative",
           zIndex: 1,
-          py: { xs: 11, md: 0 },
+          py: { xs: !leftAlign ? 0 : 11, md: 0 },
         }}
       >
         <Container

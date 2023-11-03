@@ -8,7 +8,7 @@ import { MailchimpList } from "./mailchimpList"
 export const Newsletter = props => {
   const { newsletterSetup, previewData, sanityConfig, icon = "bud" } = props
 
-  const { title, text, image } = newsletterSetup
+  const { title, text, image, topPadding } = newsletterSetup
 
   const theme = useTheme()
   return (
@@ -18,6 +18,12 @@ export const Newsletter = props => {
         display: "grid",
         gridTemplateColumns: "repeat(24,1fr)",
         alignItems: 'center',
+        mt: topPadding
+          ? 0
+          : {
+              xs: theme.spacing(10),
+              md: theme.spacing(10),
+        },
       }}
     >
       <Box

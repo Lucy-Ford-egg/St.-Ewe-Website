@@ -45,33 +45,43 @@ export const FeaturesListSection = props => {
       >
         <Grid item xs={12} sm={12} md={8}>
           <Box>
-            <Icons
-              type={previewData && previewData.icon ? previewData.icon : icon}
-            />
-            <Typography
-              color="text.primary"
-              sx={{ my: { xs: 5 } }}
-              variant="h2"
-              align={textAlign === "right" ? "left" : textAlign}
-            >
-              {previewData && previewData.title ? previewData.title : title}
-            </Typography>
-            { text && <Divider
-              component="div"
-              role="presentation"
-              sx={{
-                backgroundColor: theme.palette.primary.main,
-                maxWidth: 305,
-              }}
-            />} 
-            <Typography
-              color="text.primary"
-              sx={{ my: { xs: 5 } }}
-              variant="body1"
-              align={textAlign === "right" ? "left" : textAlign}
-            >
-              {previewData && previewData.text ? previewData.text : text}
-            </Typography>
+          {icon && <Icons
+                  type={
+                    previewData && previewData.icon ? previewData.icon : icon
+                  }
+                />}
+
+                {subtitle && <Typography
+                  color='text.main'
+                  sx={{ mt: { xs: 4, md: 4  }}}
+                  variant="overline"
+                  component='p'
+                >
+                  {previewData && previewData.subtitle ? previewData.subtitle : subtitle}
+                </Typography>}
+
+                <Typography
+                  color='text.main'
+                  variant="h2"
+                >
+                  {previewData && previewData.title ? previewData.title : title}
+                </Typography>
+                {text && <Divider
+                  component="div"
+                  role="presentation"
+                  sx={{
+                    borderColor: theme.palette.primary.main,
+                    maxWidth: 305,
+                  }}
+                />}
+                {text && <Typography
+                  color='text.main'
+                  sx={{ py: { xs: 5, md: 6 } }}
+                  variant="body1"
+                >
+                  {previewData && previewData.text ? previewData.text : text}
+                </Typography>
+}
           </Box>
         </Grid>
       </Grid>
@@ -81,7 +91,7 @@ export const FeaturesListSection = props => {
         rowSpacing={6} 
         columnSpacing={{ xs: 13, sm: 6, md: 6 }}
         sx={{
-          pt: theme.spacing(12),
+          pt: theme.spacing(6),
           px: { xs: 0, sm: theme.spacing(12) },
         }}
       >

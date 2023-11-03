@@ -6,6 +6,7 @@ import { FeatureSection } from './featureSection'
 import { VideoSection } from './videoSection'
 import { FeaturesListSection } from './featuresListSection'
 import { CtaSection } from './ctaSection'
+import { ServicesSection } from './servicesSection'
 
 import { Places } from './places'
 import { Posts } from './posts'
@@ -22,6 +23,7 @@ import {TitleSubtitleText} from './titleSubtitleText'
 import {ImageTextCallToActionImage} from './imageTextCallToActionImage'
 import { ImageLink } from './imageLink'
 import {InstagramEmbed} from './InstagramEmbed'
+
 
 
 const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFeature, placeLocation, pageContext }) => {
@@ -91,6 +93,15 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
                     if (isModule(module, 'ctaSection')) {
                         return (
                         <CtaSection
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'servicesSection')) {
+                        return (
+                        <ServicesSection
                             previewData={previewData && previewData.pageBuilder[i]} 
                             sanityConfig={sanityConfig}
                             key={module._key + i}
