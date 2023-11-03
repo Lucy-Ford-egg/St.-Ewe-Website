@@ -3,29 +3,47 @@ import { graphql } from "gatsby"
 import { Container, Box, useTheme, Typography, Grid } from "@mui/material"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
+import { ButtonFormat } from "./buttonFormat"
 
 export const CtaSection = props => {
-  const { title, text, image, previewData, sanityConfig, overlay, leftAlign } = props
+  const {
+    title,
+    text,
+    image,
+    previewData,
+    sanityConfig,
+    overlay,
+    leftAlign,
+    links,
+    topPadding,
+  } = props
 
   const theme = useTheme()
   return (
-    <Box
+    <Container
+    maxWidth="false"
+    disableGutters="true"
       sx={{
-        backgroundColor: theme.palette.secondary.main,
-        display: "grid",
-        gridTemplateColumns: "repeat(24,1fr)",
-        alignItems: 'center',
+        backgroundColor: theme.palette.background.main,
+        pt: topPadding
+          ? 0
+          : {
+              xs: theme.spacing(10),
+              md: theme.spacing(14),
+            },
+        pb: {
+          xs: theme.spacing(0),
+          md: theme.spacing(14),
+        },
       }}
     >
-      <Box
-        sx={{
-          display: "grid",
-          gridColumn: "1/25",
-          gridRow: "1/auto",
-          height: '100%',
-        }}
-      >
-        {image && (
+      <Box sx={{
+      display: "grid",
+      gridTemplateColumns: "repeat(24,1fr)",
+      alignItems: "center",  
+      }}>
+      {
+        leftAlign === true && image && (
           <GatsbyImage
             image={
               getGatsbyImageData(
@@ -38,13 +56,55 @@ export const CtaSection = props => {
             aspectRatio={133 / 8}
             alt={image.asset?.altText}
             style={{
+              height: "100%",
               minHeight: "100%",
               gridColumn: "1/25",
               gridRow: "1/auto",
             }}
           />
         )}
-      </Box>
+      
+      {leftAlign === false && (
+        <Box
+          sx={{
+            display: "grid",
+            gridColumn: "1/25",
+            gridRow: "1/auto",
+            height: "100%",
+          }}
+        >
+          <Container maxWidth="xl">
+            <Box
+              sx={{
+                display: "grid",
+                height: "100%",
+              }}
+            >
+              {image && (
+                <GatsbyImage
+                  image={
+                    getGatsbyImageData(
+                      previewData?.image?.asset?._ref,
+                      { maxWidth: 1440 },
+                      sanityConfig,
+                    ) || getImage(image?.asset)
+                  }
+                  layout="constrained"
+                  aspectRatio={133 / 8}
+                  alt={image.asset?.altText}
+                  style={{
+                    height: "100%",
+                    minHeight: "100%",
+                    gridColumn: "1/25",
+                    gridRow: "1/auto",
+                  }}
+                />
+              )}
+            </Box>
+          </Container>
+        </Box>
+      )}
+      
       <Box
         sx={{
           display: "grid",
@@ -52,30 +112,39 @@ export const CtaSection = props => {
           gridRow: "1/auto",
           position: "relative",
           zIndex: 1,
-          py: {xs: 11, md: 0}
+          py: { xs: 11, md: 0 },
         }}
       >
-        <Container maxWidth="lg">
-          <Grid container justifyContent="center">
+        <Container
+          maxWidth="xl"
+          sx={{
+            py: leftAlign === true ? {xs: 0, md: 14} : 8,
+          }}
+        >
+          <Box sx={{
+            border: leftAlign === true ? `1px solid ${theme.palette.background.main}` : `unset`,
+          }}>
+          <Grid container justifyContent={leftAlign === true ? "flex-start" : "center"}>
             <Grid
               item
               xs={12}
               md={6}
               sx={{
-                backgroundColor: "background.main",
-                p: 11,
+                // backgroundColor: "background.main"
               }}
             >
               <Box
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  alignItems: "center",
+                  alignItems: leftAlign === true ? "flex-start" : "center",
+                  px: {xs: 4, md: 11},
+                  py: {xs:11, md: 11}
                 }}
               >
                 <Typography
-                  color="text.main"
-                  align="center"
+                  color="background.main"
+                  align={leftAlign === true ? "left" : "center"}
                   sx={{ my: { xs: 5 } }}
                   variant="h2"
                 >
@@ -83,20 +152,49 @@ export const CtaSection = props => {
                 </Typography>
 
                 <Typography
-                  color="text.main"
-                  align="center"
+                  color="background.main"
+                  align={leftAlign === true ? "left" : "center"}
                   sx={{ my: { xs: 5 } }}
                   variant="body1"
                 >
                   {previewData && previewData.text ? previewData.text : text}
                 </Typography>
-               
+
+                <Box
+                  sx={{
+                    width: "fit-content",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    flexDirection: "row",
+                    flexBasis: "100%",
+                    columnGap: 6,
+                    py: 2,
+                  }}
+                >
+                  {links &&
+                    links.map((node, i) => {
+                      return (
+                        <ButtonFormat
+                          variant={i === 0 ? "contained" : "outlined"}
+                          color={i === 0 ? "primary" : "secondary"}
+                          node={
+                            previewData && previewData.node
+                              ? previewData.node
+                              : node
+                          }
+                          sx={{}}
+                        />
+                      )
+                    })}
+                </Box>
               </Box>
             </Grid>
           </Grid>
+          </Box>
         </Container>
       </Box>
-    </Box>
+      </Box>
+    </Container>
   )
 }
 
