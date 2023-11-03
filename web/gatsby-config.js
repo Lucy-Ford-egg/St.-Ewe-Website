@@ -8,7 +8,7 @@ const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() 
 module.exports = {
   siteMetadata: {
     title: `Heligan Campsite`,
-    description: `Heligan Campsite site for design minded luxury holidays`,
+    description: `Heligan Campsite site. Be at home with nature.`,
     author: `@edwardwilson`,
   },
   plugins: [
@@ -64,8 +64,8 @@ module.exports = {
         name: `heligan-campsite`,
         short_name: `heligan-campsite`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#f6f6ee`,
+        theme_color: `#f6f6ee`,
         display: `standalone`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
