@@ -1,5 +1,5 @@
 import React from "react"
-import { Alert, Snackbar, Typography, useTheme, IconButton } from "@mui/material"
+import { Alert, Snackbar, Typography, useTheme, IconButton, Container } from "@mui/material"
 import {Link} from "gatsby-theme-material-ui"
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -14,7 +14,7 @@ export const PrivacyMessage = () => {
   function getSavedState() {
     if (storage) {
       const show = storage.privacy ? JSON.parse(storage.privacy) : true
-      return show
+      return true //show
     } else return true
   }
 
@@ -32,15 +32,15 @@ export const PrivacyMessage = () => {
 
   return (
 
-     <Snackbar sx={{ width: "95%"}} open={showMessage} autoHideDuration={6000} onClose={e => handleClick()} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+     <Snackbar sx={{width: '100%', left:'0 !important', right: '0 !important', backgroundColor: theme.palette.highlight.main,}} open={showMessage} autoHideDuration={6000} onClose={e => handleClick()}>
+      <Container maxWidth='xl'>
       <Alert
         onClose={e => handleClick(e)}
         severity=""
         sx={{
-          border: `1px solid ${theme.palette.primary.main}`,
           color: theme.palette.white.main,
-          backgroundColor: theme.palette.white.main,
           borderRadius: 0,
+          width: '100%',
           "& a": {
             color: "inherit",
           },
@@ -56,15 +56,15 @@ export const PrivacyMessage = () => {
             </IconButton>
           }
       >
-        <Typography color="secondary" align="center" variant="caption" component="div">We use cookies on our website to make your experience better and to help
-        us monitor and improve our customer service.</Typography>
-        <Typography color="secondary" align="center" variant="caption" component="div">By continuing we will
+        <Typography color="secondary" align="left" variant="caption" component="div">We use cookies on our website to make your experience better and to help
+        us monitor and improve our customer service. <br/>By continuing we will
         assume that you are happy to receive all cookies. You can manage the use
-        of cookies through your browser.</Typography>
-        <Typography color="secondary" align="center" variant="caption" component="div">Read how we use cookies on our{" "}
+        of cookies through your browser. Read how we use cookies on our{" "}
         <Link to="/privacy">Privacy Policy</Link> page.</Typography>
-      </Alert>
 
+      
+      </Alert>
+      </Container>
     </Snackbar>
   )
 }
