@@ -38,8 +38,8 @@ export default defineType({
     defineField({
       name: 'leftAlign',
       type: 'boolean',
-      title: 'Image positioned on the right',
-      description: 'Select this align the text to the left and show the image full in the background with a pin line border. Optional'
+      title: 'Text align left',
+      description: 'Select this align the text to the left and show the image full in the background with a pin line border. Optional',
     }),
     defineField({
       name: 'topPadding',
