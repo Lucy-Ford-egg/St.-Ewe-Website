@@ -11,7 +11,8 @@ import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
-import servicesSectionType from "./modules/servicesSection";
+import servicesSectionType from "./modules/servicesSection"
+import testimonialSectionType from "./modules/testimonialSection"
 
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
@@ -27,6 +28,7 @@ import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
 import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 import imageWithLinkType from '../schemas/modules/imageWithLink'
+import testimonialSection from "./modules/testimonialSection";
 
 
 
@@ -109,6 +111,7 @@ export default defineType({
         { type: featuresListSectionType.name }, 
         { type: ctaSectionType.name },
         {type: servicesSectionType.name}, 
+        {type: testimonialSectionType.name},
         // etc...
         ],
          group: 'pageContent',

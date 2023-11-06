@@ -7,6 +7,7 @@ let defaultTheme = createTheme({
   palette: {
     primary: {
       main: '#d63544',
+      light: '#FFEBEB'
     },
     secondary: {
       main: '#f6f6ee',
@@ -27,6 +28,10 @@ let defaultTheme = createTheme({
     highlight: {
       main: '#698f68',
     },
+    yellow: {
+      main: '#F6C305',
+      light: 'rgba(93, 83, 64, 0.4)'
+    }
   },
   typography: {
     fontSize: 16,

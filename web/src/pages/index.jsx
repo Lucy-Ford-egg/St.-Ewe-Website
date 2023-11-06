@@ -59,6 +59,9 @@ query {
         ... on SanityServicesSection {
           ...ServicesSectionFragment
         }
+        ... on SanityTestimonialSection {
+          ...TestimonialSectionFragment
+        }
       }
     }
     allSanityPlace {

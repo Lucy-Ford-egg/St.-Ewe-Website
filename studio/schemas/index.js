@@ -11,6 +11,8 @@ import overlayType from '../schemas/overlay'
 import textAlignType from '../schemas/textAlign'
 import featuresTileType from '../schemas/modules/featuresTile'
 import servicesTileType from '../schemas/modules/servicesTile'
+import testimonialTileType from '../schemas/modules/testimonialTile'
+import testimonialSectionType from '../schemas/modules/testimonialSection'
 
 import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
@@ -91,6 +93,7 @@ export const schemaTypes = [
   featuresListSectionType,
   ctaSectionType,
   servicesSectionType,
+  testimonialSectionType,
   // Old Modules
   imageWithCaptionType,
   textBlockType, 
@@ -111,6 +114,7 @@ export const schemaTypes = [
   // Components
   featuresTileType,
   servicesTileType,
+  testimonialTileType,
 // Old Components
   titleTextType,
   titleSubtitleTextType,

@@ -54,11 +54,11 @@ export const Carousel = (props) => {
 
   useEffect(() => {
     const setDirection = -1
-    // const timer = setTimeout(() => {
-    //   // console.log('This will run after 3 second!')
-    //   paginate(setDirection)
-    // }, 9000);
-    // return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      // console.log('This will run after 3 second!')
+      paginate(setDirection)
+    }, 9000);
+    return () => clearTimeout(timer);
   });
 
   return (
