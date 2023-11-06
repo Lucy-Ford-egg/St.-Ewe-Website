@@ -152,7 +152,7 @@ const base = Array.from(Array(5).keys())
                   right: 0,
                   display: "flex",
                   flexDirection: "column",
-                  alignItems: "center",
+                  alignItems: "flex-start",
                   justifyContent: "center",
                 }}
               >
