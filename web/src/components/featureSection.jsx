@@ -39,7 +39,7 @@ export const FeatureSection = props => {
   const boxPy = highlighted
     ? { xs: theme.spacing(6), md: theme.spacing(10) }
     : false
-debugger
+
   return (
     <Container
       maxWidth={highlighted ? "fluid" : "xl"}

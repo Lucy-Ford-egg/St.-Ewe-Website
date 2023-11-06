@@ -28,6 +28,7 @@ export const ServicesTile = props => {
           ? "0px 4px 12px 0px rgba(50, 50, 26, 0.4)"
           : "0px 4px 4px 0px rgba(50, 50, 26, 0.06)",
         height: "100%",
+        minHeight: 'max-content',
         display: "grid",
         gridTemplateColumns: "repeat(24, 1fr)",
       }}
@@ -100,7 +101,7 @@ export const ServicesTile = props => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "flex-end",
+              justifyContent: {xs: "center", lg: "flex-end"},
               alignItems: "center",
               flexBasis: "100%",
               pt: 4,
@@ -113,23 +114,23 @@ export const ServicesTile = props => {
                 type={previewData && previewData.icon ? previewData.icon : image && image.asset ? 'bud' : 'acorn'}
               />
             
-            <Typography
+            {title && <Typography
               align="center"
               color="background.main"
               sx={{ my: { xs: 5 } }}
               variant={image ? 'h4' : 'h5'}
             >
               {previewData && previewData.title ? previewData.title : title}
-            </Typography>
+            </Typography>}
 
-            <Typography
+            {text && <Typography
               align="center"
               color="background.main"
               sx={{ my: { xs: 5 } }}
               variant="body1"
             >
               {previewData && previewData.text ? previewData.text : text}
-            </Typography>
+            </Typography>}
           </Box>
 
           <Box

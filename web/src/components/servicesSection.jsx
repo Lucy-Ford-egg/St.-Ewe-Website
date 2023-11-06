@@ -7,10 +7,12 @@ import {
   Box,
   Divider,
   useTheme,
+  useMediaQuery,
 } from "@mui/material"
 import { Icons } from "../components/icons"
 import { textAlignToJustifyContent } from "../utils/alignment"
 import { ServicesTile } from "./servicesTile"
+import {Carousel} from './carousel'
 
 export const ServicesSection = props => {
   const theme = useTheme()
@@ -28,6 +30,8 @@ export const ServicesSection = props => {
     textAlign,
     servicesTile,
   } = props
+
+  const mobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Container
@@ -112,7 +116,9 @@ export const ServicesSection = props => {
         </Grid>
       </Grid>
 
-      <Grid
+      {mobile && <Carousel previewData={previewData} sanityConfig={sanityConfig} tiles={servicesTile}/>}
+
+      {!mobile && <Grid
         container
         rowSpacing={6}
         columnSpacing={{ xs: 13, sm: 6, md: 6 }}
@@ -148,7 +154,7 @@ export const ServicesSection = props => {
               </Grid>
             )
           })}
-      </Grid>
+      </Grid>}
     </Container>
   )
 }
