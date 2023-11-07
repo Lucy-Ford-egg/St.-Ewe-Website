@@ -4,8 +4,9 @@ import IframePreview from '../previews/iframePreview'
 
 const remoteURL = 'https://heligancampsite.netlify.app' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
 const localURL = 'http://localhost:8000' // local development port from Gatsby
-const previewUrl = window.location.hostname === 'localhost' ? localURL : remoteURL
+const previewUrl = window.location.hostname.includes('localhost') ? localURL : remoteURL
 
+// const previewUrl = process.env.SANITY_STUDIO_FRONTEND
 export const Views = (S, context) => {
   return [
     S.view.form(), // Default Sanity's form view for editing content
