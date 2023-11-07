@@ -5,7 +5,9 @@ export default {
   type: "object",
   name: "videoId",
   title: "Video ID",
-  inputComponent: VideoIdField,
+  components:{
+    input:VideoIdField,
+  },
   fields: [
     {
       type: "string",
