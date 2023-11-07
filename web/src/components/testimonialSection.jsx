@@ -31,19 +31,9 @@ const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity
 }
 
-const builder = imageUrlBuilder(getSanityClient)
-
-function urlFor(source) {
-  debugger
-  return builder.image(source)
-}
-
 export const TestimonialSection = props => {
   const theme = useTheme()
   const { previewData, sanityConfig, testimonialTiles, topPadding } = props
-
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
-  const tablet = useMediaQuery(theme.breakpoints.up("xs"))
 
   const [[page, direction], setPage] = useState([0, 0])
 
