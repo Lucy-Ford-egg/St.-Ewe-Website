@@ -24,8 +24,8 @@ export default defineType({
       name: 'searchColour',
       type: 'reference',
       title: 'Search Background Colour',
-      initialValue: '#DCE5E1', 
-      to:[{type: 'designSystemColor'}]
+      to:[{type: 'designSystemColor'}],
+      weak: true,
     }), 
 
     defineField({

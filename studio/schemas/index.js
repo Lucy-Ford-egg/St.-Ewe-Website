@@ -7,6 +7,7 @@ import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, a
 import designSystemColorType from '../schemas/designSystemColor'
 import videoIdType from '../schemas/videoId'
 import iconsType from '../schemas/icons'
+import colorChoiceType from '../schemas/colorChoice'
 import overlayType from '../schemas/overlay'
 import textAlignType from '../schemas/textAlign'
 import featuresTileType from '../schemas/modules/featuresTile'
@@ -74,6 +75,7 @@ export const schemaTypes = [
   textAlignType,
   videoIdType,
   overlayType,
+  colorChoiceType,
   // Navigation
   navigationType,
   navItemType,
