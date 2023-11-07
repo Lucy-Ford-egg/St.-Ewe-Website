@@ -129,27 +129,25 @@ export const deskStructure = (S, context) => {
     )
 }
 //
-const url = window.location.hostname.includes('localhost')
-  ? 'http://localhost:8000'
-  : 'https://architecturalholidays.netlify.app'
-// Customise this function to show the correct URL based on the current document
-function getPreviewUrl(document, context) {
-  //console.log('URL', url)
-  let slug = document?.slug?.current
+// const url = process.env.SANITY_STUDIO_FRONTEND
+// // Customise this function to show the correct URL based on the current document
+// function getPreviewUrl(document, context) {
+//   //console.log('URL', url)
+//   let slug = document?.slug?.current
 
-  // if(document.slug.current === "homepage"){
-  //   return slug = ""
-  // }
-  const dataset = 'production'
-  const params = new URLSearchParams()
-  params.set('preview', 'true')
-  params.set('dataset', dataset)
+//   // if(document.slug.current === "homepage"){
+//   //   return slug = ""
+//   // }
+//   const dataset = 'production'
+//   const params = new URLSearchParams()
+//   params.set('preview', 'true')
+//   params.set('dataset', dataset)
 
-  const previewUrl = `${url}/${slug}?${params}`
+//   const previewUrl = `${url}/${slug}?${params}`
 
-  return previewUrl
-}
-//!
+//   return previewUrl
+// }
+// //!
 
 // export const defaultDocumentNode = (S, {schemaType}) => {
 //   // Conditionally return a different configuration based on the schema type
