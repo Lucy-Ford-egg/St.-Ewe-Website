@@ -2,10 +2,26 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "upgrade"}`,
 });
 
+const netlifyAdapter = require("gatsby-adapter-netlify").default;
+
 const isProd = process.env.NODE_ENV === "production"
 const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() === "true"
 
 module.exports = {
+  adapter: netlifyAdapter({
+    excludeDatastoreFromEngineFunction: false,
+  }),
+  headers: [
+    {
+      source: `/*`,
+      headers: [
+        {
+          key: `X-Frame-Options: ALLOW-FROM`,
+          value: `https://heligan-campsite.sanity.studio/`,
+        }
+      ]
+    }
+  ],
   siteMetadata: {
     title: `Heligan Campsite`,
     description: `Heligan Campsite site. Be at home with nature.`,
@@ -148,17 +164,6 @@ module.exports = {
 
 
           })),
-      },
-    },
-    {
-      resolve: `gatsby-plugin-netlify`,
-      options: {
-        "/*": [
-          "X-XSS-Protection: 1; mode=block",
-          "X-Content-Type-Options: nosniff",
-          "Referrer-Policy: same-origin",
-          `Content-Security-Policy: frame-ancestors 'self' https://heligan-campsite.sanity.studio`,
-        ],
       },
     },
     {
