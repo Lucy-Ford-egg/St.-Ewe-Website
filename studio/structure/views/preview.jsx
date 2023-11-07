@@ -2,7 +2,7 @@ import IframePreview from '../previews/iframePreview'
 // import {SEOPane} from 'sanity-plugin-seo-pane'
 // import {getUrl} from '../previews/iframePreview'
 
-const remoteURL = process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
+const remoteURL = 'https://heligancampsite.netlify.app' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
 const localURL = 'http://localhost:8000' // local development port from Gatsby
 const previewUrl = window.location.hostname === 'localhost' ? localURL : remoteURL
 
