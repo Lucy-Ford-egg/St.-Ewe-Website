@@ -26,6 +26,7 @@
     "gatsby-plugin-local-search": "^2.0.1",
     "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^5.12.2",
+    "gatsby-plugin-netlify": "^5.1.1",
     "gatsby-plugin-offline": "^6.12.2",
     "gatsby-plugin-sanity-image": "^0.13.4",
     "gatsby-plugin-sass": "^6.12.2",
