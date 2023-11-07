@@ -4,7 +4,7 @@ import IframePreview from '../previews/iframePreview'
 
 const remoteURL = process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
 const localURL = 'http://localhost:8000' // local development port from Gatsby
-const previewUrl = process.env.SANITY_STUDIO_FRONTEND
+const previewUrl = window.location.hostname === 'localhost' ? localURL : remoteURL
 
 export const Views = (S, context) => {
   return [
