@@ -3,16 +3,14 @@ import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "../templates/queries/documentQueries"
+import { pageQuery } from "./queries/documentQueries"
 
-const IndexPage = props => {
+const PageTemplate = props => {
   const { data, pageContext } = props
   return (
     <IncludePreview
       documentQueries={pageQuery}
-      slug={{
-        "current": "home-page"
-        }} //data.sanityPage.slug
+      slug={data.sanityPage.slug} //
       data={data}
     >
       <Modules
@@ -27,9 +25,9 @@ export const Head = ({ data, location }) => {
   return <Seo seoContext={data.sanityPage} location={location} />
 }
 
-export const homeQuery = graphql`
-query homeQuery{
-    sanityPage(slug: {current: {eq: "home-page"}}) {
+export const pageTemplateQuery = graphql`
+ query pageTemplateQuery($slug: String!) {
+   sanityPage( slug: {current: {eq: $slug}}) {
       slug {
         current
       }
@@ -85,4 +83,4 @@ query homeQuery{
     }
   }
 `
-export default IndexPage
+export default PageTemplate
