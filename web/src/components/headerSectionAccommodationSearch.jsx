@@ -76,7 +76,7 @@ export const HeaderSectionAccommodationSearch = props => {
               // height: "100%",
               px: theme.spacing(2),
               py: theme.spacing(2),
-              backgroundColor: previewData && previewData.searchColour ? `rgba(${previewData.searchColour.color.rgb.r},${previewData.searchColour.color.rgb.g},${previewData.searchColour.color.rgb.b}, ${previewData.searchColour.color.rgb.a}) !important` :  `rgba(${searchColour.color.rgb.r},${searchColour.color.rgb.g},${searchColour.color.rgb.b}, ${searchColour.color.rgb.a}) !important`,
+              backgroundColor: previewData && previewData.searchColour ? `rgba(${previewData.searchColour.color.rgb.r},${previewData.searchColour.color.rgb.g},${previewData.searchColour.color.rgb.b}, ${previewData.searchColour.color.rgb.a}) !important` :  searchColour && `rgba(${searchColour.color.rgb.r},${searchColour.color.rgb.g},${searchColour.color.rgb.b}, ${searchColour.color.rgb.a}) !important`,
             }}
           >
             <Box class="gemawidgetcontainer" sx={{}}>
