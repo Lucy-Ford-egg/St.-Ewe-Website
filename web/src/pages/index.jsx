@@ -62,6 +62,9 @@ query homeQuery{
         ... on SanityTestimonialSection {
           ...TestimonialSectionFragment
         }
+        ... on SanityImageCarouselSection {
+          ...ImageCarouselSectionFragment 
+        }
       }
     }
     allSanityPlace {

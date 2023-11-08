@@ -4,6 +4,15 @@ const clientSpacing = [0, 8, 12, 14, 16, 20, 24, 28, 33, 35, 41, 48, 50, 58, 67,
 
 let defaultTheme = createTheme({
   spacing: [...clientSpacing],
+  breakpoints:{
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 1013,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   palette: {
     primary: {
       main: '#d63544',
@@ -166,6 +175,20 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: defaultTheme.palette.background.default,
+        },
+      },
+    },
+    MuiIconButton:{
+      styleOverrides:{
+        root:{
+
+        },
+        colorPrimary:{
+          backgroundColor: defaultTheme.palette.background.default,
+          '&:disabled':{
+            opacity: 0.3,
+            backgroundColor: defaultTheme.palette.background.default,
+          }
         },
       },
     },

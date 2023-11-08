@@ -14,6 +14,7 @@ import featuresTileType from '../schemas/modules/featuresTile'
 import servicesTileType from '../schemas/modules/servicesTile'
 import testimonialTileType from '../schemas/modules/testimonialTile'
 import testimonialSectionType from '../schemas/modules/testimonialSection'
+import imageCarouselSectionType from '../schemas/modules/imageCarouselSection'
 
 import placeCategoriesType from '../schemas/placeCategories'
 import placeType from '../schemas/place'
@@ -96,6 +97,7 @@ export const schemaTypes = [
   ctaSectionType,
   servicesSectionType,
   testimonialSectionType,
+  imageCarouselSectionType,
   // Old Modules
   imageWithCaptionType,
   textBlockType, 
