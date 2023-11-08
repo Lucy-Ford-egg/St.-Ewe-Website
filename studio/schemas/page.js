@@ -14,6 +14,7 @@ import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from "./modules/servicesSection"
 import testimonialSectionType from "./modules/testimonialSection"
 import imageCarouselSectionType from "./modules/imageCarouselSection"
+import locationSectionType from "./modules/locationSection"
 
 import imageWithCaptionType from './modules/imageWithCaption'
 import textBlockType from './modules/textBlock'
@@ -114,6 +115,7 @@ export default defineType({
         {type: servicesSectionType.name}, 
         {type: testimonialSectionType.name},
         {type: imageCarouselSectionType.name},
+        {type: locationSectionType.name},
         // etc...
         ],
          group: 'pageContent',

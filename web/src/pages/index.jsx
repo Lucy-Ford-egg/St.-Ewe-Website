@@ -65,6 +65,9 @@ query homeQuery{
         ... on SanityImageCarouselSection {
           ...ImageCarouselSectionFragment 
         }
+        ... on SanityLocationSection {
+          ...LocationSectionFragment
+        }
       }
     }
     allSanityPlace {

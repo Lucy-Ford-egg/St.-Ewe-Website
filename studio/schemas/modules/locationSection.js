@@ -2,9 +2,9 @@ import { defineField, defineType } from 'sanity'
 import {MdViewModule} from "react-icons/md"
 
 export default defineType({
-  name: "imageCarouselSection",
+  name: "locationSection",
   type: "object",
-  title: "Image Carousel Section",
+  title: "Location Section",
   fields: [
     defineField({
       name: 'icon',
@@ -43,10 +43,9 @@ export default defineType({
       title: 'Remove top padding',
     }),
     defineField({
-      title: 'Images',
-      name: 'images',
-      type: 'array',
-      of: [{type: 'image'}]
+      title: 'Geo Point',
+      name: 'geopoint',
+      type: 'geopoint',
     })
   
   ],
@@ -61,7 +60,7 @@ export default defineType({
       const { title, media, showSearch, textAlign } = selection
       return {
         title: `${title ? title : 'No Title' }`,
-        subtitle: `Image Carousel Section | Text align ${textAlign}`,
+        subtitle: `location Section | Text align ${textAlign}`,
         media: media[0],
         icon: MdViewModule
       }

@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
 import { graphql } from "gatsby"
-import { AnimatePresence, motion, MotionConfig } from "framer-motion"
+import { motion, MotionConfig } from "framer-motion"
 // import Image from "gatsby-plugin-sanity-image"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
-import imageUrlBuilder from "@sanity/image-url"
+import { Icons } from "../components/icons"
+import {textAlignToJustifyContent} from '../utils/alignment'
 import {
   Container,
   Typography,
@@ -13,11 +14,11 @@ import {
   useMediaQuery,
   IconButton,
   SvgIcon,
+  Grid,
+  Divider,
 } from "@mui/material"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import StarIcon from "@mui/icons-material/Star"
-import { getSanityClient } from "../../sanityUtils/sanity"
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
@@ -32,7 +33,7 @@ const swipePower = (offset, velocity) => {
 
 export const ImageCarouselSection = props => {
   const theme = useTheme()
-  const { previewData, sanityConfig, images, topPadding } = props
+  const { previewData, sanityConfig,icon, subtitle, title, text, images, topPadding, textAlign } = props
   const [slides, setSlides] = useState(null)
   const ref = useRef(null)
 
@@ -64,10 +65,74 @@ export const ImageCarouselSection = props => {
         pl: { md: slides && slides.length > 1 && 15 },
       }}
     >
+      <Grid
+        container
+        rowSpacing={{ xs: 6, sm: 6, md: 6 }}
+        // columnSpacing={{ xs: 13, sm: 13, md: 13 }}
+        direction="row"
+        justifyContent={textAlignToJustifyContent(textAlign)}
+        sx={{
+          
+          alignItems: "center",
+        }}
+      >
+        <Grid item xs={12} sm={12} md={6}>
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: textAlignToJustifyContent(textAlign)
+          }}>
+            {icon && (
+              <Icons
+                type={previewData && previewData.icon ? previewData.icon : icon}
+              />
+            )}
+
+            {subtitle && (
+              <Typography
+                align={textAlign}
+                sx={{ mt: { xs: 4, md: 4 } }}
+                variant="overline"
+                component="p"
+              >
+                {previewData && previewData.subtitle
+                  ? previewData.subtitle
+                  : subtitle}
+              </Typography>
+            )}
+
+            { title && <Typography align={textAlign} variant="h2">
+              {previewData && previewData.title ? previewData.title : title}
+            </Typography>
+            }
+            {text && (
+              <Divider
+                component="div"
+                role="presentation"
+                sx={{
+                  borderColor: theme.palette.primary.main,
+                  width: 305,
+                  mx: textAlign === 'center' ? 'auto' : 'unset'
+                }}
+              />
+            )}
+            {text && <Typography
+             align={textAlign}
+              sx={{ py: { xs: 5, md: 6 } }}
+              variant="body1"
+            >
+              {previewData && previewData.text ? previewData.text : text}
+            </Typography>
+            }
+          </Box>
+        </Grid>
+      </Grid>
+
       {slides && slides.length >= 1 && (
         <Box
           sx={{
             position: "relative",
+            pt: 6,
             pb: 12,
           }}
         >
@@ -196,52 +261,54 @@ export const ImageCarouselSection = props => {
             )}
           </Box>
 
-          {slides && slides.length > 1 && <Box
-            sx={{
-              width: "100%",
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              //px: { xs: 2, sm: 2, md: 8 },
-            }}
-          >
-            <Container
-              maxWidth="xl"
-              sx={{ display: "flex", justifyContent: "center" }}
+          {slides && slides.length > 1 && (
+            <Box
+              sx={{
+                width: "100%",
+                position: "absolute",
+                left: 0,
+                right: 0,
+                bottom: 0,
+                //px: { xs: 2, sm: 2, md: 8 },
+              }}
             >
-              <Box
-                display="flex"
-                flexDirection="row"
-                justifyContent="flex-end"
-                sx={{ position: "relative" }}
+              <Container
+                maxWidth="xl"
+                sx={{ display: "flex", justifyContent: "center" }}
               >
-                {slides && slides.length >= 1 &&
-                  slides.map((dot, dotIndex) => {
-                    let dotColour =
-                      dotIndex === index
-                        ? theme.palette.primary.main
-                        : theme.palette.primary.light
-                    return (
-                      <SvgIcon
-                        color={dotColour}
-                        key={`dot-${dotIndex}`}
-                        sx={{ width: 22, height: 22 }}
-                      >
-                        <circle
-                          id="dot"
-                          cx="5.5"
-                          cy="5.5"
-                          r="5.5"
-                          fill={dotColour}
-                        />
-                      </SvgIcon>
-                    )
-                  })}
-              </Box>
-            </Container>
-          </Box>
-}
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="flex-end"
+                  sx={{ position: "relative" }}
+                >
+                  {slides &&
+                    slides.length >= 1 &&
+                    slides.map((dot, dotIndex) => {
+                      let dotColour =
+                        dotIndex === index
+                          ? theme.palette.primary.main
+                          : theme.palette.primary.light
+                      return (
+                        <SvgIcon
+                          color={dotColour}
+                          key={`dot-${dotIndex}`}
+                          sx={{ width: 22, height: 22 }}
+                        >
+                          <circle
+                            id="dot"
+                            cx="5.5"
+                            cy="5.5"
+                            r="5.5"
+                            fill={dotColour}
+                          />
+                        </SvgIcon>
+                      )
+                    })}
+                </Box>
+              </Container>
+            </Box>
+          )}
         </Box>
       )}
       {slides && slides.length === 0 && (
@@ -270,15 +337,16 @@ export const query = graphql`
   fragment ImageCarouselSectionFragment on SanityImageCarouselSection {
     _key
     _type
-    title
-    topPadding
-    text
-    textAlign
+    icon
     subtitle
+    title
+    text
     images {
       asset {
         gatsbyImageData
       }
     }
+    topPadding
+    textAlign
   }
 `

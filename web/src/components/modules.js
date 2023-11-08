@@ -8,7 +8,10 @@ import { FeaturesListSection } from './featuresListSection'
 import { CtaSection } from './ctaSection'
 import { ServicesSection } from './servicesSection'
 import { TestimonialSection } from './testimonialSection'
-import {ImageCarouselSection} from './imageCarouselSection'
+import { ImageCarouselSection} from './imageCarouselSection'
+import { LocationSection } from './locationSection'
+
+
 
 import { Places } from './places'
 import { Posts } from './posts'
@@ -25,6 +28,7 @@ import {TitleSubtitleText} from './titleSubtitleText'
 import {ImageTextCallToActionImage} from './imageTextCallToActionImage'
 import { ImageLink } from './imageLink'
 import {InstagramEmbed} from './InstagramEmbed'
+
 
 
 
@@ -122,6 +126,15 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
                     if (isModule(module, 'imageCarouselSection')) {
                         return (
                         <ImageCarouselSection
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'locationSection')) {
+                        return (
+                        <LocationSection
                             previewData={previewData && previewData.pageBuilder[i]} 
                             sanityConfig={sanityConfig}
                             key={module._key + i}

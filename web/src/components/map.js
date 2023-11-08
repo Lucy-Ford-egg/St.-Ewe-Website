@@ -2,16 +2,18 @@ import React from "react"
 import { graphql } from "gatsby"
 import GoogleMapReact from 'google-map-react'
 import {Container, Box} from "@mui/material"
-import CircleIcon from '@mui/icons-material/Circle';
+import PlaceIcon from '@mui/icons-material/Place';
 import { mapStyles } from "../utils/mapStyles"; 
 
-const AnyReactComponent = ({ text }) => <CircleIcon/>;
+const AnyReactComponent = ({ text }) => <PlaceIcon color="primary"/>;
 
-export const Map = ({map}) => {
+export const Map = (props) => {
+
+  const {geopoint} = props
   const defaultProps = {
     center: {
-      lat: map.lat,
-      lng: map.lng
+      lat: geopoint.lat,
+      lng: geopoint.lng
     },
     zoom: 12
   };
@@ -24,7 +26,7 @@ export const Map = ({map}) => {
   }
 
   return (
-    <Container className="section map" maxWidth="false" sx={{ px: { xs: 0 }, mt: { xs: 2, md: 11}, backgroundColor: 'primary.main' }}>
+    <Container className="section map" maxWidth="false" sx={{ px: { xs: 0 }, mt: { xs: 2, md: 11} }}>
     
     <Box sx={{height: {xs: 466, md: 466}, width: '100%'}}>
       <GoogleMapReact
@@ -34,8 +36,8 @@ export const Map = ({map}) => {
         options={mapOptions} 
       >
         <AnyReactComponent
-          lat={map.lat}
-          lng={map.lng}
+          lat={geopoint.lat}
+          lng={geopoint.lng}
           text="My Marker"
         />
       </GoogleMapReact>

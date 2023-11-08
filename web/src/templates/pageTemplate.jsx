@@ -63,6 +63,9 @@ export const pageTemplateQuery = graphql`
         ... on SanityImageCarouselSection {
           ...ImageCarouselSectionFragment 
         }
+        ... on SanityLocationSection {
+          ...LocationSectionFragment
+        }    
       }
     }
     allSanityPlace {
