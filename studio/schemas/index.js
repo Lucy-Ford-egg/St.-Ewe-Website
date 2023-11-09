@@ -5,6 +5,8 @@ import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
 import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
+import faqsType from '../schemas/faqs'
+
 import videoIdType from '../schemas/videoId'
 import iconsType from '../schemas/icons'
 import colorChoiceType from '../schemas/colorChoice'
@@ -23,6 +25,7 @@ import authorType from '../schemas/author'
 import postType  from '../schemas/post'
 import pageType from '../schemas/page'
 
+
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
 import unitsListsSectionType from './modules/unitsListsSection'
@@ -31,6 +34,7 @@ import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from './modules/servicesSection'
+import faqsSectionType from './modules/faqsSection'
 
 import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 import textBlockType from '../schemas/modules/textBlock'
@@ -73,6 +77,7 @@ export const schemaTypes = [
   awardType,
   newsletterType,
   designSystemColorType,
+  faqsType,
   iconsType,
   textAlignType,
   videoIdType,
@@ -89,6 +94,7 @@ export const schemaTypes = [
   placeType, 
   postType,
   pageType,
+  
   // Modules
   headerSectionAccommodationSearchType,
   unitsListsSectionType,
@@ -100,6 +106,8 @@ export const schemaTypes = [
   testimonialSectionType,
   imageCarouselSectionType,
   locationSectionType,
+  faqsSectionType,
+
   // Old Modules
   imageWithCaptionType,
   textBlockType, 

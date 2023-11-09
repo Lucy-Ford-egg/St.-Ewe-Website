@@ -10,6 +10,7 @@ import { ServicesSection } from './servicesSection'
 import { TestimonialSection } from './testimonialSection'
 import { ImageCarouselSection} from './imageCarouselSection'
 import { LocationSection } from './locationSection'
+import { FaqsSection } from './faqsSection'
 
 
 
@@ -135,6 +136,15 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
                     if (isModule(module, 'locationSection')) {
                         return (
                         <LocationSection
+                            previewData={previewData && previewData.pageBuilder[i]} 
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            {...module}  />
+                        )
+                    }
+                    if (isModule(module, 'faqsSection')) {
+                        return (
+                        <FaqsSection
                             previewData={previewData && previewData.pageBuilder[i]} 
                             sanityConfig={sanityConfig}
                             key={module._key + i}

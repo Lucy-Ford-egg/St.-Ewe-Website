@@ -117,9 +117,7 @@ let clientTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: `
-      *{
-        border: 1px solid red,
-      } 
+      
         @keyframes arrowAnimation {
           0%,
           50%,
@@ -140,6 +138,34 @@ let clientTheme = createTheme({
       styleOverrides: {
         
       },
+    },
+    MuiAccordion:{
+      styleOverrides:{
+        root: {
+          paddingBottom: 4,
+          "&:before": {
+            backgroundColor: defaultTheme.palette.background.default,
+            opacity: '1 !important',
+          },
+          
+        },
+      },
+    },
+    MuiAccordionSummary:{
+      styleOverrides: {
+        root: {
+          flexDirection: 'row-reverse',
+          columnGap: 10,
+          padding: 0,
+        },
+      },
+    },
+    MuiAccordionDetails:{
+      styleOverrides:{
+        root: {
+          padding: 0,
+        }
+      }
     },
     MuiDivider:{
       styleOverrides:{

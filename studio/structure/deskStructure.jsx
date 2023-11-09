@@ -1,5 +1,6 @@
 import {Views} from './views/preview'
 import { DesignSystemColorsMenu } from './designSystemColorsMenu'
+import { FaqsMenu } from './faqsMenu'
 import { SiteSettingsMenu } from './siteSettingsMenu'
 import {
   MdCategory,
@@ -18,6 +19,7 @@ export const deskStructure = (S, context) => {
 
       SiteSettingsMenu(S),
       DesignSystemColorsMenu(S),
+      FaqsMenu(S),
       // S.listItem()
       //   .title('Settings')
       //   .icon(MdOutlineMenu)

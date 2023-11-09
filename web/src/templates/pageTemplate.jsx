@@ -65,7 +65,10 @@ export const pageTemplateQuery = graphql`
         }
         ... on SanityLocationSection {
           ...LocationSectionFragment
-        }    
+        } 
+        ... on SanityFaqsSection {
+          ...FaqsSectionFragment
+        }   
       }
     }
     allSanityPlace {

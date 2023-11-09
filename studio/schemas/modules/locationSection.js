@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdViewModule} from "react-icons/md"
+import {MdMap} from "react-icons/md"
 
 export default defineType({
   name: "locationSection",
@@ -57,12 +57,11 @@ export default defineType({
 
     },
     prepare(selection) {
-      const { title, media, showSearch, textAlign } = selection
+      const { title, media, textAlign } = selection
       return {
         title: `${title ? title : 'No Title' }`,
-        subtitle: `location Section | Text align ${textAlign}`,
-        media: media[0],
-        icon: MdViewModule
+        subtitle: `Location Section | Text align ${textAlign}`,
+        icon: MdMap
       }
     }
   },
