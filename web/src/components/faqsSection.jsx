@@ -54,6 +54,7 @@ export const FaqsSection = props => {
           container
           rowSpacing={{xs: 12, md: 12}}
           columnSpacing={{ xs: 13, sm: 13, md: 13 }}
+          direction={mirror ? "row-reverse" : "row"}
           sx={{
             px: { xs: 0 },
             justifyContent: textAlignToJustifyContent(textAlign),

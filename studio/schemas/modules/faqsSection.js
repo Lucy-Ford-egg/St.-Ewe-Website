@@ -71,12 +71,12 @@ export default defineType({
     defineField({
       name: 'topPadding',
       type: 'boolean',
-      title: 'Remove top padding',
+      title: 'Remove top padding?',
     }),
     defineField({
       name: 'mirror',
       type: 'boolean',
-      title: 'FAQS positioned on the left',
+      title: 'FAQS positioned on the left?',
       description: 'Select this to reverse the order to have FAQS on the left and text on the right.'
     }),
   ],
