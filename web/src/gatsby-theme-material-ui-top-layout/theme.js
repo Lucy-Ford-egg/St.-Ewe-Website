@@ -67,6 +67,7 @@ let defaultTheme = createTheme({
     overline: {
       fontFamily: 'League Spartan',
       fontSize: 14,
+      fontWeight: 500,
       lineHeight: 1.5,
       textTransform: 'uppercase',
       letterSpacing: 0.3,
@@ -117,7 +118,9 @@ let clientTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: `
-      
+        // *{
+        //   border: 1px solid tomato;
+        // }
         @keyframes arrowAnimation {
           0%,
           50%,

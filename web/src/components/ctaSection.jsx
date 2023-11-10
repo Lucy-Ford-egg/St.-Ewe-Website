@@ -38,9 +38,10 @@ export const CtaSection = props => {
       }}
     >
       <Box sx={{
-      display: "grid",
+      display: {xs: 'grid', md: "grid"},
       gridTemplateColumns: "repeat(24,1fr)",
-      alignItems: "center",  
+      alignItems: "center",
+      width: "100%"  
       }}>
       {
         leftAlign === true && image && (
@@ -60,17 +61,19 @@ export const CtaSection = props => {
               minHeight: "100%",
               gridColumn: "1/25",
               gridRow: "1/auto",
+              width: "100%"
             }}
           />
         )}
       
-      {leftAlign === false && (
+      {leftAlign !== false && (
         <Box
           sx={{
             display: "grid",
             gridColumn: "1/25",
             gridRow: "1/auto",
             height: "100%",
+            width: "100%"
           }}
         >       
           <Container maxWidth="xl">
@@ -78,6 +81,7 @@ export const CtaSection = props => {
               sx={{
                 display: "grid",
                 height: "100%",
+                width: "100%"
               }}
             >
               {image && (
@@ -150,7 +154,7 @@ export const CtaSection = props => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: leftAlign === true ? "flex-start" : "center",
-                  px: {xs: 8, md: 11},
+                  px: {xs: 4, md: 11},
                   py: {xs: 8, md: 11}
                 }}
               >
@@ -166,7 +170,7 @@ export const CtaSection = props => {
                 <Typography
                   color="background.main"
                   align={leftAlign === true ? "left" : "center"}
-                  sx={{ my: { xs: 5 } }}
+                  sx={{ my: { xs: 0, md: 5 } }}
                   variant="body1"
                 >
                   {previewData && previewData.text ? previewData.text : text}
@@ -176,10 +180,12 @@ export const CtaSection = props => {
                   sx={{
                     width: "fit-content",
                     display: "flex",
-                    justifyContent: "flex-end",
+                    justifyContent: {xs: 'center', md: "flex-end"},
                     flexDirection: "row",
+                    flexWrap: {xs: 'wrap', md: 'no-wrap'},
                     flexBasis: "100%",
                     columnGap: 6,
+                    rowGap: 6,
                     py: 2,
                   }}
                 >

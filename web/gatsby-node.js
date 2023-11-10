@@ -47,7 +47,14 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           current
         }
         pageTitle
-        
+      }
+    }
+    allSanityPost {
+      nodes {
+        title
+        slug {
+          current
+        }
       }
     }
   }
@@ -71,38 +78,37 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   })
 
   //   // Fetch your items (blog posts, categories, etc).
-  //   const blogPosts = data?.allSanityPost?.nodes || []
+    const blogPosts = result.data?.allSanityPost?.nodes || []
   //   const placePosts = data?.allSanityPlace?.nodes || []
 
-  //   // Create your paginated pages
-  //   paginate({
-  //     createPage, // The Gatsby `createPage` function
-  //     items: blogPosts, // An array of objects
-  //     itemsPerPage: 12, // How many items you want per page
-  //     pathPrefix: "/blog", // Creates pages like `/blog`, `/blog/2`, etc
-  //     component: require.resolve(`./src/templates/postPageBuilder.jsx`), // Just like `createPage()`
-  //     context: {
-  //       slug: "blog",
-  //       showPagination: true,
-  //     },
-  //   })
+    // Create your paginated pages
+    // paginate({
+    //   createPage, // The Gatsby `createPage` function
+    //   items: blogPosts, // An array of objects
+    //   itemsPerPage: 12, // How many items you want per page
+    //   pathPrefix: "/blog", // Creates pages like `/blog`, `/blog/2`, etc
+    //   component: require.resolve(`./src/templates/postPageBuilder.jsx`), // Just like `createPage()`
+    //   context: {
+    //     slug: "blog",
+    //     showPagination: true,
+    //   },
+    // })
 
-  //   blogPosts.forEach(node => {
-  //     createPage({
-  //       path: `blog/${node.slug.current}`,
-  //       component: require.resolve(`./src/templates/postBuilder.jsx`),
-  //       context: {
-  //         id: node.id,
-  //         slug: `${node.slug.current}`,
-  //         title: node.title,
-  //         coverImage: node.coverImage,
-  //         date: node.date,
-  //         categories: node.categories,
-  //         excerpt: node.excerpt,
-  //         allPosts: blogPosts,
-  //       },
-  //     })
-  //   })
+    blogPosts.forEach(node => {
+      createPage({
+        path: `blog/${node.slug.current}`,
+        component: require.resolve(`./src/templates/postTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          title: node.title,
+          coverImage: node.coverImage,
+          date: node.date,
+          categories: node.categories,
+          excerpt: node.excerpt,
+        },
+      })
+    })
 
   
 

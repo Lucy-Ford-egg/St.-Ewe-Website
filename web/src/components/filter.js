@@ -34,7 +34,7 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
   query CategoriesQuery {
     allSanityPost {
       nodes {
-        categories {
+        category {
           name
         }
       }

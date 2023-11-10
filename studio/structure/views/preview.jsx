@@ -18,6 +18,7 @@ export const Views = (S, context) => {
       .component(IframePreview)
       .options({previewUrl, isMobilePreview: true, context})
       .title('Mobile Preview'), // Iframe custom view for mobile screens
+      
     // S.view
     //   .component(SEOPane)
     //   .options({

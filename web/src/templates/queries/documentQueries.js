@@ -5,13 +5,16 @@ import groq from 'groq'
 
 export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
   ...,
+  pageBuilder[] {..., searchColour->},
   title,
+  text,
   image {
     asset->,
   },
   mobileImage {
     asset->,
   },
+ 
 }`
 
 export const pageQuery = groq`*[_type == "page" && slug.current == $slug][0] {

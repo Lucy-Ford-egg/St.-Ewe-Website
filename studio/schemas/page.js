@@ -102,6 +102,14 @@ export default defineType({
        group: 'pageContent'
     }),
     defineField({
+      name: 'categoryArchive',
+      type: 'array',
+      type: 'reference',
+      to: [{ type: 'categories', title: 'Make a category page' }],
+      description: `Select the reference you would like to make a category page for. Example: To make a 'Things to do' category page then select 'Things to do as the category'. This will then use a template which inserts the the blog posts for this template directly underneath the first component.`,
+      group: 'pageContent'
+    }),
+    defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',

@@ -4,20 +4,19 @@ import { defineField, defineType } from 'sanity'
 import openGraph from '../schemas/openGraph'
 import authorType from './author'
 import categoriesType from './categories'
-import imageWithCaptionType from './modules/imageWithCaption'
-import textBlockType from './modules/textBlock'
-import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
-import heroCallToActionType from './modules/heroCallToAction'
-import mapType from './modules/map'
-import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
-import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
-import placesGridType from './modules/placesGrid'
-import postsGridType from './modules/postsGrid'
-import heroNewsletterType from './modules/heroNewsletter'
-import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
-import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
-import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
-import imageWithLinkType from '../schemas/modules/imageWithLink'
+
+// Modules
+import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
+import unitsListsSectionType from './modules/unitsListsSection'
+import featureSectionType from './modules/featureSection'
+import videoSectionType from './modules/videoSection'
+import featuresListSectionType from './modules/featuresListSection'
+import ctaSectionType from './modules/ctaSection'
+import servicesSectionType from "./modules/servicesSection"
+import testimonialSectionType from "./modules/testimonialSection"
+import imageCarouselSectionType from "./modules/imageCarouselSection"
+import locationSectionType from "./modules/locationSection"
+import faqsSectionType from "./modules/faqsSection"
 
 /**
  * This file is the schema definition for a post.
@@ -40,124 +39,126 @@ export default defineType({
       title: 'Page Content',
       default: true,
     },
-    {
-      name: 'og',
-      title: 'SEO',
-    },
+    // {
+    //   name: 'og',
+    //   title: 'SEO',
+    // },
   ],
-  fields: [...openGraph.fields,
-    defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'imageCaption',
-      options: {
-        hotspot: true,
-      },
-      validation: Rule => Rule.required(),
-       group: 'pageContent',
-    }),
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      descrition: 'Just for editor purposes. Not shown on the frontend but still necesscary',
-      validation: (rule) => rule.required(),
-       group: 'pageContent',
-    }),
-    defineField({
-      name: 'displayTitle',
-      type: 'array',
-      title: 'Display Title',
-      of: [{ 
-        type: 'block',
-        lists: [], // yes please, both bullet and numbered
-        styles: [
-          // { title: 'Heading 2', value: 'h2' },
-          // { title: 'Heading 3', value: 'h3' },
-          // { title: 'Heading 4', value: 'h4' },
-        ],
-        marks: {
-          decorators: [],
-          annotations: []
-        }
-      }],
-      validation: (rule) => rule.required(),
-      description: "Shown on the frontend. Sometimes titles look better being broken onto 2 lines. Use a soft return (shift + return) in the position of the string of text to achieve this.",
-       group: 'pageContent',   
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-        isUnique: (value, context) => context.defaultIsUnique(value, context),
-      },
-      validation: (rule) => rule.required(),
-       group: 'pageContent',
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      rows: 2,
-      type: 'text',
-      description: 'Small snippet of text shown on the blog tile when hovered.',
-       group: 'pageContent',
-    }),
-    defineField({
-      name: 'date',
-      title: 'Date',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-       group: 'pageContent',
-    }),
-    defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: [{ type: authorType.name }],
-       group: 'pageContent',
-    }),
-    defineField({
-      name: 'pageBuilder',
-      type: 'array',
-      title: 'Page builder',
-      description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
-      of: [
-        { type: imageWithCaptionType.name, title: "Image, Caption Module"},
-        { type: textBlockType.name, title: "Text Module"},
-        { type: imageCarouselCaptionLinkType.name, title: "Image Carousel, Caption, Link Module" },
-        { type: heroCallToActionType.name, title: "Hero Image, Title, Text, CTA Module"},
-        { type: mapType.name, title: "Map, Marker Module"},
-        { type: twoColumnTitleTextCtaType.name, title: "Two Column, Title, Text, CTA Module"},
-        { type: imageCarouselSubtitleTitleTextLinkType.name, title: "Hero Image Carousel, Subtitle, Title, Text, CTA Module"},
-        { type: placesGridType.name, title: "Places Grid Module" },
-        { type: heroNewsletterType.name, title: "Hero Newsletter, CTA, Caption Module"},
-        { type: postsGridType.name, title: "Posts Grid Module" },
-        { type: heroInfoCallToActionType.name, title: "Hero, Info, CTA, Caption Module" },
-        { type: titleSubtitleTextType.name, title: "Title, Subtitle, Text Module" },
-        { type: imageTextCallToActionImageType.name, title: "Image, Text, Image, CTA Module - Advert Compatible" },
-        { type: imageWithLinkType.name, title: "Linked Image Module - Advert Compatible" },
+  fields: [
+    //...openGraph.fields,
+  defineField({
+    name: 'coverImage',
+    title: 'Cover Image',
+    type: 'image',
+    options: {
+      hotspot: true,
+    },
+    validation: Rule => Rule.required(),
+    group: 'pageContent',
+  }),
+  defineField({
+    name: 'title',
+    title: 'Title',
+    type: 'string',
+    validation: (rule) => rule.required(),
+    group: 'pageContent',
+  }),
+  defineField({
+    name: 'slug',
+    title: 'Slug',
+    type: 'slug',
+    options: {
+      source: 'title',
+      maxLength: 96,
+      isUnique: (value, context) => context.defaultIsUnique(value, context),
+    },
+    validation: (rule) => rule.required(),
+    group: 'pageContent',
+  }),
+  defineField({
+    name: 'excerpt',
+    title: 'Excerpt',
+    rows: 2,
+    type: 'text',
+    description: 'Small snippet of text shown on the blog tile when hovered.',
+    group: 'pageContent',
+  }),
+  defineField({
+    name: 'date',
+    title: 'Date',
+    type: 'datetime',
+    initialValue: () => new Date().toISOString(),
+    group: 'pageContent',
+  }),
+  defineField({
+    name: 'author',
+    title: 'Author',
+    type: 'reference',
+    to: [{ type: authorType.name }],
+    group: 'pageContent',
+  }),
+  defineField({
+    name: 'body',
+    type: 'array',
+    title: 'Blog Content',
+    of: [{
+      type: 'block',
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' }
+      ], // yes please, both bullet and numbered
+      styles: [
+        // { title: 'Heading 2', value: 'h2' },
+        { title: 'Heading 3', value: 'h3' },
+        { title: 'Heading 4', value: 'h4' },
+        { title: 'Heading 5', value: 'h5' },
+        { title: 'Quote', value: 'blockquote' }
+      ],
+      marks: {
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+          { title: 'Underline', value: 'underline' },
+        ]
+      }
+    }, {
+      type: 'image'
+    }],
+    validation: (rule) => rule.required(),
+    description: "This works slightly differently to page modules. You can add images, quotes and other textural decoration in the editor.",
+    group: 'pageContent',
+  }),
+  defineField({
+    name: 'pageBuilder',
+    type: 'array',
+    title: 'Page builder',
+    description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
+    of: [
+      { type: headerSectionAccommodationSearchType.name },
+      { type: unitsListsSectionType.name },
+      { type: featureSectionType.name},
+      { type: videoSectionType.name},
+      { type: featuresListSectionType.name }, 
+      { type: ctaSectionType.name },
+      {type: servicesSectionType.name}, 
+      {type: testimonialSectionType.name},
+      {type: imageCarouselSectionType.name},
+      {type: locationSectionType.name},
+      {type: faqsSectionType.name},
 
-        // etc...
-        ],
-         group: 'pageContent',
-    }),
-    
-    defineField({
-      name: 'categories',
-      title: 'Post Categories',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: categoriesType.name }],
-        },
-     ],
-      group: 'pageContent',
-      // to: [{ type:  }],
-    }),
+      // etc...
+    ],
+    group: 'pageContent',
+  }),
+
+  defineField({
+    name: 'category',
+    title: 'Post Category',
+    type: 'reference',
+    to: [{ type: categoriesType.name }],
+    group: 'pageContent',
+    // to: [{ type:  }],
+  }),
   ],
   preview: {
     select: {
