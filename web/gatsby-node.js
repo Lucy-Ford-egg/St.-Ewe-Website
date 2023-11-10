@@ -55,6 +55,28 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug {
           current
         }
+        category {
+          name
+        }
+        excerpt
+        image: coverImage {
+          asset {
+            _id
+            gatsbyImageData
+          }
+          hotspot {
+            x
+            y
+            width
+            height
+          }
+          crop {
+            bottom
+            left
+            right
+            top
+          }
+        }
       }
     }
   }
@@ -65,6 +87,9 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     return
   }
 
+   // Fetch your items (blog posts, categories, etc).
+   const blogPosts = result.data?.allSanityPost?.nodes || []
+
   result.data.allSanityPage.nodes.forEach(node => {
     createPage({
       path: node.slug.current,
@@ -73,12 +98,11 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         id: node.id,
         slug: `${node.slug.current}`,
         node: node,
+        blogPosts
       },
     })
   })
 
-  //   // Fetch your items (blog posts, categories, etc).
-    const blogPosts = result.data?.allSanityPost?.nodes || []
   //   const placePosts = data?.allSanityPlace?.nodes || []
 
     // Create your paginated pages

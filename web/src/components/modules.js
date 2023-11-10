@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { BlogArchiveSection } from "./blogArchiveSection"
+
 import { HeaderSectionAccommodationSearch } from './headerSectionAccommodationSearch'
 import { UnitsListsSection } from './unitsListsSection'
 import { FeatureSection } from './featureSection'
@@ -8,7 +10,7 @@ import { FeaturesListSection } from './featuresListSection'
 import { CtaSection } from './ctaSection'
 import { ServicesSection } from './servicesSection'
 import { TestimonialSection } from './testimonialSection'
-import { ImageCarouselSection} from './imageCarouselSection'
+import { ImageCarouselSection } from './imageCarouselSection'
 import { LocationSection } from './locationSection'
 import { FaqsSection } from './faqsSection'
 
@@ -21,22 +23,25 @@ import { Text } from './text'
 import { GalleryCarousel } from './galleryCarousel'
 import { HeroCallToAction } from './heroCallToAction'
 import { HeroNewsletter } from './heroNewsletter'
-import {MultiColumnTitleTextLink} from './multiColumnTitleTextLink'
-import {Map} from './map'
+import { MultiColumnTitleTextLink } from './multiColumnTitleTextLink'
+import { Map } from './map'
 import { CategoryFeature } from './categoryFeature'
 import { HeroInfoCallToAction } from './heroInfoCallToAction'
-import {TitleSubtitleText} from './titleSubtitleText'
-import {ImageTextCallToActionImage} from './imageTextCallToActionImage'
+import { TitleSubtitleText } from './titleSubtitleText'
+import { ImageTextCallToActionImage } from './imageTextCallToActionImage'
 import { ImageLink } from './imageLink'
-import {InstagramEmbed} from './InstagramEmbed'
+import { InstagramEmbed } from './InstagramEmbed'
 
 
 
 
-const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFeature, placeLocation, pageContext }) => {
+const Modules = (props) => {
+
+    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext } = props
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
+        
         if (moduletype?._type?.indexOf(testname) >= 0) {
             return true
         } else {
@@ -45,110 +50,117 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
     }
 
     if (modules != null) {
-  
+
         return (
-            
+
             <main data-content="main">
                 {modules.map((module, i) => {
 
-                    if (isModule(module, 'headerSectionAccommodationSearch')) {
-                        return (
-                        <HeaderSectionAccommodationSearch
-                            previewData={previewData && previewData.pageBuilder[i]} 
+                    if (isModule(module, 'blogArchiveSection')) {
+                        return <BlogArchiveSection previewData={previewData && previewData.pageBuilder[i]}
                             sanityConfig={sanityConfig}
                             key={module._key + i}
-                            {...module}  />
+                            {...module} />
+                    }
+
+                    if (isModule(module, 'headerSectionAccommodationSearch')) {
+                        return (
+                            <HeaderSectionAccommodationSearch
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'unitsListsSection')) {
                         return (
-                        <UnitsListsSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <UnitsListsSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'featureSection')) {
                         return (
-                        <FeatureSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <FeatureSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'videoSection')) {
-                  
+
                         return (
-                        <VideoSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <VideoSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'featuresListSection')) {
                         return (
-                        <FeaturesListSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <FeaturesListSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'ctaSection')) {
                         return (
-                        <CtaSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <CtaSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'servicesSection')) {
                         return (
-                        <ServicesSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <ServicesSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'testimonialSection')) {
                         return (
-                        <TestimonialSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <TestimonialSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'imageCarouselSection')) {
                         return (
-                        <ImageCarouselSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <ImageCarouselSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'locationSection')) {
                         return (
-                        <LocationSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <LocationSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     if (isModule(module, 'faqsSection')) {
                         return (
-                        <FaqsSection
-                            previewData={previewData && previewData.pageBuilder[i]} 
-                            sanityConfig={sanityConfig}
-                            key={module._key + i}
-                            {...module}  />
+                            <FaqsSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
                         )
                     }
                     // if (isModule(module, 'imageCarouselSubtitleTitleTextLink')) {
@@ -167,7 +179,7 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
                     //     return <ImageCaption {...module} key={module._key + i} />
                     // }
                     // else if (isModule(module, "textBlock")) {
-                    
+
                     //     return <Text previewData={previewData && previewData.pageBuilder[i]} sanityConfig={sanityConfig} {...module} key={module._key + i} />
                     // }
                     // else if (isModule(module, "imageCarouselCaptionLink")) {
@@ -201,17 +213,17 @@ const Modules = ({ sanityConfig, previewData, modules, allPlace, allPost, allFea
                     //     return <ImageLink {...module} key={module._key + i} />
                     // }
                     // else if (isModule(module, "instagramModule")) {
-                        
+
                     //     return <InstagramEmbed {...module} key={module._key + i} />
                     // }
-                   
+
                     // else
                     //     return null
                     return null
 
                 })}
             </main>
-         
+
         )
     } else {
         return null

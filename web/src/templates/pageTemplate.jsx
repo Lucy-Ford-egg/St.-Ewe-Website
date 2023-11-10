@@ -7,6 +7,19 @@ import { pageQuery } from "./queries/documentQueries"
 
 const PageTemplate = props => {
   const { data, pageContext } = props
+
+  const isBlog = data.sanityPage.blogArchive || null
+  const hasCategory = data.sanityPage.categoryArchive?.name || null
+
+  const blogModule = {
+    _key: "",
+    _type: "blogArchiveSection",
+    posts: pageContext.blogPosts,    
+}
+
+  data?.sanityPage?.pageBuilder.splice(1, 0, blogModule)
+
+  debugger
   return (
     <IncludePreview
       documentQueries={pageQuery}
@@ -14,6 +27,8 @@ const PageTemplate = props => {
       data={data}
     >
       <Modules
+        // isBlog={isBlog}
+        // hasCategory={hasCategory}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
@@ -32,6 +47,10 @@ export const pageTemplateQuery = graphql`
         current
       }
       pageTitle
+      categoryArchive {
+        name
+      }
+      blogArchive
       #...SeoPageFragment
       pageBuilder {
         ... on SanityHeaderSectionAccommodationSearch {

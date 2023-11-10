@@ -72,7 +72,6 @@ export const ImageCarouselSection = props => {
         direction="row"
         justifyContent={textAlignToJustifyContent(textAlign)}
         sx={{
-          
           alignItems: "center",
         }}
       >

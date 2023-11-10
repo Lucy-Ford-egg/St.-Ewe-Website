@@ -82,6 +82,7 @@ export default defineType({
     type: 'text',
     description: 'Small snippet of text shown on the blog tile when hovered.',
     group: 'pageContent',
+    validation: (rule) => rule.required().max(252)
   }),
   defineField({
     name: 'date',
