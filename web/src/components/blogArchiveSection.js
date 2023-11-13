@@ -32,8 +32,8 @@ export const BlogArchiveSection = props => {
       }}
     >
       <Grid container columnSpacing={6} rowSpacing={12}>
-        {posts &&
-          posts.map((post, i) => {
+        {posts && posts.nodes &&
+          posts.nodes.map((post, i) => {
             return (
               <Grid item xs={12} sm={6} md={4}>
                 <Paper

@@ -57,25 +57,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
         category {
           name
-        }
-        excerpt
-        image: coverImage {
-          asset {
-            _id
-            gatsbyImageData
-          }
-          hotspot {
-            x
-            y
-            width
-            height
-          }
-          crop {
-            bottom
-            left
-            right
-            top
-          }
+          _id
         }
       }
     }
@@ -98,7 +80,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         id: node.id,
         slug: `${node.slug.current}`,
         node: node,
-        blogPosts
+        postIds: result.data?.allSanityPost?.nodes.map(({ category }) => category._id)
       },
     })
   })
