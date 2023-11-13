@@ -92,7 +92,7 @@ export const NavigationItem = (props) => {
                   px: theme.spacing(2)
                 }}>
                   {node.link.internal ? (
-                    <GatsbyButton variant="text" to={node.link.internal?.slug?.current} sx={{
+                    <GatsbyButton variant="text" to={`/${node.link.internal?.slug?.current}`} sx={{
                       px: 0,
                       justifyContent: 'left',
                       fontWeight: 400,
