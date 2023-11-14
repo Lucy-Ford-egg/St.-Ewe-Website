@@ -175,7 +175,7 @@ export const UnitCarousel = props => {
           >
             <Container
               maxWidth="xl"
-              sx={{ display: "flex", justifyContent: "center" }}
+              sx={{ display: "flex", mb: 4, justifyContent: "center" }}
             >
               <Box
                 display="flex"
