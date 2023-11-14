@@ -16,6 +16,7 @@ import testimonialSectionType from "./modules/testimonialSection"
 import imageCarouselSectionType from "./modules/imageCarouselSection"
 import locationSectionType from "./modules/locationSection"
 import faqsSectionType from "./modules/faqsSection"
+import benifitsSectionType from "./modules/benifitsSection"
 /**
  * This file is the schema definition for a post.
  *
@@ -46,16 +47,16 @@ export default defineType({
   fields: 
     [
     //...openGraph.fields,
-    defineField({
-      name: 'mainImage',
-      title: 'Main Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      description: 'This image shows in the tile as the main image.',
-      group: 'pageContent',
-    }),
+    // defineField({
+    //   name: 'mainImage',
+    //   title: 'Main Image',
+    //   type: 'image',
+    //   options: {
+    //     hotspot: true,
+    //   },
+    //   description: 'This image shows in the tile as the main image.',
+    //   group: 'pageContent',
+    // }),
     defineField({
       name: 'unitImages',
       type: 'array',
@@ -66,7 +67,7 @@ export default defineType({
           hotspot: true,
         },
       }],
-      description: "Images of the unit from GemaPark",
+      description: "Images of the unit",
       group: 'pageContent',   
     }),
     defineField({
@@ -197,6 +198,7 @@ export default defineType({
         {type: imageCarouselSectionType.name},
         {type: locationSectionType.name},
         {type: faqsSectionType.name},
+        {type: benifitsSectionType.name},
         // etc...
         ],
         group: 'pageContent',
@@ -215,7 +217,7 @@ export default defineType({
       title: 'name',
       type: 'categoryId',
       date: 'date',
-      media: 'mainImage',
+      media: 'unitImages',
     },
     prepare({ title, media, type, date }) {
       const subtitles = [
@@ -223,7 +225,7 @@ export default defineType({
         date && `published on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
-      return { title, media, subtitle: subtitles.join(' ') }
+      return { title, media: media && media[0], subtitle: subtitles.join(' ') }
     },
   },
 })

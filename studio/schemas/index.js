@@ -1,6 +1,7 @@
 import navigationType from '../schemas/navigation'
 import navItemType from '../schemas/navItem'
 import linkDefinedType from '../schemas/linkDefined'
+import subItemType from '../schemas/subItem'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
 import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
@@ -18,6 +19,7 @@ import testimonialTileType from '../schemas/modules/testimonialTile'
 import testimonialSectionType from '../schemas/modules/testimonialSection'
 import imageCarouselSectionType from '../schemas/modules/imageCarouselSection'
 import locationSectionType from '../schemas/modules/locationSection'
+import benifitsSectionType from "../schemas/modules/benifitsSection"
 
 import unitType from '../schemas/unit'
 import authorType from '../schemas/author'
@@ -86,6 +88,7 @@ export const schemaTypes = [
   navItemType,
   linkType,
   linkDefinedType,
+ 
   // Taxonomies
   authorType,
   // Objects
@@ -105,7 +108,8 @@ export const schemaTypes = [
   imageCarouselSectionType,
   locationSectionType,
   faqsSectionType,
-
+  benifitsSectionType,
+  
   // Old Modules
   // imageWithCaptionType,
   // textBlockType, 
@@ -126,6 +130,7 @@ export const schemaTypes = [
   featuresTileType,
   servicesTileType,
   testimonialTileType,
+  subItemType,
 // Old Components
   // titleTextType,
   // titleSubtitleTextType,
