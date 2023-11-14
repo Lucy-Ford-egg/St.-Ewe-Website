@@ -17,21 +17,20 @@ import imageCarouselSectionType from "./modules/imageCarouselSection"
 import locationSectionType from "./modules/locationSection"
 import faqsSectionType from "./modules/faqsSection"
 
-import imageWithCaptionType from './modules/imageWithCaption'
-import textBlockType from './modules/textBlock'
-import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
-import heroCallToActionType from './modules/heroCallToAction'
-import mapType from './modules/map'
-import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
-import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
-import placesGridType from './modules/placesGrid'
-import postsGridType from './modules/postsGrid'
-import heroNewsletterType from './modules/heroNewsletter'
-import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
-import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
-import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
-import imageWithLinkType from '../schemas/modules/imageWithLink'
-import testimonialSection from "./modules/testimonialSection";
+// import imageWithCaptionType from './modules/imageWithCaption'
+// import textBlockType from './modules/textBlock'
+// import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
+// import heroCallToActionType from './modules/heroCallToAction'
+// import mapType from './modules/map'
+// import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
+// import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
+// import postsGridType from './modules/postsGrid'
+// import heroNewsletterType from './modules/heroNewsletter'
+// import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
+// import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
+// import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
+// import imageWithLinkType from '../schemas/modules/imageWithLink'
+// import testimonialSection from "./modules/testimonialSection";
 
 
 

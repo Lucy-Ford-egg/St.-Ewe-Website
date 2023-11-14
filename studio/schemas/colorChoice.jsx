@@ -1,10 +1,10 @@
-import { IoColorFillOutline } from 'react-icons/io5'
+import { MdOutlineColorLens } from 'react-icons/md'
 
 export default {
   name: 'colorChoice',
   title: 'Color Choice',
   type: 'object',
-  icon: IoColorFillOutline,
+  icon: MdOutlineColorLens,
   options: {
 	  collapsible: true,
 	  collapsed: true,

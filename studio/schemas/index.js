@@ -19,8 +19,7 @@ import testimonialSectionType from '../schemas/modules/testimonialSection'
 import imageCarouselSectionType from '../schemas/modules/imageCarouselSection'
 import locationSectionType from '../schemas/modules/locationSection'
 
-import placeCategoriesType from '../schemas/placeCategories'
-import placeType from '../schemas/place'
+import unitType from '../schemas/unit'
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
 import pageType from '../schemas/page'
@@ -36,33 +35,32 @@ import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from './modules/servicesSection'
 import faqsSectionType from './modules/faqsSection'
 
-import imageWithCaptionType from '../schemas/modules/imageWithCaption'
-import textBlockType from '../schemas/modules/textBlock'
-import embedBlockType from '../schemas/modules/embedBlock'
-import imageCarouselCaptionLinkType from '../schemas/modules/imageCarouselCaptionLink'
-import linkGroupType from '../schemas/modules/linkGroup'
-import heroCallToActionType from '../schemas/modules/heroCallToAction'
-import mapType from '../schemas/modules/map'
-import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
-import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
-import placesGridType from '../schemas/modules/placesGrid'
-import postsGridType from '../schemas/modules/postsGrid'
-import heroNewsletterType from '../schemas/modules/heroNewsletter'
-import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
-import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
-import imageWithLinkType from '../schemas/modules/imageWithLink'
-import instagramModuleType from '../schemas/modules/instagramModule'
+// import imageWithCaptionType from '../schemas/modules/imageWithCaption'
+// import textBlockType from '../schemas/modules/textBlock'
+// import embedBlockType from '../schemas/modules/embedBlock'
+// import imageCarouselCaptionLinkType from '../schemas/modules/imageCarouselCaptionLink'
+// import linkGroupType from '../schemas/modules/linkGroup'
+// import heroCallToActionType from '../schemas/modules/heroCallToAction'
+// import mapType from '../schemas/modules/map'
+// import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
+// import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
+// import postsGridType from '../schemas/modules/postsGrid'
+// import heroNewsletterType from '../schemas/modules/heroNewsletter'
+// import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
+// import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
+// import imageWithLinkType from '../schemas/modules/imageWithLink'
+// import instagramModuleType from '../schemas/modules/instagramModule'
 
 //Components
 
-import titleTextType from '../schemas/components/titleText'
-import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
-import imageCaptionType from '../schemas/components/imageCaption'
-import externalLinkType from './components/externalLink'
-import internalLinkType from './components/internalLink'
-import heroSlideType from './components/heroSlide'
-import blockquoteType from './components/blockquote'
-import instagramEmbedsType from './components/instagramEmbeds'
+// import titleTextType from '../schemas/components/titleText'
+// import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
+// import imageCaptionType from '../schemas/components/imageCaption'
+// import externalLinkType from './components/externalLink'
+// import internalLinkType from './components/internalLink'
+// import heroSlideType from './components/heroSlide'
+// import blockquoteType from './components/blockquote'
+// import instagramEmbedsType from './components/instagramEmbeds'
 
 
 
@@ -91,7 +89,7 @@ export const schemaTypes = [
   // Taxonomies
   authorType,
   // Objects
-  placeType, 
+  unitType, 
   postType,
   pageType,
   
@@ -109,37 +107,35 @@ export const schemaTypes = [
   faqsSectionType,
 
   // Old Modules
-  imageWithCaptionType,
-  textBlockType, 
-  embedBlockType,
-  imageCarouselCaptionLinkType, 
-  linkGroupType,
-  heroCallToActionType,
-  mapType,
-  twoColumnTitleTextCtaType,
-  imageCarouselSubtitleTitleTextLinkType,
-  placesGridType,
-  postsGridType,
-  heroNewsletterType,
-  heroInfoCallToActionType,
-  imageTextCallToActionImageType,
-  imageWithLinkType,
-  instagramModuleType,
+  // imageWithCaptionType,
+  // textBlockType, 
+  // embedBlockType,
+  // imageCarouselCaptionLinkType, 
+  // linkGroupType,
+  // heroCallToActionType,
+  // mapType,
+  // twoColumnTitleTextCtaType,
+  // imageCarouselSubtitleTitleTextLinkType,
+  // postsGridType,
+  // heroNewsletterType,
+  // heroInfoCallToActionType,
+  // imageTextCallToActionImageType,
+  // imageWithLinkType,
+
   // Components
   featuresTileType,
   servicesTileType,
   testimonialTileType,
 // Old Components
-  titleTextType,
-  titleSubtitleTextType,
-  imageCaptionType,
-  externalLinkType,
-  internalLinkType,
-  heroSlideType,
-  blockquoteType,
-  instagramEmbedsType,
+  // titleTextType,
+  // titleSubtitleTextType,
+  // imageCaptionType,
+  // externalLinkType,
+  // internalLinkType,
+  // heroSlideType,
+  // blockquoteType,
+  // instagramEmbedsType,
   // Categories
  
-  placeCategoriesType,
   categoriesType, 
 ]

@@ -1,21 +1,10 @@
 import React from "react"
-import { HiOutlineColorSwatch } from "react-icons/hi"
-
-const Icon = () => (
-  <HiOutlineColorSwatch
-  	style={{
-    	fontSize: "2rem",
-    	strokeWidth: "10px !important",
-    	color: "#FFFFFFF",
-  	}}
-  	strokeWidth={1}
-  />
-)
+import { MdOutlineColorLens } from "react-icons/md"
 
 export const DesignSystemColorsMenu = S => S.listItem()
   .title("Brand Colours")
   .id("designSystemColors")
-  .icon(Icon)
+  .icon(MdOutlineColorLens)
   .child(
   	S.documentTypeList("designSystemColor")
     	.title("Design System Colors")

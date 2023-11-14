@@ -167,8 +167,6 @@ export const ImageCarouselSection = props => {
                       height: "max-content",
                     }}
                   >
-                    {/* {100 * (index - currCard) + cardGap * index}% */}
-                    {/* {{{ x: index === 0 ? `0` :`-${((index * 100)) - 1.41218 }%` }}} */}
                     <motion.div
                       animate={{
                         x:

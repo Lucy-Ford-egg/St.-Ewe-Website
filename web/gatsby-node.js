@@ -19,8 +19,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       metaDescription: String
     }
     type SanityPlace implements Node {
-      metaTitle: String
-      metaDescription: String
+      slug: SanitySlug
     }
     type SanityImageAsset implements Node {
       altText: String
@@ -61,6 +60,32 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
+    allSanityUnit {
+      nodes {
+        mainImage {
+          asset {
+            gatsbyImageData
+          }
+        }
+        slug {
+          current
+        }
+        _id
+        summary
+        _rawExtendedSummary(resolveReferences: {maxDepth: 20})
+        links {
+          asset {
+            title
+            url
+            originalFilename
+          }
+        }
+        name
+        maxGrading
+        maxOccupancy
+        numberOfRooms
+      }
+    }
   }
   `)
 
@@ -71,6 +96,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
    // Fetch your items (blog posts, categories, etc).
    const blogPosts = result.data?.allSanityPost?.nodes || []
+   const units = result.data?.allSanityUnit?.nodes || []
 
   result.data.allSanityPage.nodes.forEach(node => {
     createPage({
@@ -85,20 +111,26 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     })
   })
 
-  //   const placePosts = data?.allSanityPlace?.nodes || []
-
-    // Create your paginated pages
-    // paginate({
-    //   createPage, // The Gatsby `createPage` function
-    //   items: blogPosts, // An array of objects
-    //   itemsPerPage: 12, // How many items you want per page
-    //   pathPrefix: "/blog", // Creates pages like `/blog`, `/blog/2`, etc
-    //   component: require.resolve(`./src/templates/postPageBuilder.jsx`), // Just like `createPage()`
-    //   context: {
-    //     slug: "blog",
-    //     showPagination: true,
-    //   },
-    // })
+  units.forEach(node => {
+    node.slug && node.slug.current &&
+    createPage({
+      path: `holiday-homes/${node.slug.current}`,
+      component: require.resolve(`./src/templates/unitTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        title: node.name,
+        coverImage: node.mainImage,
+        date: node.date,
+        //categories: node.categories,
+        excerpt: node.excerpt,
+        summary: node.summary,
+        unitId: node._id,
+        extendedSummary: node._rawExtendedSummary,
+        links: node.links
+      },
+    })
+  })
 
     blogPosts.forEach(node => {
       createPage({

@@ -73,25 +73,6 @@ query homeQuery{
         }
       }
     }
-    allSanityPlace {
-      nodes {
-        coverImage {
-          asset {
-            gatsbyImageData(width: 525, height: 323)
-          }
-        }
-        title
-
-        date(formatString: "M MMM YYYY")
-        categories: placeCategories {
-          name
-        }
-        slug {
-          current
-        }
-        excerpt
-      }
-    }
   }
 `
 export default IndexPage

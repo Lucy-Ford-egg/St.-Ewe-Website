@@ -22,7 +22,7 @@ export default defineType({
     defineField({
       name: 'picture',
       title: 'Picture',
-      type: 'imageCaption',
+      type: 'image',
       options: { hotspot: true },
       validation: (rule) => rule.required(),
     }),

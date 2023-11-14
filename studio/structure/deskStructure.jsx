@@ -65,12 +65,12 @@ export const deskStructure = (S, context) => {
             .defaultOrdering([{field: 'title', direction: 'asc'}])
         ),
       S.listItem()
-        .title('Places')
+        .title('Units')
         .icon(MdHolidayVillage)
         .child(
-          S.documentTypeList('place')
-            .title('Places')
-            .child((id) => S.document().schemaType('place').documentId(id).views(Views(S, context)))
+          S.documentTypeList('unit')
+            .title('Units')
+            .child((id) => S.document().schemaType('unit').documentId(id).views(Views(S, context)))
             .defaultOrdering([{field: 'title', direction: 'asc'}])
         ),
         S.divider(),
@@ -98,18 +98,6 @@ export const deskStructure = (S, context) => {
           )
           .defaultOrdering([{field: 'title', direction: 'asc'}])
         ),   
-
-        S.listItem()
-        .title('Place Categories')
-        .icon(MdCategory)
-        .child(
-          S.documentTypeList('placeCategories')
-          .title('Place Categories')
-          .child((id) =>
-            S.document().schemaType('placeCategories').documentId(id).views(Views(S, context))
-          )
-          .defaultOrdering([{field: 'title', direction: 'asc'}])
-        ),
         
       
           
