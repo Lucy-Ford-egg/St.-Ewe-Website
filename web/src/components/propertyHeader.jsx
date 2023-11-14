@@ -65,8 +65,9 @@ export const PropertyHeader = props => {
                         <Button size="large"
                         variant="outlined"
                         color="primary"
-                        to={node.asset.url}
+                        href={node.asset.url}
                         endIcon={checkIcon(node.asset.originalFilename)}
+                        target="_blank" rel="noopener noreferrer"
                         >
                           {node.asset.title}
                         
