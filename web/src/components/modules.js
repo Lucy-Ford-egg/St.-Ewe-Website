@@ -13,6 +13,7 @@ import { TestimonialSection } from './testimonialSection'
 import { ImageCarouselSection } from './imageCarouselSection'
 import { LocationSection } from './locationSection'
 import { FaqsSection } from './faqsSection'
+import { BenifitsSection } from './benifitsSection'
 
 
 
@@ -157,6 +158,15 @@ const Modules = (props) => {
                     if (isModule(module, 'faqsSection')) {
                         return (
                             <FaqsSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
+                    if (isModule(module, 'benifitsSection')) {
+                        return (
+                            <BenifitsSection
                                 previewData={previewData && previewData.pageBuilder[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

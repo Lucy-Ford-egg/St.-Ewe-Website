@@ -62,11 +62,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     }
     allSanityUnit {
       nodes {
-        mainImage {
-          asset {
-            gatsbyImageData
-          }
-        }
         slug {
           current
         }

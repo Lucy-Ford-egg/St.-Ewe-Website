@@ -166,7 +166,10 @@ export const pageTemplateQuery = graphql`
         } 
         ... on SanityFaqsSection {
           ...FaqsSectionFragment
-        }   
+        } 
+        ... on SanityBenifitsSection {
+          ... BenifitsSectionFragment
+        }  
       }
     }
   }

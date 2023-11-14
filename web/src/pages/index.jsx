@@ -71,6 +71,9 @@ query homeQuery{
         ... on SanityFaqsSection {
           ...FaqsSectionFragment
         }
+        ... on SanityBenifitsSection {
+          ... BenifitsSectionFragment
+        } 
       }
     }
   }

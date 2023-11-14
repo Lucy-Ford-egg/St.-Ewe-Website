@@ -66,24 +66,6 @@ export const pageTemplateQuery = graphql`
           top
         }
       }
-      image : mainImage {
-          asset {
-            _id
-            gatsbyImageData
-          }
-          hotspot {
-            x
-            y
-            width
-            height
-          }
-          crop {
-            bottom
-            left
-            right
-            top
-          }
-        }
       #_rawBody(resolveReferences: {maxDepth: 10})
       #...SeoPageFragment
       pageBuilder {
@@ -121,7 +103,10 @@ export const pageTemplateQuery = graphql`
         } 
         ... on SanityFaqsSection {
           ...FaqsSectionFragment
-        }   
+        }  
+        ... on SanityBenifitsSection {
+          ... BenifitsSectionFragment
+        } 
       }
     }
   }

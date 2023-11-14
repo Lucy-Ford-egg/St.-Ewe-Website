@@ -129,6 +129,9 @@ query pageTemplateQuery($slug: String!, $postIds:[String!]) {
       ... on SanityFaqsSection {
         ...FaqsSectionFragment
       }
+      ... on SanityBenifitsSection {
+        ... BenifitsSectionFragment
+      }
     }
   }
 }
