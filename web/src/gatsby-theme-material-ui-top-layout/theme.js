@@ -4,7 +4,7 @@ const clientSpacing = [0, 8, 12, 14, 16, 20, 24, 28, 33, 35, 41, 48, 50, 58, 67,
 
 let defaultTheme = createTheme({
   spacing: [...clientSpacing],
-  breakpoints:{
+  breakpoints: {
     values: {
       xs: 0,
       sm: 600,
@@ -31,7 +31,7 @@ let defaultTheme = createTheme({
       default: '#f6f6ee',
       main: '#f6f6ee',
     },
-    white:{
+    white: {
       main: '#ffffff',
     },
     highlight: {
@@ -109,7 +109,7 @@ let clientTheme = createTheme({
       sm: 640,
       md: 900,
       lg: 1180,
-      xl: 1300 ,
+      xl: 1300,
       xxl: 1440
     }
   },
@@ -137,24 +137,29 @@ let clientTheme = createTheme({
         
       `
     },
-    MuiContainer:{
+    MuiContainer: {
       styleOverrides: {
-        
+        root:{
+          [defaultTheme.breakpoints.down('sm')]: {
+            paddingLeft: `${defaultTheme.spacing(5)} !important`,
+            paddingRight: `${defaultTheme.spacing(5)} !important`,
+          },
+        }
       },
     },
-    MuiAccordion:{
-      styleOverrides:{
+    MuiAccordion: {
+      styleOverrides: {
         root: {
           paddingBottom: 4,
           "&:before": {
             backgroundColor: defaultTheme.palette.background.default,
             opacity: '1 !important',
           },
-          
+
         },
       },
     },
-    MuiAccordionSummary:{
+    MuiAccordionSummary: {
       styleOverrides: {
         root: {
           flexDirection: 'row-reverse',
@@ -163,34 +168,34 @@ let clientTheme = createTheme({
         },
       },
     },
-    MuiAccordionDetails:{
-      styleOverrides:{
+    MuiAccordionDetails: {
+      styleOverrides: {
         root: {
           padding: 0,
         }
       }
     },
-    MuiDivider:{
-      styleOverrides:{
+    MuiDivider: {
+      styleOverrides: {
         root: {
           borderColor: defaultTheme.palette.tertiary.main,
         },
-        light:{
+        light: {
           borderColor: defaultTheme.palette.background.default,
         },
-        accent:{
+        accent: {
           borderColor: defaultTheme.palette.primary.main,
         }
       },
     },
-    MuiFilledInput:{
-      styleOverrides:{
+    MuiFilledInput: {
+      styleOverrides: {
         root: {
           backgroundColor: defaultTheme.palette.white.main,
         },
       },
     },
-    MuiTextFeild:{
+    MuiTextFeild: {
       styleOverrides: {
         root: {
           '& fieldset': {
@@ -200,21 +205,21 @@ let clientTheme = createTheme({
         }
       }
     },
-    MuiPaper:{
+    MuiPaper: {
       styleOverrides: {
         root: {
           backgroundColor: defaultTheme.palette.background.default,
         },
       },
     },
-    MuiIconButton:{
-      styleOverrides:{
-        root:{
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
 
         },
-        colorPrimary:{
+        colorPrimary: {
           backgroundColor: defaultTheme.palette.background.default,
-          '&:disabled':{
+          '&:disabled': {
             opacity: 0.3,
             backgroundColor: defaultTheme.palette.background.default,
           }
@@ -237,48 +242,48 @@ let clientTheme = createTheme({
           fontWeight: 400,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(5)}`,
         },
-        sizeLarge:{
+        sizeLarge: {
           display: "flex",
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(5)}`, //"0.5rem 1.3125rem",
           justifyContent: "center",
           alignItems: "center",
           fontSize: defaultTheme.spacing(4)
         },
-        outlineTertiary:{
+        outlineTertiary: {
           color: defaultTheme.palette.text.primary,
           backgroundColor: defaultTheme.palette.background.default,
           border: `1px solid ${defaultTheme.palette.text.primary}`,
-          '&:hover':{
+          '&:hover': {
             cursor: 'pointer'
           },
         },
-        outlineSecondary:{
+        outlineSecondary: {
           color: defaultTheme.palette.background.main,
           backgroundColor: 'transparent',
           border: `1px solid ${defaultTheme.palette.background.main}`,
-          '&:hover':{
+          '&:hover': {
             cursor: 'pointer'
           },
         },
-        textPrimary:{
+        textPrimary: {
           color: defaultTheme.palette.primary.main,
           borderRadius: 0,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(1)}`,
-          '&:hover':{
+          '&:hover': {
             color: defaultTheme.palette.tertiary.main,
             backgroundColor: 'transparent',
-            '& .MuiSvgIcon-root':{
+            '& .MuiSvgIcon-root': {
               color: defaultTheme.palette.tertiary.main,
               // animation: 'arrowAnimation 2s ease 0s infinite normal forwards',
               // transition: 'all 0.2s ease-in-out 0s',
             },
           },
         },
-        textTertiary:{
+        textTertiary: {
           color: defaultTheme.palette.tertiary.main,
           borderRadius: 0,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(1)}`,
-          '&:hover':{
+          '&:hover': {
             color: defaultTheme.palette.tertiary.main,
             backgroundColor: 'transparent'
           },
@@ -286,32 +291,67 @@ let clientTheme = createTheme({
         containedPrimary: {
           color: 'white',
           backgroundColor: defaultTheme.palette.primary.main,
-          '&:hover':{
+          '&:hover': {
             cursor: 'pointer',
-            
+
           },
         },
       }
     },
-    MuiTypography:{
-      styleOverrides:{
-        root:{},
-        h2:{
+    MuiTypography: {
+      styleOverrides: {
+        root: {},
+        h2: {
           [defaultTheme.breakpoints.up('xs')]: {
             paddingTop: `${defaultTheme.spacing(6)} !important`,
             paddingBottom: `${defaultTheme.spacing(6)} !important`,
             marginTop: 0,
             marginBottom: 0,
-            },
+          },
           [defaultTheme.breakpoints.up('md')]: {
-          paddingTop: `${defaultTheme.spacing(6)} !important`,
-          paddingBottom: `${defaultTheme.spacing(6)} !important`,
-          marginTop: 0,
-          marginBottom: 0,
+            paddingTop: `${defaultTheme.spacing(6)} !important`,
+            paddingBottom: `${defaultTheme.spacing(6)} !important`,
+            marginTop: 0,
+            marginBottom: 0,
           },
         },
       },
-    }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          backgroundColor: defaultTheme.palette.white.main,
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0, 
+        },
+        notchedOutline:{
+          border: `1px solid ${defaultTheme.palette.tertiary.main}`,
+        },
+      },
+    },
+
+    MuiCheckbox:{
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+        },
+        colorPrimary:{
+          borderRadius: 0,
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          //backgroundColor: 'red',
+        },
+      },
+    },
   },
 });
 

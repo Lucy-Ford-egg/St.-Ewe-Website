@@ -10,7 +10,7 @@ const PageTemplate = props => {
 
   const isBlog = data.sanityPage.blogArchive || null
   const hasCategory = data.sanityPage.categoryArchive?.name || null
-debugger
+
   const filteredPosts = {
     nodes: data.allSanityPost.nodes.filter((node) => node.category._id === data.sanityPage.categoryArchive?._id
   )
@@ -131,6 +131,9 @@ query pageTemplateQuery($slug: String!, $postIds:[String!]) {
       }
       ... on SanityBenifitsSection {
         ... BenifitsSectionFragment
+      }
+      ... on SanityContactSection {
+        ... ContactSectionFragment
       }
     }
   }

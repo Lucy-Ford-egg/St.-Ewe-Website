@@ -18,6 +18,7 @@ import imageCarouselSectionType from "./modules/imageCarouselSection"
 import locationSectionType from "./modules/locationSection"
 import faqsSectionType from "./modules/faqsSection"
 import benifitsSectionType from "./modules/benifitsSection"
+import contactSectionType from './modules/contactSection'
 
 /**
  * This file is the schema definition for a post.
@@ -142,12 +143,13 @@ export default defineType({
       { type: videoSectionType.name},
       { type: featuresListSectionType.name }, 
       { type: ctaSectionType.name },
-      {type: servicesSectionType.name}, 
-      {type: testimonialSectionType.name},
-      {type: imageCarouselSectionType.name},
-      {type: locationSectionType.name},
-      {type: faqsSectionType.name},
-      {type: benifitsSectionType.name},
+      { type: servicesSectionType.name}, 
+      { type: testimonialSectionType.name},
+      { type: imageCarouselSectionType.name},
+      { type: locationSectionType.name},
+      { type: faqsSectionType.name},
+      { type: benifitsSectionType.name},
+      { type: contactSectionType.name},
       // etc...
     ],
     group: 'pageContent',

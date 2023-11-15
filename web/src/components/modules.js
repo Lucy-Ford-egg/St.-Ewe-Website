@@ -14,6 +14,7 @@ import { ImageCarouselSection } from './imageCarouselSection'
 import { LocationSection } from './locationSection'
 import { FaqsSection } from './faqsSection'
 import { BenifitsSection } from './benifitsSection'
+import { ContactSection } from './contactSection'
 
 
 
@@ -167,6 +168,15 @@ const Modules = (props) => {
                     if (isModule(module, 'benifitsSection')) {
                         return (
                             <BenifitsSection
+                                previewData={previewData && previewData.pageBuilder[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
+                    if (isModule(module, 'contactSection')) {
+                        return (
+                            <ContactSection
                                 previewData={previewData && previewData.pageBuilder[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

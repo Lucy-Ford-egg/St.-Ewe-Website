@@ -20,6 +20,7 @@ import testimonialSectionType from '../schemas/modules/testimonialSection'
 import imageCarouselSectionType from '../schemas/modules/imageCarouselSection'
 import locationSectionType from '../schemas/modules/locationSection'
 import benifitsSectionType from "../schemas/modules/benifitsSection"
+import contactSectionType from '../schemas/modules/contactSection'
 
 import unitType from '../schemas/unit'
 import authorType from '../schemas/author'
@@ -109,6 +110,7 @@ export const schemaTypes = [
   locationSectionType,
   faqsSectionType,
   benifitsSectionType,
+  contactSectionType,
   
   // Old Modules
   // imageWithCaptionType,

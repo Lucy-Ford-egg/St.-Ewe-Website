@@ -73,7 +73,10 @@ query homeQuery{
         }
         ... on SanityBenifitsSection {
           ... BenifitsSectionFragment
-        } 
+        }
+        ... on SanityContactSection {
+          ... ContactSectionFragment
+        }
       }
     }
   }

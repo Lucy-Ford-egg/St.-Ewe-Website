@@ -17,6 +17,7 @@ import imageCarouselSectionType from "./modules/imageCarouselSection"
 import locationSectionType from "./modules/locationSection"
 import faqsSectionType from "./modules/faqsSection"
 import benifitsSectionType from "./modules/benifitsSection"
+import contactSectionType from './modules/contactSection'
 
 // import imageWithCaptionType from './modules/imageWithCaption'
 // import textBlockType from './modules/textBlock'
@@ -132,6 +133,7 @@ export default defineType({
         {type: locationSectionType.name},
         {type: faqsSectionType.name},
         {type: benifitsSectionType.name},
+        {type: contactSectionType.name},
         // etc...
         ],
          group: 'pageContent',
