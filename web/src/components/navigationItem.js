@@ -92,7 +92,7 @@ export const NavigationItem = (props) => {
                   px: theme.spacing(2)
                 }}>
                   {node.link.internal ? (
-                    <GatsbyButton variant="text" to={`/${node.link.internal?.slug?.current}`} sx={{
+                    <GatsbyButton variant="text" color='tertiary' to={`/${node.link.internal?.slug?.current}`} sx={{
                       px: 0,
                       justifyContent: 'left',
                       fontWeight: 400,
@@ -100,7 +100,7 @@ export const NavigationItem = (props) => {
                       size="large"
                     >{node.text}</GatsbyButton>
                   ) : node.link.external ? (
-                    <Link size="large" href={node.link.external} sx={{
+                    <Link size="large"  color='tertiary' href={node.link.external} sx={{
                       px: 0,
                       justifyContent: 'left',
                       fontWeight: 400,
@@ -234,7 +234,7 @@ export const NavigationItem = (props) => {
               }}>
 
                 {node.link.internal ? (
-                  <GatsbyButton size="large" variant="text" to={node.link.internal?.slug?.current}
+                  <GatsbyButton size="large" variant="text" color='tertiary' to={node.link.internal?.slug?.current}
                     sx={{
                       justifyContent: "flex-start",
                       color: theme.palette.text.primary,
