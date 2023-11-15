@@ -28,6 +28,7 @@ export const BenifitsSection = props => {
     subtitle,
     links,
     highlighted,
+    subItems,
   } = props
 
   const textColour = highlighted
@@ -54,9 +55,7 @@ export const BenifitsSection = props => {
               xs: theme.spacing(10),
               md: highlighted ? theme.spacing(16) : theme.spacing(10),
             },
-        mt: topPadding
-          ? 0
-          : highlighted ? theme.spacing(10) : 0,
+        mt: topPadding ? 0 : highlighted ? theme.spacing(10) : 0,
         backgroundColor: highlighted
           ? theme.palette.highlight.main
           : "transparent",
@@ -158,7 +157,40 @@ export const BenifitsSection = props => {
                 >
                   {previewData && previewData.text ? previewData.text : text}
                 </Typography>
-
+                <Grid container columnSpacing={4} sx={{pt: {xs: 4, sm: 0}}}>
+                  {subItems &&
+                    subItems.map((subItem, i) => {
+                      return (
+                        <Grid item xs={6} md={6}>
+                          {subItem.icon && (
+                            <>
+                              <Icons
+                                type={
+                                  previewData && previewData.subItem.icon
+                                    ? previewData.subItem.icon
+                                    : subItem.icon
+                                }
+                              />
+                              <Typography color={textColour} variant="h5">
+                                {previewData && previewData.subItem.title
+                                  ? previewData.subItem.title
+                                  : subItem.title}
+                              </Typography>
+                              <Typography
+                                color={textColour}
+                                sx={{ py: { xs: 5, md: 6 } }}
+                                variant="body1"
+                              >
+                                {previewData && previewData.subItem.text
+                                  ? previewData.subItem.text
+                                  : subItem.text}
+                              </Typography>
+                            </>
+                          )}
+                        </Grid>
+                      )
+                    })}
+                </Grid>
                 <Box
                   sx={{
                     width: "fit-content",
@@ -167,6 +199,7 @@ export const BenifitsSection = props => {
                     flexDirection: "row",
                     flexBasis: "100%",
                     columnGap: 6,
+                    pt: {xs: 4, sm: 0}
                   }}
                 >
                   {links &&
@@ -207,6 +240,11 @@ export const query = graphql`
     subtitle
     title
     text
+    subItems: subItem {
+      title
+      text
+      icon
+    }
     links {
       link {
         internal {
