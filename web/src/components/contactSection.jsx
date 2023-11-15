@@ -35,6 +35,7 @@ export const ContactSection = props => {
     subtitle,
     links,
     showForm,
+    formTerms,
   } = props
 
   const textColour = theme.palette.text.main
@@ -203,7 +204,9 @@ export const ContactSection = props => {
                   <FormControlLabel required control={
                     <Checkbox {...label} size="small" icon={<CheckBoxOutlineBlankSharpIcon />}
                     checkedIcon={<CheckBoxSharpIcon  />} />} label="I accept the Terms" />
-                  <Link to='/terms' target="_blank" rel="noopener"><Typography variant='caption'>Terms &amp; Conditions</Typography></Link>
+                    
+                  {formTerms && <Link to={formTerms.link.internal.slug.current} target="_blank" rel="noopener"><Typography variant='caption'>{formTerms.text}</Typography></Link>}
+                  
                   <Button sx={{my: 6}} type="submit" variant="contained" color="primary">
                     Submit
                   </Button>
@@ -233,5 +236,24 @@ export const query = graphql`
     showForm
     mirror
     topPadding
+    formTerms {
+      link {
+        internal {
+          ... on SanityPage {
+            id
+            slug {
+              current
+            }
+          }
+          ... on SanityPost {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+      text
+    }
   }
 `

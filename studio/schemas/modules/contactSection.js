@@ -42,6 +42,13 @@ export default defineType({
       title: 'Add form',
       description: 'Add a form. Forms are passed to an email address.'
     }),
+    defineField({
+      name: 'formTerms',
+      type: 'linkDefined',
+      title: 'Form Terms',
+      description: 'Add link for the related terms.',
+      hidden: ({ parent, value }) => !value && !parent?.showForm
+    }),
     
     defineField({
       name: 'mirror',
