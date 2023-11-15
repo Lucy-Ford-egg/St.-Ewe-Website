@@ -91,7 +91,7 @@ export const NavigationItem = (props) => {
                 <MenuItem key={`submenu-${i}-${node.text}`} onClick={handleClose} disableRipple sx={{
                   px: theme.spacing(2)
                 }}>
-                  {node.link.internal ? (
+                  {node?.link?.internal ? (
                     <GatsbyButton variant="text" color='tertiary' to={`/${node.link.internal?.slug?.current}`} sx={{
                       px: 0,
                       justifyContent: 'left',
