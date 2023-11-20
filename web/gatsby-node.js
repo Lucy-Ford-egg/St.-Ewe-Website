@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// const { paginate } = require("gatsby-awesome-pagination")
+const { paginate } = require("gatsby-awesome-pagination")
 // // const express = require('express');
 
 
@@ -39,11 +39,15 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const { createPage } = actions
   const result = await graphql(`
   query SanityAllData {
-    allSanityPage(filter: {slug: {current: {nin: ["blog", "the-list"]}}}) {
+    allSanityPage {
       nodes {
         id
         slug {
           current
+        }
+        archive {
+          name
+          _id
         }
         pageTitle
       }
@@ -60,6 +64,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
+
     allSanityUnit {
       nodes {
         slug {
@@ -92,6 +97,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
    // Fetch your items (blog posts, categories, etc).
    const blogPosts = result.data?.allSanityPost?.nodes || []
    const units = result.data?.allSanityUnit?.nodes || []
+   //const blogPages = result.data?.blogPages?.nodes || []
 
   result.data.allSanityPage.nodes.forEach(node => {
     createPage({
@@ -104,6 +110,22 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         postIds: result.data?.allSanityPost?.nodes.map(({ category }) => category._id)
       },
     })
+    if(node.archive.name?._id){
+      node.archive.name._id.forEach(archivePage => {
+        paginate({
+          createPage,
+          items: blogPosts,
+          itemsPerPage: 1,
+          pathPrefix: `/${node.slug.current}`,
+          component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
+          context: {
+            slug: node.slug.current,
+            categoryArchive : node.archive?._id || null,
+          }
+        })
+      })
+      
+    }
   })
 
   units.forEach(node => {
@@ -143,30 +165,23 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       })
     })
 
-  
+    // blogPages.forEach((blogPage) => {
+    //   paginate({
+    //     createPage,
+    //     items: blogPosts,
+    //     itemsPerPage: 1,
+    //     pathPrefix: `/${blogPage.slug.current}`,
+    //     component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
+    //     context: {
+    //       slug: blogPage.slug.current,
+    //       blogArchive: blogPage.blogArchive,
+    //       categoryArchive : blogPage.categoryArchive?.name || null,
+    //     }
+    //   })
+    // })
 
-  //   paginate({
-  //     createPage,
-  //     items: placePosts,
-  //     itemsPerPage: 100,
-  //     pathPrefix: "/the-list",
-  //     component: require.resolve(`./src/templates/pageBuilder.jsx`),
-  //     context: { 
-  //       slug: "the-list",
-  //       posts: blogPosts },
-  //       showPagination: true,
-  //   })
+   ////($slug: String!, $postIds: [String!])
+   //"postIds": ["5e419fc4-7e9c-4d70-9e3b-bae5e7beb97e", "d6ef20c1-92ba-4ffc-8b22-1161c18e70a2"]
 
-  //   placePosts.forEach(node => {
-  //     createPage({
-  //       path: `places/${node.slug.current}`,
-  //       component: require.resolve(`./src/templates/placeBuilder.jsx`),
-  //       context: {
-  //         id: node.id,
-  //         slug: `${node.slug.current}`,
-  //         allPosts: blogPosts,
-  //       },
-  //     })
-  //   })
 }
 

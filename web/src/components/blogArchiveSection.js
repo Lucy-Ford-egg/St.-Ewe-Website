@@ -13,9 +13,10 @@ import Image from "gatsby-plugin-sanity-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { CategoryLabel } from "../components/categoryLabel"
 import EastIcon from "@mui/icons-material/East"
+import { Link } from "gatsby-theme-material-ui"
 
 export const BlogArchiveSection = props => {
-  const { posts, previewData, sanityConfig, topPadding } = props
+  const { posts, previewData, sanityConfig, topPadding, pageContext } = props
 
   const theme = useTheme()
   return (
@@ -113,6 +114,11 @@ export const BlogArchiveSection = props => {
             )
           })}
       </Grid>
+      <div>
+        {/* previousPageLink and nextPageLink were added by the plugin */ }
+        <Link to={props.pageContext.previousPagePath}>Previous</Link>
+        <Link to={props.pageContext.nextPagePath}>Next</Link>
+      </div>
     </Container>
   )
 }

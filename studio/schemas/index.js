@@ -89,9 +89,10 @@ export const schemaTypes = [
   navItemType,
   linkType,
   linkDefinedType,
- 
+
   // Taxonomies
   authorType,
+  
   // Objects
   unitType, 
   postType,

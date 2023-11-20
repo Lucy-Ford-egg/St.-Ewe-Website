@@ -80,7 +80,7 @@ export default defineType({
       type: 'string',
       description: 'Just for editor purposes. Not shown on the frontend but still necesscary',
       validation: (rule) => rule.required(),
-       group: 'pageContent',
+      group: 'pageContent',
     }),
     defineField({
       name: 'slug',
@@ -93,26 +93,34 @@ export default defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
-       group: 'pageContent',
+      group: 'pageContent',
     }),
     defineField({
       name: 'date',
       title: 'Date',
       type: 'datetime',
       initialValue: () => new Date().toISOString(),
-       group: 'pageContent'
-    }),
-    defineField({
-      name: 'categoryArchive',
-      type: 'reference',
-      to: [{ type: 'categories', title: 'Make a category page' }],
-      description: `Select the reference you would like to make a category page for. Example: To make a 'Things to do' category page then select 'Things to do as the category'. This will then use a template which inserts the the blog posts for this template directly underneath the first component.`,
       group: 'pageContent'
     }),
+    // defineField({
+    //   name: 'categoryArchive',
+    //   type: 'reference',
+    //   to: [{ type: 'categories', title: 'Make a category page' }],
+    //   description: `Select the reference you would like to make a category page for. Example: To make a 'Things to do' category page then select 'Things to do as the category'. This will then use a template which inserts the the blog posts for this template directly underneath the first component.`,
+    //   group: 'pageContent'
+    // }),
     defineField({
-      name: 'blogArchive',
-      type: 'boolean',
-      description: `Select this to page the a page with all the blog posts. Example: This is used to make the blog page but could also be used to make another page containing blog posts. This will then use a template which inserts the the blog posts for this template directly underneath the first component.`,
+      name: 'archive',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            { type: 'categories' },
+          ]
+        }
+      ],
+      //description: `Select this to page the a page with all the blog posts. Example: This is used to make the blog page but could also be used to make another page containing blog posts. This will then use a template which inserts the the blog posts for this template directly underneath the first component.`,
       group: 'pageContent'
     }),
     defineField({
@@ -123,20 +131,20 @@ export default defineType({
       of: [
         { type: headerSectionAccommodationSearchType.name },
         { type: unitsListsSectionType.name },
-        { type: featureSectionType.name},
-        { type: videoSectionType.name},
-        { type: featuresListSectionType.name }, 
+        { type: featureSectionType.name },
+        { type: videoSectionType.name },
+        { type: featuresListSectionType.name },
         { type: ctaSectionType.name },
-        {type: servicesSectionType.name}, 
-        {type: testimonialSectionType.name},
-        {type: imageCarouselSectionType.name},
-        {type: locationSectionType.name},
-        {type: faqsSectionType.name},
-        {type: benifitsSectionType.name},
-        {type: contactSectionType.name},
+        { type: servicesSectionType.name },
+        { type: testimonialSectionType.name },
+        { type: imageCarouselSectionType.name },
+        { type: locationSectionType.name },
+        { type: faqsSectionType.name },
+        { type: benifitsSectionType.name },
+        { type: contactSectionType.name },
         // etc...
-        ],
-         group: 'pageContent',
+      ],
+      group: 'pageContent',
     }),
   ],
   preview: {

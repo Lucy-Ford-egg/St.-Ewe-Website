@@ -61,6 +61,7 @@ const Modules = (props) => {
                     if (isModule(module, 'blogArchiveSection')) {
                         return <BlogArchiveSection previewData={previewData && previewData.pageBuilder[i]}
                             sanityConfig={sanityConfig}
+                            pageContext={pageContext}
                             key={module._key + i}
                             {...module} />
                     }

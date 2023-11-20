@@ -5,26 +5,29 @@ import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
 import { pageQuery } from "./queries/documentQueries"
 
-const PageTemplate = props => {
+const BlogArchiveTemplate = props => {
   const { data, pageContext } = props
 debugger
-  //const isBlog = data.sanityPage.blogArchive || null
-  const hasCategoryArchive = data.sanityPage.archive?._id || null
+  const isBlog = data.sanityPage.blogArchive || null
+  const hasCategory = data.sanityPage.categoryArchive?.name || null
 
   const filteredPosts = {
-    nodes: data.allSanityPost.nodes.filter((node) => node.category._id === data.sanityPage.archive?._id
+    nodes: data.allSanityPost.nodes.filter((node) => node.category._id === data.sanityPage.categoryArchive?._id
   )
 }
   
   const blogModule = {
     _key: "",
     _type: "blogArchiveSection",
-    posts:  hasCategoryArchive ? filteredPosts : data.allSanityPost,    
+    posts:  hasCategory ? filteredPosts : data.allSanityPost,    
 }
 
-  if(hasCategoryArchive){
+  if(isBlog || hasCategory){
       data?.sanityPage?.pageBuilder.splice(1, 0, blogModule)
   }
+
+ 
+
   
   return (
     <IncludePreview
@@ -33,8 +36,6 @@ debugger
       data={data}
     >
       <Modules
-        // isBlog={isBlog}
-        // hasCategory={hasCategory}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
@@ -46,10 +47,19 @@ export const Head = ({ data, location }) => {
   return <Seo seoContext={data.sanityPage} location={location} />
 }
 
-export const pageTemplateQuery = graphql`
-query pageTemplateQuery($slug: String!, $postIds:[String!]) {
+export const blogArchiveTemplateQuery = graphql`
+query blogArchiveTemplateQuery($skip: Int!, $limit: Int!, $slug: String!, $postIds:[String!]) {
   allSanityPost(
-    filter: {category: {_id: {in: $postIds}}}
+    filter: {
+      category: {
+        _id: {
+          in: $postIds
+        }
+      }
+    }
+    
+    skip: $skip 
+    limit: $limit 
   ) {
     nodes {
       image: coverImage {
@@ -85,10 +95,11 @@ query pageTemplateQuery($slug: String!, $postIds:[String!]) {
       current
     }
     pageTitle
-    archive {
-      name
-      _id
-    }
+    #categoryArchive {
+    #  name
+    #  _id
+    #}
+    #blogArchive
     pageBuilder {
       ... on SanityHeaderSectionAccommodationSearch {
         _key
@@ -135,4 +146,4 @@ query pageTemplateQuery($slug: String!, $postIds:[String!]) {
   }
 }
 `
-export default PageTemplate
+export default BlogArchiveTemplate
