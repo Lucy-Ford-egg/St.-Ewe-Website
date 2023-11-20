@@ -28,7 +28,7 @@ const wrapPageElement = ({ element, props }) => {
         </PreviewProvider>
 
      
-      <PrivacyMessage />
+      {/* <PrivacyMessage /> */}
     </ThemeProvider>
 
   )
