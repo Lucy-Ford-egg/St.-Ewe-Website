@@ -140,11 +140,11 @@ export const UnitCarousel = props => {
                   // pass asset, hotspot, and crop fields
                   crop={
                     (previewData && previewData[slideIndex]?.crop) ||
-                    tiles[slideIndex].crop
+                    tiles[slideIndex]?.crop
                   }
                   hotspot={
                     (previewData && previewData[slideIndex]?.hotspot) ||
-                    tiles[slideIndex].hotspot
+                    tiles[slideIndex]?.hotspot
                   }
                   asset={
                     getGatsbyImageData(
@@ -291,9 +291,9 @@ export const UnitCarousel = props => {
                     <Image
                       // pass asset, hotspot, and crop fields
                       // {...testimonialTiles[slideIndex].image}
-                      crop={(previewData && previewData.crop) || node.crop}
+                      crop={(previewData && previewData?.crop) || node?.crop}
                       hotspot={
-                        (previewData && previewData.hotspot) || node.hotspot
+                        (previewData && previewData?.hotspot) || node?.hotspot
                       }
                       asset={
                         getGatsbyImageData(
