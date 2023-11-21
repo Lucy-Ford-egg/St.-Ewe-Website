@@ -66,7 +66,7 @@ export const CtaSection = props => {
           />
         )}
       
-      {leftAlign !== false && (
+      {leftAlign === false && (
         <Box
           sx={{
             display: "grid",
