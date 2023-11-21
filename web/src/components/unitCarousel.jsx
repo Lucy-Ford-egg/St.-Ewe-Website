@@ -136,6 +136,7 @@ export const UnitCarousel = props => {
               style={{}}
             >
               <Box className="slide" sx={{ height: "inherit" }}>
+                
                 <Image
                   // pass asset, hotspot, and crop fields
                   crop={
@@ -151,7 +152,7 @@ export const UnitCarousel = props => {
                       previewData && previewData[slideIndex]?.asset,
                       { maxWidth: 1330 },
                       sanityConfig,
-                    ) || tiles[slideIndex]?.asset
+                    ) || tiles[slideIndex].asset
                   }
                   style={{
                     objectFit: "cover",
