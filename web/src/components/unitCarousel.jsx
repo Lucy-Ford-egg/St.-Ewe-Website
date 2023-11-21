@@ -136,7 +136,7 @@ export const UnitCarousel = props => {
               style={{}}
             >
               <Box className="slide" sx={{ height: "inherit" }}>
-                { tiles[slideIndex].asset &&
+                { tiles[slideIndex] && tiles[slideIndex]?.asset &&
                 <Image
                   // pass asset, hotspot, and crop fields
                   crop={
