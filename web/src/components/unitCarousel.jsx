@@ -136,7 +136,7 @@ export const UnitCarousel = props => {
               style={{}}
             >
               <Box className="slide" sx={{ height: "inherit" }}>
-                
+                { tiles[slideIndex].asset &&
                 <Image
                   // pass asset, hotspot, and crop fields
                   crop={
@@ -160,6 +160,7 @@ export const UnitCarousel = props => {
                     height: "100%",
                   }}
                 />
+                }
               </Box>
             </motion.div>
           </AnimatePresence>
