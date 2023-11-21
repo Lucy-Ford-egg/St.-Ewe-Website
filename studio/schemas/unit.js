@@ -69,7 +69,8 @@ export default defineType({
         },
       }],
       description: "Images of the unit",
-      group: 'pageContent',   
+      group: 'pageContent', 
+      validation: Rule => Rule.required(),  
     }),
     defineField({
       name: 'name',
