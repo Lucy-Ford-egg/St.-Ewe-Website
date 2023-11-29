@@ -4,7 +4,7 @@ import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
 export default defineType({
   name: "benifitsSection",
   type: "object",
-  title: "Benifits Section",
+  title: "Benefits Section",
   fields: [
     defineField({
       name: 'image',
@@ -88,7 +88,7 @@ export default defineType({
 
       return {
         title: title,
-        subtitle: `Benifits Section`,
+        subtitle: `Benefits Section`,
         // media: media,
         media: thumb,
         icon: MdOutlinePhotoSizeSelectActual
