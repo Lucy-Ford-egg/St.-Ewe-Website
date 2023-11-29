@@ -130,7 +130,7 @@ export const BlogSection = props => {
             )
           })}
       </Grid>
-      <Container maxWidth="lg" sx={{
+      <Box sx={{
         pt: 12,
       }}>
       <Box sx={{
@@ -180,7 +180,7 @@ export const BlogSection = props => {
           </Button>
         
       </Box>
-      </Container>
+      </Box>
     </Container>
   )
 }
