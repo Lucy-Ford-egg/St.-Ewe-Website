@@ -29,7 +29,7 @@ export default defineType({
         // status: 'status'
       },
       prepare(selection) {
-      debugger
+      
         const {link, subtitle, children} = selection
         return {
           title: `${link.text}` ,

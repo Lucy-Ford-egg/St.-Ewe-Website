@@ -4,7 +4,7 @@ import { Button } from "@mui/material"
 
 export const ButtonFormat = props => {
   const { node, sx, endIcon, variant, color } = props
-  // debugger
+  
   return (
     <>
       {node?.link?.internal ? (

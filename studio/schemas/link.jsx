@@ -26,7 +26,7 @@ export default defineType({
     },
     prepare(selection) {
       const {internal, external} = selection
-      debugger
+      
 
       return {
         title: internal ? "Internal Link" : "External Link",

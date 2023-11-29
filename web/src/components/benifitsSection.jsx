@@ -208,7 +208,7 @@ export const BenifitsSection = props => {
                       return (
                         <ButtonFormat
                           variant={i === 0 ? "contained" : "outlined"}
-                          color={i === 0 ? "primary" : "tertiary"}
+                          color={i === 0 ? "primary" : highlighted ? "secondary" : "tertiary"}
                           node={
                             previewData && previewData.node
                               ? previewData.node

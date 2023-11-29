@@ -9,7 +9,7 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 
 export const HeroCallToAction = (props) => {
   const {title, text, image, linkGroup, previewData, sanityConfig} = props
-debugger
+
   const adornment = true
 
   const isMobile = useMediaQuery('(min-width:600px)');

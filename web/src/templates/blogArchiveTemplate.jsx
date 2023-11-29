@@ -20,7 +20,7 @@ const BlogArchiveTemplate = props => {
     setBlogInserted(i)
     i ++
   }, [data])
-debugger
+
   return (
     <IncludePreview
       documentQueries={pageQuery}

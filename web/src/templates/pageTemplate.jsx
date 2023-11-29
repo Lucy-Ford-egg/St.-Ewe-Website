@@ -7,7 +7,7 @@ import { pageQuery } from "./queries/documentQueries"
 
 const PageTemplate = props => {
   const { data, pageContext } = props
-  debugger
+ 
   return (
     <IncludePreview
       documentQueries={pageQuery}
