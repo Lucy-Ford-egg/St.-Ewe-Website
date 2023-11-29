@@ -99,7 +99,7 @@ export const FeaturesListSection = props => {
           {featuresTile &&
             featuresTile.map((tile, i) => {
               return (
-                <Grid item xs={12} sm={6} md={6} lg={3} sx={{flexGrow: 'auto', 
+                <Grid item xs={12} sm={6} md={6} lg={featuresTile.length === 3 ? 4 : 3} sx={{flexGrow: 'auto', 
                 "&:first-of-type":{
                   pt: {xs: 0, md: theme.spacing(6)}
                 }}}>
