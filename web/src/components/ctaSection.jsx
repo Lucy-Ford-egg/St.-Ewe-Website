@@ -17,7 +17,7 @@ export const CtaSection = props => {
     links,
     topPadding,
   } = props
-debugger
+
   const theme = useTheme()
   return (
     <Container
@@ -66,7 +66,7 @@ debugger
           />
         )}
       
-      {leftAlign === false && image && (
+      {leftAlign === null && image && (
         <Box
           sx={{
             display: "grid",
