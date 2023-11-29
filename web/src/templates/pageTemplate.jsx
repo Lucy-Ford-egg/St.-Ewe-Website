@@ -29,8 +29,15 @@ export const Head = ({ data, location }) => {
 
 export const pageTemplateQuery = graphql`
 
-query pageTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
+query pageTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
   allSanityPost(
+    filter: {
+      category: {
+        _id: {
+          in: $postIds
+        }
+      }
+    }
     skip: $skip 
     limit: $limit 
   ) {

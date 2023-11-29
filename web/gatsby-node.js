@@ -126,28 +126,48 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     return false; // Key not found in any object
   }
 
+  function getShowArchiveIds(pageBuilder) {
+    const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
+  
+    const ids = pageBuilderArray.reduce((acc, currentItem) => {
+      if (currentItem && currentItem.showArchive && currentItem.showArchive.archive) {
+        const archiveItems = currentItem.showArchive.archive;
+  
+        archiveItems.forEach(archiveItem => {
+          if (archiveItem._id) {
+            acc.push(archiveItem._id);
+          }
+        });
+      }
+      return acc;
+    }, []);
+  
+    return ids.length === 0 ? blogPostsCategories : ids;
+  }
+
+
 
   result.data.allSanityPage.nodes.forEach(node => {
 
     // Check if the array has an object with the key 'showArchive'
     const hasKey = hasShowArchive(node?.pageBuilder);
 
-    // if (hasKey) {
-    //   paginate({
-    //     createPage,
-    //     items: blogPosts,
-    //     itemsPerPage: 1,
-    //     pathPrefix: `/blog/`,
-    //     component: require.resolve(`./src/templates/pageTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-    //     context: {
-    //       id: node.id,
-    //       slug: `${node.slug.current}`,
-    //       node: node,
-          
-    //     },
-    //   })
-    // }
-    // else {
+    if (hasKey) {
+      paginate({
+        createPage,
+        items: blogPosts,
+        itemsPerPage: 3,
+        pathPrefix: `/${node.slug.current}`,
+        component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+          postIds: getShowArchiveIds(node?.pageBuilder)
+        },
+      })
+    }
+    else {
       createPage({
         path: node.slug.current,
         component: require.resolve(`./src/templates/pageTemplate.jsx`),
@@ -155,9 +175,11 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           id: node.id,
           slug: `${node.slug.current}`,
           node: node,
+          postIds: getShowArchiveIds(node?.pageBuilder)
         },
       })
-    // }
+
+    }
   })
 
 

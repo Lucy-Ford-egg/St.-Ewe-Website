@@ -43,8 +43,15 @@ export const Head = ({ data, location }) => {
 }
 
 export const blogArchiveTemplateQuery = graphql`
-query blogArchiveTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
+query blogArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
   allSanityPost(
+    filter: {
+      category: {
+        _id: {
+          in: $postIds
+        }
+      }
+    }
     skip: $skip 
     limit: $limit 
   ) {
@@ -82,13 +89,6 @@ query blogArchiveTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
       current
     }
     pageTitle
-    showArchive {
-      setArchive
-      archive {
-        _id
-        name
-      }
-    }
     pageBuilder {
       ... on SanityHeaderSectionAccommodationSearch {
         _key
@@ -131,7 +131,7 @@ query blogArchiveTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
       ... on SanityContactSection {
         ... ContactSectionFragment
       }
-      ... on SanityBlogSection {
+      ...on SanityBlogSection {
         ... BlogSectionFragment
       }
     }
