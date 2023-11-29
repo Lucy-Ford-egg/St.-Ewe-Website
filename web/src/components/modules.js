@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BlogArchiveSection } from "./blogArchiveSection"
+import { BlogSection } from "./blogSection"
 
 import { HeaderSectionAccommodationSearch } from './headerSectionAccommodationSearch'
 import { UnitsListsSection } from './unitsListsSection'
@@ -39,7 +39,7 @@ import { ContactSection } from './contactSection'
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext } = props
+    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost,  blogInserted } = props
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -51,6 +51,15 @@ const Modules = (props) => {
         }
     }
 
+    // if(blogInserted === 0) {
+    //     const blogModule = {
+    //       _key: "",
+    //       _type: "blogArchiveSection",
+    //       posts:  allSanityPost,    
+    //      }   
+    //      modules.splice(1, 0, blogModule) 
+    //   }
+
     if (modules != null) {
 
         return (
@@ -58,11 +67,12 @@ const Modules = (props) => {
             <main data-content="main">
                 {modules.map((module, i) => {
 
-                    if (isModule(module, 'blogArchiveSection')) {
-                        return <BlogArchiveSection previewData={previewData && previewData.pageBuilder[i]}
+                    if (isModule(module, 'blogSection')) {
+                        return <BlogSection previewData={previewData && previewData.pageBuilder[i]}
                             sanityConfig={sanityConfig}
                             pageContext={pageContext}
                             key={module._key + i}
+                            allSanityPost={allSanityPost}
                             {...module} />
                     }
 

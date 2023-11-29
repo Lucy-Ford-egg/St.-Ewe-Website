@@ -18,6 +18,7 @@ import locationSectionType from "./modules/locationSection"
 import faqsSectionType from "./modules/faqsSection"
 import benifitsSectionType from "./modules/benifitsSection"
 import contactSectionType from './modules/contactSection'
+import blogSectionType from "./modules/blogSection";
 
 // import imageWithCaptionType from './modules/imageWithCaption'
 // import textBlockType from './modules/textBlock'
@@ -110,20 +111,6 @@ export default defineType({
     //   group: 'pageContent'
     // }),
     defineField({
-      name: 'archive',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            { type: 'categories' },
-          ]
-        }
-      ],
-      //description: `Select this to page the a page with all the blog posts. Example: This is used to make the blog page but could also be used to make another page containing blog posts. This will then use a template which inserts the the blog posts for this template directly underneath the first component.`,
-      group: 'pageContent'
-    }),
-    defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
@@ -142,6 +129,7 @@ export default defineType({
         { type: faqsSectionType.name },
         { type: benifitsSectionType.name },
         { type: contactSectionType.name },
+        { type: blogSectionType.name },
         // etc...
       ],
       group: 'pageContent',

@@ -9,18 +9,22 @@ const BlogArchiveTemplate = props => {
   const { data, pageContext } = props
   const [posts, setPosts] = useState(null)
   const [modules, setModules] = useState(null)
-  const [blogInserted, setBlogInserted] = useState(null)
+
   
-  let i = 0
 
   useEffect(() => {
     setPosts(data.allSanityPost)
-    setModules(data?.sanityPage?.pageBuilder)
-   
-    setBlogInserted(i)
-    i ++
-  }, [data])
-debugger
+    setModules(data?.sanityPage?.pageBuilder)   
+  }, [data, modules])
+
+  const blogModule = {
+    _key: "",
+    _type: "blogSection",
+    posts:  data.allSanityPost,    
+   }   
+   modules && modules.splice(1, 0, blogModule) 
+
+
   return (
     <IncludePreview
       documentQueries={pageQuery}
@@ -29,7 +33,6 @@ debugger
     >
       {posts && modules && 
       <Modules
-        allSanityPost={data.allSanityPost}
         pageContext={pageContext}
         modules={modules}
       />
@@ -43,10 +46,17 @@ export const Head = ({ data, location }) => {
 }
 
 export const blogArchiveTemplateQuery = graphql`
-query blogArchiveTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
+query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
   allSanityPost(
-    skip: $skip 
-    limit: $limit 
+    filter: {
+      category: {
+        _id: {
+          in: $postIds
+        }
+      }
+    }
+    #skip: $skip 
+    #limit: $limit 
   ) {
     nodes {
       image: coverImage {

@@ -4,8 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-const { paginate } = require("gatsby-awesome-pagination")
-// // const express = require('express');
+const { paginate, createPagePerItem } = require("gatsby-awesome-pagination")
 
 
 exports.createSchemaCustomization = ({ actions }) => {
@@ -13,6 +12,13 @@ exports.createSchemaCustomization = ({ actions }) => {
   const typeDefs = `
     type categories implements Node {
       name: String
+    }
+    type ShowArchive implements Node {
+      setArchive: Boolean
+      archive: [SanityCategories]
+    }
+    type SanityPage implements Node {
+      showArchive: ShowArchive
     }
     type SanityPost implements Node {
       metaTitle: String
@@ -31,6 +37,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     type SanitySiteSettings implements Node {
       ballotSetup: BallotSetup
     }
+    
   `
   createTypes(typeDefs)
 }
@@ -45,11 +52,19 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug {
           current
         }
-        archive {
-          name
-          _id
-        }
         pageTitle
+        pageBuilder{
+          ... on SanityBlogSection {
+            _key
+            _type
+            showArchive {
+              archive {
+                name
+                _id
+              }
+            }
+          }
+        }
       }
     }
     allSanityPost {
@@ -94,94 +109,127 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     return
   }
 
-   // Fetch your items (blog posts, categories, etc).
-   const blogPosts = result.data?.allSanityPost?.nodes || []
-   const units = result.data?.allSanityUnit?.nodes || []
-   //const blogPages = result.data?.blogPages?.nodes || []
+  // Fetch your items (blog posts, categories, etc).
+  const blogPosts = result.data?.allSanityPost?.nodes || []
+  const units = result.data?.allSanityUnit?.nodes || []
+  //const blogPages = result.data?.blogPages?.nodes || []
+
+  const blogPostsCategories = blogPosts.map(({ category }) => category._id)
+  console.log(`All Post Cats = ${blogPostsCategories}`)
+
+  function hasShowArchive(array) {
+    for (let i = 0; i < array.length; i++) {
+      if ('showArchive' in array[i]) {
+        return true; // Found object with the key 'showArchive'
+      }
+    }
+    return false; // Key not found in any object
+  }
+
 
   result.data.allSanityPage.nodes.forEach(node => {
-    createPage({
-      path: node.slug.current,
-      component: require.resolve(`./src/templates/pageTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.slug.current}`,
-        node: node,
-        postIds: result.data?.allSanityPost?.nodes.map(({ category }) => category._id)
-      },
-    })
-    if(node.archive.name?._id){
-      node.archive.name._id.forEach(archivePage => {
-        paginate({
-          createPage,
-          items: blogPosts,
-          itemsPerPage: 1,
-          pathPrefix: `/${node.slug.current}`,
-          component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
-          context: {
-            slug: node.slug.current,
-            categoryArchive : node.archive?._id || null,
-          }
-        })
-      })
-      
-    }
-  })
 
-  units.forEach(node => {
-    node.slug && node.slug.current &&
-    createPage({
-      path: `holiday-homes/${node.slug.current}`,
-      component: require.resolve(`./src/templates/unitTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.slug.current}`,
-        title: node.name,
-        coverImage: node.mainImage,
-        date: node.date,
-        //categories: node.categories,
-        excerpt: node.excerpt,
-        summary: node.summary,
-        unitId: node._id,
-        extendedSummary: node._rawExtendedSummary,
-        links: node.links
-      },
-    })
-  })
+    // Check if the array has an object with the key 'showArchive'
+    const hasKey = hasShowArchive(node?.pageBuilder);
 
-    blogPosts.forEach(node => {
-      createPage({
-        path: `blog/${node.slug.current}`,
-        component: require.resolve(`./src/templates/postTemplate.jsx`),
-        context: {
-          id: node.id,
-          slug: `${node.slug.current}`,
-          title: node.title,
-          coverImage: node.coverImage,
-          date: node.date,
-          categories: node.categories,
-          excerpt: node.excerpt,
-        },
-      })
-    })
-
-    // blogPages.forEach((blogPage) => {
+    // if (hasKey) {
     //   paginate({
     //     createPage,
     //     items: blogPosts,
     //     itemsPerPage: 1,
-    //     pathPrefix: `/${blogPage.slug.current}`,
-    //     component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
+    //     pathPrefix: `/blog/`,
+    //     component: require.resolve(`./src/templates/pageTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
     //     context: {
-    //       slug: blogPage.slug.current,
-    //       blogArchive: blogPage.blogArchive,
-    //       categoryArchive : blogPage.categoryArchive?.name || null,
-    //     }
+    //       id: node.id,
+    //       slug: `${node.slug.current}`,
+    //       node: node,
+          
+    //     },
     //   })
-    // })
+    // }
+    // else {
+      createPage({
+        path: node.slug.current,
+        component: require.resolve(`./src/templates/pageTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+        },
+      })
+    // }
+  })
 
-   ////($slug: String!, $postIds: [String!])
-   //"postIds": ["5e419fc4-7e9c-4d70-9e3b-bae5e7beb97e", "d6ef20c1-92ba-4ffc-8b22-1161c18e70a2"]
+
+  //:
+
+
+
+  // createPage({
+  //   path: node.slug.current,
+  //   component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
+  //   context: {
+  //     id: node.id,
+  //     slug: `${node.slug.current}`,
+  //     node: node,
+  //     postIds: node.showArchive.setArchive === true ? blogPostsCategories : node.showArchive.archive.map(({ _id }) => _id)
+  //   },
+  // })
+
+
+  // result.data.allSanityPage.nodes.forEach(node => {
+
+  //   node.archive._id && node.archive._id.forEach(archivePage => {
+  //       paginate({
+  //         createPage,
+  //         items: blogPosts,
+  //         itemsPerPage: 1,
+  //         pathPrefix: `/${node.slug.current}`,
+  //         component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
+  //         context: {
+  //           slug: node.slug.current,
+  //           categoryArchive : node.archive?._id || null,
+  //         }
+  //       })
+  //     })
+  // })
+
+  units.forEach(node => {
+    node.slug && node.slug.current &&
+      createPage({
+        path: `holiday-homes/${node.slug.current}`,
+        component: require.resolve(`./src/templates/unitTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          title: node.name,
+          coverImage: node.mainImage,
+          date: node.date,
+          //categories: node.categories,
+          excerpt: node.excerpt,
+          summary: node.summary,
+          unitId: node._id,
+          extendedSummary: node._rawExtendedSummary,
+          links: node.links
+        },
+      })
+  })
+
+  blogPosts.forEach(node => {
+    createPage({
+      path: `blog/${node.slug.current}`,
+      component: require.resolve(`./src/templates/postTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        title: node.title,
+        coverImage: node.coverImage,
+        date: node.date,
+        categories: node.categories,
+        excerpt: node.excerpt,
+      },
+    })
+  })
 
 }
 

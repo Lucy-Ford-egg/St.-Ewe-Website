@@ -77,6 +77,9 @@ query homeQuery{
         ... on SanityContactSection {
           ... ContactSectionFragment
         }
+        ... on SanityBlogSection {
+          ... BlogSectionFragment
+        }
       }
     }
   }

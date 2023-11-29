@@ -7,6 +7,7 @@ import categoriesType from '../schemas/categories'
 import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 import faqsType from '../schemas/faqs'
+import showArchiveType from '../schemas/showArchive'
 
 import videoIdType from '../schemas/videoId'
 import iconsType from '../schemas/icons'
@@ -37,6 +38,7 @@ import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from './modules/servicesSection'
 import faqsSectionType from './modules/faqsSection'
+import blogSectionType from './modules/blogSection'
 
 // import imageWithCaptionType from '../schemas/modules/imageWithCaption'
 // import textBlockType from '../schemas/modules/textBlock'
@@ -84,6 +86,8 @@ export const schemaTypes = [
   videoIdType,
   overlayType,
   colorChoiceType,
+  showArchiveType,
+
   // Navigation
   navigationType,
   navItemType,
@@ -112,7 +116,7 @@ export const schemaTypes = [
   faqsSectionType,
   benifitsSectionType,
   contactSectionType,
-  
+  blogSectionType,
   // Old Modules
   // imageWithCaptionType,
   // textBlockType, 

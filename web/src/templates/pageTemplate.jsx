@@ -7,25 +7,7 @@ import { pageQuery } from "./queries/documentQueries"
 
 const PageTemplate = props => {
   const { data, pageContext } = props
-debugger
-  //const isBlog = data.sanityPage.blogArchive || null
-  const hasCategoryArchive = data.sanityPage.archive?._id || null
-
-  const filteredPosts = {
-    nodes: data.allSanityPost.nodes.filter((node) => node.category._id === data.sanityPage.archive?._id
-  )
-}
-  
-  const blogModule = {
-    _key: "",
-    _type: "blogArchiveSection",
-    posts:  hasCategoryArchive ? filteredPosts : data.allSanityPost,    
-}
-
-  if(hasCategoryArchive){
-      data?.sanityPage?.pageBuilder.splice(1, 0, blogModule)
-  }
-  
+  debugger
   return (
     <IncludePreview
       documentQueries={pageQuery}
@@ -33,8 +15,7 @@ debugger
       data={data}
     >
       <Modules
-        // isBlog={isBlog}
-        // hasCategory={hasCategory}
+        allSanityPost={data.allSanityPost}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
@@ -47,9 +28,11 @@ export const Head = ({ data, location }) => {
 }
 
 export const pageTemplateQuery = graphql`
-query pageTemplateQuery($slug: String!, $postIds:[String!]) {
+
+query pageTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
   allSanityPost(
-    filter: {category: {_id: {in: $postIds}}}
+    skip: $skip 
+    limit: $limit 
   ) {
     nodes {
       image: coverImage {
@@ -85,10 +68,6 @@ query pageTemplateQuery($slug: String!, $postIds:[String!]) {
       current
     }
     pageTitle
-    archive {
-      name
-      _id
-    }
     pageBuilder {
       ... on SanityHeaderSectionAccommodationSearch {
         _key
@@ -130,6 +109,9 @@ query pageTemplateQuery($slug: String!, $postIds:[String!]) {
       }
       ... on SanityContactSection {
         ... ContactSectionFragment
+      }
+      ...on SanityBlogSection {
+        ... BlogSectionFragment
       }
     }
   }

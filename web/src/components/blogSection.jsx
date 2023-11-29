@@ -1,4 +1,5 @@
 import React from "react"
+import { graphql } from "gatsby"
 import {
   Container,
   Typography,
@@ -6,17 +7,18 @@ import {
   useTheme,
   Box,
   Paper,
-  Button,
   Divider,
 } from "@mui/material"
+import {Button} from 'gatsby-theme-material-ui'
 import Image from "gatsby-plugin-sanity-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
-import { CategoryLabel } from "../components/categoryLabel"
+import { CategoryLabel } from "./categoryLabel"
 import EastIcon from "@mui/icons-material/East"
 import { Link } from "gatsby-theme-material-ui"
 
-export const BlogArchiveSection = props => {
-  const { posts, previewData, sanityConfig, topPadding, pageContext } = props
+export const BlogSection = props => {
+
+  const { allSanityPost, previewData, sanityConfig, topPadding, pageContext, showArchive } = props
 
   const theme = useTheme()
   return (
@@ -33,8 +35,8 @@ export const BlogArchiveSection = props => {
       }}
     >
       <Grid container columnSpacing={6} rowSpacing={12}>
-        {posts && posts.nodes &&
-          posts.nodes.map((post, i) => {
+        {allSanityPost && allSanityPost.nodes &&
+          allSanityPost.nodes.map((post, i) => {
             return (
               <Grid item xs={12} sm={6} md={4}>
                 <Paper
@@ -114,11 +116,29 @@ export const BlogArchiveSection = props => {
             )
           })}
       </Grid>
-      <div>
+      
+      <Box>
         {/* previousPageLink and nextPageLink were added by the plugin */ }
         <Link to={props.pageContext.previousPagePath}>Previous</Link>
         <Link to={props.pageContext.nextPagePath}>Next</Link>
-      </div>
+      </Box>
     </Container>
   )
 }
+
+export const query = graphql`
+  fragment BlogSectionFragment on SanityBlogSection {
+    _key
+    _type
+    showArchive {
+      setArchive
+      archive {
+        _id
+        name
+      }
+    }
+    topPadding
+  }
+`
+
+

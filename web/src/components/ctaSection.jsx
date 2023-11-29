@@ -17,7 +17,7 @@ export const CtaSection = props => {
     links,
     topPadding,
   } = props
-
+debugger
   const theme = useTheme()
   return (
     <Container
@@ -66,7 +66,7 @@ export const CtaSection = props => {
           />
         )}
       
-      {leftAlign === false && (
+      {leftAlign === false && image && (
         <Box
           sx={{
             display: "grid",
@@ -84,8 +84,6 @@ export const CtaSection = props => {
                 width: "100%"
               }}
             >
-              {image && (
-                <>
                 <GatsbyImage
                   image={
                     getGatsbyImageData(
@@ -113,9 +111,7 @@ export const CtaSection = props => {
                     position: 'relative',
                     zIndex: 1,
                     backgroundColor: `rgba(36,36,36, ${overlay})`,
-                }}/>}
-                </>
-              )}
+                }}/>}       
             </Box>
           </Container>
         </Box>
