@@ -101,7 +101,7 @@ export const ServicesTile = props => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: {xs: "center", lg: "flex-end"},
+              justifyContent: {xs: "center", lg: "center"},
               alignItems: "center",
               flexBasis: "100%",
               pt: 4,
