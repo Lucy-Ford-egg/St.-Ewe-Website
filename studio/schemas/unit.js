@@ -157,7 +157,7 @@ export default defineType({
           title: 'File Upload'
         }
       ],
-      description: 'Add a link(s). Optional',
+      description: `Add a link(s). Optional * It's crucial that uploaded files have a title. This is used for display on the frontend. Adding the word Inventory or Tarrif to a filename will also indicate which icon to use on the frontend.`,
       validation: Rule => Rule.min(1).max(2),
       group: 'pageContent',
     }),
