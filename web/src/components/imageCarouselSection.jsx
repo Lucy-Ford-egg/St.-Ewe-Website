@@ -52,8 +52,8 @@ export const ImageCarouselSection = props => {
 
   return (
     <Container
-      maxWidth={slides && slides.length === 0 ? "xl" : "false"}
-      disableGutters={sm ? false : true}
+      maxWidth={slides && slides.length === 1 ? "xl" : "false"}
+      disableGutters={sm || slides.length === 1 ? false : true}
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
         pt: topPadding
