@@ -163,7 +163,7 @@ export const BenifitsSection = props => {
                       return (
                         <Grid item xs={6} md={6}>
                           {subItem.icon && (
-                            <>
+                            
                               <Icons
                                 type={
                                   previewData && previewData.subItem.icon
@@ -171,6 +171,7 @@ export const BenifitsSection = props => {
                                     : subItem.icon
                                 }
                               />
+                               )}
                               <Typography color={textColour} variant="h5">
                                 {previewData && previewData.subItem.title
                                   ? previewData.subItem.title
@@ -185,8 +186,8 @@ export const BenifitsSection = props => {
                                   ? previewData.subItem.text
                                   : subItem.text}
                               </Typography>
-                            </>
-                          )}
+                            
+                         
                         </Grid>
                       )
                     })}
