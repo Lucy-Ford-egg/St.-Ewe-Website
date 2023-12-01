@@ -53,7 +53,7 @@ export const ImageCarouselSection = props => {
   return (
     <Container
       maxWidth={slides && slides.length === 1 ? "xl" : "false"}
-      disableGutters={sm || slides.length === 1 ? false : true}
+      disableGutters={sm || slides && slides.length === 1 ? false : true}
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
         pt: topPadding
@@ -315,11 +315,11 @@ export const ImageCarouselSection = props => {
               previewData?.image?.asset?._ref,
               { maxWidth: 1300 },
               sanityConfig,
-            ) || getImage(slides[0].image.asset)
+            ) || getImage(slides[0] && slides[0].image.asset)
           }
           layout="constrained"
           //aspectRatio={133 / 8}
-          alt={slides[0].image.asset?.altText}
+          alt={slides[0] && slides[0].image.asset?.altText}
           style={{
             width: "100%",
             height: "100%",
