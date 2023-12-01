@@ -74,7 +74,7 @@ export const CtaSection = props => {
           />
         )}
 
-        {align === false && image && (
+        {align === false || align === null && image && (
           <Box
             sx={{
               display: "grid",

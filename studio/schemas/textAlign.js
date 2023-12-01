@@ -4,39 +4,26 @@ export default {
   type: 'string',
   options: {
     list: [
-      {title: 'Left', value: 'left'},
-      {title: 'Center', value: 'center'},
-      // {title: 'Right', value: 'right'}
+      { title: 'Left', type: 'string', value: 'left' },
+      { title: 'Center', type: 'string', value: 'center' },
     ], // &lt;-- predefined values
     layout: 'radio',
     direction: 'horizontal'
   },
   initialValue: {
-    title: 'Center'
+    title: 'Center', 
   },
+  initialValue: 'center',
   preview: {
     select: {
       list: 'list',
     },
     prepare(selection) {
       const { list } = selection
-  
+
       return {
         title: list,
-        // media: (
-        //   <span
-        //     style={{
-        //       border: 'solid',
-        //       borderWidth: '0.5px',
-        //       borderColor: 'white',
-        //       width: '2rem',
-        //       height: '2rem',
-        //       borderRadius: '100%',
-              
-        //     }}
-        //   />
-        // ),
       }
     },
-    },
+  },
 }

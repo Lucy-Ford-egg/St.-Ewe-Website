@@ -37,8 +37,8 @@ export default defineType({
     }),
     defineField({
       name: 'leftAlign',
-      type: 'boolean',
-      title: 'Text align left',
+      type: 'textAlign',
+      title: 'Align Text',
       description: 'Select this align the text to the left and show the image full in the background with a pin line border. Optional',
     }),
     defineField({
