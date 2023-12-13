@@ -9,16 +9,24 @@ import {media} from 'sanity-plugin-media'
 import {deskStructure} from './structure/deskStructure'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/studioTheme'
+
+import {presentationTool} from 'sanity/presentation'
+import {locate} from './locate'
   
 export default defineConfig({
   name: 'default',
   title: 'Heligan Campsite',
-  projectId:  process.env.SANITY_STUDIO_PROJECT_ID,
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
   dataset: 'production',
   theme,
   plugins: [
     deskTool({ 
       structure: deskStructure, 
+    }),
+    presentationTool({
+      // Required: set the base URL to the preview location in the front end
+      previewUrl: 'http://localhost:8000/', //process.env.SANITY_STUDIO_PREVIEW_URL,
+      locate: locate,
     }),
     visionTool(),
     media(),
