@@ -17,13 +17,13 @@ import {locate} from './locate'
 export default defineConfig({
   name: 'default',
   title: 'Heligan Campsite',
-  projectId:  'mq5c1tyr', //process.env.SANITY_STUDIO_PROJECT_ID,
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
   dataset: 'production',
   theme,
   plugins: [
-    structureTool({ 
-        structure: deskStructure, 
-      }),
+    deskTool({ 
+      structure: deskStructure, 
+    }),
     presentationTool({
       // Required: set the base URL to the preview location in the front end
       previewUrl: 'https://localhost:8000/', //process.env.SANITY_STUDIO_PREVIEW_URL,
