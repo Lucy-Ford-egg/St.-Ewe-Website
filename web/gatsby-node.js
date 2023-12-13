@@ -114,7 +114,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const units = result.data?.allSanityUnit?.nodes || []
   //const blogPages = result.data?.blogPages?.nodes || []
 
-  const blogPostsCategories = blogPosts.map(({ category }) => category._id)
+  const blogPostsCategories = blogPosts.map(({ category }) => category && category._id)
+  
   console.log(`All Post Cats = ${blogPostsCategories}`)
 
   function hasShowArchive(array) {
@@ -141,7 +142,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       }
       return acc;
     }, []);
-  
+  console.log(`BPC: ${blogPostsCategories} - ids: ${ids}`)
     return ids.length === 0 ? blogPostsCategories : ids;
   }
 
