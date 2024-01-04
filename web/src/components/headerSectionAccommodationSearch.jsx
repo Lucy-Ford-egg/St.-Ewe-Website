@@ -3,8 +3,26 @@ import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { Container, Typography, Box, useTheme } from "@mui/material"
+//Preview
+
+import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
+import {PAGE_QUERY} from '../queries/documentQueries'
+import { useEncodeDataAttribute } from "@sanity/react-loader";
 
 export const HeaderSectionAccommodationSearch = props => {
+
+  const { data, sourceMap } = useQuery(
+    PAGE_QUERY,
+    {},
+    { initial }
+  );
+
+  const encodeDataAttribute = useEncodeDataAttribute(
+    data,
+    sourceMap,
+    STUDIO_ORIGIN
+  );
+
   const theme = useTheme()
   const {
     title,
@@ -15,6 +33,8 @@ export const HeaderSectionAccommodationSearch = props => {
     sanityConfig,
     showSearch,
     searchColour,
+    // Preview
+    initial
   } = props
 
  
@@ -56,6 +76,12 @@ export const HeaderSectionAccommodationSearch = props => {
             align="center"
             sx={{ textAlign: "center", my: { xs: 5 } }}
             variant="h1"
+            // Preview
+            data-sanity={encodeDataAttribute?.([
+              "title",
+              title._key,
+              "slug",
+            ])}
           >
             {previewData && previewData.title ? previewData.title : title}
           </Typography>
