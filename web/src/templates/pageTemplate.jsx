@@ -9,17 +9,17 @@ const PageTemplate = props => {
   const { data, pageContext } = props
  
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityPage.slug} //
-      data={data}
-    >
+    // <IncludePreview
+    //   documentQueries={pageQuery}
+    //   slug={data.sanityPage.slug} //
+    //   data={data}
+    // >
       <Modules
         allSanityPost={data.allSanityPost}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
-    </IncludePreview>
+    // </IncludePreview>
   )
 }
 
