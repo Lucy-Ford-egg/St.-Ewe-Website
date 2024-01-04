@@ -17,7 +17,6 @@ import { BenifitsSection } from './benifitsSection'
 import { ContactSection } from './contactSection'
 
 
-
 // import { Places } from './places'
 // import { Posts } from './posts'
 // import { ImageCaption } from './imageCaption'
@@ -65,6 +64,7 @@ const Modules = (props) => {
         return (
 
             <main data-content="main">
+                
                 {modules.map((module, i) => {
 
                     if (isModule(module, 'blogSection')) {

@@ -7,7 +7,6 @@ import clientTheme from "./src/gatsby-theme-material-ui-top-layout/theme"
 import { CssBaseline } from '@mui/material';
 import { PrivacyMessage } from '../web/src/components/privacyMessage'
 import { HeadScripts } from './src/components/headScripts'
-import { VisualEditing } from "./src/components/visualEditing";
 
 // Pass all props (hence the ...props) to the layout component so it has access to things like pageContext or location
 const wrapPageElement = ({ element, props }) => {
@@ -15,6 +14,7 @@ const wrapPageElement = ({ element, props }) => {
   return (
 
     <ThemeProvider theme={clientTheme}>
+     
       <CssBaseline />      
      
         
@@ -22,7 +22,7 @@ const wrapPageElement = ({ element, props }) => {
         <PreviewProvider>
           <SanityPreviewConnectorProvider token={process.env.SANITY_TOKEN}>
           <HeadScripts activePreview={props} />
-          <VisualEditing {...props}/>
+          
           <Layout {...props}>
             {element}
             </Layout>

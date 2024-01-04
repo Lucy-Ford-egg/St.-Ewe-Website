@@ -11,18 +11,6 @@ import { useEncodeDataAttribute } from "@sanity/react-loader";
 
 export const HeaderSectionAccommodationSearch = props => {
 
-  const { data, sourceMap } = useQuery(
-    PAGE_QUERY,
-    {},
-    { initial }
-  );
-
-  const encodeDataAttribute = useEncodeDataAttribute(
-    data,
-    sourceMap,
-    STUDIO_ORIGIN
-  );
-
   const theme = useTheme()
   const {
     title,
@@ -33,11 +21,25 @@ export const HeaderSectionAccommodationSearch = props => {
     sanityConfig,
     showSearch,
     searchColour,
+    
     // Preview
+    _key,
+    location,
     initial
   } = props
 
- 
+  // Preview
+  const { data, sourceMap } = useQuery(
+    PAGE_QUERY,
+    {slug: 'home-page'},
+    { initial }
+  );
+
+  const encodeDataAttribute = useEncodeDataAttribute(
+    data,
+    sourceMap,
+    STUDIO_ORIGIN
+  );
 
   return (
     <Container
@@ -52,6 +54,12 @@ export const HeaderSectionAccommodationSearch = props => {
         minHeight: 639,
         maxHeight: 639,
       }}
+      data-sanity={encodeDataAttribute?.([
+        "headerSectionAccommodationSearch",
+        _key,
+        "slug",
+      ])}
+      data-sanity-edit-target
     >
       <Container
         maxWidth="xl"
@@ -76,12 +84,6 @@ export const HeaderSectionAccommodationSearch = props => {
             align="center"
             sx={{ textAlign: "center", my: { xs: 5 } }}
             variant="h1"
-            // Preview
-            data-sanity={encodeDataAttribute?.([
-              "title",
-              title._key,
-              "slug",
-            ])}
           >
             {previewData && previewData.title ? previewData.title : title}
           </Typography>

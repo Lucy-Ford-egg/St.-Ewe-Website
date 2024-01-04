@@ -1,29 +1,10 @@
-// import { STUDIO_ORIGIN, useLiveMode } from "../../sanity/store";
-// import { enableOverlays } from "@sanity/overlays";
-// import { useEffect } from "react";
-
-// export function VisualEditing() {
-//   debugger
-//   useEffect(() => enableOverlays(), []);
-//   enableOverlays()
-//   useLiveMode({ allowStudioOrigin: STUDIO_ORIGIN });
-
-//   return null;
-// }
-
-// // components/VisualEditing.tsx
-
-// "use client";
-
 import { STUDIO_ORIGIN, useLiveMode } from "../../sanity/store";
 import { enableOverlays } from "@sanity/overlays";
-import { useParams } from "@reach/router"
 import { useEffect, useMemo, useRef } from "react";
 
 export function VisualEditing({location}) {
 
   const searchParams = location.search;
-
   const routerRef = useRef(location);
   const navigateRef = useRef();
 
