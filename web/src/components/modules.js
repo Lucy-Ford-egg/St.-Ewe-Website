@@ -68,7 +68,7 @@ const Modules = (props) => {
                 {modules.map((module, i) => {
 
                     if (isModule(module, 'blogSection')) {
-                        return <BlogSection previewData={previewData && previewData.pageBuilder[i]}
+                        return <BlogSection previewData={previewData && previewData[i]}
                             sanityConfig={sanityConfig}
                             pageContext={pageContext}
                             key={module._key + i}
@@ -79,7 +79,7 @@ const Modules = (props) => {
                     if (isModule(module, 'headerSectionAccommodationSearch')) {
                         return (
                             <HeaderSectionAccommodationSearch
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -88,7 +88,7 @@ const Modules = (props) => {
                     if (isModule(module, 'unitsListsSection')) {
                         return (
                             <UnitsListsSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -97,7 +97,7 @@ const Modules = (props) => {
                     if (isModule(module, 'featureSection')) {
                         return (
                             <FeatureSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -107,7 +107,7 @@ const Modules = (props) => {
 
                         return (
                             <VideoSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -116,7 +116,7 @@ const Modules = (props) => {
                     if (isModule(module, 'featuresListSection')) {
                         return (
                             <FeaturesListSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -125,7 +125,7 @@ const Modules = (props) => {
                     if (isModule(module, 'ctaSection')) {
                         return (
                             <CtaSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -134,7 +134,7 @@ const Modules = (props) => {
                     if (isModule(module, 'servicesSection')) {
                         return (
                             <ServicesSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -143,7 +143,7 @@ const Modules = (props) => {
                     if (isModule(module, 'testimonialSection')) {
                         return (
                             <TestimonialSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -152,7 +152,7 @@ const Modules = (props) => {
                     if (isModule(module, 'imageCarouselSection')) {
                         return (
                             <ImageCarouselSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -161,7 +161,7 @@ const Modules = (props) => {
                     if (isModule(module, 'locationSection')) {
                         return (
                             <LocationSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -170,7 +170,7 @@ const Modules = (props) => {
                     if (isModule(module, 'faqsSection')) {
                         return (
                             <FaqsSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -179,7 +179,7 @@ const Modules = (props) => {
                     if (isModule(module, 'benifitsSection')) {
                         return (
                             <BenifitsSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />
@@ -188,7 +188,7 @@ const Modules = (props) => {
                     if (isModule(module, 'contactSection')) {
                         return (
                             <ContactSection
-                                previewData={previewData && previewData.pageBuilder[i]}
+                                previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
                                 {...module} />

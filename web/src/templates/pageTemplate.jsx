@@ -9,7 +9,7 @@ import Modules from "../components/modules"
 import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
 import {PAGE_QUERY} from '../queries/documentQueries'
 import { useEncodeDataAttribute } from "@sanity/react-loader";
-
+import {getSanityClient } from "../../sanityUtils/sanity"
 const PageTemplate = props => {
   const { data, pageContext, location, initial } = props
 
@@ -33,7 +33,8 @@ debugger
     //   data={data}
     // >
       <Modules
-        previewData={previewData}
+        sanityConfig={getSanityClient}
+        previewData={previewData?.pageBuilder}
         allSanityPost={data.allSanityPost}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
