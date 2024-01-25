@@ -17,7 +17,7 @@ import {locate} from './locate'
 export default defineConfig({
   name: 'default',
   title: 'Heligan Campsite',
-  projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+  projectId:  'mq5c1tyr',
   dataset: 'production',
   theme,
   plugins: [
