@@ -1,5 +1,6 @@
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {structureTool} from 'sanity/structure'
+
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import { Logo } from './plugins/logo/logo'
@@ -20,9 +21,12 @@ export default defineConfig({
   dataset: 'production',
   theme,
   plugins: [
-    deskTool({ 
-      structure: deskStructure, 
-    }),
+    // deskTool({ 
+    //   structure: deskStructure, 
+    // }),
+    structureTool({ 
+        structure: deskStructure, 
+      }),
     presentationTool({
       // Required: set the base URL to the preview location in the front end
       previewUrl: 'http://localhost:8000/', //process.env.SANITY_STUDIO_PREVIEW_URL,
@@ -39,10 +43,6 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-  studio: {
-    components: {
-      logo: Logo
-    }
-  },
+  icon: Logo,
 })
 
