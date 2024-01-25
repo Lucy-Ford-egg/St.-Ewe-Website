@@ -166,14 +166,14 @@ export const BenifitsSection = props => {
                             
                               <Icons
                                 type={
-                                  previewData && previewData.subItem.icon
-                                    ? previewData.subItem.icon
+                                  previewData && previewData?.subItem?.icon
+                                    ? previewData?.subItem.icon
                                     : subItem.icon
                                 }
                               />
                                )}
                               <Typography color={textColour} variant="h5">
-                                {previewData && previewData.subItem.title
+                                {previewData && previewData?.subItem?.title
                                   ? previewData.subItem.title
                                   : subItem.title}
                               </Typography>
@@ -182,7 +182,7 @@ export const BenifitsSection = props => {
                                 sx={{ py: { xs: 5, md: 6 } }}
                                 variant="body1"
                               >
-                                {previewData && previewData.subItem.text
+                                {previewData && previewData?.subItem?.text
                                   ? previewData.subItem.text
                                   : subItem.text}
                               </Typography>
