@@ -38,7 +38,7 @@ export const Seo = ({ location, children, data, seoContext }) => {
         <meta name="twitter:description" content={ogDescription} />
       )}
       {ogImage && <meta name="twitter:image" content={ogImage.asset.url} />}
-      <link rel="canonical" href={seo.url} />
+      <link rel="canonical" href={seo.url || location.href} />
       {children}
     </>
   )
