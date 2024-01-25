@@ -4,6 +4,7 @@ import { map } from "rxjs";
 
 export const locate: DocumentLocationResolver = ({id, type}) => {
 	// Set up locations for documents of the type "post"
+  console.log(`id = ${id}`)
   if (type === 'post') {
     return {
       // '/post' is an example path.
@@ -12,6 +13,17 @@ export const locate: DocumentLocationResolver = ({id, type}) => {
       locations: [
         {title: `Post #${id}`, href: `/blog/${id}`},
         {title: 'Posts', href: '/posts'},
+      ],
+    }
+  }
+  if (type === 'page') {
+    return {
+      // '/post' is an example path.
+      // Replace it with an actual relative or absolute value
+      // depending on your environment
+      locations: [
+        {title: `Page #${id}`, href: `/${id}`},
+        {title: 'Pages', href: '/'},
       ],
     }
   }
