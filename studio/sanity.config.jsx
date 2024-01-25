@@ -1,5 +1,6 @@
 import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {structureTool} from 'sanity/structure'
+
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemas'
 import { Logo } from './plugins/logo/logo'
@@ -13,13 +14,16 @@ import {theme} from './structure/studioTheme'
 export default defineConfig({
   name: 'default',
   title: 'Heligan Campsite',
-  projectId:  process.env.SANITY_STUDIO_PROJECT_ID,
+  projectId:  'mq5c1tyr',
   dataset: 'production',
   theme,
   plugins: [
-    deskTool({ 
-      structure: deskStructure, 
-    }),
+    // deskTool({ 
+    //   structure: deskStructure, 
+    // }),
+    structureTool({ 
+        structure: deskStructure, 
+      }),
     visionTool(),
     media(),
     unsplashImageAsset(),
@@ -31,10 +35,6 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-  studio: {
-    components: {
-      logo: Logo
-    }
-  },
+  icon: Logo,
 })
 
