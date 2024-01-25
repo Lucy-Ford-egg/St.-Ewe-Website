@@ -3,11 +3,10 @@ import { graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { Container, Typography, Box, useTheme } from "@mui/material"
-//Preview
 
-import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
-import {PAGE_QUERY} from '../queries/documentQueries'
-import { useEncodeDataAttribute } from "@sanity/react-loader";
+// import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
+// import {PAGE_QUERY} from '../queries/documentQueries'
+// import { useEncodeDataAttribute } from "@sanity/react-loader";
 
 export const HeaderSectionAccommodationSearch = props => {
 
@@ -21,26 +20,8 @@ export const HeaderSectionAccommodationSearch = props => {
     sanityConfig,
     showSearch,
     searchColour,
-    
-    // Preview
-    _key,
-    location,
-    initial
   } = props
-
-  // Preview
-  const { data, sourceMap } = useQuery(
-    PAGE_QUERY,
-    {slug: 'home-page'},
-    { initial }
-  );
-
-  const encodeDataAttribute = useEncodeDataAttribute(
-    data,
-    sourceMap,
-    STUDIO_ORIGIN
-  );
-
+  debugger
   return (
     <Container
       maxWidth="fluid"
@@ -54,12 +35,12 @@ export const HeaderSectionAccommodationSearch = props => {
         minHeight: 639,
         maxHeight: 639,
       }}
-      data-sanity={encodeDataAttribute?.([
-        "headerSectionAccommodationSearch",
-        _key,
-        "slug",
-      ])}
-      data-sanity-edit-target
+      // data-sanity={encodeDataAttribute?.([
+      //   "headerSectionAccommodationSearch",
+      //   _key,
+      //   "slug",
+      // ])}
+      // data-sanity-edit-target
     >
       <Container
         maxWidth="xl"
@@ -84,6 +65,12 @@ export const HeaderSectionAccommodationSearch = props => {
             align="center"
             sx={{ textAlign: "center", my: { xs: 5 } }}
             variant="h1"
+            // data-sanity={encodeDataAttribute?.([
+            //   "headerSectionAccommodationSearch",
+            //   title,
+            //   "slug",
+            // ])}
+            data-sanity-edit-target
           >
             {previewData && previewData.title ? previewData.title : title}
           </Typography>

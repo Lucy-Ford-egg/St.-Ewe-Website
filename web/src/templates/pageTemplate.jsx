@@ -3,11 +3,29 @@ import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
+
+//Preview
+
+import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
+import {PAGE_QUERY} from '../queries/documentQueries'
+import { useEncodeDataAttribute } from "@sanity/react-loader";
 
 const PageTemplate = props => {
-  const { data, pageContext } = props
- 
+  const { data, pageContext, location, initial } = props
+
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    PAGE_QUERY,
+    {slug: 'home-page'},
+    { initial }
+  );
+
+  // const encodeDataAttribute = useEncodeDataAttribute(
+  //   data,
+  //   sourceMap,
+  //   STUDIO_ORIGIN
+  // );
+debugger
   return (
     // <IncludePreview
     //   documentQueries={pageQuery}
@@ -15,6 +33,7 @@ const PageTemplate = props => {
     //   data={data}
     // >
       <Modules
+        previewData={previewData}
         allSanityPost={data.allSanityPost}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}

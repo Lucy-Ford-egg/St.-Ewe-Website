@@ -1,25 +1,41 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
+// import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "../templates/queries/documentQueries"
+// import { pageQuery } from "../templates/queries/documentQueries"
+
+//Preview
+
+import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
+import {PAGE_QUERY} from '../queries/documentQueries'
+// import { useEncodeDataAttribute } from "@sanity/react-loader";
 
 const IndexPage = props => {
-  const { data, pageContext } = props
+  const { data, pageContext, initial } = props
+
+
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    PAGE_QUERY,
+    {slug: 'home-page'},
+    { initial }
+  );
+debugger
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={{
-        "current": "home-page"
-        }} //data.sanityPage.slug
-      data={data}
-    >
+    // <IncludePreview
+    //   documentQueries={pageQuery}
+    //   slug={{
+    //     "current": "home-page"
+    //     }} //data.sanityPage.slug
+    //   data={data}
+    // >
       <Modules
+        previewData={previewData}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
-    </IncludePreview>
+    // </IncludePreview>
   )
 }
 
