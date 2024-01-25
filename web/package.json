@@ -24,6 +24,7 @@
     "gatsby": "^5.12.8",
     "gatsby-adapter-netlify": "^1.0.3",
     "gatsby-awesome-pagination": "^0.3.8",
+    "gatsby-plugin-canonical-urls": "^5.13.1",
     "gatsby-plugin-gatsby-cloud": "^5.12.1",
     "gatsby-plugin-image": "^3.12.2",
     "gatsby-plugin-local-search": "^2.0.1",
