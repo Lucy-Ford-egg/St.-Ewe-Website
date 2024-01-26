@@ -18,7 +18,7 @@ export default {
     name: 'ogTitle',
     description:
       'Set the title Open Graph should use. In most situations, this should be different from the value of the title prop',
-    validation: (Rule) => Rule.required(),
+    // validation: (Rule) => Rule.required(),
     // fieldset: "basic"
     group: ['og']
   },
@@ -34,7 +34,7 @@ export default {
     name: 'ogImage',
     description:
       'URL of the image that should be used in social media previews. If you define this, you must define two other OG basic properties as well: title and type.',
-    validation: (Rule) => Rule.required(),
+    // validation: (Rule) => Rule.required(),
     group: ['og'],
     // fieldset: "basic"
   },
