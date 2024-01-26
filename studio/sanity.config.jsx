@@ -29,7 +29,7 @@ export default defineConfig({
       }),
     presentationTool({
       // Required: set the base URL to the preview location in the front end
-      previewUrl: 'https://localhost:8000/', //process.env.SANITY_STUDIO_PREVIEW_URL,
+      previewUrl: process.env.SANITY_STUDIO_PREVIEW_URL,
       locate: locate,
     }),
     visionTool(),
