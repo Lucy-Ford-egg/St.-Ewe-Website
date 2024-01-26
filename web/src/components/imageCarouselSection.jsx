@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from "react"
 import { graphql } from "gatsby"
 import { motion, MotionConfig } from "framer-motion"
-// import Image from "gatsby-plugin-sanity-image"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
+import Image from "gatsby-plugin-sanity-image"
+import { urlFor } from "../utils/imageHelpers"
 import { Icons } from "../components/icons"
-import {textAlignToJustifyContent} from '../utils/alignment'
+import { textAlignToJustifyContent } from "../utils/alignment"
 import {
   Container,
   Typography,
@@ -33,7 +32,17 @@ const swipePower = (offset, velocity) => {
 
 export const ImageCarouselSection = props => {
   const theme = useTheme()
-  const { previewData, sanityConfig,icon, subtitle, title, text, images, topPadding, textAlign } = props
+  const {
+    previewData,
+    sanityConfig,
+    icon,
+    subtitle,
+    title,
+    text,
+    images,
+    topPadding,
+    textAlign,
+  } = props
   const [slides, setSlides] = useState(null)
   const ref = useRef(null)
 
@@ -43,7 +52,7 @@ export const ImageCarouselSection = props => {
   // useEffect(() => {
   //   setWidth(ref.current.getBoundingClientRect().width)
   // }, []) //empty dependency array so it only runs once at render
-
+  debugger
   let [index, setIndex] = useState(0)
 
   const sm = useMediaQuery("(max-width:640px)")
@@ -53,7 +62,7 @@ export const ImageCarouselSection = props => {
   return (
     <Container
       maxWidth={slides && slides.length === 1 ? "xl" : "false"}
-      disableGutters={sm || slides && slides.length === 1 ? false : true}
+      disableGutters={sm || (slides && slides.length === 1) ? false : true}
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
         pt: topPadding
@@ -76,11 +85,13 @@ export const ImageCarouselSection = props => {
         }}
       >
         <Grid item xs={12} sm={12} md={6}>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: textAlignToJustifyContent(textAlign)
-          }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: textAlignToJustifyContent(textAlign),
+            }}
+          >
             {icon && (
               <Icons
                 type={previewData && previewData.icon ? previewData.icon : icon}
@@ -100,10 +111,11 @@ export const ImageCarouselSection = props => {
               </Typography>
             )}
 
-            { title && <Typography align={textAlign} variant="h2">
-              {previewData && previewData.title ? previewData.title : title}
-            </Typography>
-            }
+            {title && (
+              <Typography align={textAlign} variant="h2">
+                {previewData && previewData.title ? previewData.title : title}
+              </Typography>
+            )}
             {text && (
               <Divider
                 component="div"
@@ -111,18 +123,19 @@ export const ImageCarouselSection = props => {
                 sx={{
                   borderColor: theme.palette.primary.main,
                   width: 305,
-                  mx: textAlign === 'center' ? 'auto' : 'unset'
+                  mx: textAlign === "center" ? "auto" : "unset",
                 }}
               />
             )}
-            {text && <Typography
-             align={textAlign}
-              sx={{ py: { xs: 5, md: 6 } }}
-              variant="body1"
-            >
-              {previewData && previewData.text ? previewData.text : text}
-            </Typography>
-            }
+            {text && (
+              <Typography
+                align={textAlign}
+                sx={{ py: { xs: 5, md: 6 } }}
+                variant="body1"
+              >
+                {previewData && previewData.text ? previewData.text : text}
+              </Typography>
+            )}
           </Box>
         </Grid>
       </Grid>
@@ -188,22 +201,35 @@ export const ImageCarouselSection = props => {
                                   height: { xs: 380, md: 744 },
                                 }}
                               >
-                                <GatsbyImage
-                                  image={
-                                    getGatsbyImageData(
-                                      previewData?.image?.asset?._ref,
-                                      { maxWidth: 1300 },
-                                      sanityConfig,
-                                    ) || getImage(image.asset)
-                                  }
-                                  layout="constrained"
-                                  //aspectRatio={133 / 8}
-                                  alt={image.asset?.altText}
-                                  style={{
-                                    width: "100%",
-                                    height: "100%",
-                                  }}
-                                />
+                                {image && (
+                                  <Image
+                                    // pass asset, hotspot, and crop fields
+                                    crop={
+                                      (previewData &&
+                                        previewData?.images[i]?.crop) ||
+                                      image[i]?.crop
+                                    }
+                                    hotspot={
+                                      (previewData &&
+                                        previewData?.images[i]?.hotspot) ||
+                                      images[i]?.hotspot
+                                    }
+                                    asset={
+                                      (previewData &&
+                                        previewData?.images &&
+                                        previewData.images[i]?._ref &&
+                                        urlFor(previewData.images[i])
+                                          .width(200)
+                                          .url()) ||
+                                      image.asset
+                                    }
+                                    style={{
+                                      objectFit: "cover",
+                                      width: "100%",
+                                      height: "100%",
+                                    }}
+                                  />
+                                )}
                               </Box>
                             </Box>
                           )
@@ -309,22 +335,35 @@ export const ImageCarouselSection = props => {
         </Box>
       )}
       {slides && slides.length === 0 && (
-        <GatsbyImage
-          image={
-            getGatsbyImageData(
-              previewData?.image?.asset?._ref,
-              { maxWidth: 1300 },
-              sanityConfig,
-            ) || getImage(slides[0] && slides[0].image.asset)
-          }
-          layout="constrained"
-          //aspectRatio={133 / 8}
-          alt={slides[0] && slides[0].image.asset?.altText}
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-        />
+        slides && (
+          <Image
+            // pass asset, hotspot, and crop fields
+            crop={
+              (previewData &&
+                previewData?.slides[0]?.crop) ||
+              slides[0]?.crop
+            }
+            hotspot={
+              (previewData &&
+                previewData?.slides[0]?.hotspot) ||
+              slides[0]?.hotspot
+            }
+            asset={
+              (previewData &&
+                previewData?.slides &&
+                previewData.slides[0]?._ref &&
+                urlFor(previewData.slides[0])
+                  .width(200)
+                  .url()) ||
+              slides[0].asset
+            }
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        )
       )}
     </Container>
   )
@@ -340,7 +379,20 @@ export const query = graphql`
     text
     images {
       asset {
+        _id
         gatsbyImageData
+      }
+      hotspot {
+        x
+        y
+        width
+        height
+      }
+      crop {
+        bottom
+        left
+        right
+        top
       }
     }
     topPadding

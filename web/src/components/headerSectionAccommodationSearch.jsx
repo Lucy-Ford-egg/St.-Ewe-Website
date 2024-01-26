@@ -1,10 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
 import { Container, Typography, Box, useTheme } from "@mui/material"
+import Image from "gatsby-plugin-sanity-image"
+import {urlFor} from "../utils/imageHelpers"
+import { STUDIO_ORIGIN} from "../../sanity/store";
+
+import { useEncodeDataAttribute } from "@sanity/react-loader";
 
 export const HeaderSectionAccommodationSearch = props => {
+
   const theme = useTheme()
   const {
     title,
@@ -17,7 +21,13 @@ export const HeaderSectionAccommodationSearch = props => {
     searchColour,
   } = props
 
- 
+  const data = previewData
+  const encodeDataAttribute = useEncodeDataAttribute(
+    data,
+    // sourceMap,
+    STUDIO_ORIGIN
+  );
+
 
   return (
     <Container
@@ -31,7 +41,9 @@ export const HeaderSectionAccommodationSearch = props => {
         height: "100%",
         minHeight: 639,
         maxHeight: 639,
+        overflow: "hidden",
       }}
+      
     >
       <Container
         maxWidth="xl"
@@ -105,26 +117,34 @@ export const HeaderSectionAccommodationSearch = props => {
           display: "grid",
           gridTemplateColumns: "repeat(24, 1fr)",
           height: "100%",
+          maxHeight: "100%",
+          maxHeight: 639,
         }}
       >
         {image && (
-          <GatsbyImage
-            image={
-              getGatsbyImageData(
-                previewData?.image?.asset?._ref,
-                { maxWidth: 1440 },
-                sanityConfig,
-              ) || getImage(image?.asset)
-            }
-            layout="constrained"
-            aspectRatio={133 / 8}
-            alt={image.asset?.altText}
-            style={{
-              minHeight: "100%",
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-            }}
-          />
+          <Image
+          // pass asset, hotspot, and crop fields
+          crop={
+            (previewData && previewData?.image?.crop) ||
+            image?.crop
+          }
+          hotspot={
+            (previewData && previewData?.image?.hotspot) ||
+            image?.hotspot
+          }
+           asset={
+            (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
+           }
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "100%",
+            flexGrow: 1,
+            minHeight: "100%",
+            gridColumn: "1/25",
+            gridRow: "1/auto",
+          }}
+        />
         )}
         <Box
           sx={{
@@ -162,9 +182,21 @@ export const query = graphql`
     image {
       asset {
         _id
-        gatsbyImage(width: 1440, height: 639)
-        altText
+        gatsbyImageData
+      }
+      hotspot {
+        x
+        y
+        width
+        height
+      }
+      crop {
+        bottom
+        left
+        right
+        top
       }
     }
+   
   }
 `

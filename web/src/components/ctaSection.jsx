@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import { Container, Box, useTheme, Typography, Grid } from "@mui/material"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
+import Image from "gatsby-plugin-sanity-image"
+import {urlFor} from "../utils/imageHelpers"
 import { ButtonFormat } from "./buttonFormat"
 
 export const CtaSection = props => {
@@ -53,25 +53,29 @@ export const CtaSection = props => {
         }}
       >
         {align === true && image && (
-          <GatsbyImage
-            image={
-              getGatsbyImageData(
-                previewData?.image?.asset?._ref,
-                { maxWidth: 1440 },
-                sanityConfig,
-              ) || getImage(image?.asset)
+          
+            <Image
+            // pass asset, hotspot, and crop fields
+            crop={
+              (previewData && previewData?.image?.crop) ||
+              image?.crop
             }
-            layout="constrained"
-            aspectRatio={133 / 8}
-            alt={image.asset?.altText}
+            hotspot={
+              (previewData && previewData?.image?.hotspot) ||
+              image?.hotspot
+            }
+            asset={
+              (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
+            }
             style={{
-              height: "100%",
-              minHeight: "100%",
-              gridColumn: "1/25",
-              gridRow: "1/auto",
+              objectFit: "cover",
               width: "100%",
+              height: "100%",
+              flexGrow: 1,
+              minHeight: "100%",
             }}
           />
+          
         )}
 
         {align === false || align === null && image && (
@@ -92,24 +96,31 @@ export const CtaSection = props => {
                   width: "100%",
                 }}
               >
-                <GatsbyImage
-                  image={
-                    getGatsbyImageData(
-                      previewData?.image?.asset?._ref,
-                      { maxWidth: 1440 },
-                      sanityConfig,
-                    ) || getImage(image?.asset)
+                {image && (
+                  <Image
+                  // pass asset, hotspot, and crop fields
+                  crop={
+                    (previewData && previewData?.image?.crop) ||
+                    image?.crop
                   }
-                  layout="constrained"
-                  aspectRatio={133 / 8}
-                  alt={image.asset?.altText}
+                  hotspot={
+                    (previewData && previewData?.image?.hotspot) ||
+                    image?.hotspot
+                  }
+                 
+                   asset={
+                    (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
+                  }
+        
                   style={{
+                    objectFit: "cover",
+                    width: "100%",
                     height: "100%",
+                    flexGrow: 1,
                     minHeight: "100%",
-                    gridColumn: "1/25",
-                    gridRow: "1/auto",
                   }}
                 />
+                )}
                 {overlay && (
                   <Box
                     className="overlay"
@@ -240,7 +251,20 @@ export const query = graphql`
     _type
     image {
       asset {
-        gatsbyImageData(height: 467)
+        _id
+        gatsbyImageData
+      }
+      hotspot {
+        x
+        y
+        width
+        height
+      }
+      crop {
+        bottom
+        left
+        right
+        top
       }
     }
     title

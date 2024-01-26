@@ -161,6 +161,7 @@ export default defineType({
     type: 'reference',
     to: [{ type: categoriesType.name }],
     group: 'pageContent',
+    validation: (rule) => rule.required(),
     // to: [{ type:  }],
   }),
   ],

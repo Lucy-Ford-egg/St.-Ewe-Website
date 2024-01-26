@@ -191,7 +191,20 @@ export const query = graphql`
       }
       image {
         asset {
-          gatsbyImageData(height: 240)
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
         }
       }
     }

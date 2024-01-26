@@ -1,25 +1,31 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
+
+//Preview
+import { useQuery } from "../../sanity/store";
+import {PAGE_QUERY} from '../queries/documentQueries'
+import {getSanityClient } from "../../sanityUtils/sanity"
 
 const PageTemplate = props => {
-  const { data, pageContext } = props
- 
+  const { data, pageContext, location, initial } = props
+
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    PAGE_QUERY,
+    {slug: data.sanityPage.slug.current},
+    { initial }
+  );
+
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityPage.slug} //
-      data={data}
-    >
       <Modules
+        sanityConfig={getSanityClient}
+        previewData={previewData?.pageBuilder}
         allSanityPost={data.allSanityPost}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
-    </IncludePreview>
   )
 }
 

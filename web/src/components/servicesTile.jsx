@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Box, Paper, Typography, useTheme, Divider } from "@mui/material"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
+import Image from "gatsby-plugin-sanity-image"
+import { urlFor } from "../utils/imageHelpers"
 import { ButtonFormat } from "./buttonFormat"
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt"
 import { Icons } from "../components/icons"
@@ -28,7 +28,7 @@ export const ServicesTile = props => {
           ? "0px 4px 12px 0px rgba(50, 50, 26, 0.4)"
           : "0px 4px 4px 0px rgba(50, 50, 26, 0.06)",
         height: "100%",
-        minHeight: 'max-content',
+        minHeight: "max-content",
         display: "grid",
         gridTemplateColumns: "repeat(24, 1fr)",
       }}
@@ -40,18 +40,21 @@ export const ServicesTile = props => {
         }}
       >
         {image && image.asset && (
-          <GatsbyImage
-            image={
-              getGatsbyImageData(
-                previewData?.image?.asset?._ref,
-                { maxWidth: 1440 },
-                sanityConfig,
-              ) || getImage(image?.asset)
+          <Image
+            // pass asset, hotspot, and crop fields
+            crop={(previewData && previewData?.image?.crop) || image?.crop}
+            hotspot={
+              (previewData && previewData?.image?.hotspot) || image?.hotspot
             }
-            layout="constrained"
-            aspectRatio={133 / 8}
-            alt={image.asset?.altText}
+            asset={
+              (previewData &&
+                previewData.image &&
+                previewData.image?._ref &&
+                urlFor(previewData.image).width(200).url()) ||
+              image.asset
+            }
             style={{
+              objectFit: "cover",
               width: "100%",
               minHeight: "240px",
               height: "100%",
@@ -101,36 +104,44 @@ export const ServicesTile = props => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: {xs: "center", lg: "center"},
+              justifyContent: { xs: "center", lg: "center" },
               alignItems: "center",
               flexBasis: "100%",
               pt: 4,
             }}
-            
           >
-            
-              <Icons
-                colour={theme.palette.background.main}
-                type={previewData && previewData.icon ? previewData.icon : image && image.asset ? 'bud' : 'acorn'}
-              />
-            
-            {title && <Typography
-              align="center"
-              color="background.main"
-              sx={{ my: { xs: 5 } }}
-              variant={image ? 'h4' : 'h5'}
-            >
-              {previewData && previewData.title ? previewData.title : title}
-            </Typography>}
+            <Icons
+              colour={theme.palette.background.main}
+              type={
+                previewData && previewData.icon
+                  ? previewData.icon
+                  : image && image.asset
+                  ? "bud"
+                  : "acorn"
+              }
+            />
 
-            {text && <Typography
-              align="center"
-              color="background.main"
-              sx={{ my: { xs: 5 } }}
-              variant="body1"
-            >
-              {previewData && previewData.text ? previewData.text : text}
-            </Typography>}
+            {title && (
+              <Typography
+                align="center"
+                color="background.main"
+                sx={{ my: { xs: 5 } }}
+                variant={image ? "h4" : "h5"}
+              >
+                {previewData && previewData.title ? previewData.title : title}
+              </Typography>
+            )}
+
+            {text && (
+              <Typography
+                align="center"
+                color="background.main"
+                sx={{ my: { xs: 5 } }}
+                variant="body1"
+              >
+                {previewData && previewData.text ? previewData.text : text}
+              </Typography>
+            )}
           </Box>
 
           <Box
@@ -145,10 +156,10 @@ export const ServicesTile = props => {
             }}
           >
             <ButtonFormat
-              variant={image ? 'outlined' : 'text'}
+              variant={image ? "outlined" : "text"}
               endIcon={<ArrowRightAltIcon />}
               node={previewData && previewData.link ? previewData.link : link}
-              sx={{ }}
+              sx={{}}
               color="secondary"
             />
           </Box>

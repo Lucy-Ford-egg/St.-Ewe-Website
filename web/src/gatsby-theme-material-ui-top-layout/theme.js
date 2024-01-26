@@ -249,6 +249,13 @@ let clientTheme = createTheme({
           alignItems: "center",
           fontSize: defaultTheme.spacing(4)
         },
+        sizeSmall: {
+          display: "flex",
+          padding: `${defaultTheme.spacing(0.5)} ${defaultTheme.spacing(2)} !important`, //"0.5rem 1.3125rem",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: defaultTheme.spacing(2),
+        },
         outlineTertiary: {
           color: defaultTheme.palette.text.primary,
           backgroundColor: defaultTheme.palette.background.default,

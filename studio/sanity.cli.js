@@ -9,7 +9,7 @@ export default defineCliConfig({
   },
   vite: (prev) => ({
     ...prev,
-    plugins: [...prev.plugins, nodePolyfills({util: true})],
+    plugins: [...prev.plugins, nodePolyfills({util: true,  module: true })],
     define: {
       ...prev.define,
       'process.env': {},

@@ -10,6 +10,9 @@ import {media} from 'sanity-plugin-media'
 import {deskStructure} from './structure/deskStructure'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/studioTheme'
+
+import {presentationTool} from 'sanity/presentation'
+import {locate} from './locate'
   
 export default defineConfig({
   name: 'default',
@@ -24,6 +27,11 @@ export default defineConfig({
     structureTool({ 
         structure: deskStructure, 
       }),
+    presentationTool({
+      // Required: set the base URL to the preview location in the front end
+      previewUrl: 'https://localhost:8000/', //process.env.SANITY_STUDIO_PREVIEW_URL,
+      locate: locate,
+    }),
     visionTool(),
     media(),
     unsplashImageAsset(),

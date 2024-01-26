@@ -1,4 +1,4 @@
-import IframePreview from '../previews/iframePreview'
+
 import {SEOPane} from 'sanity-plugin-seo-pane'
 
 const remoteURL = 'https://heligancampsite.netlify.app' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
@@ -16,14 +16,7 @@ export const Views = (S, context) => {
   console.log(`previewUrl = ${previewUrl}`)
   return [
     S.view.form(), // Default Sanity's form view for editing content
-    S.view
-      .component(IframePreview)
-      .options({previewUrl, isMobilePreview: false, context})
-      .title('Preview'), // Iframe custom view for desktop screens
-    S.view
-      .component(IframePreview)
-      .options({previewUrl, isMobilePreview: true, context})
-      .title('Mobile Preview'), // Iframe custom view for mobile screens
+    
     S.view
       .component(SEOPane)
       .options({

@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
+import Image from "gatsby-plugin-sanity-image"
+import {urlFor} from "../utils/imageHelpers"
 import {
   Container,
   Grid,
@@ -90,24 +90,32 @@ export const BenifitsSection = props => {
             <Grid item xs={12} sm={12} md={6}>
               <Box>
                 {image && (
-                  <GatsbyImage
-                    image={
-                      getGatsbyImageData(
-                        previewData?.image?.asset?._ref,
-                        { maxWidth: 1440 },
-                        sanityConfig,
-                      ) || getImage(image?.asset)
-                    }
-                    layout="constrained"
-                    aspectRatio={133 / 8}
-                    alt={image.asset?.altText}
-                    style={{
-                      minHeight: "100%",
-                      gridColumn: "1/25",
-                      gridRow: "1/auto",
-                      borderRadius: theme.spacing(2),
-                    }}
-                  />
+                  <Image
+                  // pass asset, hotspot, and crop fields
+                  crop={
+                    (previewData && previewData?.image?.crop) ||
+                    image?.crop
+                  }
+                  hotspot={
+                    (previewData && previewData?.image?.hotspot) ||
+                    image?.hotspot
+                  }
+                 
+                   asset={
+                    (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
+                  }
+        
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "100%",
+                    flexGrow: 1,
+                    minHeight: "100%",
+                    gridColumn: "1/25",
+                    gridRow: "1/auto",
+                    borderRadius: theme.spacing(2),
+                  }}
+                />
                 )}
               </Box>
             </Grid>
@@ -166,14 +174,14 @@ export const BenifitsSection = props => {
                             
                               <Icons
                                 type={
-                                  previewData && previewData.subItem.icon
-                                    ? previewData.subItem.icon
+                                  previewData && previewData?.subItem?.icon
+                                    ? previewData?.subItem.icon
                                     : subItem.icon
                                 }
                               />
                                )}
                               <Typography color={textColour} variant="h5">
-                                {previewData && previewData.subItem.title
+                                {previewData && previewData?.subItem?.title
                                   ? previewData.subItem.title
                                   : subItem.title}
                               </Typography>
@@ -182,7 +190,7 @@ export const BenifitsSection = props => {
                                 sx={{ py: { xs: 5, md: 6 } }}
                                 variant="body1"
                               >
-                                {previewData && previewData.subItem.text
+                                {previewData && previewData?.subItem?.text
                                   ? previewData.subItem.text
                                   : subItem.text}
                               </Typography>
@@ -234,7 +242,20 @@ export const query = graphql`
     _type
     image {
       asset {
+        _id
         gatsbyImageData
+      }
+      hotspot {
+        x
+        y
+        width
+        height
+      }
+      crop {
+        bottom
+        left
+        right
+        top
       }
     }
     icon

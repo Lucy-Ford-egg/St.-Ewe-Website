@@ -1,4 +1,6 @@
-import {Views} from './views/preview'
+
+// import {Views} from './views/preview'
+
 import {DesignSystemColorsMenu} from './designSystemColorsMenu'
 import {FaqsMenu} from './faqsMenu'
 import {SiteSettingsMenu} from './siteSettingsMenu'
@@ -29,7 +31,8 @@ export const deskStructure = (S, context) => {
           S.documentTypeList('navigation')
             .title('Navigation')
             .child((id) =>
-              S.document().schemaType('navigation').documentId(id).views(Views(S, context)),
+              S.document().schemaType('navigation').documentId(id)
+              //.views(Views(S, context)),
             )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
@@ -39,8 +42,10 @@ export const deskStructure = (S, context) => {
         .icon(MdOutlineChat)
         .child(
           S.documentTypeList('post')
-            .title('Posts')
-            .child((id) => S.document().schemaType('post').documentId(id).views(Views(S, context)))
+            .title('Posts')tation
+            .child((id) => S.document().schemaType('post').documentId(id)
+            //.views(Views(S, context))
+            )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
 
@@ -50,7 +55,9 @@ export const deskStructure = (S, context) => {
         .child(
           S.documentTypeList('page')
             .title('Pages')
-            .child((id) => S.document().schemaType('page').documentId(id).views(Views(S, context)))
+            .child((id) => S.document().schemaType('page').documentId(id)
+            //.views(Views(S, context))
+            )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
       S.listItem()
@@ -59,7 +66,9 @@ export const deskStructure = (S, context) => {
         .child(
           S.documentTypeList('unit')
             .title('Units')
-            .child((id) => S.document().schemaType('unit').documentId(id).views(Views(S, context)))
+            .child((id) => S.document().schemaType('unit').documentId(id)
+            //.views(Views(S, context))
+            )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
       S.divider(),
@@ -71,7 +80,8 @@ export const deskStructure = (S, context) => {
           S.documentTypeList('author')
             .title('Authors')
             .child((id) =>
-              S.document().schemaType('author').documentId(id).views(Views(S, context)),
+              S.document().schemaType('author').documentId(id)
+              //.views(Views(S, context)),
             )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
@@ -82,8 +92,9 @@ export const deskStructure = (S, context) => {
         .child(
           S.documentTypeList('categories')
             .title('Post Categories')
-            .child((id) =>
-              S.document().schemaType('categories').documentId(id).views(Views(S, context)),
+            .child((id) =>n
+              S.document().schemaType('categories').documentId(id)
+              //.views(Views(S, context)),
             )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
