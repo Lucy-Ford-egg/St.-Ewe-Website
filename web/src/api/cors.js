@@ -8,6 +8,8 @@ export default async function handler(req, res) {
     const corsOrigin = host.includes('localhost') ? process.env.STUDIO_URL_DEV : process.env.STUDIO_URL_PROD
     res.setHeader('Access-Control-Allow-Origin', corsOrigin)
     res.setHeader('Access-Control-Allow-Credentials', 'true')
+    res.setHeader(`Content-Security-Policy`, `default-src ${corsOrigin}`)
+    
   }
   
   res.setPreviewData({})
