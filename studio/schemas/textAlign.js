@@ -13,7 +13,7 @@ export default {
   initialValue: {
     title: 'Center', 
   },
-  initialValue: 'center',
+  //initialValue: 'center',
   preview: {
     select: {
       list: 'list',

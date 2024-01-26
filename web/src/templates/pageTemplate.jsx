@@ -1,37 +1,24 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
 
 //Preview
-
-import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
+import { useQuery } from "../../sanity/store";
 import {PAGE_QUERY} from '../queries/documentQueries'
-import { useEncodeDataAttribute } from "@sanity/react-loader";
 import {getSanityClient } from "../../sanityUtils/sanity"
+
 const PageTemplate = props => {
   const { data, pageContext, location, initial } = props
 
   // Preview
   const { data: previewData, sourceMap } = useQuery(
     PAGE_QUERY,
-    {slug: 'home-page'},
+    {slug: data.sanityPage.slug.current},
     { initial }
   );
 
-  // const encodeDataAttribute = useEncodeDataAttribute(
-  //   data,
-  //   sourceMap,
-  //   STUDIO_ORIGIN
-  // );
-debugger
   return (
-    // <IncludePreview
-    //   documentQueries={pageQuery}
-    //   slug={data.sanityPage.slug} //
-    //   data={data}
-    // >
       <Modules
         sanityConfig={getSanityClient}
         previewData={previewData?.pageBuilder}
@@ -39,7 +26,6 @@ debugger
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
-    // </IncludePreview>
   )
 }
 

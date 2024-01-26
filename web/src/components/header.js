@@ -25,7 +25,11 @@ const Header = () => {
   const [anchorElUser, setAnchorElUser] = useState(null)
   const [showSearch, setShowSearch] = useState(false)
 
+  
   const theme = useTheme()
+
+ 
+
   const toggleOpenNavMenu = toggle => {
     setAnchorElNav(toggle)
   }
@@ -44,6 +48,7 @@ const Header = () => {
   const sm = useMediaQuery("(max-width:640px)")
   const md = useMediaQuery("(max-width:900px)")
   const lg = useMediaQuery("(min-width:1200px)")
+  const smallDesktop = useMediaQuery(theme.breakpoints.between('900', '1057'))
 
   // xs: 0,
   // sm: 640,
@@ -122,12 +127,13 @@ const Header = () => {
         <Container maxWidth="xl" sx={{ py: 2 }}>
           <Toolbar
             disableGutters
-            sx={{ display: "flex", alignItems: "center", justifyContent: { xs: 'space-between', lg: 'flex-end' }, flexWrap: { sm: 'wrap', md: 'no-wrap' } }}
+            sx={{ display: "flex", alignItems: "center", justifyContent: { xs: 'space-between', sm: 'space-between', md: 'flex-end', lg: 'flex-end' }, flexWrap: { xs: 'wrap', sm: 'wrap', md: 'wrap', lg: 'wrap' } }}
           >
             <Link
               to="/"
               sx={{
                 display: "flex",
+                width: {xs: 'auto', sm: 'auto', md: 'auto', lg: 'auto',}
                 // svg: {
                 //   path: {
                 //     fill: anchorElNav && "white",
@@ -198,7 +204,7 @@ const Header = () => {
               handleCloseNavMenu={handleCloseNavMenu}
             />}
 
-            <Box sx={{ flexGrow: 0, alignItems: "center", order: { xs: 0, sm: 1, md: 0, lg: 1 } }}>
+            <Box sx={{ flexGrow: 1, alignItems: "center", order: { xs: 0, sm: 0, md: 0, lg: 0 } }}>
               <Box
                 sx={{
                   display: "flex",
@@ -211,7 +217,7 @@ const Header = () => {
                   to="www.gendall.co.uk"
                   variant="outlined"
                   color="tertiary"
-                  size="large"
+                  size={!smallDesktop ? "large" : "small"}
                   endIcon={<LoginIcon />}
                 >ManageBooking</Button>
                 }
@@ -220,7 +226,7 @@ const Header = () => {
                     to={data.sanitySiteSettings?.ballot.ballotLink}
                     variant="contained"
                     color="primary"
-                    size="large"
+                    size={!smallDesktop ? "large" : "small"}
                   >Book for 2025</Button>
                 )}
 

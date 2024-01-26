@@ -56,6 +56,7 @@ export const NavigationItem = (props) => {
               textAlign: { xs: 'left', md: 'center' },
               justifyContent: { xs: 'left', md: 'center' },
               fontWeight: open === 'true' ? 500 : 400,
+              fontSize: {sm: theme.spacing(3), md: theme.spacing(3), lg: theme.spacing(4)},
             }}
             endIcon={childNode.length >= 1 && <ExpandMoreIcon />}
             size="large"

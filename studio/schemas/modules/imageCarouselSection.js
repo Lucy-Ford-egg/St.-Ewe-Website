@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdViewModule} from "react-icons/md"
+import { MdViewModule } from "react-icons/md"
 
 export default defineType({
   name: "imageCarouselSection",
@@ -10,7 +10,7 @@ export default defineType({
       name: 'icon',
       type: 'icons',
       title: 'Icon',
-    }), 
+    }),
     defineField({
       name: 'subtitle',
       type: 'string',
@@ -21,7 +21,7 @@ export default defineType({
       name: 'title',
       type: 'string',
       title: 'Title',
-    }), 
+    }),
 
     defineField({
       name: 'text',
@@ -30,12 +30,12 @@ export default defineType({
       title: 'Text',
       description: 'Add some textual content. Optional'
     }),
-    
+
     defineField({
       name: 'textAlign',
       type: 'textAlign',
       title: 'Choose Text Alignment',
-    }), 
+    }),
 
     defineField({
       name: 'topPadding',
@@ -46,9 +46,13 @@ export default defineType({
       title: 'Images',
       name: 'images',
       type: 'array',
-      of: [{type: 'image'}]
+      of: [{
+        type: 'image', options: {
+          hotspot: true,
+        },
+      }]
     })
-  
+
   ],
   preview: {
     select: {
@@ -60,7 +64,7 @@ export default defineType({
     prepare(selection) {
       const { title, media, showSearch, textAlign } = selection
       return {
-        title: `${title ? title : 'No Title' }`,
+        title: `${title ? title : 'No Title'}`,
         subtitle: `Image Carousel Section | Text align ${textAlign}`,
         media: media[0],
         icon: MdViewModule

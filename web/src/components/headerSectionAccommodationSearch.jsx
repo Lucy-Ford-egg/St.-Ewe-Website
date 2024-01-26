@@ -1,12 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
 import { Container, Typography, Box, useTheme } from "@mui/material"
+import Image from "gatsby-plugin-sanity-image"
+import {urlFor} from "../utils/imageHelpers"
+import { STUDIO_ORIGIN} from "../../sanity/store";
 
-// import { STUDIO_ORIGIN, useQuery } from "../../sanity/store";
-// import {PAGE_QUERY} from '../queries/documentQueries'
-// import { useEncodeDataAttribute } from "@sanity/react-loader";
+import { useEncodeDataAttribute } from "@sanity/react-loader";
 
 export const HeaderSectionAccommodationSearch = props => {
 
@@ -21,7 +20,15 @@ export const HeaderSectionAccommodationSearch = props => {
     showSearch,
     searchColour,
   } = props
-  debugger
+
+  const data = previewData
+  const encodeDataAttribute = useEncodeDataAttribute(
+    data,
+    // sourceMap,
+    STUDIO_ORIGIN
+  );
+
+
   return (
     <Container
       maxWidth="fluid"
@@ -34,13 +41,8 @@ export const HeaderSectionAccommodationSearch = props => {
         height: "100%",
         minHeight: 639,
         maxHeight: 639,
+        overflow: "hidden",
       }}
-      // data-sanity={encodeDataAttribute?.([
-      //   "headerSectionAccommodationSearch",
-      //   _key,
-      //   "slug",
-      // ])}
-      // data-sanity-edit-target
     >
       <Container
         maxWidth="xl"
@@ -65,12 +67,6 @@ export const HeaderSectionAccommodationSearch = props => {
             align="center"
             sx={{ textAlign: "center", my: { xs: 5 } }}
             variant="h1"
-            // data-sanity={encodeDataAttribute?.([
-            //   "headerSectionAccommodationSearch",
-            //   title,
-            //   "slug",
-            // ])}
-            data-sanity-edit-target
           >
             {previewData && previewData.title ? previewData.title : title}
           </Typography>
@@ -120,26 +116,34 @@ export const HeaderSectionAccommodationSearch = props => {
           display: "grid",
           gridTemplateColumns: "repeat(24, 1fr)",
           height: "100%",
+          maxHeight: "100%",
+          maxHeight: 639,
         }}
       >
         {image && (
-          <GatsbyImage
-            image={
-              getGatsbyImageData(
-                previewData?.image?.asset?._ref,
-                { maxWidth: 1440 },
-                sanityConfig,
-              ) || getImage(image?.asset)
-            }
-            layout="constrained"
-            aspectRatio={133 / 8}
-            alt={image.asset?.altText}
-            style={{
-              minHeight: "100%",
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-            }}
-          />
+          <Image
+          // pass asset, hotspot, and crop fields
+          crop={
+            (previewData && previewData?.image?.crop) ||
+            image?.crop
+          }
+          hotspot={
+            (previewData && previewData?.image?.hotspot) ||
+            image?.hotspot
+          }
+           asset={
+            (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
+           }
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "100%",
+            flexGrow: 1,
+            minHeight: "100%",
+            gridColumn: "1/25",
+            gridRow: "1/auto",
+          }}
+        />
         )}
         <Box
           sx={{
@@ -177,9 +181,21 @@ export const query = graphql`
     image {
       asset {
         _id
-        gatsbyImage(width: 1440, height: 639)
-        altText
+        gatsbyImageData
+      }
+      hotspot {
+        x
+        y
+        width
+        height
+      }
+      crop {
+        bottom
+        left
+        right
+        top
       }
     }
+   
   }
 `

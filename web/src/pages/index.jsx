@@ -21,7 +21,7 @@ const IndexPage = props => {
     {slug: 'home-page'},
     { initial }
   );
-debugger
+
   return (
     // <IncludePreview
     //   documentQueries={pageQuery}
@@ -30,11 +30,13 @@ debugger
     //     }} //data.sanityPage.slug
     //   data={data}
     // >
+    <>
       <Modules
         previewData={previewData}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
+      </>
     // </IncludePreview>
   )
 }

@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { Box, Paper, Typography, useTheme, Divider } from "@mui/material"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
+import Image from "gatsby-plugin-sanity-image"
+import {urlFor} from "../utils/imageHelpers"
 import {ButtonFormat} from "./buttonFormat"
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt'
 
@@ -25,22 +25,47 @@ export const FeaturesTile = props => {
     >
       <Box>
         {image && image.asset && (
-          <GatsbyImage
-            image={
-              getGatsbyImageData(
-                previewData?.image?.asset?._ref,
-                { maxWidth: 1440 },
-                sanityConfig,
-              ) || getImage(image?.asset)
+          
+            <Image
+            // pass asset, hotspot, and crop fields
+            crop={
+              (previewData && previewData?.image?.crop) ||
+              image?.crop
             }
-            layout="constrained"
-            aspectRatio={133 / 8}
-            alt={image.asset?.altText}
+            hotspot={
+              (previewData && previewData?.image?.hotspot) ||
+              image?.hotspot
+            }
+           
+             asset={
+              (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
+            }
+  
             style={{
+              objectFit: "cover",
               width: "100%",
+              height: "100%",
+              flexGrow: 1,
               minHeight: "240px",
             }}
           />
+          
+          // <GatsbyImage
+          //   image={
+          //     getGatsbyImageData(
+          //       previewData?.image?.asset?._ref,
+          //       { maxWidth: 1440 },
+          //       sanityConfig,
+          //     ) || getImage(image?.asset)
+          //   }
+          //   layout="constrained"
+          //   aspectRatio={133 / 8}
+          //   alt={image.asset?.altText}
+          //   style={{
+          //     width: "100%",
+          //     minHeight: "240px",
+          //   }}
+          // />
         )}
       </Box>
       <Box sx={{ pt: 1, pb: 6, px: { xs: theme.spacing(3) }, display: 'flex', flexDirection: 'column', flexBasis: '100%' }}>

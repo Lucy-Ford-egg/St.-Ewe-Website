@@ -40,6 +40,9 @@ export default defineType({
       type: 'image',
       title: 'Image',
       validation: Rule => Rule.required(),
+      options: {
+        hotspot: true,
+      },
     }),   
   ],
   preview: {

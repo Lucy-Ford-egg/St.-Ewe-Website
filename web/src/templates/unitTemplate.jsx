@@ -1,35 +1,39 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
-
-import {Container, Grid, useTheme, Box, Typography, Divider} from '@mui/material'
-import Image from "gatsby-plugin-sanity-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
+import {useTheme} from '@mui/material'
 import { UnitCarousel } from "../components/unitCarousel"
-import { RenderPortableText } from "../components/renderPortableText"
-import { CategoryLabel } from "../components/categoryLabel"
-import { Icons } from "../components/icons"
 import { PropertyHeader } from "../components/propertyHeader"
 
+//Preview
+import { useQuery } from "../../sanity/store";
+import {UNIT_QUERY} from '../queries/documentQueries'
+import {getSanityClient } from "../../sanityUtils/sanity"
+
+
 const UnitTemplate = props => {
-  const { data, pageContext, previewData, sanityConfig } = props
+  const { data, pageContext, sanityConfig, location, initial } = props
   const theme = useTheme()
+
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    UNIT_QUERY,
+    {slug: data.sanityUnit.slug.current},
+    { initial }
+  );
+
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityUnit.slug} //
-      data={data}
-    >
-      <UnitCarousel previewData={previewData} sanityConfig={sanityConfig} tiles={data.sanityUnit.unitImages}/>
-      <PropertyHeader previewData={previewData} sanityConfig={sanityConfig} title={pageContext.title} summary={pageContext.summary} unitId={pageContext.unitId} extendedSummary={pageContext.extendedSummary} links={pageContext.links}/>
+   <>
+      <UnitCarousel sanityConfig={getSanityClient} previewData={previewData} tiles={data.sanityUnit.unitImages}/>
+      <PropertyHeader sanityConfig={getSanityClient} previewData={previewData} title={pageContext.title} summary={pageContext.summary} unitId={pageContext.unitId} extendedSummary={pageContext.extendedSummary} links={pageContext.links}/>
       <Modules
+        sanityConfig={getSanityClient}
+        previewData={previewData?.pageBuilder}
         pageContext={pageContext}
         modules={data?.sanityUnit?.pageBuilder}
       />
-    </IncludePreview>
+      </>
   )
 }
 

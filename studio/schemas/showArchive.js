@@ -35,5 +35,5 @@ export default defineType({
           hidden: ({ parent, value }) => !value && !!parent?.setArchive,
         }),
       ],
-      group: 'pageContent',
+      //group: 'pageContent',
     })
