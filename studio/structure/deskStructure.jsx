@@ -42,7 +42,7 @@ export const deskStructure = (S, context) => {
         .icon(MdOutlineChat)
         .child(
           S.documentTypeList('post')
-            .title('Posts')tation
+            .title('Posts')
             .child((id) => S.document().schemaType('post').documentId(id)
             //.views(Views(S, context))
             )
@@ -92,7 +92,7 @@ export const deskStructure = (S, context) => {
         .child(
           S.documentTypeList('categories')
             .title('Post Categories')
-            .child((id) =>n
+            .child((id) =>
               S.document().schemaType('categories').documentId(id)
               //.views(Views(S, context)),
             )
