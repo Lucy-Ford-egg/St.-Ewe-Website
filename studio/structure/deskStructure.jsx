@@ -1,4 +1,6 @@
+
 // import {Views} from './views/preview'
+
 import {DesignSystemColorsMenu} from './designSystemColorsMenu'
 import {FaqsMenu} from './faqsMenu'
 import {SiteSettingsMenu} from './siteSettingsMenu'
@@ -40,7 +42,7 @@ export const deskStructure = (S, context) => {
         .icon(MdOutlineChat)
         .child(
           S.documentTypeList('post')
-            .title('Posts')
+            .title('Posts')tation
             .child((id) => S.document().schemaType('post').documentId(id)
             //.views(Views(S, context))
             )
@@ -90,7 +92,7 @@ export const deskStructure = (S, context) => {
         .child(
           S.documentTypeList('categories')
             .title('Post Categories')
-            .child((id) =>
+            .child((id) =>n
               S.document().schemaType('categories').documentId(id)
               //.views(Views(S, context)),
             )

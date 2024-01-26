@@ -1,3 +1,4 @@
+
 import {SEOPane} from 'sanity-plugin-seo-pane'
 
 const remoteURL = 'https://heligancampsite.netlify.app' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
