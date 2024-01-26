@@ -94,6 +94,12 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: process.env.GATSBY_FRONTEND,
+      },
+    },
+    {
       resolve: `gatsby-theme-material-ui`,
       options: {
         webFontsConfig: {
