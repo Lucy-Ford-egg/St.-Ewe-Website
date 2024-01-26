@@ -43,12 +43,6 @@ export const HeaderSectionAccommodationSearch = props => {
         maxHeight: 639,
         overflow: "hidden",
       }}
-      data-sanity={encodeDataAttribute?.([
-        "headerSectionAccommodationSearch",
-        _key,
-        "slug",
-      ])}
-      data-sanity-edit-target
     >
       <Container
         maxWidth="xl"
