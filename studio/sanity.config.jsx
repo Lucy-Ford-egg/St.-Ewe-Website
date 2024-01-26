@@ -21,15 +21,12 @@ export default defineConfig({
   dataset: 'production',
   theme,
   plugins: [
-    // deskTool({ 
-    //   structure: deskStructure, 
-    // }),
     structureTool({ 
         structure: deskStructure, 
       }),
     presentationTool({
       // Required: set the base URL to the preview location in the front end
-      previewUrl: process.env.SANITY_STUDIO_PREVIEW_URL,
+      previewUrl: 'https://heligancampsite.netlify.app', // 'http://localhost:8000'
       locate: locate,
     }),
     visionTool(),
