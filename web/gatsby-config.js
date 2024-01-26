@@ -17,7 +17,7 @@ module.exports = {
       headers: [
         {
           key: `X-Frame-Options: ALLOW-FROM`,
-          value: `https://heligan-campsite.sanity.studio/`,
+          value: `https://heligan-campsite.sanity.studio`,
         }
       ]
     }
