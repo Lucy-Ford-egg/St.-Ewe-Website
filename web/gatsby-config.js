@@ -16,8 +16,8 @@ module.exports = {
       source: `/*`,
       headers: [
         {
-          key: `Content-Security-Policy`,
-          value: `default-src https://heligan-campsite.sanity.studio`,
+          key: `X-Frame-Options: ALLOW-FROM`,
+          value: `https://heligan-campsite.sanity.studio`,
         }
       ]
     }
