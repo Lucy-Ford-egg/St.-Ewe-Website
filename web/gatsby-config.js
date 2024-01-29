@@ -16,6 +16,10 @@ module.exports = {
       source: `/*`,
       headers: [
         {
+          key: `X-Frame-Options: ALLOW-FROM`,
+          value: `https://heligan-campsite.sanity.studio/`,
+        },
+        {
           key: `Content-Security-Policy: frame-ancestors`,
           value: `https://heligan-campsite.sanity.studio`,
         }
