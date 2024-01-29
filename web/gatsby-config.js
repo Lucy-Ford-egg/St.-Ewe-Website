@@ -11,17 +11,17 @@ module.exports = {
   adapter: netlifyAdapter({
     excludeDatastoreFromEngineFunction: false,
   }),
-  // headers: [
-  //   {
-  //     source: `/*`,
-  //     headers: [
-  //       {
-  //         key: `X-Frame-Options: ALLOW-FROM`,
-  //         value: `https://heligan-campsite.sanity.studio`,
-  //       }
-  //     ]
-  //   }
-  // ],
+  headers: [
+    {
+      source: `/*`,
+      headers: [
+        {
+          key: `Content-Security-Policy: frame-ancestors`,
+          value: `https://heligan-campsite.sanity.studio`,
+        }
+      ]
+    }
+  ],
   siteMetadata: {
     title: `Heligan Campsite`,
     description: `Heligan Campsite site. Be at home with nature.`,
