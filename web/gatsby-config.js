@@ -20,7 +20,7 @@ module.exports = {
           value: `https://heligan-campsite.sanity.studio/`,
         },
         {
-          key: `Content-Security-Policy: frame-ancestors`,
+          key: `Content-Security-Policy: child-src`,
           value: `https://heligan-campsite.sanity.studio`,
         }
       ]
