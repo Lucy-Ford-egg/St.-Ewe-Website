@@ -161,9 +161,7 @@ export const pageTemplateQuery = graphql`
         ... on SanityLocationSection {
           ...LocationSectionFragment
         } 
-        ... on SanityFaqsSection {
-          ...FaqsSectionFragment
-        } 
+        
         ... on SanityBenifitsSection {
           ... BenifitsSectionFragment
         }

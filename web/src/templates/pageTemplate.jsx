@@ -111,9 +111,6 @@ query pageTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit:
       ... on SanityLocationSection {
         ...LocationSectionFragment
       }
-      ... on SanityFaqsSection {
-        ...FaqsSectionFragment
-      }
       ... on SanityBenifitsSection {
         ... BenifitsSectionFragment
       }

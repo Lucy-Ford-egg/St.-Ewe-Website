@@ -84,9 +84,6 @@ query homeQuery{
         ... on SanityLocationSection {
           ...LocationSectionFragment
         }
-        ... on SanityFaqsSection {
-          ...FaqsSectionFragment
-        }
         ... on SanityBenifitsSection {
           ... BenifitsSectionFragment
         }

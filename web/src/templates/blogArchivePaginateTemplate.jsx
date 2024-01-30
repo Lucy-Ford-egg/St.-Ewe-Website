@@ -130,9 +130,6 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       ... on SanityLocationSection {
         ...LocationSectionFragment
       }
-      ... on SanityFaqsSection {
-        ...FaqsSectionFragment
-      }
       ... on SanityBenifitsSection {
         ... BenifitsSectionFragment
       }
