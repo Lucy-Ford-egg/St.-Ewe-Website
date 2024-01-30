@@ -25,6 +25,7 @@ import contactSectionType from '../schemas/modules/contactSection'
 
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
+import caseStudyType  from '../schemas/caseStudy'
 import pageType from '../schemas/page'
 
 
@@ -69,6 +70,7 @@ export const schemaTypes = [
   // Objects 
   postType,
   pageType,
+  caseStudyType,
   //Old
   
   // Modules

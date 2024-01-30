@@ -4,13 +4,16 @@
 import {DesignSystemColorsMenu} from './designSystemColorsMenu'
 // import {FaqsMenu} from './faqsMenu'
 import {SiteSettingsMenu} from './siteSettingsMenu'
+
 import {
   MdCategory,
   MdOutlineMenu,
   MdOutlineChat,
   MdAutoStories,
   MdOutlineTagFaces,
+  MdPerson
 } from 'react-icons/md'
+
 
 
 export const deskStructure = (S, context) => {
@@ -55,6 +58,18 @@ export const deskStructure = (S, context) => {
           S.documentTypeList('page')
             .title('Pages')
             .child((id) => S.document().schemaType('page').documentId(id)
+            //.views(Views(S, context))
+            )
+            .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        ),
+      
+      S.listItem()
+        .title('Case Studies')
+        .icon(MdPerson)
+        .child(
+          S.documentTypeList('caseStudy')
+            .title('Case Studies')
+            .child((id) => S.document().schemaType('caseStudy').documentId(id)
             //.views(Views(S, context))
             )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
