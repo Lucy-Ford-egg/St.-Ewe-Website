@@ -29,15 +29,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
     type SanityImageAsset implements Node {
       altText: String
-    }
-    type BallotSetup {
-      showBallot: Boolean
-      ballotUrl: String
-    }
-    type SanitySiteSettings implements Node {
-      ballotSetup: BallotSetup
-    }
-    
+    }  
   `
   createTypes(typeDefs)
 }

@@ -4,7 +4,7 @@ import linkDefinedType from '../schemas/linkDefined'
 import subItemType from '../schemas/subItem'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import siteSettingsType, { ballotSetupType, companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
+import siteSettingsType, { companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 import faqsType from '../schemas/faqs'
 import showArchiveType from '../schemas/showArchive'
@@ -40,41 +40,9 @@ import servicesSectionType from './modules/servicesSection'
 import faqsSectionType from './modules/faqsSection'
 import blogSectionType from './modules/blogSection'
 
-// import imageWithCaptionType from '../schemas/modules/imageWithCaption'
-// import textBlockType from '../schemas/modules/textBlock'
-// import embedBlockType from '../schemas/modules/embedBlock'
-// import imageCarouselCaptionLinkType from '../schemas/modules/imageCarouselCaptionLink'
-// import linkGroupType from '../schemas/modules/linkGroup'
-// import heroCallToActionType from '../schemas/modules/heroCallToAction'
-// import mapType from '../schemas/modules/map'
-// import twoColumnTitleTextCtaType from '../schemas/modules/twoColumnTitleTextCta'
-// import imageCarouselSubtitleTitleTextLinkType from '../schemas/modules/imageCarouselSubtitleTitleTextLink'
-// import postsGridType from '../schemas/modules/postsGrid'
-// import heroNewsletterType from '../schemas/modules/heroNewsletter'
-// import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
-// import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
-// import imageWithLinkType from '../schemas/modules/imageWithLink'
-// import instagramModuleType from '../schemas/modules/instagramModule'
-
-//Components
-
-// import titleTextType from '../schemas/components/titleText'
-// import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
-// import imageCaptionType from '../schemas/components/imageCaption'
-// import externalLinkType from './components/externalLink'
-// import internalLinkType from './components/internalLink'
-// import heroSlideType from './components/heroSlide'
-// import blockquoteType from './components/blockquote'
-// import instagramEmbedsType from './components/instagramEmbeds'
-
-
-
 export const schemaTypes = [
-
   // Settings
-
   siteSettingsType,
-  ballotSetupType,
   companyDetailsType,
   awardsWonType,
   awardType,
@@ -87,20 +55,25 @@ export const schemaTypes = [
   overlayType,
   colorChoiceType,
   showArchiveType,
+  //Old
 
   // Navigation
   navigationType,
   navItemType,
   linkType,
   linkDefinedType,
+  //Old
 
   // Taxonomies
   authorType,
+  categoriesType, 
+  //Old
   
   // Objects
   unitType, 
   postType,
   pageType,
+  //Old
   
   // Modules
   headerSectionAccommodationSearchType,
@@ -117,37 +90,14 @@ export const schemaTypes = [
   benifitsSectionType,
   contactSectionType,
   blogSectionType,
-  // Old Modules
-  // imageWithCaptionType,
-  // textBlockType, 
-  // embedBlockType,
-  // imageCarouselCaptionLinkType, 
-  // linkGroupType,
-  // heroCallToActionType,
-  // mapType,
-  // twoColumnTitleTextCtaType,
-  // imageCarouselSubtitleTitleTextLinkType,
-  // postsGridType,
-  // heroNewsletterType,
-  // heroInfoCallToActionType,
-  // imageTextCallToActionImageType,
-  // imageWithLinkType,
+  // Old
 
   // Components
   featuresTileType,
   servicesTileType,
   testimonialTileType,
   subItemType,
-// Old Components
-  // titleTextType,
-  // titleSubtitleTextType,
-  // imageCaptionType,
-  // externalLinkType,
-  // internalLinkType,
-  // heroSlideType,
-  // blockquoteType,
-  // instagramEmbedsType,
-  // Categories
+  // Old
  
-  categoriesType, 
+
 ]

@@ -105,12 +105,6 @@ const Header = () => {
           }
         }
       }
-      sanitySiteSettings {
-        ballot {
-          ballotUrl
-          showBallot
-        }
-      }
     }
   `)
 
@@ -221,15 +215,6 @@ const Header = () => {
                   endIcon={<LoginIcon />}
                 >ManageBooking</Button>
                 }
-                {data.sanitySiteSettings.ballot.showBallot === true && (
-                  <Button
-                    to={data.sanitySiteSettings?.ballot.ballotLink}
-                    variant="contained"
-                    color="primary"
-                    size={!smallDesktop ? "large" : "small"}
-                  >Book for 2025</Button>
-                )}
-
                 <IconButton
                   size="large"
                   aria-label="open menu"
