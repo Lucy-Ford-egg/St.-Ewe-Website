@@ -16,7 +16,6 @@ export default defineType({
       type: 'reference',
       title: 'Reference',
       to: [
-        { type: 'unit' },
         { type: 'post' },
         { type: 'page' },
         // other types you may want to link to

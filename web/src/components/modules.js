@@ -3,7 +3,6 @@ import React from 'react'
 import { BlogSection } from "./blogSection"
 
 import { HeaderSectionAccommodationSearch } from './headerSectionAccommodationSearch'
-import { UnitsListsSection } from './unitsListsSection'
 import { FeatureSection } from './featureSection'
 import { VideoSection } from './videoSection'
 import { FeaturesListSection } from './featuresListSection'
@@ -85,15 +84,7 @@ const Modules = (props) => {
                                 {...module} />
                         )
                     }
-                    if (isModule(module, 'unitsListsSection')) {
-                        return (
-                            <UnitsListsSection
-                                previewData={previewData && previewData[i]}
-                                sanityConfig={sanityConfig}
-                                key={module._key + i}
-                                {...module} />
-                        )
-                    }
+                    
                     if (isModule(module, 'featureSection')) {
                         return (
                             <FeatureSection

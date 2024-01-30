@@ -60,17 +60,7 @@ export const deskStructure = (S, context) => {
             )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
-      S.listItem()
-        .title('Units')
-        .icon(MdHolidayVillage)
-        .child(
-          S.documentTypeList('unit')
-            .title('Units')
-            .child((id) => S.document().schemaType('unit').documentId(id)
-            //.views(Views(S, context))
-            )
-            .defaultOrdering([{field: 'title', direction: 'asc'}]),
-        ),
+      
       S.divider(),
 
       S.listItem()

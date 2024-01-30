@@ -23,7 +23,6 @@ import locationSectionType from '../schemas/modules/locationSection'
 import benifitsSectionType from "../schemas/modules/benifitsSection"
 import contactSectionType from '../schemas/modules/contactSection'
 
-import unitType from '../schemas/unit'
 import authorType from '../schemas/author'
 import postType  from '../schemas/post'
 import pageType from '../schemas/page'
@@ -31,7 +30,6 @@ import pageType from '../schemas/page'
 
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
-import unitsListsSectionType from './modules/unitsListsSection'
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
@@ -68,15 +66,13 @@ export const schemaTypes = [
   categoriesType, 
   //Old
   
-  // Objects
-  unitType, 
+  // Objects 
   postType,
   pageType,
   //Old
   
   // Modules
   headerSectionAccommodationSearchType,
-  unitsListsSectionType,
   featureSectionType,
   videoSectionType,
   featuresListSectionType,

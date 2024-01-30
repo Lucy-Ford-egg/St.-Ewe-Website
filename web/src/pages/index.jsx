@@ -59,9 +59,7 @@ query homeQuery{
           _type
           ...HeaderSectionAccommodationSearchFragment
         }
-        ... on SanityUnitsListsSection {
-          ...UnitsListsSectionFragment
-        }
+        
         ... on SanityFeatureSection {
           ...FeatureSectionFragment
         }

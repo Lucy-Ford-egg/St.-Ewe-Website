@@ -25,7 +25,7 @@ export default defineType({
       of: [
         {
           type: 'reference',
-          to: [{ type: 'page' }, {type: 'unit'}, {type: 'news'}],
+          to: [{ type: 'page' }, {type: 'news'}],
         },
         {
           title: 'External URL',

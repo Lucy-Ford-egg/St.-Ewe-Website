@@ -78,9 +78,6 @@ export const pageTemplateQuery = graphql`
           _type
           ...HeaderSectionAccommodationSearchFragment
         }
-        ... on SanityUnitsListsSection {
-          ...UnitsListsSectionFragment
-        }
         ... on SanityFeatureSection {
           ...FeatureSectionFragment
         }

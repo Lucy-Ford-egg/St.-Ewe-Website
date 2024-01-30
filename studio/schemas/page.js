@@ -6,7 +6,6 @@ import siteMeta from '../schemas/siteMeta'
 
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
-import unitsListsSectionType from './modules/unitsListsSection'
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
@@ -122,7 +121,6 @@ export default defineType({
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
         {type: headerSectionAccommodationSearchType.name},
-        {type: unitsListsSectionType.name},
         {type: featureSectionType.name},
         {type: videoSectionType.name},
         {type: featuresListSectionType.name},

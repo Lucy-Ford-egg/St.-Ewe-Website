@@ -87,9 +87,6 @@ query pageTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit:
         _type
         ...HeaderSectionAccommodationSearchFragment
       }
-      ... on SanityUnitsListsSection {
-        ...UnitsListsSectionFragment
-      }
       ... on SanityFeatureSection {
         ...FeatureSectionFragment
       }

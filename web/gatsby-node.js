@@ -71,28 +71,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-
-    allSanityUnit {
-      nodes {
-        slug {
-          current
-        }
-        _id
-        summary
-        _rawExtendedSummary(resolveReferences: {maxDepth: 20})
-        links {
-          asset {
-            title
-            url
-            originalFilename
-          }
-        }
-        name
-        maxGrading
-        maxOccupancy
-        numberOfRooms
-      }
-    }
   }
   `)
 
@@ -103,7 +81,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
   // Fetch your items (blog posts, categories, etc).
   const blogPosts = result.data?.allSanityPost?.nodes || []
-  const units = result.data?.allSanityUnit?.nodes || []
+  
   //const blogPages = result.data?.blogPages?.nodes || []
 
   const blogPostsCategories = blogPosts.map(({ category }) => category && category._id)
@@ -173,61 +151,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       })
 
     }
-  })
-
-
-  //:
-
-
-
-  // createPage({
-  //   path: node.slug.current,
-  //   component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
-  //   context: {
-  //     id: node.id,
-  //     slug: `${node.slug.current}`,
-  //     node: node,
-  //     postIds: node.showArchive.setArchive === true ? blogPostsCategories : node.showArchive.archive.map(({ _id }) => _id)
-  //   },
-  // })
-
-
-  // result.data.allSanityPage.nodes.forEach(node => {
-
-  //   node.archive._id && node.archive._id.forEach(archivePage => {
-  //       paginate({
-  //         createPage,
-  //         items: blogPosts,
-  //         itemsPerPage: 1,
-  //         pathPrefix: `/${node.slug.current}`,
-  //         component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`),
-  //         context: {
-  //           slug: node.slug.current,
-  //           categoryArchive : node.archive?._id || null,
-  //         }
-  //       })
-  //     })
-  // })
-
-  units.forEach(node => {
-    node.slug && node.slug.current &&
-      createPage({
-        path: `holiday-homes/${node.slug.current}`,
-        component: require.resolve(`./src/templates/unitTemplate.jsx`),
-        context: {
-          id: node.id,
-          slug: `${node.slug.current}`,
-          title: node.name,
-          coverImage: node.mainImage,
-          date: node.date,
-          //categories: node.categories,
-          excerpt: node.excerpt,
-          summary: node.summary,
-          unitId: node._id,
-          extendedSummary: node._rawExtendedSummary,
-          links: node.links
-        },
-      })
   })
 
   blogPosts.forEach(node => {
