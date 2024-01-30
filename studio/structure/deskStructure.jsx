@@ -2,7 +2,7 @@
 // import {Views} from './views/preview'
 
 import {DesignSystemColorsMenu} from './designSystemColorsMenu'
-import {FaqsMenu} from './faqsMenu'
+// import {FaqsMenu} from './faqsMenu'
 import {SiteSettingsMenu} from './siteSettingsMenu'
 import {
   MdCategory,
@@ -20,7 +20,7 @@ export const deskStructure = (S, context) => {
     .items([
       SiteSettingsMenu(S),
       DesignSystemColorsMenu(S),
-      FaqsMenu(S),
+      //FaqsMenu(S),
       S.divider(),
 
       S.listItem()
