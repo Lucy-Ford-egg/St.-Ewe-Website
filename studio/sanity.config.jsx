@@ -16,8 +16,8 @@ import {locate} from './locate'
   
 export default defineConfig({
   name: 'default',
-  title: 'Heligan Campsite',
-  projectId:  'mq5c1tyr',
+  title: 'Taylor Money',
+  projectId:  '0y4lutj5',
   dataset: 'production',
   theme,
   plugins: [
@@ -26,7 +26,7 @@ export default defineConfig({
       }),
     presentationTool({
       // Required: set the base URL to the preview location in the front end
-      previewUrl: 'https://heligancampsite.netlify.app', // 'http://localhost:8000'
+      previewUrl: 'http://localhost:8000', //'https://taylormoney.netlify.app'
       locate: locate,
     }),
     visionTool(),
