@@ -6,7 +6,6 @@ import {FaqsMenu} from './faqsMenu'
 import {SiteSettingsMenu} from './siteSettingsMenu'
 import {
   MdCategory,
-  MdHolidayVillage,
   MdOutlineMenu,
   MdOutlineChat,
   MdAutoStories,
