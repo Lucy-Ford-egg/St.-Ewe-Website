@@ -19,7 +19,9 @@ import MainNavigation from "./mainNavigation"
 // import mdMainNavigation from "./mdMainNavigation"
 // import { SearchOverlay } from "./searchOverlay"
 
-const Header = () => {
+const Header = (props) => {
+
+  const {dark = false, headerOver = false } = props
 
   const [anchorElNav, setAnchorElNav] = useState(false)
   const [anchorElUser, setAnchorElUser] = useState(null)
@@ -49,13 +51,6 @@ const Header = () => {
   const md = useMediaQuery("(max-width:900px)")
   const lg = useMediaQuery("(min-width:1200px)")
   const smallDesktop = useMediaQuery(theme.breakpoints.between('900', '1057'))
-
-  // xs: 0,
-  // sm: 640,
-  // md: 900,
-  // lg: 1200,
-  // xl: 1330 ,
-  // xxl: 1440
 
   const data = useStaticQuery(graphql`
     query MainNavigationQuery {
@@ -111,10 +106,10 @@ const Header = () => {
   return (
     <>
       <AppBar
-        position="static"
+        position={headerOver ? "static" : "absolute"}
         //color={anchorElNav ? "primary" : "background"}
         sx={{
-          backgroundColor: 'background.default',
+          backgroundColor: 'transparent',
           boxShadow: 'unset',
         }}
       >
