@@ -4,6 +4,9 @@ import {defineField, defineType} from 'sanity'
 import openGraph from '../schemas/openGraph'
 import siteMeta from '../schemas/siteMeta'
 
+// Sections 
+import headerSectionType from './sections/headerSection'
+
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
 import featureSectionType from './modules/featureSection'
@@ -120,6 +123,7 @@ export default defineType({
       description:
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
+        {type: headerSectionType.name},
         {type: headerSectionAccommodationSearchType.name},
         {type: featureSectionType.name},
         {type: videoSectionType.name},

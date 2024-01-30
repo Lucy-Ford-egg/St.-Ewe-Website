@@ -1,3 +1,5 @@
+import {locate} from '../locate'
+
 import navigationType from '../schemas/navigation'
 import navItemType from '../schemas/navItem'
 import linkDefinedType from '../schemas/linkDefined'
@@ -6,9 +8,13 @@ import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
 import siteSettingsType, {companyDetailType, companyDetailsType, newsletterType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
-import faqsType from '../schemas/faqs'
+// import faqsType from '../schemas/faqs'
 import showArchiveType from '../schemas/showArchive'
 
+//Sections
+import headerSectionType from '../schemas/sections/headerSection'
+
+// Older schema
 import videoIdType from '../schemas/videoId'
 import iconsType from '../schemas/icons'
 import colorChoiceType from '../schemas/colorChoice'
@@ -36,7 +42,7 @@ import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from './modules/servicesSection'
-import faqsSectionType from './modules/faqsSection'
+// import faqsSectionType from './modules/faqsSection'
 import blogSectionType from './modules/blogSection'
 
 export const schemaTypes = [
@@ -46,13 +52,18 @@ export const schemaTypes = [
   companyDetailsType,
   newsletterType,
   designSystemColorType,
-  faqsType,
+
+  // Sections
+
+  headerSectionType,
+  // faqsType,
   iconsType,
   textAlignType,
   videoIdType,
   overlayType,
   colorChoiceType,
   showArchiveType,
+
   //Old
 
   // Navigation
@@ -83,7 +94,7 @@ export const schemaTypes = [
   testimonialSectionType,
   imageCarouselSectionType,
   locationSectionType,
-  faqsSectionType,
+  // faqsSectionType,
   benifitsSectionType,
   contactSectionType,
   blogSectionType,
@@ -95,6 +106,28 @@ export const schemaTypes = [
   testimonialTileType,
   subItemType,
   // Old
- 
-
 ]
+
+export const presentationConfig = {
+  // Required: set the base URL to the preview location in the front end
+  previewUrl: 'http://localhost:8000', //'https://taylormoney.netlify.app'
+  locate: locate,
+}
+
+export const googleMaps = {
+  apiKey: "AIzaSyD-iPk4tHZ8FEhcbTWFWLPopgVd6yqS0lI"
+}
+
+export const brandColors = {
+  // Note: These are both optional
+  defaultColorFormat: 'rgba',
+  defaultColorList: [
+    { label: 'Coral', value: '#F04D5F' },
+    { label: 'Coral Light', value: '#F47C8A' },       
+    { label: 'Text Grey', value: '#414042' },
+    { label: 'Mid Grey', value: '#B8B6B9' },
+    { label: 'Light Grey', value: '#F3F3F2' },
+    { label: 'Navy', value: '#002856' },
+    { label: 'White', value: '#FFFFFF' },
+  ],
+}
