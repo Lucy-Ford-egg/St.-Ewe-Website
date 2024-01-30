@@ -84,14 +84,7 @@ export const Footer = (props) => {
         phone
         postcode
       }
-      awardsWon {
-        image {
-          asset {
-            gatsbyImageData(height: 73)
-          }
-        }
-        url
-      }
+     
       newsletterSetup {
         image {
           asset {
@@ -118,10 +111,10 @@ export const Footer = (props) => {
     )
   }
 
-  const address = [data.sanitySiteSettings.companyDetails.address1, data.sanitySiteSettings.companyDetails.address2, data.sanitySiteSettings.companyDetails.county, data.sanitySiteSettings.companyDetails.postcode]
+  
   return (
     <>
-    {showNewsletter && <Newsletter newsletterSetup={data.sanitySiteSettings.newsletterSetup}/>}
+    {showNewsletter && data.sanitySiteSettings?.newsletterSetup && <Newsletter newsletterSetup={data.sanitySiteSettings.newsletterSetup}/>}
     <Box sx={{ backgroundColor: 'highlight.main', py: {xs: 11, md: 14} }}>
 
       <Container maxWidth="xl">
@@ -131,7 +124,13 @@ export const Footer = (props) => {
           <Grid item xs={12} md={5}>
 
             <Typography variant='h5' color='background.default' sx={{ mb: 5 }}>Contact</Typography>
-            {data?.sanitySiteSettings.companyDetails && <List dense={true}>
+            {data?.sanitySiteSettings?.companyDetails && 
+            data?.sanitySiteSettings.companyDetails.map((companyDetail, i) => {
+
+              const address = [companyDetail.address1, companyDetail.address2, companyDetail.county, companyDetail.postcode]
+
+              return (
+<List key={`company-${i}`} dense={true}>
               {address.map((node, i) => {
                 return (
                   <ListItem
@@ -151,7 +150,7 @@ export const Footer = (props) => {
               <ListItem
                 sx={{ pl: 0, ml: 0, py: 0, mt: 3 }}>
                 <ListItemText
-                  primary={data.sanitySiteSettings.companyDetails.phone}
+                  primary={companyDetail.phone}
                   primaryTypographyProps={{
                     color: 'background.main',
                     variant: 'body1'
@@ -161,19 +160,23 @@ export const Footer = (props) => {
               <ListItem
                 sx={{ pl: 0, ml: 0, py: 0 }}>
                 <ListItemText
-                  primary={data.sanitySiteSettings.companyDetails.email}
+                  primary={companyDetail.email}
                   primaryTypographyProps={{
                     color: 'background.main',
                     variant: 'body1'
                   }}
                 />
               </ListItem>
-            </List>}
+            </List>
+              )
+            })
+
+            }
 
           </Grid>
 
           <Grid item xs={12} md={3}>
-          <Typography variant='h5' color='background.default' sx={{ mb: 5 }}>{data.resourcesMenu.title}</Typography>
+          <Typography variant='h5' color='background.default' sx={{ mb: 5 }}>{data.resourcesMenu?.title}</Typography>
             <List dense={true} sx={{pt: 0}}>
               
               {data?.resourcesMenu?.items && data.resourcesMenu.items.map((menuItem, i) => {
@@ -188,7 +191,7 @@ export const Footer = (props) => {
           </Grid>
 
           <Grid item xs={12} md={4}>
-          <Typography variant='h5' color='background.default' sx={{ mb: 5 }}>{data.companyMenu.title}</Typography>
+          <Typography variant='h5' color='background.default' sx={{ mb: 5 }}>{data.companyMenu?.title}</Typography>
             <List dense={true} sx={{pt: 0}}>
               {data?.companyMenu?.items && data.companyMenu.items.map((menuItem, i) => {
                 return (
@@ -262,25 +265,7 @@ export const Footer = (props) => {
         
           <Grid item xs={12} md={7} sx={{mb: {xs: 0, md: 0}}}>
           <Divider sx={{ display: {xs: 'block', md: 'none'}, borderColor: 'background.main' }} />
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: {xs: 7, md: 0} }}>
-              {data.sanitySiteSettings.awardsWon.map((node, i) => {
-                return (
-                  <Box sx={{mx: {xs: 1, md: 0}}}>
-                  <GatsbyImage
-                    image={
-                      getGatsbyImageData(
-                        previewData?.image?.asset?._ref,
-                        { maxWidth: 80 },
-                        sanityConfig,
-                      ) || getImage(node.image?.asset)
-                    }
-                    layout="constrained"
-                    alt={node.image.asset?.altText}
-                  />
-                  </Box>
-                )
-              })}
-            </Box>
+            
           </Grid>
 
         </Grid>

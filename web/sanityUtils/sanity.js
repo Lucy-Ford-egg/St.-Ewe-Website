@@ -2,7 +2,7 @@ import { createClient } from "@sanity/client"
 
 const projectId = process.env.GATSBY_SANITY_PROJECT_ID
 const envDataset = process.env.GATSBY_SANITY_DATASET
-const apiVersion = "2023-06-22"
+const apiVersion = "2023-08-01"
 
 export function getSanityPreviewClient(
   preview,

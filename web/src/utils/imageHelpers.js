@@ -1,9 +1,9 @@
 import imageUrlBuilder from '@sanity/image-url'
 
 const builder = imageUrlBuilder({
-  projectId:  'mq5c1tyr', //process.env.SANITY_STUDIO_PROJECT_ID,
+  projectId:  '0y4lutj5', //process.env.SANITY_STUDIO_PROJECT_ID,
   dataset: 'production',
-  apiVersion: "2023-11-01",
+  apiVersion: "2023-08-01",
 })
 
 export const urlFor = (source) => {

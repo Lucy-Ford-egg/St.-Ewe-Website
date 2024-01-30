@@ -13,7 +13,7 @@ export const STEGA_ENABLED = process.env.NODE_ENV !== "production";
 const client = createClient({
   projectId: process.env.GATSBY_SANITY_PROJECT_ID,
   dataset: process.env.GATSBY_SANITY_DATASET,
-  apiVersion: "2023-11-01",
+  apiVersion: "2023-08-01",
   useCdn: true,
   perspective: "published",
 
