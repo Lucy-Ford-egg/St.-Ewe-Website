@@ -4,7 +4,7 @@ import linkDefinedType from '../schemas/linkDefined'
 import subItemType from '../schemas/subItem'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import siteSettingsType, { companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
+import siteSettingsType, {companyDetailType, companyDetailsType, awardsWonType, awardType, newsletterType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 import faqsType from '../schemas/faqs'
 import showArchiveType from '../schemas/showArchive'
@@ -43,6 +43,7 @@ import blogSectionType from './modules/blogSection'
 export const schemaTypes = [
   // Settings
   siteSettingsType,
+  companyDetailType,
   companyDetailsType,
   awardsWonType,
   awardType,

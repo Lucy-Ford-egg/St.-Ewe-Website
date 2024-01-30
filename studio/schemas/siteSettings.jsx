@@ -41,6 +41,63 @@ export const awardsWonType = defineType({
   validation: Rule => Rule.min(1).max(6)
 })
 
+export const companyDetailType = defineType({
+  name: 'companyDetailType',
+  title: 'Company Detail',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'title',
+      type: 'string',
+      title: 'Title',
+    }),
+  defineField({
+        name: 'address1',
+        type: 'string',
+        title: 'Address Line 1',
+      }),
+      defineField({
+        name: 'address2',
+        type: 'string',
+        title: 'Address Line 2'
+      }),
+      defineField({
+        name: 'county',
+        type: 'string',
+        title: 'County'
+      }),
+      defineField({
+        name: 'postcode',
+        type: 'string',
+        title: 'Postcode'
+      }),
+      defineField({
+        name: 'phone',
+        type: 'string',
+        title: 'Phone'
+      }),
+      defineField({
+        name: 'email',
+        type: 'string',
+        title: 'Email'
+      }),
+      defineField({
+        name: 'geopoint',
+        type: 'geopoint',
+        title: 'Lat/Lng',
+      }),
+    ]
+})
+
+export const companyDetailsType = defineType({
+  name: 'companyDetails',
+  type: 'array',
+  title: 'Company Detials',
+  of: [{type: 'companyDetailType'}],
+  description: 'Shown in the footer.',
+  validation: Rule => Rule.min(1).max(2)
+})
+
 export const newsletterType = defineType({
   name:'newsletterSetup',
   type: 'object',
@@ -74,43 +131,6 @@ export const newsletterType = defineType({
   ]
 })
 
-export const companyDetailsType = defineType({
-  name: 'companyDetails',
-  title: 'Company Details',
-  type: 'document',
-  fields: [
-  defineField({
-        name: 'address1',
-        type: 'string',
-        title: 'Address Line 1',
-      }),
-      defineField({
-        name: 'address2',
-        type: 'string',
-        title: 'Address Line 2'
-      }),
-      defineField({
-        name: 'county',
-        type: 'string',
-        title: 'County'
-      }),
-      defineField({
-        name: 'postcode',
-        type: 'string',
-        title: 'Postcode'
-      }),
-      defineField({
-        name: 'phone',
-        type: 'string',
-        title: 'Phone'
-      }),
-      defineField({
-        name: 'email',
-        type: 'string',
-        title: 'Email'
-      })
-    ]
-})
 
 export default defineType({
   name: 'siteSettings',
