@@ -111,7 +111,7 @@ module.exports = {
             google: [
               {
                 family: `Merriweather`,
-                variants: [`400`, `500`, `700`],
+                variants: [`400`, `700`],
               },
               {
                 family: `Open Sans`,

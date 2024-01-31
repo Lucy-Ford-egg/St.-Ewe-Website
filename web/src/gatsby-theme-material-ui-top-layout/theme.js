@@ -80,27 +80,33 @@ let defaultTheme = createTheme({
     h1: {
       fontSize: clientSpacing[15],
       fontFamily: 'Merriweather',
+      fontWeight: 700,
     },
     h2: {
       fontSize: clientSpacing[11],
       fontFamily: 'Merriweather',
+      fontWeight: 700,
     },
     h3: {
       fontSize: clientSpacing[9],
       fontFamily: 'Merriweather',
+      fontWeight: 700,
     },
     h4: {
       fontSize: clientSpacing[7],
       fontFamily: 'Merriweather',
+      fontWeight: 700,
       letterSpacing: '0em',
     },
     h5: {
       fontSize: clientSpacing[5],
       fontFamily: 'Merriweather',
+      fontWeight: 700,
     },
     h6: {
       fontSize: clientSpacing[4],
       fontFamily: 'Merriweather',
+      fontWeight: 700,
       letterSpacing: '0em',
     },
   },
