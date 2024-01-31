@@ -10,14 +10,28 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 
 export const RenderPortableText = (props) => {
 
-  const { previewData, sanityConfig, value, variant, color = 'text.primary', animate = false, subtitlePosition = null, component } = props
+  // searchColour {
+  //   color {
+  //     rgb {
+  //       r
+  //       g
+  //       b
+  //       a
+  //     }
+  //   }
+  // }
 
+  debugger
+
+  const { previewData, sanityConfig, value, variant, textAlign,  animate = false, subtitlePosition = null, component } = props
+
+  const getColor = value[0].markDefs[0].value
   const theme = useTheme()
   console.log(`Value Text - ${value && JSON.stringify(value)}`)
 
   const standardPortableText = {
     types: {
-      span: ({ value }) => <Typography sx={{ color: color }} variant={'body1'} component={component}>{value.text}</Typography>,
+      span: ({ value }) => <Typography sx={{ color: getColor }} variant={'body1'} component={component}>{value.text}</Typography>,
       image: ({ value }) => {
 
         return (
@@ -55,7 +69,7 @@ export const RenderPortableText = (props) => {
         return (
           <Box sx={{ mx: { xs: 0, md: -9 } }} component="figure">
 
-            <Typography sx={{ py: { xs: 6, md: 6 }, color: color, pl: 1, borderLeft: `1px solid ${theme.palette.highlight.main}` }} align="center" variant="h2" component="blockquote">
+            <Typography sx={{ py: { xs: 6, md: 6 }, color: getColor, pl: 1, borderLeft: `1px solid ${theme.palette.highlight.main}` }} align="center" variant="h2" component="blockquote">
               {value.text}
             </Typography>
             {value.cite && <Typography align="center" variant="subtitle1" component="figcaption">{value.cite}</Typography>}
@@ -78,31 +92,31 @@ export const RenderPortableText = (props) => {
     listItem: (props) =>
       console.log("list", props) ||
       (props.value.listItem === "bullet" ? (
-        <ListItem sx={{ color: color, pl: 0 }}>
+        <ListItem sx={{ color: getColor, pl: 0 }}>
           <ListItemIcon sx={{ minWidth: 16 }}>
-            <CircleIcon color={color} sx={{ width: 4, height: 4 }} />
+            <CircleIcon color={getColor} sx={{ width: 4, height: 4 }} />
           </ListItemIcon>{props.children}
         </ListItem>
       ) : (
-        <ListItem sx={{ color: color, display: 'list-item', px: 0 }}>
+        <ListItem sx={{ color: getColor, display: 'list-item', px: 0 }}>
           <ListItemIcon sx={{ minWidth: 16 }}>
           </ListItemIcon>{props.children}
         </ListItem>
       )),
     marks: {
-      em: ({ children }) => <Typography sx={{ color: color, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
-      strong: ({ children, value }) => <Box component="span" sx={{ color: color, fontWeight: 900 }}>{children}</Box>,
-      link: ({ children, value }) => <PortableTextInlineLink color={color} value={value}>{children}</PortableTextInlineLink>,
+      em: ({ children }) => <Typography sx={{ color: getColor, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
+      strong: ({ children, value }) => <Box component="span" sx={{ color: getColor, fontWeight: 900 }}>{children}</Box>,
+      link: ({ children, value }) => <PortableTextInlineLink color={getColor} value={value}>{children}</PortableTextInlineLink>,
       underline: ({ children }) => <Typography variant="body1" className="underline" component="span">{children}</Typography>,
     },
     block: {
-      normal: ({ children }) => <Typography sx={{ py: 2, color: color }} variant='body1'>{children}</Typography>,
-      h1: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: color }} variant="h1">{children}</Typography>,
-      h2: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: color }} variant="h2">{children}</Typography>,
-      h3: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: color }} variant="h3">{children}</Typography>,
-      h4: ({ children }) => <Typography sx={{ py: { xs: 7 }, color: color }} variant="h4">{children}</Typography>,
-      h5: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: color }} variant="h5">{children}</Typography>,
-      h6: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: color }} variant="h6">{children}</Typography>,
+      normal: ({ children }) => <Typography sx={{ py: 2, color: getColor}} variant='body1'>{children}</Typography>,
+      h1: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: getColor }} variant="h1">{children}</Typography>,
+      h2: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: getColor }} variant="h2">{children}</Typography>,
+      h3: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: getColor }} variant="h3">{children}</Typography>,
+      h4: ({ children }) => <Typography sx={{ py: { xs: 7 }, color: getColor }} variant="h4">{children}</Typography>,
+      h5: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: getColor }} variant="h5">{children}</Typography>,
+      h6: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: getColor }} variant="h6">{children}</Typography>,
       blockquote: ({ children }) => {
         return (
           <Box sx={{ py: {xs: 5}, mx: 0}} component="figure">
@@ -117,7 +131,7 @@ export const RenderPortableText = (props) => {
   }
 
   return (
-    <Box className={`${color}-text`}>
+    <Box className={``}>
       <PortableText value={value || []} components={standardPortableText} />
     </Box>
   )

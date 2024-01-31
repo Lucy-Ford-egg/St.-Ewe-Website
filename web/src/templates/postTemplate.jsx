@@ -132,10 +132,8 @@ export const pageTemplateQuery = graphql`
       _rawBody(resolveReferences: {maxDepth: 10})
       #...SeoPageFragment
       pageBuilder {
-        ... on SanityHeaderSectionAccommodationSearch {
-          _key
-          _type
-          ...HeaderSectionAccommodationSearchFragment
+        ... on SanityHeaderSection {
+          ...HeaderSectionFragment
         }
         ... on SanityFeatureSection {
           ...FeatureSectionFragment

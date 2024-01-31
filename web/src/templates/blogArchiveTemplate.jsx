@@ -88,12 +88,11 @@ query blogArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, 
     slug {
       current
     }
+
     pageTitle
     pageBuilder {
-      ... on SanityHeaderSectionAccommodationSearch {
-        _key
-        _type
-        ...HeaderSectionAccommodationSearchFragment
+      ... on SanityHeaderSection {
+        ...HeaderSectionFragment
       }
       ... on SanityFeatureSection {
         ...FeatureSectionFragment

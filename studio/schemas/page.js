@@ -8,7 +8,6 @@ import siteMeta from '../schemas/siteMeta'
 import headerSectionType from './sections/headerSection'
 
 // Modules
-import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
@@ -109,13 +108,12 @@ export default defineType({
       initialValue: () => new Date().toISOString(),
       group: 'pageContent',
     }),
-    // defineField({
-    //   name: 'categoryArchive',
-    //   type: 'reference',
-    //   to: [{ type: 'categories', title: 'Make a category page' }],
-    //   description: `Select the reference you would like to make a category page for. Example: To make a 'Things to do' category page then select 'Things to do as the category'. This will then use a template which inserts the the blog posts for this template directly underneath the first component.`,
-    //   group: 'pageContent'
-    // }),
+    defineField({
+      title: 'Nav Colour',
+      name: 'navColor',
+      type: 'simplerColor',
+      group: 'pageContent',
+    }),
     defineField({
       name: 'pageBuilder',
       type: 'array',
@@ -124,7 +122,7 @@ export default defineType({
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
         {type: headerSectionType.name},
-        {type: headerSectionAccommodationSearchType.name},
+      
         {type: featureSectionType.name},
         {type: videoSectionType.name},
         {type: featuresListSectionType.name},

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { BlogSection } from "./blogSection"
 
-import { HeaderSectionAccommodationSearch } from './headerSectionAccommodationSearch'
+import { HeaderSection } from './headerSection'
 import { FeatureSection } from './featureSection'
 import { VideoSection } from './videoSection'
 import { FeaturesListSection } from './featuresListSection'
@@ -75,9 +75,9 @@ const Modules = (props) => {
                             {...module} />
                     }
 
-                    if (isModule(module, 'headerSectionAccommodationSearch')) {
+                    if (isModule(module, 'headerSection')) {
                         return (
-                            <HeaderSectionAccommodationSearch
+                            <HeaderSection
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

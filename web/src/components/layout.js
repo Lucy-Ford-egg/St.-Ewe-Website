@@ -7,14 +7,14 @@ import { VisualEditing } from "./visualEditing"
 
 export const Layout = (props) => {
 
-  const {children} = props
+  const {children, data} = props
 
   return (
     <div className="container-fluid p-0">
      
 
       <VisualEditing {...props}/>
-      <Header/>
+      <Header navColor={data.sanityPage.navColor}/>
       <main>
         {children}
       </main>

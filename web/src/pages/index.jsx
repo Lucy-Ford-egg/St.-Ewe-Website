@@ -52,14 +52,14 @@ query homeQuery{
         current
       }
       pageTitle
+      navColor{
+        value
+      }
       #...SeoPageFragment
       pageBuilder {
-        ... on SanityHeaderSectionAccommodationSearch {
-          _key
-          _type
-          ...HeaderSectionAccommodationSearchFragment
+        ... on SanityHeaderSection {
+          ...HeaderSectionFragment
         }
-        
         ... on SanityFeatureSection {
           ...FeatureSectionFragment
         }

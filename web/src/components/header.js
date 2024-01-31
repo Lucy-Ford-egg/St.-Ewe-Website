@@ -21,7 +21,7 @@ import MainNavigation from "./mainNavigation"
 
 const Header = (props) => {
 
-  const {dark = false, headerOver = false } = props
+  const { headerOver = false, navColor } = props
 
   const [anchorElNav, setAnchorElNav] = useState(false)
   const [anchorElUser, setAnchorElUser] = useState(null)
@@ -100,7 +100,7 @@ const Header = (props) => {
     }
   `)
 
-  const logoColor = dark ? "#ffffff" : "#002856";
+  const logoColor = navColor ? navColor?.value : "#002856";
   //  theme.palette.white : theme.palette.tertiary
   return (
     <>
@@ -112,7 +112,7 @@ const Header = (props) => {
           boxShadow: 'unset',
         }}
       >
-        <Container maxWidth="xl" sx={{ py: 2 }}>
+        <Container maxWidth="xl" sx={{ mt: 2, py: 2, borderTop: `1px solid ${logoColor}`, borderBottom: `1px solid ${logoColor}` }}>
           <Toolbar
             disableGutters
             sx={{ display: "flex", alignItems: "center", justifyContent: { xs: 'space-between', sm: 'space-between', md: 'flex-end', lg: 'flex-end' }, flexWrap: { xs: 'wrap', sm: 'wrap', md: 'wrap', lg: 'wrap' } }}

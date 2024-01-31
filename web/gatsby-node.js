@@ -44,6 +44,9 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug {
           current
         }
+        navColor{
+          value
+        }
         pageTitle
         pageBuilder{
           ... on SanityBlogSection {
@@ -146,7 +149,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           id: node.id,
           slug: `${node.slug.current}`,
           node: node,
-          postIds: getShowArchiveIds(node?.pageBuilder)
+          postIds: getShowArchiveIds(node?.pageBuilder),
+          navColor: node.navColor
         },
       })
 

@@ -100,12 +100,9 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       }
     }
     pageBuilder {
-      ... on SanityHeaderSectionAccommodationSearch {
-        _key
-        _type
-        ...HeaderSectionAccommodationSearchFragment
+      ... on SanityHeaderSection {
+        ...HeaderSectionFragment
       }
-     
       ... on SanityFeatureSection {
         ...FeatureSectionFragment
       }

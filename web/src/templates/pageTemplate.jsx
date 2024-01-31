@@ -80,12 +80,13 @@ query pageTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit:
     slug {
       current
     }
+    navColor{
+      value
+    }
     pageTitle
     pageBuilder {
-      ... on SanityHeaderSectionAccommodationSearch {
-        _key
-        _type
-        ...HeaderSectionAccommodationSearchFragment
+      ... on SanityHeaderSection {
+        ...HeaderSectionFragment
       }
       ... on SanityFeatureSection {
         ...FeatureSectionFragment
