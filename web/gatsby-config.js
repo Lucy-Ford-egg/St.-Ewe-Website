@@ -110,20 +110,12 @@ module.exports = {
           fonts: {
             google: [
               {
-                family: `League Spartan`,
+                family: `Merriweather`,
                 variants: [`400`, `500`, `700`],
               },
-            ],
-            selfHosted: [
               {
-                family: `Sentient-Bold`,
-                urls: {
-                  woff2: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff2`,
-                  woff: `../web/src/fonts/sentient/fonts/Sentient-Bold.woff`,
-                  ttf: `../web/src/fonts/sentient/fonts/Sentient-Bold.ttf`,
-                  //[format]: '/[filepath]/[filename],
-                },
-                //[cssProperty]: 'value',
+                family: `Open Sans`,
+                variants: [`400`, `500`, `700`],
               },
             ],
           },

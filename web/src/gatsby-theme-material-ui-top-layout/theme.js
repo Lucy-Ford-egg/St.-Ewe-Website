@@ -37,7 +37,7 @@ let defaultTheme = createTheme({
       main: '#f6f6ee',
     },
     white: {
-      main: '#ffffff',
+      main: '#ffffff', // White
     },
     highlight: {
       main: '#698f68',
@@ -50,13 +50,13 @@ let defaultTheme = createTheme({
   typography: {
     fontSize: 16,
     body1: {
-      fontFamily: 'League Spartan',
+      fontFamily: 'Open Sans',
       fontSize: 16,
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
     body2: {
-      fontFamily: 'League Spartan',
+      fontFamily: 'Open Sans',
       fontSize: 14,
       letterSpacing: '0em',
     },
@@ -64,13 +64,13 @@ let defaultTheme = createTheme({
       lineHeight: 1.43,
     },
     caption: {
-      fontFamily: 'League Spartan',
+      fontFamily: 'Open Sans',
       fontSize: 12,
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
     overline: {
-      fontFamily: 'League Spartan',
+      fontFamily: 'Open Sans',
       fontSize: 14,
       fontWeight: 500,
       lineHeight: 1.5,
@@ -79,28 +79,28 @@ let defaultTheme = createTheme({
     },
     h1: {
       fontSize: clientSpacing[15],
-      fontFamily: 'Sentient-Bold',
+      fontFamily: 'Merriweather',
     },
     h2: {
       fontSize: clientSpacing[11],
-      fontFamily: 'Sentient-Bold',
+      fontFamily: 'Merriweather',
     },
     h3: {
       fontSize: clientSpacing[9],
-      fontFamily: 'Sentient-Bold',
+      fontFamily: 'Merriweather',
     },
     h4: {
       fontSize: clientSpacing[7],
-      fontFamily: 'Sentient-Bold',
+      fontFamily: 'Merriweather',
       letterSpacing: '0em',
     },
     h5: {
       fontSize: clientSpacing[5],
-      fontFamily: 'Sentient-Bold',
+      fontFamily: 'Merriweather',
     },
     h6: {
       fontSize: clientSpacing[4],
-      fontFamily: 'Sentient-Bold',
+      fontFamily: 'Merriweather',
       letterSpacing: '0em',
     },
   },
@@ -237,7 +237,7 @@ let clientTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          fontFamily: 'League Spartan',
+          fontFamily: 'Open Sans',
           borderRadius: 100,
           textTransform: 'unset',
           display: 'flex',
