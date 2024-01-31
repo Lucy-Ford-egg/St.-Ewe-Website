@@ -41,8 +41,8 @@ export const HeaderSection = props => {
         alignItems: "center",
         justifyContent: "center",
         height: "100%",
-        minHeight: 639,
-        maxHeight: 639,
+        minHeight: "100vh",
+        maxHeight: "100vh",
         overflow: "hidden",
       }}
       
@@ -81,7 +81,7 @@ export const HeaderSection = props => {
           gridTemplateColumns: "repeat(24, 1fr)",
           height: "100%",
           maxHeight: "100%",
-          maxHeight: 639,
+          
         }}
       >
         {image && (
@@ -117,7 +117,7 @@ export const HeaderSection = props => {
             gridRow: "1/auto",
             width: "100%",
             height: "100%",
-            backgroundColor: "rgba(0,0,0,0.3)",
+            //backgroundColor: "rgba(0,0,0,0.3)",
           }}
         />
       </Box>
