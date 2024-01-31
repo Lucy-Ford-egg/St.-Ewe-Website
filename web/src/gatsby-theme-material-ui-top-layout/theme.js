@@ -15,20 +15,25 @@ let defaultTheme = createTheme({
   },
   palette: {
     primary: {
-      main: '#d63544',
-      light: '#FFEBEB'
+      main: '#F04D5F', // Coral
+      mid: '#F26979', // Crayola
+      light: '#F47C8A', // Light Coral
+      lighter: '#FCD9DE', // Lighter Coral
+      lightest: '#FDE3E6', // Lightest Coral
     },
     secondary: {
-      main: '#f6f6ee',
+      main: '#002856', // Navy
+      mid: '#375073', // Navy Uncoated
+      light: '#42608A', // Light Navy
     },
     tertiary: {
       main: 'rgba(93, 83, 64, 1)',
     },
     text: {
-      primary: 'rgba(93, 83, 64, 1)',
+      primary: '#414042', // Text Grey
     },
     background: {
-      default: '#f6f6ee',
+      default: '#F04D5F', // Light Grey
       main: '#f6f6ee',
     },
     white: {
