@@ -124,6 +124,12 @@ let clientTheme = createTheme({
       xxl: 1440
     }
   },
+  transitions:{
+    easing:{
+      easeOut: "cubic-bezier(.08,.1,1,.99)",
+      sharp: "cubic-bezier(.08,.1,1,.99)",
+    },
+  },
   typography: defaultTheme.typography,
   palette: defaultTheme.palette,
   components: {

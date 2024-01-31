@@ -11,6 +11,8 @@ import {
   useMediaQuery,
   Button,
   useTheme,
+  useScrollTrigger,
+  Slide,
 } from "@mui/material"
 import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from "@mui/icons-material/Menu"
@@ -20,8 +22,30 @@ import MainNavigation from "./mainNavigation"
 // import { SearchOverlay } from "./searchOverlay"
 
 const Header = (props) => {
+  const { headerOver = false, navColor, children, window } = props
 
-  const { headerOver = false, navColor } = props
+   // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  function HideOnScroll(props) {
+    const { children, window } = props;
+    // Note that you normally won't need to set the window ref as useScrollTrigger
+    // will default to window.
+    // This is only being set here because the demo is in an iframe.
+    const trigger = useScrollTrigger({
+      target: window ? window() : undefined,
+    });
+  
+    return (
+      <Slide appear={false} direction="down" in={!trigger}>
+        {children}
+      </Slide>
+    );
+  }
 
   const [anchorElNav, setAnchorElNav] = useState(false)
   const [anchorElUser, setAnchorElUser] = useState(null)
@@ -104,8 +128,9 @@ const Header = (props) => {
   //  theme.palette.white : theme.palette.tertiary
   return (
     <>
+    <HideOnScroll {...props}>
       <AppBar
-        position={headerOver ? "static" : "absolute"}
+        //position={headerOver ? "static" : "absolute"}
         //color={anchorElNav ? "primary" : "background"}
         sx={{
           backgroundColor: 'transparent',
@@ -194,6 +219,7 @@ const Header = (props) => {
 
         </>}
       </AppBar>
+      </HideOnScroll>
     </>
   )
 }
