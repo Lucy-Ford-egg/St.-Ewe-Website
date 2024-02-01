@@ -9,18 +9,22 @@ export const ButtonFormat = props => {
     <>
       {node?.link?.internal ? (
         <GatsbyButton
-          size="large"
+          size="small"
           color={color}
           variant={variant}
-          to={node?.link?.internal?.slug?.current} sx={{...sx}}
+          to={node?.link?.internal?.slug?.current} 
+          // sx={{...sx}}
           endIcon={endIcon}
         >
           {node?.text}
         </GatsbyButton>
       ) : node?.link?.external ? (
-        <Button size="large"
+        <Button 
+        size="small"
         color={color}
-        variant={variant} to={node?.link?.external} sx={{...sx}}
+        variant={variant} 
+        to={node?.link?.external} 
+        // sx={{...sx}}
         endIcon={endIcon}>
           {node.text}
         </Button>

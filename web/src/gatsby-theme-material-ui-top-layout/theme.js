@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
 
-const clientSpacing = [0, 9, 12, 14, 16, 18, 20, 23, 26, 30, 34, 40, 46, 51, 58, 67, 75, 87, 98, 113]
+const clientSpacing = [0, 9, 12, 14, 16, 18, 20, 23, 26, 30, 34, 40, 46, 51, 58, 67, 75, 87, 98, 113, 127, 147]
 
 let defaultTheme = createTheme({
   spacing: [...clientSpacing],
@@ -71,7 +71,7 @@ let defaultTheme = createTheme({
     },
     overline: {
       fontFamily: 'Open Sans',
-      fontSize: clientSpacing[3],
+      fontSize: clientSpacing[2],
       fontWeight: 500,
       lineHeight: 1.5,
       textTransform: 'uppercase',
@@ -252,13 +252,15 @@ let clientTheme = createTheme({
         root: {
           fontFamily: 'Open Sans',
           borderRadius: 100,
-          textTransform: 'unset',
+          textTransform: 'uppercase',
+          letterspacing: '0.075rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           width: 'max-content',
           fontWeight: 400,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(5)}`,
+          fontSize: `${defaultTheme.spacing(2)} !important`,
         },
         sizeLarge: {
           display: "flex",
@@ -269,10 +271,12 @@ let clientTheme = createTheme({
         },
         sizeSmall: {
           display: "flex",
-          padding: `${defaultTheme.spacing(0.5)} ${defaultTheme.spacing(2)} !important`, //"0.5rem 1.3125rem",
+          paddingTop: `${defaultTheme.spacing(2)} !important`, //"0.5rem 1.3125rem",
+          paddingBottom: `${defaultTheme.spacing(2)} !important`,
+          paddingLeft:`${defaultTheme.spacing(7)} !important`,
+          paddingRight:`${defaultTheme.spacing(7)} !important`,
           justifyContent: "center",
           alignItems: "center",
-          fontSize: defaultTheme.spacing(2),
         },
         outlineTertiary: {
           color: defaultTheme.palette.text.primary,
