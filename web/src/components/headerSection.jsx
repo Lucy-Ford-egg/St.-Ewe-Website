@@ -1,8 +1,7 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { graphql } from "gatsby"
 import {
   Container,
-  Typography,
   Box,
   useTheme,
   useMediaQuery,
@@ -10,9 +9,10 @@ import {
 import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { STUDIO_ORIGIN } from "../../sanity/store"
 import {Links} from '../components/links'
+import {motion} from 'framer-motion'
 
+import { STUDIO_ORIGIN } from "../../sanity/store"
 import { useEncodeDataAttribute } from "@sanity/react-loader"
 
 export const HeaderSection = props => {
@@ -35,6 +35,11 @@ export const HeaderSection = props => {
     // sourceMap,
     STUDIO_ORIGIN,
   )
+
+  const [rendered, setRendered] = useState(false);
+useEffect(()=>{
+   setRendered(true)
+},[])
 
   return (
     <Container
@@ -70,7 +75,12 @@ export const HeaderSection = props => {
             maxWidth: 660,
           }}
         >
-          {_rawTitle && (
+          {_rawTitle && rendered && (
+            <motion.div
+              initial={{ y: 0, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              
+            >
             <RenderPortableText
               previewData={previewData}
               sanityConfig={sanityConfig}
@@ -80,6 +90,8 @@ export const HeaderSection = props => {
                 previewData && previewData._rawTitle ? _rawTitle : _rawTitle
               }
             />
+            </motion.div>
+         
           )}
         </Box>
         <Box
