@@ -13,7 +13,7 @@ export const RenderPortableText = (props) => {
   const { previewData, sanityConfig, value, variant, textAlign,  animate = false, subtitlePosition = null, component } = props
 
   const theme = useTheme()
-debugger
+
   const block = {
     normal: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body1'>{children}</Typography>,
     body2: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
