@@ -6,16 +6,7 @@ export default defineType({
   type: "object",
   title: "Testimonial Tile",
   fields: [
-    defineField({
-      name: 'starRating',
-      type: 'number',
-      title: 'Star Rating',
-      options: {
-        list: [1,2,3,4,5],
-        layout: 'radio',
-        direction: 'horizontal',
-      }
-    }), 
+    
     defineField({
       name: 'quote',
       type: 'text',
@@ -24,7 +15,7 @@ export default defineType({
       rows: 6,
       // hidden: ({ parent, value }) => !value && parent?.icon
       validation: Rule => 
-        Rule.required().max(191)
+        Rule.required().max(260)
     }),
     defineField({
       name: 'image',
@@ -46,7 +37,7 @@ export default defineType({
       name: 'citeLocation',
       type: 'string',
       title: 'Text',
-      description: 'Add some context around the person giving the quote. Example: Happy Camper, Cardiff.',
+      description: 'Add some context around the person giving the quote. Example: Founder.',
     }),
   ],
   preview: {

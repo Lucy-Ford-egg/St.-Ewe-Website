@@ -12,6 +12,11 @@ export default defineType({
       title: 'Remove top padding',
     }),
     defineField({
+      title: 'Background Colour',
+      name: 'backgroundColor',
+      type: 'simplerColor',
+    }),
+    defineField({
       title: 'Tiles',
       name: 'testimonialTiles',
       type: 'array',
