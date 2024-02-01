@@ -6,11 +6,12 @@ import { NavigationItem } from "./navigationItem"
 
 const MainNavigation = (props) => {
   const theme = useTheme()
+  const {navColor} = props
    
   const { handleCloseNavMenu, menu } = props
 
   return (
-    <Container sx={{ pt: { xs: 1, sm: 1, md: 0 }, pb: { xs: 11, sm: 11, md: 0 }, marginTop: { xs: 0, sm: 0, md: 0 }, width: { sm: '100%', sm: 'auto', md: 'auto', lg: 'auto' }, flexBasis: { sm: '100%', sm: 'auto', md: 'auto', lg: 'auto' }, flexGrow: 1, order: { xs: 0, sm: 0, md: 0, lg: 0 }, display: { sm: 'flex' }, flexDirection: { xs: 'column', sm: 'row' }, justifyContent: { xs: 'flex-start', sm: 'flex-end', md: 'flex-end', lg: 'flex-end' } }}>
+    <Container sx={{ pt: { xs: 1, sm: 1, md: 0 }, pb: { xs: 11, sm: 11, md: 0 }, marginTop: { xs: 0, sm: 0, md: 0 }, width: { sm: '100%', sm: 'auto', md: 'auto', lg: 'auto' }, flexBasis: { sm: '100%', sm: 'auto', md: 'auto', lg: 'auto' }, flexGrow: 100, order: { xs: 0, sm: 0, md: 0, lg: 0 }, display: { sm: 'flex' }, flexDirection: { xs: 'column', sm: 'row' }, justifyContent: { xs: 'flex-start', sm: 'flex-end', md: 'flex-end', lg: 'flex-end' } }}>
       <Divider sx={{ mb: theme.spacing(8) }} />
       {menu?.sanityNavigation?.items && menu.sanityNavigation.items.map((menuItem, i) => {
 
@@ -22,6 +23,7 @@ const MainNavigation = (props) => {
             childNode={menuItem?.childItems}
             text={menuItem?.link?.text}
             to={menuItem?.link}
+            navColor={navColor}
           />
         )
       })

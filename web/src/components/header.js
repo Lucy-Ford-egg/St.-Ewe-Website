@@ -167,6 +167,7 @@ const Header = (props) => {
             {/* <mdMainNavigation menu={data} anchorElNav={anchorElNav} handleCloseNavMenu={handleCloseNavMenu} /> */}
 
             {!md && <MainNavigation
+              navColor={logoColor}
               menu={data}
               handleCloseNavMenu={handleCloseNavMenu}
             />}
@@ -213,6 +214,7 @@ const Header = (props) => {
         </Container>
         {md && anchorElNav && <>
           <MainNavigation
+            navColor={logoColor}
             menu={data}
             handleCloseNavMenu={handleCloseNavMenu}
           />

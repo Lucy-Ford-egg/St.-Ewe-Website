@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const NavigationItem = (props) => {
 
-  const { childNode, text, key, to } = props
+  const { childNode, text, key, to, navColor } = props
 
   //Desktop Menu
   const [anchorEl, setAnchorEl] = useState(null);
@@ -33,11 +33,11 @@ export const NavigationItem = (props) => {
   const theme = useTheme()
   const mobile = useMediaQuery("(max-width:640px)")
   const tablet = useMediaQuery("(max-width:900px)")
-
+debugger
 
   return (
     <Box
-      sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "highlight.main", display: 'flex', textTransform: "unset" }}
+      sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, color: "primary.main", display: 'flex', textTransform: "unset" }}
     >
       {childNode && childNode.length >= 1 && !mobile &&
         <Box>
@@ -52,14 +52,14 @@ export const NavigationItem = (props) => {
             // onMouseEnter={handleHover} // Disabled for the moment to get it all styled
             //onMouseLeave={handleHoverOut}
             sx={{
-              color: theme.palette.text.primary,
+              color: open === 'true' ? theme.palette.primary.main : theme.palette.secondary.main,
               textAlign: { xs: 'left', md: 'center' },
               justifyContent: { xs: 'left', md: 'center' },
-              fontWeight: open === 'true' ? 500 : 400,
+              fontWeight: 500,
               fontSize: {sm: theme.spacing(3), md: theme.spacing(3), lg: theme.spacing(4)},
             }}
             endIcon={childNode.length >= 1 && <ExpandMoreIcon />}
-            size="large"
+            size="small"
           >{text}</Button>
 
 
@@ -126,11 +126,14 @@ export const NavigationItem = (props) => {
             // onMouseEnter={handleHover} // Disabled for the moment to get it all styled
             //onMouseLeave={handleHoverOut}
             sx={{
-              color: theme.palette.text.primary,
+              color: open === 'true' ? 'primary.main' : navColor ? navColor : 'secondary.main',
               borderBottom: `1px solid ${open ? theme.palette.text.primary : `transparent`}`,
               textAlign: { xs: 'left', md: 'center' },
               justifyContent: { xs: 'left', md: 'center' },
-              fontWeight: 400,
+              fontWeight: 700,
+              '&:hover':{
+                color: theme.palette.primary.main
+              }
             }}
             endIcon={childNode.length >= 1 && <ExpandMoreIcon />}
             size="large"
@@ -184,12 +187,12 @@ export const NavigationItem = (props) => {
           // onMouseEnter={handleHover} // Disabled for the moment to get it all styled
           //onMouseLeave={handleHoverOut}
           sx={{
-            color: theme.palette.text.primary,
+            color: open === 'true' ? theme.palette.primary.main : theme.palette.secondary.main,
             borderBottom: `1px solid ${open ? theme.palette.text.primary : `transparent`}`,
             textAlign: { xs: 'left', md: 'center' },
             justifyContent: { xs: 'left', md: 'center' },
             px: theme.spacing(1),
-            fontWeight: 400,
+            fontWeight: 500,
           }}
           endIcon={childNode.length >= 1 && <ExpandMoreIcon />} size="large"
         >{text}</Button>
