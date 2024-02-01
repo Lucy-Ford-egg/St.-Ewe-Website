@@ -17,7 +17,8 @@ import {
 } from "@mui/material"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import StarIcon from '@mui/icons-material/Star';
+import {Spiro} from '../components/spiro';
+
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 /**
@@ -33,7 +34,7 @@ const swipePower = (offset, velocity) => {
 
 export const TestimonialSection = props => {
   const theme = useTheme()
-  const { previewData, sanityConfig, testimonialTiles, topPadding } = props
+  const { previewData, sanityConfig, testimonialTiles, topPadding, backgroundColour } = props
 
   const [[page, direction], setPage] = useState([0, 0])
 
@@ -72,22 +73,11 @@ export const TestimonialSection = props => {
     return () => clearTimeout(timer)
   })
 
-
-  const renderStars = (rating) => {
-
-const base = Array.from(Array(5).keys())
-   const stars = base.map(element => <StarIcon sx={{
-      path: {
-        fill: element <= rating ? theme.palette.yellow.main : theme.palette.yellow.light
-      }
-   }} />
-  )
-   return stars
-  }
   return (
     <Container
       maxWidth="xl"
       sx={{
+        backgroundColor: backgroundColour,
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
         pt: topPadding
           ? {
@@ -154,11 +144,6 @@ const base = Array.from(Array(5).keys())
                     justifyContent: "center",
                   }}
                 >
-                  <Box sx={{display: 'flex', justifyContent: 'space-between', mb: 1}}>
-                        {
-                          renderStars(testimonialTiles[slideIndex].starRating)
-                        }
-                  </Box>
                   <Typography align="center" variant="h4" sx={{ py: 6 }}>
                     {testimonialTiles[slideIndex].quote}
                   </Typography>
@@ -202,21 +187,6 @@ const base = Array.from(Array(5).keys())
                             borderRadius: 1000,
                           }}
                         />
-                        // <GatsbyImage
-                        //   image={
-                        //     getGatsbyImageData(
-                        //       previewData && previewData?.[slideIndex].image?.asset?._ref,
-                        //       { maxWidth: 80},
-                        //       sanityConfig,
-                        //     ) || getImage(testimonialTiles[slideIndex].image.asset)
-                        //   }
-                        //   layout="constrained"
-
-                        //   alt={testimonialTiles[slideIndex].image.asset?.altText}
-                        //   style={{
-                        //     borderRadius: 1000,
-                        //   }}
-                        // />
                       )}
                     <Box
                       sx={{
@@ -318,6 +288,7 @@ export const query = graphql`
     _key
     _type
     topPadding
+    backgroundColour
     testimonialTiles {
       image {
         asset {
@@ -341,7 +312,6 @@ export const query = graphql`
       citeName
       citeLocation
       quote
-      starRating
     }
   }
 `
