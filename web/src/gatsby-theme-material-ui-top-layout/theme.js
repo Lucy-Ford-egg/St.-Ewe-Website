@@ -33,8 +33,8 @@ let defaultTheme = createTheme({
       primary: '#414042', // Text Grey
     },
     background: {
-      default: '#F04D5F', // Light Grey
-      main: '#f6f6ee',
+      default: '#F3F3F2', // Light Grey
+      main: '#002856',
     },
     white: {
       main: '#ffffff', // White
@@ -138,6 +138,7 @@ let clientTheme = createTheme({
         // *{
         //   border: 1px solid tomato;
         // }
+       
         @keyframes arrowAnimation {
           0%,
           50%,
@@ -154,16 +155,16 @@ let clientTheme = createTheme({
         
       `
     },
-    MuiContainer: {
-      styleOverrides: {
-        root:{
-          [defaultTheme.breakpoints.down('sm')]: {
-            paddingLeft: `${defaultTheme.spacing(5)} !important`,
-            paddingRight: `${defaultTheme.spacing(5)} !important`,
-          },
-        }
-      },
-    },
+    // MuiContainer: {
+    //   styleOverrides: {
+    //     root:{
+    //       [defaultTheme.breakpoints.down('sm')]: {
+    //         paddingLeft: `${defaultTheme.spacing(5)} !important`,
+    //         paddingRight: `${defaultTheme.spacing(5)} !important`,
+    //       },
+    //     }
+    //   },
+    // },
     MuiAccordion: {
       styleOverrides: {
         root: {
