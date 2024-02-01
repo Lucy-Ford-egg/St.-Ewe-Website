@@ -1,4 +1,4 @@
-import {locate} from '../locate'
+import { locate } from '../locate'
 
 import navigationType from '../schemas/navigation'
 import navItemType from '../schemas/navItem'
@@ -6,10 +6,18 @@ import linkDefinedType from '../schemas/linkDefined'
 import subItemType from '../schemas/subItem'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import siteSettingsType, {companyDetailType, companyDetailsType, newsletterType } from '../schemas/siteSettings'
+import siteSettingsType, { companyDetailType, companyDetailsType, newsletterType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 // import faqsType from '../schemas/faqs'
 import showArchiveType from '../schemas/showArchive'
+
+// Docs
+import authorType from '../schemas/author'
+import postType from '../schemas/post'
+import quoteType from '../schemas/quote'
+import caseStudyType from '../schemas/caseStudy'
+import pageType from '../schemas/page'
+
 
 //Sections
 import headerSectionType from '../schemas/sections/headerSection'
@@ -32,10 +40,6 @@ import locationSectionType from '../schemas/modules/locationSection'
 import benifitsSectionType from "../schemas/modules/benifitsSection"
 import contactSectionType from '../schemas/modules/contactSection'
 
-import authorType from '../schemas/author'
-import postType  from '../schemas/post'
-import caseStudyType  from '../schemas/caseStudy'
-import pageType from '../schemas/page'
 
 
 // Modules
@@ -55,6 +59,12 @@ export const schemaTypes = [
   companyDetailsType,
   newsletterType,
   designSystemColorType,
+
+  // Docs 
+  postType,
+  pageType,
+  caseStudyType,
+  quoteType,
 
   // Sections
 
@@ -78,15 +88,12 @@ export const schemaTypes = [
 
   // Taxonomies
   authorType,
-  categoriesType, 
+  categoriesType,
   //Old
-  
-  // Objects 
-  postType,
-  pageType,
-  caseStudyType,
+
+
   //Old
-  
+
   // Modules
   headerSectionAccommodationSearchType,
   featureSectionType,
@@ -126,7 +133,7 @@ export const brandColors = {
   defaultColorFormat: 'rgba',
   defaultColorList: [
     { label: 'Coral', value: '#F04D5F' },
-    { label: 'Coral Light', value: '#F47C8A' },       
+    { label: 'Coral Light', value: '#F47C8A' },
     { label: 'Text Grey', value: '#414042' },
     { label: 'Mid Grey', value: '#B8B6B9' },
     { label: 'Light Grey', value: '#F3F3F2' },

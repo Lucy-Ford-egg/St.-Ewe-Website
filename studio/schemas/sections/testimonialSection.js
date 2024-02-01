@@ -17,11 +17,15 @@ export default defineType({
       type: 'simplerColor',
     }),
     defineField({
-      title: 'Tiles',
       name: 'testimonialTiles',
       type: 'array',
-      of: [{type: 'testimonialTile'}]
-    })
+      of: [
+        {
+          type: 'reference',
+          to: [{ type: 'quote', title: 'Quotes' }],
+        }
+      ]
+    }),
   
   ],
   preview: {

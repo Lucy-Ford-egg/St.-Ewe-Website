@@ -14,6 +14,7 @@ import {
   useMediaQuery,
   IconButton,
   SvgIcon,
+  Divider,
 } from "@mui/material"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
@@ -34,7 +35,7 @@ const swipePower = (offset, velocity) => {
 
 export const TestimonialSection = props => {
   const theme = useTheme()
-  const { previewData, sanityConfig, testimonialTiles, topPadding, backgroundColour } = props
+  const { previewData, sanityConfig, testimonialTiles, topPadding, backgroundColor } = props
 
   const [[page, direction], setPage] = useState([0, 0])
 
@@ -74,10 +75,14 @@ export const TestimonialSection = props => {
   })
 
   return (
+    <Box sx={{position: 'relative', backgroundColor: backgroundColor.value}}>
+      <Box sx={{position: 'absolute', top: '50%', transform: 'translateY(-50%) rotate(180deg) ', left: 0}}>
+        <Spiro/>
+      </Box>
     <Container
       maxWidth="xl"
       sx={{
-        backgroundColor: backgroundColour,
+        
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
         pt: topPadding
           ? {
@@ -87,6 +92,7 @@ export const TestimonialSection = props => {
           : { xs: theme.spacing(10), md: theme.spacing(10) },
       }}
     >
+      
       <Box sx={{ display: "grid", gridTemplateColumns: "repeat(24, 1fr)", position: 'relative', pb: 6 }}>
         <Box
           sx={{
@@ -122,7 +128,7 @@ export const TestimonialSection = props => {
               style={{ height: "100%" }}
             >
               <Container
-                maxWidth="sm"
+                maxWidth="md"
                 className="slide"
                 sx={{
                   position: "absolute",
@@ -144,9 +150,10 @@ export const TestimonialSection = props => {
                     justifyContent: "center",
                   }}
                 >
-                  <Typography align="center" variant="h4" sx={{ py: 6 }}>
+                  <Typography align="center" color="white.main" variant="h3" sx={{ py: 6 }}>
                     {testimonialTiles[slideIndex].quote}
                   </Typography>
+                  <Divider sx={{display: 'flex', my: 10, width: '5.625rem', borderColor: 'red'}}/>
                   <Box
                     sx={{
                       display: "flex",
@@ -188,6 +195,7 @@ export const TestimonialSection = props => {
                           }}
                         />
                       )}
+                     
                     <Box
                       sx={{
                         display: "flex",
@@ -196,10 +204,10 @@ export const TestimonialSection = props => {
                         ml: 4,
                       }}
                     >   
-                      <Typography variant="body1" sx={{ fontWeight: 700 }}>
+                      <Typography color="white.main" variant="body1" sx={{ fontWeight: 700 }}>
                         {testimonialTiles[slideIndex].citeName}
                       </Typography>
-                      <Typography variant="body1">
+                      <Typography color="white.main" variant="body1">
                         {testimonialTiles[slideIndex].citeLocation}
                       </Typography>
                     </Box>
@@ -279,7 +287,12 @@ export const TestimonialSection = props => {
           </Container>
         </Box>
       </Box>
+     
     </Container>
+    <Box  sx={{position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: 0}}>
+        <Spiro/>
+      </Box>
+    </Box>
   )
 }
 
@@ -288,7 +301,9 @@ export const query = graphql`
     _key
     _type
     topPadding
-    backgroundColour
+    backgroundColor {
+      value
+    }
     testimonialTiles {
       image {
         asset {
