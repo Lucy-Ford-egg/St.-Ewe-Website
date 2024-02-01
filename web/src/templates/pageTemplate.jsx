@@ -80,6 +80,7 @@ query pageTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit:
     slug {
       current
     }
+    navOverlay
     navColor{
       value
     }

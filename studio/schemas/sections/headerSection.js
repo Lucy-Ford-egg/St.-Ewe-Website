@@ -7,6 +7,15 @@ export default defineType({
   title: "Header Section",
   fields: [
     defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      validation: Rule => Rule.required(),
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'array',
@@ -68,14 +77,16 @@ export default defineType({
     }),
 
     defineField({
-      name: 'image',
-      type: 'image',
-      title: 'Image',
-      validation: Rule => Rule.required(),
-      options: {
-        hotspot: true,
-      },
+      name: 'links',
+      type: 'array',
+      title: 'Link(s)',
+      of: [
+        {type: 'linkDefined'}
+      ],
+      description: 'Add a link(s). Optional',
+      validation: Rule => Rule.min(1).max(2),
     }),
+
   ],
   preview: {
     select: {

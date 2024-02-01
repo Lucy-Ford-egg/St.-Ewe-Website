@@ -11,7 +11,7 @@ import {
   useTheme,
 } from "@mui/material"
 import { Icons } from "../components/icons"
-import { ButtonFormat } from "./buttonFormat"
+import {Links} from '../components/links'
 
 export const FeatureSection = props => {
   const theme = useTheme()
@@ -167,32 +167,7 @@ export const FeatureSection = props => {
                   {previewData && previewData.text ? previewData.text : text}
                 </Typography>
 
-                <Box
-                  sx={{
-                    width: "fit-content",
-                    display: "flex",
-                    justifyContent: "flex-end",
-                    flexDirection: "row",
-                    flexBasis: "100%",
-                    columnGap: 6,
-                  }}
-                >
-                  {links &&
-                    links.map((node, i) => {
-                      return (
-                        <ButtonFormat
-                          variant={i === 0 ? "contained" : "outlined"}
-                          color={i === 0 ? "primary" : highlighted ? "secondary" : "tertiary"}
-                          node={
-                            previewData && previewData.node
-                              ? previewData.node
-                              : node
-                          }
-                          sx={{}}
-                        />
-                      )
-                    })}
-                </Box>
+                <Links links={links} previewData={previewData} highlighted/>
               </Box>
             </Grid>
           </Grid>

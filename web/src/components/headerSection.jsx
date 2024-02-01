@@ -11,6 +11,7 @@ import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { STUDIO_ORIGIN } from "../../sanity/store"
+import {Links} from '../components/links'
 
 import { useEncodeDataAttribute } from "@sanity/react-loader"
 
@@ -25,8 +26,7 @@ export const HeaderSection = props => {
     linkGroup,
     previewData,
     sanityConfig,
-    showSearch,
-    searchColour,
+    links,
   } = props
 
   const data = previewData
@@ -62,7 +62,7 @@ export const HeaderSection = props => {
           flexDirection: "column",
           alignItems: textAlign ? textAlign : "flexstart",
           justifyContent: "center",
-          pt: {xs: 16, md: 0},
+          pt: {xs: 16, md: 20},
         }}
       >
         <Box
@@ -85,6 +85,7 @@ export const HeaderSection = props => {
         <Box
           sx={{
             maxWidth: 750,
+            pb: 8,
           }}
         >
           {_rawText && (
@@ -97,6 +98,7 @@ export const HeaderSection = props => {
             />
           )}
         </Box>
+        <Links linkOne="secondary" links={links} previewData={previewData} highlighted/>
       </Container>
 
       <Box
@@ -157,6 +159,26 @@ export const query = graphql`
     _rawTitle(resolveReferences: { maxDepth: 10 })
     _rawText(resolveReferences: { maxDepth: 10 })
     textAlign
+    links {
+      link {
+        internal {
+          ... on SanityPage {
+            id
+            slug {
+              current
+            }
+          }
+          ... on SanityPost {
+            id
+            slug {
+              current
+            }
+          }
+        }
+        external
+      }
+      text
+    }
     image {
       asset {
         _id

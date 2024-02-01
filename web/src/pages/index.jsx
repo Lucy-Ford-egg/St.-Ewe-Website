@@ -52,6 +52,7 @@ query homeQuery{
         current
       }
       pageTitle
+      navOverlay
       navColor{
         value
       }
