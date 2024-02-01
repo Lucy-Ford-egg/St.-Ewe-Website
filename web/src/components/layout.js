@@ -10,7 +10,7 @@ export const Layout = (props) => {
   const {children, data} = props
 
   return (
-    <div className="container-fluid p-0">
+    <div>
      
 
       <VisualEditing {...props}/>
