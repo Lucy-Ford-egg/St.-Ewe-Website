@@ -11,7 +11,7 @@ export const Layout = (props) => {
   return (
     <div>
       <VisualEditing {...props}/>
-      <Header navColor={data.sanityPage.navColor}/>
+      <Header navColor={data.sanityPage.navColor} navOverlay={data.sanityPage.navOverlay}/>
       <main>
         {children}
       </main>

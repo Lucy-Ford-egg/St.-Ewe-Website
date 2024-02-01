@@ -22,7 +22,7 @@ import MainNavigation from "./mainNavigation"
 // import { SearchOverlay } from "./searchOverlay"
 
 const Header = (props) => {
-  const { headerOver = false, navColor, children, window } = props
+  const { headerOver = false, navColor, navOverlay, children, window } = props
 
    // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
@@ -133,11 +133,11 @@ const Header = (props) => {
         //position={headerOver ? "static" : "absolute"}
         //color={anchorElNav ? "primary" : "background"}
         sx={{
-          backgroundColor: 'transparent',
+          background:  navOverlay === true ? 'linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 87.43%)' : 'transparent',
           boxShadow: 'unset',
         }}
       >
-        <Container maxWidth="xl" sx={{ mt: 2, py: 2, borderTop: `1px solid ${logoColor}`, borderBottom: `1px solid ${logoColor}` }}>
+        <Container maxWidth="xl" sx={{ mt: 7, py: 5, borderTop: `1px solid ${logoColor}`, borderBottom: `1px solid ${logoColor}` }}>
           <Toolbar
             disableGutters
             sx={{ display: "flex", alignItems: "center", justifyContent: { xs: 'space-between', sm: 'space-between', md: 'flex-end', lg: 'flex-end' }, flexWrap: { xs: 'wrap', sm: 'wrap', md: 'wrap', lg: 'wrap' } }}
