@@ -67,9 +67,10 @@ useEffect(()=>{
           flexDirection: "column",
           alignItems: textAlign ? textAlign : "flexstart",
           justifyContent: "center",
-          pt: {xs: 16, md: 20},
+          // pt: {xs: 16, md: 20},
         }}
       >
+        <Box>
         <Box
           sx={{
             maxWidth: 660,
@@ -111,6 +112,7 @@ useEffect(()=>{
           )}
         </Box>
         <Links linkOne="secondary" links={links} previewData={previewData} highlighted/>
+        </Box>
       </Container>
 
       <Box
