@@ -46,7 +46,7 @@ export const ImageCarouselSection = props => {
   // useEffect(() => {
   //   setWidth(ref.current.getBoundingClientRect().width)
   // }, []) //empty dependency array so it only runs once at render
-  debugger
+  
   let [index, setIndex] = useState(0)
 
   const sm = useMediaQuery("(max-width:640px)")
