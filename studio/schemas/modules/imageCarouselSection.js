@@ -6,36 +6,36 @@ export default defineType({
   type: "object",
   title: "Image Carousel Section",
   fields: [
-    defineField({
-      name: 'icon',
-      type: 'icons',
-      title: 'Icon',
-    }),
-    defineField({
-      name: 'subtitle',
-      type: 'string',
-      title: 'Subtitle',
-      hidden: ({ parent, value }) => !value && parent?.icon
-    }),
-    defineField({
-      name: 'title',
-      type: 'string',
-      title: 'Title',
-    }),
+    // defineField({
+    //   name: 'icon',
+    //   type: 'icons',
+    //   title: 'Icon',
+    // }),
+    // defineField({
+    //   name: 'subtitle',
+    //   type: 'string',
+    //   title: 'Subtitle',
+    //   hidden: ({ parent, value }) => !value && parent?.icon
+    // }),
+    // defineField({
+    //   name: 'title',
+    //   type: 'string',
+    //   title: 'Title',
+    // }),
 
-    defineField({
-      name: 'text',
-      type: 'text',
-      rows: 6,
-      title: 'Text',
-      description: 'Add some textual content. Optional'
-    }),
+    // defineField({
+    //   name: 'text',
+    //   type: 'text',
+    //   rows: 6,
+    //   title: 'Text',
+    //   description: 'Add some textual content. Optional'
+    // }),
 
-    defineField({
-      name: 'textAlign',
-      type: 'textAlign',
-      title: 'Choose Text Alignment',
-    }),
+    // defineField({
+    //   name: 'textAlign',
+    //   type: 'textAlign',
+    //   title: 'Choose Text Alignment',
+    // }),
 
     defineField({
       name: 'topPadding',
@@ -64,8 +64,8 @@ export default defineType({
     prepare(selection) {
       const { title, media, showSearch, textAlign } = selection
       return {
-        title: `${title ? title : 'No Title'}`,
-        subtitle: `Image Carousel Section | Text align ${textAlign}`,
+        title: title,
+        subtitle: `Image Carousel Section`,
         media: media[0],
         icon: MdViewModule
       }
