@@ -97,7 +97,7 @@ export default defineType({
       const { title, media } = selection
 
       
-      debugger
+      
       return {
         title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Header Section`,
