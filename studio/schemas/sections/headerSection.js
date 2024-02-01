@@ -18,7 +18,6 @@ export default defineType({
             { title: 'Heading 1', value: 'h1' },
             { title: 'Heading 2', value: 'h2' },
           ],
-          
           marks: {
             annotations: [
               {
@@ -49,12 +48,19 @@ export default defineType({
       of: [
         {
           type: 'block',
+          styles: [
+            { title: 'Lead', value: 'body2' },
+          ],
+          lists: [],
           marks: {
             annotations: [
               {
                 type: 'textColor',
               }
-            ]
+            ],
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+            ],
           }
         }
       ],

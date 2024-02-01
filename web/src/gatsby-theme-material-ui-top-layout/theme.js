@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
 
-const clientSpacing = [0, 8, 12, 14, 16, 20, 24, 28, 33, 35, 41, 48, 50, 58, 67, 72, 84, 96, 102]
+const clientSpacing = [0, 9, 12, 14, 16, 18, 20, 23, 26, 30, 34, 40, 46, 51, 58, 67, 75, 87, 98, 113]
 
 let defaultTheme = createTheme({
   spacing: [...clientSpacing],
@@ -48,16 +48,16 @@ let defaultTheme = createTheme({
     }
   },
   typography: {
-    fontSize: 16,
+    fontSize: clientSpacing[5],
     body1: {
       fontFamily: 'Open Sans',
-      fontSize: 16,
+      fontSize: clientSpacing[5],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
     body2: {
       fontFamily: 'Open Sans',
-      fontSize: 14,
+      fontSize: clientSpacing[7],
       letterSpacing: '0em',
     },
     button: {
@@ -65,13 +65,13 @@ let defaultTheme = createTheme({
     },
     caption: {
       fontFamily: 'Open Sans',
-      fontSize: 12,
+      fontSize: clientSpacing[2],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
     overline: {
       fontFamily: 'Open Sans',
-      fontSize: 14,
+      fontSize: clientSpacing[3],
       fontWeight: 500,
       lineHeight: 1.5,
       textTransform: 'uppercase',

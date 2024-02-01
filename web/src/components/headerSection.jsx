@@ -62,15 +62,20 @@ export const HeaderSection = props => {
       >
         <Box
           sx={{
-            maxWidth: 749,
+            maxWidth: 660,
           }}
         >
 
 { _rawTitle && <RenderPortableText previewData={previewData} sanityConfig={sanityConfig} variant={false} textAlign={textAlign} value={previewData && previewData._rawTitle ? _rawTitle : _rawTitle}/>}
-          
+</Box>
+<Box
+          sx={{
+            maxWidth: 750,
+          }}
+        >
 {_rawText && <RenderPortableText previewData={previewData} sanityConfig={sanityConfig} variant={false} textAlign={textAlign} value={previewData && previewData._rawText ? _rawText : _rawText}/>}
-        </Box>
         
+        </Box>
       </Container>
 
       <Box
