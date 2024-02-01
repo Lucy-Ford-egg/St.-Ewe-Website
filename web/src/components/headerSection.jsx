@@ -1,16 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Container, Typography, Box, useTheme } from "@mui/material"
+import {
+  Container,
+  Typography,
+  Box,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
-import {urlFor} from "../utils/imageHelpers"
-import { STUDIO_ORIGIN} from "../../sanity/store";
+import { urlFor } from "../utils/imageHelpers"
+import { STUDIO_ORIGIN } from "../../sanity/store"
 
-import { useEncodeDataAttribute } from "@sanity/react-loader";
+import { useEncodeDataAttribute } from "@sanity/react-loader"
 
 export const HeaderSection = props => {
-
   const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const {
     _rawTitle,
     _rawText,
@@ -27,9 +33,8 @@ export const HeaderSection = props => {
   const encodeDataAttribute = useEncodeDataAttribute(
     data,
     // sourceMap,
-    STUDIO_ORIGIN
-  );
-
+    STUDIO_ORIGIN,
+  )
 
   return (
     <Container
@@ -42,10 +47,9 @@ export const HeaderSection = props => {
         justifyContent: "center",
         height: "100%",
         minHeight: "100vh",
-        maxHeight: "100vh",
+        maxHeight: { xs: "", md: "100vh" },
         overflow: "hidden",
       }}
-      
     >
       <Container
         maxWidth="xl"
@@ -56,8 +60,9 @@ export const HeaderSection = props => {
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
-          alignItems: textAlign ? textAlign : 'flexstart',
+          alignItems: textAlign ? textAlign : "flexstart",
           justifyContent: "center",
+          pt: {xs: 16, md: 0},
         }}
       >
         <Box
@@ -65,16 +70,32 @@ export const HeaderSection = props => {
             maxWidth: 660,
           }}
         >
-
-{ _rawTitle && <RenderPortableText previewData={previewData} sanityConfig={sanityConfig} variant={false} textAlign={textAlign} value={previewData && previewData._rawTitle ? _rawTitle : _rawTitle}/>}
-</Box>
-<Box
+          {_rawTitle && (
+            <RenderPortableText
+              previewData={previewData}
+              sanityConfig={sanityConfig}
+              variant={false}
+              textAlign={textAlign}
+              value={
+                previewData && previewData._rawTitle ? _rawTitle : _rawTitle
+              }
+            />
+          )}
+        </Box>
+        <Box
           sx={{
             maxWidth: 750,
           }}
         >
-{_rawText && <RenderPortableText previewData={previewData} sanityConfig={sanityConfig} variant={false} textAlign={textAlign} value={previewData && previewData._rawText ? _rawText : _rawText}/>}
-        
+          {_rawText && (
+            <RenderPortableText
+              previewData={previewData}
+              sanityConfig={sanityConfig}
+              variant={false}
+              textAlign={textAlign}
+              value={previewData && previewData._rawText ? _rawText : _rawText}
+            />
+          )}
         </Box>
       </Container>
 
@@ -86,33 +107,32 @@ export const HeaderSection = props => {
           gridTemplateColumns: "repeat(24, 1fr)",
           height: "100%",
           maxHeight: "100%",
-          
         }}
       >
         {image && (
           <Image
-          // pass asset, hotspot, and crop fields
-          crop={
-            (previewData && previewData?.image?.crop) ||
-            image?.crop
-          }
-          hotspot={
-            (previewData && previewData?.image?.hotspot) ||
-            image?.hotspot
-          }
-           asset={
-            (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
-           }
-          style={{
-            objectFit: "cover",
-            width: "100%",
-            height: "100%",
-            flexGrow: 1,
-            minHeight: "100%",
-            gridColumn: "1/25",
-            gridRow: "1/auto",
-          }}
-        />
+            // pass asset, hotspot, and crop fields
+            crop={(previewData && previewData?.image?.crop) || image?.crop}
+            hotspot={
+              (previewData && previewData?.image?.hotspot) || image?.hotspot
+            }
+            asset={
+              (previewData &&
+                previewData.image &&
+                previewData.image?._ref &&
+                urlFor(previewData.image).width(200).url()) ||
+              image.asset
+            }
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+              flexGrow: 1,
+              minHeight: "100%",
+              gridColumn: "1/25",
+              gridRow: "1/auto",
+            }}
+          />
         )}
         <Box
           sx={{
@@ -134,8 +154,8 @@ export const query = graphql`
   fragment HeaderSectionFragment on SanityHeaderSection {
     _key
     _type
-    _rawTitle(resolveReferences: {maxDepth: 10})
-    _rawText(resolveReferences: {maxDepth: 10})
+    _rawTitle(resolveReferences: { maxDepth: 10 })
+    _rawText(resolveReferences: { maxDepth: 10 })
     textAlign
     image {
       asset {
@@ -155,6 +175,5 @@ export const query = graphql`
         top
       }
     }
-   
   }
 `
