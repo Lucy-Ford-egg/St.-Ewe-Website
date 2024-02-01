@@ -13,6 +13,9 @@ import showArchiveType from '../schemas/showArchive'
 
 //Sections
 import headerSectionType from '../schemas/sections/headerSection'
+import testimonialSectionType from '../schemas/sections/testimonialSection'
+import testimonialTileType from '../schemas/sections/testimonialTile'
+
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -22,8 +25,8 @@ import overlayType from '../schemas/overlay'
 import textAlignType from '../schemas/textAlign'
 import featuresTileType from '../schemas/modules/featuresTile'
 import servicesTileType from '../schemas/modules/servicesTile'
-import testimonialTileType from '../schemas/modules/testimonialTile'
-import testimonialSectionType from '../schemas/modules/testimonialSection'
+
+
 import imageCarouselSectionType from '../schemas/modules/imageCarouselSection'
 import locationSectionType from '../schemas/modules/locationSection'
 import benifitsSectionType from "../schemas/modules/benifitsSection"

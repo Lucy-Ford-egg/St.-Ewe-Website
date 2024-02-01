@@ -13,7 +13,7 @@ import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from './modules/servicesSection'
-import testimonialSectionType from './modules/testimonialSection'
+import testimonialSectionType from './sections/testimonialSection'
 import imageCarouselSectionType from './modules/imageCarouselSection'
 import locationSectionType from './modules/locationSection'
 // import faqsSectionType from './modules/faqsSection'
@@ -34,7 +34,7 @@ import blogSectionType from './modules/blogSection'
 // import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
 // import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
 // import imageWithLinkType from '../schemas/modules/imageWithLink'
-// import testimonialSection from "./modules/testimonialSection";
+// import testimonialSection from "./section/testimonialSection";
 
 /**
  * This file is the schema definition for a post.
@@ -128,13 +128,13 @@ export default defineType({
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
         {type: headerSectionType.name},
-      
+        {type: testimonialSectionType.name},
+
         {type: featureSectionType.name},
         {type: videoSectionType.name},
         {type: featuresListSectionType.name},
         {type: ctaSectionType.name},
         {type: servicesSectionType.name},
-        {type: testimonialSectionType.name},
         {type: imageCarouselSectionType.name},
         {type: locationSectionType.name},
         //{type: faqsSectionType.name},

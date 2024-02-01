@@ -7,6 +7,7 @@ import categoriesType from './categories'
 
 // Sections 
 import headerSectionType from './sections/headerSection'
+import testimonialSectionType from "./sections/testimonialSection"
 
 // Module
 import featureSectionType from './modules/featureSection'
@@ -14,7 +15,7 @@ import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from "./modules/servicesSection"
-import testimonialSectionType from "./modules/testimonialSection"
+
 import imageCarouselSectionType from "./modules/imageCarouselSection"
 import locationSectionType from "./modules/locationSection"
 // import faqsSectionType from "./modules/faqsSection"
