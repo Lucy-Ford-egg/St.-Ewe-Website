@@ -84,8 +84,8 @@ module.exports = {
         name: `heligan-campsite`,
         short_name: `heligan-campsite`,
         start_url: `/`,
-        background_color: `#f6f6ee`,
-        theme_color: `#f6f6ee`,
+        background_color: `F3F3F2`,
+        theme_color: `F3F3F2`,
         display: `standalone`,
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
@@ -114,7 +114,7 @@ module.exports = {
                 variants: [`400`, `700`],
               },
               {
-                family: `Open Sans`,
+                family: `Open+Sans`,
                 variants: [`400`, `500`, `700`],
               },
             ],
