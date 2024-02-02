@@ -17,6 +17,7 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { Spiro } from "../components/spiro"
+import {contrastColour} from '../utils/contrastColour'
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
@@ -87,9 +88,16 @@ export const TestimonialSection = props => {
       <Box
         sx={{
           position: "absolute",
-          top: "50%",
-          transform: "translateY(-50%) rotate(180deg) ",
+          top: {xs: "unset", sm: "50%"},
+          bottom: {xs: 0, sm: 'unset'},
+          transform: {xs: "translateX(-30px) rotate(180deg)", sm: "translateX(-150px) translateY(-50%) rotate(180deg)", md: "translateY(-50%)  rotate(180deg)"},
           left: 0,
+          width: {xs: '85px', sm: 'auto'},
+          height: {xs: '239.91px', sm: 'auto'},
+          svg: {
+            width: '100%',
+            height: 'auto',
+          }
         }}
       >
         <Spiro />
@@ -111,7 +119,7 @@ export const TestimonialSection = props => {
             display: "grid",
             gridTemplateColumns: "repeat(24, 1fr)",
             position: "relative",
-            pb: 6,
+            pb: {xs: 0, md: 6},
           }}
         >
           <Box
@@ -172,7 +180,7 @@ export const TestimonialSection = props => {
                   >
                     <Typography
                       align="center"
-                      color="white.main"
+                      color={contrastColour(backgroundColor).textColour}
                       variant="h3"
                       sx={{ py: 6 }}
                     >
@@ -183,7 +191,7 @@ export const TestimonialSection = props => {
                         display: "flex",
                         my: 10,
                         width: "5.625rem",
-                        borderColor: "red",
+                        borderColor: contrastColour(backgroundColor).divider.hex,
                       }}
                     />
                     <Box
@@ -191,6 +199,7 @@ export const TestimonialSection = props => {
                         display: "flex",
                         flexDirection: "row",
                         alignItems: "center",
+                        maxWidth: {xs: '60vw', md: 'unset'} 
                       }}
                     >
                       
@@ -228,7 +237,7 @@ export const TestimonialSection = props => {
                             }}
                           />
                         )}
-  {/* <h1>HI - {avatarImage}</h1> */}
+                        
                       <Box
                         sx={{
                           display: "flex",
@@ -238,13 +247,13 @@ export const TestimonialSection = props => {
                         }}
                       >
                         <Typography
-                          color="white.main"
+                          color={contrastColour(backgroundColor).textColour}
                           variant="body1"
                           sx={{ fontWeight: 700 }}
                         >
                           {testimonialTiles[slideIndex]?.cite.teamMemberCite ? testimonialTiles[slideIndex]?.cite.teamMemberCite?.name : testimonialTiles[slideIndex]?.cite.externalCite?.citeName}
                         </Typography>
-                        <Typography color="white.main" variant="overline">
+                        <Typography color={contrastColour(backgroundColor).textColour} variant="overline">
                         {testimonialTiles[slideIndex]?.cite.teamMemberCite ? testimonialTiles[slideIndex]?.cite.teamMemberCite?.position : testimonialTiles[slideIndex]?.cite.externalCite?.citeLocation}
                         </Typography>
                       </Box>
@@ -266,14 +275,15 @@ export const TestimonialSection = props => {
             flexDirection: "row",
             position: 'relative',
             zIndex: 2,
+            mt: {xs:12, md: 0 },
           }}
         >
           <IconButton
             aria-label="delete"
-            onClick={() => paginate(1)}
-            sx={{ border: `1px solid ${theme.palette.primary.main}` }}
+            onClick={() => paginate(-1)}
+            sx={{ border: `1px solid ${contrastColour(backgroundColor).svg.default.hex}` }}
           >
-            <ArrowBackIcon color="primary" />
+            <ArrowBackIcon color={contrastColour(backgroundColor).svg.default.mui} />
           </IconButton>
 
           <Box
@@ -288,8 +298,8 @@ export const TestimonialSection = props => {
             {testimonialTiles.map((dot, index) => {
               let dotColour =
                 index === slideIndex
-                  ? theme.palette.primary.main
-                  : theme.palette.primary.light
+                  ? contrastColour(backgroundColor).svg.default.mui
+                  : contrastColour(backgroundColor).svg.active.hex
               return (
                 <SvgIcon
                   color={dotColour}
@@ -304,19 +314,28 @@ export const TestimonialSection = props => {
 
           <IconButton
             aria-label="delete"
-            onClick={() => paginate(-1)}
-            sx={{ border: `1px solid ${theme.palette.primary.main}` }}
+            onClick={() => paginate(1)}
+            sx={{ border: `1px solid ${contrastColour(backgroundColor).svg.default.hex}` }}
           >
-            <ArrowForwardIcon color="primary" />
+            <ArrowForwardIcon color={contrastColour(backgroundColor).svg.default.mui} />
           </IconButton>
         </Box>
       </Container>
       <Box
         sx={{
           position: "absolute",
-          top: "50%",
-          transform: "translateY(-50%)",
+          top: {xs: "unset", sm: "50%"},
+          bottom: {xs: 0, sm: 'unset'},
+          transform: {xs: "translateX(30px)", sm: "translateX(150px) translateY(-50%)", md: "translateY(-50%)"},
           right: 0,
+          width: {xs: '85px', sm: 'auto'},
+          height: {xs: '239.91px', sm: 'auto'},
+          display: 'flex',
+          alignItems: {xs: 'flex-end', sm: 'unset'},
+          svg: {
+            width: '100%',
+            height: 'auto',
+          }
         }}
       >
         <Spiro />
@@ -332,6 +351,7 @@ export const query = graphql`
     topPadding
     backgroundColor {
       value
+      label
     }
     testimonialTiles {
       quoteText

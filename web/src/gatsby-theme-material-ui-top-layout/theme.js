@@ -31,6 +31,7 @@ let defaultTheme = createTheme({
     },
     text: {
       primary: '#414042', // Text Grey
+      mid: '#B8B6B9', // Mid Grey
     },
     background: {
       default: '#F3F3F2', // Light Grey
