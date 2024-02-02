@@ -1,10 +1,10 @@
 import {createClient} from "@sanity/client"
-import {imageUrlBuilder} from "@sanity"
+import imageUrlBuilder from '@sanity/image-url'
 
 export const client = createClient({
-projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+projectId: '0y4lutj5',
 dataset: 'production',
-apiVersion: '2023-06-22',
+apiVersion: "2023-08-01",
 useCdn: false, // must be false when using 'previewDrafts'
 perspective: 'previewDrafts', // 'raw' | 'previewDrafts' | 'published'
 })

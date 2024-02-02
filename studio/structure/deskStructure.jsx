@@ -12,6 +12,7 @@ import {
   MdOutlineTagFaces,
   MdPerson,
   MdFormatQuote,
+  MdAccessibilityNew,
 } from 'react-icons/md'
 
 export const deskStructure = (S, context) => {
@@ -88,6 +89,18 @@ export const deskStructure = (S, context) => {
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
 
+        S.listItem()
+        .title('Team Members')
+        .icon(MdAccessibilityNew)
+        .child(
+          S.documentTypeList('teamMember')
+            .title('Team Members')
+            .child(
+              (id) => S.document().schemaType('teamMember').documentId(id),
+              //.views(Views(S, context))
+            )
+            .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        ),
       S.divider(),
 
       S.listItem()

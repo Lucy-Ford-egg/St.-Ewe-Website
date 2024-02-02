@@ -84,6 +84,17 @@ const Modules = (props) => {
                                 {...module} />
                         )
                     }
+
+                    if (isModule(module, 'testimonialSection')) {
+                        debugger
+                        return (
+                            <TestimonialSection
+                                previewData={previewData && previewData[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
                     
                     if (isModule(module, 'featureSection')) {
                         return (
@@ -131,15 +142,7 @@ const Modules = (props) => {
                                 {...module} />
                         )
                     }
-                    if (isModule(module, 'testimonialSection')) {
-                        return (
-                            <TestimonialSection
-                                previewData={previewData && previewData[i]}
-                                sanityConfig={sanityConfig}
-                                key={module._key + i}
-                                {...module} />
-                        )
-                    }
+                    
                     if (isModule(module, 'imageCarouselSection')) {
                         return (
                             <ImageCarouselSection

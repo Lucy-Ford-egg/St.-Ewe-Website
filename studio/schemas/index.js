@@ -17,7 +17,11 @@ import postType from '../schemas/post'
 import quoteType from '../schemas/quote'
 import caseStudyType from '../schemas/caseStudy'
 import pageType from '../schemas/page'
+import teamMemberType from '../schemas/teamMember'
 
+// Atoms
+import citeType from '../schemas/components/cite'
+import externalCiteType from '../schemas/components/externalCite'
 
 //Sections
 import headerSectionType from '../schemas/sections/headerSection'
@@ -60,11 +64,16 @@ export const schemaTypes = [
   newsletterType,
   designSystemColorType,
 
+  // Atoms
+  citeType,
+  externalCiteType,
+
   // Docs 
   postType,
   pageType,
   caseStudyType,
   quoteType,
+  teamMemberType,
 
   // Sections
 

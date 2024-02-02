@@ -72,7 +72,7 @@ let defaultTheme = createTheme({
     overline: {
       fontFamily: 'Open Sans',
       fontSize: clientSpacing[2],
-      fontWeight: 500,
+      fontWeight: 400,
       lineHeight: 1.5,
       textTransform: 'uppercase',
       letterSpacing: 0.3,

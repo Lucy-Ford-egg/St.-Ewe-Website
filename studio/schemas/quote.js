@@ -5,6 +5,9 @@ import openGraph from '../schemas/openGraph'
 import authorType from './author'
 import categoriesType from './categories'
 
+//import {urlFor} from '../client'
+
+
 /**
  * This file is the schema definition for a quote.
  *
@@ -40,50 +43,37 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'quote',
+      name: 'quoteText',
       type: 'text',
       title: 'Quote',
       description: 'Add your quote. We got a max character count on this so they don`t get too long',
       rows: 6,
       // hidden: ({ parent, value }) => !value && parent?.icon
-      validation: Rule => 
+      validation: Rule =>
         Rule.required().max(260)
     }),
+
     defineField({
-      name: 'image',
-      type: 'image',
-      title: 'Avatar',
-      validation: Rule => Rule.required(),
-      options:{
-        hotspot: true,
-      }
-    }), 
-    defineField({
-      name: 'citeName',
-      type: 'string',
-      title: 'Cite Name',
-      validation: Rule => Rule.required(),
-      description: 'Add the persons name.',
+      name: 'cite',
+      type: 'cite',
+      title: 'Citation',
     }),
-    defineField({
-      name: 'citeLocation',
-      type: 'string',
-      title: 'Text',
-      description: 'Add some context around the person giving the quote. Example: Founder.',
-    }),
+
   ],
   preview: {
     select: {
       title: 'title',
       author: 'author.name',
       date: 'date',
-      media: 'coverImage',
+      media: 'cite',
     },
     prepare({ title, media, author, date }) {
       const subtitles = [
         author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
+
+      //const avatarRef = media.teamMemberCite ? urlFor(media.teamMemberCite) : urlFor(media.externalCite)
 
       return { title, media, subtitle: subtitles.join(' ') }
     },
