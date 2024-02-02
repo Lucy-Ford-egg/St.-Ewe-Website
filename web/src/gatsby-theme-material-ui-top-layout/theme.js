@@ -66,7 +66,7 @@ let defaultTheme = createTheme({
     },
     caption: {
       fontFamily: 'Open Sans',
-      fontSize: clientSpacing[2],
+      fontSize: clientSpacing[3],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
@@ -84,7 +84,7 @@ let defaultTheme = createTheme({
       fontWeight: 700,
     },
     h2: {
-      fontSize: clientSpacing[11],
+      fontSize: clientSpacing[13],
       fontFamily: 'Merriweather',
       fontWeight: 700,
     },

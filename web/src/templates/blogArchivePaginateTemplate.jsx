@@ -106,6 +106,9 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       ... on SanityFeatureSection {
         ...FeatureSectionFragment
       }
+      ... on SanityTeamSection {
+        ...TeamSectionFragment
+      }
       ... on SanityVideoSection {
         ...VideoSectionFragment
       }

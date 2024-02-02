@@ -14,6 +14,7 @@ import { LocationSection } from './locationSection'
 import { FaqsSection } from './faqsSection'
 import { BenifitsSection } from './benifitsSection'
 import { ContactSection } from './contactSection'
+import { TeamSection } from './teamSection'
 
 
 // import { Places } from './places'
@@ -89,6 +90,17 @@ const Modules = (props) => {
                         debugger
                         return (
                             <TestimonialSection
+                                previewData={previewData && previewData[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
+
+                    if (isModule(module, 'teamSection')) {
+                        debugger
+                        return (
+                            <TeamSection
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

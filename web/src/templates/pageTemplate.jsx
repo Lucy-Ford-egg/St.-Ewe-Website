@@ -92,6 +92,9 @@ query pageTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit:
       ... on SanityFeatureSection {
         ...FeatureSectionFragment
       }
+      ... on SanityTeamSection {
+        ...TeamSectionFragment
+      }
       ... on SanityVideoSection {
         ...VideoSectionFragment
       }

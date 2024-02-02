@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdFormatQuote} from "react-icons/md"
+import {MdAccessibilityNew} from "react-icons/md"
 
 export default defineType({
   name: "teamSection",
@@ -12,17 +12,86 @@ export default defineType({
       title: 'Remove top padding',
     }),
     defineField({
-      title: 'Background Colour',
-      name: 'backgroundColor',
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'string',
+      //validation: (rule) => rule.required(),
+      
+    }),
+    defineField({
+      name: 'title',
+      type: 'string',
+      title: 'Title',
+      validation: Rule => Rule.required(),
+    }), 
+    defineField({
+      name: 'leftText',
+      title: 'Left Text',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          { title: 'Bullet', value: 'bullet' },
+          { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          { title: 'Lead', value: 'body2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          { title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
+          ]
+        }
+      }
+    ],
+    }),
+    defineField({
+      name: 'rightText',
+      title: 'Right Text',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          { title: 'Bullet', value: 'bullet' },
+          { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          { title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
+          ]
+        }
+      }, {
+        type: 'image'
+      }],
+    }),
+    defineField({
+      title: 'Tile Colour',
+      name: 'tileColor',
       type: 'simplerColor',
     }),
     defineField({
-      name: 'testimonialTiles',
+      name: 'teamTiles',
       type: 'array',
       of: [
         {
           type: 'reference',
-          to: [{ type: 'quote', title: 'Quotes' }],
+          to: [{ type: 'teamMember', title: 'Team Members' }],
         }
       ]
     }),
@@ -30,15 +99,15 @@ export default defineType({
   ],
   preview: {
     select: {
-      testimonialTiles: 'testimonialTiles',
+      teamTiles: 'teamTiles',
     },
     prepare(selection) {
-      const { testimonialTiles } = selection
+      const { teamTiles } = selection
       return {
-        title: `${testimonialTiles.length} - Testimonials`,
-        subtitle: `Testimonial Section`,
+        title: `${teamTiles.length} - Team Members`,
+        subtitle: `Team Section`,
         // media: media,
-        icon: MdFormatQuote
+        icon: MdAccessibilityNew
       }
     }
   },

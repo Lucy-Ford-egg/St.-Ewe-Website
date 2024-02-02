@@ -138,6 +138,9 @@ export const pageTemplateQuery = graphql`
         ... on SanityFeatureSection {
           ...FeatureSectionFragment
         }
+        ... on SanityTeamSection {
+          ...TeamSectionFragment
+        }
         ... on SanityVideoSection {
           ...VideoSectionFragment
         }

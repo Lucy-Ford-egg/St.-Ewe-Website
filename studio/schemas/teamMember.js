@@ -8,6 +8,7 @@ import categoriesType from './categories'
 // Sections 
 import headerSectionType from './sections/headerSection'
 import testimonialSectionType from "./sections/testimonialSection"
+import teamSectionType from './sections/teamSection'
 
 // Module
 import featureSectionType from './modules/featureSection'
@@ -147,6 +148,8 @@ export default defineType({
       of: [
         { type: headerSectionType.name },
         { type: featureSectionType.name },
+        { type: teamSectionType.name },
+
         { type: videoSectionType.name },
         { type: featuresListSectionType.name },
         { type: ctaSectionType.name },

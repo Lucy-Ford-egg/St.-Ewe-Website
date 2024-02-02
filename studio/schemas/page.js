@@ -6,6 +6,7 @@ import siteMeta from '../schemas/siteMeta'
 
 // Sections 
 import headerSectionType from './sections/headerSection'
+import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
 
 // Modules
@@ -14,7 +15,7 @@ import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
 import ctaSectionType from './modules/ctaSection'
 import servicesSectionType from './modules/servicesSection'
-import testimonialSectionType from './sections/testimonialSection'
+
 import imageCarouselSectionType from './modules/imageCarouselSection'
 import locationSectionType from './modules/locationSection'
 // import faqsSectionType from './modules/faqsSection'
