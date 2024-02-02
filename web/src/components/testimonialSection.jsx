@@ -3,15 +3,13 @@ import { graphql } from "gatsby"
 import { motion, AnimatePresence } from "framer-motion"
 import { wrap } from "popmotion"
 import Image from "gatsby-plugin-sanity-image"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
-import {urlFor} from '../utils/imageHelpers'
+
 import {
   Container,
   Typography,
   Box,
   useTheme,
-  useMediaQuery,
   IconButton,
   SvgIcon,
   Divider,
@@ -19,8 +17,6 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { Spiro } from "../components/spiro"
-
-import { getSanityClient } from "../../sanityUtils/sanity"
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
