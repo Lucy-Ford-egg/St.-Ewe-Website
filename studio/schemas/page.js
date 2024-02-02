@@ -6,6 +6,7 @@ import siteMeta from '../schemas/siteMeta'
 
 // Sections 
 import headerSectionType from './sections/headerSection'
+import teamSectionType from './sections/teamSection'
 
 // Modules
 import featureSectionType from './modules/featureSection'
@@ -129,6 +130,7 @@ export default defineType({
       of: [
         {type: headerSectionType.name},
         {type: testimonialSectionType.name},
+        {type: teamSectionType.name},
 
         {type: featureSectionType.name},
         {type: videoSectionType.name},

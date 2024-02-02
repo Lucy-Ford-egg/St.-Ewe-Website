@@ -27,7 +27,7 @@ import externalCiteType from '../schemas/components/externalCite'
 import headerSectionType from '../schemas/sections/headerSection'
 import testimonialSectionType from '../schemas/sections/testimonialSection'
 import testimonialTileType from '../schemas/sections/testimonialTile'
-
+import teamSectionType from '../schemas/sections/teamSection'
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -76,8 +76,9 @@ export const schemaTypes = [
   teamMemberType,
 
   // Sections
-
   headerSectionType,
+  teamSectionType,
+  
   // faqsType,
   iconsType,
   textAlignType,
