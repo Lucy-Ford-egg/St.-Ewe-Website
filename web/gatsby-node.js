@@ -206,7 +206,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   caseStudies.forEach(node => {
     createPage({
       path: `case-studies/${node.slug.current}`,
-      component: require.resolve(`./src/templates/postTemplate.jsx`),
+      component: require.resolve(`./src/templates/caseStudyTemplate.jsx`),
       context: {
         id: node.id,
         slug: `${node.slug.current}`,
