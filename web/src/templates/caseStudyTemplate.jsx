@@ -12,6 +12,7 @@ import {
   Box,
   Typography,
   Divider,
+  useMediaQuery,
 } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -22,6 +23,7 @@ import { CategoryLabel } from "../components/categoryLabel"
 const CaseStudyTemplate = props => {
   const { data, pageContext, previewData, sanityConfig } = props
   const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const image = data.sanityCaseStudy.image
   return (
@@ -56,7 +58,8 @@ const CaseStudyTemplate = props => {
             flexDirection: "column",
             justifyContent: "flex-end",
             pb: 6,
-            pt: { xs: 20, md: 0 },
+            pt: { xs: 0, md: 0 },
+            alignSelf: {xs: "end", md: "unset"},
           }}
         >
           <Grid container>
@@ -64,8 +67,9 @@ const CaseStudyTemplate = props => {
               <Box
                 sx={{
                   backgroundColor: "primary.main",
-                  px: 13,
-                  py: 13,
+                  px: {xs: 6, md: 13},
+                  pt: 13,
+                  pb: {xs: 6, md: 13},
                 }}
               >
                 <Typography variant="h1" component="h3" color="white.main">
@@ -163,6 +167,10 @@ const CaseStudyTemplate = props => {
             }}
           />
         </Box>
+      </Container>
+
+      <Container maxWidth="md" sx={{py: {xs: 15 ,md: 16}}} disableGutters={mobile ? false : true}>
+        <RenderPortableText value={data?.sanityCaseStudy._rawBody}/>
       </Container>
 
       <Modules
