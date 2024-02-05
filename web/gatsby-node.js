@@ -62,6 +62,34 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
+    allSanityCaseStudy {
+      nodes {
+        _key
+        _id
+        slug {
+          current
+        }
+        coverImage {
+          asset {
+            _id
+            _key
+            gatsbyImage
+          }
+          crop {
+            bottom
+            left
+            right
+            top
+          }
+          hotspot {
+            x
+            y
+            width
+            height
+          }
+        }
+      }
+    }
     allSanityPost {
       nodes {
         title
@@ -84,6 +112,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
   // Fetch your items (blog posts, categories, etc).
   const blogPosts = result.data?.allSanityPost?.nodes || []
+
+  const caseStudies = result.data?.allSanityCaseStudy
   
   //const blogPages = result.data?.blogPages?.nodes || []
 
@@ -160,6 +190,22 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   blogPosts.forEach(node => {
     createPage({
       path: `blog/${node.slug.current}`,
+      component: require.resolve(`./src/templates/postTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        title: node.title,
+        coverImage: node.coverImage,
+        date: node.date,
+        categories: node.categories,
+        excerpt: node.excerpt,
+      },
+    })
+  })
+
+  caseStudies.forEach(node => {
+    createPage({
+      path: `case-studies/${node.slug.current}`,
       component: require.resolve(`./src/templates/postTemplate.jsx`),
       context: {
         id: node.id,
