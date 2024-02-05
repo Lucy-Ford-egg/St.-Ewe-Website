@@ -140,14 +140,15 @@ export default defineType({
     title: 'Page builder',
     description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
     of: [
-      { type: headerSectionType.name },
-      { type: featureSectionType.name},
+      {type: headerSectionType.name},
+      {type: testimonialSectionType.name},
       {type: teamSectionType.name},
+
+      { type: featureSectionType.name},
       { type: videoSectionType.name},
       { type: featuresListSectionType.name }, 
       { type: ctaSectionType.name },
       { type: servicesSectionType.name}, 
-      { type: testimonialSectionType.name},
       { type: imageCarouselSectionType.name},
       { type: locationSectionType.name},
       // { type: faqsSectionType.name},
