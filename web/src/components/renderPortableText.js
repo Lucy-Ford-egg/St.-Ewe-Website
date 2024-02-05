@@ -112,16 +112,15 @@ export const RenderPortableText = (props) => {
         <List sx={{ listStyle: 'decimal inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ol" dense={true}>{children}</List>
       )),
     listItem: ({value, children}) => {
-debugger
       return (
       (value.listItem === "bullet" ? (
-        <ListItem sx={{ color: children[0], pl: 0 }}>
+        <ListItem sx={{ color: 'inherit', pl: 0 }}>
           <ListItemIcon sx={{ minWidth: 16 }}>
-            <CircleIcon color={children[0]} sx={{ width: 4, height: 4 }} />
-          </ListItemIcon>{props.children}
+            <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
+          </ListItemIcon>{children[0]}
         </ListItem>
       ) : (
-        <ListItem sx={{ color: children[0], display: 'list-item', px: 0 }}>
+        <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0 }}>
           <ListItemIcon sx={{ minWidth: 16 }}>
           </ListItemIcon>{children}
         </ListItem>
