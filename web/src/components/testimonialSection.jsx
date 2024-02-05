@@ -94,9 +94,15 @@ export const TestimonialSection = props => {
           left: 0,
           width: {xs: '85px', sm: 'auto'},
           height: {xs: '239.91px', sm: 'auto'},
+          zIndex: 0,
+          opacity: contrastColour(backgroundColor).spiro.opacity,
           svg: {
             width: '100%',
             height: 'auto',
+            path:{
+              stroke: contrastColour(backgroundColor).spiro.fill,
+              
+            }
           }
         }}
       >
@@ -153,7 +159,7 @@ export const TestimonialSection = props => {
                     paginate(-1)
                   }
                 }}
-                style={{  minHeight: 415,}}
+                style={{ height: "100%" }}
               >
                 <Container
                   maxWidth="md"
@@ -168,7 +174,7 @@ export const TestimonialSection = props => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "center",
-                    minHeight: 415,
+                    minHeight: {xs: 415, md: 'unset'},
                   }}
                 >
                   <Box
@@ -200,7 +206,9 @@ export const TestimonialSection = props => {
                         display: "flex",
                         flexDirection: "row",
                         alignItems: "center",
-                        maxWidth: {xs: '60vw', md: 'unset'} 
+                        maxWidth: {xs: '60vw', md: 'unset'},
+                        borderRadius: 100,
+                        borderColor: contrastColour(backgroundColor).divider.hex,
                       }}
                     >
                       
@@ -333,9 +341,15 @@ export const TestimonialSection = props => {
           height: {xs: '239.91px', sm: 'auto'},
           display: 'flex',
           alignItems: {xs: 'flex-end', sm: 'unset'},
+          zIndex: 0,
+          opacity: contrastColour(backgroundColor).spiro.opacity,
           svg: {
             width: '100%',
             height: 'auto',
+            path:{
+              stroke: contrastColour(backgroundColor).spiro.fill,
+              
+            }
           }
         }}
       >
