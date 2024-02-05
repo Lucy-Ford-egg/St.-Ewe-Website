@@ -157,16 +157,19 @@ let clientTheme = createTheme({
         
       `
     },
-    // MuiContainer: {
-    //   styleOverrides: {
-    //     root:{
-    //       [defaultTheme.breakpoints.down('sm')]: {
-    //         paddingLeft: `${defaultTheme.spacing(5)} !important`,
-    //         paddingRight: `${defaultTheme.spacing(5)} !important`,
-    //       },
-    //     }
-    //   },
-    // },
+    MuiContainer: {
+      styleOverrides: {
+        root:{
+          
+        },
+        maxWidthXl:{
+          [defaultTheme.breakpoints.down('sm')]: {
+            paddingLeft: `${defaultTheme.spacing(5)} !important`,
+            paddingRight: `${defaultTheme.spacing(5)} !important`,
+          },
+        }
+      },
+    },
     MuiAccordion: {
       styleOverrides: {
         root: {

@@ -54,6 +54,7 @@ useEffect(()=>{
         minHeight: "100vh",
         maxHeight: { xs: "", md: "100vh" },
         overflow: "hidden",
+        px: '0 !important',
       }}
     >
       <Container
@@ -67,7 +68,7 @@ useEffect(()=>{
           flexDirection: "column",
           alignItems: textAlign ? textAlign : "flexstart",
           justifyContent: "center",
-          // pt: {xs: 16, md: 20},
+          pt: {xs: 20, md: 0},
         }}
       >
         <Box>
