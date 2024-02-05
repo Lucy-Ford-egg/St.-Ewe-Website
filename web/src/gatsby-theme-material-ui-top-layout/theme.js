@@ -67,7 +67,7 @@ let defaultTheme = createTheme({
     },
     caption: {
       fontFamily: 'Open Sans',
-      fontSize: clientSpacing[3],
+      fontSize: clientSpacing[2],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
@@ -142,16 +142,16 @@ let clientTheme = createTheme({
         //   border: 1px solid tomato;
         // }
        
-        @keyframes arrowAnimation {
+        @keyframes backToTopAnimation {
           0%,
           50%,
           100% {
-            translateX: 10px;
+            translateY: 50px;
             opacity: 1
           }
           25%,
           75% {
-            translateX: 0px;
+            translateY: 0px;
             opacity: 0.2
           }
         }
