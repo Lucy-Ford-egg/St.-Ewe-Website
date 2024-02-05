@@ -62,6 +62,16 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
+    allSanityTeamMember {
+      nodes {
+        _rawBio
+        title
+        position
+        name
+        linkedIn
+        email
+      }
+    }
     allSanityCaseStudy {
       nodes {
         _key
@@ -98,8 +108,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
   // Fetch your items (blog posts, categories, etc).
   const blogPosts = result.data?.allSanityPost?.nodes || []
-
   const caseStudies = result.data?.allSanityCaseStudy.nodes || []
+  const teamMembers = result.data?.allSanityTeamMember.nodes || []
   
   //const blogPages = result.data?.blogPages?.nodes || []
 
@@ -134,8 +144,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   console.log(`BPC: ${blogPostsCategories} - ids: ${ids}`)
     return ids.length === 0 ? blogPostsCategories : ids;
   }
-
-
 
   result.data.allSanityPage.nodes.forEach(node => {
 
@@ -204,6 +212,23 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       },
     })
   })
+
+  teamMembers.forEach(node => {
+    createPage({
+      path: `case-studies/${node.slug.current}`,
+      component: require.resolve(`./src/templates/caseStudyTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        title: node.title,
+        coverImage: node.coverImage,
+        date: node.date,
+        categories: node.categories,
+        excerpt: node.excerpt,
+      },
+    })
+  })
+  
 
 }
 
