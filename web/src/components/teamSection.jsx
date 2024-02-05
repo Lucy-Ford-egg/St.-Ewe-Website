@@ -44,7 +44,7 @@ export const TeamSection = props => {
           mt: topPadding ? 0 : 0,
         }}
       >
-        <Grid container sx={{ pb: 15 }} rowSpacing={6}>
+        <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
           <Grid item xs={12} md={7}>
             {subtitle && (
               <Typography color="primary" variant="overline">
