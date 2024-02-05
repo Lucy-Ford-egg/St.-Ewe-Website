@@ -5,8 +5,10 @@ import openGraph from './openGraph'
 import authorType from './author'
 import categoriesType from './categories'
 
-//Sections
-import testimonialSectionType from "./sections/testimonialSection"
+// Sections 
+import headerSectionType from './sections/headerSection'
+import testimonialSectionType from './sections/testimonialSection'
+import teamSectionType from './sections/teamSection'
 
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
@@ -146,7 +148,10 @@ export default defineType({
     title: 'Page builder',
     description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
     of: [
-      { type: headerSectionAccommodationSearchType.name },
+      {type: headerSectionType.name},
+      {type: testimonialSectionType.name},
+      {type: teamSectionType.name},
+      
       { type: featureSectionType.name},
       { type: videoSectionType.name},
       { type: featuresListSectionType.name }, 
