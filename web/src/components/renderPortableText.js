@@ -31,8 +31,8 @@ export const RenderPortableText = (props) => {
     blockquote: ({ children }) => {
       return (
         <Box sx={{ py: {xs: 5}, mx: 0}} component="figure">
-          <Typography sx={{ fontStyle: 'italic', py: { xs: 0 }, color: 'inherit', pl: 3, borderLeft: `1px solid ${theme.palette.highlight.main}` }} variant="h5" component="blockquote">
-            "{children}"
+          <Typography sx={{ fontStyle: 'italic', py: { xs: 0 }, color: 'inherit', pl: 3 }} variant="h3" component="blockquote">
+            {children}
           </Typography>
           {value.cite && <Typography align="center" variant="subtitle1" component="figcaption">{value.cite}</Typography>}
         </Box>

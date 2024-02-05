@@ -53,12 +53,13 @@ let defaultTheme = createTheme({
     body1: {
       fontFamily: 'Open Sans',
       fontSize: clientSpacing[5],
-      lineHeight: 1.5,
+      lineHeight: 1.66,
       letterSpacing: '0em',
     },
     body2: {
       fontFamily: 'Open Sans',
       fontSize: clientSpacing[7],
+      fontWeight: 500,
       letterSpacing: '0em',
     },
     button: {
@@ -167,7 +168,12 @@ let clientTheme = createTheme({
             paddingLeft: `${defaultTheme.spacing(5)} !important`,
             paddingRight: `${defaultTheme.spacing(5)} !important`,
           },
-        }
+        },
+        maxWidthMd:{
+          [defaultTheme.breakpoints.down('xl')]: {
+            maxWidth: 750,
+          }
+        },
       },
     },
     MuiAccordion: {
