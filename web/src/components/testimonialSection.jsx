@@ -84,7 +84,7 @@ export const TestimonialSection = props => {
   
   
   return (
-    <Box sx={{ position: "relative", backgroundColor: backgroundColor.value }}>
+    <Box sx={{ py: {xs: 14}, position: "relative", backgroundColor: backgroundColor.value, overflowX: 'hidden', }}>
       <Box
         sx={{
           position: "absolute",
@@ -153,7 +153,7 @@ export const TestimonialSection = props => {
                     paginate(-1)
                   }
                 }}
-                style={{ height: "100%" }}
+                style={{  minHeight: 415,}}
               >
                 <Container
                   maxWidth="md"
@@ -168,6 +168,7 @@ export const TestimonialSection = props => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "center",
+                    minHeight: 415,
                   }}
                 >
                   <Box
