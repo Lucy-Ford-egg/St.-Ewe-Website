@@ -126,7 +126,7 @@ export const Footer = props => {
           <Grid container rowSpacing={6} sx={{ py: 11 }}>
             <Grid container sx={{ py: 8 }}>
               <Grid item xs={12} md={7} sx={{ mb: { xs: 6, md: 0 } }}>
-                <Grid item xs={12} sx={{ mb: { xs: 16 } }}>
+                <Grid item xs={12} sx={{ mb: { xs: 16 }, svg: {maxWidth: '100%', height: 'auto'} }}>
                   <svg
                     width="584"
                     height="138"
@@ -171,35 +171,14 @@ export const Footer = props => {
                       })}
                   </List>
                 </Grid>
-                <Grid container item xs={12} sx={{ mt: 12 }}>
+                <Grid container item xs={12} sx={{ mt :{xs: 16, md: 12}, mb: {xs: 16, md: 0} }}>
                   {data?.sanitySiteSettings?.companyDetails &&
                     data?.sanitySiteSettings.companyDetails.map(
                       (companyDetail, i) => {
-                        // const address = [
-                        //   companyDetail.address1,
-                        //   companyDetail.address2,
-                        //   companyDetail.county,
-                        //   companyDetail.postcode,
-                        // ]
-
+ 
                         return (
-                          <Grid item xs={6} key={`company-${i}`}>
+                          <Grid item xs={12} md={6} key={`company-${i}`}>
                             <List dense={true} sx={{ pb: 0 }}>
-                              {/* {address.map((node, i) => {
-                              return (
-                                <ListItem sx={{ pl: 0, ml: 0, py: 0 }}>
-                                  <ListItemText
-                                    key={`address-item${i}`}
-                                    primary={node}
-                                    primaryTypographyProps={{
-                                      color: "white.main",
-                                      variant: "body1",
-                                    }}
-                                  />
-                                </ListItem>
-                              )
-                            })} */}
-
                               <ListItem sx={{ pl: 0, ml: 0, py: 0, mt: 0.5 }}>
                                 <ListItemIcon
                                   sx={{ color: "primary.main", minWidth: 32 }}
@@ -211,6 +190,20 @@ export const Footer = props => {
                                   primaryTypographyProps={{
                                     color: "white.main",
                                     variant: "body1",
+                                  }}
+                                  secondary={companyDetail.county === 'London' && 'By appointment only'}
+                                  secondaryTypographyProps={{
+                                    color: "white.main",
+                                    fontStyle: 'italic',
+                                    variant: "h5",
+                                    fontSize: {xs: theme.spacing(2), md: theme.spacing(2)},
+                                    pt: '3px',
+                                    pl: 2,
+                                    color: 'text.mid'
+                                  }}
+                                  sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
                                   }}
                                 />
                               </ListItem>
@@ -244,6 +237,7 @@ export const Footer = props => {
                                 />
                               </ListItem>
                             </List>
+                            {i === 0 && <Divider sx={{display: {xs: 'block', md: 'none'}, pt: 10, mb: 8, borderColor: 'white.main'}}/>}
                           </Grid>
                         )
                       },
@@ -256,9 +250,11 @@ export const Footer = props => {
                 md={5}
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
+                  flexDirection: {xs: "column-reverse", md: "column"},
                   justifyContent: "space-between",
+                  alignItems: {xs: 'unset', md: 'flex-end'},
                   pb: 1,
+                  position: 'relative',
                 }}
               >
                 <Box
@@ -266,6 +262,16 @@ export const Footer = props => {
                     display: "flex",
                     justifyContent: "flex-end",
                     width: "100%",
+                    maxWidth: {xs: 54, md: 78},
+                    ml: {xs: "auto", md: "unset"},
+                    position: {xs: ' absolute', md: 'relative'},
+                    right: {xs: 20, md: 'unset'},
+                    bottom: {xs: 0, md: 'unset'},
+                    alignItems: {xs: 'flex-end', md: 'flex-end'},
+                    svg: {
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }
                   }}
                 >
                   <svg
@@ -402,7 +408,7 @@ export const Footer = props => {
                     variant="h5"
                     color="white.main"
                     sx={{
-                      mb: 4,
+                      mb: 6,
                     }}
                   >
                     Let us call you back
@@ -411,7 +417,7 @@ export const Footer = props => {
                     variant="body1"
                     color="white.main"
                     sx={{
-                      mb: 8,
+                      mb: {xs: 14,md: 8},
                     }}
                   >
                     Aenean tellus metus, bibendum sed, posuere ac, mattis non,
@@ -534,14 +540,6 @@ export const Footer = props => {
     </>
   )
 }
-
-// function scrollFunction() {
-//   if (document && document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-//     mybutton.style.display = "block";
-//   } else {
-//     mybutton.style.display = "none";
-//   }
-// }
 
 function topFunction() {
   if (document) {
