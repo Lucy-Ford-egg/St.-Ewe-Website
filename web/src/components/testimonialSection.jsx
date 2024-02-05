@@ -299,8 +299,8 @@ export const TestimonialSection = props => {
             {testimonialTiles.map((dot, index) => {
               let dotColour =
                 index === slideIndex
-                  ? contrastColour(backgroundColor).svg.default.mui
-                  : contrastColour(backgroundColor).svg.active.hex
+                  ? contrastColour(backgroundColor).svg?.default?.mui
+                  : contrastColour(backgroundColor).svg?.active?.hex
               return (
                 <SvgIcon
                   color={dotColour}
