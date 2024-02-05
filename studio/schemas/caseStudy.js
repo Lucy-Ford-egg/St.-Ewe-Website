@@ -123,6 +123,7 @@ export default defineType({
       ], // yes please, both bullet and numbered
       styles: [
         // { title: 'Heading 2', value: 'h2' },
+        { title: 'Lead', value: 'body2' },
         { title: 'Heading 3', value: 'h3' },
         { title: 'Heading 4', value: 'h4' },
         { title: 'Heading 5', value: 'h5' },
@@ -133,7 +134,12 @@ export default defineType({
           { title: 'Strong', value: 'strong' },
           { title: 'Emphasis', value: 'em' },
           { title: 'Underline', value: 'underline' },
-        ]
+        ],
+        annotations: [
+          {
+            type: 'textColor',
+          }
+        ],
       }
     }, {
       type: 'image'
