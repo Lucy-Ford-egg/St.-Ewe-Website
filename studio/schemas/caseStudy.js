@@ -151,13 +151,12 @@ export default defineType({
       {type: headerSectionType.name},
       {type: testimonialSectionType.name},
       {type: teamSectionType.name},
-      
+
       { type: featureSectionType.name},
       { type: videoSectionType.name},
       { type: featuresListSectionType.name }, 
       { type: ctaSectionType.name },
       { type: servicesSectionType.name}, 
-      { type: testimonialSectionType.name},
       { type: imageCarouselSectionType.name},
       { type: locationSectionType.name},
       // { type: faqsSectionType.name},
