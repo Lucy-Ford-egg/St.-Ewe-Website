@@ -87,7 +87,7 @@ const Modules = (props) => {
                     }
 
                     if (isModule(module, 'testimonialSection')) {
-                        debugger
+                        
                         return (
                             <TestimonialSection
                                 previewData={previewData && previewData[i]}
@@ -98,7 +98,7 @@ const Modules = (props) => {
                     }
 
                     if (isModule(module, 'teamSection')) {
-                        debugger
+                        
                         return (
                             <TeamSection
                                 previewData={previewData && previewData[i]}
