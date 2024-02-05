@@ -206,9 +206,7 @@ export const TestimonialSection = props => {
                         display: "flex",
                         flexDirection: "row",
                         alignItems: "center",
-                        maxWidth: {xs: '60vw', md: 'unset'},
-                        borderRadius: 100,
-                        borderColor: contrastColour(backgroundColor).divider.hex,
+                        maxWidth: {xs: '60vw', md: 'unset'},     
                       }}
                     >
                       
@@ -243,6 +241,7 @@ export const TestimonialSection = props => {
                               height: 56,
                               objectFit: "cover",
                               borderRadius: 1000,
+                              border: `1px solid ${contrastColour(backgroundColor).divider.hex}`,
                             }}
                           />
                         )}
