@@ -66,27 +66,13 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       nodes {
         _key
         _id
+        title
         slug {
           current
         }
-        coverImage {
-          asset {
-            _id
-            _key
-            gatsbyImage
-          }
-          crop {
-            bottom
-            left
-            right
-            top
-          }
-          hotspot {
-            x
-            y
-            width
-            height
-          }
+        category {
+          name
+          _id
         }
       }
     }
@@ -113,7 +99,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   // Fetch your items (blog posts, categories, etc).
   const blogPosts = result.data?.allSanityPost?.nodes || []
 
-  const caseStudies = result.data?.allSanityCaseStudy
+  const caseStudies = result.data?.allSanityCaseStudy.nodes || []
   
   //const blogPages = result.data?.blogPages?.nodes || []
 
