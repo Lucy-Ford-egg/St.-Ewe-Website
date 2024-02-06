@@ -15,10 +15,10 @@ export const RenderPortableText = (props) => {
   const theme = useTheme()
 
   const block = {
-    normal: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body1'>{children}</Typography>,
+    normal: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='body1'>{children}</Typography>,
     body2: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
     h1: ({ children, node  }) => { 
-      return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h1">{children}</Typography>
+      return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h1">{children}</Typography>
     },
     h2: ({ children, node  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>,
     h3: ({ children, node  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h3">{children}</Typography>,

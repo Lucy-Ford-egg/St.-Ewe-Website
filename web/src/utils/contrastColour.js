@@ -108,8 +108,8 @@ export const contrastColour = (backgroundColour) => {
       opacity: 0.4,
     }
     divider = {
-      mui: "secondary.main",
-      hex: clientTheme.palette.secondary.main,
+      mui: "primary.main",
+      hex: clientTheme.palette.primary.main,
     }
     buttonColour = {
       contained: "primary"

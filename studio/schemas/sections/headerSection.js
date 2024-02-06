@@ -10,7 +10,7 @@ export default defineType({
       name: 'image',
       type: 'image',
       title: 'Image',
-      validation: Rule => Rule.required(),
+      //validation: Rule => Rule.required(),
       options: {
         hotspot: true,
       },
@@ -86,6 +86,19 @@ export default defineType({
       description: 'Add a link(s). Optional',
       validation: Rule => Rule.min(1).max(2),
     }),
+
+    defineField({
+      title: 'Background Colour',
+      name: 'backgroundColor',
+      type: 'simplerColor',
+    }),
+
+    defineField({
+      title: 'Add Spiro',
+      name: 'spiro',
+      type: 'boolean',
+      description: 'Add spirograph graphics. Optional | Appear on the out edges.'
+    })
 
   ],
   preview: {

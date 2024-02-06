@@ -80,7 +80,7 @@ let defaultTheme = createTheme({
       letterSpacing: 0.3,
     },
     h1: {
-      fontSize: clientSpacing[15],
+      fontSize: clientSpacing[17],
       fontFamily: 'Merriweather',
       fontWeight: 700,
     },
