@@ -9,11 +9,37 @@ export const contrastColour = (backgroundColour) => {
   let buttonColour = {}
   let spiro = {}
 
-  const checkedColour = backgroundColour.label
+  const checkedColour = backgroundColour?.label
 
   switch (checkedColour?.toLowerCase()) {
     //Navy
     case "navy": 
+      textColour = "white.main"
+      svg = {
+        default: {
+          mui: "primary",
+          hex: clientTheme.palette.primary.main,
+        },
+        active: {
+          mui: "text.mid",
+          hex: clientTheme.palette.text.mid,
+        }
+      }
+      spiro = {
+        fill: clientTheme.palette.white.main,
+        opacity: 0.4,
+      }
+      divider = {
+        mui: "white.main",
+        hex: clientTheme.palette.white.main,
+      }
+      buttonColour = {
+        contained: "primary"
+        ,
+        outlined: "white"
+      }; break;
+      // Mid Navy
+      case "mid navy": 
       textColour = "white.main"
       svg = {
         default: {

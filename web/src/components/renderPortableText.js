@@ -1,6 +1,6 @@
 import React from "react"
 import { PortableText } from '@portabletext/react'
-import { Typography, Box, List, ListItem, ListItemIcon, useTheme } from '@mui/material'
+import { Typography, Box, List, ListItem, ListItemIcon, useTheme, Link } from '@mui/material'
 import CircleIcon from '@mui/icons-material/Circle';
 import { PortableTextInlineLink } from "../utils/portableInlineLink"
 import { motion } from "framer-motion"
@@ -13,7 +13,7 @@ export const RenderPortableText = (props) => {
   const { setAsHeading = false, previewData, sanityConfig, value, variant, textAlign,  animate = false, subtitlePosition = null, component } = props
 
   const theme = useTheme()
-
+debugger
   const block = {
     normal: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
     body2: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
@@ -51,6 +51,7 @@ export const RenderPortableText = (props) => {
     highlightColor: ({children, value}) => (
       <span style={{background: value.value}}>{children}</span>
     ),
+    file: ({children, value}) => <Link target="_blank" rel="noopener" href={value.asset.url} style={{color: value.value}}>{children}</Link>,
   };
   
   const standardPortableText = {

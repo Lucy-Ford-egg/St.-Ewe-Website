@@ -67,7 +67,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
           top
         }
       }
-      excerpt
+   
       slug {
         current
       }

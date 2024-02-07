@@ -152,10 +152,40 @@ export const brandColors = {
   defaultColorList: [
     { label: 'Coral', value: '#F04D5F' },
     { label: 'Coral Light', value: '#F47C8A' },
+    { label: 'Coral Lighter', value: '#FCD9DE' },
     { label: 'Text Grey', value: '#414042' },
     { label: 'Mid Grey', value: '#B8B6B9' },
     { label: 'Light Grey', value: '#F3F3F2' },
     { label: 'Navy', value: '#002856' },
+    { label: 'Mid Navy', value: '#00397A' },
     { label: 'White', value: '#FFFFFF' },
   ],
 }
+
+// palette: {
+//   primary: {
+//     main: '#F04D5F', // Coral
+//     mid: '#F26979', // Crayola
+//     light: '#F47C8A', // Light Coral
+//     lighter: '#FCD9DE', // Lighter Coral
+//     lightest: '#FDE3E6', // Lightest Coral
+//   },
+//   secondary: {
+//     main: '#002856', // Navy
+//     mid: '#375073', // Navy Uncoated
+//     light: '#42608A', // Light Navy
+//   },
+//   tertiary: {
+//     main: 'rgba(93, 83, 64, 1)',
+//   },
+//   text: {
+//     primary: '#414042', // Text Grey
+//     mid: '#B8B6B9', // Mid Grey
+//   },
+//   background: {
+//     default: '#F3F3F2', // Light Grey
+//     main: '#002856',
+//   },
+//   white: {
+//     main: '#ffffff', // White
+//   },

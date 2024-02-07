@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { Card, CardActions, CardContent, Box, Button, Typography } from '@mui/material';
 import clientTheme from '../gatsby-theme-material-ui-top-layout/theme'
 
-export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
+export const PostTile = ({ categories, title, image, date, to }) => {
 
   const [hovered, setHovered] = useState(false)
 
@@ -97,20 +97,9 @@ export const PostTile = ({ categories, title, image, excerpt, date, to }) => {
               <Typography variant="h3" component="h4" sx={{minHeight: {xs: 'min-content', md: 112}, textDecoration: 'none', py: { xs: 3, md: 4 } }}>
                 {title}
               </Typography>
-              <Box sx={{ display: { xs: 'none', md: 'block', maxHeight: {xs: 100}, overflow: 'hidden' } }}>
-                <motion.div animate={hovered ? "hovered" : "unhovered"}
-                  variants={variants}>
-                  <Typography variant="body1" color="text.main" sx={{ textDecoration: 'none', py: { xs: 3, md: 4 } }}>
-                    {excerpt}
-                  </Typography>
-                </motion.div>
-              </Box>
+              
 
-              <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-                <Typography variant="body1" color="text.main" style={{ textDecoration: 'none' }}>
-                  {excerpt}
-                </Typography>
-              </Box>
+              
             </CardContent>
           </motion.div>
 
@@ -146,7 +135,7 @@ export const query = graphql`
       slug {
         current
       }
-      excerpt
+  
     }
   }
 `

@@ -5,10 +5,10 @@ import {createClient} from "@sanity/client"
 const client = createClient({
 projectId: '0y4lutj5', //process.env.SANITY_STUDIO_PROJECT_ID,
 dataset: 'production',
-apiVersion: '2023-06-22',
+apiVersion: '2023-08-01',
 useCdn: false, // must be false when using 'previewDrafts'
 perspective: 'previewDrafts', // 'raw' | 'previewDrafts' | 'published'
-token: 'sk37PYyNwXGqnaf9Ycz5wJe9dfIJ1K4n5wdbPwI8m8OStEsR0jeK9j14t5G07vbKFyLwo1tONNiH94xREIR4pGHJThVoXW92u5v0JwtepbxRDkGtKd130JuC0z4QGg5AzwlkPSSPMbNpKmM0VPPWrB1XVNMHjQJVeTcVFTVSFUXLfEG90zR7'
+token: ""
 })
 
 function resolveImages(images) {
@@ -18,18 +18,18 @@ function resolveImages(images) {
   return null
 }
 
-function transform(externalUnit) {
+function transform(externalPost) {
 
   const unit =  {
       _type: 'unit',
-	    _id: `${externalUnit.unitID}`,
-      name: externalUnit.name,
-      //unitImages: externalUnit.images,
-      maxGrading: externalUnit.maxGrading,
-	    maxOccupancy: externalUnit.maxOccupancy,
-      numberOfRooms: externalUnit.numberOfRooms,
-      summary: externalUnit.summary || null,
-      categoryId: externalUnit.categoryID,
+	    _id: `${externalPost.unitID}`,
+      name: externalPost.name,
+      //unitImages: externalPost.images,
+      maxGrading: externalPost.maxGrading,
+	    maxOccupancy: externalPost.maxOccupancy,
+      numberOfRooms: externalPost.numberOfRooms,
+      summary: externalPost.summary || null,
+      categoryId: externalPost.categoryID,
 	  }
 	  return [unit]
 }

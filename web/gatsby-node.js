@@ -106,6 +106,9 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     }
     allSanityPost {
       nodes {
+        navColor{
+          value
+        }
         title
         slug {
           current
@@ -253,7 +256,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         coverImage: node.coverImage,
         date: node.date,
         categories: node.categories,
-        excerpt: node.excerpt,
+        navColor: node.navColor
       },
     })
   })

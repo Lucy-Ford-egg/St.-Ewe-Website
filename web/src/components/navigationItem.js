@@ -137,7 +137,7 @@ export const NavigationItem = (props) => {
             }}
             endIcon={childNode.length >= 1 && <ExpandMoreIcon />}
             size="large"
-            to={to.link?.internal ? to.link.internal.slug.current : to.link.external}
+            to={to.link?.internal ? `/${to.link.internal.slug.current}` : to.link.external}
           >{text}</GatsbyButton>
 
 

@@ -1,4 +1,4 @@
-import { MdOutlineChat } from "react-icons/md";
+import { MdOutlineChat, MdPictureAsPdf } from "react-icons/md";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import openGraph from '../schemas/openGraph'
@@ -51,6 +51,19 @@ export default defineType({
   ],
   fields: [
     //...openGraph.fields,
+
+    defineField({
+      title: 'Nav Colour',
+      name: 'navColor',
+      type: 'simplerColor',
+      group: 'pageContent',
+    }),
+    defineField({
+      title: 'Nav Overlay',
+      name: 'navOverlay',
+      type: 'boolean',
+      group: 'pageContent',
+    }),
   defineField({
     name: 'coverImage',
     title: 'Cover Image',
@@ -58,7 +71,13 @@ export default defineType({
     options: {
       hotspot: true,
     },
-    validation: Rule => Rule.required(),
+    //validation: Rule => Rule.required(),
+    group: 'pageContent',
+  }),
+  defineField({
+    title: 'Tile Colour',
+    name: 'tileColor',
+    type: 'simplerColor',
     group: 'pageContent',
   }),
   defineField({
@@ -67,6 +86,7 @@ export default defineType({
     type: 'string',
     validation: (rule) => rule.required(),
     group: 'pageContent',
+    description: 'Slug is generated from this value.'
   }),
   defineField({
     name: 'slug',
@@ -75,19 +95,14 @@ export default defineType({
     options: {
       source: 'title',
       maxLength: 96,
-      isUnique: (value, context) => context.defaultIsUnique(value, context),
+      isUnique: (value, context) => { 
+   
+        return (
+        context.defaultIsUnique(value, context)
+      )},
     },
     validation: (rule) => rule.required(),
     group: 'pageContent',
-  }),
-  defineField({
-    name: 'excerpt',
-    title: 'Excerpt',
-    rows: 2,
-    type: 'text',
-    description: 'Small snippet of text shown on the blog tile when hovered.',
-    group: 'pageContent',
-    validation: (rule) => rule.required().max(252)
   }),
   defineField({
     name: 'date',
@@ -129,8 +144,24 @@ export default defineType({
         ],
         annotations: [
           {
-            type: 'textColor',
-          }
+            name: 'internalLink',
+            type: 'object',
+            title: 'Internal link',
+            fields: [
+              {
+                name: 'reference',
+                type: 'reference',
+                title: 'Reference',
+                to: [
+                  { type: 'post' }, {type: 'page'}
+                  // other types you may want to link to
+                ]
+              }
+            ]
+          },
+          {type: 'file', icon: MdPictureAsPdf},
+          {type: 'textColor',},
+        
         ],
       }
     }, {
@@ -172,13 +203,11 @@ export default defineType({
     to: [{ type: categoriesType.name }],
     group: 'pageContent',
     validation: (rule) => rule.required(),
-    // to: [{ type:  }],
   }),
   ],
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
       date: 'date',
       media: 'coverImage',
     },
@@ -188,7 +217,7 @@ export default defineType({
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
-      return { title, media, subtitle: subtitles.join(' ') }
+      return { title: title && title, media, subtitle: subtitles.join(' ,') }
     },
   },
 })

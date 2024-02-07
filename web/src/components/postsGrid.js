@@ -40,7 +40,7 @@ const mobile = useMediaQuery(theme.breakpoints.down('md'));
                     category={tile.categories}
                     date={tile.date}
                     to={tile.slug.current}
-                    excerpt={tile.excerpt}
+                
                   />
                 </Grid>
               )

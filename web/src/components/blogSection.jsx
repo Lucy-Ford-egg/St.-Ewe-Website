@@ -105,9 +105,7 @@ export const BlogSection = props => {
                         borderColor: theme.palette.primary.main,
                       }}
                     />
-                    <Typography variant="body1" sx={{ pt: 2 }}>
-                      {post.excerpt}
-                    </Typography>
+                   
                   </Box>
                   <Box sx={{ px: 4, py: 6, flexGrow: 0, bottom: 0 }}>
                     <Button

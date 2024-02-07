@@ -74,7 +74,7 @@ query blogArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, 
           top
         }
       }
-      excerpt
+      
       slug {
         current
       }
