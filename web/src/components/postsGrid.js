@@ -33,7 +33,7 @@ const mobile = useMediaQuery(theme.breakpoints.down('md'));
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {filtersPosts?.map((tile, i) => {
               return (
-                <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={6}>
+                <Grid key={`${tile.title}-${i}`} item xs={12} sm={6} md={12}>
                   <PostTile
                     title={tile.title}
                     image={tile.coverImage.asset.gatsbyImageData}
