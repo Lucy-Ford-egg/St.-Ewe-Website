@@ -10,12 +10,12 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 
 export const RenderPortableText = (props) => {
 
-  const { previewData, sanityConfig, value, variant, textAlign,  animate = false, subtitlePosition = null, component } = props
+  const { setAsHeading = false, previewData, sanityConfig, value, variant, textAlign,  animate = false, subtitlePosition = null, component } = props
 
   const theme = useTheme()
 
   const block = {
-    normal: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='body1'>{children}</Typography>,
+    normal: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
     body2: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
     h1: ({ children, node  }) => { 
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h1">{children}</Typography>
@@ -41,7 +41,7 @@ export const RenderPortableText = (props) => {
   };
 
   const marks = {
-    em: ({ children }) => <Typography sx={{ color: children[0].props.value.valuemarkDefs[0].value, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
+    em: ({ children }) => <Typography sx={{ color: value.value, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
     strong: ({ children, node  }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
     
     link: ({ children, value }) => <PortableTextInlineLink color={children[0].props.value.value} value={value}>{children}</PortableTextInlineLink>,

@@ -15,6 +15,7 @@ import { FaqsSection } from './faqsSection'
 import { BenifitsSection } from './benifitsSection'
 import { ContactSection } from './contactSection'
 import { TeamSection } from './teamSection'
+import {CaseStudySection} from './caseStudySection'
 
 
 // import { Places } from './places'
@@ -38,7 +39,7 @@ import { TeamSection } from './teamSection'
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost,  blogInserted } = props
+    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allCaseStudy,  blogInserted } = props
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -50,17 +51,8 @@ const Modules = (props) => {
         }
     }
 
-    // if(blogInserted === 0) {
-    //     const blogModule = {
-    //       _key: "",
-    //       _type: "blogArchiveSection",
-    //       posts:  allSanityPost,    
-    //      }   
-    //      modules.splice(1, 0, blogModule) 
-    //   }
-
     if (modules != null) {
-
+      
         return (
 
             <main data-content="main">
@@ -104,8 +96,18 @@ const Modules = (props) => {
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
+                               
                                 {...module} />
                         )
+                    }
+
+                    if (isModule(module, 'caseStudySection')) {
+                        return <CaseStudySection previewData={previewData && previewData[i]}
+                            sanityConfig={sanityConfig}
+                            pageContext={pageContext}
+                            key={module._key + i}
+                            allCaseStudy={allCaseStudy.nodes}
+                            {...module} />
                     }
                     
                     if (isModule(module, 'featureSection')) {

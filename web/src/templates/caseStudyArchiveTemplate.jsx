@@ -1,32 +1,40 @@
-import * as React from "react"
+import React, {useEffect, useState} from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
+import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
+import { pageQuery } from "./queries/documentQueries"
 
-//Preview
-import { useQuery } from "../../sanity/store";
-import {PAGE_QUERY} from '../queries/documentQueries'
-import {getSanityClient } from "../../sanityUtils/sanity"
+const CaseStudyArchiveTemplate = props => {
+  const { data, pageContext } = props
+  const [posts, setPosts] = useState(null)
+  const [modules, setModules] = useState(null)
+  const [blogInserted, setBlogInserted] = useState(null)
+  
+  let i = 0
 
-const PageTemplate = props => {
-  const { data, pageContext, location, initial } = props
-
-  // Preview
-  const { data: previewData, sourceMap } = useQuery(
-    PAGE_QUERY,
-    {slug: data.sanityPage.slug.current},
-    { initial }
-  );
+  useEffect(() => {
+    setPosts(data.allSanityPost)
+    setModules(data?.sanityPage?.pageBuilder)
+   
+    setBlogInserted(i)
+    i ++
+  }, [data])
 
   return (
+    <IncludePreview
+      documentQueries={pageQuery}
+      slug={data.sanityPage.slug} //
+      data={data}
+    >
+      {posts && modules && 
       <Modules
-        sanityConfig={getSanityClient}
-        previewData={previewData?.pageBuilder}
         allSanityPost={data.allSanityPost}
-        allCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
-        modules={data?.sanityPage?.pageBuilder}
+        modules={modules}
       />
+}
+    </IncludePreview>
   )
 }
 
@@ -34,12 +42,11 @@ export const Head = ({ data, location }) => {
   return <Seo seoContext={data.sanityPage} location={location} />
 }
 
-export const pageTemplateQuery = graphql`
-
-query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
-  allSanityPost(
+export const caseStudyArchiveTemplateQuery = graphql`
+query caseStudyArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+  allSanityCaseStudy(
     filter: {
-      category: {
+      service: {
         _id: {
           in: $postIds
         }
@@ -71,38 +78,17 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       slug {
         current
       }
-      category {
+      service {
         name
         _id
       }
-    }
-  }
-  allSanityCaseStudy(
-    filter: {
-      service: {
-        _id: {
-          in: $caseStudyIds
-        }
-      }
-    }
-    skip: $skip 
-    limit: $limit 
-  ) {
-    nodes {
-      _key
-      _id
-      ...CaseStudyTileFragment
-     
     }
   }
   sanityPage(slug: {current: {eq: $slug}}) {
     slug {
       current
     }
-    navOverlay
-    navColor{
-      value
-    }
+
     pageTitle
     pageBuilder {
       ... on SanityHeaderSection {
@@ -151,4 +137,4 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
   }
 }
 `
-export default PageTemplate
+export default CaseStudyArchiveTemplate

@@ -20,16 +20,16 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 import { RenderPortableText } from "../components/renderPortableText"
 import { CategoryLabel } from "../components/categoryLabel"
 
-const CaseStudyTemplate = props => {
+const TeamMembersTemplate = props => {
   const { data, pageContext, previewData, sanityConfig } = props
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down('md'))
 
-  const image = data.sanityCaseStudy.image
+  const image = data.sanityTeamMember?.image
   return (
     <IncludePreview
       documentQueries={pageQuery}
-      slug={data.sanityCaseStudy.slug} //
+      slug={data.sanityTeamMember.slug} //
       data={data}
     >
       <Container
@@ -47,75 +47,7 @@ const CaseStudyTemplate = props => {
           px: "0 !important",
         }}
       >
-        <Container
-          maxWidth="xl"
-          sx={{
-            gridColumn: "1/25",
-            gridRow: "1/auto",
-            position: "relative",
-            zIndex: 2,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            pb: 6,
-            pt: { xs: 0, md: 0 },
-            alignSelf: {xs: "end", md: "unset"},
-          }}
-        >
-          <Grid container>
-            <Grid item xs={6} md={4}>
-              <Box
-                sx={{
-                  backgroundColor: "primary.main",
-                  px: {xs: 6, md: 13},
-                  pt: 13,
-                  pb: {xs: 6, md: 13},
-                }}
-              >
-                 {data.sanityCaseStudy._rawPerson && <Box sx={{color: 'white.main'}}><RenderPortableText setAsHeading='h1' value={data.sanityCaseStudy._rawPerson} /></Box> }
-              </Box>
-            </Grid>
-
-            <Grid item xs={6} md={2} sx={{flexGrow: 1,}}>
-              <Box sx={{height: '100%'}}>
-              <Box sx={{ display: "flex", flexDirection: "column", height: '100%', flexGrow: 1 }}>
-                <Box
-                  sx={{
-                    backgroundColor: "primary.light",
-                    px: 6,
-                    py: 6,
-                    display: 'flex',
-                    flexGrow: 1,
-                    alignItems: 'flex-end',
-                  }}
-                >
-                  <Typography
-                    variant="h5"
-                    component="h3" color="white.main"
-                    sx={{ fontSize: theme.spacing(6) }}
-                  >
-                    {String(pageContext.key + 1).padStart(2, '0')}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    backgroundColor: "primary.mid",
-                    px: 6,
-                    py: 6,
-                    display: 'flex',
-                    flexGrow: 1,
-                    alignItems: 'flex-end',
-                  }}
-                >
-                  {data.sanityCaseStudy.service && <Typography variant="overline" component="h3" color="white.main">
-                    {data.sanityCaseStudy.service.name}
-                  </Typography>}
-                </Box>
-              </Box>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
+        
 
         <Box
           sx={{
@@ -168,34 +100,30 @@ const CaseStudyTemplate = props => {
       </Container>
 
       <Container maxWidth="md" sx={{py: {xs: 15 ,md: 16}}} disableGutters={mobile ? false : true}>
-        <RenderPortableText value={data?.sanityCaseStudy._rawBody}/>
+        <RenderPortableText value={data?.sanityTeamMember._rawBio}/>
       </Container>
 
       <Modules
         pageContext={pageContext}
-        modules={data?.sanityCaseStudy?.pageBuilder}
+        modules={data?.sanityTeamMember?.pageBuilder}
       />
     </IncludePreview>
   )
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityCaseStudy} location={location} />
+  return <Seo seoContext={data.sanityTeamMember} location={location} />
 }
 
-export const caseStudyTemplateQuery = graphql`
-  query caseStudyTemplateQuery($slug: String!) {
-    sanityCaseStudy(slug: { current: { eq: $slug } }) {
+export const teamMemberTemplateQuery = graphql`
+  query teamMemberTemplateQuery($slug: String!) {
+    sanityTeamMember(slug: { current: { eq: $slug } }) {
       slug {
         current
       }
       title
-      date(formatString: "Do MMMM YYYY")
-      service {
-        name
-      }
-      _rawPerson(resolveReferences: {maxDepth: 10})
-      image: coverImage {
+      name
+      image {
         asset {
           _id
 
@@ -214,7 +142,7 @@ export const caseStudyTemplateQuery = graphql`
           top
         }
       }
-      _rawBody(resolveReferences: { maxDepth: 10 })
+      _rawBio(resolveReferences: { maxDepth: 10 })
       #...SeoPageFragment
       pageBuilder {
         ... on SanityHeaderSection {
@@ -258,4 +186,4 @@ export const caseStudyTemplateQuery = graphql`
     }
   }
 `
-export default CaseStudyTemplate
+export default TeamMembersTemplate

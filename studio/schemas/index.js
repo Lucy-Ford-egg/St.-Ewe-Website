@@ -22,12 +22,15 @@ import teamMemberType from '../schemas/teamMember'
 // Atoms
 import citeType from '../schemas/components/cite'
 import externalCiteType from '../schemas/components/externalCite'
+import sevicesType from '../schemas/taxonomies/services'
+import showCaseStudyArchiveType from '../schemas/components/showCaseStudyArchive'
 
 //Sections
 import headerSectionType from '../schemas/sections/headerSection'
 import testimonialSectionType from '../schemas/sections/testimonialSection'
 import testimonialTileType from '../schemas/sections/testimonialTile'
 import teamSectionType from '../schemas/sections/teamSection'
+import caseStudySectionType from '../schemas/sections/caseStudySection'
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -67,6 +70,10 @@ export const schemaTypes = [
   // Atoms
   citeType,
   externalCiteType,
+  showCaseStudyArchiveType,
+  
+  // Taxonomies
+  sevicesType,
 
   // Docs 
   postType,
@@ -78,6 +85,7 @@ export const schemaTypes = [
   // Sections
   headerSectionType,
   teamSectionType,
+  caseStudySectionType,
   
   // faqsType,
   iconsType,

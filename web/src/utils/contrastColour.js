@@ -10,7 +10,7 @@ export const contrastColour = (backgroundColour) => {
   let spiro = {}
 
   const checkedColour = backgroundColour.label
-  debugger
+
   switch (checkedColour?.toLowerCase()) {
     //Navy
     case "navy": 

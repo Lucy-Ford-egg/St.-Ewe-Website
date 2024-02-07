@@ -62,7 +62,7 @@ export const HeaderSection = props => {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: "unset", sm: "50%" },
+            top: { xs:"25%", sm: "50%" },
             bottom: { xs: 0, sm: "unset" },
             transform: {
               xs: "translateX(-30px) rotate(180deg)",
@@ -214,7 +214,7 @@ export const HeaderSection = props => {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: "unset", sm: "50%" },
+            top: { xs: "25%", sm: "50%" },
             bottom: { xs: 0, sm: "unset" },
             transform: {
               xs: "translateX(30px)",

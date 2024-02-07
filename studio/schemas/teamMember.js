@@ -81,6 +81,20 @@ export default defineType({
       group: 'particulars',
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      description:
+        'The slug is what your page name is called in url. Either click the generate button to format your page title into hyphenated lowercase or type your own slug. (when typing your own slug use caution not to use a duplicate slug)',
+      options: {
+        source: 'name',
+        maxLength: 96,
+        isUnique: (value, context) => context.defaultIsUnique(value, context),
+      },
+      validation: (rule) => rule.required(),
+      group: 'pageContent',
+    }),
+    defineField({
       name: 'position',
       title: 'Position',
       type: 'string',
@@ -137,7 +151,7 @@ export default defineType({
         type: 'image'
       }],
       group: 'pageContent',
-      validation: (rule) => rule.required(),
+      //validation: (rule) => rule.required(),
       description: 'Add a long form interview with the team member. If this is populated then a this an individual team member page will be created and this content will make up the body of the page'
     }),
     defineField({
