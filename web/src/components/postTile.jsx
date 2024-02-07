@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { graphql, Link } from "gatsby"
 import { motion } from "framer-motion"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Card, CardActions, CardContent, Box, Button, Typography } from '@mui/material';
+import Image from "gatsby-plugin-sanity-image"
+import { urlFor } from "../utils/imageHelpers"
+import { Card, Container, CardActions, CardContent, Box, Button, Typography } from '@mui/material';
 import clientTheme from '../gatsby-theme-material-ui-top-layout/theme'
 import { contrastColour } from "../utils/contrastColour"
 
