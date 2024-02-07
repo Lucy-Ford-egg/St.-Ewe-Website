@@ -1,39 +1,82 @@
-import * as React from "react"
-import { graphql } from "gatsby"
-import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
-import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
+import React, { useState } from 'react'
+import { graphql, Link } from "gatsby"
+import { motion } from "framer-motion"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Card, CardActions, CardContent, Box, Button, Typography } from '@mui/material';
+import clientTheme from '../gatsby-theme-material-ui-top-layout/theme'
 import { contrastColour } from "../utils/contrastColour"
-import {RenderPortableText} from '../components/renderPortableText'
-import {
-  Container,
-  Grid,
-  useTheme,
-  Box,
-  Typography,
-  Divider,
-  useMediaQuery
-} from "@mui/material"
-import Image from "gatsby-plugin-sanity-image"
-import { urlFor } from "../utils/imageHelpers"
 
-const PostTemplate = props => {
-  const { data, pageContext, previewData, sanityConfig } = props
-  const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down('md'))
+export const PostTile = ({ categories, title, image, date, to }) => {
 
-  const { image, tileColor } = data.sanityPost
+  const [hovered, setHovered] = useState(false)
+
+  const renderTaxonomies = (categories) => {
+
+    const taxonomies = categories?.map((tax, i) => {
+      return (
+        tax.name
+      )
+    })
+    return (
+      taxonomies && taxonomies.join(', ')
+    )
+  }
+
+  const variants = {
+    hovered: {
+      opacity: 1,
+      y: 0,
+      height: 'auto',
+      transition: {
+        type: "spring",
+        bounce: 0
+      }
+    },
+    unhovered: {
+      opacity: 0,
+      y: -10,
+      height: 0,
+    },
+  }
+
+  const textColour = {
+    hovered: {
+      color: clientTheme.palette.white.main
+    },
+    unhovered: {
+      color: clientTheme.palette.text.main
+    },
+  }
+
+  const cardBodyColour = {
+    hovered: {
+      backgroundColor: clientTheme.palette.primary.main,
+    },
+    unhovered: {
+      backgroundColor: clientTheme.palette.white.main,
+    },
+  }
+
+  const cardBody = {
+    hovered: {
+      display: 'flex',
+      flexBasis: '75%',
+      transition: {
+        type: "spring",
+        bounce: 0
+      }
+    },
+    unhovered: {
+      display: 'flex',
+      flexBasis: '50%',
+    },
+  }
 
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityPost.slug} //
-      data={data}
-    >
-      <Container
-        maxWidth="fluid"
-        disableGutters
+    <Link to={`/blog/${to}`} style={{ textDecoration: 'none' }}>
+      <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 } }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
+      <Box
+        
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(24, 1fr)",
@@ -72,13 +115,13 @@ const PostTemplate = props => {
                   pb: { xs: 6, md: 13 },
                 }}
               >
-                {data.sanityPost?.category && (
+                {categories && (
                   <Typography
                     variant="overline"
                     component="h3"
                     color={contrastColour(tileColor).textColour}
                   >
-                    {data.sanityPost?.category.name}
+                    {categories}
                   </Typography>
                 )}
                 <Divider
@@ -89,7 +132,7 @@ const PostTemplate = props => {
                     borderColor: contrastColour(tileColor).divider.hex,
                   }}
                 />
-                {data?.sanityPost?.title && (
+                {title && (
                   <Typography
                     variant="h1"
                     color={contrastColour(tileColor).textColour}
@@ -97,7 +140,7 @@ const PostTemplate = props => {
                       wordBreak: 'break-word'
                     }}
                   >
-                    {data?.sanityPost?.title}
+                    {title}
                   </Typography>
                 )}
                 <Divider
@@ -111,7 +154,7 @@ const PostTemplate = props => {
                 <Box sx={{
                   display: 'flex',
                 }}>
-                {data.sanityPost?.date && (
+                {date && (
                   <Typography
                     variant="h6"
                     component="p"
@@ -121,7 +164,7 @@ const PostTemplate = props => {
                       fontWeight: '400'
                     }}
                   >
-                    {data.sanityPost?.date}
+                    {date}
                   </Typography>
                 )}
                 <Box sx={{
@@ -208,107 +251,35 @@ const PostTemplate = props => {
             }}
           /> */}
         </Box>
-      </Container>
+      </Box>
 
-      <Container maxWidth="md" sx={{py: {xs: 15 ,md: 16}}} disableGutters={mobile ? false : true}>
-        <RenderPortableText value={data?.sanityPost._rawBody}/>
-      </Container>
+      </Card>
+    </Link>
 
-      <Modules
-        pageContext={pageContext}
-        modules={data?.sanityPost?.pageBuilder}
-      />
-    </IncludePreview>
   )
+
 }
 
-export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityPost} location={location} />
-}
-
-export const pageTemplateQuery = graphql`
-  query postTemplateQuery($slug: String!) {
-    sanityPost(slug: { current: { eq: $slug } }) {
-      navOverlay
-      navColor {
-        value
+export const query = graphql`
+  fragment PostFragment on SanityPostsGrid {
+    _key
+    _type
+    posts {
+      coverImage {
+        asset {
+          gatsbyImageData(width: 525, height: 323)
+          altText
+        }
       }
-      author {
+      title
+      date(formatString: "M MMM YYYY")
+      categories {
         name
       }
       slug {
         current
       }
-      title
-      date(formatString: "MMM Do, YYYY")
-      category {
-        name
-      }
-      tileColor {
-        value
-        label
-      }
-      image: coverImage {
-        asset {
-          _id
-
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
-      }
-      _rawBody(resolveReferences: { maxDepth: 10 })
-      #...SeoPageFragment
-      pageBuilder {
-        ... on SanityHeaderSection {
-          ...HeaderSectionFragment
-        }
-        ... on SanityFeatureSection {
-          ...FeatureSectionFragment
-        }
-        ... on SanityTeamSection {
-          ...TeamSectionFragment
-        }
-        ... on SanityVideoSection {
-          ...VideoSectionFragment
-        }
-        ... on SanityFeaturesListSection {
-          ...FeaturesListSectionFragment
-        }
-        ... on SanityCtaSection {
-          ...CtaSectionFragment
-        }
-        ... on SanityServicesSection {
-          ...ServicesSectionFragment
-        }
-        ... on SanityTestimonialSection {
-          ...TestimonialSectionFragment
-        }
-        ... on SanityImageCarouselSection {
-          ...ImageCarouselSectionFragment
-        }
-        ... on SanityLocationSection {
-          ...LocationSectionFragment
-        }
-
-        ... on SanityBenifitsSection {
-          ...BenifitsSectionFragment
-        }
-        ... on SanityContactSection {
-          ...ContactSectionFragment
-        }
-      }
+  
     }
   }
 `
-export default PostTemplate

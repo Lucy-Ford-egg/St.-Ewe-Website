@@ -44,7 +44,11 @@ debugger
     em: ({ children }) => <Typography sx={{ color: value.value, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
     strong: ({ children, node  }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
     
-    link: ({ children, value }) => <PortableTextInlineLink color={children[0].props.value.value} value={value}>{children}</PortableTextInlineLink>,
+    link: ({ children, value }) => {
+      debugger
+      return (
+    <PortableTextInlineLink color={value.value} value={value}>{children}</PortableTextInlineLink>
+      )},
     underline: ({ children }) => <Typography variant="body1" className="underline" component="span">{children}</Typography>,
     // Color
     textColor: ({children, value}) => <span style={{color: value.value}}>{children}</span>,

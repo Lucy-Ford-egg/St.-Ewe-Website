@@ -159,6 +159,24 @@ export default defineType({
               }
             ]
           },
+          {
+            name: 'link',
+            type: 'object',
+            title: 'External link',
+            fields: [
+              {
+                name: 'href',
+                type: 'url',
+                title: 'URL'
+              },
+              {
+                title: 'Open in new tab',
+                name: 'blank',
+                default: true,
+                type: 'boolean'
+              }
+            ]
+          },
           {type: 'file', icon: MdPictureAsPdf},
           {type: 'textColor',},
         
