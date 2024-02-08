@@ -109,6 +109,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         navColor{
           value
         }
+        tileColor
         title
         slug {
           current
