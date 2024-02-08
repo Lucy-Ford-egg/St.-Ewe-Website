@@ -1,4 +1,5 @@
 import {createClient} from "@sanity/client"
+import {WPAPI} from 'wpapi'
 
 // import {imageUrlBuilder} from "@sanity"
 
@@ -18,76 +19,33 @@ function resolveImages(images) {
   return null
 }
 
-function transform(externalPost) {
+function transform(){
 
-  const unit =  {
-      _type: 'unit',
-	    _id: `${externalPost.unitID}`,
-      name: externalPost.name,
-      //unitImages: externalPost.images,
-      maxGrading: externalPost.maxGrading,
-	    maxOccupancy: externalPost.maxOccupancy,
-      numberOfRooms: externalPost.numberOfRooms,
-      summary: externalPost.summary || null,
-      categoryId: externalPost.categoryID,
-	  }
-	  return [unit]
+ const post =  {
+  _type: 'post',
+  _id: `${externalPost.id}`,
+  title: externalPost.title.rendered,
+  date: externalPost.date,
+  body: content.rendered,
+}
+return [post]
+
 }
 
-const baseUrl = `https://api.gemapark.co.uk`
-const endPoint = `GetUnits`
-const API_URL = `${baseUrl}/web.svc/v1_0/json/${endPoint}`
-const USERNAME = `pentewansands`
-const PASSWORD = `j2t]eZx-GjDEvsO-aSth`
+const POST_URL = `https://taylormoney.com/wp-json/wp/v2/posts`
 
-const options = {
-  username: USERNAME,
-  password: PASSWORD,
-  cultureCode: "en-GB",
-  categoryIDs: [1],
-  parkIds: [13258],
+const getData = async () => {
+  fetch(POST_URL)
+  .then(res => res.json())
+  .then(posts => posts.map(transform))
+  .then(documents =>
+  	// documents is now an array of [country, cat], so we need to flatten it. We'll use lodash.flatten for that
+  	flatten(documents)
+  )
+  .then(documents =>
+    // now we have all our documents and are ready to save them to our dataset
+    client.createOrReplace(documents)
+  )
 }
 
-
-const getUnits = async () => {
-  try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(options), // body data type must match "Content-Type" header
-      // cache: "no-cache" // ! just to get force fresh data.
-      
-    });
-    // network error in the 4xx–5xx range
-    if (!response.ok) {
-      throw new Error(`${response.status} ${response.statusText}`);
-    }
-    if(response.ok){
-      const jsonResponse = await response.json()
-
-     
-      
-      const resolve = jsonResponse.data.map(transform)
-      resolve.map((documents) => {
-  
-        const units = documents.filter(doc =>
-          doc._type === 'unit'
-        )
-        // Write all units to the dataset using a createOrReplace mutation
-        const allUnitsWritten = Promise.all(units.map(unit =>
-          client.createOrReplace(unit)
-        ))
-  
-        return allUnitsWritten
-      })
-    }
-  }
-  catch (error) {
-    console.log(error);
-  }
-}
-
-getUnits()
+getData()

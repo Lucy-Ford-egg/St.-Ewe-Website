@@ -1,0 +1,1152 @@
+[
+  {
+    "id": 3408,
+    "date": "2024-01-31T12:15:41",
+    "date_gmt": "2024-01-31T12:15:41",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3408"
+    },
+    "modified": "2024-01-31T12:15:41",
+    "modified_gmt": "2024-01-31T12:15:41",
+    "slug": "smartmoney-january-february-2024",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/smartmoney-january-february-2024/",
+    "title": {
+      "rendered": "SmartMoney January/February 2024"
+    },
+    "content": {
+      "rendered": "\n\n\n\n<p>Please click on the link below for the Taylor Money SmartMoney newsletter.</p>\n<p><a href=\"https://taylormoney.com/wp-content/uploads/2024/01/Taylor-Money-SmartMoney-Newsletter-Jan-Feb-2024.pdf\">Taylor Money SmartMoney Newsletter Jan-Feb 2024</a></p><span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Please click on the link below for the Taylor Money SmartMoney newsletter. Taylor Money SmartMoney Newsletter Jan-Feb 2024</p>\n",
+      "protected": false
+    },
+    "author": 8,
+    "featured_media": 1230,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      23
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3408"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/8"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3408"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3408/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3410,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3408/revisions/3410"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/1230"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3408"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3408"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3408"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3381,
+    "date": "2023-12-05T15:56:41",
+    "date_gmt": "2023-12-05T15:56:41",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3381"
+    },
+    "modified": "2023-12-08T10:11:04",
+    "modified_gmt": "2023-12-08T10:11:04",
+    "slug": "company-pension-contributions-that-pay-dividends",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/company-pension-contributions-that-pay-dividends/",
+    "title": {
+      "rendered": "Company Pension Contributions That &#8220;Pay Dividends&#8221;"
+    },
+    "content": {
+      "rendered": "\n\n\n<p style=\"text-align: justify;\"><em>It is five years since I originally wrote the above titled article. &nbsp;Since then company pension contributions have recently become even more attractive than before for three reasons:</em></p>\n<ol>\n<li style=\"text-align: justify;\"><em>The annual pension allowance has increased from £40,000 to £60,000.</em></li>\n<li><em>The corporation tax rate has increased from 19% to 26.5% on profits in excess of £50,000 and 25% on profits in excess of £250,000.</em></li>\n<li><em>The dividend tax rate has increased by 1.25% across all tax bands.</em></li>\n</ol>\n<p style=\"text-align: justify;\"><em>The rest of this article is the same as before, however, I have updated where relevant to take account of current allowances and tax rates.</em></p>\n<p style=\"text-align: justify;\">We often encounter successful business owners with growing cash balances in their company. A healthy amount of cash in any business is sensible as it can help fund emergency expenditure, growth and expansion. Beyond this however, accumulating cash can become inefficient and a great deal of thought is often given as to how best to draw some of this hard-earned profit from the company. Whilst the most common way to realise money from a business is to draw income via salary or dividends, this can also be unattractive due to the gradual loss of one’s personal allowance once personal taxable income exceeds £100,000.</p>\n<p style=\"text-align: justify;\">In line with the above, one of the most common questions business owners come to us with is:</p>\n<p><strong><em>“How can I tax-efficiently draw monies out of my business for my benefit?”</em></strong></p>\n<p>The answer, almost always, starts with considering company pension contributions.</p>\n<p style=\"text-align: justify;\">Unlike personal pension contributions, contributions paid directly from a trading company are paid gross and can be treated as a business expense. Furthermore, everyone starts with an annual personal pension allowance of £60,000<sup>1</sup> and can carry forward up to three years of unused allowance. This equates to a potential contribution of up to £180,000 in 2023/24.</p>\n<p style=\"text-align: justify;\">Consider the following example and chart which illustrate just how tax-efficient these contributions can be compared to being drawn as a dividend:</p>\n<p><strong>Dividend Income </strong></p>\n<p style=\"text-align: justify;\">Every £1 of profit made in a limited company is subject to corporation tax at 25%, leaving 75p. When that 75p is drawn as a dividend, assuming that the director is a higher rate tax payer, it will be taxed as income by a further 33.75%. This reduces the net profit of 75p to just less than 50p. In total then, £1 of profit dramatically reduces by more than 50% to just under 50p when drawn as a dividend from the business.</p>\n<p><strong>Company Pension Contribution</strong></p>\n<p style=\"text-align: justify;\">If £1 of profit is instead paid by the company into a pension, it can be treated as a company expense and <strong>no corporation tax</strong> is due. Furthermore, there will be <strong>no income tax</strong> meaning that the pension receives the full £1. Therefore, by opting to make a company pension contribution instead of drawing a dividend, 50p has turned into £1. This uplift is equivalent to achieving a 100% return on day one, or 7.16% compounded over 10 years which is quite incredible when you consider that unlike Venture Capital Trusts or Enterprise Investment Schemes, those monies do not have to be invested in any particularly high risk or unusual investment strategy.</p>\n<p>&nbsp;</p>\n\n\n\n<figure class=\"wp-block-video\"><video controls src=\"https://taylormoney.com/wp-content/uploads/2023/12/Company-Pension-Chart-new.mov\"></video></figure>\n\n\n<p style=\"text-align: justify;\">Based on the figures above, a company making a £100,000 contribution on behalf of a director would result in an effective tax saving of at least £50,000.</p>\n<p style=\"text-align: justify;\">The benefits don&#8217;t stop there. Under current rules, pensions do not form part of your estate which can make them an effective estate planning vehicle and whilst in your pension can grow free of any tax. Furthermore, when you come to draw funds in retirement, you are entitled to draw 25% of the fund tax-free<sup>2</sup>.  There is potentially some tax to pay later as funds drawn in excess of tax-free cash are taxed as income at your marginal rate, however you have complete flexibility to ensure that any such income is drawn in a tax-efficient manner. For example, we aim to position a client’s income so that they remain within the basic rate band throughout retirement where possible by using various investment wrappers.</p>\n<p style=\"text-align: justify;\">In summary, company pension contributions remain one of the last ways to enjoy a truly risk-free return. As such, when directors are looking at tax-efficient ways to draw money from their business, this option should be very near the top of their agenda.</p>\n<p style=\"text-align: justify;\">If you would like to discuss how you might be able to benefit from company pension contributions, please get in touch.</p>\n<p>Written by Philip Feast</p>\n<p><em> </em></p>\n<p style=\"text-align: justify;\"><em><sup>1</sup></em><em>In some circumstances this can be impacted/reduced where taxable income is in excess of £200,000.</em></p>\n<p style=\"text-align: justify;\"><em><sup>2</sup></em><em>Usually subject to a maximum of 25% of the lifetime allowance relevant to that individual.</em></p>\n<hr />\n<p style=\"text-align: justify;\"><em>General Disclosures: This article is based on current public information that we consider reliable, but we do not represent that it is accurate or complete, and it should not be relied on as such. The information, opinions, estimates and forecasts contained herein are as of the date hereof and are subject to change without prior notification. It does not constitute a personal recommendation or take into account the particular investment objectives, financial situations, or needs of individual clients. The price and value of investments referred to in this research and the income from them may fluctuate. Past performance is not a guide to future performance, future returns are not guaranteed, and a loss of original capital may occur.</em></p><span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>It is five years since I originally wrote the above titled article. &nbsp;Since then company pension contributions have recently become even more attractive than before for three reasons: The annual pension allowance has increased from £40,000 to £60,000. The corporation tax rate has increased from 19% to 26.5% on profits in excess of £50,000 and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 6,
+    "featured_media": 3396,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      19
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3381"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/6"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3381"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 7,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3381/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3404,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3381/revisions/3404"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/3396"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3381"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3381"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3381"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3387,
+    "date": "2023-12-05T12:13:17",
+    "date_gmt": "2023-12-05T12:13:17",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3387"
+    },
+    "modified": "2023-12-07T15:43:20",
+    "modified_gmt": "2023-12-07T15:43:20",
+    "slug": "meet-the-team-sam-chedzoy",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/meet-the-team-sam-chedzoy/",
+    "title": {
+      "rendered": "Meet The Team: Sam Chedzoy"
+    },
+    "content": {
+      "rendered": "\n\n\n<p><strong>Name: </strong>Sam Chedzoy</p>\n<p><strong>Job Title: </strong>Investment Analyst</p>\n<p><strong>Tell us about what your job entails:</strong></p>\n<p style=\"text-align: justify;\">The main part of my job is researching and analysing different investments and funds for our in-house investment strategies as well as for clients. I also provide commentary and analysis on what is occurring in financial markets and the global economy and outline expectations on the risks and opportunities that they present. My job also entails working in the investment team to devise and propose asset allocation and fund changes to our in-house investment strategies and presenting these to the Investment Committee.</p>\n<p style=\"text-align: justify;\"><strong>What do you like about being an Investment Analyst/part of the Investment Team:</strong></p>\n<p style=\"text-align: justify;\">I think that the best part of my job is that there is always something different going on in markets not just every day or week, but every month and year as well. It is always interesting researching and reading what is causing markets to move the way they are and how these events could impact the performance of clients’ portfolios. It keeps me updated and busy as well, particularly if there is a major economic or financial event occurring.</p>\n<p style=\"text-align: justify;\">Another part of my job I like is researching new investment ideas, whether that is for our investment strategies or something more specific based on a client’s particular preferences, needs and circumstances. Every day is always different.</p>\n<p><strong>What is great about living and working in Cornwall:</strong></p>\n<p style=\"text-align: justify;\">My favourite thing about living in Cornwall is being close to the surfing beaches on the north coast. If the surf looks good, I will put my board on the car, drive up to the coast and spend a summer’s evening surfing until the sun sets. I usually travel up to Watergate Bay as that is my favourite place to surf. I also learnt how to surf there when I was a child and continued to practice during the summer of 2020, my first summer living in Cornwall. I also enjoy paddleboarding if there are no waves, which still gets me out on the water which is important to me.</p>\n<p style=\"text-align: justify;\">I also really enjoy driving, which is another good thing about Cornwall, you need to have a car to get pretty much anywhere! I live in Falmouth so there are some good roads to get to the beaches, but I also like especially long road trips with some fun roads to drive on, especially coast roads where you can also do some scouting for surf.</p>\n<p><strong>Tell us something about yourself:</strong></p>\n<p style=\"text-align: justify;\">I love travelling! So far, I have visited 30 different countries and territories across 5 different continents. These range from the busy urban areas of Thailand and New York to the calm and natural beauty of Fiji and the Caribbean. My favourite place to visit has definitely been Singapore because of its outstanding beauty, architecture (particularly in Marina Bay and the Jewel within the airport), the country’s cleanliness and the whole vibe of the place.</p>\n<p style=\"text-align: justify;\">Australia, New Zealand, Japan and South Korea are some of the countries towards the top of my bucket list of places to visit at some point in my life. I have flown into Australia but that was only to change planes, so I am definitely not counting that!</p>\n<span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Name: Sam Chedzoy Job Title: Investment Analyst Tell us about what your job entails: The main part of my job is researching and analysing different investments and funds for our in-house investment strategies as well as for clients. I also provide commentary and analysis on what is occurring in financial markets and the global economy and outline [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 8,
+    "featured_media": 3388,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      22
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3387"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/8"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3387"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3387/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3398,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3387/revisions/3398"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/3388"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3387"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3387"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3387"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3364,
+    "date": "2023-11-21T11:44:14",
+    "date_gmt": "2023-11-21T11:44:14",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3364"
+    },
+    "modified": "2023-12-05T12:18:10",
+    "modified_gmt": "2023-12-05T12:18:10",
+    "slug": "smartmoney-november-december-2023",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/smartmoney-november-december-2023/",
+    "title": {
+      "rendered": "SmartMoney November/December 2023"
+    },
+    "content": {
+      "rendered": "\n<p>Please click on the link below for the Taylor Money SmartMoney newsletter.</p>\n<p><a href=\"https://taylormoney.com/wp-content/uploads/2023/11/Smart-Money-November-December-2023.pdf\">Smart Money November December 2023</a></p>\n<span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Please click on the link below for the Taylor Money SmartMoney newsletter. Smart Money November December 2023</p>\n",
+      "protected": false
+    },
+    "author": 8,
+    "featured_media": 1230,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      23,
+      1
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3364"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/8"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3364"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3364/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3379,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3364/revisions/3379"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/1230"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3364"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3364"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3364"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3345,
+    "date": "2023-09-26T10:36:12",
+    "date_gmt": "2023-09-26T09:36:12",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3345"
+    },
+    "modified": "2023-09-26T14:30:06",
+    "modified_gmt": "2023-09-26T13:30:06",
+    "slug": "what-is-the-consumer-duty",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/what-is-the-consumer-duty/",
+    "title": {
+      "rendered": "What Is The Consumer Duty?"
+    },
+    "content": {
+      "rendered": "\n\n\n<p style=\"text-align: justify;\">On 31 July 2023, new rules from the <a href=\"https://www.fca.org.uk/news/news-stories/consumer-duty-higher-standards-financial-services#:~:text=The%20new%20rules%2C%20known%20as,communications%20you%20understand\" target=\"_blank\" rel=\"noopener\">Financial Conduct Authority (FCA)</a>, known as the Consumer Duty, came into force for financial services firms. These set a higher standard of consumer protection in financial services and mean that consumers should receive the following:</p>\n<ul>\n<li>The support they need, when they need it.</li>\n<li>Communications they understand.</li>\n<li>Products and services that meet their needs and offer fair value.</li>\n</ul>\n<p style=\"text-align: justify;\">We are confident that we have been delivering all of the above for our clients for more than 30 years, and our recent <a href=\"https://taylormoney.com/client-survey-results/\" target=\"_blank\" rel=\"noopener\">client survey</a> confirmed that this is still the case.</p>\n<p style=\"text-align: justify;\">Over the last 12 months, in the run-up to the formal implementation of the Consumer Duty rules, we have been working hard to review our internal processes and services offered to ensure clients continue to receive great outcomes in line with the FCA’s guidance. As part of this work, we have looked to restructure our ongoing service propositions so that clients receive the appropriate level of service for their individual needs, financial position, and the fees they pay.</p>\n<p style=\"text-align: justify;\">We will be contacting clients to update and confirm individual service levels and will be in touch in the next six months. </p>\n<p> </p>\n<span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>On 31 July 2023, new rules from the Financial Conduct Authority (FCA), known as the Consumer Duty, came into force for financial services firms. These set a higher standard of consumer protection in financial services and mean that consumers should receive the following: The support they need, when they need it. Communications they understand. Products [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 8,
+    "featured_media": 3347,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      22
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3345"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/8"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3345"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3345/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3352,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3345/revisions/3352"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/3347"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3345"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3345"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3345"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3265,
+    "date": "2023-09-26T10:30:58",
+    "date_gmt": "2023-09-26T09:30:58",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3265"
+    },
+    "modified": "2023-09-26T13:09:56",
+    "modified_gmt": "2023-09-26T12:09:56",
+    "slug": "time-in-the-market",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/time-in-the-market/",
+    "title": {
+      "rendered": "Endurance Investing"
+    },
+    "content": {
+      "rendered": "\n<p style=\"text-align: justify;\">The overall return on a typical balanced portfolio over the last two years has been essentially flat despite significant swings in financial markets. Over this period markets have struggled with supply/demand imbalances, the war in Ukraine, double-digit inflation, aggressive interest-rate hikes and banking-sector instability to name just a few.</p>\n<p style=\"text-align: justify;\">For those who have been invested for longer, annual returns of roughly 16%, 5%, and 11% over 2019, 2020, and 2021 on a balanced portfolio make the current market environment far more palatable however, investors&#8217; patience can be tested during these periods. Now, more than ever, it is important to remember that investing is a long-distance race rather than a sprint and a certain level of endurance is required to see the benefits.</p>\n<p style=\"text-align: justify;\">While stock market booms and busts can be painful, stagnant markets, like the last two years, can be just as trying from a psychological perspective. The longer this continues, the more temptation there is for some investors to sell their longer-term investments and opt for cash. This temptation grows stronger when, as now, interest rates on cash savings become more attractive. For our thoughts on switching cash, please read our previous article <span style=\"text-decoration: underline;\"><span style=\"color: #e46474;\"><a style=\"color: #e46474; text-decoration: underline;\" href=\"https://taylormoney.com/is-cash-really-king/\" target=\"_blank\" rel=\"noopener\">here</a></span></span>.</p>\n<p style=\"text-align: justify;\">Emotions can be an investor’s worst enemy. When the market is on an upswing, greed can cloud our judgment, tempting us to buy more in the hope that good times will continue. On the flip side, fear takes control during market downturns, compelling us to sell at the least opportune moments. However, it is not just extreme market conditions that challenge investors: flat markets have their own pitfalls, mainly in the form of recency bias. This cognitive trap leads us to assume that the current stagnant conditions will persist, tempting us to exit long-term investments and miss out on potential future gains.</p>\n<p><strong>The Cost of Cashing Out</strong></p>\n<p style=\"text-align: justify;\">Clearly, acting on emotions creates short-term relief, but the longer-term impacts can be incredibly detrimental. Consider the chart below. The coral line illustrates what would have happened to £10,000 invested in the S&amp;P 500 (the 500 top companies in the US by market value) over the past 33 years. Now look at the blue lines, showing the outcomes for investors who panicked or lost conviction during major market events and moved to cash. The disparity between the two is a powerful reminder of the long-term cost of emotional decision-making in investing.</p>\n\n\n\n<figure class=\"wp-block-video aligncenter\"><video controls src=\"https://taylormoney.com/wp-content/uploads/2023/09/Screen-Recording-2023-09-01-at-09.07.24-1.mov\"></video></figure>\n\n\n\n<p>As we have often emphasised &#8211; <span style=\"color: #e46474;\"><a style=\"color: #e46474;\" href=\"https://taylormoney.com/timing-the-market-or-time-in-the-market/\" target=\"_blank\" rel=\"noopener\">it is time in the market, not timing the market</a></span>, that really matters. Rather than being influenced by recent returns or potential risks on the horizon, a zoomed-out view shows that patience pays off. The key to long-term gains is to stay calm and maintain conviction.</p>\n<p><strong>Underlying Growth of Stock Markets</strong></p>\n<p style=\"text-align: justify;\">Though the long-term trend of stock markets is upward, we often lose sight of the reasons behind it. At its core, returns come from economic growth and the ability of companies to innovate and generate revenue. By investing, you secure a stake in a company&#8217;s future, gaining financially as it grows over time.</p>\n<p style=\"text-align: justify;\">For instance, consider earnings per share (EPS), a measure of a company’s profitability. Back in 1990, the S&amp;P 500 had an EPS of $22. It is now eight times higher at $176. Similarly, dividends per share grew from $11 to $68 in the same period.</p>\n<p style=\"text-align: justify;\">While markets certainly experience highs and lows, these fluctuations only make up part of the story. As you can see, earnings and dividends increase over time and though growth is not a straight line, investors who are willing to stick it out can benefit hugely from taking part.</p>\n<p><strong>The Bottom Line</strong></p>\n<p style=\"text-align: justify;\">Long-term investing is hard and requires endurance. Maintaining conviction and staying invested during sideways markets requires just as much patience and fortitude as is needed during volatile periods. There will always be a reason not to invest or a risk on the horizon. However, owning shares in some of the greatest companies in the world allows investors to benefit from innovation and progress and has been, and is likely to continue to be, the best way to grow and preserve real wealth for generations to come.</p>\n<p><em>Written by Artem Dubas &amp; Jonty Brooks</em></p>\n<div class=\"et_pb_newsletter_description\"> </div>\n<div> </div>\n\n\n\n\n<hr />\n<p style=\"text-align: justify;\"><em>General Disclosures: This article is based on current public information that we consider reliable, but we do not represent that it is accurate or complete, and it should not be relied on as such. The information, opinions, estimates and forecasts contained herein are as of the date hereof and are subject to change without prior notification. It does not constitute a personal recommendation or take into account the particular investment objectives, financial situations, or needs of individual clients. The price and value of investments referred to in this research and the income from them may fluctuate. Past performance is not a guide to future performance, future returns are not guaranteed, and a loss of original capital may occur.</em></p><span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The overall return on a typical balanced portfolio over the last two years has been essentially flat despite significant swings in financial markets. Over this period markets have struggled with supply/demand imbalances, the war in Ukraine, double-digit inflation, aggressive interest-rate hikes and banking-sector instability to name just a few. For those who have been invested [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 11,
+    "featured_media": 3290,
+    "comment_status": "closed",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      19
+    ],
+    "tags": [
+      147,
+      148,
+      150,
+      78
+    ],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3265"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/11"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3265"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 30,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3265/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3351,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3265/revisions/3351"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/3290"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3265"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3265"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3265"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3341,
+    "date": "2023-09-26T10:08:45",
+    "date_gmt": "2023-09-26T09:08:45",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3341"
+    },
+    "modified": "2023-10-10T14:45:13",
+    "modified_gmt": "2023-10-10T13:45:13",
+    "slug": "team-news-and-office-updates",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/team-news-and-office-updates/",
+    "title": {
+      "rendered": "Team News and Office Updates"
+    },
+    "content": {
+      "rendered": "\n<p style=\"text-align: justify;\">At 18 members, the team at Taylor Money is the biggest it has ever been!  In order to continue to provide quality advice and service, we continually monitor the development of the company, and have recently expanded our paraplanning team.</p>\n<p style=\"text-align: justify;\">The paraplanners work with the advisors to research and prepare reports and evaluate the risks involved.  Neil Woodward, Sophie Tomlin and Mark Bannister will now be joined by our two trainees, Amber Weetch and Shannon Waters.</p>\n<p style=\"text-align: justify;\">Previously part of the Client Services team, Amber and Shannon will be working to train as paraplanners for the next 18 months, and will also be trainers to Cleo Veness and Charlie Ward, to prepare them to take over supporting Philip Feast and Paul Bannister in the not-too-distant future.</p>\n<p>If you would like to put faces to names, please visit our <a href=\"https://taylormoney.com/about/\" target=\"_blank\" rel=\"noopener\">Who We Are</a> page.</p>\n<p>Photo (By Toby Weller) L-R : Shannon Waters, Amber Weetch, Neil Woodward, Sophie Tomlin and Mark Bannister  </p>\n<span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>At 18 members, the team at Taylor Money is the biggest it has ever been!  In order to continue to provide quality advice and service, we continually monitor the development of the company, and have recently expanded our paraplanning team. The paraplanners work with the advisors to research and prepare reports and evaluate the risks [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 8,
+    "featured_media": 3359,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      22
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3341"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/8"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3341"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3341/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3361,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3341/revisions/3361"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/3359"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3341"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3341"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3341"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3337,
+    "date": "2023-09-26T09:32:47",
+    "date_gmt": "2023-09-26T08:32:47",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3337"
+    },
+    "modified": "2023-09-28T09:26:52",
+    "modified_gmt": "2023-09-28T08:26:52",
+    "slug": "client-survey-results",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/client-survey-results/",
+    "title": {
+      "rendered": "Client Survey Results"
+    },
+    "content": {
+      "rendered": "\n<p style=\"text-align: justify;\">We sent out our client survey in June this year via both email and post (depending on individual client’s contact preferences) and are really pleased to report that our survey was completed by 25% of our clients.</p>\n<p>Here is a quick breakdown of the numbers:</p>\n<p><img loading=\"lazy\" decoding=\"async\" class=\"alignnone wp-image-3354 size-full\" src=\"https://taylormoney.com/wp-content/uploads/2023/09/Survey-1.jpg\" alt=\"\" width=\"772\" height=\"512\" srcset=\"https://taylormoney.com/wp-content/uploads/2023/09/Survey-1.jpg 772w, https://taylormoney.com/wp-content/uploads/2023/09/Survey-1-480x318.jpg 480w\" sizes=\"(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) 772px, 100vw\" /></p>\n\n\n\n<p style=\"text-align: justify;\">We have also included a few lovely things that clients have said:<br /><br />&#8220;I have no hesitation whatsoever in recommending Taylor Money to family &amp; friends.  I have always been pleasantly surprised by the speed of answers to any queries that I have had.  But best of all&#8230; Is the human element, personal contact, very unusual in this day &amp; age of computers and bots.&#8221;<br /><br />&#8220;My husband died suddenly, and I was really thrown into the deep end, having to deal with financial matters which were always dealt with by him. Jonathan was a huge support at the time and has been ever since. His expertise and advice have been invaluable. Just knowing that he has my best interests in investment decisions and that I can contact him at any time is very reassuring. I&#8217;m so grateful.&#8221;<br /><br />&#8220;Phil Feast has provided invaluable support and guidance with our pension planning and is always on the end of the phone to deal with any queries or concerns we have.   It always feels that Taylor Money are treating our money and investments with the utmost care and really listen to our individual needs. That is so reassuring.&#8221;<br /><br />&#8220;I really appreciate the feeling that I am getting genuinely personal advice aimed at my own particular circumstances, and the costs are reasonably apparent.&#8221; </p>\n<p>Thank you once again to those who completed the survey.</p>\n<p> </p>\n<span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We sent out our client survey in June this year via both email and post (depending on individual client’s contact preferences) and are really pleased to report that our survey was completed by 25% of our clients. Here is a quick breakdown of the numbers: We have also included a few lovely things that clients [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 8,
+    "featured_media": 2165,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      22
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3337"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/8"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3337"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3337/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3355,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3337/revisions/3355"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/2165"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3337"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3337"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3337"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3327,
+    "date": "2023-09-19T11:47:55",
+    "date_gmt": "2023-09-19T10:47:55",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3327"
+    },
+    "modified": "2023-09-19T11:48:41",
+    "modified_gmt": "2023-09-19T10:48:41",
+    "slug": "smartmoney-september-october-2023",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/smartmoney-september-october-2023/",
+    "title": {
+      "rendered": "SmartMoney September/October 2023"
+    },
+    "content": {
+      "rendered": "\n\n\n<p>Please click on the link below for the Taylor Money SmartMoney newsletter.</p>\n<p><a href=\"https://taylormoney.com/wp-content/uploads/2023/09/Smart-Money-September-October-2023.pdf\" target=\"_blank\" rel=\"noopener\" data-wplink-edit=\"true\">SmartMoney September October 2023</a></p>\n<span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Please click on the link below for the Taylor Money SmartMoney newsletter. SmartMoney September October 2023</p>\n",
+      "protected": false
+    },
+    "author": 8,
+    "featured_media": 1230,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      23
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3327"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/8"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3327"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3327/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3331,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3327/revisions/3331"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/1230"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3327"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3327"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3327"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3237,
+    "date": "2023-07-24T14:42:20",
+    "date_gmt": "2023-07-24T13:42:20",
+    "guid": {
+      "rendered": "https://taylormoney.com/?p=3237"
+    },
+    "modified": "2023-07-25T11:22:14",
+    "modified_gmt": "2023-07-25T10:22:14",
+    "slug": "meet-the-team-jonty-brooks",
+    "status": "publish",
+    "type": "post",
+    "link": "https://taylormoney.com/meet-the-team-jonty-brooks/",
+    "title": {
+      "rendered": "Meet The Team: Jonty Brooks"
+    },
+    "content": {
+      "rendered": "\n\n\n<p><strong>Name:</strong> Jonty Brooks           </p>\n<p><strong>Job Title:</strong> Managing Director and Wealth Manager</p>\n<p><strong>Tell us about your role(s):</strong></p>\n<p>My role consists of two parts.</p>\n<p style=\"text-align: justify;\">Firstly, as the Managing Director, I am responsible for the strategic direction of the business and ensuring Taylor Money prospers going forwards so that we can continue to provide the best possible wealth management service to our clients. This involves making sure that all aspects of our business are aligned and that we are all focused on working towards a common goal.</p>\n<p style=\"text-align: justify;\">The other half of my role is acting as a wealth manager for my own clients. This involves working closely with them to structure and invest their wealth, based on their financial position and objectives. Our partnerships with clients are ongoing and so plans and strategies are always being updated and adjusted to account for the curve balls that life tends to throw at us all.</p>\n<p><strong>How did you come to work in wealth management?</strong></p>\n<p style=\"text-align: justify;\">Coming from a medical family I had little exposure to the world of finance at a younger age.  When I left school, I aimed to follow in my brother’s footsteps and head into the oil industry.</p>\n<p style=\"text-align: justify;\">I took up a place at Durham University reading Geology, however, during the summer holidays and through various contacts I completed work experience in the investment world which opened my eyes to the world of financial markets and investing.</p>\n<p style=\"text-align: justify;\">When I left Durham, like most of my peers, I moved to London however, with nothing specific lined up following my change in direction, I actually started my first job in the Lloyds of London insurance market on the underwriting side. After a year or so, a perfect opportunity arose, and I moved to a family-owned wealth management firm called City Asset Management based in the City of London. After a year or so as an investment analyst, I began to work more closely with an investment director to help manage client portfolios. It was at this point that Jonathan Money, Taylor Money’s founder and my now father-in-law, approached me about joining Taylor Money.</p>\n<p style=\"text-align: justify;\">After some deliberation, in 2017 my wife, Imogen, and I moved from London to Cornwall so that I could join Taylor Money as an investment strategist. A lot has changed since then but I am still heavily involved in our investment process and alongside my managing director position, I continue to be passionate about markets as well as looking after clients.</p>\n<p><strong>What is great about living and working in Cornwall:</strong></p>\n<p style=\"text-align: justify;\">As mentioned, when Imogen and I moved to Cornwall it was just the two of us. Fast forward to today and we have a son who is almost two, another boy due in September, and our golden retriever. It is fair to say that life has changed, but one thing I know is that we are very lucky to be raising a family in Cornwall.</p>\n<p style=\"text-align: justify;\">We have all-year-round access to some of the UK’s (and arguably the world’s) finest beaches, pretty bustling seaside towns, and beautiful coastal walks. Living somewhere most people come on holiday is a real blessing.</p>\n<p style=\"text-align: justify;\">Cornwall is also an exciting and vibrant place. Remote working has opened up new opportunities for everyone and there are many very successful businesses based here that will continue to attract talented individuals who are looking for a better work-life balance.</p>\n<p style=\"text-align: justify;\">We are also just a short flight, or a slightly longer train ride, from London and so I am usually up there every other month for face-to-face meetings and to see clients. In my view, we have the best of both worlds in Cornwall and I consider myself very fortunate to live and work here.</p>\n<p><strong>Tell us something about yourself:</strong></p>\n<p style=\"text-align: justify;\">Outside of work and family, I like to exercise and go to the gym but my real passion is skiing. I have been skiing since I was four years old and spent three months in Val-d&#8217;Isère, France completing a ski instructor qualification during my gap year.</p>\n<p style=\"text-align: justify;\">A dream of mine is to go heli-skiing in Canada. I have done lots of off-piste skiing and ski touring in both France and Japan but would love to try Canada. However, with our growing family, I think I will be spending more time on the nursery slopes over the next few years!</p>\n<span class=\"et_bloom_bottom_trigger\"></span>",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Name: Jonty Brooks            Job Title: Managing Director and Wealth Manager Tell us about your role(s): My role consists of two parts. Firstly, as the Managing Director, I am responsible for the strategic direction of the business and ensuring Taylor Money prospers going forwards so that we can continue to provide the best possible wealth management service to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 3239,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": {
+      "_et_pb_use_builder": "",
+      "_et_pb_old_content": "",
+      "_et_gb_content_width": "",
+      "inline_featured_image": false,
+      "footnotes": ""
+    },
+    "categories": [
+      22
+    ],
+    "tags": [
+      144,
+      78,
+      145
+    ],
+    "_links": {
+      "self": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3237"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/comments?post=3237"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3237/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3248,
+          "href": "https://taylormoney.com/wp-json/wp/v2/posts/3237/revisions/3248"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/media/3239"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://taylormoney.com/wp-json/wp/v2/media?parent=3237"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/categories?post=3237"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://taylormoney.com/wp-json/wp/v2/tags?post=3237"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]
