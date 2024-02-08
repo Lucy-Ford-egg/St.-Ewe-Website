@@ -66,8 +66,7 @@ const PostTemplate = props => {
           <Grid container>
             <Grid item xs={12} md={12}>
               <Box
-                sx={{
-                  
+                sx={{ 
                   pt: 13,
                   pb: { xs: 6, md: 13 },
                 }}

@@ -71,9 +71,18 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       slug {
         current
       }
+      date(formatString: "MMM Do, YYYY")
       category {
         name
         _id
+      }
+      author {
+        name
+      }
+      title
+      tileColor{
+        value
+        label
       }
     }
   }
