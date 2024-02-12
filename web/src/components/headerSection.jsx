@@ -51,18 +51,19 @@ export const HeaderSection = props => {
         justifyContent: "center",
         height: "100%",
         minHeight: "100vh",
-        maxHeight: { xs: "", md: "100vh" },
+        maxHeight: { xs: "", md: "" },
         overflow: "hidden",
         px: "0 !important",
         position: "relative",
         pt: spiro ? 17 : 0,
+        pb: 15,
       }}
     >
       {spiro && (
         <Box
           sx={{
             position: "absolute",
-            top: { xs:"25%", sm: "50%" },
+            top: { xs:"5%", sm: "50%" },
             bottom: { xs: 0, sm: "unset" },
             transform: {
               xs: "translateX(-30px) rotate(180deg)",
@@ -97,7 +98,7 @@ export const HeaderSection = props => {
           flexDirection: "column",
           alignItems: textAlign ? textAlign : "flexstart",
           justifyContent: "center",
-          pt: { xs: 20, md: 0 },
+          pt: { xs: 20, md: 20 },
         }}
       >
         <Box>
@@ -139,7 +140,6 @@ export const HeaderSection = props => {
           <Box
             sx={{
               maxWidth: 750,
-              pb: 8,
             }}
           >
             {_rawText && (
@@ -154,12 +154,16 @@ export const HeaderSection = props => {
               />
             )}
           </Box>
+          {links && links.length > 0 && <Box sx={{
+            pt: 8,
+          }}>
           <Links
             linkOne="secondary"
             links={links}
             previewData={previewData}
             highlighted
           />
+          </Box>}
         </Box>
       </Container>
 
@@ -187,6 +191,8 @@ export const HeaderSection = props => {
                 urlFor(previewData.image).width(200).url()) ||
               image.asset
             }
+            width={1440}
+            height={700}
             style={{
               objectFit: "cover",
               width: "100%",
@@ -214,7 +220,7 @@ export const HeaderSection = props => {
         <Box
           sx={{
             position: "absolute",
-            top: { xs: "25%", sm: "50%" },
+            top: { xs: "5%", sm: "50%" },
             bottom: { xs: 0, sm: "unset" },
             transform: {
               xs: "translateX(30px)",
