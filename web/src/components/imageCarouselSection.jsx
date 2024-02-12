@@ -55,25 +55,22 @@ export const ImageCarouselSection = props => {
 
   return (
     <Container
-      maxWidth={slides && slides.length === 1 ? "xl" : "false"}
-      disableGutters={sm || (slides && slides.length === 1) ? false : true}
+      maxWidth={slides && slides.length === 1 ? false : false}
+      disableGutters={sm || (slides && slides.length === 1) ? true : true}
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
         pt: topPadding
           ? {
-              xs: theme.spacing(10),
+              xs: theme.spacing(0),
               md: theme.spacing(0),
             }
           : { xs: theme.spacing(10), md: theme.spacing(10) },
-        pl: { md: slides && slides.length > 1 && 15 },
       }}
     >
       {slides && slides.length >= 1 && (
         <Box
           sx={{
             position: "relative",
-            pt: 6,
-            pb: 12,
           }}
         >
           <Box
@@ -125,8 +122,8 @@ export const ImageCarouselSection = props => {
                               <Box
                                 ref={ref}
                                 sx={{
-                                  width: { xs: 394, md: 1300 },
-                                  height: { xs: 380, md: 744 },
+                                  width: { xs: 394, md: 1440 },
+                                  height: { xs: 380, md: 581 },
                                 }}
                               >
                                 {image && (
@@ -175,11 +172,11 @@ export const ImageCarouselSection = props => {
                   height: "100%",
                   position: "relative",
                   zIndex: 1,
-                  ml: { md: -15 },
+                  
                 }}
               >
                 <Container
-                  maxWidth="md"
+                  maxWidth="lg"
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
@@ -191,7 +188,7 @@ export const ImageCarouselSection = props => {
                   <IconButton
                     aria-label="delete"
                     color="primary"
-                    sx={{ backgroundColor: theme.palette.secondary.main }}
+                    sx={{ backgroundColor: theme.palette.white.main }}
                     onClick={() => setIndex(index - 1)}
                     disabled={index === 0 ? true : false}
                   >
@@ -201,7 +198,7 @@ export const ImageCarouselSection = props => {
                   <IconButton
                     aria-label="delete"
                     color="primary"
-                    sx={{ backgroundColor: theme.palette.secondary.main }}
+                    sx={{ backgroundColor: theme.palette.white.main }}
                     onClick={() => setIndex(index + 1)}
                     disabled={index === images.length - 1 ? true : false}
                   >

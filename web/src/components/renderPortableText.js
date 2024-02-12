@@ -15,8 +15,8 @@ export const RenderPortableText = (props) => {
   const theme = useTheme()
 
   const block = {
-    normal: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
-    body2: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
+    normal: ({ children, node  }) => <Typography sx={{  py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
+    body2: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
     h1: ({ children, node  }) => { 
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h1">{children}</Typography>
     },
