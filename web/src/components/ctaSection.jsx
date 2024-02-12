@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import { Container, Box, useTheme, Typography, Grid } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
-import {urlFor} from "../utils/imageHelpers"
+import { urlFor } from "../utils/imageHelpers"
 import { ButtonFormat } from "./buttonFormat"
 
 export const CtaSection = props => {
@@ -13,25 +13,19 @@ export const CtaSection = props => {
     previewData,
     sanityConfig,
     overlay,
-    leftAlign,
+    align,
     links,
     topPadding,
   } = props
 
-  const [align, setAlign] = useState(false)
-
   const theme = useTheme()
-
-  useEffect(() => {
-    setAlign(leftAlign)
-  }, [leftAlign])
 
   return (
     <Container
       maxWidth="false"
       disableGutters="true"
       sx={{
-        backgroundColor: theme.palette.background.main,
+        //backgroundColor: theme.palette.background.main,
         pt: topPadding
           ? 0
           : {
@@ -44,7 +38,7 @@ export const CtaSection = props => {
         },
       }}
     >
-      <Box
+      <Container maxWidth="xl"
         sx={{
           display: { xs: "grid", md: "grid" },
           gridTemplateColumns: "repeat(24,1fr)",
@@ -52,93 +46,48 @@ export const CtaSection = props => {
           width: "100%",
         }}
       >
-        {align === true && image && (
-          
-            <Image
+        {image && (
+          <Image
             // pass asset, hotspot, and crop fields
-            crop={
-              (previewData && previewData?.image?.crop) ||
-              image?.crop
-            }
+            crop={(previewData && previewData?.image?.crop) || image?.crop}
             hotspot={
-              (previewData && previewData?.image?.hotspot) ||
-              image?.hotspot
+              (previewData && previewData?.image?.hotspot) || image?.hotspot
             }
             asset={
-              (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
+              (previewData &&
+                previewData.image &&
+                previewData.image?._ref &&
+                urlFor(previewData.image).width(200).url()) ||
+              image.asset
             }
+            width={1330}
+            height={515}
             style={{
               objectFit: "cover",
               width: "100%",
               height: "100%",
               flexGrow: 1,
               minHeight: "100%",
-            }}
-          />
-          
-        )}
-
-        {align === false || align === null && image && (
-          <Box
-            sx={{
-              display: "grid",
               gridColumn: "1/25",
               gridRow: "1/auto",
-              height: "100%",
-              width: "100%",
             }}
-          >
-            <Container maxWidth="xl">
-              <Box
-                sx={{
-                  display: "grid",
-                  height: "100%",
-                  width: "100%",
-                }}
-              >
-                {image && (
-                  <Image
-                  // pass asset, hotspot, and crop fields
-                  crop={
-                    (previewData && previewData?.image?.crop) ||
-                    image?.crop
-                  }
-                  hotspot={
-                    (previewData && previewData?.image?.hotspot) ||
-                    image?.hotspot
-                  }
-                 
-                   asset={
-                    (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
-                  }
-        
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                    flexGrow: 1,
-                    minHeight: "100%",
-                  }}
-                />
-                )}
-                {overlay && (
-                  <Box
-                    className="overlay"
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      minHeight: "100%",
-                      gridColumn: "1/25",
-                      gridRow: "1/auto",
-                      position: "relative",
-                      zIndex: 1,
-                      backgroundColor: `rgba(36,36,36, ${overlay})`,
-                    }}
-                  />
-                )}
-              </Box>
-            </Container>
-          </Box>
+          />
+        )}
+
+        {overlay && (
+          <Box
+            className="overlay"
+            sx={{
+              width: "100%",
+              height: "100%",
+              minHeight: "100%",
+              gridColumn: "1/25",
+              gridRow: "1/auto",
+              position: "relative",
+              zIndex: 1,
+              backgroundColor: `rgba(0,40,86, ${overlay})`,
+            }}
+          />
         )}
 
         <Box
@@ -148,44 +97,30 @@ export const CtaSection = props => {
             gridRow: "1/auto",
             position: "relative",
             zIndex: 1,
-            py: { xs: !leftAlign ? 0 : 11, md: 0 },
           }}
         >
           <Container
             maxWidth="xl"
-            sx={{
-              py: leftAlign === true ? { xs: 0, md: 14 } : 8,
-            }}
+            
           >
-            <Box
-              sx={{
-                border:
-                  leftAlign === true
-                    ? `1px solid ${theme.palette.background.main}`
-                    : `unset`,
-              }}
-            >
+            <Box>
               <Grid
                 container
-                justifyContent={leftAlign === true ? "flex-start" : "center"}
+                justifyContent={align === "left" ? "flex-start" : "center"}
               >
-                <Grid
-                  item
-                  xs={12}
-                  md={6}
-                >
+                <Grid item xs={12} md={6}>
                   <Box
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: leftAlign === true ? "flex-start" : "center",
+                      alignItems: align === "left" ? "flex-start" : "center",
                       px: { xs: 4, md: 11 },
                       py: { xs: 8, md: 11 },
                     }}
                   >
                     <Typography
-                      color="background.main"
-                      align={leftAlign === true ? "left" : "center"}
+                      color="white.main"
+                      align={align === "left" ? "left" : "center"}
                       sx={{ my: { xs: 0, md: 5 } }}
                       variant="h2"
                     >
@@ -195,8 +130,8 @@ export const CtaSection = props => {
                     </Typography>
 
                     <Typography
-                      color="background.main"
-                      align={leftAlign === true ? "left" : "center"}
+                      color="white.main"
+                      align={align === "left" ? "left" : "center"}
                       sx={{ my: { xs: 0, md: 5 } }}
                       variant="body1"
                     >
@@ -240,7 +175,7 @@ export const CtaSection = props => {
             </Box>
           </Container>
         </Box>
-      </Box>
+      </Container>
     </Container>
   )
 }
@@ -289,7 +224,7 @@ export const query = graphql`
       }
       text
     }
-    leftAlign
+    align: leftAlign
     topPadding
     overlay
   }

@@ -31,6 +31,7 @@ import testimonialSectionType from '../schemas/sections/testimonialSection'
 import testimonialTileType from '../schemas/sections/testimonialTile'
 import teamSectionType from '../schemas/sections/teamSection'
 import caseStudySectionType from '../schemas/sections/caseStudySection'
+import ctaSectionType from '../schemas/sections/ctaSection'
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -54,7 +55,7 @@ import headerSectionAccommodationSearchType from './modules/headerSectionAccommo
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
-import ctaSectionType from './modules/ctaSection'
+
 import servicesSectionType from './modules/servicesSection'
 // import faqsSectionType from './modules/faqsSection'
 import blogSectionType from './modules/blogSection'

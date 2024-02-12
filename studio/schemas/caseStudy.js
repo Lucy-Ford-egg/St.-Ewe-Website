@@ -15,7 +15,7 @@ import headerSectionAccommodationSearchType from './modules/headerSectionAccommo
 import featureSectionType from './modules/featureSection'
 import videoSectionType from './modules/videoSection'
 import featuresListSectionType from './modules/featuresListSection'
-import ctaSectionType from './modules/ctaSection'
+import ctaSectionType from './sections/ctaSection'
 import servicesSectionType from "./modules/servicesSection"
 
 import imageCarouselSectionType from "./modules/imageCarouselSection"
