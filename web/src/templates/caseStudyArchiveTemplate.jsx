@@ -7,14 +7,15 @@ import { pageQuery } from "./queries/documentQueries"
 
 const CaseStudyArchiveTemplate = props => {
   const { data, pageContext } = props
-  const [posts, setPosts] = useState(null)
+  const [caseStudies, setCaseStudies] = useState(null)
   const [modules, setModules] = useState(null)
   const [blogInserted, setBlogInserted] = useState(null)
   
   let i = 0
 
   useEffect(() => {
-    setPosts(data.allSanityPost)
+  
+    setCaseStudies(data.allSanityCaseStudy)
     setModules(data?.sanityPage?.pageBuilder)
    
     setBlogInserted(i)
@@ -27,9 +28,10 @@ const CaseStudyArchiveTemplate = props => {
       slug={data.sanityPage.slug} //
       data={data}
     >
-      {posts && modules && 
+      {caseStudies && modules && 
       <Modules
         allSanityPost={data.allSanityPost}
+        allSanityCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
         modules={modules}
       />
@@ -43,12 +45,12 @@ export const Head = ({ data, location }) => {
 }
 
 export const caseStudyArchiveTemplateQuery = graphql`
-query caseStudyArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
   allSanityCaseStudy(
     filter: {
       service: {
         _id: {
-          in: $postIds
+          in: $caseStudyIds
         }
       }
     }
@@ -56,9 +58,19 @@ query caseStudyArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: 
     limit: $limit 
   ) {
     nodes {
+      slug {
+        current
+      }
+      title
+      date(formatString: "Do MMMM YYYY")
+      service {
+        name
+      }
+      _rawPerson(resolveReferences: {maxDepth: 10})
       image: coverImage {
         asset {
           _id
+
           gatsbyImageData
         }
         hotspot {
@@ -74,14 +86,7 @@ query caseStudyArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: 
           top
         }
       }
-      excerpt
-      slug {
-        current
-      }
-      service {
-        name
-        _id
-      }
+      _rawBody(resolveReferences: { maxDepth: 10 })
     }
   }
   sanityPage(slug: {current: {eq: $slug}}) {

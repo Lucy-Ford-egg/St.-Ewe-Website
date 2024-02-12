@@ -56,9 +56,29 @@ query blogArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, 
     limit: $limit 
   ) {
     nodes {
+      navOverlay
+      navColor {
+        value
+      }
+      author {
+        name
+      }
+      slug {
+        current
+      }
+      title
+      date(formatString: "MMM Do, YYYY")
+      category {
+        name
+      }
+      tileColor {
+        value
+        label
+      }
       image: coverImage {
         asset {
           _id
+
           gatsbyImageData
         }
         hotspot {
@@ -74,21 +94,16 @@ query blogArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, 
           top
         }
       }
-      
-      slug {
-        current
-      }
-      category {
-        name
-        _id
-      }
     }
   }
   sanityPage(slug: {current: {eq: $slug}}) {
     slug {
       current
     }
-
+    navOverlay
+    navColor {
+      value
+    }
     pageTitle
     pageBuilder {
       ... on SanityHeaderSection {
@@ -130,6 +145,7 @@ query blogArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, 
       ...on SanityBlogSection {
         ... BlogSectionFragment
       }
+     
     }
   }
 }

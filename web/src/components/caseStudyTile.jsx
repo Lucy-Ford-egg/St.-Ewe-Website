@@ -81,8 +81,6 @@ export const CaseStudyTile = ({
       flexBasis: "50%",
     },
   }
-
-debugger
   return (
     <Link to={`/case-studies/${slug.current}`} style={{ textDecoration: "none" }}>
       <Card

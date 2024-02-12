@@ -39,7 +39,7 @@ import {CaseStudySection} from './caseStudySection'
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allCaseStudy,  blogInserted } = props
+    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allSanityCaseStudy,  blogInserted } = props
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -106,7 +106,8 @@ const Modules = (props) => {
                             sanityConfig={sanityConfig}
                             pageContext={pageContext}
                             key={module._key + i}
-                            allCaseStudy={allCaseStudy.nodes}
+                            allSanityPost={allSanityPost}
+                            allSanityCaseStudy={allSanityCaseStudy}
                             {...module} />
                     }
                     

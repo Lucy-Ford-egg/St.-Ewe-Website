@@ -20,8 +20,13 @@ exports.createSchemaCustomization = ({ actions }) => {
       setArchive: Boolean
       archive: [SanityCategories]
     }
+    type ShowCaseStudyArchive implements Node {
+      setArchive: Boolean
+      archive: [SanityServices]
+    }
     type SanityPage implements Node {
       showArchive: ShowArchive
+      showCaseStudyArchive: ShowCaseStudyArchive
     }
     type SanityPost implements Node {
       metaTitle: String
@@ -41,7 +46,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const { createPage } = actions
   const result = await graphql(`
   query SanityAllData {
-    allSanityPage {
+    allSanityPage(filter: {slug: {current: {nin: ["blog", "case-studies"]}}}) {
       nodes {
         _type
         id
@@ -61,6 +66,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
                 name
                 _id
               }
+              setArchive
             }
           }
           ... on SanityCaseStudySection {
@@ -71,6 +77,81 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
                 name
                 _id
               }
+              setArchive
+            }
+          }
+        }
+      }
+    }
+    blogPage: allSanityPage(filter: {slug: {current: {in: "blog"}}}) {
+      nodes {
+        _type
+        id
+        slug {
+          current
+        }
+        navColor{
+          value
+        }
+        pageTitle
+        pageBuilder{
+          ... on SanityBlogSection {
+            _key
+            _type
+            showArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+          ... on SanityCaseStudySection {
+            _key
+            _type
+            showCaseStudyArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+        }
+      }
+    }
+    caseStudyPage: allSanityPage(filter: {slug: {current: {in: "case-studies"}}}) {
+      nodes {
+        _type
+        id
+        slug {
+          current
+        }
+        navColor{
+          value
+        }
+        pageTitle
+        pageBuilder{
+          ... on SanityBlogSection {
+            _key
+            _type
+            showArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+          ... on SanityCaseStudySection {
+            _key
+            _type
+            showCaseStudyArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
             }
           }
         }
@@ -109,7 +190,10 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         navColor{
           value
         }
-        tileColor
+        tileColor{
+          value
+          label
+        }
         title
         slug {
           current
@@ -132,119 +216,95 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const blogPosts = result.data?.allSanityPost?.nodes || []
   const caseStudies = result.data?.allSanityCaseStudy.nodes || []
   const teamMembers = result.data?.allSanityTeamMember.nodes || []
-  
+
   //const blogPages = result.data?.blogPages?.nodes || []
 
   const blogPostsCategories = blogPosts.map(({ category }) => category && category._id)
-  
-  console.log(`All Post Cats = ${blogPostsCategories}`)
+  const caseStudyCategories = caseStudies.map(({ service }) => service && service._id)
 
-  function hasShowArchive(pageBuilder) {
-    
-    for (let i = 0; i < pageBuilder.length; i++) {
-      console.log("What Type",  pageBuilder[i]._type)
-      if ('showArchive' in pageBuilder[i]) {
-        console.info('Found object with the key `showArchive`')
-        return true; // Found object with the key 'showArchive'
-      }
-      if(pageBuilder[i]._type == "caseStudySection"){
-        console.log('We have a caseStudySection')
-        if ('showCaseStudyArchive' in pageBuilder[i]) {
-          console.info('Found object with the key `showCaseStudyArchive`')
-          return true; // Found object with the key 'showArchive'
+  function getShowArchiveIds(pageBuilder, type) {
+    const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
+
+    const ids = pageBuilderArray.reduce((acc, currentItem) => {
+
+      if (type === "blogSection") {
+        if (currentItem && currentItem.showArchive && currentItem.showArchive.archive) {
+          const archiveItems = currentItem.showArchive.archive;
+
+          archiveItems.forEach(archiveItem => {
+            if (archiveItem._id) {
+              acc.push(archiveItem._id);
+            }
+          });
         }
       }
-     
-    }
-    return false; // Key not found in any object
-  }
+      if (type === "caseStudySection") {
+        if (currentItem && currentItem.showCaseStudyArchive && currentItem.showCaseStudyArchive.archive) {
+          const archiveItems = currentItem.showCaseStudyArchive.archive;
 
-  function getShowArchiveIds(pageBuilder) {
-    const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
-  
-    const ids = pageBuilderArray.reduce((acc, currentItem) => {
-      if (currentItem && currentItem.showArchive && currentItem.showArchive.archive) {
-        const archiveItems = currentItem.showArchive.archive;
-  
-        archiveItems.forEach(archiveItem => {
-          if (archiveItem._id) {
-            acc.push(archiveItem._id);
-          }
-        });
-      }
-      
-      if (currentItem && currentItem.showCaseStudyArchive && currentItem.showCaseStudyArchive.archive) {
-        const archiveItems = currentItem.showCaseStudyArchive.archive;
-  
-        archiveItems.forEach(archiveItem => {
-          if (archiveItem._id) {
-            acc.push(archiveItem._id);
-          }
-        });
-        console.log(`Acc - ${JSON.stringify(acc)}`)
+          archiveItems.forEach(archiveItem => {
+            if (archiveItem._id) {
+              acc.push(archiveItem._id);
+            }
+          });
+          console.log(`Acc - ${JSON.stringify(acc)}`)
+        }
       }
       return acc;
     }, []);
 
-  console.log(`BPC: ${blogPostsCategories} - ids: ${ids}`)
-    return ids.length === 0 ? blogPostsCategories : ids;
+    console.log(`BPC: ${blogPostsCategories} - ids: ${ids}`)
+    return ids.length === 0 ? type === "blogSection" ? blogPostsCategories : caseStudyCategories : ids;
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
-    console.info(`Type ${node?._type}`)
 
-    // Check if the array has an object with the key 'showArchive'
-    const hasKey = hasShowArchive(node?.pageBuilder);
-    
-    if (hasKey && node._type === "blogPostSection") {
-      console.info(`Yes - blogPostSection`)
-      paginate({
-        createPage,
-        items: blogPosts,
-        itemsPerPage: 3,
-        pathPrefix: `/${node.slug.current}`,
-        component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-        context: {
-          id: node.id,
-          slug: `${node.slug.current}`,
-          node: node,
-          postIds: getShowArchiveIds(node?.pageBuilder)
-        },
-      })
-    }
-    if (hasKey && node._type === "caseStudySection") {
-      console.info(`Yes - caseStudySection`)
-      paginate({
-        createPage,
-        items: blogPosts,
-        itemsPerPage: 3,
-        pathPrefix: `/${node.slug.current}`,
-        component: require.resolve(`./src/templates/caseStudyArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-        context: {
-          id: node.id,
-          slug: `${node.slug.current}`,
-          node: node,
-          postIds: getShowArchiveIds(node?.pageBuilder),
-          caseStudyIds: getShowArchiveIds(node?.pageBuilder)
-        },
-      })
-    }
-    else {
-      console.info(`Yes - Page`)
-      createPage({
-        path: node.slug.current,
-        component: require.resolve(`./src/templates/pageTemplate.jsx`),
-        context: {
-          id: node.id,
-          slug: `${node.slug.current}`,
-          node: node,
-          postIds: getShowArchiveIds(node?.pageBuilder),
-          navColor: node.navColor
-        },
-      })
-
-    }
+    createPage({
+      path: node.slug.current,
+      component: require.resolve(`./src/templates/pageTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        node: node,
+        postIds: getShowArchiveIds(node?.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveIds(node?.pageBuilder, "caseStudySection"),
+        navColor: node.navColor
+      },
+    })
   })
+
+  result.data.blogPage.nodes.forEach(node => {
+    paginate({
+      createPage,
+      items: blogPosts,
+      itemsPerPage: 3,
+      pathPrefix: `/${node.slug.current}`,
+      component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        node: node,
+        postIds: getShowArchiveIds(node.pageBuilder, "blogSection")
+      },
+    })
+  })
+  result.data.caseStudyPage.nodes.forEach(node => {
+    paginate({
+      createPage,
+      items: caseStudies,
+      itemsPerPage: 4,
+      pathPrefix: `/${node.slug.current}`,
+      component: require.resolve(`./src/templates/caseStudyArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        node: node,
+        postIds: getShowArchiveIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveIds(node.pageBuilder, "caseStudySection")
+      },
+    })
+  })
+
 
   blogPosts.forEach(node => {
     createPage({
@@ -294,7 +354,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       },
     })
   })
-  
+
 
 }
 

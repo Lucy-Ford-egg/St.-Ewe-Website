@@ -77,8 +77,8 @@ export const TestimonialSection = props => {
     return () => clearTimeout(timer)
   })
 
-  const previewAvatar = previewData?.[slideIndex].cite.externalCite ? previewData?.[slideIndex].cite.externalCite.image : previewData?.[slideIndex].cite.teamMemberCite.image
-  const avatar = testimonialTiles[slideIndex].cite.externalCite && testimonialTiles[slideIndex].cite.externalCite.image ? testimonialTiles[slideIndex].cite.externalCite.image : testimonialTiles[slideIndex].cite.teamMemberCite.image
+  const previewAvatar = previewData?.[slideIndex]?.cite.externalCite ? previewData?.[slideIndex]?.cite.externalCite.image : previewData?.[slideIndex]?.cite.teamMemberCite.image
+  const avatar = testimonialTiles[slideIndex]?.cite.externalCite && testimonialTiles[slideIndex]?.cite.externalCite.image ? testimonialTiles[slideIndex]?.cite.externalCite.image : testimonialTiles[slideIndex].cite.teamMemberCite.image
 
   let avatarImage = avatar.asset
   

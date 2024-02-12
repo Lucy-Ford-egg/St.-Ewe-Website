@@ -6,7 +6,7 @@ import { CaseStudyTile } from "./caseStudyTile"
 import { Filter } from "./filter"
 
 export const CaseStudySection = ({
-  allCaseStudy,
+  allSanityCaseStudy,
   searching = false,
   pageContext,
   topPadding,
@@ -17,7 +17,7 @@ export const CaseStudySection = ({
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
   const updatePosts = useCallback(() => {
-    const thePlaces = filtersPosts ? filtersPosts : allCaseStudy
+    const thePlaces = filtersPosts ? filtersPosts : allSanityCaseStudy
     setFilterData(thePlaces)
   }, [filtersPosts, setFilterData])
 
@@ -44,8 +44,8 @@ export const CaseStudySection = ({
       <Container sx={{ px: { xs: 0 } }}>
         {filtersPosts && searching === false && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
-            {filtersPosts?.map((tile, i) => {
-              debugger
+            {filtersPosts && filtersPosts.nodes.map((tile, i) => {
+             
               return (
                 <Grid key={`${tile.title}-${i}`} item xs={12} sm={12} md={12}>
                   <CaseStudyTile {...tile} i={i} />

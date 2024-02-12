@@ -9,7 +9,7 @@ import {
   Paper,
   Divider,
 } from "@mui/material"
-import { Button, IconButton } from "gatsby-theme-material-ui"
+import { Button, GatsbyLink, IconButton } from "gatsby-theme-material-ui"
 import { CategoryLabel } from "./categoryLabel"
 import EastIcon from "@mui/icons-material/East"
 import { Link } from "gatsby-theme-material-ui"
@@ -53,12 +53,20 @@ export const BlogSection = props => {
         {allSanityPost &&
           allSanityPost.nodes &&
           allSanityPost.nodes.map((post, i) => {
-            const { image, category, author, title, tileColor, date } = post
+            const { image, category, author, title, tileColor, date, slug } = post
             
             return (
-              <Grid item xs={12} sm={6} md={3}>
+              <Grid item xs={12} sm={6} md={3} sx={{
+                "&:hover":{
+                 "& .wrapper":{
+                  transition: 'all 0.2s ease-in-out 0s',
+                  transform: 'scale(1.01)',
+                  boxShadow: '0 0 10px 1px rgba(0,0,0,0.2)', 
+                }}}}>
+                <GatsbyLink style={{textDecoration: 'none', color: 'inherit' }} to={slug.current}>
                 <Paper
-                  elevation={1}
+                className="wrapper"
+                  elevation={0}
                   square
                   sx={{
                     height: "100%",
@@ -245,7 +253,7 @@ export const BlogSection = props => {
                           }}
                         />
                       )}
-                      {/* <Box
+                       {image && <Box
             sx={{
               position: "relative",
               zIndex: 1,
@@ -253,16 +261,19 @@ export const BlogSection = props => {
               gridRow: "1/auto",
               width: "100%",
               height: "100%",
-              //backgroundColor: "rgba(0,0,0,0.3)",
+              backgroundColor: "rgba(0,0,0,0.5)",
             }}
-          /> */}
+          />}
                     </Box>
                   </Box>
                 </Paper>
+                </GatsbyLink>
               </Grid>
             )
           })}
       </Grid>
+
+      {props.pageContext.humanPageNumber && 
       <Box
         sx={{
           pt: 12,
@@ -341,6 +352,7 @@ export const BlogSection = props => {
           </Button>
         </Box>
       </Box>
+}
     </Container>
   )
 }

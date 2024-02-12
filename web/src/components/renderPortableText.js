@@ -13,7 +13,7 @@ export const RenderPortableText = (props) => {
   const { setAsHeading = false, previewData, sanityConfig, value, variant, textAlign,  animate = false, subtitlePosition = null, component } = props
 
   const theme = useTheme()
-debugger
+
   const block = {
     normal: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
     body2: ({ children, node  }) => <Typography sx={{ py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
@@ -45,7 +45,7 @@ debugger
     strong: ({ children, node  }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
     
     link: ({ children, value }) => {
-      debugger
+      
       return (
     <PortableTextInlineLink color={value.value} value={value}>{children}</PortableTextInlineLink>
       )},
