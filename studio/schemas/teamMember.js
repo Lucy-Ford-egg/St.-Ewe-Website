@@ -10,11 +10,11 @@ import headerSectionType from './sections/headerSection'
 import testimonialSectionType from "./sections/testimonialSection"
 import teamSectionType from './sections/teamSection'
 import ctaSectionType from './sections/ctaSection'
+import featuresListSectionType from '../schemas/sections/featuresListSection'
+import videoSectionType from '../schemas/sections/videoSection'
 
 // Module
 import featureSectionType from './modules/featureSection'
-import videoSectionType from './modules/videoSection'
-import featuresListSectionType from './modules/featuresListSection'
 import servicesSectionType from "./modules/servicesSection"
 
 import imageCarouselSectionType from "./modules/imageCarouselSection"

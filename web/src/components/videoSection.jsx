@@ -16,37 +16,23 @@ export const VideoSection = props => {
   } = props
 
   return (
-    <Container maxWidth="xl" sx={{pb: {xs: theme.spacing(0), md: theme.spacing(10)}, pt: topPadding ? 0 : {xs: theme.spacing(10), md: theme.spacing(10)}, height: 'min-content'}}>
-      <Grid container sx={{
-        px: {xs: 0}, alignItems: 'center'
+    <Container maxWidth="lg" sx={{pb: {xs: theme.spacing(0), md: theme.spacing(10)}, pt: topPadding ? 0 : {xs: theme.spacing(10), md: theme.spacing(10)}, height: 'min-content'}}>
+      <Grid container 
+      rowSpacing={0}
+      sx={{
+        px: {xs: 0, md: 16},
+        py: {xs: 0, md: 15}, 
+        alignItems: 'center',
+        border: {xs: 'unset', md: `1px solid ${theme.palette.primary.main}`}
       }}>
         <Grid item xs={12} sm={12}>
-          <Box sx={{iframe: {width: '100%', height: {xs: `215px`, md:`749px`}} }}>
+          <Box sx={{iframe: {width: '100%', height: {xs: `215px`, md:`583px`}, minHeight: '100%'} }}>
             {video && (
              <Vimeo
              video={video.url}
              autoplay
              controls={true}
            />
-              // <GatsbyImage
-              //   image={
-              //     getGatsbyImageData(
-              //       previewData?.image?.asset?._ref,
-              //       { maxWidth: 1440 },
-              //       sanityConfig,
-              //     ) || getImage(image?.asset)
-              //   }
-              //   layout="constrained"
-              //   aspectRatio={133 / 8}
-              //   alt={image.asset?.altText}
-              //   style={{
-              //     minHeight: "100%",
-              //     gridColumn: "1/25",
-              //     gridRow: "1/auto",
-              //     borderRadius: theme.spacing(2)
-              //   }}
-                
-              // />
             )}
           </Box>
         </Grid>
@@ -60,6 +46,7 @@ export const query = graphql`
   fragment VideoSectionFragment on SanityVideoSection {
     _key
     _type
+    topPadding
     video {
       url
       id

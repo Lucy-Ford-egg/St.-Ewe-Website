@@ -32,6 +32,9 @@ import testimonialTileType from '../schemas/sections/testimonialTile'
 import teamSectionType from '../schemas/sections/teamSection'
 import caseStudySectionType from '../schemas/sections/caseStudySection'
 import ctaSectionType from '../schemas/sections/ctaSection'
+import featuresListSectionType from '../schemas/sections/featuresListSection'
+import featuresTileType from '../schemas/sections/featuresTile'
+import videoSectionType from '../schemas/sections/videoSection'
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -39,7 +42,7 @@ import iconsType from '../schemas/icons'
 import colorChoiceType from '../schemas/colorChoice'
 import overlayType from '../schemas/overlay'
 import textAlignType from '../schemas/textAlign'
-import featuresTileType from '../schemas/modules/featuresTile'
+
 import servicesTileType from '../schemas/modules/servicesTile'
 
 
@@ -53,8 +56,8 @@ import contactSectionType from '../schemas/modules/contactSection'
 // Modules
 import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
 import featureSectionType from './modules/featureSection'
-import videoSectionType from './modules/videoSection'
-import featuresListSectionType from './modules/featuresListSection'
+
+
 
 import servicesSectionType from './modules/servicesSection'
 // import faqsSectionType from './modules/faqsSection'

@@ -5,16 +5,7 @@ export default defineType({
   name: "featuresTile",
   type: "object",
   title: "Features Tile",
-  fields: [
-    defineField({
-      name: 'image',
-      type: 'image',
-      title: 'Image',
-      validation: Rule => Rule.required(),
-      options: {
-        hotspot: true,
-      },
-    }),  
+  fields: [ 
     defineField({
       name: 'title',
       type: 'string',
@@ -26,7 +17,7 @@ export default defineType({
       type: 'text',
       rows: 6,
       title: 'Text',
-      description: 'Add some textual content. Optional'
+      description: 'Add some textual content.'
     }),
     defineField({
       name: 'link',

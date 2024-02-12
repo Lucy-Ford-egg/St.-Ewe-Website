@@ -7,6 +7,11 @@ export default defineType({
   title: "Video Section",
   fields: [
     defineField({
+      name: 'topPadding',
+      type: 'boolean',
+      title: 'Remove top padding',
+    }),
+    defineField({
       name: 'video',
       type: 'videoId',
       title: 'Add a Vimeo Video',

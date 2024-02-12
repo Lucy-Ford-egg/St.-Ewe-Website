@@ -10,14 +10,12 @@ import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
 import caseStudySectionType from './sections/caseStudySection'
 import ctaSectionType from '../schemas/sections/ctaSection'
+import featuresListSectionType from '../schemas/sections/featuresListSection'
+import videoSectionType from '../schemas/sections/videoSection'
 
 // Modules
 import featureSectionType from './modules/featureSection'
-import videoSectionType from './modules/videoSection'
-import featuresListSectionType from './modules/featuresListSection'
-
 import servicesSectionType from './modules/servicesSection'
-
 import imageCarouselSectionType from './modules/imageCarouselSection'
 import locationSectionType from './modules/locationSection'
 // import faqsSectionType from './modules/faqsSection'
@@ -25,20 +23,6 @@ import benifitsSectionType from './modules/benifitsSection'
 import contactSectionType from './modules/contactSection'
 import blogSectionType from './modules/blogSection'
 
-// import imageWithCaptionType from './modules/imageWithCaption'
-// import textBlockType from './modules/textBlock'
-// import imageCarouselCaptionLinkType from './modules/imageCarouselCaptionLink'
-// import heroCallToActionType from './modules/heroCallToAction'
-// import mapType from './modules/map'
-// import twoColumnTitleTextCtaType from './modules/twoColumnTitleTextCta'
-// import imageCarouselSubtitleTitleTextLinkType from './modules/imageCarouselSubtitleTitleTextLink'
-// import postsGridType from './modules/postsGrid'
-// import heroNewsletterType from './modules/heroNewsletter'
-// import heroInfoCallToActionType from '../schemas/modules/heroInfoCallToAction'
-// import titleSubtitleTextType from '../schemas/components/titleSubtitleText'
-// import imageTextCallToActionImageType from '../schemas/modules/imageTextCallToActionImage'
-// import imageWithLinkType from '../schemas/modules/imageWithLink'
-// import testimonialSection from "./section/testimonialSection";
 
 /**
  * This file is the schema definition for a post.

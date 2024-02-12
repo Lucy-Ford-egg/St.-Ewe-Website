@@ -7,17 +7,6 @@ export default defineType({
   title: "Features List Section",
   fields: [
     defineField({
-      name: 'icon',
-      type: 'icons',
-      title: 'Icon',
-    }), 
-    defineField({
-      name: 'subtitle',
-      type: 'string',
-      title: 'Subtitle',
-      hidden: ({ parent, value }) => !value && parent?.icon
-    }),
-    defineField({
       name: 'title',
       type: 'string',
       title: 'Title',
@@ -31,13 +20,15 @@ export default defineType({
       title: 'Text',
       description: 'Add some textual content. Optional'
     }),
-    
     defineField({
-      name: 'textAlign',
-      type: 'textAlign',
-      title: 'Choose Text Alignment',
-    }), 
-
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      validation: Rule => Rule.required(),
+      options: {
+        hotspot: true,
+      },
+    }),
     defineField({
       name: 'topPadding',
       type: 'boolean',
@@ -61,7 +52,7 @@ export default defineType({
       const { title, media, showSearch, textAlign } = selection
       return {
         title: `${title} ${showSearch && '| Search active'}`,
-        subtitle: `Features List Section | Text align ${textAlign}`,
+        subtitle: `Features List Section`,
         // media: media,
         icon: MdViewModule
       }
