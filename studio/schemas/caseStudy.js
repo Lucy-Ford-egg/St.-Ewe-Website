@@ -11,13 +11,15 @@ import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import videoSectionType from '../schemas/sections/videoSection'
+import newsletterSectionType from '../schemas/sections/newsletterSection'
+
 
 // Modules
 import featureSectionType from './modules/featureSection'
 import ctaSectionType from './sections/ctaSection'
 import servicesSectionType from "./modules/servicesSection"
 
-import imageCarouselSectionType from "./modules/imageCarouselSection"
+import imageCarouselSectionType from "./sections/imageCarouselSection"
 import locationSectionType from "./modules/locationSection"
 // import faqsSectionType from "./modules/faqsSection"
 import benifitsSectionType from "./modules/benifitsSection"
@@ -167,13 +169,14 @@ export default defineType({
         { type: headerSectionType.name },
         { type: testimonialSectionType.name },
         { type: teamSectionType.name },
-
-        { type: featureSectionType.name },
+        { type: newsletterSectionType.name},
         { type: videoSectionType.name },
         { type: featuresListSectionType.name },
         { type: ctaSectionType.name },
-        { type: servicesSectionType.name },
         { type: imageCarouselSectionType.name },
+
+        { type: featureSectionType.name },
+        { type: servicesSectionType.name },
         { type: locationSectionType.name },
         // { type: faqsSectionType.name},
         { type: benifitsSectionType.name },

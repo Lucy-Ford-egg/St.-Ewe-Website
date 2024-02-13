@@ -12,16 +12,18 @@ import caseStudySectionType from './sections/caseStudySection'
 import ctaSectionType from '../schemas/sections/ctaSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import videoSectionType from '../schemas/sections/videoSection'
+import newsletterSectionType from '../schemas/sections/newsletterSection'
+import imageCarouselSectionType from './sections/imageCarouselSection'
+import blogSectionType from './modules/blogSection'
+
 
 // Modules
 import featureSectionType from './modules/featureSection'
 import servicesSectionType from './modules/servicesSection'
-import imageCarouselSectionType from './modules/imageCarouselSection'
 import locationSectionType from './modules/locationSection'
 // import faqsSectionType from './modules/faqsSection'
 import benifitsSectionType from './modules/benifitsSection'
 import contactSectionType from './modules/contactSection'
-import blogSectionType from './modules/blogSection'
 
 
 /**
@@ -119,18 +121,20 @@ export default defineType({
         {type: testimonialSectionType.name},
         {type: teamSectionType.name},
         {type: caseStudySectionType.name},
-
-        {type: featureSectionType.name},
         {type: videoSectionType.name},
         {type: featuresListSectionType.name},
         {type: ctaSectionType.name},
-        {type: servicesSectionType.name},
+        {type: newsletterSectionType.name},
         {type: imageCarouselSectionType.name},
+        {type: blogSectionType.name},
+
+
+        {type: featureSectionType.name},
+        {type: servicesSectionType.name},
         {type: locationSectionType.name},
         //{type: faqsSectionType.name},
         {type: benifitsSectionType.name},
         {type: contactSectionType.name},
-        {type: blogSectionType.name},
         // etc...
       ],
       group: 'pageContent',

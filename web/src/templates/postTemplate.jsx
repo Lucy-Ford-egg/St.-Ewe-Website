@@ -306,6 +306,9 @@ export const pageTemplateQuery = graphql`
         ... on SanityContactSection {
           ...ContactSectionFragment
         }
+        ... on SanityNewsletterSection{
+          ... NewsletterSectionFragment
+        }
       }
     }
   }

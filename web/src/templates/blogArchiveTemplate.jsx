@@ -145,6 +145,9 @@ query blogArchiveTemplateQuery( $postIds:[String!], $slug: String!, $skip: Int, 
       ...on SanityBlogSection {
         ... BlogSectionFragment
       }
+      ... on SanityNewsletterSection{
+        ... NewsletterSectionFragment
+      }
      
     }
   }

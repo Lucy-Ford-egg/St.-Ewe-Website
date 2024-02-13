@@ -12,13 +12,14 @@ import teamSectionType from './sections/teamSection'
 import ctaSectionType from './sections/ctaSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import videoSectionType from '../schemas/sections/videoSection'
+import newsletterSectionType from '../schemas/sections/newsletterSection'
+import imageCarouselSectionType from "./sections/imageCarouselSection"
 
 // Module
 import featureSectionType from './modules/featureSection'
+import locationSectionType from "./modules/locationSection"
 import servicesSectionType from "./modules/servicesSection"
 
-import imageCarouselSectionType from "./modules/imageCarouselSection"
-import locationSectionType from "./modules/locationSection"
 // import faqsSectionType from "./modules/faqsSection"
 import benifitsSectionType from "./modules/benifitsSection"
 import contactSectionType from './modules/contactSection'
@@ -195,16 +196,17 @@ export default defineType({
     title: 'Page builder',
     description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
     of: [
-      {type: headerSectionType.name},
-      {type: testimonialSectionType.name},
-      {type: teamSectionType.name},
-
-      { type: featureSectionType.name},
+      { type: headerSectionType.name},
+      { type: testimonialSectionType.name},
+      { type: teamSectionType.name},
+      { type: newsletterSectionType.name},
+      { type: imageCarouselSectionType.name},
       { type: videoSectionType.name},
       { type: featuresListSectionType.name }, 
       { type: ctaSectionType.name },
+
+      { type: featureSectionType.name},
       { type: servicesSectionType.name}, 
-      { type: imageCarouselSectionType.name},
       { type: locationSectionType.name},
       // { type: faqsSectionType.name},
       { type: benifitsSectionType.name},

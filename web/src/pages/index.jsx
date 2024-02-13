@@ -97,6 +97,9 @@ query homeQuery{
         ... on SanityBlogSection {
           ... BlogSectionFragment
         }
+        ... on SanityNewsletterSection{
+          ... NewsletterSectionFragment
+        }
       }
     }
   }

@@ -45,10 +45,29 @@ export const MailchimpList = () => {
     }}>
       {!MCResult &&
         <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}  sx={{ display: 'flex', width: '100%'}}>
-          <FormControl sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: {xs : 'center', md: 'unset'}, flexDirection: { xs: 'column', md: 'row' } }}>
-            <Box sx={{width: '100%'}}>
-              <TextField id="email" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
+          <FormControl sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: {xs : 'center', md: 'unset'}, flexDirection: { xs: 'column', md: 'column' } }}>
+          <Box sx={{
+            display: 'flex',
+            columnGap: 6,
+          }}>
+          <Box sx={{width: '100%'}}>
+              <TextField id="firstName" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
                 backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%', md: 307}, maxWidth: 350, mb: { xs: 6, md: 0 }
+              }} name="firstName" type="text" placeholder="Enter your first name" />
+              <MyFormHelperText />
+            </Box>
+
+            <Box sx={{width: '100%'}}>
+              <TextField id="lastName" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%', md: 307}, maxWidth: 350, mb: { xs: 6, md: 0 }
+
+              }} name="lastName" type="text" placeholder="Enter your last name" />
+              <MyFormHelperText />
+            </Box>
+            </Box>
+            <Box sx={{width: '100%', flexBasis: '100%'}}>
+              <TextField id="email" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: '100%'}, minWidth: {xs: '100%', md: 307}, mb: { xs: 6, md: 0 }
 
               }} name="email" type="email" placeholder="Enter your email address" />
               <MyFormHelperText />

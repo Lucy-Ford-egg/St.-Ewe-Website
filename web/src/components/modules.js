@@ -15,27 +15,8 @@ import { FaqsSection } from './faqsSection'
 import { BenifitsSection } from './benifitsSection'
 import { ContactSection } from './contactSection'
 import { TeamSection } from './teamSection'
-import {CaseStudySection} from './caseStudySection'
-
-
-// import { Places } from './places'
-// import { Posts } from './posts'
-// import { ImageCaption } from './imageCaption'
-// import { Text } from './text'
-// import { GalleryCarousel } from './galleryCarousel'
-// import { HeroCallToAction } from './heroCallToAction'
-// import { HeroNewsletter } from './heroNewsletter'
-// import { MultiColumnTitleTextLink } from './multiColumnTitleTextLink'
-// import { Map } from './map'
-// import { CategoryFeature } from './categoryFeature'
-// import { HeroInfoCallToAction } from './heroInfoCallToAction'
-// import { TitleSubtitleText } from './titleSubtitleText'
-// import { ImageTextCallToActionImage } from './imageTextCallToActionImage'
-// import { ImageLink } from './imageLink'
-// import { InstagramEmbed } from './InstagramEmbed'
-
-
-
+import { CaseStudySection} from './caseStudySection'
+import { NewsletterSection } from './newsletterSection'
 
 const Modules = (props) => {
 
@@ -71,6 +52,16 @@ const Modules = (props) => {
                     if (isModule(module, 'headerSection')) {
                         return (
                             <HeaderSection
+                                previewData={previewData && previewData[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
+
+                    if (isModule(module, 'newsletterSection')) {
+                        return (
+                            <NewsletterSection
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

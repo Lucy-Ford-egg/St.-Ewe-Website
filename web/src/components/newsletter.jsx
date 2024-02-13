@@ -5,6 +5,7 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 import { Icons } from "../components/icons"
 import { MailchimpList } from "./mailchimpList"
 
+// !is this still used?
 export const Newsletter = props => {
   const { newsletterSetup, previewData, sanityConfig, icon = "bud" } = props
 

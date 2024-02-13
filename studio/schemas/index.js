@@ -35,6 +35,9 @@ import ctaSectionType from '../schemas/sections/ctaSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import featuresTileType from '../schemas/sections/featuresTile'
 import videoSectionType from '../schemas/sections/videoSection'
+import newsletterSectionType from '../schemas/sections/newsletterSection'
+import imageCarouselSectionType from './sections/imageCarouselSection'
+
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -46,7 +49,6 @@ import textAlignType from '../schemas/textAlign'
 import servicesTileType from '../schemas/modules/servicesTile'
 
 
-import imageCarouselSectionType from '../schemas/modules/imageCarouselSection'
 import locationSectionType from '../schemas/modules/locationSection'
 import benifitsSectionType from "../schemas/modules/benifitsSection"
 import contactSectionType from '../schemas/modules/contactSection'
@@ -90,7 +92,14 @@ export const schemaTypes = [
   headerSectionType,
   teamSectionType,
   caseStudySectionType,
-  
+  newsletterSectionType,
+  videoSectionType,
+  featuresListSectionType,
+  ctaSectionType,
+  featuresTileType,
+  blogSectionType,
+  testimonialTileType,
+
   // faqsType,
   iconsType,
   textAlignType,
@@ -113,15 +122,10 @@ export const schemaTypes = [
   categoriesType,
   //Old
 
-
-  //Old
-
   // Modules
   headerSectionAccommodationSearchType,
   featureSectionType,
-  videoSectionType,
-  featuresListSectionType,
-  ctaSectionType,
+
   servicesSectionType,
   testimonialSectionType,
   imageCarouselSectionType,
@@ -129,13 +133,13 @@ export const schemaTypes = [
   // faqsSectionType,
   benifitsSectionType,
   contactSectionType,
-  blogSectionType,
+
   // Old
 
   // Components
-  featuresTileType,
+
   servicesTileType,
-  testimonialTileType,
+
   subItemType,
   // Old
 ]
