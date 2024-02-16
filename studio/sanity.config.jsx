@@ -2,7 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes, brandColors, googleMaps } from './schemas'
-import {presentationTool} from 'sanity/presentation'
+
 
 import { Logo } from './plugins/logo/logo'
 import { googleMapsInput } from "@sanity/google-maps-input"
@@ -13,6 +13,7 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/studioTheme'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 
+import {presentationTool} from 'sanity/presentation'
 import {locate} from './locate'
 
 export default defineConfig({
