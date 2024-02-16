@@ -1,5 +1,3 @@
-import { locate } from '../locate'
-
 import navigationType from '../schemas/navigation'
 import navItemType from '../schemas/navItem'
 import linkDefinedType from '../schemas/linkDefined'
@@ -143,12 +141,6 @@ export const schemaTypes = [
   subItemType,
   // Old
 ]
-
-export const presentationConfig = {
-  // Required: set the base URL to the preview location in the front end
-  previewUrl: 'https://taylormoney.netlify.app', //'http://localhost:8000', //'https://taylormoney.netlify.app'
-  locate: locate,
-}
 
 export const googleMaps = {
   apiKey: "AIzaSyD-iPk4tHZ8FEhcbTWFWLPopgVd6yqS0lI"

@@ -12,7 +12,7 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/studioTheme'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 
-import {presentationTool} from 'sanity/presentation'
+import {locate} from './locate'
 
 export default defineConfig({
   name: 'default',
@@ -33,7 +33,10 @@ export default defineConfig({
     structureTool({ 
         structure: deskStructure, 
       }),
-    presentationTool(presentationConfig),
+    presentationTool({
+      previewUrl: 'https://taylormoney.netlify.app', //'http://localhost:8000', //'https://taylormoney.netlify.app'
+      locate: locate,
+    }),
     visionTool(),
     media(),
     unsplashImageAsset(),
