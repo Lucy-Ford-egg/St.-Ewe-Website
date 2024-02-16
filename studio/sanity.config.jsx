@@ -2,6 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes, brandColors, googleMaps } from './schemas'
+import {presentationTool} from 'sanity/presentation'
 
 import { Logo } from './plugins/logo/logo'
 import { googleMapsInput } from "@sanity/google-maps-input"
