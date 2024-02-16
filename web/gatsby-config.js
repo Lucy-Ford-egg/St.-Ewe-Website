@@ -17,11 +17,23 @@ module.exports = {
       headers: [
         {
           key: `X-Frame-Options: ALLOW-FROM`,
-          value: `https://heligan-campsite.sanity.studio/`,
+          value: `https://taylormoney.sanity.studio`,
         },
         {
-          key: `Content-Security-Policy: child-src`,
-          value: `https://heligan-campsite.sanity.studio`,
+          key: `Content-Security-Policy: frame-src`,
+          value: `https://taylormoney.sanity.studio`,
+        },
+        {
+          key: `Content-Security-Policy: frame-src`,
+          value: `https://vimeo.com`,
+        },
+        {
+          key: `Content-Security-Policy: frame-src`,
+          value: `https://player.vimeo.com`,
+        },
+        {
+          key: `Content-Security-Policy: frame-src`,
+          value: `https://fresnel.vimeocdn.com`,
         }
       ]
     }
