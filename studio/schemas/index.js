@@ -146,7 +146,7 @@ export const schemaTypes = [
 
 export const presentationConfig = {
   // Required: set the base URL to the preview location in the front end
-  previewUrl: 'http://localhost:8000', //'https://taylormoney.netlify.app'
+  previewUrl: 'https://taylormoney.netlify.app', //'http://localhost:8000', //'https://taylormoney.netlify.app'
   locate: locate,
 }
 
