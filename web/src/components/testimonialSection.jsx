@@ -95,12 +95,14 @@ export const TestimonialSection = props => {
           width: {xs: '85px', sm: 'auto'},
           height: {xs: '239.91px', sm: 'auto'},
           zIndex: 0,
-          opacity: contrastColour(backgroundColor).spiro.opacity,
+          opacity: contrastColour(previewData &&
+            previewData.backgroundColor || backgroundColor).spiro.opacity,
           svg: {
             width: '100%',
             height: 'auto',
             path:{
-              stroke: contrastColour(backgroundColor).spiro.fill,
+              stroke: contrastColour(previewData &&
+                previewData.backgroundColor || backgroundColor).spiro.fill,
               
             }
           }
@@ -187,7 +189,8 @@ export const TestimonialSection = props => {
                   >
                     <Typography
                       align="center"
-                      color={contrastColour(backgroundColor).textColour}
+                      color={contrastColour(previewData &&
+                        previewData.backgroundColor || backgroundColor).textColour}
                       variant="h3"
                       sx={{ py: 6 }}
                     >
@@ -198,7 +201,8 @@ export const TestimonialSection = props => {
                         display: "flex",
                         my: 10,
                         width: "5.625rem",
-                        borderColor: contrastColour(backgroundColor).divider.hex,
+                        borderColor: contrastColour(previewData &&
+                          previewData.backgroundColor || backgroundColor).divider.hex,
                       }}
                     />
                     <Box
@@ -241,7 +245,8 @@ export const TestimonialSection = props => {
                               height: 56,
                               objectFit: "cover",
                               borderRadius: 1000,
-                              border: `1px solid ${contrastColour(backgroundColor).divider.hex}`,
+                              border: `1px solid ${contrastColour(previewData &&
+                                previewData.backgroundColor || backgroundColor).divider.hex}`,
                             }}
                           />
                         )}
@@ -255,13 +260,15 @@ export const TestimonialSection = props => {
                         }}
                       >
                         <Typography
-                          color={contrastColour(backgroundColor).textColour}
+                          color={contrastColour(previewData &&
+                            previewData.backgroundColor || backgroundColor).textColour}
                           variant="body1"
                           sx={{ fontWeight: 700 }}
                         >
                           {testimonialTiles[slideIndex]?.cite.teamMemberCite ? testimonialTiles[slideIndex]?.cite.teamMemberCite?.name : testimonialTiles[slideIndex]?.cite.externalCite?.citeName}
                         </Typography>
-                        <Typography color={contrastColour(backgroundColor).textColour} variant="overline">
+                        <Typography color={contrastColour(previewData &&
+            previewData.backgroundColor || backgroundColor).textColour} variant="overline">
                         {testimonialTiles[slideIndex]?.cite.teamMemberCite ? testimonialTiles[slideIndex]?.cite.teamMemberCite?.position : testimonialTiles[slideIndex]?.cite.externalCite?.citeLocation}
                         </Typography>
                       </Box>
@@ -289,9 +296,11 @@ export const TestimonialSection = props => {
           <IconButton
             aria-label="delete"
             onClick={() => paginate(-1)}
-            sx={{ border: `1px solid ${contrastColour(backgroundColor).svg.default.hex}` }}
+            sx={{ border: `1px solid ${contrastColour(previewData &&
+              previewData.backgroundColor || backgroundColor).svg.default.hex}` }}
           >
-            <ArrowBackIcon color={contrastColour(backgroundColor).svg.default.mui} />
+            <ArrowBackIcon color={contrastColour(previewData &&
+            previewData.backgroundColor || backgroundColor).svg.default.mui} />
           </IconButton>
 
           <Box
@@ -306,8 +315,10 @@ export const TestimonialSection = props => {
             {testimonialTiles.map((dot, index) => {
               let dotColour =
                 index === slideIndex
-                  ? contrastColour(backgroundColor).svg?.default?.mui
-                  : contrastColour(backgroundColor).svg?.active?.hex
+                  ? contrastColour(previewData &&
+                    previewData.backgroundColor || backgroundColor).svg?.default?.mui
+                  : contrastColour(previewData &&
+                    previewData.backgroundColor || backgroundColor).svg?.active?.hex
               return (
                 <SvgIcon
                   color={dotColour}
@@ -323,9 +334,11 @@ export const TestimonialSection = props => {
           <IconButton
             aria-label="delete"
             onClick={() => paginate(1)}
-            sx={{ border: `1px solid ${contrastColour(backgroundColor).svg.default.hex}` }}
+            sx={{ border: `1px solid ${contrastColour(previewData &&
+              previewData.backgroundColor || backgroundColor).svg.default.hex}` }}
           >
-            <ArrowForwardIcon color={contrastColour(backgroundColor).svg.default.mui} />
+            <ArrowForwardIcon color={contrastColour(previewData &&
+            previewData.backgroundColor || backgroundColor).svg.default.mui} />
           </IconButton>
         </Box>
       </Container>
@@ -341,12 +354,14 @@ export const TestimonialSection = props => {
           display: 'flex',
           alignItems: {xs: 'flex-end', sm: 'unset'},
           zIndex: 0,
-          opacity: contrastColour(backgroundColor).spiro.opacity,
+          opacity: contrastColour(previewData &&
+            previewData.backgroundColor || backgroundColor).spiro.opacity,
           svg: {
             width: '100%',
             height: 'auto',
             path:{
-              stroke: contrastColour(backgroundColor).spiro.fill,
+              stroke: contrastColour(previewData &&
+                previewData.backgroundColor || backgroundColor).spiro.fill,
               
             }
           }
