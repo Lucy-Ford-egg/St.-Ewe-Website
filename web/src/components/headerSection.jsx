@@ -57,6 +57,7 @@ export const HeaderSection = props => {
         position: "relative",
         pt: spiro ? 17 : 0,
         pb: 15,
+        backgroundColor: previewData && previewData.backgroundColor.value || backgroundColor.value,
       }}
     >
       {spiro && (
@@ -74,12 +75,12 @@ export const HeaderSection = props => {
             width: { xs: "85px", sm: "auto" },
             height: { xs: "239.91px", sm: "auto" },
             zIndex: 0,
-            opacity: contrastColour(backgroundColor).spiro.opacity,
+            opacity: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.opacity,
             svg: {
               width: "100%",
               height: "auto",
               path: {
-                stroke: contrastColour(backgroundColor).spiro.fill,
+                stroke: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.fill,
               },
             },
           }}
@@ -131,7 +132,7 @@ export const HeaderSection = props => {
                   display: "flex",
                   my: 10,
                   width: "19.1875rem",
-                  borderColor: contrastColour(backgroundColor).divider.hex,
+                  borderColor: contrastColour(previewData && previewData.backgroundColor || backgroundColor).divider.hex,
                 }}
               />
               </Box>
@@ -233,12 +234,12 @@ export const HeaderSection = props => {
             display: "flex",
             alignItems: { xs: "flex-end", sm: "unset" },
             zIndex: 0,
-            opacity: contrastColour(backgroundColor).spiro.opacity,
+            opacity: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.opacity,
             svg: {
               width: "100%",
               height: "auto",
               path: {
-                stroke: contrastColour(backgroundColor).spiro.fill,
+                stroke: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.fill,
               },
             },
           }}
