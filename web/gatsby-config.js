@@ -39,8 +39,8 @@ module.exports = {
     }
   ],
   siteMetadata: {
-    title: `Heligan Campsite`,
-    description: `Heligan Campsite site. Be at home with nature.`,
+    title: `Taylor Money`,
+    description: `Taylor Money Wealth Management. An Asset for life.`,
     author: `@edwardwilson`,
   },
   plugins: [
