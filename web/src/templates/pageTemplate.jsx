@@ -4,19 +4,13 @@ import { Seo } from "../components/seo"
 import Modules from "../components/modules"
 
 //Preview
-import { useQuery } from "../../sanity/store";
-import {PAGE_QUERY} from '../queries/documentQueries'
+
 import {getSanityClient } from "../../sanityUtils/sanity"
 
 const PageTemplate = props => {
-  const { data, pageContext, location, initial } = props
+  const { data, pageContext, location, previewData } = props
 
-  // Preview
-  const { data: previewData, sourceMap } = useQuery(
-    PAGE_QUERY,
-    {slug: data.sanityPage.slug.current},
-    { initial }
-  );
+
 
   return (
       <Modules
@@ -111,6 +105,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
     navOverlay
     navColor{
       value
+      label
     }
     pageTitle
     pageBuilder {

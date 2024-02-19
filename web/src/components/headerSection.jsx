@@ -57,7 +57,7 @@ export const HeaderSection = props => {
         position: "relative",
         pt: spiro ? 17 : 0,
         pb: 15,
-        backgroundColor: previewData && previewData.backgroundColor.value || backgroundColor.value,
+        backgroundColor: previewData && previewData?.backgroundColor?.value || backgroundColor?.value,
       }}
     >
       {spiro && (

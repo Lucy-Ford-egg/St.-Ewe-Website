@@ -8,8 +8,20 @@ import { CssBaseline } from '@mui/material';
 import { PrivacyMessage } from '../web/src/components/privacyMessage'
 import { HeadScripts } from './src/components/headScripts'
 
+// Preview
+import { useQuery } from "./sanity/store";
+import {PAGE_QUERY} from './src/queries/documentQueries';
+
 // Pass all props (hence the ...props) to the layout component so it has access to things like pageContext or location
-const wrapPageElement = ({ element, props }) => {
+const WrapPageElement = ({ element, props, initial }) => {
+
+    // Preview
+    const { data: previewData, sourceMap } = useQuery(
+      PAGE_QUERY,
+      {slug: props.pageContext.slug},
+      { initial }
+    );
+    debugger;
 
   return (
 
@@ -18,7 +30,7 @@ const wrapPageElement = ({ element, props }) => {
       <PreviewProvider>
         <SanityPreviewConnectorProvider token={process.env.SANITY_TOKEN}>
           <HeadScripts activePreview={props} />
-          <Layout {...props}>
+          <Layout {...props} previewData={previewData}>
             {element}
           </Layout>
         </SanityPreviewConnectorProvider>
@@ -30,4 +42,4 @@ const wrapPageElement = ({ element, props }) => {
   )
 }
 
-export default wrapPageElement
+export default WrapPageElement

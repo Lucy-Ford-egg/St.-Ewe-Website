@@ -6,12 +6,15 @@ import { VisualEditing } from "./visualEditing"
 
 export const Layout = (props) => {
 
-  const {children, data} = props
+  const {children, data, previewData} = props
 
-  return (
+  const previewNavColor = previewData && previewData?.navColor?.label && previewData?.navColor || previewData && previewData?.navColor;
+  const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
+debugger
+    return (
     <div>
       <VisualEditing {...props}/>
-      <Header navColor={data?.sanityPage?.navColor || data?.sanityPost?.navColor} navOverlay={data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay}/>
+      <Header navColor={previewNavColor && previewNavColor || navColor} navOverlay={data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay}/>
       <main>
         {children}
       </main>

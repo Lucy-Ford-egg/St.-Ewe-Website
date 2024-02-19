@@ -63,10 +63,6 @@ export const blogArchiveTemplateQuery = graphql`
       limit: $limit
     ) {
       nodes {
-        navOverlay
-        navColor {
-          value
-        }
         author {
           name
         }
@@ -110,6 +106,7 @@ export const blogArchiveTemplateQuery = graphql`
       navOverlay
       navColor {
         value
+        label
       }
       pageTitle
       pageBuilder {

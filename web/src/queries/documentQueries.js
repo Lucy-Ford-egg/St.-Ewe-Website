@@ -22,6 +22,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   image {
     asset->,
   },
+  navColor{navColor->, ...},
   mobileImage {
     asset->,
   },
