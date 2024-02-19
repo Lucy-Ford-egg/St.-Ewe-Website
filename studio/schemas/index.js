@@ -35,7 +35,9 @@ import featuresTileType from '../schemas/sections/featuresTile'
 import videoSectionType from '../schemas/sections/videoSection'
 import newsletterSectionType from '../schemas/sections/newsletterSection'
 import imageCarouselSectionType from './sections/imageCarouselSection'
-
+import stepsSectionType from '../schemas/sections/stepsSection' 
+import stepTileType from '../schemas/sections/stepTile'
+import stepDividerType from '../schemas/sections/stepDivider'
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -97,6 +99,9 @@ export const schemaTypes = [
   featuresTileType,
   blogSectionType,
   testimonialTileType,
+  stepsSectionType,
+  stepTileType,
+  stepDividerType,
 
   // faqsType,
   iconsType,

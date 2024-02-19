@@ -15,7 +15,7 @@ import videoSectionType from '../schemas/sections/videoSection'
 import newsletterSectionType from '../schemas/sections/newsletterSection'
 import imageCarouselSectionType from './sections/imageCarouselSection'
 import blogSectionType from './modules/blogSection'
-
+import stepSectionType from './sections/stepsSection'
 
 // Modules
 import featureSectionType from './modules/featureSection'
@@ -127,6 +127,7 @@ export default defineType({
         {type: newsletterSectionType.name},
         {type: imageCarouselSectionType.name},
         {type: blogSectionType.name},
+        {type: stepSectionType.name},
 
 
         {type: featureSectionType.name},

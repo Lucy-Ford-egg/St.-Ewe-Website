@@ -36,6 +36,8 @@ export const HeaderSection = props => {
 
   const definedTitle = previewData && previewData.title || _rawTitle
   const definedText = previewData && previewData.text || _rawText
+  const definedLinks = previewData && previewData?.links || links
+  const definedImage = previewData && previewData.image && previewData.image._ref || image && image.asset 
 
   return (
     <Container
@@ -152,12 +154,12 @@ export const HeaderSection = props => {
               />
             )}
           </Box>
-          {links && links.length > 0 && <Box sx={{
+          {definedLinks && definedLinks.length > 0 && <Box sx={{
             pt: 8,
           }}>
           <Links
             linkOne="secondary"
-            links={links}
+            links={definedLinks}
             previewData={previewData}
             highlighted
           />
@@ -175,7 +177,7 @@ export const HeaderSection = props => {
           maxHeight: "100%",
         }}
       >
-        {previewData && previewData.image && previewData.image?._ref || image && image.asset && (
+        {definedImage && (
           <Image
             // pass asset, hotspot, and crop fields
             crop={(previewData && previewData?.image?.crop) || image?.crop}

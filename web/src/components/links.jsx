@@ -6,7 +6,7 @@ import { ButtonFormat } from "./buttonFormat"
 export const Links = (props) => {
 const {links, highlighted, previewData, linkOne = 'primary'} = props
 
-const definedLinks = previewData.links && previewData.link || links && links 
+const definedLinks = previewData && previewData.links && previewData?.links || links 
   return (
     <Box
     sx={{

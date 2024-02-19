@@ -17,12 +17,11 @@ import { ContactSection } from './contactSection'
 import { TeamSection } from './teamSection'
 import { CaseStudySection} from './caseStudySection'
 import { NewsletterSection } from './newsletterSection'
+import { StepsSection } from './stepsSection'
 
 const Modules = (props) => {
 
     const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allSanityCaseStudy,  blogInserted } = props
-
-    const definedModules = previewData && previewData || modules
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -34,13 +33,13 @@ const Modules = (props) => {
         }
     }
 
-    if (definedModules != null) {
+    if (modules != null) {
       
         return (
 
             <main data-content="main">
                 
-                {definedModules && definedModules.map((module, i) => {
+                {modules && modules.map((module, i) => {
 
                     if (isModule(module, 'blogSection')) {
                         return <BlogSection previewData={previewData && previewData[i]}
@@ -75,6 +74,17 @@ const Modules = (props) => {
                         
                         return (
                             <TestimonialSection
+                                previewData={previewData && previewData[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
+
+                    if (isModule(module, 'stepsSection')) {
+                        
+                        return (
+                            <StepsSection
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

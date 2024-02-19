@@ -15,14 +15,14 @@ import {PAGE_QUERY} from './src/queries/documentQueries';
 // Pass all props (hence the ...props) to the layout component so it has access to things like pageContext or location
 const WrapPageElement = ({ element, props, initial }) => {
 
+    const definedSlug = props.data.sanityPage || props.data.sanityPost
     // Preview
     const { data: previewData, sourceMap } = useQuery(
       PAGE_QUERY,
-      {slug: props.pageContext.slug},
+      {slug: definedSlug.slug.current},
       { initial }
     );
-    debugger;
-
+  
   return (
 
     <ThemeProvider theme={clientTheme}>

@@ -100,6 +100,9 @@ query homeQuery{
         ... on SanityNewsletterSection{
           ... NewsletterSectionFragment
         }
+        ... on SanityStepsSection{
+          ... StepsSectionFragment
+        }
       }
     }
   }

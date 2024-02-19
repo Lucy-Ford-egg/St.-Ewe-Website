@@ -154,6 +154,9 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       ... on SanityNewsletterSection{
         ... NewsletterSectionFragment
       }
+      ... on SanityStepsSection{
+        ... StepsSectionFragment
+      }
     }
   }
 }
