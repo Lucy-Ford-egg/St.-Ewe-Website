@@ -16,7 +16,21 @@ export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
 
 export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   ...,
-  pageBuilder[] {..., navColor->},
+  pageBuilder[] {
+    images[] { 
+      asset->,
+      ref,
+    },
+    image {
+      asset->,
+      ref,
+    },
+    title[]{...},
+    text[]{...},
+    navColor->,
+    ..., 
+   
+  },
   title,
   text,
   image {

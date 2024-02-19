@@ -22,9 +22,11 @@ const Modules = (props) => {
 
     const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allSanityCaseStudy,  blogInserted } = props
 
+    const definedModules = previewData && previewData || modules
+
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
-        
+    
         if (moduletype?._type?.indexOf(testname) >= 0) {
             return true
         } else {
@@ -32,13 +34,13 @@ const Modules = (props) => {
         }
     }
 
-    if (modules != null) {
+    if (definedModules != null) {
       
         return (
 
             <main data-content="main">
                 
-                {modules.map((module, i) => {
+                {definedModules && definedModules.map((module, i) => {
 
                     if (isModule(module, 'blogSection')) {
                         return <BlogSection previewData={previewData && previewData[i]}

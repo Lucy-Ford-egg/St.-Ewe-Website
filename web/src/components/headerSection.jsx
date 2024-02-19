@@ -9,9 +9,6 @@ import { motion } from "framer-motion"
 import { Spiro } from "../components/spiro"
 import { contrastColour } from "../utils/contrastColour"
 
-import { STUDIO_ORIGIN } from "../../sanity/store"
-import { useEncodeDataAttribute } from "@sanity/react-loader"
-
 export const HeaderSection = props => {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
@@ -20,7 +17,6 @@ export const HeaderSection = props => {
     _rawText,
     textAlign,
     image,
-    linkGroup,
     previewData,
     sanityConfig,
     links,
@@ -28,17 +24,18 @@ export const HeaderSection = props => {
     backgroundColor,
   } = props
 
-  const data = previewData
-  const encodeDataAttribute = useEncodeDataAttribute(
-    data,
-    // sourceMap,
-    STUDIO_ORIGIN,
-  )
+  // const data = previewData
+ 
 
   const [rendered, setRendered] = useState(false)
+  const [addSpiro, setAddSpiro] = useState(false)
   useEffect(() => {
     setRendered(true)
+    setAddSpiro(previewData && previewData?.spiro || spiro)
   }, [])
+
+  const definedTitle = previewData && previewData.title || _rawTitle
+  const definedText = previewData && previewData.text || _rawText
 
   return (
     <Container
@@ -55,12 +52,12 @@ export const HeaderSection = props => {
         overflow: "hidden",
         px: "0 !important",
         position: "relative",
-        pt: spiro ? 17 : 0,
+        pt: addSpiro ? 17 : 0,
         pb: 15,
         backgroundColor: previewData && previewData?.backgroundColor?.value || backgroundColor?.value,
       }}
     >
-      {spiro && (
+      {addSpiro &&  (
         <Box
           sx={{
             position: "absolute",
@@ -109,7 +106,7 @@ export const HeaderSection = props => {
               margin: textAlign ? "0 auto" : "unset",
             }}
           >
-            {_rawTitle && rendered && (
+            { definedTitle && rendered && (
               <motion.div
                 initial={{ y: 0, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -120,12 +117,12 @@ export const HeaderSection = props => {
                   variant={false}
                   textAlign={textAlign}
                   value={
-                    previewData && previewData._rawTitle ? _rawTitle : _rawTitle
+                    definedTitle
                   }
                 />
               </motion.div>
             )}
-            {spiro && (
+            {previewData && previewData.spiro || spiro && (
               <Box sx={{display: 'flex', width: '100%', justifyContent: textAlign ? textAlign : "flexstart",}}>
               <Divider
                 sx={{
@@ -143,14 +140,14 @@ export const HeaderSection = props => {
               maxWidth: 750,
             }}
           >
-            {_rawText && (
+            {definedText && (
               <RenderPortableText
                 previewData={previewData}
                 sanityConfig={sanityConfig}
                 variant={false}
                 textAlign={textAlign}
                 value={
-                  previewData && previewData._rawText ? _rawText : _rawText
+                  definedText
                 }
               />
             )}
@@ -178,7 +175,7 @@ export const HeaderSection = props => {
           maxHeight: "100%",
         }}
       >
-        {image && (
+        {previewData && previewData.image && previewData.image?._ref || image && image.asset && (
           <Image
             // pass asset, hotspot, and crop fields
             crop={(previewData && previewData?.image?.crop) || image?.crop}
@@ -189,8 +186,8 @@ export const HeaderSection = props => {
               (previewData &&
                 previewData.image &&
                 previewData.image?._ref &&
-                urlFor(previewData.image).width(200).url()) ||
-              image.asset
+                urlFor(previewData?.image).width(200).url()) ||
+                image.asset
             }
             width={1440}
             height={700}
@@ -217,7 +214,7 @@ export const HeaderSection = props => {
           }}
         />
       </Box>
-      {spiro && (
+      {addSpiro && (
         <Box
           sx={{
             position: "absolute",

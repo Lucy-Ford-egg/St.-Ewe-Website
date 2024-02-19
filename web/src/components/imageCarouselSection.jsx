@@ -3,17 +3,13 @@ import { graphql } from "gatsby"
 import { motion, MotionConfig } from "framer-motion"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { textAlignToJustifyContent } from "../utils/alignment"
 import {
   Container,
-  Typography,
   Box,
   useTheme,
   useMediaQuery,
   IconButton,
   SvgIcon,
-  Grid,
-  Divider,
 } from "@mui/material"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
@@ -41,8 +37,8 @@ export const ImageCarouselSection = props => {
   const ref = useRef(null)
 
   useEffect(() => {
-    setSlides(images)
-  }, [])
+     setSlides(previewData && previewData?.images || images) 
+  }, [previewData, images])
   // useEffect(() => {
   //   setWidth(ref.current.getBoundingClientRect().width)
   // }, []) //empty dependency array so it only runs once at render
@@ -53,6 +49,7 @@ export const ImageCarouselSection = props => {
   // const md = useMediaQuery("(max-width:900px)")
   // const lg = useMediaQuery("(min-width:1200px)")
 
+  
   return (
     <Container
       maxWidth={slides && slides.length === 1 ? false : false}
@@ -126,7 +123,7 @@ export const ImageCarouselSection = props => {
                                   height: { xs: 380, md: 581 },
                                 }}
                               >
-                                {image && (
+                                {image && image?.asset && (
                                   <Image
                                     // pass asset, hotspot, and crop fields
                                     crop={

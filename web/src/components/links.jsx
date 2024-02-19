@@ -5,6 +5,8 @@ import { ButtonFormat } from "./buttonFormat"
 
 export const Links = (props) => {
 const {links, highlighted, previewData, linkOne = 'primary'} = props
+
+const definedLinks = previewData.links && previewData.link || links && links 
   return (
     <Box
     sx={{
@@ -16,8 +18,8 @@ const {links, highlighted, previewData, linkOne = 'primary'} = props
       columnGap: 6,
     }}
   >
-    {links &&
-      links.map((node, i) => {
+    {definedLinks &&
+      definedLinks.map((node, i) => {
         return (
           <ButtonFormat
             {...props}
