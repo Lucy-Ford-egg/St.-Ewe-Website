@@ -36,7 +36,7 @@ export default defineConfig({
         structure: deskStructure, 
       }),
     presentationTool({
-      previewUrl: 'http://localhost:8000', //'http://localhost:8000', //'https://taylormoney.netlify.app'
+      previewUrl: 'http://localhost:8000', //'http://localhost:8000', //''
       locate: locate,
     }),
     visionTool(),
