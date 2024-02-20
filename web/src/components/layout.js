@@ -13,8 +13,10 @@ export const Layout = (props) => {
 
   const {children, data, initial} = props
 
-  const definedSlug = props.data.sanityPage || props.data.sanityPost
+  
   // Preview
+  const definedSlug = props.data.sanityPage || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
+
   const { data: previewData, sourceMap } = useQuery(
     PAGE_QUERY,
     {slug: definedSlug.slug.current},
