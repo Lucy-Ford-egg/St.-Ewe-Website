@@ -158,6 +158,7 @@ export const brandColors = {
     { label: 'Coral', value: '#F04D5F' },
     { label: 'Coral Light', value: '#F47C8A' },
     { label: 'Coral Lighter', value: '#FCD9DE' },
+    { label: 'Coral Lightest', value: '#FDE3E6' },
     { label: 'Text Grey', value: '#414042' },
     { label: 'Mid Grey', value: '#B8B6B9' },
     { label: 'Light Grey', value: '#F3F3F2' },

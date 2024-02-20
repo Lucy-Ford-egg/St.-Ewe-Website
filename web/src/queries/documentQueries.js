@@ -28,6 +28,11 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     title[]{...},
     text[]{...},
     navColor->,
+    steps[]{
+      title,
+      description,
+      involves,
+    },
     ..., 
    
   },
@@ -40,6 +45,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   mobileImage {
     asset->,
   },
+  textAlign,
   slug->,
   ...,
  
