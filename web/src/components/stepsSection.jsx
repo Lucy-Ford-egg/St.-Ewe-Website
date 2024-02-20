@@ -1,4 +1,4 @@
-import React, {useRef} from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -11,8 +11,7 @@ import {
 } from "@mui/material"
 import { StepsTile } from "./stepsTile"
 import { RenderPortableText } from "../components/renderPortableText"
-import { motion, useScroll, useSpring } from "framer-motion"
-
+import { motion, useScroll, useSpring, useTransform } from "framer-motion"
 
 export const StepsSection = props => {
   const theme = useTheme()
@@ -21,10 +20,21 @@ export const StepsSection = props => {
   // Scroll animation
   const lineRef = useRef(null)
   const { scrollYProgress } = useScroll({
-    ref: lineRef,
-    offset: ["start end", "end end"]
+    target: lineRef,
+    offset: ["start start", "end end"],
+  })
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
-  const scaleY = useSpring(scrollYProgress)
+
+  const [calcContainerHeight, setCalcContainerHeight] = useState(null)
+
+  useEffect(() => {
+    setCalcContainerHeight(lineRef.current.offsetHeight)
+  }, [lineRef])
 
   const {
     _rawTitle,
@@ -46,7 +56,6 @@ export const StepsSection = props => {
   return (
     <Container
       maxWidth="xl"
-      
       sx={{
         pb: { xs: theme.spacing(0), md: theme.spacing(15) },
         pt: topPadding ? 0 : { xs: theme.spacing(15), md: theme.spacing(15) },
@@ -106,7 +115,7 @@ export const StepsSection = props => {
           )}
         </Grid>
       </Grid>
-      <Container maxWidth="lg" ref={lineRef}>
+      <Container ref={lineRef} maxWidth="lg" style={{ position: "relative" }}>
         <Grid
           container
           rowSpacing={6}
@@ -117,18 +126,52 @@ export const StepsSection = props => {
             display: "flex",
             position: "relative",
           }}
-          
         >
-          <Box sx={{ position: "absolute", top: 41, left: -41 }}>
-            <motion.div
-              style={{
-                backgroundColor: "red",
-                scaleY: scaleY,
-                width: "10px",
-                transformOrigin: "0%",
-                height: 10,
+          <Box
+            sx={{
+              position: "absolute",
+              top: 41,
+              left: -41,
+              ml: 0,
+              height: "100%",
+              display: "flex",
+            }}
+            component="figure"
+          >
+            <Box
+              component="span"
+              sx={{
+                position: "relative",
+                flexBasis: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "center",
               }}
-            />
+            >
+              <motion.div
+                className="line"
+                style={{
+                  position: "relative",
+                  width: 8,
+                  minHeight: calcContainerHeight,
+                  backgroundColor: "#F04D5F",
+                  transformOrigin: "0% 0%",
+                  scaleY: scaleY,
+                }}
+              >
+              </motion.div>
+              <motion.div
+                style={{
+                  width: 23,
+                  height: 23,
+                  display: "block",
+                  backgroundColor: "#F04D5F",
+                  borderRadius: 1000,
+                  bottom: 0,
+                }}
+              />
+            </Box>
           </Box>
           {definedSteps &&
             definedSteps.map((tile, i) => {
@@ -140,7 +183,6 @@ export const StepsSection = props => {
                   sm={12}
                   md={tile._type === "stepDivider" ? 12 : 6}
                   sx={{ display: "flex", flexDirection: "column" }}
-                  
                 >
                   {tile._type !== "stepDivider" && (
                     <StepsTile
