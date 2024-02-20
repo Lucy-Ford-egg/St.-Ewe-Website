@@ -5,9 +5,21 @@ import { Footer } from "./footer"
 import { VisualEditing } from "./visualEditing"
 import {Box} from "@mui/material"
 
+// Preview
+import { useQuery } from "../../sanity/store";
+import {PAGE_QUERY} from '../queries/documentQueries';
+
 export const Layout = (props) => {
 
-  const {children, data, previewData} = props
+  const {children, data, initial} = props
+
+  const definedSlug = props.data.sanityPage || props.data.sanityPost
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    PAGE_QUERY,
+    {slug: definedSlug.slug.current},
+    { initial }
+  );
 
   const previewNavColor = previewData && previewData?.navColor?.label && previewData?.navColor || previewData && previewData?.navColor;
   const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
