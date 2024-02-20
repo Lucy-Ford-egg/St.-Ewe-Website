@@ -11,7 +11,7 @@ import {
 } from "@mui/material"
 import { StepsTile } from "./stepsTile"
 import { RenderPortableText } from "../components/renderPortableText"
-import { motion, useScroll, useSpring, useTransform } from "framer-motion"
+import { motion, useScroll, useSpring } from "framer-motion"
 
 export const StepsSection = props => {
   const theme = useTheme()
@@ -21,14 +21,14 @@ export const StepsSection = props => {
   const lineRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: lineRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end end"],
   })
 
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
-  });
+    restDelta: 0.001,
+  })
 
   const [calcContainerHeight, setCalcContainerHeight] = useState(null)
 
@@ -52,6 +52,74 @@ export const StepsSection = props => {
   const definedText = (previewData && previewData.text) || _rawText
   const definedSteps = (previewData && previewData.steps) || steps
   const defineTileColor = (previewData && previewData.tileColor) || tileColor
+
+  const renderSteps = () => {
+
+    let steps = []
+    let acc = 0
+    for (let i = 0; i < definedSteps.length; i++) {
+      let currentItem = definedSteps[i]
+
+      if (currentItem._type === "stepDivider") {
+        // Skip the divider
+        
+        steps.push(<Grid
+          key={`step-${i}`}
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          sx={{ display: "flex", flexDirection: "column" }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              textAlign: "center",
+              mb: 6,
+              py: 6,
+            }}
+          >
+            <Typography variant="overline"  sx={{mb: 3}}>
+              {previewData?.steps[i].tile?.subtitle || currentItem.subtitle}
+            </Typography>
+            <Divider variant="fullWidth" component="div" role="presentation" sx={{ whiteSpace: {xs: "wrap", md: "pre-wrap"} }}>
+              <Typography variant="body2" sx={{ textAlign: "center", width: { md: 400} }}>
+                {previewData?.steps[i].tile?.title || currentItem.title}
+              </Typography>
+            </Divider>
+          </Box>
+        </Grid>)
+        
+      }
+      if (currentItem._type !== "stepDivider") {
+        acc++
+        steps.push(
+        <Grid
+          key={`step-${i}`}
+          item
+          xs={12}
+          sm={12}
+          md={6}
+          sx={{ display: "flex", flexDirection: "column" }}
+        >
+          
+            <StepsTile
+              tileColor={defineTileColor}
+              tile={currentItem }
+              previewData={previewData}
+              index={i}
+              displayNumber={[acc ]}
+              sanityConfig={sanityConfig}
+            />
+         
+        </Grid>
+        )
+      }
+      
+    }
+    return steps
+  }
 
   return (
     <Container
@@ -94,6 +162,7 @@ export const StepsSection = props => {
               value={definedTitle}
             />
           )}
+
           {definedText && (
             <Divider
               sx={{
@@ -115,11 +184,11 @@ export const StepsSection = props => {
           )}
         </Grid>
       </Grid>
-      <Container ref={lineRef} maxWidth="lg" style={{ position: "relative" }}>
+      <Container ref={lineRef}  disableGutters={mobile ? true : false} maxWidth="lg" style={{ position: "relative" }}>
         <Grid
           container
-          rowSpacing={6}
-          columnSpacing={{ xs: 13, sm: 6, md: 6 }}
+          rowSpacing={2}
+          columnSpacing={{ xs: 0, sm: 6, md: 6 }}
           sx={{
             pt: theme.spacing(6),
             justifyContent: "center",
@@ -130,8 +199,8 @@ export const StepsSection = props => {
           <Box
             sx={{
               position: "absolute",
-              top: 41,
-              left: -41,
+              top: 24,
+              left: {xs: 0, md: -41},
               ml: 0,
               height: "100%",
               display: "flex",
@@ -159,9 +228,8 @@ export const StepsSection = props => {
                   transformOrigin: "0% 0%",
                   scaleY: scaleY,
                 }}
-              >
-              </motion.div>
-              <motion.div
+              ></motion.div>
+              {/* <motion.div
                 style={{
                   width: 23,
                   height: 23,
@@ -170,59 +238,10 @@ export const StepsSection = props => {
                   borderRadius: 1000,
                   bottom: 0,
                 }}
-              />
+              /> */}
             </Box>
           </Box>
-          {definedSteps &&
-            definedSteps.map((tile, i) => {
-              return (
-                <Grid
-                  key={`step-${i}`}
-                  item
-                  xs={12}
-                  sm={12}
-                  md={tile._type === "stepDivider" ? 12 : 6}
-                  sx={{ display: "flex", flexDirection: "column" }}
-                >
-                  {tile._type !== "stepDivider" && (
-                    <StepsTile
-                      tileColor={defineTileColor}
-                      tile={tile}
-                      previewData={previewData}
-                      index={i}
-                      sanityConfig={sanityConfig}
-                    />
-                  )}
-                  {tile._type === "stepDivider" && (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        textAlign: "center",
-                        mb: 6,
-                        py: 6,
-                      }}
-                    >
-                      <Typography variant="overline">
-                        {previewData?.steps[i].tile?.subtitle || tile.subtitle}
-                      </Typography>
-                      <Divider
-                        component="div"
-                        role="presentation"
-                        variant="middle"
-                      >
-                        <Typography
-                          variant="body2"
-                          sx={{ textAlign: "center" }}
-                        >
-                          {previewData?.steps[i].tile?.title || tile.title}
-                        </Typography>
-                      </Divider>
-                    </Box>
-                  )}
-                </Grid>
-              )
-            })}
+          {definedSteps && renderSteps()}
         </Grid>
       </Container>
     </Container>

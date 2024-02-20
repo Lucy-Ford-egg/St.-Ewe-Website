@@ -86,6 +86,17 @@ export default defineType({
       },
     }),
     defineField({
+      title: 'Tiele Orientation',
+      name: 'titleOrientation',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Horizontal', value: 'row' },
+          { title: 'Vertical', value: 'column' }
+        ], // &lt;-- predefined values
+      },
+    }),
+    defineField({
       title: 'Tile Colour',
       name: 'tileColor',
       type: 'simplerColor',
