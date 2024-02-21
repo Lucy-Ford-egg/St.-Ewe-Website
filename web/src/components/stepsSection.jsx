@@ -100,7 +100,7 @@ export const StepsSection = props => {
           item
           xs={12}
           sm={12}
-          md={6}
+          md={currentItem.tileOrientation === true ? 12 : 6}
           sx={{ display: "flex", flexDirection: "column" }}
         >
           
@@ -274,6 +274,7 @@ export const query = graphql`
         _rawTitle(resolveReferences: { maxDepth: 10 })
         _rawDescription(resolveReferences: { maxDepth: 10 })
         _rawInvolves(resolveReferences: { maxDepth: 10 })
+        tileOrientation
       }
     }
   }

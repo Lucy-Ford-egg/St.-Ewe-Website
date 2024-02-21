@@ -93,7 +93,7 @@ let defaultTheme = createTheme({
       fontSize: clientSpacing[10],
       fontFamily: 'Merriweather',
       fontWeight: 700,
-      lineHeight: 1.5,
+      lineHeight: 1.35,
     },
     h4: {
       fontSize: clientSpacing[7],

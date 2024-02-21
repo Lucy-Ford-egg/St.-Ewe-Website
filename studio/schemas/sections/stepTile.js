@@ -6,7 +6,7 @@ export default defineType({
   type: "object",
   title: "Step Tile",
   fields: [
-    {
+    defineField({
       title: 'Title',
       name: 'title',
       type: 'array',
@@ -33,8 +33,8 @@ export default defineType({
         }
       }
       ],
-    },
-    {
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'array',
@@ -61,8 +61,8 @@ export default defineType({
         }
       }
       ],
-    },
-    {
+    }),
+    defineField({
       name: 'involves',
       title: 'Involves',
       type: 'array',
@@ -89,7 +89,12 @@ export default defineType({
         }
       }
       ],
-    }
+    }),
+    defineField({
+      title: 'Make Horizontal',
+      name: 'tileOrientation',
+      type: 'boolean',
+    }),
   ],
   preview: {
     select: {
@@ -97,7 +102,7 @@ export default defineType({
     },
     prepare(selection) {
       const { title } = selection
-      debugger
+  
       return {
         title: `${ title[0].children[0].text}`,
         subtitle: `Testimonial Tile`,
