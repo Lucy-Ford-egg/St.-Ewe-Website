@@ -38,7 +38,7 @@ export const HeaderSection = props => {
   const definedText = previewData && previewData.text || _rawText
   const definedLinks = previewData && previewData?.links || links
   const definedImage = previewData && previewData.image && previewData.image._ref || image && image.asset 
-
+  const definedBackgroundColour = previewData && previewData?.backgroundColor?.value || backgroundColor?.value
   return (
     <Container
       maxWidth="fluid"
@@ -55,8 +55,8 @@ export const HeaderSection = props => {
         px: "0 !important",
         position: "relative",
         pt: addSpiro ? 17 : 0,
-        pb: 15,
-        backgroundColor: previewData && previewData?.backgroundColor?.value || backgroundColor?.value,
+        pb: definedBackgroundColour && !definedImage && 15,
+        backgroundColor: definedBackgroundColour,
       }}
     >
       {addSpiro &&  (

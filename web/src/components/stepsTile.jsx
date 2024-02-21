@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react"
 import { Box, Divider, Paper, Grid, Typography, useTheme } from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import { contrastColour } from "../utils/contrastColour"
-import { useInView, useAnimate } from "framer-motion"
+import { useInView, useAnimate, motion } from "framer-motion"
 
 export const StepsTile = props => {
   const { previewData, tile, sanityConfig, tileColor, index, displayNumber, pieSegments } =
@@ -12,7 +12,7 @@ export const StepsTile = props => {
   const theme = useTheme()
 
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.75 })
+  const isInView = useInView(ref, { once: true, amount: 0.90 })
 
   const definedTitle =
     (previewData && previewData?.steps && previewData?.steps[index]?.title) || tile._rawTitle
@@ -55,6 +55,37 @@ export const StepsTile = props => {
     ]
   }
 
+  const pieContainer = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
+  
+  const slice = {
+    hidden: { 
+      opacity: 0.5,
+    },
+    show: { 
+      opacity: 1, 
+    }
+  }
+
+  const activeSlice = {
+    hidden: { 
+      opacity: 0,
+      fill: contrastColour(tileColor).pie.default.hex,
+    },
+    show: { 
+      opacity: 1, 
+      fill: contrastColour(tileColor).pie.active.hex,
+    }
+  }
+
+
   return (
     <Paper
       sx={{
@@ -72,7 +103,6 @@ export const StepsTile = props => {
           display: "flex",
           flexDirection: "column",
           flexBasis: "100%",
-          
         }}
       >
         <Box
@@ -83,16 +113,14 @@ export const StepsTile = props => {
             justifyContent: "space-between",
           }}
         >
-          <Grid container>
+          <Grid container sx={{ flexBasis: "100%" }}>
             <Grid
               container
               item
               xs={12}
               md={definedOrientation === true ? 6 : 12}
-              
             >
-              <Grid item xs={8} md={8} sx={{ pl: 12,
-              pt: 12,}}>
+              <Grid item xs={8} md={8} sx={{ pl: 12, pt: 12 }}>
                 {definedTitle && (
                   <>
                     {tile._type !== "stepDivider" && (
@@ -101,82 +129,122 @@ export const StepsTile = props => {
                         color={contrastColour(tileColor).textColour}
                       >{`Step ${displayNumber}`}</Typography>
                     )}
-                    <Box  color={contrastColour(tileColor).textColour}>
-                    <RenderPortableText
-                      previewData={previewData?.steps[index]}
-                      sanityConfig={sanityConfig}
-                      setAsHeading="h3"
-                      value={definedTitle}
-                    />
+                    <Box color={contrastColour(tileColor).textColour}>
+                      <RenderPortableText
+                        previewData={previewData?.steps[index]}
+                        sanityConfig={sanityConfig}
+                        setAsHeading="h3"
+                        value={definedTitle}
+                      />
                     </Box>
                   </>
                 )}
               </Grid>
-              <Grid item xs={4} md={4} sx={{ pr: 12,
-              pt: 12}}>
+              <Grid item xs={4} md={4} sx={{ pr: 12, pt: 12 }}>
                 <Box
+                 ref={scope}
                   sx={{
-                    display: "flex",
+                    display: "grid",
                     flexDirection: "row",
                     justifyContent: "center",
+                    alignItems: "center",
                     position: "relative",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gridTemplateRow: "repeat(2, 1fr)",
                   }}
                 >
-                  <svg
-                    ref={scope}
+                  <motion.svg     
                     width="146"
                     height="146"
                     viewBox="0 0 146 146"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {pieSegments && pie[pieSegments].map((segment, index) => {
-                      return (
-                        <path
-                          d={segment}
-                          fill={
-                            displayNumber >= index + 1 && isInView
-                              ? contrastColour(tileColor).pie.active.hex
-                              : contrastColour(tileColor).pie.default.hex
-                          }
-                          stroke="white"
-                          style={{
-                            transitionTimingFunction:
-                              "cubic-bezier(0.17, 0.55, 0.55, 1)",
-                            transitionProperty: "fill",
-                            transitionDuration: "0.2s",
-                            transitionDelay: `${index / 10 + 0.9}s`,
-                          }}
-                        />
-                      )
-                    })}
-                  </svg>
-                  {pieSegments && <Typography
-                    variant="h2"
-                    ref={ref}
-                    color={contrastColour(tileColor).textColour}
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      transform: "translateY(-50%)",
+                    // animation prop
+                    variants={pieContainer}
+                    initial="hidden"
+                    animate={isInView && "show"}
+                    style={{
+                      position: "relative",
+                      gridColumn: "1/2",
+                      gridRow: "1/2",
                       zIndex: 1,
-                      opacity: isInView ? 1 : 0,
-                      transition: `all 0.2s cubic-bezier(0.17, 0.55, 0.55, 1) ${pie[pieSegments].length / 10 + 0.9}s`,
                     }}
                   >
-                    {String(displayNumber).padStart(2, "0")}
-                  </Typography>}
+                    {pieSegments && 
+                      pie[pieSegments].map((segment, index) => {
+                        return (displayNumber >= index + 1 && <motion.path
+                            d={segment}
+                            stroke="white"
+                            variants={activeSlice}
+                          />)
+                        
+                      })}
+                  </motion.svg>
+
+                  <motion.svg     
+                    width="146"
+                    height="146"
+                    viewBox="0 0 146 146"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    // animation prop
+                    variants={pieContainer}
+                    initial="hidden"
+                    animate={isInView && "show"}
+                    style={{
+                      position: "relative",
+                      gridColumn: "1/2",
+                      gridRow: "1/2",
+                      zIndex: 1,
+                    }}
+                  >
+                    {pieSegments && 
+                      pie[pieSegments].map((segment, index) => {
+                        return (
+                          <motion.path
+                            d={segment}
+                            stroke="white"
+                            variants={slice}
+                            style={{
+                              fill: `${displayNumber >= index + 1
+                                && contrastColour(tileColor).pie.active.hex} !important`,
+                            }}
+                          />
+                        )
+                      })}
+                  </motion.svg>
+
+                  {pieSegments && (
+                    <Typography
+                      variant="h2"
+                      ref={ref}
+                      color={contrastColour(tileColor).textColour}
+                      sx={{
+                        position: "relative",
+                        gridColumn: "1/2",
+                        gridRow: "1/2",
+                        zIndex: 2,
+                        textAlign: "center",
+                        opacity: isInView ? 1 : 0,
+                        transition: `all 0.2s cubic-bezier(0.17, 0.55, 0.55, 1) ${pie[pieSegments].length / 10 + 0.3}s`,
+                      }}
+                    >
+                      {String(displayNumber).padStart(2, "0")}
+                    </Typography>
+                  )}
                 </Box>
               </Grid>
-              <Grid md={definedOrientation ? 12 : 12} sx={{ px: 12,
-              py: 12,}} color={contrastColour(tileColor).textColour}>
+              <Grid
+                md={definedOrientation ? 12 : 12}
+                sx={{ px: 12, py: 12 }}
+                color={contrastColour(tileColor).textColour}
+              >
                 {definedDescription && (
                   <RenderPortableText
                     previewData={previewData?.steps[index]}
                     sanityConfig={sanityConfig}
                     setAsHeading={false}
                     value={definedDescription}
-
                   />
                 )}
               </Grid>
@@ -193,24 +261,31 @@ export const StepsTile = props => {
                   backgroundColor: contrastColour(tileColor).tonalLight.mui,
                 }}
               >
-                { definedSecondtitle && <><Typography variant="h4" color={contrastColour(tileColor).textColour}>
-                  {definedSecondtitle}
-                </Typography>
-                <Divider
-                  sx={{
-                    display: "flex",
-                    my: 4,
-                    width: "100%",
-                    borderColor: contrastColour(tileColor).divider.mui,
-                  }}
-                /></>}
+                {definedSecondtitle && (
+                  <>
+                    <Typography
+                      variant="h4"
+                      color={contrastColour(tileColor).textColour}
+                    >
+                      {definedSecondtitle}
+                    </Typography>
+                    <Divider
+                      sx={{
+                        display: "flex",
+                        my: 4,
+                        width: "100%",
+                        borderColor: contrastColour(tileColor).divider.mui,
+                      }}
+                    />
+                  </>
+                )}
                 <Box color={contrastColour(tileColor).textColour}>
-                <RenderPortableText
-                  previewData={previewData?.steps[index]}
-                  sanityConfig={sanityConfig}
-                  setAsHeading={false}
-                  value={definedInvolves}
-                />
+                  <RenderPortableText
+                    previewData={previewData?.steps[index]}
+                    sanityConfig={sanityConfig}
+                    setAsHeading={false}
+                    value={definedInvolves}
+                  />
                 </Box>
               </Grid>
             )}
