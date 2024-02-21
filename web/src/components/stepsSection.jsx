@@ -53,13 +53,10 @@ export const StepsSection = props => {
   const countSegments = definedSteps.filter((item) => {
     return ((item._type === "stepTile"))
   })
-debugger
+
   const [pieSegments, setPieSegments] = useState(countSegments)
   
-
   useEffect(() => {
-    
-
     setCalcContainerHeight(lineRef.current.offsetHeight)
     countSegments && setPieSegments(countSegments);
 

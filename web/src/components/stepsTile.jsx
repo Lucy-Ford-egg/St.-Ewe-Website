@@ -37,9 +37,6 @@ export const StepsTile = props => {
     }
   }, [isInView])
 
-  // <svg width="146" height="146" viewBox="0 0 146 146" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-
   const pie = {
     5: [
       "M72.707 73.1874V1.3877C103.813 1.3877 131.381 21.417 140.993 51.0001L72.707 73.1874Z",
@@ -57,7 +54,7 @@ export const StepsTile = props => {
       "M73.2279 73.0394L11.043 37.1369C23.8697 14.9203 47.5745 1.23438 73.2279 1.23438V73.0394Z",
     ]
   }
-  debugger
+
   return (
     <Paper
       sx={{
