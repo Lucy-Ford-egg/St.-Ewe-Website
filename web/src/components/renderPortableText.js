@@ -10,7 +10,7 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 
 export const RenderPortableText = (props) => {
 
-  const { setAsHeading = false, previewData, sanityConfig, value, variant, textAlign,  animate = false, subtitlePosition = null, component } = props
+  const { setAsHeading = false, previewData, sanityConfig, value, textAlign,  animate = false, subtitlePosition = null, component } = props
 
   const theme = useTheme()
 

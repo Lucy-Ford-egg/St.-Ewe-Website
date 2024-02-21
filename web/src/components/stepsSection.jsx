@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect, useCallback } from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -12,6 +12,7 @@ import {
 import { StepsTile } from "./stepsTile"
 import { RenderPortableText } from "../components/renderPortableText"
 import { motion, useScroll, useSpring } from "framer-motion"
+import { contrastColour } from "../utils/contrastColour"
 
 export const StepsSection = props => {
   const theme = useTheme()
@@ -21,7 +22,7 @@ export const StepsSection = props => {
   const lineRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: lineRef,
-    offset: ["start end", "end end"],
+    offset: ["-200px -100px", "end end"],
   })
 
   const scaleY = useSpring(scrollYProgress, {
@@ -32,11 +33,7 @@ export const StepsSection = props => {
 
   const [calcContainerHeight, setCalcContainerHeight] = useState(null)
 
-  useEffect(() => {
-    setCalcContainerHeight(lineRef.current.offsetHeight)
-  }, [lineRef])
-
-  const {
+   const {
     _rawTitle,
     tileColor,
     _rawText,
@@ -52,6 +49,21 @@ export const StepsSection = props => {
   const definedText = (previewData && previewData.text) || _rawText
   const definedSteps = (previewData && previewData.steps) || steps
   const defineTileColor = (previewData && previewData.tileColor) || tileColor
+
+  const countSegments = definedSteps.filter((item) => {
+    return ((item._type === "stepTile"))
+  })
+debugger
+  const [pieSegments, setPieSegments] = useState(countSegments)
+  
+
+  useEffect(() => {
+    
+
+    setCalcContainerHeight(lineRef.current.offsetHeight)
+    countSegments && setPieSegments(countSegments);
+
+  }, [lineRef, countSegments ])
 
   const renderSteps = () => {
 
@@ -81,11 +93,11 @@ export const StepsSection = props => {
             }}
           >
             <Typography variant="overline"  sx={{mb: 3}}>
-              {previewData?.steps[i].tile?.subtitle || currentItem.subtitle}
+              {definedSteps[i].subtitle}
             </Typography>
             <Divider variant="fullWidth" component="div" role="presentation" sx={{ whiteSpace: {xs: "wrap", md: "pre-wrap"} }}>
               <Typography variant="body2" sx={{ textAlign: "center", width: { md: 400} }}>
-                {previewData?.steps[i].tile?.title || currentItem.title}
+                {definedSteps[i].title}
               </Typography>
             </Divider>
           </Box>
@@ -111,6 +123,7 @@ export const StepsSection = props => {
               index={i}
               displayNumber={[acc ]}
               sanityConfig={sanityConfig}
+              pieSegments={pieSegments.length}
             />
          
         </Grid>
@@ -224,7 +237,7 @@ export const StepsSection = props => {
                   position: "relative",
                   width: 8,
                   minHeight: calcContainerHeight,
-                  backgroundColor: "#F04D5F",
+                  backgroundColor: contrastColour(tileColor).pie.active.hex,
                   transformOrigin: "0% 0%",
                   scaleY: scaleY,
                 }}
@@ -274,6 +287,7 @@ export const query = graphql`
         _rawTitle(resolveReferences: { maxDepth: 10 })
         _rawDescription(resolveReferences: { maxDepth: 10 })
         _rawInvolves(resolveReferences: { maxDepth: 10 })
+        secondTitle
         tileOrientation
       }
     }

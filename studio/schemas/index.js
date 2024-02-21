@@ -164,6 +164,7 @@ export const brandColors = {
     { label: 'Light Grey', value: '#F3F3F2' },
     { label: 'Navy', value: '#002856' },
     { label: 'Mid Navy', value: '#00397A' },
+    { label: 'Navy Uncoated', value: '#375073'},
     { label: 'White', value: '#FFFFFF' },
   ],
 }

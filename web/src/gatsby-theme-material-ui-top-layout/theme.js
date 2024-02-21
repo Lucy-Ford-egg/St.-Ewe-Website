@@ -24,7 +24,7 @@ let defaultTheme = createTheme({
     secondary: {
       main: '#002856', // Navy
       mid: '#375073', // Navy Uncoated
-      light: '#42608A', // Light Navy
+      light: '#42608A', // Light Navy 
     },
     tertiary: {
       main: 'rgba(93, 83, 64, 1)',

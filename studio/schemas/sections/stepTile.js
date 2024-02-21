@@ -63,6 +63,11 @@ export default defineType({
       ],
     }),
     defineField({
+      title: 'Second title',
+      name: 'secondTitle',
+      type: 'string',
+    }),
+    defineField({
       name: 'involves',
       title: 'Involves',
       type: 'array',
