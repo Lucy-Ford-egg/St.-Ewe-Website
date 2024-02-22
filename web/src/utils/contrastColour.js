@@ -67,8 +67,8 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.secondary.light,
         },
         active: {
-          mui: "secondary.mid",
-          hex: clientTheme.palette.secondary.mid,
+          mui: "secondary.main",
+          hex: clientTheme.palette.secondary.main,
         }
       }
       svg = {
@@ -191,8 +191,8 @@ export const contrastColour = (backgroundColour) => {
       }
       pie = {
         default: {
-          mui: "primary.ligh",
-          hex: clientTheme.palette.primary.ligh,
+          mui: "primary.light",
+          hex: clientTheme.palette.primary.light,
         },
         active: {
           mui: "primary.lightest",
@@ -235,8 +235,8 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.primary.lightest,
         },
         active: {
-          mui: "primary.light",
-          hex: clientTheme.palette.primary.light,
+          mui: "primary.main",
+          hex: clientTheme.palette.primary.main,
         }
       }
       spiro = {
