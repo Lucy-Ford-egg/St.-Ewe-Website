@@ -113,9 +113,6 @@ export const blogArchiveTemplateQuery = graphql`
         ... on SanityHeaderSection {
           ...HeaderSectionFragment
         }
-        ... on SanityFeatureSection {
-          ...FeatureSectionFragment
-        }
         ... on SanityTeamSection {
           ...TeamSectionFragment
         }
@@ -141,16 +138,25 @@ export const blogArchiveTemplateQuery = graphql`
           ...LocationSectionFragment
         }
         ... on SanityBenifitsSection {
-          ...BenifitsSectionFragment
+          ... BenifitsSectionFragment
         }
         ... on SanityContactSection {
-          ...ContactSectionFragment
+          ... ContactSectionFragment
         }
-        ... on SanityBlogSection {
-          ...BlogSectionFragment
+        ...on SanityBlogSection {
+          ... BlogSectionFragment
         }
-        ... on SanityNewsletterSection {
-          ...NewsletterSectionFragment
+        ...on SanityCaseStudySection {
+          ... CaseStudySectionFragment
+        }
+        ... on SanityNewsletterSection{
+          ... NewsletterSectionFragment
+        }
+        ... on SanityStepsSection{
+          ... StepsSectionFragment
+        }
+        ... on SanityTimelineSection{
+          ... TimelineSectionFragment
         }
       }
     }

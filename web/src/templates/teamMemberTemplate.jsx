@@ -148,9 +148,6 @@ export const teamMemberTemplateQuery = graphql`
         ... on SanityHeaderSection {
           ...HeaderSectionFragment
         }
-        ... on SanityFeatureSection {
-          ...FeatureSectionFragment
-        }
         ... on SanityTeamSection {
           ...TeamSectionFragment
         }
@@ -175,12 +172,26 @@ export const teamMemberTemplateQuery = graphql`
         ... on SanityLocationSection {
           ...LocationSectionFragment
         }
-
         ... on SanityBenifitsSection {
-          ...BenifitsSectionFragment
+          ... BenifitsSectionFragment
         }
         ... on SanityContactSection {
-          ...ContactSectionFragment
+          ... ContactSectionFragment
+        }
+        ...on SanityBlogSection {
+          ... BlogSectionFragment
+        }
+        ...on SanityCaseStudySection {
+          ... CaseStudySectionFragment
+        }
+        ... on SanityNewsletterSection{
+          ... NewsletterSectionFragment
+        }
+        ... on SanityStepsSection{
+          ... StepsSectionFragment
+        }
+        ... on SanityTimelineSection{
+          ... TimelineSectionFragment
         }
       }
     }

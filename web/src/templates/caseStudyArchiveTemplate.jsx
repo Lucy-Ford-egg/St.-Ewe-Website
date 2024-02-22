@@ -99,9 +99,6 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
       ... on SanityHeaderSection {
         ...HeaderSectionFragment
       }
-      ... on SanityFeatureSection {
-        ...FeatureSectionFragment
-      }
       ... on SanityTeamSection {
         ...TeamSectionFragment
       }
@@ -140,6 +137,12 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
       }
       ... on SanityNewsletterSection{
         ... NewsletterSectionFragment
+      }
+      ... on SanityStepsSection{
+        ... StepsSectionFragment
+      }
+      ... on SanityTimelineSection{
+        ... TimelineSectionFragment
       }
     }
   }

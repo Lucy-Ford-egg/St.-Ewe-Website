@@ -103,9 +103,6 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       ... on SanityHeaderSection {
         ...HeaderSectionFragment
       }
-      ... on SanityFeatureSection {
-        ...FeatureSectionFragment
-      }
       ... on SanityTeamSection {
         ...TeamSectionFragment
       }
@@ -136,11 +133,20 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       ... on SanityContactSection {
         ... ContactSectionFragment
       }
-      ... on SanityBlogSection {
+      ...on SanityBlogSection {
         ... BlogSectionFragment
+      }
+      ...on SanityCaseStudySection {
+        ... CaseStudySectionFragment
       }
       ... on SanityNewsletterSection{
         ... NewsletterSectionFragment
+      }
+      ... on SanityStepsSection{
+        ... StepsSectionFragment
+      }
+      ... on SanityTimelineSection{
+        ... TimelineSectionFragment
       }
     }
   }

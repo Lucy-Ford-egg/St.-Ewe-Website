@@ -13,9 +13,10 @@ import ctaSectionType from '../schemas/sections/ctaSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import videoSectionType from '../schemas/sections/videoSection'
 import newsletterSectionType from '../schemas/sections/newsletterSection'
-import imageCarouselSectionType from './sections/imageCarouselSection'
+import imageCarouselSectionType from '../schemas/sections/imageCarouselSection'
 import blogSectionType from './modules/blogSection'
-import stepSectionType from './sections/stepsSection'
+import stepSectionType from '../schemas/sections/stepsSection'
+import timelineSectionType from '../schemas/sections/timelineSection'
 
 // Modules
 import featureSectionType from './modules/featureSection'
@@ -128,7 +129,7 @@ export default defineType({
         {type: imageCarouselSectionType.name},
         {type: blogSectionType.name},
         {type: stepSectionType.name},
-
+        {type: timelineSectionType.name},
 
         {type: featureSectionType.name},
         {type: servicesSectionType.name},

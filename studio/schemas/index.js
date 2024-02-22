@@ -38,6 +38,8 @@ import imageCarouselSectionType from './sections/imageCarouselSection'
 import stepsSectionType from '../schemas/sections/stepsSection' 
 import stepTileType from '../schemas/sections/stepTile'
 import stepDividerType from '../schemas/sections/stepDivider'
+import timelineSectionType from '../schemas/sections/timelineSection'
+import timeTileType from '../schemas/sections/timeTile'
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -102,6 +104,8 @@ export const schemaTypes = [
   stepsSectionType,
   stepTileType,
   stepDividerType,
+  timelineSectionType,
+  timeTileType,
 
   // faqsType,
   iconsType,

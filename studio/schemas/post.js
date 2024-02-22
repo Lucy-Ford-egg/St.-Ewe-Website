@@ -7,13 +7,18 @@ import categoriesType from './categories'
 
 // Sections 
 import headerSectionType from './sections/headerSection'
-import testimonialSectionType from "./sections/testimonialSection"
+import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
-import ctaSectionType from './sections/ctaSection'
+import caseStudySectionType from './sections/caseStudySection'
+import ctaSectionType from '../schemas/sections/ctaSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import videoSectionType from '../schemas/sections/videoSection'
 import newsletterSectionType from '../schemas/sections/newsletterSection'
-import imageCarouselSectionType from "./sections/imageCarouselSection"
+import imageCarouselSectionType from '../schemas/sections/imageCarouselSection'
+import blogSectionType from './modules/blogSection'
+import stepSectionType from '../schemas/sections/stepsSection'
+import timelineSectionType from '../schemas/sections/timelineSection'
+
 
 // Module
 import featureSectionType from './modules/featureSection'
@@ -196,14 +201,18 @@ export default defineType({
     title: 'Page builder',
     description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
     of: [
-      { type: headerSectionType.name},
-      { type: testimonialSectionType.name},
-      { type: teamSectionType.name},
-      { type: newsletterSectionType.name},
-      { type: imageCarouselSectionType.name},
-      { type: videoSectionType.name},
-      { type: featuresListSectionType.name }, 
-      { type: ctaSectionType.name },
+      {type: headerSectionType.name},
+      {type: testimonialSectionType.name},
+      {type: teamSectionType.name},
+      {type: caseStudySectionType.name},
+      {type: videoSectionType.name},
+      {type: featuresListSectionType.name},
+      {type: ctaSectionType.name},
+      {type: newsletterSectionType.name},
+      {type: imageCarouselSectionType.name},
+      {type: blogSectionType.name},
+      {type: stepSectionType.name},
+      {type: timelineSectionType.name},
 
       { type: featureSectionType.name},
       { type: servicesSectionType.name}, 

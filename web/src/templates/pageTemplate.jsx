@@ -112,9 +112,6 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       ... on SanityHeaderSection {
         ...HeaderSectionFragment
       }
-      ... on SanityFeatureSection {
-        ...FeatureSectionFragment
-      }
       ... on SanityTeamSection {
         ...TeamSectionFragment
       }
@@ -156,6 +153,9 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       }
       ... on SanityStepsSection{
         ... StepsSectionFragment
+      }
+      ... on SanityTimelineSection{
+        ... TimelineSectionFragment
       }
     }
   }

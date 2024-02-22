@@ -3,7 +3,7 @@ import React from 'react'
 import { BlogSection } from "./blogSection"
 
 import { HeaderSection } from './headerSection'
-import { FeatureSection } from './featureSection'
+import { TimelineSection } from './timelineSection'
 import { VideoSection } from './videoSection'
 import { FeaturesListSection } from './featuresListSection'
 import { CtaSection } from './ctaSection'
@@ -114,9 +114,9 @@ const Modules = (props) => {
                             {...module} />
                     }
                     
-                    if (isModule(module, 'featureSection')) {
+                    if (isModule(module, 'timelineSection')) {
                         return (
-                            <FeatureSection
+                            <TimelineSection
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}
