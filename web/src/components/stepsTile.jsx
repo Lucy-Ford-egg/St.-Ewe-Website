@@ -151,6 +151,8 @@ export const StepsTile = props => {
                     position: "relative",
                     gridTemplateColumns: "repeat(2, 1fr)",
                     gridTemplateRow: "repeat(2, 1fr)",
+                    maxWidth: {xs: 76, md: "unset"},
+                    
                   }}
                 >
                   <motion.svg     
@@ -172,7 +174,7 @@ export const StepsTile = props => {
                   >
                     {pieSegments && 
                       pie[pieSegments].map((segment, index) => {
-                        return (displayNumber >= index + 1 && <motion.path
+                        return (displayNumber >= index + 1 && <motion.path key={`bg-${segment}-${index}`}
                             d={segment}
                             stroke="white"
                             variants={activeSlice}
@@ -202,6 +204,7 @@ export const StepsTile = props => {
                       pie[pieSegments].map((segment, index) => {
                         return (
                           <motion.path
+                          key={`slices-${segment}-${index}`}
                             d={segment}
                             stroke="white"
                             variants={slice}

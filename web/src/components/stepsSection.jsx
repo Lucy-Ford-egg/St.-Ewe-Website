@@ -20,9 +20,12 @@ export const StepsSection = props => {
 
   // Scroll animation
   const lineRef = useRef(null)
+  const targetRef = useRef(null);
+  const referenceRef = useRef(null);
+  
   const { scrollYProgress } = useScroll({
-    target: lineRef,
-    offset: ["-200px -100px", "end end"],
+    target: targetRef,
+    offset: ["start start", "end end"],
   })
 
   const scaleY = useSpring(scrollYProgress, {
@@ -31,8 +34,10 @@ export const StepsSection = props => {
     restDelta: 0.001,
   })
 
-  const [calcContainerHeight, setCalcContainerHeight] = useState(null)
 
+  const [height, setHeight] = useState(0);
+
+  
    const {
     _rawTitle,
     tileColor,
@@ -55,12 +60,19 @@ export const StepsSection = props => {
   })
 
   const [pieSegments, setPieSegments] = useState(countSegments)
+  const ref = useRef(0);
   
   useEffect(() => {
-    setCalcContainerHeight(lineRef.current.offsetHeight)
     countSegments && setPieSegments(countSegments);
 
-  }, [lineRef, countSegments ])
+  }, [ countSegments ])
+
+  useEffect(() => {
+    if (referenceRef.current && targetRef.current) {
+      const referenceHeight = referenceRef.current.clientHeight;
+      setHeight(referenceHeight);
+    }
+  }, [referenceRef, targetRef]);
 
   const renderSteps = () => {
 
@@ -194,8 +206,9 @@ export const StepsSection = props => {
           )}
         </Grid>
       </Grid>
-      <Container ref={lineRef}  disableGutters={mobile ? true : false} maxWidth="lg" style={{ position: "relative" }}>
+      <Container disableGutters={mobile ? true : false} maxWidth="lg" style={{ position: "relative" }}>
         <Grid
+          ref={referenceRef}
           container
           rowSpacing={2}
           columnSpacing={{ xs: 0, sm: 6, md: 6 }}
@@ -207,6 +220,7 @@ export const StepsSection = props => {
           }}
         >
           <Box
+          ref={targetRef}
             sx={{
               position: "absolute",
               top: 24,
@@ -226,17 +240,19 @@ export const StepsSection = props => {
                 flexDirection: "column",
                 justifyContent: "flex-start",
                 alignItems: "center",
+                minHeight: height,
               }}
             >
               <motion.div
+                key={lineRef.current}
                 className="line"
                 style={{
                   position: "relative",
                   width: 8,
-                  minHeight: calcContainerHeight,
                   backgroundColor: contrastColour(tileColor).pie.active.hex,
                   transformOrigin: "0% 0%",
                   scaleY: scaleY,
+                  height: "100%"
                 }}
               ></motion.div>
               {/* <motion.div

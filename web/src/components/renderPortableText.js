@@ -110,7 +110,7 @@ export const RenderPortableText = (props) => {
       },
     },
     list: ({value, children,}) =>
-      console.log("list", props) ||
+      // console.log("list", props) ||
       (value.listItem === "bullet" ? (
         <List sx={{ listStyle: 'inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ul" dense={true}>{children}</List>
       ) : (

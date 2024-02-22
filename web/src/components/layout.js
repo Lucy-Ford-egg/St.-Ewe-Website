@@ -11,19 +11,19 @@ import {PAGE_QUERY} from '../queries/documentQueries';
 
 export const Layout = (props) => {
 
-  const {children, data, initial} = props
+  const {children, initial} = props
 
   
   // Preview
   const definedSlug = props.data.sanityPage || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
 
-  const { data: previewData, sourceMap } = useQuery(
+  const { data, sourceMap } = useQuery(
     PAGE_QUERY,
     {slug: definedSlug.slug.current},
     { initial }
   );
 
-  const previewNavColor = previewData && previewData?.navColor?.label && previewData?.navColor || previewData && previewData?.navColor;
+  const previewNavColor = data && data?.navColor?.label && data?.navColor || data && data?.navColor;
   const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
 
 
@@ -31,12 +31,12 @@ export const Layout = (props) => {
     <div>
       <VisualEditing {...props}/>
       <Header navColor={previewNavColor && previewNavColor || navColor} navOverlay={data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay}/>
-      <Box previewData={previewData}>{
+      <Box previewData={data}>{
          React.Children.map(children, child => {
           // Clone the child element and pass additional props
           if (React.isValidElement(child)) {
             console.log("React Vaild")
-            return React.cloneElement(child, { previewData: previewData });
+            return React.cloneElement(child, { previewData: data });
           } else {
             console.log("React InVaild")
             // Handle if child is not a React element (regular object)
