@@ -22,7 +22,7 @@ export const StepsSection = props => {
   const lineRef = useRef(null)
   const targetRef = useRef(null);
   const referenceRef = useRef(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end end"],
@@ -224,7 +224,7 @@ export const StepsSection = props => {
             sx={{
               position: "absolute",
               top: 24,
-              left: {xs: 0, md: -41},
+              left: {xs: -8, md: -41},
               ml: 0,
               height: "100%",
               display: "flex",

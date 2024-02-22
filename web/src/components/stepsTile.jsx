@@ -96,6 +96,7 @@ export const StepsTile = props => {
         flexBasis: "100%",
         height: "100%",
         mb: 6,
+        borderRadius: 0,
       }}
     >
       <Box
@@ -120,7 +121,7 @@ export const StepsTile = props => {
               xs={12}
               md={definedOrientation === true ? 6 : 12}
             >
-              <Grid item xs={8} md={8} sx={{ pl: 12, pt: 12 }}>
+              <Grid item xs={8} md={8} sx={{ pl: {xs: 9, md: 12}, pb: {xs: 9, md: 12}, pt: {xs: 9, md: 12} }}>
                 {definedTitle && (
                   <>
                     {tile._type !== "stepDivider" && (
@@ -129,7 +130,7 @@ export const StepsTile = props => {
                         color={contrastColour(tileColor).textColour}
                       >{`Step ${displayNumber}`}</Typography>
                     )}
-                    <Box color={contrastColour(tileColor).textColour}>
+                    <Box color={contrastColour(tileColor).textColour} sx={{mt: {xs: -1, md: -1}}}>
                       <RenderPortableText
                         previewData={previewData?.steps[index]}
                         sanityConfig={sanityConfig}
@@ -140,7 +141,7 @@ export const StepsTile = props => {
                   </>
                 )}
               </Grid>
-              <Grid item xs={4} md={4} sx={{ pr: 12, pt: 12 }}>
+              <Grid item xs={4} md={4} sx={{ pr: {xs: 9, md: 12}, pb: {xs: 9, md: 12}, pt: {xs: 9, md: 12}, display: 'flex', flexDirection: "column", alignItems: "center" }}>
                 <Box
                  ref={scope}
                   sx={{
@@ -151,13 +152,15 @@ export const StepsTile = props => {
                     position: "relative",
                     gridTemplateColumns: "repeat(2, 1fr)",
                     gridTemplateRow: "repeat(2, 1fr)",
-                    maxWidth: {xs: 76, md: "unset"},
-                    
+                    flexBasis: "100%",
+                    svg:{
+                      width: {xs: 76, md: 146},
+                      height: {xs: 76, md: 146},
+                    }
                   }}
                 >
                   <motion.svg     
-                    width="146"
-                    height="146"
+                    
                     viewBox="0 0 146 146"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -167,8 +170,8 @@ export const StepsTile = props => {
                     animate={isInView && "show"}
                     style={{
                       position: "relative",
-                      gridColumn: "1/2",
-                      gridRow: "1/2",
+                      gridColumn: "1/3",
+                      gridRow: "1/3",
                       zIndex: 1,
                     }}
                   >
@@ -184,8 +187,7 @@ export const StepsTile = props => {
                   </motion.svg>
 
                   <motion.svg     
-                    width="146"
-                    height="146"
+                    
                     viewBox="0 0 146 146"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -195,8 +197,8 @@ export const StepsTile = props => {
                     animate={isInView && "show"}
                     style={{
                       position: "relative",
-                      gridColumn: "1/2",
-                      gridRow: "1/2",
+                      gridColumn: "1/3",
+                      gridRow: "1/3",
                       zIndex: 1,
                     }}
                   >
@@ -224,8 +226,8 @@ export const StepsTile = props => {
                       color={contrastColour(tileColor).textColour}
                       sx={{
                         position: "relative",
-                        gridColumn: "1/2",
-                        gridRow: "1/2",
+                        gridColumn: "1/3",
+                        gridRow: "1/3",
                         zIndex: 2,
                         textAlign: "center",
                         opacity: isInView ? 1 : 0,
@@ -237,20 +239,23 @@ export const StepsTile = props => {
                   )}
                 </Box>
               </Grid>
+              {definedDescription && (
               <Grid
+                xs={12}
                 md={definedOrientation ? 12 : 12}
-                sx={{ px: 12, py: 12 }}
+                sx={{ px: {xs: 9, md: 12},  py: {xs: 6, md: 12}}}
                 color={contrastColour(tileColor).textColour}
               >
-                {definedDescription && (
+                
                   <RenderPortableText
                     previewData={previewData?.steps[index]}
                     sanityConfig={sanityConfig}
                     setAsHeading={false}
                     value={definedDescription}
                   />
-                )}
+                
               </Grid>
+              )}
             </Grid>
             {definedInvolves && (
               <Grid
@@ -258,9 +263,9 @@ export const StepsTile = props => {
                 xs={12}
                 md={definedOrientation ? 6 : 12}
                 sx={{
-                  px: 12,
-                  pt: 12,
-                  pb: 12,
+                  px: {xs: 9, md: 12},
+                  pt: {xs: 9, md: 12},
+                  pb: {xs: 9, md: 12},
                   backgroundColor: contrastColour(tileColor).tonalLight.mui,
                 }}
               >

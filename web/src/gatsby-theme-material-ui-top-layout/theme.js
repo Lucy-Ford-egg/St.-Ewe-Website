@@ -48,6 +48,26 @@ let defaultTheme = createTheme({
       light: 'rgba(93, 83, 64, 0.4)'
     }
   },
+})
+
+let clientTheme = createTheme({
+  spacing: [...clientSpacing],
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 640,
+      md: 900,
+      lg: 1180,
+      xl: 1300,
+      xxl: 1440
+    }
+  },
+  transitions:{
+    easing:{
+      easeOut: "cubic-bezier(.08,.1,1,.99)",
+      sharp: "cubic-bezier(.08,.1,1,.99)",
+    },
+  },
   typography: {
     fontSize: clientSpacing[5],
     body1: {
@@ -94,6 +114,9 @@ let defaultTheme = createTheme({
       fontFamily: 'Merriweather',
       fontWeight: 700,
       lineHeight: 1.35,
+      [defaultTheme.breakpoints.down('sm')]: {
+        fontSize: clientSpacing[8],
+      },
     },
     h4: {
       fontSize: clientSpacing[7],
@@ -113,27 +136,6 @@ let defaultTheme = createTheme({
       letterSpacing: '0em',
     },
   },
-})
-
-let clientTheme = createTheme({
-  spacing: [...clientSpacing],
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 640,
-      md: 900,
-      lg: 1180,
-      xl: 1300,
-      xxl: 1440
-    }
-  },
-  transitions:{
-    easing:{
-      easeOut: "cubic-bezier(.08,.1,1,.99)",
-      sharp: "cubic-bezier(.08,.1,1,.99)",
-    },
-  },
-  typography: defaultTheme.typography,
   palette: defaultTheme.palette,
   components: {
     MuiCssBaseline: {
