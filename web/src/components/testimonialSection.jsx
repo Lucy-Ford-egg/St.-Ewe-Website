@@ -92,6 +92,7 @@ export const TestimonialSection = props => {
     debugger
   const definedBackgroundColor =
     (previewData && previewData?.backgroundColor) || backgroundColor
+
   const definedTopPadding =
     (previewData && previewData?.topPadding) || topPadding
 
@@ -103,7 +104,7 @@ export const TestimonialSection = props => {
     (previewData &&
       previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name) ||
     testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name
-    
+
   const definedExternalQuoteCite =
     (previewData &&
       previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
@@ -115,11 +116,12 @@ export const TestimonialSection = props => {
       previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite
         ?.position) ||
     testimonialTiles[slideIndex]?.cite?.teamMemberCite?.position
+
   const definedExternalQuotePosition =
     (previewData &&
       previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
         ?.citePosition) ||
-    testimonialTiles[slideIndex]?.cite?.externalCite?.citePosition
+    testimonialTiles[slideIndex]?.cite?.externalCite?.citeLocation
 
   return (
     <Box
@@ -272,8 +274,6 @@ export const TestimonialSection = props => {
                         // Internal
                         definedPreviewInternalAvatar && (
                           <Image
-                            // pass asset, hotspot, and crop fields
-                            // {...testimonialTiles[slideIndex].image}
                             crop={definedPreviewInternalAvatar?.crop}
                             hotspot={definedPreviewInternalAvatar?.hotspot}
                             asset={
