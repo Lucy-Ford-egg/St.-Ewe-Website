@@ -6,6 +6,7 @@ import {
   useTheme,
   Grid,
   Divider,
+  useMediaQuery,
 } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -26,6 +27,7 @@ export const NewsletterSection = props => {
   } = props
 
   const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
   const definedTopPadding = (previewData && previewData.topPadding) || topPadding
   const definedTitle = (previewData && previewData.title) || _rawTitle
@@ -67,8 +69,8 @@ export const NewsletterSection = props => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              py: { xs: 8, md: 18 },
-              px: { xs: 4, md: 18 },
+              py: { xs: 9, md: 18 },
+              px: { xs: 9, md: 18 },
             }}
           >
             {definedTitle && (
@@ -85,7 +87,7 @@ export const NewsletterSection = props => {
                 <Divider
                   sx={{
                     display: "flex",
-                    my: 10,
+                    my: {xs: 4, md: 10},
                     width: "19.1875rem",
                     borderColor: contrastColour(backgroundColor).divider.hex,
                   }}
@@ -141,7 +143,7 @@ export const NewsletterSection = props => {
             <Grid
               container
               item
-              xs={10}
+              xs={12}
               md={12}
               sx={{
                 gridColumn: "1/7",
@@ -149,6 +151,7 @@ export const NewsletterSection = props => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                py: {xs: 12, md: 0},
               }}
             >
               <Grid
@@ -160,8 +163,8 @@ export const NewsletterSection = props => {
                   alignItems: "center",
                   justifyContent: "center",
                   backgroundColor: "primary.lighter",
-                  py: { xs: 6, md: 12 },
                   px: { xs: 6, md: 12 },
+                  py: { xs: 12, md: 12 },
                 }}
               >
                 <MailchimpList />

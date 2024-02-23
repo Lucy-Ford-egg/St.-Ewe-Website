@@ -47,12 +47,13 @@ export const MailchimpList = () => {
           <FormControl sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: {xs : 'center', md: 'unset'}, flexDirection: { xs: 'column', md: 'column' } }}>
           <Box sx={{
             display: 'flex',
+            flexDirection: {xs: "column", md: "row"},
             columnGap: 3,
           }}>
           <Box sx={{width: '100%'}}>
               <FormLabel htmlFor="firstName">First Name</FormLabel>
               <TextField id="firstName" hiddenLabel={true}  disableUnderline={true} variant="filled" color="primary" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true}  required sx={{
-                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%'}, maxWidth: 350, mb: { xs: 6, md: 0 }
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%'}, maxWidth: 350, mb: { xs: 0, md: 0 }
               }} name="firstName" type="text"/>
               <MyFormHelperText />
             </Box>
@@ -60,7 +61,7 @@ export const MailchimpList = () => {
             <Box sx={{width: '100%'}}>
               <FormLabel htmlFor="lastName">Last Name</FormLabel>
               <TextField id="lastName" hiddenLabel={true}  disableUnderline={true} variant="filled" color="primary" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true}  required sx={{
-                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%'}, maxWidth: 350, mb: { xs: 6, md: 0 }
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%'}, maxWidth: 350, mb: { xs: 0, md: 0 }
 
               }} name="lastName" type="text" />
               <MyFormHelperText />
@@ -69,7 +70,7 @@ export const MailchimpList = () => {
             <Box sx={{width: '100%', flexBasis: '100%'}}>
               <FormLabel htmlFor="email">Email</FormLabel>
               <TextField id="email" hiddenLabel={true}  disableUnderline={true} variant="filled" color="primary" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true}  required sx={{
-                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: '100%'}, minWidth: {xs: '100%'}, mb: { xs: 6, md: 0 }
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: '100%'}, minWidth: {xs: '100%'}, mb: { xs: 0, md: 0 }
 
               }} name="email" type="email" />
               <MyFormHelperText />

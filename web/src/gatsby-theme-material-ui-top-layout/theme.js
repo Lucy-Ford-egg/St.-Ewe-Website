@@ -223,6 +223,9 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: defaultTheme.palette.white.main,
+          "&:before":{
+            borderBottom: "unset !important",
+          },
         },
         underline:{
           borderBottomColor: "transparent !important",
