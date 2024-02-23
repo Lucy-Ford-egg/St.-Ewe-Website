@@ -15,7 +15,7 @@ export const Layout = (props) => {
 
   
   // Preview
-  const definedSlug = props.data.sanityPage || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
+  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
 
   const { data, sourceMap } = useQuery(
     PAGE_QUERY,

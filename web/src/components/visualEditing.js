@@ -25,7 +25,7 @@ export function VisualEditing({location}) {
           case "pop":
             return routerRef.current.back();
           case "replace":
-            return routerRef.current.replace(update.url);
+            return routerRef.current?.replace(update.url);
           default:
             throw new Error(`Unknown update type: ${update.type}`);
         }
@@ -46,7 +46,7 @@ export function VisualEditing({location}) {
   useEffect(() => {
     navigateRef.current?.({
       type: "push",
-      url: `${location.pathname}${searchParams?.size ? `?${searchParams}` : ""}`,
+      url: `${location.pathname}${searchParams?.size ? `?${searchParams}` : "" }`,
     });
   }, [location.pathname, searchParams]);
 
