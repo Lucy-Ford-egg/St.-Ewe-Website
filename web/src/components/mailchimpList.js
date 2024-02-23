@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
-import { Typography, Button, FormHelperText, Box, TextField, useFormControl } from "@mui/material"
-import FormControl from "@mui/material/FormControl"
+import { Typography, Button, FormHelperText, Box, TextField, useFormControl, FormLabel, FormControl } from "@mui/material"
 import CheckIcon from '@mui/icons-material/Check';
 
 export const MailchimpList = () => {
@@ -41,35 +40,38 @@ export const MailchimpList = () => {
   }
   return (
     <Box sx={{
-      width: '100%'
+      maxWidth: '100%'
     }}>
       {!MCResult &&
         <Box component="form" noValidate autoComplete="off" onSubmit={(e) => handleSubmit(e)}  sx={{ display: 'flex', width: '100%'}}>
           <FormControl sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: {xs : 'center', md: 'unset'}, flexDirection: { xs: 'column', md: 'column' } }}>
           <Box sx={{
             display: 'flex',
-            columnGap: 6,
+            columnGap: 3,
           }}>
           <Box sx={{width: '100%'}}>
-              <TextField id="firstName" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
-                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%', md: 307}, maxWidth: 350, mb: { xs: 6, md: 0 }
-              }} name="firstName" type="text" placeholder="Enter your first name" />
+              <FormLabel htmlFor="firstName">First Name</FormLabel>
+              <TextField id="firstName" hiddenLabel={true}  disableUnderline={true} variant="filled" color="primary" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true}  required sx={{
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%'}, maxWidth: 350, mb: { xs: 6, md: 0 }
+              }} name="firstName" type="text"/>
               <MyFormHelperText />
             </Box>
 
             <Box sx={{width: '100%'}}>
-              <TextField id="lastName" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
-                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%', md: 307}, maxWidth: 350, mb: { xs: 6, md: 0 }
+              <FormLabel htmlFor="lastName">Last Name</FormLabel>
+              <TextField id="lastName" hiddenLabel={true}  disableUnderline={true} variant="filled" color="primary" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true}  required sx={{
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: 'auto'}, minWidth: {xs: '100%'}, maxWidth: 350, mb: { xs: 6, md: 0 }
 
-              }} name="lastName" type="text" placeholder="Enter your last name" />
+              }} name="lastName" type="text" />
               <MyFormHelperText />
             </Box>
             </Box>
             <Box sx={{width: '100%', flexBasis: '100%'}}>
-              <TextField id="email" disableUnderline={true} variant="filled" color="white" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true} hiddenLabel={true} required sx={{
-                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: '100%'}, minWidth: {xs: '100%', md: 307}, mb: { xs: 6, md: 0 }
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <TextField id="email" hiddenLabel={true}  disableUnderline={true} variant="filled" color="primary" inputProps={{ sx:{ border: 'none', borderRadius: 0}  }} fullWidth={true}  required sx={{
+                backgroundColor: 'white.main', borderColor: 'white', width: {xs: '100%', md: '100%'}, minWidth: {xs: '100%'}, mb: { xs: 6, md: 0 }
 
-              }} name="email" type="email" placeholder="Enter your email address" />
+              }} name="email" type="email" />
               <MyFormHelperText />
             </Box>
             <Button sx={{ mx: { xs: 6, md: 6, minWidth: { xs: '100%', md: 109 }, width: { xs: '100% !important' } } }} size="large" variant="contained" color="primary" type="submit">Signup</Button>

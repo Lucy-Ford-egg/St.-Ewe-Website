@@ -26,7 +26,7 @@ export const StepsTile = props => {
     (previewData && previewData?.steps && previewData?.steps[index]?.tileOrientation) ||
     tile.tileOrientation
 
-  const definedSecondtitle =  (previewData && previewData?.steps[index]?.secondTitle) || tile.secondTitle
+  const definedSecondtitle =  (previewData && previewData?.steps && previewData?.steps[index]?.secondTitle) || tile?.secondTitle
 
 
   const [scope, animate] = useAnimate()
@@ -132,7 +132,7 @@ export const StepsTile = props => {
                     )}
                     <Box color={contrastColour(tileColor).textColour} sx={{mt: {xs: -1, md: -1}}}>
                       <RenderPortableText
-                        previewData={previewData?.steps[index]}
+                        previewData={previewData?.steps && previewData?.steps[index]}
                         sanityConfig={sanityConfig}
                         setAsHeading="h3"
                         value={definedTitle}
@@ -248,7 +248,7 @@ export const StepsTile = props => {
               >
                 
                   <RenderPortableText
-                    previewData={previewData?.steps[index]}
+                    previewData={previewData?.steps && previewData?.steps[index]}
                     sanityConfig={sanityConfig}
                     setAsHeading={false}
                     value={definedDescription}
@@ -289,7 +289,7 @@ export const StepsTile = props => {
                 )}
                 <Box color={contrastColour(tileColor).textColour}>
                   <RenderPortableText
-                    previewData={previewData?.steps[index]}
+                    previewData={previewData?.steps && previewData?.steps[index]}
                     sanityConfig={sanityConfig}
                     setAsHeading={false}
                     value={definedInvolves}

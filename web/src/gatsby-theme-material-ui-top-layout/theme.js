@@ -62,8 +62,8 @@ let clientTheme = createTheme({
       xxl: 1440
     }
   },
-  transitions:{
-    easing:{
+  transitions: {
+    easing: {
       easeOut: "cubic-bezier(.08,.1,1,.99)",
       sharp: "cubic-bezier(.08,.1,1,.99)",
     },
@@ -87,7 +87,7 @@ let clientTheme = createTheme({
     },
     caption: {
       fontFamily: 'Open Sans',
-      fontSize: clientSpacing[2],
+      fontSize: clientSpacing[1],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
@@ -162,16 +162,16 @@ let clientTheme = createTheme({
     },
     MuiContainer: {
       styleOverrides: {
-        root:{
-          
+        root: {
+
         },
-        maxWidthXl:{
+        maxWidthXl: {
           [defaultTheme.breakpoints.down('sm')]: {
             paddingLeft: `${defaultTheme.spacing(5)} !important`,
             paddingRight: `${defaultTheme.spacing(5)} !important`,
           },
         },
-        maxWidthMd:{
+        maxWidthMd: {
           [defaultTheme.breakpoints.down('xl')]: {
             maxWidth: 750,
           }
@@ -224,6 +224,12 @@ let clientTheme = createTheme({
         root: {
           backgroundColor: defaultTheme.palette.white.main,
         },
+        underline:{
+          borderBottomColor: "transparent !important",
+        },
+        input: {
+          borderBottomColor: "transparent !important",
+        },
       },
     },
     MuiTextFeild: {
@@ -235,6 +241,16 @@ let clientTheme = createTheme({
           borderRadius: 0
         }
       }
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Open Sans',
+          fontSize: `${defaultTheme.spacing(2)} !important`,
+          lineHeight: 1.5,
+          letterSpacing: '0em',
+        },
+      },
     },
     MuiPaper: {
       styleOverrides: {
@@ -286,8 +302,8 @@ let clientTheme = createTheme({
           display: "flex",
           paddingTop: `${defaultTheme.spacing(2)} !important`, //"0.5rem 1.3125rem",
           paddingBottom: `${defaultTheme.spacing(2)} !important`,
-          paddingLeft:`${defaultTheme.spacing(7)} !important`,
-          paddingRight:`${defaultTheme.spacing(7)} !important`,
+          paddingLeft: `${defaultTheme.spacing(7)} !important`,
+          paddingRight: `${defaultTheme.spacing(7)} !important`,
           justifyContent: "center",
           alignItems: "center",
         },
@@ -369,20 +385,20 @@ let clientTheme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          borderRadius: 0, 
+          borderRadius: 0,
         },
-        notchedOutline:{
+        notchedOutline: {
           border: `1px solid ${defaultTheme.palette.tertiary.main}`,
         },
       },
     },
 
-    MuiCheckbox:{
+    MuiCheckbox: {
       styleOverrides: {
         root: {
           borderRadius: 0,
         },
-        colorPrimary:{
+        colorPrimary: {
           borderRadius: 0,
         },
       },

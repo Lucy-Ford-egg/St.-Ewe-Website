@@ -71,8 +71,7 @@ export const NewsletterSection = props => {
               />
 
             <Typography
-              color={contrastColour(backgroundColor).textColour}
-              
+              color={contrastColour(backgroundColor).textColour} 
               variant="body1"
             >
               {previewData && previewData.text ? previewData.text : text}
@@ -113,12 +112,25 @@ export const NewsletterSection = props => {
               }}
             />
           )}
-          <Box sx={{
-            gridColumn: "2/6",
+          <Grid container item xs={10} md={12} sx={{
+            gridColumn: "1/7",
             gridRow: "1/auto",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}>
-          <MailchimpList />
-          </Box>
+            <Grid item xs={10} md={8} sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "primary.lighter",
+            py: {xs: 6, md: 12},
+            px: {xs: 6, md: 12},
+          }}>
+            <MailchimpList />
+          </Grid>
+          
+          </Grid>
           </Box>
         </Grid>
       </Grid>

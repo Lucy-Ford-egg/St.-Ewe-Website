@@ -40,7 +40,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
   if (params.type === "page") {
     // Subscribe to the latest slug and title
     const doc$ = context.documentStore.listenQuery(
-      `*[_id == $id][0]{ slug, title, ...}`,
+      `*[_id == $id][0]{ slug, title,  ...}`,
       params,
       { perspective: "previewDrafts" } // returns a draft article if it exists
     );
