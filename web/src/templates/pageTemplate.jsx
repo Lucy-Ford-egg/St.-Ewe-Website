@@ -112,8 +112,14 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       ... on SanityHeaderSection {
         ...HeaderSectionFragment
       }
+      ... on SanityTestimonialSection {
+        ...TestimonialSectionFragment
+      }
       ... on SanityTeamSection {
         ...TeamSectionFragment
+      }
+      ...on SanityCaseStudySection {
+        ... CaseStudySectionFragment
       }
       ... on SanityVideoSection {
         ...VideoSectionFragment
@@ -124,32 +130,14 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       ... on SanityCtaSection {
         ...CtaSectionFragment
       }
-      ... on SanityServicesSection {
-        ...ServicesSectionFragment
-      }
-      ... on SanityTestimonialSection {
-        ...TestimonialSectionFragment
-      }
+      ... on SanityNewsletterSection{
+        ... NewsletterSectionFragment
+      }      
       ... on SanityImageCarouselSection {
         ...ImageCarouselSectionFragment
       }
-      ... on SanityLocationSection {
-        ...LocationSectionFragment
-      }
-      ... on SanityBenifitsSection {
-        ... BenifitsSectionFragment
-      }
-      ... on SanityContactSection {
-        ... ContactSectionFragment
-      }
       ...on SanityBlogSection {
         ... BlogSectionFragment
-      }
-      ...on SanityCaseStudySection {
-        ... CaseStudySectionFragment
-      }
-      ... on SanityNewsletterSection{
-        ... NewsletterSectionFragment
       }
       ... on SanityStepsSection{
         ... StepsSectionFragment

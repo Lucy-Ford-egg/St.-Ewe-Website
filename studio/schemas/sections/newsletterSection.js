@@ -16,22 +16,76 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'title',
-      type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required(),
-    }), 
+      name: 'title',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          // { title: 'Bullet', value: 'bullet' },
+          // { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          { title: 'Lead', value: 'body2' },
+          { title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          annotations: [
+            {
+              type: 'textColor',
+            }
+          ],
+          decorators: [
+            // { title: 'Strong', value: 'strong' },
+            // { title: 'Emphasis', value: 'em' },
+            // { title: 'Underline', value: 'underline' },
+          ]
+        }
+      }
+      ],
+    }),
     defineField({
-      name: 'text',
-      type: 'text',
-      rows: 6,
       title: 'Text',
-      description: 'Add some textual content. Optional'
+      name: 'text',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          { title: 'Bullet', value: 'bullet' },
+          { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          { title: 'Lead', value: 'body2' },
+          { title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
+          ]
+        }
+      }
+      ],
     }),
     defineField({
       name: 'topPadding',
       type: 'boolean',
       title: 'Remove top padding',
+    }),
+    defineField({
+      name: 'mirror',
+      type: 'boolean',
+      title: 'Mirror',
+      description: 'Select this to reverse the order. Image positioned on the left'
     }),
     defineField({
       title: 'Background Colour',

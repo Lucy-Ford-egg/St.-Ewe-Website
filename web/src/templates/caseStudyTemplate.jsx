@@ -220,8 +220,14 @@ export const caseStudyTemplateQuery = graphql`
         ... on SanityHeaderSection {
           ...HeaderSectionFragment
         }
+        ... on SanityTestimonialSection {
+          ...TestimonialSectionFragment
+        }
         ... on SanityTeamSection {
           ...TeamSectionFragment
+        }
+        ...on SanityCaseStudySection {
+          ... CaseStudySectionFragment
         }
         ... on SanityVideoSection {
           ...VideoSectionFragment
@@ -232,32 +238,14 @@ export const caseStudyTemplateQuery = graphql`
         ... on SanityCtaSection {
           ...CtaSectionFragment
         }
-        ... on SanityServicesSection {
-          ...ServicesSectionFragment
-        }
-        ... on SanityTestimonialSection {
-          ...TestimonialSectionFragment
-        }
+        ... on SanityNewsletterSection{
+          ... NewsletterSectionFragment
+        }      
         ... on SanityImageCarouselSection {
           ...ImageCarouselSectionFragment
         }
-        ... on SanityLocationSection {
-          ...LocationSectionFragment
-        }
-        ... on SanityBenifitsSection {
-          ... BenifitsSectionFragment
-        }
-        ... on SanityContactSection {
-          ... ContactSectionFragment
-        }
         ...on SanityBlogSection {
           ... BlogSectionFragment
-        }
-        ...on SanityCaseStudySection {
-          ... CaseStudySectionFragment
-        }
-        ... on SanityNewsletterSection{
-          ... NewsletterSectionFragment
         }
         ... on SanityStepsSection{
           ... StepsSectionFragment
@@ -270,3 +258,14 @@ export const caseStudyTemplateQuery = graphql`
   }
 `
 export default CaseStudyTemplate
+
+// TODO:
+        // ... on SanityLocationSection {
+        //   ...LocationSectionFragment
+        // }
+        // ... on SanityBenifitsSection {
+        //   ... BenifitsSectionFragment
+        // }
+        // ... on SanityContactSection {
+        //   ... ContactSectionFragment
+        // }
