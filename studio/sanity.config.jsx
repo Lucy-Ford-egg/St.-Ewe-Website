@@ -13,8 +13,10 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/studioTheme'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 
+import {resolveProductionUrl} from './previews/resolveProductionUrl'
 import {presentationTool} from 'sanity/presentation'
 import {locate} from './locate'
+
 
 export default defineConfig({
   name: 'default',
@@ -36,7 +38,10 @@ export default defineConfig({
         structure: deskStructure, 
       }),
     presentationTool({
-      previewUrl: 'http://localhost:8000', //'http://localhost:8000', //'https://taylormoney.netlify.app'
+      previewUrl: async () => {
+        const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL  || "http://localhost:8000"
+        return url
+      }, 
       locate: locate,
     }),
     visionTool(),
