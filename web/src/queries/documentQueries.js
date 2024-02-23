@@ -28,13 +28,35 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     title[]{...},
     text[]{...},
     navColor->,
+   
     steps[]{
       title,
       description,
       involves,
     },
-    ..., 
-   
+    testimonialTiles[]->{
+      ...,
+      cite{
+        teamMemberCite->{
+          name,
+          position,
+          image {
+            asset->,
+            hotspot{...},
+            crop{...}
+          },
+        },
+        externalCite{
+          citeName,
+          citeLocation,
+          image {
+            asset->,
+            hotspot{...},
+            crop{...}
+          },
+        },
+      },
+    },
   },
   title,
   text,
@@ -47,6 +69,4 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   },
   textAlign,
   slug->,
-  ...,
- 
 }`

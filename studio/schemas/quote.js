@@ -44,14 +44,30 @@ export default defineType({
     }),
     defineField({
       name: 'quoteText',
-      type: 'text',
-      title: 'Quote',
+      title: 'Quote Text',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            // { title: 'Lead', value: 'body2' },
+          ],
+          lists: [],
+          marks: {
+            annotations: [
+              //{type: 'textColor',}
+            ],
+            decorators: [
+              //{ title: 'Strong', value: 'strong' },
+            ],
+          }
+        }
+      ],
       description: 'Add your quote. We got a max character count on this so they don`t get too long',
-      rows: 6,
-      // hidden: ({ parent, value }) => !value && parent?.icon
       validation: Rule =>
         Rule.required().max(260)
     }),
+    
 
     defineField({
       name: 'cite',

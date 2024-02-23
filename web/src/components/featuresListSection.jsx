@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import {
   Container,
   Grid,
-  Typography,
   Box,
   useMediaQuery,
   useTheme,

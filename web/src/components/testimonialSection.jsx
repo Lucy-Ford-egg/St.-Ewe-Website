@@ -3,7 +3,8 @@ import { graphql } from "gatsby"
 import { motion, AnimatePresence } from "framer-motion"
 import { wrap } from "popmotion"
 import Image from "gatsby-plugin-sanity-image"
-import { getGatsbyImageData } from "gatsby-source-sanity"
+import { urlFor } from "../utils/imageHelpers"
+import { RenderPortableText } from "../components/renderPortableText"
 
 import {
   Container,
@@ -17,7 +18,7 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { Spiro } from "../components/spiro"
-import {contrastColour} from '../utils/contrastColour'
+import { contrastColour } from "../utils/contrastColour"
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
@@ -62,7 +63,10 @@ export const TestimonialSection = props => {
   // then wrap that within 0-2 to find our image ID in the array below. By passing an
   // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
   // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
-  const slideIndex = wrap(0, testimonialTiles.length, page)
+  const definedTestimonialTiles =
+    (previewData && previewData?.testimonialTiles) || testimonialTiles
+
+  const slideIndex = wrap(0, definedTestimonialTiles.length, page)
 
   const paginate = newDirection => {
     setPage([page + newDirection, newDirection])
@@ -77,35 +81,77 @@ export const TestimonialSection = props => {
     return () => clearTimeout(timer)
   })
 
-  const previewAvatar = previewData?.[slideIndex]?.cite.externalCite ? previewData?.[slideIndex]?.cite.externalCite.image : previewData?.[slideIndex]?.cite.teamMemberCite.image
-  const avatar = testimonialTiles[slideIndex]?.cite.externalCite && testimonialTiles[slideIndex]?.cite.externalCite.image ? testimonialTiles[slideIndex]?.cite.externalCite.image : testimonialTiles[slideIndex].cite.teamMemberCite.image
+  const definedPreviewInternalAvatar =
+    (previewData && previewData?.[slideIndex]?.cite?.teamMemberCite?.image) ||
+    testimonialTiles[slideIndex]?.cite?.teamMemberCite?.image
 
-  let avatarImage = avatar.asset
-  
-  
+  const definedPreviewExternalAvatar =
+    (previewData && previewData?.[slideIndex]?.cite?.externalCite?.image) ||
+    testimonialTiles[slideIndex]?.cite?.externalCite?.image
+
+    debugger
+  const definedBackgroundColor =
+    (previewData && previewData?.backgroundColor) || backgroundColor
+  const definedTopPadding =
+    (previewData && previewData?.topPadding) || topPadding
+
+  const definedQuoteText =
+    (previewData && previewData?.testimonialTiles[slideIndex].quoteText) ||
+    testimonialTiles[slideIndex]._rawQuoteText
+
+  const definedInternalQuoteCite =
+    (previewData &&
+      previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name) ||
+    testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name
+    
+  const definedExternalQuoteCite =
+    (previewData &&
+      previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
+        ?.citeName) ||
+    testimonialTiles[slideIndex]?.cite?.externalCite?.citeName
+
+  const definedInternalQuotePosition =
+    (previewData &&
+      previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite
+        ?.position) ||
+    testimonialTiles[slideIndex]?.cite?.teamMemberCite?.position
+  const definedExternalQuotePosition =
+    (previewData &&
+      previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
+        ?.citePosition) ||
+    testimonialTiles[slideIndex]?.cite?.externalCite?.citePosition
+
   return (
-    <Box sx={{ py: {xs: 14}, position: "relative", backgroundColor: backgroundColor.value, overflowX: 'hidden', }}>
+    <Box
+      sx={{
+        py: { xs: 14 },
+        position: "relative",
+        backgroundColor: definedBackgroundColor.value,
+        overflowX: "hidden",
+      }}
+    >
       <Box
         sx={{
           position: "absolute",
-          top: {xs: "unset", sm: "50%"},
-          bottom: {xs: 0, sm: 'unset'},
-          transform: {xs: "translateX(-30px) rotate(180deg)", sm: "translateX(-150px) translateY(-50%) rotate(180deg)", md: "translateY(-50%)  rotate(180deg)"},
+          top: { xs: "unset", sm: "50%" },
+          bottom: { xs: 0, sm: "unset" },
+          transform: {
+            xs: "translateX(-30px) rotate(180deg)",
+            sm: "translateX(-150px) translateY(-50%) rotate(180deg)",
+            md: "translateY(-50%)  rotate(180deg)",
+          },
           left: 0,
-          width: {xs: '85px', sm: 'auto'},
-          height: {xs: '239.91px', sm: 'auto'},
+          width: { xs: "85px", sm: "auto" },
+          height: { xs: "239.91px", sm: "auto" },
           zIndex: 0,
-          opacity: contrastColour(previewData &&
-            previewData.backgroundColor || backgroundColor).spiro.opacity,
+          opacity: contrastColour(definedBackgroundColor).spiro.opacity,
           svg: {
-            width: '100%',
-            height: 'auto',
-            path:{
-              stroke: contrastColour(previewData &&
-                previewData.backgroundColor || backgroundColor).spiro.fill,
-              
-            }
-          }
+            width: "100%",
+            height: "auto",
+            path: {
+              stroke: contrastColour(definedBackgroundColor).spiro.fill,
+            },
+          },
         }}
       >
         <Spiro />
@@ -114,7 +160,7 @@ export const TestimonialSection = props => {
         maxWidth="xl"
         sx={{
           pb: { xs: theme.spacing(16), md: theme.spacing(16) },
-          pt: topPadding
+          pt: definedTopPadding
             ? {
                 xs: theme.spacing(16),
                 md: theme.spacing(0),
@@ -127,7 +173,7 @@ export const TestimonialSection = props => {
             display: "grid",
             gridTemplateColumns: "repeat(24, 1fr)",
             position: "relative",
-            pb: {xs: 0, md: 6},
+            pb: { xs: 0, md: 6 },
           }}
         >
           <Box
@@ -176,7 +222,7 @@ export const TestimonialSection = props => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "center",
-                    minHeight: {xs: 415, md: 'unset'},
+                    minHeight: { xs: 415, md: "unset" },
                   }}
                 >
                   <Box
@@ -187,22 +233,31 @@ export const TestimonialSection = props => {
                       justifyContent: "center",
                     }}
                   >
-                    <Typography
-                      align="center"
-                      color={contrastColour(previewData &&
-                        previewData.backgroundColor || backgroundColor).textColour}
-                      variant="h3"
-                      sx={{ py: 6 }}
-                    >
-                        {testimonialTiles[slideIndex]?.quoteText && testimonialTiles[slideIndex]?.quoteText}
-                    </Typography>
+                    {definedQuoteText && (
+                      <Box
+                        sx={{
+                          color: contrastColour(definedBackgroundColor)
+                            .textColour,
+                          py: 6,
+                          textAlign: "center",
+                        }}
+                      >
+                        <RenderPortableText
+                          previewData={definedQuoteText}
+                          sanityConfig={sanityConfig}
+                          setAsHeading="h3"
+                          value={definedQuoteText}
+                        />
+                      </Box>
+                    )}
+
                     <Divider
                       sx={{
                         display: "flex",
                         my: 10,
                         width: "5.625rem",
-                        borderColor: contrastColour(previewData &&
-                          previewData.backgroundColor || backgroundColor).divider.hex,
+                        borderColor: contrastColour(definedBackgroundColor)
+                          .divider.hex,
                       }}
                     />
                     <Box
@@ -210,33 +265,24 @@ export const TestimonialSection = props => {
                         display: "flex",
                         flexDirection: "row",
                         alignItems: "center",
-                        maxWidth: {xs: '60vw', md: 'unset'},     
+                        maxWidth: { xs: "60vw", md: "unset" },
                       }}
                     >
-                      
-                      { avatarImage && (
+                      {
+                        // Internal
+                        definedPreviewInternalAvatar && (
                           <Image
                             // pass asset, hotspot, and crop fields
                             // {...testimonialTiles[slideIndex].image}
-                            crop={
-                              (previewData &&
-                                previewAvatar?.crop) ||
-                                avatar && avatar?.crop
-                            }
-                            hotspot={
-                              (previewData &&
-                                previewAvatar?.hotspot) ||
-                                avatar && avatar?.hotspot
-                            }
+                            crop={definedPreviewInternalAvatar?.crop}
+                            hotspot={definedPreviewInternalAvatar?.hotspot}
                             asset={
-                              getGatsbyImageData(
-                                previewData &&
-                                previewAvatar,
-                                { maxWidth: 100 },
-                                sanityConfig,
-                              ) || avatarImage
-                             }
-                            
+                              (definedPreviewInternalAvatar._ref &&
+                                urlFor(definedPreviewInternalAvatar)
+                                  .width(582)
+                                  .url()) ||
+                              definedPreviewInternalAvatar.asset
+                            }
                             // tell Sanity how large to make the image (does not set any CSS)
                             width={100}
                             // style it how you want it
@@ -245,12 +291,40 @@ export const TestimonialSection = props => {
                               height: 56,
                               objectFit: "cover",
                               borderRadius: 1000,
-                              border: `1px solid ${contrastColour(previewData &&
-                                previewData.backgroundColor || backgroundColor).divider.hex}`,
+                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
                             }}
                           />
-                        )}
-                        
+                        )
+                      }
+                      {
+                        // External
+                        definedPreviewExternalAvatar && (
+                          <Image
+                            // pass asset, hotspot, and crop fields
+                            // {...testimonialTiles[slideIndex].image}
+                            crop={definedPreviewExternalAvatar?.crop}
+                            hotspot={definedPreviewExternalAvatar?.hotspot}
+                            asset={
+                              (definedPreviewExternalAvatar._ref &&
+                                urlFor(definedPreviewExternalAvatar)
+                                  .width(582)
+                                  .url()) ||
+                              definedPreviewExternalAvatar.asset
+                            }
+                            // tell Sanity how large to make the image (does not set any CSS)
+                            width={100}
+                            // style it how you want it
+                            style={{
+                              width: 56,
+                              height: 56,
+                              objectFit: "cover",
+                              borderRadius: 1000,
+                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                            }}
+                          />
+                        )
+                      }
+
                       <Box
                         sx={{
                           display: "flex",
@@ -260,16 +334,22 @@ export const TestimonialSection = props => {
                         }}
                       >
                         <Typography
-                          color={contrastColour(previewData &&
-                            previewData.backgroundColor || backgroundColor).textColour}
+                          color={
+                            contrastColour(definedBackgroundColor).textColour
+                          }
                           variant="body1"
                           sx={{ fontWeight: 700 }}
                         >
-                          {testimonialTiles[slideIndex]?.cite.teamMemberCite ? testimonialTiles[slideIndex]?.cite.teamMemberCite?.name : testimonialTiles[slideIndex]?.cite.externalCite?.citeName}
+                          {definedInternalQuoteCite || definedExternalQuoteCite}
                         </Typography>
-                        <Typography color={contrastColour(previewData &&
-            previewData.backgroundColor || backgroundColor).textColour} variant="overline">
-                        {testimonialTiles[slideIndex]?.cite.teamMemberCite ? testimonialTiles[slideIndex]?.cite.teamMemberCite?.position : testimonialTiles[slideIndex]?.cite.externalCite?.citeLocation}
+                        <Typography
+                          color={
+                            contrastColour(definedBackgroundColor).textColour
+                          }
+                          variant="overline"
+                        >
+                          {definedInternalQuotePosition ||
+                            definedExternalQuotePosition}
                         </Typography>
                       </Box>
                     </Box>
@@ -288,19 +368,21 @@ export const TestimonialSection = props => {
             justifyContent: "space-between",
             alignItems: "center",
             flexDirection: "row",
-            position: 'relative',
+            position: "relative",
             zIndex: 2,
-            mt: {xs:12, md: 0 },
+            mt: { xs: 12, md: 0 },
           }}
         >
           <IconButton
             aria-label="delete"
             onClick={() => paginate(-1)}
-            sx={{ border: `1px solid ${contrastColour(previewData &&
-              previewData.backgroundColor || backgroundColor).svg.default.hex}` }}
+            sx={{
+              border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,
+            }}
           >
-            <ArrowBackIcon color={contrastColour(previewData &&
-            previewData.backgroundColor || backgroundColor).svg.default.mui} />
+            <ArrowBackIcon
+              color={contrastColour(definedBackgroundColor).svg.default.mui}
+            />
           </IconButton>
 
           <Box
@@ -308,17 +390,15 @@ export const TestimonialSection = props => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
-              alignItems: 'center',
+              alignItems: "center",
               position: "relative",
             }}
           >
             {testimonialTiles.map((dot, index) => {
               let dotColour =
                 index === slideIndex
-                  ? contrastColour(previewData &&
-                    previewData.backgroundColor || backgroundColor).svg?.default?.mui
-                  : contrastColour(previewData &&
-                    previewData.backgroundColor || backgroundColor).svg?.active?.hex
+                  ? contrastColour(definedBackgroundColor).svg?.default?.mui
+                  : contrastColour(definedBackgroundColor).svg?.active?.hex
               return (
                 <SvgIcon
                   color={dotColour}
@@ -334,37 +414,40 @@ export const TestimonialSection = props => {
           <IconButton
             aria-label="delete"
             onClick={() => paginate(1)}
-            sx={{ border: `1px solid ${contrastColour(previewData &&
-              previewData.backgroundColor || backgroundColor).svg.default.hex}` }}
+            sx={{
+              border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,
+            }}
           >
-            <ArrowForwardIcon color={contrastColour(previewData &&
-            previewData.backgroundColor || backgroundColor).svg.default.mui} />
+            <ArrowForwardIcon
+              color={contrastColour(definedBackgroundColor).svg.default.mui}
+            />
           </IconButton>
         </Box>
       </Container>
       <Box
         sx={{
           position: "absolute",
-          top: {xs: "unset", sm: "50%"},
-          bottom: {xs: 0, sm: 'unset'},
-          transform: {xs: "translateX(30px)", sm: "translateX(150px) translateY(-50%)", md: "translateY(-50%)"},
+          top: { xs: "unset", sm: "50%" },
+          bottom: { xs: 0, sm: "unset" },
+          transform: {
+            xs: "translateX(30px)",
+            sm: "translateX(150px) translateY(-50%)",
+            md: "translateY(-50%)",
+          },
           right: 0,
-          width: {xs: '85px', sm: 'auto'},
-          height: {xs: '239.91px', sm: 'auto'},
-          display: 'flex',
-          alignItems: {xs: 'flex-end', sm: 'unset'},
+          width: { xs: "85px", sm: "auto" },
+          height: { xs: "239.91px", sm: "auto" },
+          display: "flex",
+          alignItems: { xs: "flex-end", sm: "unset" },
           zIndex: 0,
-          opacity: contrastColour(previewData &&
-            previewData.backgroundColor || backgroundColor).spiro.opacity,
+          opacity: contrastColour(definedBackgroundColor).spiro.opacity,
           svg: {
-            width: '100%',
-            height: 'auto',
-            path:{
-              stroke: contrastColour(previewData &&
-                previewData.backgroundColor || backgroundColor).spiro.fill,
-              
-            }
-          }
+            width: "100%",
+            height: "auto",
+            path: {
+              stroke: contrastColour(definedBackgroundColor).spiro.fill,
+            },
+          },
         }}
       >
         <Spiro />
@@ -383,15 +466,13 @@ export const query = graphql`
       label
     }
     testimonialTiles {
-      quoteText
+      _rawQuoteText(resolveReferences: { maxDepth: 10 })
       cite {
         teamMemberCite {
           image {
             asset {
               _id
               gatsbyImageData
-              _key
-              _type
             }
             hotspot {
               x
