@@ -279,13 +279,13 @@ export const query = graphql`
     _key
     _type
     _rawTitle(resolveReferences: { maxDepth: 10 })
+    _rawText(resolveReferences: { maxDepth: 10 })
     topPadding
     tileColor {
       value
       label
     }
     textAlign
-    _rawText(resolveReferences: { maxDepth: 10 })
     subtitle
     steps {
       ... on SanityStepDivider {
