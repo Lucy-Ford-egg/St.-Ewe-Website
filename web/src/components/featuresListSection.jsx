@@ -11,13 +11,14 @@ import {
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { FeaturesTile } from "./featuresTile"
+import { RenderPortableText } from "../components/renderPortableText"
 
 export const FeaturesListSection = props => {
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down('md'))
+  const mobile = useMediaQuery(theme.breakpoints.down("md"))
   const {
-    title,
-    text,
+    _rawTitle,
+    _rawText,
     previewData,
     sanityConfig,
     topPadding,
@@ -25,12 +26,23 @@ export const FeaturesListSection = props => {
     image,
   } = props
 
+  const definedTopPadding =
+    (previewData && previewData?.topPadding) || topPadding
+  const definedTitle = (previewData && previewData?.title) || _rawTitle
+  const definedText = (previewData && previewData?.text) || _rawText
+  const definedImage = (previewData && previewData?.image) || image
+  const definedFeaturesTile =
+    (previewData && previewData?.featuresTile) || featuresTile
+  // const definedMirror = (previewData && previewData.mirror) || mirror
+
   return (
     <Container
       maxWidth="xl"
       sx={{
         pb: { xs: theme.spacing(0), md: theme.spacing(15) },
-        pt: topPadding ? 0 : { xs: theme.spacing(15), md: theme.spacing(15) },
+        pt: definedTopPadding
+          ? 0
+          : { xs: theme.spacing(15), md: theme.spacing(15) },
       }}
     >
       <Grid
@@ -38,7 +50,7 @@ export const FeaturesListSection = props => {
         rowSpacing={6}
         justifyContent="center"
         sx={{
-          pb: {xs: 10, md: 15},
+          pb: { xs: 10, md: 15 },
         }}
       >
         <Box
@@ -60,11 +72,22 @@ export const FeaturesListSection = props => {
             />
           </svg>
         </Box>
-        <Grid item xs={12} sm={12} md={12}>
-          {title && (
-            <Typography color="text.main" variant="h2" align="center">
-              {previewData && previewData.title ? previewData.title : title}
-            </Typography>
+        <Grid item xs={12} sm={12} md={12} sx={{ textAlign: "center" }}>
+          {definedTitle && (
+            <RenderPortableText
+              previewData={definedTitle}
+              sanityConfig={sanityConfig}
+              setAsHeading={false}
+              value={definedTitle}
+            />
+          )}
+          {definedText && (
+            <RenderPortableText
+              previewData={definedText}
+              sanityConfig={sanityConfig}
+              setAsHeading={false}
+              value={definedText}
+            />
           )}
         </Grid>
       </Grid>
@@ -79,19 +102,14 @@ export const FeaturesListSection = props => {
         }}
       >
         <Grid item xs={12} sm={12} md={6}>
-          {image && (
+          {definedImage && (
             <Image
               // pass asset, hotspot, and crop fields
-              crop={(previewData && previewData?.image?.crop) || image?.crop}
-              hotspot={
-                (previewData && previewData?.image?.hotspot) || image?.hotspot
-              }
+              crop={definedImage.crop}
+              hotspot={definedImage?.hotspot}
               asset={
-                (previewData &&
-                  previewData.image &&
-                  previewData.image?._ref &&
-                  urlFor(previewData.image).width(582).url()) ||
-                image.asset
+                (definedImage?._ref && urlFor(definedImage).width(582).url()) ||
+                definedImage.asset
               }
               width={582}
               height={mobile ? 582 : 1016}
@@ -112,8 +130,8 @@ export const FeaturesListSection = props => {
           md={6}
           sx={{ display: "flex", flexDirection: "column" }}
         >
-          {featuresTile &&
-            featuresTile.map((tile, i) => {
+          {definedFeaturesTile &&
+            definedFeaturesTile.map((tile, i) => {
               return (
                 <FeaturesTile
                   title={tile.title}
@@ -135,8 +153,8 @@ export const query = graphql`
   fragment FeaturesListSectionFragment on SanityFeaturesListSection {
     _key
     _type
-    text
-    title
+    _rawTitle(resolveReferences: { maxDepth: 10 })
+    _rawText(resolveReferences: { maxDepth: 10 })
     image {
       asset {
         _id

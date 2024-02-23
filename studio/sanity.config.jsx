@@ -13,7 +13,6 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/studioTheme'
 import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
 
-import {resolveProductionUrl} from './previews/resolveProductionUrl'
 import {presentationTool} from 'sanity/presentation'
 import {locate} from './locate'
 

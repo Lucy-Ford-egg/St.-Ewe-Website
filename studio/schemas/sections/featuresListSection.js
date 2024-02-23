@@ -7,18 +7,69 @@ export default defineType({
   title: "Features List Section",
   fields: [
     defineField({
-      name: 'title',
-      type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required(),
+      name: 'title',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          // { title: 'Bullet', value: 'bullet' },
+          // { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+        ],
+        marks: {
+          annotations: [
+            {
+              type: 'textColor',
+            }
+          ],
+          decorators: [
+            // { title: 'Strong', value: 'strong' },
+            // { title: 'Emphasis', value: 'em' },
+            // { title: 'Underline', value: 'underline' },
+          ]
+        }
+      }
+      ],
     }), 
 
     defineField({
-      name: 'text',
-      type: 'text',
-      rows: 6,
       title: 'Text',
-      description: 'Add some textual content. Optional'
+      name: 'text',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          // { title: 'Bullet', value: 'bullet' },
+          // { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          { title: 'Lead', value: 'body2' },
+          { title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          annotations: [
+            {
+              type: 'textColor',
+            }
+          ],
+          decorators: [
+            // { title: 'Strong', value: 'strong' },
+            // { title: 'Emphasis', value: 'em' },
+            // { title: 'Underline', value: 'underline' },
+          ]
+        }
+      }
+      ],
     }),
     defineField({
       name: 'image',
@@ -49,9 +100,9 @@ export default defineType({
 
     },
     prepare(selection) {
-      const { title, media, showSearch, textAlign } = selection
+      const { title } = selection
       return {
-        title: `${title} ${showSearch && '| Search active'}`,
+        title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Features List Section`,
         // media: media,
         icon: MdViewModule

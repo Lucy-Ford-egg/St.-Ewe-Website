@@ -23,21 +23,13 @@ const IndexPage = props => {
   );
 
   return (
-    // <IncludePreview
-    //   documentQueries={pageQuery}
-    //   slug={{
-    //     "current": "home-page"
-    //     }} //data.sanityPage.slug
-    //   data={data}
-    // >
     <>
       <Modules
         previewData={previewData}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
       />
-      </>
-    // </IncludePreview>
+    </>
   )
 }
 
@@ -61,11 +53,14 @@ query homeQuery{
         ... on SanityHeaderSection {
           ...HeaderSectionFragment
         }
-        ... on SanityFeatureSection {
-          ...FeatureSectionFragment
+        ... on SanityTestimonialSection {
+          ...TestimonialSectionFragment
         }
         ... on SanityTeamSection {
           ...TeamSectionFragment
+        }
+        ...on SanityCaseStudySection {
+          ... CaseStudySectionFragment
         }
         ... on SanityVideoSection {
           ...VideoSectionFragment
@@ -76,32 +71,20 @@ query homeQuery{
         ... on SanityCtaSection {
           ...CtaSectionFragment
         }
-        ... on SanityServicesSection {
-          ...ServicesSectionFragment
-        }
-        ... on SanityTestimonialSection {
-          ...TestimonialSectionFragment
-        }
-        ... on SanityImageCarouselSection {
-          ...ImageCarouselSectionFragment 
-        }
-        ... on SanityLocationSection {
-          ...LocationSectionFragment
-        }
-        ... on SanityBenifitsSection {
-          ... BenifitsSectionFragment
-        }
-        ... on SanityContactSection {
-          ... ContactSectionFragment
-        }
-        ... on SanityBlogSection {
-          ... BlogSectionFragment
-        }
         ... on SanityNewsletterSection{
           ... NewsletterSectionFragment
+        }      
+        ... on SanityImageCarouselSection {
+          ...ImageCarouselSectionFragment
+        }
+        ...on SanityBlogSection {
+          ... BlogSectionFragment
         }
         ... on SanityStepsSection{
           ... StepsSectionFragment
+        }
+        ... on SanityTimelineSection{
+          ... TimelineSectionFragment
         }
       }
     }
