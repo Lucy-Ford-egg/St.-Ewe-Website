@@ -14,7 +14,6 @@ import {
   useScrollTrigger,
   Slide,
 } from "@mui/material"
-import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 import MainNavigation from "./mainNavigation"
