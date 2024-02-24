@@ -5,6 +5,8 @@ import { Button } from "@mui/material"
 export const ButtonFormat = props => {
   const { node, sx, endIcon, variant, color } = props
   
+  const definedInternal = node?.link?.internal?.slug?.current
+  const definedExternal = node?.link?.external
   return (
     <>
       {node?.link?.internal ? (
@@ -12,18 +14,18 @@ export const ButtonFormat = props => {
           size="small"
           color={color}
           variant={variant}
-          to={node?.link?.internal?.slug?.current} 
+          to={definedInternal} 
           // sx={{...sx}}
           endIcon={endIcon}
         >
           {node?.text}
         </GatsbyButton>
-      ) : node?.link?.external ? (
+      ) : definedExternal ? (
         <Button 
         size="small"
         color={color}
         variant={variant} 
-        to={node?.link?.external} 
+        to={definedExternal} 
         // sx={{...sx}}
         endIcon={endIcon}>
           {node.text}

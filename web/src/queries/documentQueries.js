@@ -18,17 +18,33 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   pageBuilder[] {
     images[] { 
       asset->,
-      ref,
+      hotspot{...},
+      crop{...}
     },
     image {
       asset->,
-      ref,
+      hotspot{...},
+      crop{...}
     },
-    links{...},
+    links[]{
+      link{
+        internal->{
+          slug {
+            current
+          }
+        },
+        external{...},
+      },
+      text,
+    },
     title[]{...},
     text[]{...},
+    title,
+    text,
     navColor->,
-   
+    overlay,
+    topPadding,
+    leftAlign, 
     steps[]{
       title,
       description,

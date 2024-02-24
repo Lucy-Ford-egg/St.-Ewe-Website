@@ -89,7 +89,6 @@ export const TestimonialSection = props => {
     (previewData && previewData?.[slideIndex]?.cite?.externalCite?.image) ||
     testimonialTiles[slideIndex]?.cite?.externalCite?.image
 
-    debugger
   const definedBackgroundColor =
     (previewData && previewData?.backgroundColor) || backgroundColor
 

@@ -13,25 +13,33 @@ export const CtaSection = props => {
     previewData,
     sanityConfig,
     overlay,
-    align,
+    leftAlign,
     links,
     topPadding,
   } = props
 
   const theme = useTheme()
 
+  const definedTopPadding = (previewData && previewData?.topPadding) || topPadding
+  const definedImage = (previewData && previewData?.image) || image
+  const definedOverlay = (previewData && previewData?.overlay) || overlay
+  const definedAlign = (previewData && previewData?.leftAlign) || leftAlign
+  const definedTitle = (previewData && previewData?.title)  || title
+  const definedText = (previewData && previewData?.text) || text
+  const definedLinks = (previewData && previewData?.links) || links
+debugger
   return (
     <Container
       maxWidth="false"
       disableGutters="true"
       sx={{
         //backgroundColor: theme.palette.background.main,
-        pt: topPadding
+        pt: definedTopPadding
           ? 0
           : {
               xs: theme.spacing(10),
               md: theme.spacing(14),
-            },
+        },
         pb: {
           xs: theme.spacing(0),
           md: theme.spacing(14),
@@ -46,19 +54,15 @@ export const CtaSection = props => {
           width: "100%",
         }}
       >
-        {image && (
+        {definedImage && (
           <Image
             // pass asset, hotspot, and crop fields
-            crop={(previewData && previewData?.image?.crop) || image?.crop}
-            hotspot={
-              (previewData && previewData?.image?.hotspot) || image?.hotspot
-            }
+            crop={definedImage?.crop}
+            hotspot={definedImage?.hotspot}
             asset={
-              (previewData &&
-                previewData.image &&
-                previewData.image?._ref &&
-                urlFor(previewData.image).width(200).url()) ||
-              image.asset
+              (definedImage?._ref &&
+                urlFor(definedImage).width(200).url()) ||
+                definedImage.asset
             }
             width={1330}
             height={515}
@@ -74,7 +78,7 @@ export const CtaSection = props => {
           />
         )}
 
-        {overlay && (
+        {definedOverlay && (
           <Box
             className="overlay"
             sx={{
@@ -85,7 +89,7 @@ export const CtaSection = props => {
               gridRow: "1/auto",
               position: "relative",
               zIndex: 1,
-              backgroundColor: `rgba(0,40,86, ${overlay})`,
+              backgroundColor: `rgba(0,40,86, ${definedOverlay})`,
             }}
           />
         )}
@@ -106,38 +110,34 @@ export const CtaSection = props => {
             <Box>
               <Grid
                 container
-                justifyContent={align === "left" ? "flex-start" : "center"}
+                justifyContent={definedAlign === "left" ? "flex-start" : "center"}
               >
                 <Grid item xs={12} md={6}>
                   <Box
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: align === "left" ? "flex-start" : "center",
+                      alignItems: definedAlign === "left" ? "flex-start" : "center",
                       px: { xs: 4, md: 11 },
                       py: { xs: 8, md: 11 },
                     }}
                   >
                     <Typography
                       color="white.main"
-                      align={align === "left" ? "left" : "center"}
+                      align={definedAlign === "left" ? "left" : "center"}
                       sx={{ my: { xs: 0, md: 5 } }}
                       variant="h2"
                     >
-                      {previewData && previewData.title
-                        ? previewData.title
-                        : title}
+                      {definedTitle}
                     </Typography>
 
                     <Typography
                       color="white.main"
-                      align={align === "left" ? "left" : "center"}
+                      align={definedAlign === "left" ? "left" : "center"}
                       sx={{ my: { xs: 0, md: 5 } }}
                       variant="body1"
                     >
-                      {previewData && previewData.text
-                        ? previewData.text
-                        : text}
+                      {definedText}
                     </Typography>
 
                     <Box
@@ -153,17 +153,13 @@ export const CtaSection = props => {
                         py: 2,
                       }}
                     >
-                      {links &&
-                        links.map((node, i) => {
+                      {definedLinks &&
+                        definedLinks.map((node, i) => {
                           return (
                             <ButtonFormat
                               variant={i === 0 ? "contained" : "outlined"}
                               color={i === 0 ? "primary" : "secondary"}
-                              node={
-                                previewData && previewData.node
-                                  ? previewData.node
-                                  : node
-                              }
+                              node={ node }
                               sx={{}}
                             />
                           )
@@ -224,7 +220,7 @@ export const query = graphql`
       }
       text
     }
-    align: leftAlign
+    leftAlign
     topPadding
     overlay
   }
