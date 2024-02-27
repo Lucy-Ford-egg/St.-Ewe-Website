@@ -87,7 +87,7 @@ let clientTheme = createTheme({
     },
     caption: {
       fontFamily: 'Open Sans',
-      fontSize: clientSpacing[1],
+      fontSize: clientSpacing[3],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },

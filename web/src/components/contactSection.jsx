@@ -29,7 +29,7 @@ export const ContactSection = props => {
     previewData,
     sanityConfig,
     topPadding,
-    formTerms,
+    _rawFormTerms,
   } = props
 
   const textColour = theme.palette.text.main
@@ -38,7 +38,7 @@ export const ContactSection = props => {
     (previewData && previewData.topPadding) || topPadding
   const definedTitle = (previewData && previewData.title) || _rawTitle
   const definedText = (previewData && previewData.text) || _rawText
-  const definedFormTerms = (previewData && previewData.formTerms) || formTerms
+  const definedFormTerms = (previewData && previewData.formTerms) || _rawFormTerms
 
   // Forms
   const label = { inputProps: { "aria-label": "Checkbox demo" } }
@@ -82,7 +82,7 @@ export const ContactSection = props => {
         <Grid
           container
           rowSpacing={{ xs: 6, sm: 6, md: 6 }}
-          columnSpacing={{ xs: 13, sm: 13, md: 13 }}
+          columnSpacing={{ xs: 6, sm: 6, md: 6 }}
           sx={{
             alignItems: "center",
           }}
@@ -252,8 +252,9 @@ export const ContactSection = props => {
                 data-netlify-honeypot="bot-field"
               >
                 <input type="hidden" name="form-name" value="contact-mui" />
-                <Grid container>
-                  <Grid container item xs={12} sm={12} md={6}>
+                <Grid container columnSpacing={{ xs: 6, sm: 6, md: 6 }}>
+                  <Grid item xs={12} sm={12} md={6} columnSpacing={{ xs: 6, sm: 6, md: 6 }}>
+                  <Grid container columnSpacing={{ xs: 6, sm: 6, md: 6 }}>
                     <Grid item xs={12} sm={12} md={6}>
                       <FormLabel htmlFor="firstName">First Name</FormLabel>
                       <TextField
@@ -359,10 +360,11 @@ export const ContactSection = props => {
                         margin="normal"
                       />
                     </Grid>
+                    </Grid>
                   </Grid>
-                  <Grid container xs={12} md={6}>
+                  <Grid item xs={12} sm={12} md={6} columnSpacing={{ xs: 6, sm: 6, md: 6 }}>
                     <Grid item xs={12}>
-                      <FormLabel htmlFor="message">Phone Number</FormLabel>
+                      <FormLabel htmlFor="message">Message</FormLabel>
                       <TextField
                         label="Message"
                         name="message"
@@ -370,27 +372,27 @@ export const ContactSection = props => {
                         rows={4}
                         fullWidth
                         margin="normal"
+                        sx={{minHeight: 150}}
                       />
                     </Grid>
                     <Grid
                       container
                       xs={12}
-                      sx={{ display: "flex", justifyContent: "space-between" }}
+                      sx={{ display: "flex", alignItems: "center" }}
                     >
-                      <Grid item xs={6}>
+                      <Grid item xs={8} sx={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
                         {definedFormTerms && (
-                          <Link
-                            to={definedFormTerms.link.internal.slug.current}
-                            target="_blank"
-                            rel="noopener"
-                          >
-                            <Typography variant="caption">
-                              {definedFormTerms.text}
-                            </Typography>
-                          </Link>
+                           
+                            <RenderPortableText
+                              previewData={definedFormTerms}
+                              sanityConfig={sanityConfig}
+                              setAsHeading="caption"
+                              value={definedFormTerms}
+                            />
+                        
                         )}
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={4} sx={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                         <Button
                           sx={{ my: 6 }}
                           type="submit"
@@ -402,7 +404,7 @@ export const ContactSection = props => {
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
+             </Grid>
               </form>
             </Box>
           </Grid>
@@ -419,24 +421,6 @@ export const query = graphql`
     _rawTitle(resolveReferences: { maxDepth: 10 })
     _rawText(resolveReferences: { maxDepth: 10 })
     topPadding
-    formTerms {
-      link {
-        internal {
-          ... on SanityPage {
-            id
-            slug {
-              current
-            }
-          }
-          ... on SanityPost {
-            id
-            slug {
-              current
-            }
-          }
-        }
-      }
-      text
-    }
+    _rawFormTerms(resolveReferences: { maxDepth: 10 })
   }
 `

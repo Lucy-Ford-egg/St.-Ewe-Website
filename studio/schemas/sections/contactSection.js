@@ -81,6 +81,80 @@ export default defineType({
         Rule.required().max(260)
     }),
     defineField({
+      name: 'formTerms',
+      title: 'Form Terms',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          //{ title: 'Bullet', value: 'bullet' },
+          //{ title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          //{ title: 'Lead', value: 'body2' },
+          //{ title: 'Heading 2', value: 'h2' },
+          //{ title: 'Heading 3', value: 'h3' },
+          //{ title: 'Heading 4', value: 'h4' },
+          //{ title: 'Heading 5', value: 'h5' },
+          //{ title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
+          ],
+          annotations: [
+            {
+              name: 'internalLink',
+              type: 'object',
+              title: 'Internal link',
+              fields: [
+                {
+                  name: 'reference',
+                  type: 'reference',
+                  title: 'Reference',
+                  to: [
+                    { type: 'post' }, {type: 'page'}
+                    // other types you may want to link to
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'link',
+              type: 'object',
+              title: 'External link',
+              fields: [
+                {
+                  name: 'href',
+                  type: 'url',
+                  title: 'URL'
+                },
+                {
+                  title: 'Open in new tab',
+                  name: 'blank',
+                  default: true,
+                  type: 'boolean'
+                }
+              ]
+            },
+            // {type: 'file', icon: MdPictureAsPdf},
+            // {type: 'textColor',},
+          
+          ],
+        }
+      }, 
+      // {
+      //   type: 'image'
+      // }
+    ],
+      description: 'Add some text',
+      validation: Rule =>
+        Rule.required().max(260)
+    }),
+    defineField({
       name: 'text',
       title: 'Text',
       type: 'array',
@@ -153,13 +227,6 @@ export default defineType({
       description: 'Add some text',
       validation: Rule =>
         Rule.required().max(260)
-    }),
-    defineField({
-      name: 'formTerms',
-      type: 'linkDefined',
-      title: 'Form Terms',
-      description: 'Add link for the related terms.',
-      hidden: ({ parent, value }) => !value && !parent?.showForm
     }),
     defineField({
       name: 'topPadding',
