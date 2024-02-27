@@ -46,7 +46,7 @@ export const NewsletterSection = props => {
               md: theme.spacing(14),
             },
         pb: {
-          xs: theme.spacing(0),
+          xs: theme.spacing(10),
           md: theme.spacing(14),
         },
       }}

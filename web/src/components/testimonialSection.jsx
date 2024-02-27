@@ -96,7 +96,7 @@ export const TestimonialSection = props => {
     (previewData && previewData?.topPadding) || topPadding
 
   const definedQuoteText =
-    (previewData && previewData?.testimonialTiles[slideIndex].quoteText) ||
+    (previewData && previewData?.testimonialTiles[slideIndex] && previewData?.testimonialTiles[slideIndex].quoteText) ||
     testimonialTiles[slideIndex]._rawQuoteText
 
   const definedInternalQuoteCite =

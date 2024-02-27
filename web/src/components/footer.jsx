@@ -121,7 +121,12 @@ export const Footer = props => {
       {showNewsletter && data.sanitySiteSettings?.newsletterSetup && (
         <Newsletter newsletterSetup={data.sanitySiteSettings.newsletterSetup} />
       )}
-      <Box sx={{ backgroundColor: "secondary.main", py: { xs: 11, md: 14 } }}>
+      <Box sx={{ 
+        mt: {
+          xs: theme.spacing(10),
+          md: theme.spacing(14),
+        },
+        backgroundColor: "secondary.main", py: { xs: 11, md: 14 } }}>
         <Container maxWidth="xl" sx={{ position: "relative" }}>
           <Grid container rowSpacing={6} sx={{ py: 11 }}>
             <Grid container sx={{ py: 8 }}>
