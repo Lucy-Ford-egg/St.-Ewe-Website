@@ -60,8 +60,8 @@ export const NewsletterSection = props => {
           md={5}
           sx={{
             backgroundColor:
-              (previewData && previewData.backgroundColor.value) ||
-              backgroundColor.value,
+              (previewData && previewData.backgroundColor?.value) ||
+              backgroundColor?.value,
           }}
         >
           <Box

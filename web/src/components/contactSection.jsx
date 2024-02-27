@@ -65,12 +65,20 @@ export const ContactSection = props => {
     <Container
       maxWidth={false}
       sx={{
-        pt: definedTopPadding
+        mt: definedTopPadding
           ? 0
           : {
               xs: theme.spacing(10),
               md: theme.spacing(14),
             },
+        pt: {
+          xs: theme.spacing(10),
+          md: theme.spacing(14),
+        },
+        mb: {
+          xs: theme.spacing(10),
+          md: theme.spacing(14),
+        },
         pb: {
           xs: theme.spacing(10),
           md: theme.spacing(14),
