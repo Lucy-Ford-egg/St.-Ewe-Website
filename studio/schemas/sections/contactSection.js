@@ -5,45 +5,154 @@ export default defineType({
   name: "contactSection",
   type: "object",
   title: "Contact Section",
-  fields: [
-    defineField({
-      name: 'image',
-      type: 'image',
-      title: 'Image',
-      validation: Rule => Rule.required(),
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'icon',
-      type: 'icons',
-      title: 'Icon',
-    }),  
-    defineField({
-      name: 'subtitle',
-      type: 'string',
-      title: 'Subtitle',
-      hidden: ({ parent, value }) => !value && parent?.icon
-    }),
+  fields: [ 
     defineField({
       name: 'title',
-      type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required(),
-    }), 
-    defineField({
-      name: 'text',
-      type: 'text',
-      rows: 6,
-      title: 'Text',
-      description: 'Add some textual content. Optional'
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          //{ title: 'Bullet', value: 'bullet' },
+          //{ title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          //{ title: 'Lead', value: 'body2' },
+          { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          //{ title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          decorators: [
+            // { title: 'Strong', value: 'strong' },
+            // { title: 'Emphasis', value: 'em' },
+            // { title: 'Underline', value: 'underline' },
+          ],
+          annotations: [
+            // {
+            //   name: 'internalLink',
+            //   type: 'object',
+            //   title: 'Internal link',
+            //   fields: [
+            //     {
+            //       name: 'reference',
+            //       type: 'reference',
+            //       title: 'Reference',
+            //       to: [
+            //         { type: 'post' }, {type: 'page'}
+            //         // other types you may want to link to
+            //       ]
+            //     }
+            //   ]
+            // },
+            // {
+            //   name: 'link',
+            //   type: 'object',
+            //   title: 'External link',
+            //   fields: [
+            //     {
+            //       name: 'href',
+            //       type: 'url',
+            //       title: 'URL'
+            //     },
+            //     {
+            //       title: 'Open in new tab',
+            //       name: 'blank',
+            //       default: true,
+            //       type: 'boolean'
+            //     }
+            //   ]
+            // },
+            // {type: 'file', icon: MdPictureAsPdf},
+            // {type: 'textColor',},
+          
+          ],
+        }
+      }, 
+      // {
+      //   type: 'image'
+      // }
+    ],
+      description: 'Add your quote. We got a max character count on this so they don`t get too long',
+      validation: Rule =>
+        Rule.required().max(260)
     }),
     defineField({
-      name: 'showForm',
-      type: 'boolean',
-      title: 'Add form',
-      description: 'Add a form. Forms are passed to an email address.'
+      name: 'text',
+      title: 'Text',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          { title: 'Bullet', value: 'bullet' },
+          { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          { title: 'Lead', value: 'body2' },
+          //{ title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          //{ title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
+          ],
+          annotations: [
+            {
+              name: 'internalLink',
+              type: 'object',
+              title: 'Internal link',
+              fields: [
+                {
+                  name: 'reference',
+                  type: 'reference',
+                  title: 'Reference',
+                  to: [
+                    { type: 'post' }, {type: 'page'}
+                    // other types you may want to link to
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'link',
+              type: 'object',
+              title: 'External link',
+              fields: [
+                {
+                  name: 'href',
+                  type: 'url',
+                  title: 'URL'
+                },
+                {
+                  title: 'Open in new tab',
+                  name: 'blank',
+                  default: true,
+                  type: 'boolean'
+                }
+              ]
+            },
+            // {type: 'file', icon: MdPictureAsPdf},
+            // {type: 'textColor',},
+          
+          ],
+        }
+      }, 
+      // {
+      //   type: 'image'
+      // }
+    ],
+      description: 'Add some text',
+      validation: Rule =>
+        Rule.required().max(260)
     }),
     defineField({
       name: 'formTerms',
@@ -51,13 +160,6 @@ export default defineType({
       title: 'Form Terms',
       description: 'Add link for the related terms.',
       hidden: ({ parent, value }) => !value && !parent?.showForm
-    }),
-    
-    defineField({
-      name: 'mirror',
-      type: 'boolean',
-      title: 'Image positioned on the right',
-      description: 'Select this to reverse the order to have Image on the right and text on the right.'
     }),
     defineField({
       name: 'topPadding',
@@ -68,17 +170,13 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      media: 'image',
-      showSearch: 'showSearch',
-      highlighted: 'highlighted'
     },
     prepare(selection) {
-      const { title, media, showSearch, highlighted } = selection
+      const { title } = selection
 
       return {
-        title: title,
+        title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Contact Section`,
-        media: media,
         icon: MdMailOutline
       }
     }

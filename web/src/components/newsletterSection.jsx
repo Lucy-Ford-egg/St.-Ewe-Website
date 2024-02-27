@@ -39,7 +39,6 @@ export const NewsletterSection = props => {
       maxWidth={false}
       disableGutters="true"
       sx={{
-        //backgroundColor: theme.palette.background.main,
         pt: definedTopPadding
           ? 0
           : {

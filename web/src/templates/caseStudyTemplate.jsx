@@ -217,42 +217,7 @@ export const caseStudyTemplateQuery = graphql`
       _rawBody(resolveReferences: { maxDepth: 10 })
       #...SeoPageFragment
       pageBuilder {
-        ... on SanityHeaderSection {
-          ...HeaderSectionFragment
-        }
-        ... on SanityTestimonialSection {
-          ...TestimonialSectionFragment
-        }
-        ... on SanityTeamSection {
-          ...TeamSectionFragment
-        }
-        ...on SanityCaseStudySection {
-          ... CaseStudySectionFragment
-        }
-        ... on SanityVideoSection {
-          ...VideoSectionFragment
-        }
-        ... on SanityFeaturesListSection {
-          ...FeaturesListSectionFragment
-        }
-        ... on SanityCtaSection {
-          ...CtaSectionFragment
-        }
-        ... on SanityNewsletterSection{
-          ... NewsletterSectionFragment
-        }      
-        ... on SanityImageCarouselSection {
-          ...ImageCarouselSectionFragment
-        }
-        ...on SanityBlogSection {
-          ... BlogSectionFragment
-        }
-        ... on SanityStepsSection{
-          ... StepsSectionFragment
-        }
-        ... on SanityTimelineSection{
-          ... TimelineSectionFragment
-        }
+        ...PageBuilderFragment
       }
     }
   }

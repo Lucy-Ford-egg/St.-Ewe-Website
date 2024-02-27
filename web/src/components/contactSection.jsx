@@ -1,76 +1,64 @@
 import React from "react"
 import { graphql } from "gatsby"
 import {Link} from 'gatsby-theme-material-ui'
-import Image from "gatsby-plugin-sanity-image"
-import {urlFor} from "../utils/imageHelpers"
 import {
   Container,
   Grid,
   Typography,
   Box,
-  Divider,
   useTheme,
   TextField,
   Button,
   Checkbox,
   FormControlLabel,
 } from "@mui/material"
-import { Icons } from "./icons"
-import { ButtonFormat } from "./buttonFormat"
 import CheckBoxSharpIcon from '@mui/icons-material/CheckBoxSharp';
 import CheckBoxOutlineBlankSharpIcon from '@mui/icons-material/CheckBoxOutlineBlankSharp';
+import { RenderPortableText } from "../components/renderPortableText"
+
 
 export const ContactSection = props => {
   const theme = useTheme()
   const {
-    title,
-    icon,
-    text,
-    image,
-    linkGroup,
+    _rawTitle,
+    _rawText,
     previewData,
     sanityConfig,
-    mirror,
     topPadding,
-    subtitle,
-    links,
-    showForm,
     formTerms,
   } = props
 
   const textColour = theme.palette.text.main
+
+  const definedTopPadding = (previewData && previewData.topPadding) || topPadding
+  const definedTitle = (previewData && previewData.title) || _rawTitle
+  const definedText = (previewData && previewData.text) || _rawText
+  const definedFormTerms = (previewData && previewData.formTerms) || formTerms
 
   // Forms
   const label = { inputProps: { 'aria-label': 'Checkbox demo'  } };
   //
   return (
     <Container
-      maxWidth="xl"
+      maxWidth={false}
       sx={{
-        pb: {
-          xs: theme.spacing(10),
-          md: theme.spacing(10),
-        },
-        pt: topPadding
+        pt: definedTopPadding
           ? 0
           : {
               xs: theme.spacing(10),
-              md: theme.spacing(10),
+              md: theme.spacing(14),
             },
-        backgroundColor: "transparent",
+        pb: {
+          xs: theme.spacing(0),
+          md: theme.spacing(14),
+        },
+        backgroundColor: "primary.lighter"
       }}
     >
-      <Box
-        sx={{
-          maxWidth: theme.breakpoints.values.xl,
-          mx: "auto",
-        }}
-      >
         <Grid
           container
           rowSpacing={{ xs: 6, sm: 6, md: 6 }}
           columnSpacing={{ xs: 13, sm: 13, md: 13 }}
-          direction={mirror ? "row-reverse" : "row"}
           sx={{
             
             alignItems: "center",
@@ -78,109 +66,26 @@ export const ContactSection = props => {
         >
           <Grid item xs={12} sm={12} md={6}>
             <Box>
-            {image && (
-                  <Image
-                  // pass asset, hotspot, and crop fields
-                  crop={
-                    (previewData && previewData?.image?.crop) ||
-                    image?.crop
-                  }
-                  hotspot={
-                    (previewData && previewData?.image?.hotspot) ||
-                    image?.hotspot
-                  }
-                 
-                   asset={
-                    (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
-                  }
-        
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                    flexGrow: 1,
-                    minHeight: "100%",
-                    gridColumn: "1/25",
-                    gridRow: "1/auto",
-                    borderRadius: theme.spacing(2),
-                  }}
-                />
-                )}
+
+            {definedTitle && (
+              <RenderPortableText
+                previewData={definedTitle}
+                sanityConfig={sanityConfig}
+                setAsHeading={false}
+                value={definedTitle}
+              />
+            )}
+              {definedText && (
+              <RenderPortableText
+                previewData={definedText}
+                sanityConfig={sanityConfig}
+                setAsHeading={false}
+                value={definedText}
+              />
+            )}
+  
             </Box>
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={6}>
-            <Box>
-              {icon && (
-                <Icons
-                  type={
-                    previewData && previewData.icon ? previewData.icon : icon
-                  }
-                />
-              )}
-
-              {subtitle && (
-                <Typography
-                  color={textColour}
-                  sx={{ mt: { xs: 4, md: 4 } }}
-                  variant="overline"
-                  component="p"
-                >
-                  {previewData && previewData.subtitle
-                    ? previewData.subtitle
-                    : subtitle}
-                </Typography>
-              )}
-
-              <Typography color={textColour} variant="h2">
-                {previewData && previewData.title ? previewData.title : title}
-              </Typography>
-              {text && (
-                <Divider
-                  component="div"
-                  role="presentation"
-                  sx={{
-                    borderColor: theme.palette.primary.main,
-                    maxWidth: 305,
-                  }}
-                />
-              )}
-              <Typography
-                color={textColour}
-                sx={{ py: { xs: 5, md: 6 } }}
-                variant="body1"
-              >
-                {previewData && previewData.text ? previewData.text : text}
-              </Typography>
-
-              <Box
-                sx={{
-                  width: "fit-content",
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  flexDirection: "row",
-                  flexBasis: "100%",
-                  columnGap: 6,
-                }}
-              >
-                {links &&
-                  links.map((node, i) => {
-                    return (
-                      <ButtonFormat
-                        variant={i === 0 ? "contained" : "outlined"}
-                        color={i === 0 ? "primary" : "tertiary"}
-                        node={
-                          previewData && previewData.node
-                            ? previewData.node
-                            : node
-                        }
-                        sx={{}}
-                      />
-                    )
-                  })}
-              </Box>
-            </Box>
-            {showForm && (
+    
               <Box>
                 <form
                   method="POST"
@@ -216,17 +121,16 @@ export const ContactSection = props => {
                     <Checkbox {...label} size="small" icon={<CheckBoxOutlineBlankSharpIcon />}
                     checkedIcon={<CheckBoxSharpIcon  />} />} label="I accept the Terms" />
                     
-                  {formTerms && <Link to={formTerms.link.internal.slug.current} target="_blank" rel="noopener"><Typography variant='caption'>{formTerms.text}</Typography></Link>}
+                  {definedFormTerms && <Link to={definedFormTerms.link.internal.slug.current} target="_blank" rel="noopener"><Typography variant='caption'>{definedFormTerms.text}</Typography></Link>}
                   
                   <Button sx={{my: 6}} type="submit" variant="contained" color="primary">
                     Submit
                   </Button>
                 </form>
               </Box>
-            )}
+       
           </Grid>
         </Grid>
-      </Box>
     </Container>
   )
 }
@@ -235,30 +139,8 @@ export const query = graphql`
   fragment ContactSectionFragment on SanityContactSection {
     _key
     _type
-    image {
-      asset {
-        _id
-        gatsbyImageData
-      }
-      hotspot {
-        x
-        y
-        width
-        height
-      }
-      crop {
-        bottom
-        left
-        right
-        top
-      }
-    }
-    icon
-    subtitle
-    title
-    text
-    showForm
-    mirror
+    _rawTitle(resolveReferences: { maxDepth: 10 })
+    _rawText(resolveReferences: { maxDepth: 10 })
     topPadding
     formTerms {
       link {

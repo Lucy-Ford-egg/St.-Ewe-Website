@@ -109,42 +109,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
     }
     pageTitle
     pageBuilder {
-      ... on SanityHeaderSection {
-        ...HeaderSectionFragment
-      }
-      ... on SanityTestimonialSection {
-        ...TestimonialSectionFragment
-      }
-      ... on SanityTeamSection {
-        ...TeamSectionFragment
-      }
-      ...on SanityCaseStudySection {
-        ... CaseStudySectionFragment
-      }
-      ... on SanityVideoSection {
-        ...VideoSectionFragment
-      }
-      ... on SanityFeaturesListSection {
-        ...FeaturesListSectionFragment
-      }
-      ... on SanityCtaSection {
-        ...CtaSectionFragment
-      }
-      ... on SanityNewsletterSection{
-        ... NewsletterSectionFragment
-      }      
-      ... on SanityImageCarouselSection {
-        ...ImageCarouselSectionFragment
-      }
-      ...on SanityBlogSection {
-        ... BlogSectionFragment
-      }
-      ... on SanityStepsSection{
-        ... StepsSectionFragment
-      }
-      ... on SanityTimelineSection{
-        ... TimelineSectionFragment
-      }
+      ...PageBuilderFragment
     }
   }
 }
