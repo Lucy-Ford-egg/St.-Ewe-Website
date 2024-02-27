@@ -16,7 +16,7 @@ export const StepsTile = props => {
 
   const definedTitle =
     (previewData && previewData?.steps && previewData?.steps[index]?.title) || tile._rawTitle
-    
+
   const definedDescription =
     (previewData && previewData?.steps && previewData?.steps[index]?.description) ||
     tile._rawDescription
@@ -179,6 +179,7 @@ export const StepsTile = props => {
                   >
                     {pieSegments && 
                       pie[pieSegments].map((segment, index) => {
+                      
                         return (displayNumber >= index + 1 && <motion.path key={`bg-${segment}-${index}`}
                             d={segment}
                             stroke="white"

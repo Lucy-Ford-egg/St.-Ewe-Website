@@ -55,18 +55,13 @@ export const StepsSection = props => {
   const definedSteps = (previewData && previewData.steps) || steps
   const defineTileColor = (previewData && previewData.tileColor) || tileColor
 
-  const countSegments = definedSteps.filter((item) => {
-    return ((item._type === "stepTile"))
-  })
-
-  const [pieSegments, setPieSegments] = useState(countSegments)
-  const ref = useRef(0);
   
-  useEffect(() => {
-   
-    countSegments && setPieSegments(countSegments);
 
-  }, [])
+  const [pieSegments, setPieSegments] = useState(null)
+
+  useEffect(() => {
+    setPieSegments(definedSteps.filter(item => item._type === "stepTile"));
+  }, [definedSteps]);
 
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {
