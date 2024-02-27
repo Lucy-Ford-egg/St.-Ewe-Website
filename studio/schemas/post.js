@@ -18,6 +18,7 @@ import imageCarouselSectionType from '../schemas/sections/imageCarouselSection'
 import blogSectionType from './modules/blogSection'
 import stepSectionType from '../schemas/sections/stepsSection'
 import timelineSectionType from '../schemas/sections/timelineSection'
+import contactSectionType from '../schemas/sections/contactSection'
 
 
 // Module
@@ -27,7 +28,6 @@ import servicesSectionType from "./modules/servicesSection"
 
 // import faqsSectionType from "./modules/faqsSection"
 import benifitsSectionType from "./modules/benifitsSection"
-import contactSectionType from './modules/contactSection'
 
 /**
  * This file is the schema definition for a post.

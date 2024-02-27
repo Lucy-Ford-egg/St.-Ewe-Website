@@ -17,6 +17,8 @@ import imageCarouselSectionType from '../schemas/sections/imageCarouselSection'
 import blogSectionType from './modules/blogSection'
 import stepSectionType from '../schemas/sections/stepsSection'
 import timelineSectionType from '../schemas/sections/timelineSection'
+import contactSectionType from '../schemas/sections/contactSection'
+
 
 // Modules
 import featureSectionType from './modules/featureSection'
@@ -24,7 +26,6 @@ import servicesSectionType from './modules/servicesSection'
 import locationSectionType from './modules/locationSection'
 // import faqsSectionType from './modules/faqsSection'
 import benifitsSectionType from './modules/benifitsSection'
-import contactSectionType from './modules/contactSection'
 
 
 /**
