@@ -16,9 +16,11 @@ export const StepsTile = props => {
 
   const definedTitle =
     (previewData && previewData?.steps && previewData?.steps[index]?.title) || tile._rawTitle
+    
   const definedDescription =
     (previewData && previewData?.steps && previewData?.steps[index]?.description) ||
     tile._rawDescription
+
   const definedInvolves =
     (previewData && previewData?.steps && previewData?.steps[index]?.involves) || tile._rawInvolves
 

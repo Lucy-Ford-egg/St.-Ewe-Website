@@ -27,7 +27,7 @@ export const CtaSection = props => {
   const definedTitle = (previewData && previewData?.title)  || title
   const definedText = (previewData && previewData?.text) || text
   const definedLinks = (previewData && previewData?.links) || links
-debugger
+
   return (
     <Container
       maxWidth="false"

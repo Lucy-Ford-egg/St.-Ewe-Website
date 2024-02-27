@@ -23,7 +23,7 @@ export default defineType({
     },
     prepare(selection) {
       const { title } = selection
-      debugger
+      
       return {
         title: `${ title}`,
         subtitle: `Step Divider`,

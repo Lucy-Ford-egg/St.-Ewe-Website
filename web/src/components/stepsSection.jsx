@@ -63,9 +63,10 @@ export const StepsSection = props => {
   const ref = useRef(0);
   
   useEffect(() => {
+   
     countSegments && setPieSegments(countSegments);
 
-  }, [ countSegments ])
+  }, [])
 
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {
@@ -132,7 +133,7 @@ export const StepsSection = props => {
               index={i}
               displayNumber={[acc ]}
               sanityConfig={sanityConfig}
-              pieSegments={pieSegments.length}
+              pieSegments={pieSegments && pieSegments.length}
             />
          
         </Grid>
