@@ -20,7 +20,7 @@ export const TeamSection = props => {
   const {
     teamTiles,
     subtitle,
-    title,
+    _rawTitle,
     _rawLeftText,
     _rawRightText,
     linkGroup,
@@ -30,12 +30,22 @@ export const TeamSection = props => {
     links,
     tileColor,
   } = props
+
+  const definedTopPadding =
+    (previewData && previewData?.topPadding) || topPadding
+  const definedTitle = (previewData && previewData?.title) || _rawTitle
+
+  const definedLeftText = (previewData && previewData?.leftText) || _rawLeftText
+  const definedRightText = (previewData && previewData?.rightText) || _rawRightText
+
+  const definedTeamTiles = (previewData && previewData?.teamTiles) || teamTiles
+
   return (
     <>
       <Container
         maxWidth="xl"
         sx={{
-          pt: topPadding
+          pt: definedTopPadding
             ? 0
             : {
                 xs: theme.spacing(15),
@@ -51,14 +61,15 @@ export const TeamSection = props => {
                 {subtitle}
               </Typography>
             )}
-            <Typography
-              variant="h1"
-              sx={{
-                py: 4,
-              }}
-            >
-              {title}
-            </Typography>
+
+            {definedTitle && (
+              <RenderPortableText
+                previewData={definedTitle}
+                sanityConfig={sanityConfig}
+                setAsHeading={false}
+                value={definedTitle}
+              />
+            )}
             <Divider
               sx={{
                 borderColor: "primary.main",
@@ -66,41 +77,42 @@ export const TeamSection = props => {
                 maxWidth: 307,
               }}
             />
-            {_rawLeftText && (
+            {definedLeftText && (
               <RenderPortableText
-                previewData={previewData}
+                previewData={definedLeftText}
                 sanityConfig={sanityConfig}
                 variant={false}
-                value={
-                  previewData && previewData._rawLeftText
-                    ? _rawLeftText
-                    : _rawLeftText
-                }
+                value={definedLeftText}
               />
             )}
           </Grid>
           <Grid item xs={12} md={5} sx={{ alignSelf: "flex-end" }}>
-            {_rawRightText && (
+            {definedRightText && (
               <RenderPortableText
-                previewData={previewData}
+                previewData={definedRightText}
                 sanityConfig={sanityConfig}
                 variant={false}
-                value={
-                  previewData && previewData._rawRightText
-                    ? _rawRightText
-                    : _rawRightText
-                }
+                value={definedRightText}
               />
             )}
           </Grid>
         </Grid>
       </Container>
 
-      <Container maxWidth="xl" sx={{  pb: {
+      <Container
+        maxWidth="xl"
+        sx={{
+          pb: {
             xs: theme.spacing(15),
             md: theme.spacing(15),
-          }, 
-          paddingRight: { xs: "0 !important", overflowX: "hidden", maxWidth: '100vw' } }}>
+          },
+          paddingRight: {
+            xs: "0 !important",
+            overflowX: "hidden",
+            maxWidth: "100vw",
+          },
+        }}
+      >
         <Grid
           container
           columnSpacing={6}
@@ -108,12 +120,12 @@ export const TeamSection = props => {
           sx={{
             flexDirection: { xs: "row", md: "row" },
             flexWrap: "nowrap",
-            overflowX: {xs: 'scroll', md: 'unset'},
-            scrollSnapType: {xs: 'x mandatory', md: 'unset'},
-            scrollSnapAlign: 'center',
+            overflowX: { xs: "scroll", md: "unset" },
+            scrollSnapType: { xs: "x mandatory", md: "unset" },
+            scrollSnapAlign: "center",
           }}
         >
-          {teamTiles.map((member, i) => {
+          {definedTeamTiles && definedTeamTiles.map((member, i) => {
             let image = member.image
             let memberShortName = member.name.split(" ")
             return (
@@ -132,26 +144,14 @@ export const TeamSection = props => {
                 {image && (
                   <Image
                     // pass asset, hotspot, and crop fields
-                    crop={
-                      (previewData && previewData?.image?.crop) || image?.crop
-                    }
-                    hotspot={
-                      (previewData && previewData?.image?.hotspot) ||
-                      image?.hotspot
-                    }
-                    asset={
-                      (previewData &&
-                        previewData.image &&
-                        previewData.image?._ref &&
-                        urlFor(previewData.image).width(250).url()) ||
-                      image.asset
-                    }
+                    crop={image?.crop}
+                    hotspot={image?.hotspot}
+                    asset={(image?._ref && urlFor(image).width(250).url()) || image.asset }
                     width={312}
                     style={{
                       objectFit: "cover",
                       width: "100%",
                       height: 220,
-                      //flexGrow: 1,
                     }}
                   />
                 )}
@@ -165,16 +165,19 @@ export const TeamSection = props => {
                     flexGrow: 1,
                   }}
                 >
-                  <Box sx={{
+                  <Box
+                    sx={{
                       flexGrow: 1,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'flex-end'}}>
-                  {member.position && (
-                    <Typography color="white.main" variant="overline">
-                      {member.position}
-                    </Typography>
-                  )}
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    {member.position && (
+                      <Typography color="white.main" variant="overline">
+                        {member.position}
+                      </Typography>
+                    )}
                   </Box>
                   <Divider
                     sx={{
@@ -256,10 +259,10 @@ export const query = graphql`
   fragment TeamSectionFragment on SanityTeamSection {
     _key
     _type
+    _rawTitle(resolveReferences: { maxDepth: 10 })
     _rawLeftText(resolveReferences: { maxDepth: 10 })
     _rawRightText(resolveReferences: { maxDepth: 10 })
     subtitle
-    title
     tileColor {
       value
     }

@@ -20,10 +20,30 @@ export default defineType({
     }),
     defineField({
       name: 'title',
-      type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required(),
-    }), 
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          //{ title: 'Bullet', value: 'bullet' },
+          //{ title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          { title: 'Heading 1', value: 'h1' },
+          { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+          
+        ],
+        marks: {
+          decorators: [
+            //{ title: 'Strong', value: 'strong' },
+            //{ title: 'Emphasis', value: 'em' },
+            //{ title: 'Underline', value: 'underline' },
+          ]
+        }
+      }
+    ],
+    }),
     defineField({
       name: 'leftText',
       title: 'Left Text',
