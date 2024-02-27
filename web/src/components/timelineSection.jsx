@@ -261,7 +261,7 @@ export const TimelineSection = props => {
                           }
                         }}>
                         <RenderPortableText
-                          previewData={previewData?.steps[index]}
+                          previewData={previewData && previewData?.steps[index] && previewData?.steps[index]}
                           sanityConfig={sanityConfig}
                           setAsHeading="h2"
                           value={definedTitle}
