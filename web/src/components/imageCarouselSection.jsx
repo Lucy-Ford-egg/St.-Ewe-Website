@@ -37,7 +37,7 @@ export const ImageCarouselSection = props => {
   const ref = useRef(null)
 
   useEffect(() => {
-     setSlides(previewData && previewData?.images || images) 
+     setSlides((previewData && previewData?.images) || images) 
   }, [previewData, images])
   // useEffect(() => {
   //   setWidth(ref.current.getBoundingClientRect().width)
@@ -46,8 +46,10 @@ export const ImageCarouselSection = props => {
   let [index, setIndex] = useState(0)
 
   const sm = useMediaQuery("(max-width:640px)")
-  // const md = useMediaQuery("(max-width:900px)")
-  // const lg = useMediaQuery("(min-width:1200px)")
+
+  const definedTopPadding = (previewData && previewData?.topPadding) || topPadding
+  // const definedTitle = (previewData && previewData?.title) || _rawTitle
+  // const definedText = (previewData && previewData?.text) || _rawText
 
   
   return (
@@ -56,7 +58,7 @@ export const ImageCarouselSection = props => {
       disableGutters={sm || (slides && slides.length === 1) ? true : true}
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
-        pt: topPadding
+        pt: definedTopPadding
           ? {
               xs: theme.spacing(0),
               md: theme.spacing(0),
@@ -114,6 +116,10 @@ export const ImageCarouselSection = props => {
                     >
                       {slides &&
                         slides.map((image, i) => {
+    
+                          const definedImage = (previewData && previewData?.image) || image
+
+                          
                           return (
                             <Box>
                               <Box
@@ -123,27 +129,17 @@ export const ImageCarouselSection = props => {
                                   height: { xs: 380, md: 581 },
                                 }}
                               >
-                                {image && image?.asset && (
+                                {definedImage && (
                                   <Image
                                     // pass asset, hotspot, and crop fields
-                                    crop={
-                                      (previewData &&
-                                        previewData?.images[i]?.crop) ||
-                                      image[i]?.crop
-                                    }
-                                    hotspot={
-                                      (previewData &&
-                                        previewData?.images[i]?.hotspot) ||
-                                      images[i]?.hotspot
-                                    }
+                                    crop={definedImage?.crop}
+                                    hotspot={definedImage?.hotspot}
                                     asset={
-                                      (previewData &&
-                                        previewData?.images &&
-                                        previewData.images[i]?._ref &&
-                                        urlFor(previewData.images[i])
+                                      (definedImage?._ref &&
+                                        urlFor(definedImage)
                                           .width(200)
                                           .url()) ||
-                                      image.asset
+                                      definedImage.asset
                                     }
                                     style={{
                                       objectFit: "cover",
@@ -260,20 +256,10 @@ export const ImageCarouselSection = props => {
         slides && (
           <Image
             // pass asset, hotspot, and crop fields
-            crop={
-              (previewData &&
-                previewData?.slides[0]?.crop) ||
-              slides[0]?.crop
-            }
-            hotspot={
-              (previewData &&
-                previewData?.slides[0]?.hotspot) ||
-              slides[0]?.hotspot
-            }
+            crop={slides[0]?.crop}
+            hotspot={slides[0]?.hotspot}
             asset={
-              (previewData &&
-                previewData?.slides &&
-                previewData.slides[0]?._ref &&
+              (slides[0]?._ref &&
                 urlFor(previewData.slides[0])
                   .width(200)
                   .url()) ||
