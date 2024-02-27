@@ -260,12 +260,14 @@ export const TimelineSection = props => {
                             pb: 0,
                           }
                         }}>
+                          {definedTitle && (
                         <RenderPortableText
                           previewData={previewData && previewData?.steps[index] && previewData?.steps[index]}
                           sanityConfig={sanityConfig}
                           setAsHeading="h2"
                           value={definedTitle}
                         />
+                        )}
                         </Box>
                         <Box sx={{
                           order: {xs: 0, md: 1}, 
