@@ -72,7 +72,7 @@ export const ContactSection = props => {
               md: theme.spacing(14),
             },
         pb: {
-          xs: theme.spacing(0),
+          xs: theme.spacing(10),
           md: theme.spacing(14),
         },
         backgroundColor: "primary.lighter",
@@ -87,9 +87,8 @@ export const ContactSection = props => {
             alignItems: "center",
           }}
         >
-          <Grid item xs={12} sm={12} md={6}>
-            <Box>
-              {definedTitle && (
+          <Grid item xs={8} md={8}>
+          {definedTitle && (
                 <RenderPortableText
                   previewData={definedTitle}
                   sanityConfig={sanityConfig}
@@ -97,23 +96,16 @@ export const ContactSection = props => {
                   value={definedTitle}
                 />
               )}
-              {definedText && (
-                <RenderPortableText
-                  previewData={definedText}
-                  sanityConfig={sanityConfig}
-                  setAsHeading={false}
-                  value={definedText}
-                />
-              )}
-            </Box>
           </Grid>
+
           <Grid
             item
-            xs={12}
-            sm={12}
-            md={6}
+            xs={4}
+            sm={4}
+            md={4}
             sx={{ display: "flex", justifyContent: "flex-end" }}
           >
+            <Box sx={{maxWidth: {xs: 45, md: '100%'}, svg: {maxWidth: "100%", height: "auto"}}}>
             <svg
               width="77"
               height="137"
@@ -242,7 +234,21 @@ export const ContactSection = props => {
                 </clipPath>
               </defs>
             </svg>
+            </Box>
           </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <Box>
+              {definedText && (
+                <RenderPortableText
+                  previewData={definedText}
+                  sanityConfig={sanityConfig}
+                  setAsHeading={false}
+                  value={definedText}
+                />
+              )}
+            </Box>
+          </Grid>
+          
           <Grid item xs={12} sm={12} md={12}>
             <Box>
               <form
