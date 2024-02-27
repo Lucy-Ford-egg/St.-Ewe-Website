@@ -9,9 +9,7 @@ import {getSanityClient } from "../../sanityUtils/sanity"
 
 const PageTemplate = props => {
   const { data, pageContext, location, previewData } = props
-
-
-
+debugger
   return (
       <Modules
         sanityConfig={getSanityClient}

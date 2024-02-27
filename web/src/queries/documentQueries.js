@@ -17,6 +17,17 @@ export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
   },
 }`
 
+export const ALL_POSTS = groq`*[_type == "post"] {
+  _id,
+  title,
+  ...,
+}`
+
+export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {
+  _id,
+  ...,
+}`
+
 export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   pageBuilder[] {
     images[] { 
@@ -53,6 +64,10 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
       description,
       involves,
       _type, 
+    },
+    showArchive{
+      ...,
+      archive[]->{...},  
     },
     testimonialTiles[]->{
       ...,

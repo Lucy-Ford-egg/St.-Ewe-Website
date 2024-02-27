@@ -5,7 +5,7 @@ import Modules from "../components/modules"
 
 //Preview
 import { useQuery } from "../../sanity/store"
-import { PAGE_QUERY } from "../queries/documentQueries"
+import { PAGE_QUERY, ALL_POSTS } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const BlogArchiveTemplate = props => {

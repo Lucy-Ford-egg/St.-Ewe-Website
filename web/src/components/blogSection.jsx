@@ -19,6 +19,11 @@ import { contrastColour } from "../utils/contrastColour"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 
+//Preview
+import { useQuery } from "../../sanity/store"
+import {  POSTS_BY_ID, ALL_POSTS } from "../queries/documentQueries"
+import { getSanityClient } from "../../sanityUtils/sanity"
+
 export const BlogSection = props => {
   const {
     allSanityPost,
@@ -27,6 +32,7 @@ export const BlogSection = props => {
     topPadding,
     pageContext,
     showArchive,
+    initial,
   } = props
 
   const theme = useTheme()
@@ -36,24 +42,55 @@ export const BlogSection = props => {
     (_, index) => index + 1,
   )
 
+  const { data: allPostData } = useQuery(
+    ALL_POSTS,
+    {},
+    { initial },
+  )
+
+  const { data: postData } = useQuery(
+    POSTS_BY_ID,
+    { categoryId: previewData && previewData?.showArchive?.archive && previewData?.showArchive?.archive.map((node) => node?._id ) || []},
+    { initial },
+  )
+
+  const definedTopPadding =
+    (previewData && previewData?.topPadding) || topPadding
+  
+  const definedAllSanityPost = (postData && postData.length > 0 && postData) || (previewData?.showArchive?.setArchive === true && allPostData && allPostData) || allSanityPost.nodes
+ 
   return (
     <Container
       maxWidth="xl"
       sx={{
-        pb: { xs: theme.spacing(10), md: theme.spacing(10) },
-        pt: topPadding
+        pb: { 
+          xs: theme.spacing(10), 
+          md: theme.spacing(10) 
+        },
+        pt: definedTopPadding
           ? {
               xs: theme.spacing(10),
               md: theme.spacing(0),
             }
-          : { xs: theme.spacing(10), md: theme.spacing(10) },
+          : { 
+            xs: theme.spacing(10), 
+            md: theme.spacing(10) 
+          },
       }}
     >
       <Grid container columnSpacing={6} rowSpacing={12}>
-        {allSanityPost &&
-          allSanityPost.nodes &&
-          allSanityPost.nodes.map((post, i) => {
-            const { image, category, author, title, tileColor, date, slug } = post
+        {definedAllSanityPost &&
+          definedAllSanityPost &&
+          definedAllSanityPost.map((post, i) => {
+
+            const { 
+              image, 
+              category, 
+              author, 
+              title, 
+              tileColor, 
+              date, 
+              slug } = post
             
             return (
               <Grid item xs={12} sm={6} md={3} sx={{

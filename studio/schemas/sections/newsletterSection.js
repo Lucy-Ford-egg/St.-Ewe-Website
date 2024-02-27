@@ -102,7 +102,7 @@ export default defineType({
       const { title, media, } = selection
 
       return {
-        title: title,
+        title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Newsletter Section`,
         media: media,
         icon: MdCampaign
