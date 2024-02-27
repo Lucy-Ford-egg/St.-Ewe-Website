@@ -2,6 +2,9 @@ import groq from 'groq'
 
 // * Helpful - https://www.sanity.io/docs/query-cheat-sheet
 
+export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
+  ...,
+}`
 
 export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
   ...,
@@ -85,4 +88,5 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   },
   textAlign,
   slug->,
+  companyDetails,
 }`

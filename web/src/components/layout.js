@@ -45,7 +45,7 @@ export const Layout = (props) => {
 
         })}
         </Box>
-      <Footer/>
+      <Footer previewData={data}/>
     </div>
   )
 }
