@@ -22,7 +22,6 @@ import { urlFor } from "../utils/imageHelpers"
 //Preview
 import { useQuery } from "../../sanity/store"
 import {  POSTS_BY_ID, ALL_POSTS } from "../queries/documentQueries"
-import { getSanityClient } from "../../sanityUtils/sanity"
 
 export const BlogSection = props => {
   const {

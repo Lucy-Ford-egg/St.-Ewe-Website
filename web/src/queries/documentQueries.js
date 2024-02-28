@@ -17,6 +17,19 @@ export const postQuery =  groq`*[_type == "post" && slug.current == $slug][0] {
   },
 }`
 
+export const ALL_CASE_STUDIES = groq`*[_type == "caseStudy"] {
+  _id,
+  title,
+  ...,
+  service->{name},
+}`
+
+export const CASE_STUDIES_BY_ID = groq`*[_type == "caseStudy" && references($categoryId)] {
+  _id,
+  ...,
+  service->{name},
+}`
+
 export const ALL_POSTS = groq`*[_type == "post"] {
   _id,
   title,
@@ -69,9 +82,14 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
       ...,
       archive[]->{...},  
     },
-    teamTiles[]->{
+    showCaseStudyArchive{
       ...,
+      archive[]->{
+        ..., 
+      },
     },
+    
+    teamTiles[]->{...},
     testimonialTiles[]->{
       ...,
       cite{
@@ -108,4 +126,10 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   textAlign,
   slug->,
   companyDetails,
+  _rawPerson,
+  coverImage {
+    asset->,
+  },
+  _id,
+  
 }`

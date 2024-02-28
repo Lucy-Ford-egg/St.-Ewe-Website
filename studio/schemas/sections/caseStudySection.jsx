@@ -28,7 +28,7 @@ export default defineType({
 
       return {
         title: title ? title?.displayTitle[0].children[0].text : "Empty Title",
-        subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Case Studies" : "All Case Studies"} | Module: Module: Posts Grid module`,
+        subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Case Studies" : "All Case Studies"} | Case Study Section`,
         icon: MdWebStories
       }
     }

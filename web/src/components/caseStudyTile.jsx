@@ -17,18 +17,24 @@ import {
 import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 import { RenderPortableText } from "./renderPortableText"
 
-export const CaseStudyTile = ({
-  title,
-  _rawPerson,
-  image,
-  excerpt,
-  date,
-  to,
-  previewData,
-  service,
-  i,
-  slug,
-}) => {
+export const CaseStudyTile = (props) => {
+
+  const {
+    title,
+    _rawPerson,
+    person,
+    excerpt,
+    date,
+    to,
+    previewData,
+    service,
+    i,
+    slug,
+    coverImage,
+  } = props
+
+  
+    
   const [hovered, setHovered] = useState(false)
   const theme = useTheme()
 
@@ -81,6 +87,10 @@ export const CaseStudyTile = ({
       flexBasis: "50%",
     },
   }
+  
+  const definedPerson = (_rawPerson && _rawPerson) || person && person
+  const definedService = (service && service.name) || service && service.name
+
   return (
     <Link to={`/case-studies/${slug.current}`} style={{ textDecoration: "none" }}>
       <Card
@@ -98,22 +108,14 @@ export const CaseStudyTile = ({
         <Grid container sx={{display: 'flex', flexDirection: {xs: 'row', md: i % 2 ? 'row-reverse' : 'row'}}}>
           <Grid item xs={12} md={7}>
             <Box sx={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", alignItems: 'flex-end', minHeight: '100%' }}>
-              {image && (
+              {coverImage && (
                 <Image
                   // pass asset, hotspot, and crop fields
-                  crop={
-                    (previewData && previewData?.image?.crop) || image?.crop
-                  }
-                  hotspot={
-                    (previewData && previewData?.image?.hotspot) ||
-                    image?.hotspot
-                  }
-                  asset={
-                    (previewData &&
-                      previewData.image &&
-                      previewData.image?._ref &&
-                      urlFor(previewData.image).width(200).url()) ||
-                    image.asset
+                  crop={coverImage?.crop}
+                  hotspot={coverImage?.hotspot}
+                  asset={(coverImage?._ref &&
+                      urlFor(coverImage).width(200).url()) ||
+                    coverImage?.asset
                   }
                   style={{
                     objectFit: "cover",
@@ -170,7 +172,7 @@ export const CaseStudyTile = ({
                             alignItems: "flex-end",
                           }}
                         >
-                         {_rawPerson && <Box sx={{color: 'white.main'}}><RenderPortableText setAsHeading='h5' value={_rawPerson} /></Box> }
+                         {definedPerson && <Box sx={{color: 'white.main'}}><RenderPortableText setAsHeading='h5' value={definedPerson} /></Box> }
                         </Box>
                         <Box
                           sx={{
@@ -187,7 +189,7 @@ export const CaseStudyTile = ({
                             component="h3"
                             color="white.main"
                           >
-                            {service && service.name}
+                            {definedService && definedService}
                           </Typography>
                         </Box>
                       </Box>
@@ -250,7 +252,7 @@ export const CaseStudyTile = ({
 
 export const query = graphql`
   fragment CaseStudyTileFragment on SanityCaseStudy {
-    image: coverImage {
+    coverImage {
       asset {
         _id
         gatsbyImageData

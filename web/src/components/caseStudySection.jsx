@@ -5,11 +5,17 @@ import { Pagination } from "./pagination"
 import { CaseStudyTile } from "./caseStudyTile"
 import { Filter } from "./filter"
 
+//Preview
+import { useQuery } from "../../sanity/store"
+import {  CASE_STUDIES_BY_ID, ALL_CASE_STUDIES } from "../queries/documentQueries"
+
 export const CaseStudySection = ({
   allSanityCaseStudy,
   searching = false,
   pageContext,
   topPadding,
+  previewData,
+  initial,
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
@@ -24,6 +30,25 @@ export const CaseStudySection = ({
   useEffect(() => {
     updatePosts()
   }, [updatePosts])
+  
+
+  const { data: allCaseStudies } = useQuery(
+    ALL_CASE_STUDIES,
+    {},
+    { initial },
+  )
+
+  const { data: caseStudyData } = useQuery(
+    CASE_STUDIES_BY_ID,
+    { categoryId: previewData && previewData?.showCaseStudyArchive?.archive && previewData?.showCaseStudyArchive?.archive.map((node) => node?._id ) || []},
+    { initial },
+  )
+
+  const definedTopPadding =
+    (previewData && previewData?.topPadding) || topPadding
+  
+  const definedAllSanityCaseStudy = (caseStudyData && caseStudyData.length > 0 && caseStudyData) || (previewData?.showCaseStudyArchive?.setArchive === true && allCaseStudies && allCaseStudies) || allSanityCaseStudy.nodes
+
 
   return (
     <Container
@@ -44,8 +69,8 @@ export const CaseStudySection = ({
       <Container sx={{ px: { xs: 0 } }}>
         {filtersPosts && searching === false && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
-            {filtersPosts && filtersPosts.nodes.map((tile, i) => {
-             
+            {definedAllSanityCaseStudy && definedAllSanityCaseStudy.map((tile, i) => {
+               debugger
               return (
                 <Grid key={`${tile.title}-${i}`} item xs={12} sm={12} md={12}>
                   <CaseStudyTile {...tile} i={i} />

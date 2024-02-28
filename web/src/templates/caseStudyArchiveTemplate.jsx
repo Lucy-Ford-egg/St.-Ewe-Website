@@ -5,8 +5,13 @@ import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
 import { pageQuery } from "./queries/documentQueries"
 
+//Preview
+import { useQuery } from "../../sanity/store"
+import { PAGE_QUERY } from "../queries/documentQueries"
+import { getSanityClient } from "../../sanityUtils/sanity"
+
 const CaseStudyArchiveTemplate = props => {
-  const { data, pageContext } = props
+  const { data, pageContext, initial } = props
   const [caseStudies, setCaseStudies] = useState(null)
   const [modules, setModules] = useState(null)
   const [blogInserted, setBlogInserted] = useState(null)
@@ -22,21 +27,21 @@ const CaseStudyArchiveTemplate = props => {
     i ++
   }, [data])
 
+   // Preview
+   const { data: previewData, sourceMap } = useQuery(
+    PAGE_QUERY,
+    { slug: data.sanityPage.slug.current },
+    { initial },
+  )
+
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityPage.slug} //
-      data={data}
-    >
-      {caseStudies && modules && 
+
       <Modules
-        allSanityPost={data.allSanityPost}
+        previewData={previewData?.pageBuilder}
         allSanityCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
         modules={modules}
       />
-}
-    </IncludePreview>
   )
 }
 
@@ -67,10 +72,9 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
         name
       }
       _rawPerson(resolveReferences: {maxDepth: 10})
-      image: coverImage {
+      coverImage {
         asset {
           _id
-
           gatsbyImageData
         }
         hotspot {
