@@ -43,7 +43,8 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
     backgroundColor{navColor->, ...},
     overlay,
     topPadding,
-    leftAlign, 
+    leftAlign,
+    author->{...}, 
     steps[]{
       title,
       description,
@@ -87,6 +88,8 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   },
   title,
   text,
+  date,
+  author->{...},
   image {
     asset->,
     hotspot{...},
@@ -286,7 +289,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
         ..., 
       },
     },
-    
+    author->{...},
     teamTiles[]->{...},
     testimonialTiles[]->{
       ...,

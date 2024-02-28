@@ -78,7 +78,7 @@ export const blogArchiveTemplateQuery = graphql`
           value
           label
         }
-        image: coverImage {
+        coverImage {
           asset {
             _id
 

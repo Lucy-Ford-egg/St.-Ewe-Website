@@ -4,6 +4,7 @@ import { Seo } from "../components/seo"
 import Modules from "../components/modules"
 import { contrastColour } from "../utils/contrastColour"
 import {RenderPortableText} from '../components/renderPortableText'
+import {formattedDate } from "../utils/formattedDate"
 import {
   Container,
   Grid,
@@ -42,6 +43,7 @@ const PostTemplate = props => {
   const definedDate = (previewData && previewData?.date) || data.sanityPost?.date
   const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author 
   const definedImage = (previewData && previewData?.image) || image
+
 
   return (
    <>
@@ -134,7 +136,7 @@ const PostTemplate = props => {
                       fontWeight: '400'
                     }}
                   >
-                    {definedDate}
+                    {formattedDate(definedDate)}
                   </Typography>
                 )}
                 <Box sx={{

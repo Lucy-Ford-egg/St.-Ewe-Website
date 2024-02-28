@@ -9,15 +9,13 @@ import {
   Paper,
   Divider,
 } from "@mui/material"
-import { Button, GatsbyLink, IconButton } from "gatsby-theme-material-ui"
-import { CategoryLabel } from "./categoryLabel"
-import EastIcon from "@mui/icons-material/East"
-import { Link } from "gatsby-theme-material-ui"
+import { Button, GatsbyLink } from "gatsby-theme-material-ui"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import { contrastColour } from "../utils/contrastColour"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
+import {formattedDate } from "../utils/formattedDate"
 
 //Preview
 import { useQuery } from "../../sanity/store"
@@ -55,9 +53,8 @@ export const BlogSection = props => {
 
   const definedTopPadding =
     (previewData && previewData?.topPadding) || topPadding
-  
   const definedAllSanityPost = (postData && postData.length > 0 && postData) || (previewData?.showArchive?.setArchive === true && allPostData && allPostData) || allSanityPost.nodes
- 
+
   return (
     <Container
       maxWidth="xl"
@@ -83,7 +80,7 @@ export const BlogSection = props => {
           definedAllSanityPost.map((post, i) => {
 
             const { 
-              image, 
+              coverImage: image, 
               category, 
               author, 
               title, 
@@ -205,7 +202,7 @@ export const BlogSection = props => {
                                     fontSize: theme.spacing(2)
                                   }}
                                 >
-                                  {date}
+                                  {formattedDate(date)}
                                 </Typography>
                               )}
                               <Box
@@ -260,19 +257,11 @@ export const BlogSection = props => {
                       {image && (
                         <Image
                           // pass asset, hotspot, and crop fields
-                          crop={
-                            (previewData && previewData?.image?.crop) ||
-                            image?.crop
-                          }
-                          hotspot={
-                            (previewData && previewData?.image?.hotspot) ||
-                            image?.hotspot
-                          }
-                          asset={
-                            (previewData &&
-                              previewData.image &&
-                              previewData.image?._ref &&
-                              urlFor(previewData.image).width(600).url()) ||
+                          crop={image?.crop}
+                          hotspot={image?.hotspot}
+                          asset={(image &&
+                              image?._ref &&
+                              urlFor(image).width(600).url()) ||
                             image.asset
                           }
                           width={310}
