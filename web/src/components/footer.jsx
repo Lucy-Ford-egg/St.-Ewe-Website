@@ -17,10 +17,9 @@ import {
   IconButton,
 } from "@mui/material"
 import { SocialIcon } from "react-social-icons"
-import { Newsletter } from "./newsletter"
 
 export const Footer = props => {
-  const { previewData, sanityConfig, showNewsletter = true } = props
+  const { previewData, sanityConfig, } = props
 
   const theme = useTheme()
   const data = useStaticQuery(graphql`
@@ -67,16 +66,6 @@ export const Footer = props => {
           phone
           postcode
         }
-
-        newsletterSetup {
-          image {
-            asset {
-              gatsbyImageData(height: 566)
-            }
-          }
-          text
-          title
-        }
       }
     }
   `)
@@ -118,9 +107,6 @@ export const Footer = props => {
 
   return (
     <>
-      {showNewsletter && data.sanitySiteSettings?.newsletterSetup && (
-        <Newsletter newsletterSetup={data.sanitySiteSettings.newsletterSetup} />
-      )}
       <Box sx={{ 
         mt: {
           xs: theme.spacing(10),
