@@ -19,11 +19,10 @@ import blogSectionType from './modules/blogSection'
 import stepSectionType from '../schemas/sections/stepsSection'
 import timelineSectionType from '../schemas/sections/timelineSection'
 import contactSectionType from '../schemas/sections/contactSection'
-
+import locationSectionType from '../schemas/sections/locationSection'
 
 // Module
 import featureSectionType from './modules/featureSection'
-import locationSectionType from "./modules/locationSection"
 import servicesSectionType from "./modules/servicesSection"
 
 // import faqsSectionType from "./modules/faqsSection"
@@ -213,13 +212,15 @@ export default defineType({
       {type: blogSectionType.name},
       {type: stepSectionType.name},
       {type: timelineSectionType.name},
+      { type: locationSectionType.name},
+      { type: contactSectionType.name},
 
       { type: featureSectionType.name},
       { type: servicesSectionType.name}, 
-      { type: locationSectionType.name},
+     
       // { type: faqsSectionType.name},
       { type: benifitsSectionType.name},
-      { type: contactSectionType.name},
+      
       // etc...
     ],
     group: 'pageContent',

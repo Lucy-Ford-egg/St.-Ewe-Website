@@ -41,6 +41,9 @@ import stepDividerType from '../schemas/sections/stepDivider'
 import timelineSectionType from '../schemas/sections/timelineSection'
 import timeTileType from '../schemas/sections/timeTile'
 import contactSectionType from '../schemas/sections/contactSection'
+import locationSectionType from '../schemas/sections/locationSection'
+
+
 
 // Older schema
 import videoIdType from '../schemas/videoId'
@@ -50,9 +53,6 @@ import overlayType from '../schemas/overlay'
 import textAlignType from '../schemas/textAlign'
 
 import servicesTileType from '../schemas/modules/servicesTile'
-
-
-import locationSectionType from '../schemas/modules/locationSection'
 import benifitsSectionType from "../schemas/modules/benifitsSection"
 
 

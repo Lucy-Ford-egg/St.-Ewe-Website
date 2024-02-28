@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Icons } from "../components/icons"
-import {textAlignToJustifyContent} from '../utils/alignment'
+import { textAlignToJustifyContent } from "../utils/alignment"
 import {
   Container,
   Typography,
@@ -11,18 +10,33 @@ import {
   Divider,
 } from "@mui/material"
 import { Map } from "./map"
-
+import { RenderPortableText } from "../components/renderPortableText"
 
 export const LocationSection = props => {
   const theme = useTheme()
-  const { previewData, sanityConfig,icon, subtitle, title, text, geopoint, topPadding, textAlign } = props
+  const {
+    previewData,
+    sanityConfig,
+    subtitle,
+    _rawTitle,
+    _rawText,
+    geopoint,
+    topPadding,
+    textAlign,
+  } = props
+
+  const definedTopPadding =
+    (previewData && previewData?.topPadding) || topPadding
+  const definedSubtitle = (previewData && previewData?.subtitle) || subtitle
+  const definedTitle = (previewData && previewData?.title) || _rawTitle
+  const definedText = (previewData && previewData?.text) || _rawText
 
   return (
     <Container
       maxWidth="xl"
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
-        pt: topPadding
+        pt: definedTopPadding
           ? {
               xs: theme.spacing(10),
               md: theme.spacing(0),
@@ -32,69 +46,43 @@ export const LocationSection = props => {
     >
       <Grid
         container
-        rowSpacing={{ xs: 6, sm: 6, md: 6 }}
-        // columnSpacing={{ xs: 13, sm: 13, md: 13 }}
-        direction="row"
-        justifyContent={textAlignToJustifyContent(textAlign)}
+        rowSpacing={6}
+        justifyContent="center"
         sx={{
-          
-          alignItems: "center",
+          pb: { xs: 10, md: 15 },
         }}
       >
-        <Grid item xs={12} sm={12} md={6}>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: textAlignToJustifyContent(textAlign)
-          }}>
-            {icon && (
-              <Icons
-                type={previewData && previewData.icon ? previewData.icon : icon}
-              />
-            )}
-
-            {subtitle && (
-              <Typography
-                align={textAlign}
-                sx={{ mt: { xs: 4, md: 4 } }}
-                variant="overline"
-                component="p"
-              >
-                {previewData && previewData.subtitle
-                  ? previewData.subtitle
-                  : subtitle}
-              </Typography>
-            )}
-
-            { title && <Typography align={textAlign} variant="h2">
-              {previewData && previewData.title ? previewData.title : title}
-            </Typography>
-            }
-            {text && (
-              <Divider
-                component="div"
-                role="presentation"
-                sx={{
-                  borderColor: theme.palette.primary.main,
-                  width: 305,
-                  mx: textAlign === 'center' ? 'auto' : 'unset'
-                }}
-              />
-            )}
-            {text && <Typography
-             align={textAlign}
-              sx={{ py: { xs: 5, md: 6 } }}
-              variant="body1"
+        <Grid item xs={12} sm={12} md={12} sx={{ textAlign: "center" }}>
+          {definedSubtitle && (
+            <Typography
+              align={textAlign}
+              sx={{ mt: { xs: 4, md: 4 } }}
+              variant="overline"
+              component="p"
             >
-              {previewData && previewData.text ? previewData.text : text}
+              {definedSubtitle}
             </Typography>
-            }
-          </Box>
+          )}
+          {definedTitle && (
+            <RenderPortableText
+              previewData={definedTitle}
+              sanityConfig={sanityConfig}
+              setAsHeading={false}
+              value={definedTitle}
+            />
+          )}
+          {definedText && (
+            <RenderPortableText
+              previewData={definedText}
+              sanityConfig={sanityConfig}
+              setAsHeading={false}
+              value={definedText}
+            />
+          )}
         </Grid>
       </Grid>
-      
-      <Map geopoint={geopoint}/>
-      
+
+      {/* <Map geopoint={geopoint}/> */}
     </Container>
   )
 }
@@ -104,15 +92,9 @@ export const query = graphql`
     _key
     _type
     topPadding
-    title
-    textAlign
-    text
+    _rawText(resolveReferences: { maxDepth: 10 })
+    _rawTitle(resolveReferences: { maxDepth: 10 })
     subtitle
-    icon
-    geopoint {
-      lng
-      lat
-      alt
-    }
+    textAlign
   }
 `
