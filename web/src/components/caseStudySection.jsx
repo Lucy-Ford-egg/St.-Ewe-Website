@@ -70,7 +70,7 @@ export const CaseStudySection = ({
         {filtersPosts && searching === false && (
           <Grid container spacing={{ xs: 6, md: 9 }}>
             {definedAllSanityCaseStudy && definedAllSanityCaseStudy.map((tile, i) => {
-               debugger
+            
               return (
                 <Grid key={`${tile.title}-${i}`} item xs={12} sm={12} md={12}>
                   <CaseStudyTile {...tile} i={i} />
