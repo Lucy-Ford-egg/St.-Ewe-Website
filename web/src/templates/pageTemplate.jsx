@@ -2,14 +2,26 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import Modules from "../components/modules"
-
-//Preview
+// Preview
+import { useQuery } from "../../sanity/store";
+import {PAGE_QUERY} from '../queries/documentQueries';
 
 import {getSanityClient } from "../../sanityUtils/sanity"
 
 const PageTemplate = props => {
-  const { data, pageContext, location, previewData } = props
-debugger
+
+  const { data, pageContext, initial } = props
+
+  // Preview
+  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
+
+  const { data: previewData, sourceMap } = useQuery(
+    PAGE_QUERY,
+    {slug: definedSlug.slug.current},
+    { initial }
+  );
+
+
   return (
       <Modules
         sanityConfig={getSanityClient}

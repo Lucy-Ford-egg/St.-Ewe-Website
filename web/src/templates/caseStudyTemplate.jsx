@@ -1,37 +1,47 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
-
 import {
   Container,
   Grid,
   useTheme,
   Box,
   Typography,
-  Divider,
   useMediaQuery,
 } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { getGatsbyImageData } from "gatsby-source-sanity"
 import { RenderPortableText } from "../components/renderPortableText"
-import { CategoryLabel } from "../components/categoryLabel"
+//Preview
+import { useQuery } from "../../sanity/store"
+import { CASE_STUDY_QUERY } from "../queries/documentQueries"
 
 const CaseStudyTemplate = props => {
-  const { data, pageContext, previewData, sanityConfig } = props
+  const { data, pageContext, initial } = props
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down('md'))
+  const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
-  const image = data.sanityCaseStudy.image
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    CASE_STUDY_QUERY,
+    { slug: data.sanityCaseStudy.slug.current },
+    { initial },
+  )
+
+  const definedImage =
+    (previewData && previewData?.coverImage) || data.sanityCaseStudy?.coverImage
+  const definedRawPerson =
+    (previewData && previewData?.person) || data.sanityCaseStudy?._rawPerson
+  const definedService =
+    (previewData && previewData?.service?.name) ||
+    data.sanityCaseStudy?.service?.name
+
+  const definedRawBody = (previewData && previewData?.body) || data?.sanityCaseStudy._rawBody
+  const definedPageBuilder = (previewData && previewData?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
+    
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityCaseStudy.slug} //
-      data={data}
-    >
+    <>
       <Container
         maxWidth="fluid"
         disableGutters
@@ -59,7 +69,7 @@ const CaseStudyTemplate = props => {
             justifyContent: "flex-end",
             pb: 6,
             pt: { xs: 0, md: 0 },
-            alignSelf: {xs: "end", md: "unset"},
+            alignSelf: { xs: "end", md: "unset" },
           }}
         >
           <Grid container>
@@ -67,51 +77,72 @@ const CaseStudyTemplate = props => {
               <Box
                 sx={{
                   backgroundColor: "primary.main",
-                  px: {xs: 6, md: 13},
+                  px: { xs: 6, md: 13 },
                   pt: 13,
-                  pb: {xs: 6, md: 13},
+                  pb: { xs: 6, md: 13 },
                 }}
               >
-                 {data.sanityCaseStudy._rawPerson && <Box sx={{color: 'white.main'}}><RenderPortableText setAsHeading='h1' value={data.sanityCaseStudy._rawPerson} /></Box> }
+                {definedRawPerson && (
+                  <Box sx={{ color: "white.main" }}>
+                    <RenderPortableText
+                      setAsHeading="h1"
+                      value={definedRawPerson}
+                    />
+                  </Box>
+                )}
               </Box>
             </Grid>
 
-            <Grid item xs={6} md={2} sx={{flexGrow: 1,}}>
-              <Box sx={{height: '100%'}}>
-              <Box sx={{ display: "flex", flexDirection: "column", height: '100%', flexGrow: 1 }}>
+            <Grid item xs={6} md={2} sx={{ flexGrow: 1 }}>
+              <Box sx={{ height: "100%" }}>
                 <Box
                   sx={{
-                    backgroundColor: "primary.light",
-                    px: 6,
-                    py: 6,
-                    display: 'flex',
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
                     flexGrow: 1,
-                    alignItems: 'flex-end',
                   }}
                 >
-                  <Typography
-                    variant="h5"
-                    component="h3" color="white.main"
-                    sx={{ fontSize: theme.spacing(6) }}
+                  <Box
+                    sx={{
+                      backgroundColor: "primary.light",
+                      px: 6,
+                      py: 6,
+                      display: "flex",
+                      flexGrow: 1,
+                      alignItems: "flex-end",
+                    }}
                   >
-                    {String(pageContext.key + 1).padStart(2, '0')}
-                  </Typography>
+                    <Typography
+                      variant="h5"
+                      component="h3"
+                      color="white.main"
+                      sx={{ fontSize: theme.spacing(6) }}
+                    >
+                      {String(pageContext.key + 1).padStart(2, "0")}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      backgroundColor: "primary.mid",
+                      px: 6,
+                      py: 6,
+                      display: "flex",
+                      flexGrow: 1,
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    {definedService && (
+                      <Typography
+                        variant="overline"
+                        component="h3"
+                        color="white.main"
+                      >
+                        {definedService}
+                      </Typography>
+                    )}
+                  </Box>
                 </Box>
-                <Box
-                  sx={{
-                    backgroundColor: "primary.mid",
-                    px: 6,
-                    py: 6,
-                    display: 'flex',
-                    flexGrow: 1,
-                    alignItems: 'flex-end',
-                  }}
-                >
-                  {data.sanityCaseStudy.service && <Typography variant="overline" component="h3" color="white.main">
-                    {data.sanityCaseStudy.service.name}
-                  </Typography>}
-                </Box>
-              </Box>
               </Box>
             </Grid>
           </Grid>
@@ -127,25 +158,22 @@ const CaseStudyTemplate = props => {
             maxHeight: "100%",
           }}
         >
-          {image && (
+          {definedImage && (
             <Image
               // pass asset, hotspot, and crop fields
-              crop={(previewData && previewData?.image?.crop) || image?.crop}
-              hotspot={
-                (previewData && previewData?.image?.hotspot) || image?.hotspot
-              }
+              crop={definedImage?.crop}
+              hotspot={definedImage?.hotspot}
               asset={
-                (previewData &&
-                  previewData.image &&
-                  previewData.image?._ref &&
-                  urlFor(previewData.image).width(1440).url()) ||
-                image.asset
+                (definedImage?._ref &&
+                  urlFor(definedImage).width(1400).url()) ||
+                definedImage.asset
               }
               width={1440}
               style={{
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
+              
                 flexGrow: 1,
                 minHeight: "100%",
                 gridColumn: "1/25",
@@ -153,6 +181,7 @@ const CaseStudyTemplate = props => {
               }}
             />
           )}
+
           <Box
             sx={{
               position: "relative",
@@ -166,16 +195,21 @@ const CaseStudyTemplate = props => {
           />
         </Box>
       </Container>
-
-      <Container maxWidth="md" sx={{py: {xs: 15 ,md: 16}}} disableGutters={mobile ? false : true}>
-        <RenderPortableText value={data?.sanityCaseStudy._rawBody}/>
+            {definedRawBody && (
+      <Container
+        maxWidth="md"
+        sx={{ py: { xs: 15, md: 16 } }}
+        disableGutters={mobile ? false : true}
+      >
+        <RenderPortableText value={definedRawBody} />
       </Container>
-
+            )}
       <Modules
         pageContext={pageContext}
-        modules={data?.sanityCaseStudy?.pageBuilder}
+        modules={definedPageBuilder}
       />
-    </IncludePreview>
+            
+    </>
   )
 }
 
@@ -194,8 +228,8 @@ export const caseStudyTemplateQuery = graphql`
       service {
         name
       }
-      _rawPerson(resolveReferences: {maxDepth: 10})
-      image: coverImage {
+      _rawPerson(resolveReferences: { maxDepth: 10 })
+      coverImage {
         asset {
           _id
 
@@ -225,12 +259,12 @@ export const caseStudyTemplateQuery = graphql`
 export default CaseStudyTemplate
 
 // TODO:
-        // ... on SanityLocationSection {
-        //   ...LocationSectionFragment
-        // }
-        // ... on SanityBenifitsSection {
-        //   ... BenifitsSectionFragment
-        // }
-        // ... on SanityContactSection {
-        //   ... ContactSectionFragment
-        // }
+// ... on SanityLocationSection {
+//   ...LocationSectionFragment
+// }
+// ... on SanityBenifitsSection {
+//   ... BenifitsSectionFragment
+// }
+// ... on SanityContactSection {
+//   ... ContactSectionFragment
+// }

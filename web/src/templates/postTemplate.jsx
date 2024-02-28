@@ -1,9 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
 import { contrastColour } from "../utils/contrastColour"
 import {RenderPortableText} from '../components/renderPortableText'
 import {
@@ -17,20 +15,36 @@ import {
 } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
+//Preview
+import { useQuery } from "../../sanity/store"
+import { POST_QUERY } from "../queries/documentQueries"
 
 const PostTemplate = props => {
-  const { data, pageContext, previewData, sanityConfig } = props
+  const { data, pageContext, initial } = props
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const { image, tileColor } = data.sanityPost
 
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    POST_QUERY,
+    { slug: data.sanityPost.slug.current },
+    { initial },
+  )
+
+  const definedRawBody = (previewData && previewData?.body) || data?.sanityPost._rawBody
+  const definedPageBuilder = (previewData && previewData?.pageBuilder)  || data?.sanityPost?.pageBuilder
+
+  const definedTileColor = (previewData && previewData?.tileColor) || tileColor
+  const definedCategory = (previewData && previewData?.category) || data.sanityPost?.category
+  const definedTitle = (previewData && previewData?.title) || data?.sanityPost?.title
+  const definedDate = (previewData && previewData?.date) || data.sanityPost?.date
+  const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author 
+  const definedImage = (previewData && previewData?.image) || image
+
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityPost.slug} //
-      data={data}
-    >
+   <>
       <Container
         maxWidth="fluid"
         disableGutters
@@ -44,7 +58,7 @@ const PostTemplate = props => {
           maxHeight: { xs: "", md: "100vh" },
           overflow: "hidden",
           px: "0 !important",
-          backgroundColor: tileColor?.value,
+          backgroundColor: definedTileColor?.value,
         }}
       >
         <Container
@@ -71,13 +85,13 @@ const PostTemplate = props => {
                   pb: { xs: 6, md: 13 },
                 }}
               >
-                {data.sanityPost?.category && (
+                {definedCategory && (
                   <Typography
                     variant="overline"
                     component="h3"
-                    color={contrastColour(tileColor).textColour}
+                    color={contrastColour(definedTileColor).textColour}
                   >
-                    {data.sanityPost?.category.name}
+                    {definedCategory.name}
                   </Typography>
                 )}
                 <Divider
@@ -85,18 +99,18 @@ const PostTemplate = props => {
                     display: "flex",
                     my: 10,
                     width: "100%",
-                    borderColor: contrastColour(tileColor).divider.hex,
+                    borderColor: contrastColour(definedTileColor).divider.hex,
                   }}
                 />
-                {data?.sanityPost?.title && (
+                {definedTitle && (
                   <Typography
                     variant="h1"
-                    color={contrastColour(tileColor).textColour}
+                    color={contrastColour(definedTileColor).textColour}
                     sx={{
                       wordBreak: 'break-word'
                     }}
                   >
-                    {data?.sanityPost?.title}
+                    {definedTitle}
                   </Typography>
                 )}
                 <Divider
@@ -104,37 +118,37 @@ const PostTemplate = props => {
                     display: "flex",
                     my: 10,
                     width: "100%",
-                    borderColor: contrastColour(tileColor).divider.hex,
+                    borderColor: contrastColour(definedTileColor).divider.hex,
                   }}
                 />
                 <Box sx={{
                   display: 'flex',
                 }}>
-                {data.sanityPost?.date && (
+                {definedDate && (
                   <Typography
                     variant="h6"
                     component="p"
-                    color={contrastColour(tileColor).textColour}
+                    color={contrastColour(definedTileColor).textColour}
                     sx={{
                       fontStyle: 'italic',
                       fontWeight: '400'
                     }}
                   >
-                    {data.sanityPost?.date}
+                    {definedDate}
                   </Typography>
                 )}
                 <Box sx={{
                   display: 'inline-flex',
-                  color: contrastColour(tileColor).textColour,
+                  color: contrastColour(definedTileColor).textColour,
                   ml: "5px",
                   lineHeight: 1.4,
                 }}>{` | `}</Box>
-                {data.sanityPost?.author && (
+                {definedAuthor && (
                   
                   <Typography
                     variant="h6"
                     component="p"
-                    color={contrastColour(tileColor).textColour}
+                    color={contrastColour(definedTileColor).textColour}
                     sx={{
                       fontStyle: 'italic',
                       fontWeight: '400'
@@ -142,9 +156,9 @@ const PostTemplate = props => {
                   >
                     <Box sx={{
                     display: 'inline-flex',
-                    color: contrastColour(tileColor).textColour,
+                    color: contrastColour(definedTileColor).textColour,
                     ml: "5px",
-                  }}>{` By `}</Box> {data.sanityPost?.author.name}
+                  }}>{` By `}</Box> {definedAuthor.name}
                   </Typography>
                  
                 )}
@@ -167,19 +181,17 @@ const PostTemplate = props => {
             overflow: 'hidden',
           }}
         >
-          {image && (
+          {definedImage && (
             <Image
               // pass asset, hotspot, and crop fields
-              crop={(previewData && previewData?.image?.crop) || image?.crop}
+              crop={definedImage?.crop}
               hotspot={
-                (previewData && previewData?.image?.hotspot) || image?.hotspot
+                definedImage?.hotspot
               }
               asset={
-                (previewData &&
-                  previewData.image &&
-                  previewData.image?._ref &&
-                  urlFor(previewData.image).width(1440).url()) ||
-                image.asset
+                (definedImage && definedImage?._ref &&
+                  urlFor(definedImage).width(1440).url(definedImage)) ||
+                definedImage.asset
               }
               width={1440}
               height={702}
@@ -195,29 +207,19 @@ const PostTemplate = props => {
               }}
             />
           )}
-          {/* <Box
-            sx={{
-              position: "relative",
-              zIndex: 1,
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-              width: "100%",
-              height: "100%",
-              //backgroundColor: "rgba(0,0,0,0.3)",
-            }}
-          /> */}
+
         </Box>
       </Container>
 
-      <Container maxWidth="md" sx={{py: {xs: 15 ,md: 16}}} disableGutters={mobile ? false : true}>
-        <RenderPortableText value={data?.sanityPost._rawBody}/>
-      </Container>
+      {definedRawBody && (<Container maxWidth="md" sx={{py: {xs: 15 ,md: 16}}} disableGutters={mobile ? false : true}>
+        <RenderPortableText value={definedRawBody}/>
+      </Container>)}
 
       <Modules
         pageContext={pageContext}
-        modules={data?.sanityPost?.pageBuilder}
+        modules={definedPageBuilder}
       />
-    </IncludePreview>
+    </>
   )
 }
 

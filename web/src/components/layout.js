@@ -4,34 +4,33 @@ import Header from "./header"
 import { Footer } from "./footer"
 import { VisualEditing } from "./visualEditing"
 import {Box} from "@mui/material"
-
 // Preview
 import { useQuery } from "../../sanity/store";
-import {PAGE_QUERY} from '../queries/documentQueries';
+import {NAV_QUERY} from '../queries/documentQueries';
 
 export const Layout = (props) => {
 
-  const {children, initial} = props
-
-  
+  const {children, data, initial} = props
   // Preview
-  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
-
-  const { data, sourceMap } = useQuery(
-    PAGE_QUERY,
+  const definedSlug = (props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy || props.data.sanityPage )
+  
+  const { data: previewData, sourceMap } = useQuery(
+    NAV_QUERY,
     {slug: definedSlug.slug.current},
     { initial }
   );
 
-  const previewNavColor = data && data?.navColor?.label && data?.navColor || data && data?.navColor;
   const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
+  const navOverlay = data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay
 
+  const definedNavColor = (previewData && previewData?.navColor) || navColor
+  const definedNavOverlay = (previewData && previewData?.navOverlay) || navOverlay
 
     return (
     <div>
       <VisualEditing {...props}/>
-      <Header navColor={previewNavColor && previewNavColor || navColor} navOverlay={data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay}/>
-      <Box previewData={data}>{
+      <Header navColor={definedNavColor} navOverlay={definedNavOverlay}/>
+      <Box previewData={previewData}>{
          React.Children.map(children, child => {
           // Clone the child element and pass additional props
           if (React.isValidElement(child)) {

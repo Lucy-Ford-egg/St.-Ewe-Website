@@ -34,11 +34,12 @@ export const HeaderSection = props => {
     setAddSpiro(previewData && previewData?.spiro || spiro)
   }, [])
 
-  const definedTitle = previewData && previewData.title || _rawTitle
-  const definedText = previewData && previewData.text || _rawText
-  const definedLinks = previewData && previewData?.links || links
-  const definedImage = previewData && previewData.image && previewData.image._ref || image && image.asset 
-  const definedBackgroundColour = previewData && previewData?.backgroundColor?.value || backgroundColor?.value
+  const definedTitle = (previewData && previewData.title) || _rawTitle
+  const definedText = (previewData && previewData.text) || _rawText
+  const definedLinks = (previewData && previewData?.links) || links
+  const definedImage = (previewData && previewData.image && previewData.image) || image && image 
+  const definedBackgroundColour = ( previewData && previewData?.backgroundColor?.value) || backgroundColor?.value
+
   return (
     <Container
       maxWidth="fluid"
@@ -74,12 +75,12 @@ export const HeaderSection = props => {
             width: { xs: "85px", sm: "auto" },
             height: { xs: "239.91px", sm: "auto" },
             zIndex: 0,
-            opacity: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.opacity,
+            opacity: contrastColour(definedBackgroundColour).spiro.opacity,
             svg: {
               width: "100%",
               height: "auto",
               path: {
-                stroke: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.fill,
+                stroke: contrastColour(definedBackgroundColour).spiro.fill,
               },
             },
           }}
@@ -131,7 +132,7 @@ export const HeaderSection = props => {
                   display: "flex",
                   my: 10,
                   width: "19.1875rem",
-                  borderColor: contrastColour(previewData && previewData.backgroundColor || backgroundColor).divider.hex,
+                  borderColor: contrastColour(definedBackgroundColour).divider.hex,
                 }}
               />
               </Box>
@@ -180,16 +181,16 @@ export const HeaderSection = props => {
         {definedImage && (
           <Image
             // pass asset, hotspot, and crop fields
-            crop={(previewData && previewData?.image?.crop) || image?.crop}
+            crop={definedImage?.crop}
             hotspot={
-              (previewData && previewData?.image?.hotspot) || image?.hotspot
+              definedImage?.hotspot
             }
             asset={
-              (previewData &&
-                previewData.image &&
-                previewData.image?._ref &&
-                urlFor(previewData?.image).width(200).url()) ||
-                image.asset
+              (definedImage &&
+                definedImage &&
+                definedImage?._ref &&
+                urlFor(definedImage).width(200).url()) ||
+                definedImage.asset
             }
             width={1440}
             height={700}
@@ -233,12 +234,12 @@ export const HeaderSection = props => {
             display: "flex",
             alignItems: { xs: "flex-end", sm: "unset" },
             zIndex: 0,
-            opacity: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.opacity,
+            opacity: contrastColour(definedBackgroundColour).spiro.opacity,
             svg: {
               width: "100%",
               height: "auto",
               path: {
-                stroke: contrastColour(previewData && previewData.backgroundColor || backgroundColor).spiro.fill,
+                stroke: contrastColour(definedBackgroundColour).spiro.fill,
               },
             },
           }}
