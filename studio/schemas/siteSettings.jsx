@@ -105,10 +105,6 @@ export default defineType({
       name: 'companyDetails',
       title: 'Company Details',
     },
-    {
-      name: 'newsletterSetup',
-      title: 'Newsletter Setup',
-    },
   ],
   icon: MdOutlineMenu,
   fields: [
@@ -129,12 +125,6 @@ export default defineType({
       type: 'companyDetails',
       title: 'Company Details',
       group: 'companyDetails',
-    }),
-    defineField({
-      name: 'newsletterSetup',
-      type: 'newsletterSetup',
-      title: 'Newsletter Setup',
-      group: 'newsletterSetup',
     }),
   ],
 })
