@@ -21,7 +21,7 @@ import { StepsSection } from './stepsSection'
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allSanityCaseStudy,  blogInserted } = props
+    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allSanityCaseStudy,  blogInserted, sanitySiteSettings } = props
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -173,9 +173,10 @@ const Modules = (props) => {
                     if (isModule(module, 'locationSection')) {
                         return (
                             <LocationSection
-                                previewData={previewData && previewData[i]}
-                                sanityConfig={sanityConfig}
-                                key={module._key + i}
+                            previewData={previewData && previewData[i]}
+                            sanityConfig={sanityConfig}
+                            key={module._key + i}
+                            sanitySiteSettings={sanitySiteSettings}
                                 {...module} />
                         )
                     }

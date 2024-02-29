@@ -41,5 +41,8 @@ export const pageBuilderQuery = graphql`
     ... on SanityContactSection {
       ... ContactSectionFragment
     }
+    ... on SanityLocationSection {
+      ... LocationSectionFragment
+    }
   }
 `

@@ -7,6 +7,15 @@ export const companyDetailType = defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      validation: Rule => Rule.required(),
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'title',
       type: 'string',
       title: 'Title',
@@ -20,6 +29,16 @@ export const companyDetailType = defineType({
       name: 'address2',
       type: 'string',
       title: 'Address Line 2',
+    }),
+    defineField({
+      name: 'address3',
+      type: 'string',
+      title: 'Address Line 3',
+    }),
+    defineField({
+      name: 'address4',
+      type: 'string',
+      title: 'Address Line 4',
     }),
     defineField({
       name: 'county',

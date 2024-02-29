@@ -21,7 +21,6 @@ const PageTemplate = props => {
     { initial }
   );
 
-
   return (
       <Modules
         sanityConfig={getSanityClient}
@@ -30,6 +29,7 @@ const PageTemplate = props => {
         allCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
+        sanitySiteSettings={data?.sanitySiteSettings}
       />
   )
 }
@@ -121,6 +121,9 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
     pageBuilder {
       ...PageBuilderFragment
     }
+  }
+  sanitySiteSettings {
+   ... CompanyDetailsFragment
   }
 }
 `

@@ -86,6 +86,17 @@ export default defineType({
       type: 'boolean',
       title: 'Remove top padding',
     }),
+    defineField({
+      title: 'Text Align',
+      name: 'textAlign',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Left', value: 'flex-start' },
+          { title: 'Center', value: 'center' }
+        ], // &lt;-- predefined values
+      },
+    }),
     
   
   ],
