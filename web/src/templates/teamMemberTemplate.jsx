@@ -1,37 +1,48 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
-
 import {
   Container,
-  Grid,
   useTheme,
   Box,
-  Typography,
-  Divider,
   useMediaQuery,
 } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { getGatsbyImageData } from "gatsby-source-sanity"
 import { RenderPortableText } from "../components/renderPortableText"
-import { CategoryLabel } from "../components/categoryLabel"
+//Preview
+import { useQuery } from "../../sanity/store"
+import {
+  TEAM_MEMBER_PAGE_QUERY,
+  SITE_SETTINGS,
+} from "../queries/documentQueries"
 
 const TeamMembersTemplate = props => {
-  const { data, pageContext, previewData, sanityConfig } = props
+  const { data, pageContext, initial } = props
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down('md'))
+  const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
-  const image = data.sanityTeamMember?.image
+  const { data: previewData, sourceMap } = useQuery(
+    `{ "siteSettings": ${SITE_SETTINGS}, "page":${TEAM_MEMBER_PAGE_QUERY}}`,
+    { slug: data?.sanityTeamMember?.slug.current },
+    { initial },
+  )
+
+  const pageData = previewData?.page
+  const siteSettings = previewData?.siteSettings
+
+  const definedImage =
+    (pageData && pageData?.image) ||
+    data.sanityTeamMember?.image
+  const definedRawBio =
+    (pageData && pageData?.bio) || data?.sanityTeamMember._rawBio
+  const definedPageBuilder =
+    (pageData && pageData?.pageBuilder) ||
+    data?.sanityTeamMember?.pageBuilder
+
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityTeamMember.slug} //
-      data={data}
-    >
+    <>
       <Container
         maxWidth="fluid"
         disableGutters
@@ -47,8 +58,6 @@ const TeamMembersTemplate = props => {
           px: "0 !important",
         }}
       >
-        
-
         <Box
           sx={{
             gridColumn: "1/25",
@@ -59,25 +68,22 @@ const TeamMembersTemplate = props => {
             maxHeight: "100%",
           }}
         >
-          {image && (
+          {definedImage && (
             <Image
               // pass asset, hotspot, and crop fields
-              crop={(previewData && previewData?.image?.crop) || image?.crop}
-              hotspot={
-                (previewData && previewData?.image?.hotspot) || image?.hotspot
-              }
+              crop={definedImage?.crop}
+              hotspot={definedImage?.hotspot}
               asset={
-                (previewData &&
-                  previewData.image &&
-                  previewData.image?._ref &&
-                  urlFor(previewData.image).width(1440).url()) ||
-                image.asset
+                (definedImage?._ref &&
+                  urlFor(definedImage).width(1400).url()) ||
+                definedImage.asset
               }
               width={1440}
               style={{
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
+
                 flexGrow: 1,
                 minHeight: "100%",
                 gridColumn: "1/25",
@@ -85,29 +91,19 @@ const TeamMembersTemplate = props => {
               }}
             />
           )}
-          <Box
-            sx={{
-              position: "relative",
-              zIndex: 1,
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-              width: "100%",
-              height: "100%",
-              //backgroundColor: "rgba(0,0,0,0.3)",
-            }}
-          />
         </Box>
       </Container>
 
-      <Container maxWidth="md" sx={{py: {xs: 15 ,md: 16}}} disableGutters={mobile ? false : true}>
-        <RenderPortableText value={data?.sanityTeamMember._rawBio}/>
+      <Container
+        maxWidth="md"
+        sx={{ py: { xs: 15, md: 16 } }}
+        disableGutters={mobile ? false : true}
+      >
+        <RenderPortableText value={definedRawBio} />
       </Container>
 
-      <Modules
-        pageContext={pageContext}
-        modules={data?.sanityTeamMember?.pageBuilder}
-      />
-    </IncludePreview>
+      <Modules pageContext={pageContext} modules={definedPageBuilder} />
+    </>
   )
 }
 

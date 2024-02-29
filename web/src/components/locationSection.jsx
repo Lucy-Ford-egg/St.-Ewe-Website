@@ -40,7 +40,9 @@ export const LocationSection = props => {
   const definedTitle = (previewData && previewData?.title) || _rawTitle
   const definedText = (previewData && previewData?.text) || _rawText
   const definedAlign = (previewData && previewData?.textAlign) || textAlign
-  debugger
+
+  const definedSiteSettings = (previewData && previewData?.companyDetails) ||sanitySiteSettings?.companyDetails
+
   return (
     <Container
       maxWidth="xl"
@@ -101,9 +103,9 @@ export const LocationSection = props => {
       </Grid>
 
       <Grid container alignItems="stretch" rowSpacing={{sm: 10, md: 0}}>
-        {sanitySiteSettings?.companyDetails?.map((location, i) => {
+        {definedSiteSettings?.map((location, i) => {
           const definedImage = location.image
-          debugger
+        
           return (
             <Grid item xs={12} sm={12} md={6}>
               <Grid container columnSpacing={{xs: 4, md: 6}} rowSpacing={{xs: 6, md: 0}} alignItems="stretch" sx={{

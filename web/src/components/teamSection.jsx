@@ -14,6 +14,7 @@ import {
 } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 import { CiMail, CiLinkedin } from "react-icons/ci"
+import { contrastColour } from "../utils/contrastColour"
 
 export const TeamSection = props => {
   const theme = useTheme()
@@ -23,6 +24,9 @@ export const TeamSection = props => {
     _rawTitle,
     _rawLeftText,
     _rawRightText,
+    title,
+    leftText,
+    rightText,
     linkGroup,
     previewData,
     sanityConfig,
@@ -31,14 +35,16 @@ export const TeamSection = props => {
     tileColor,
   } = props
 
+  
   const definedTopPadding =
     (previewData && previewData?.topPadding) || topPadding
-  const definedTitle = (previewData && previewData?.title) || _rawTitle
+  const definedSubtitle = (previewData && previewData?.subtitle ) || subtitle
+  const definedTitle = (previewData && previewData?.title) || title || _rawTitle 
 
-  const definedLeftText = (previewData && previewData?.leftText) || _rawLeftText
-  const definedRightText = (previewData && previewData?.rightText) || _rawRightText
-
+  const definedLeftText = (previewData && previewData?.leftText) || leftText || _rawLeftText
+  const definedRightText = (previewData && previewData?.rightText) || rightText || _rawRightText
   const definedTeamTiles = (previewData && previewData?.teamTiles) || teamTiles
+  const definedTileColor = (previewData && previewData?.tileColor) || tileColor
 
   return (
     <>
@@ -56,9 +62,9 @@ export const TeamSection = props => {
       >
         <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
           <Grid item xs={12} md={7}>
-            {subtitle && (
+            {definedSubtitle && (
               <Typography color="primary" variant="overline">
-                {subtitle}
+                {definedSubtitle}
               </Typography>
             )}
 
@@ -125,12 +131,12 @@ export const TeamSection = props => {
             scrollSnapAlign: "center",
           }}
         >
-          {definedTeamTiles && definedTeamTiles.map((member, i) => {
-            let image = member.image
-            let memberShortName = member.name.split(" ")
+          {definedTeamTiles && definedTeamTiles?.map((member, i) => {
+            let image = member?.image
+            let memberShortName = member?.name.split(" ")
             return (
               <Grid
-                key={`${member.name}-member-${i}`}
+                key={`${member?.name}-member-${i}`}
                 item
                 xs="auto"
                 md={3}
@@ -159,7 +165,7 @@ export const TeamSection = props => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    backgroundColor: "secondary.main",
+                    backgroundColor: definedTileColor.value,
                     py: 5,
                     px: 5,
                     flexGrow: 1,
@@ -174,25 +180,25 @@ export const TeamSection = props => {
                     }}
                   >
                     {member.position && (
-                      <Typography color="white.main" variant="overline">
+                      <Typography color={contrastColour(definedTileColor).textColour} variant="overline">
                         {member.position}
                       </Typography>
                     )}
                   </Box>
                   <Divider
                     sx={{
-                      borderColor: "white.main",
+                      borderColor: contrastColour(definedTileColor).textColour,
                       my: 5,
                     }}
                   />
                   {member.name && (
-                    <Typography color="white.main" variant="h4">
+                    <Typography color={contrastColour(definedTileColor).textColour} variant="h4">
                       {member.name}
                     </Typography>
                   )}
                   <Divider
                     sx={{
-                      borderColor: "white.main",
+                      borderColor: contrastColour(definedTileColor).textColour,
                       my: 5,
                     }}
                   />
@@ -214,13 +220,14 @@ export const TeamSection = props => {
                           pr: 3,
                           display: "flex",
                           alignItems: "center",
+                          color: contrastColour(definedTileColor).textColour,
                         }}
                       >
-                        <CiMail color="white" />
+                        <CiMail style={{color: "inherit"}}/>
                       </Box>
                       <Typography
                         variant="caption"
-                        color="white.main"
+                        color={contrastColour(definedTileColor).textColour}
                         component="p"
                         sx={{
                           fontStyle: "italic",
@@ -237,10 +244,12 @@ export const TeamSection = props => {
                         <IconButton
                           size="small"
                           href={member.linkedIn}
-                          color="white"
                           aria-label={`Go to ${member.name} linkedIn profile`}
+                          sx={{
+                            color: contrastColour(definedTileColor).textColour,
+                          }}
                         >
-                          <CiLinkedin />
+                          <CiLinkedin style={{color: "inherit"}}/>
                         </IconButton>
                       )}
                     </Box>

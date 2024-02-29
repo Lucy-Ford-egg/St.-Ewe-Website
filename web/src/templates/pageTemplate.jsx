@@ -4,7 +4,7 @@ import { Seo } from "../components/seo"
 import Modules from "../components/modules"
 // Preview
 import { useQuery } from "../../sanity/store";
-import {PAGE_QUERY} from '../queries/documentQueries';
+import {PAGE_QUERY, SITE_SETTINGS} from '../queries/documentQueries';
 
 import {getSanityClient } from "../../sanityUtils/sanity"
 
@@ -16,20 +16,23 @@ const PageTemplate = props => {
   const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
 
   const { data: previewData, sourceMap } = useQuery(
-    PAGE_QUERY,
+    `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
     {slug: definedSlug.slug.current},
     { initial }
   );
 
+  const pageData = previewData?.page
+  const siteSettings = (previewData && previewData?.siteSettings) || data?.sanitySiteSettings
+  
   return (
       <Modules
         sanityConfig={getSanityClient}
-        previewData={previewData?.pageBuilder}
+        previewData={pageData?.pageBuilder}
         allSanityPost={data.allSanityPost}
         allCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
-        sanitySiteSettings={data?.sanitySiteSettings}
+        sanitySiteSettings={siteSettings }
       />
   )
 }
