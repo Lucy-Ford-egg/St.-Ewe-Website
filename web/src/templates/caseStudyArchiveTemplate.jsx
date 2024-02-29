@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
 
 //Preview
 import { useQuery } from "../../sanity/store"
