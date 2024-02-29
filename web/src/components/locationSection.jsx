@@ -41,7 +41,7 @@ export const LocationSection = props => {
   const definedText = (previewData && previewData?.text) || _rawText
   const definedAlign = (previewData && previewData?.textAlign) || textAlign
 
-  const definedSiteSettings = (previewData && previewData?.companyDetails) ||sanitySiteSettings?.companyDetails
+  const definedSiteSettings = sanitySiteSettings?.companyDetails
 
   return (
     <Container
@@ -218,7 +218,7 @@ export const LocationSection = props => {
         })}
       </Grid>
 
-      <Map sanitySiteSettings={sanitySiteSettings} />
+      <Map sanitySiteSettings={definedSiteSettings} />
     </Container>
   )
 }

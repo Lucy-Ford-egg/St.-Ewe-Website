@@ -30,7 +30,7 @@ const TeamMembersTemplate = props => {
   )
 
   const pageData = previewData?.page
-  const siteSettings = previewData?.siteSettings
+  const siteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
   const definedImage =
     (pageData && pageData?.image) ||
@@ -144,6 +144,9 @@ export const teamMemberTemplateQuery = graphql`
         ...PageBuilderFragment
       }
     }
+    sanitySiteSettings {
+      ... CompanyDetailsFragment
+     }
   }
 `
 export default TeamMembersTemplate
