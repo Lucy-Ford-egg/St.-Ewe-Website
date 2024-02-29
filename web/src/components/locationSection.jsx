@@ -100,7 +100,7 @@ export const LocationSection = props => {
         </Grid>
       </Grid>
 
-      <Grid container alignItems="stretch" rowSpacing={{sm: 10, md: 0}}>
+      <Grid container alignItems="stretch" rowSpacing={{sm: 10, md: 0}} sx={{pb: {xs: 0, md:6}}}>
         {definedSiteSettings?.map((location, i) => {
           const definedImage = location.image
         

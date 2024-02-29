@@ -64,9 +64,9 @@ export const Map = props => {
     <Container
       className="section map"
       maxWidth="false"
-      sx={{ px: { xs: 0 }, mt: { xs: 2, md: 11 } }}
+      sx={{ px: { xs: 0 }, mt: { xs: 2, md: 11 }, py: {xs: 0, md: 14}, border: `1px solid ${theme.palette.primary.main}`,}}
     >
-      <Box sx={{ height: { xs: 466, md: 738 }, width: "100%" }}>
+      <Container maxWidth="lg" disableGutters={md && true} sx={{ height: { xs: 466, md: 738 }, width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_MAPS_API_KEY }}
           defaultCenter={defaultProps.center}
@@ -255,7 +255,7 @@ export const Map = props => {
             )
           })}
         </GoogleMapReact>
-      </Box>
+      </Container>
     </Container>
   )
 }
