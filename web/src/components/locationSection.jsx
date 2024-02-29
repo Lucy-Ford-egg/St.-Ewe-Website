@@ -15,9 +15,7 @@ import {
   ListItemText,
 } from "@mui/material"
 import { Map } from "./map"
-import { CiLocationOn } from "react-icons/ci";
-import { CiPhone } from "react-icons/ci";
-import { CiMail } from "react-icons/ci";
+import { CiLocationOn, CiPhone,  CiMail } from "react-icons/ci";
 import { RenderPortableText } from "../components/renderPortableText"
 
 export const LocationSection = props => {
