@@ -165,7 +165,7 @@ export const TeamSection = props => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    backgroundColor: definedTileColor.value,
+                    backgroundColor: definedTileColor?.value,
                     py: 5,
                     px: 5,
                     flexGrow: 1,
@@ -244,7 +244,7 @@ export const TeamSection = props => {
                         <IconButton
                           size="small"
                           href={member.linkedIn}
-                          aria-label={`Go to ${member.name} linkedIn profile`}
+                          aria-label={`Go to ${member?.name} linkedIn profile`}
                           sx={{
                             color: contrastColour(definedTileColor).textColour,
                           }}
