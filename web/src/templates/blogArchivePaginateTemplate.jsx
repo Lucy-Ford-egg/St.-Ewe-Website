@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
-import { pageQuery } from "./queries/documentQueries"
 
 const BlogArchiveTemplate = props => {
   const { data, pageContext } = props
@@ -26,18 +24,14 @@ const BlogArchiveTemplate = props => {
 
 
   return (
-    <IncludePreview
-      documentQueries={pageQuery}
-      slug={data.sanityPage.slug} //
-      data={data}
-    >
+    <>
       {posts && modules && 
       <Modules
         pageContext={pageContext}
         modules={modules}
       />
 }
-    </IncludePreview>
+    </>
   )
 }
 
