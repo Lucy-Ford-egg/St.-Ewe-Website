@@ -36,7 +36,7 @@ let defaultTheme = createTheme({
     },
     background: {
       default: '#F3F3F2', // Light Grey
-      main: '#002856',
+      main:  '#F3F3F2', // Light Grey // OLD VALUE HERE ->'#002856',
     },
     white: {
       main: '#ffffff', // White

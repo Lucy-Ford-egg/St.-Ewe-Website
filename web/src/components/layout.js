@@ -29,7 +29,7 @@ export const Layout = (props) => {
     return (
     <div>
       <VisualEditing {...props}/>
-      <Header navColor={definedNavColor} navOverlay={definedNavOverlay}/>
+      <Header definedNavColor={definedNavColor} navOverlay={definedNavOverlay}/>
       <Box previewData={previewData}>{
          React.Children.map(children, child => {
           // Clone the child element and pass additional props

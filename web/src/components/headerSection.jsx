@@ -109,11 +109,12 @@ export const HeaderSection = props => {
               margin: textAlign ? "0 auto" : "unset",
             }}
           >
-            { definedTitle && rendered && (
+            
+            
               <motion.div
-                initial={{ y: 0, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-              >
+              initial={{ y: 0, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+            >
                 <RenderPortableText
                   previewData={previewData}
                   sanityConfig={sanityConfig}
@@ -124,7 +125,7 @@ export const HeaderSection = props => {
                   }
                 />
               </motion.div>
-            )}
+        
             {previewData && previewData.spiro || spiro && (
               <Box sx={{display: 'flex', width: '100%', justifyContent: textAlign ? textAlign : "flexstart",}}>
               <Divider
@@ -185,6 +186,7 @@ export const HeaderSection = props => {
             hotspot={
               definedImage?.hotspot
             }
+            loading="eager"
             asset={
               (definedImage &&
                 definedImage &&
