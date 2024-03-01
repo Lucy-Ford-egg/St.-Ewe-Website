@@ -155,27 +155,27 @@ export const query = graphql`
     
     _rawTitle(resolveReferences: { maxDepth: 10 })
     _rawText(resolveReferences: { maxDepth: 10 })
-    image {
-      asset {
-        _id
-        gatsbyImageData
-      }
-      hotspot {
-        x
-        y
-        width
-        height
-      }
-      crop {
-        bottom
-        left
-        right
-        top
-      }
-    }
     topPadding
     loginTile {
-      title
+      _rawTitle(resolveReferences: { maxDepth: 10 })
+      image {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
       link {
         text
         link {
