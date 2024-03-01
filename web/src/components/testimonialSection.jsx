@@ -47,14 +47,17 @@ export const TestimonialSection = props => {
     enter: direction => {
       return {
         opacity: 0,
+        display: "none"
       }
     },
     center: {
       opacity: 1,
+      display: "block",
     },
     exit: direction => {
       return {
         opacity: 0,
+        display: "none"
       }
     },
   }
@@ -214,7 +217,7 @@ export const TestimonialSection = props => {
                   maxWidth="md"
                   className="slide"
                   sx={{
-                    position: "absolute",
+                    position:"relative",
                     top: 0,
                     bottom: 0,
                     left: 0,
@@ -267,11 +270,27 @@ export const TestimonialSection = props => {
                         flexDirection: "row",
                         alignItems: "center",
                         maxWidth: { xs: "60vw", md: "unset" },
+                        position: "relative",
                       }}
                     >
                       {
                         // Internal
                         definedPreviewInternalAvatar && (
+                          <Box sx={{            
+                            "&:after":{
+                              content: "''",
+                              position: "absolute",
+                              top: 0,
+                              bottom: 0,
+                              right: 0,
+                              left: 0,
+                              width: 56,
+                              height: 56,
+                              borderRadius: 1000,
+                              background: "rgba(0,40,86,0.5)",
+                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                            }
+                          }}>
                           <Image
                             crop={definedPreviewInternalAvatar?.crop}
                             hotspot={definedPreviewInternalAvatar?.hotspot}
@@ -291,13 +310,32 @@ export const TestimonialSection = props => {
                               objectFit: "cover",
                               borderRadius: 1000,
                               border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                              filter: "grayscale(1)",
                             }}
                           />
+                          </Box>
+                          
                         )
                       }
                       {
                         // External
                         definedPreviewExternalAvatar && (
+                          <Box sx={{
+                            
+                            "&:after":{
+                              content: "''",
+                              position: "absolute",
+                              top: 0,
+                              bottom: 0,
+                              right: 0,
+                              left: 0,
+                              width: 56,
+                              height: 56,
+                              borderRadius: 1000,
+                              background: "rgba(0,40,86,0.5)",
+                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                            }
+                          }}>
                           <Image
                             // pass asset, hotspot, and crop fields
                             // {...testimonialTiles[slideIndex].image}
@@ -319,8 +357,11 @@ export const TestimonialSection = props => {
                               objectFit: "cover",
                               borderRadius: 1000,
                               border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                              filter: "grayscale(1)",
                             }}
                           />
+                          </Box>
+                          
                         )
                       }
 
@@ -358,7 +399,7 @@ export const TestimonialSection = props => {
             </AnimatePresence>
           </Box>
         </Box>
-        <Box
+        <Container maxWidth="md"
           sx={{
             gridColumn: "1/25",
             gridRow: "1/auto",
@@ -402,7 +443,7 @@ export const TestimonialSection = props => {
                 <SvgIcon
                   color={dotColour}
                   key={`dot-${index}`}
-                  sx={{ width: 22, height: 22 }}
+                  sx={{ width: 16, height: 16 }}
                 >
                   <circle id="dot" cx="5.5" cy="5.5" r="5.5" fill={dotColour} />
                 </SvgIcon>
@@ -421,7 +462,7 @@ export const TestimonialSection = props => {
               color={contrastColour(definedBackgroundColor).svg.default.mui}
             />
           </IconButton>
-        </Box>
+        </Container>
       </Container>
       <Box
         sx={{

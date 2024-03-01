@@ -174,7 +174,7 @@ let clientTheme = createTheme({
         },
         maxWidthMd: {
           [defaultTheme.breakpoints.down('xl')]: {
-            maxWidth: 750,
+            maxWidth: 864,
           }
         },
       },
