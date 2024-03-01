@@ -1,7 +1,13 @@
 import React from "react"
-import { Container, useTheme, Button, Box } from "@mui/material"
+import {
+  Container, useTheme, Button, Box, List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+} from "@mui/material"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
-
+import { CiLocationOn, CiPhone, CiMail } from "react-icons/ci";
 import { motion } from "framer-motion"
 
 const ContainerComponent = React.forwardRef((props, ref) => (
@@ -16,13 +22,14 @@ const MotionContainer = motion(ContainerComponent)
 
 const MainNavigation = (props) => {
   const theme = useTheme()
-  const { menu } = props
-  
+  const { menu, definedSiteSettings, handleCloseNavMenu } = props
+
   const childRef = React.useRef();
 
   const list = {
     visible: {
       opacity: 1,
+      height: "100vh",
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.1,
@@ -30,6 +37,7 @@ const MainNavigation = (props) => {
     },
     hidden: {
       opacity: 0,
+      height: "auto",
       transition: {
         when: "afterChildren",
       },
@@ -50,7 +58,7 @@ const MainNavigation = (props) => {
         variants={list}
         sx={{
           backgroundColor: { xs: "background.default", md: "transparent" },
-          pt: { xs: 12, sm: 12, md: 0 },
+          pt: { xs: 6, sm: 12, md: 0 },
           pb: { xs: 11, sm: 11, md: 0 },
           marginTop: { xs: 0, sm: 0, md: 0 },
           width: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
@@ -63,7 +71,7 @@ const MainNavigation = (props) => {
         }}
       >
         {menu?.sanityNavigation?.items && menu.sanityNavigation.items.map((menuItem, i) => {
-  
+
           return (
             <motion.li variants={item} key={`main-menu-item-${i}`}>
               <Box
@@ -82,6 +90,7 @@ const MainNavigation = (props) => {
                         color: theme.palette.primary.main
                       }
                     }}
+                    onClick={e => handleCloseNavMenu()}
                     size="large"
                     to={`/${menuItem?.link?.link.internal.slug.current}`}
                   >{menuItem?.link.text}</GatsbyButton> :
@@ -89,6 +98,7 @@ const MainNavigation = (props) => {
                     <Button
                       variant="text"
                       disableElevation
+                      onClick={e => handleCloseNavMenu()}
                       sx={{
                         color: "inherit",
                         textAlign: { xs: 'left', md: 'center' },
@@ -107,29 +117,75 @@ const MainNavigation = (props) => {
           )
         })}
         <motion.li variants={item}>
-          <Button
-            to="/client-login"
-            variant="contained"
-            color="primary"
-            size="small"
-            sx={{
-              display: { xs: 'flex', sm: 'flex' },
-              textAlign: { xs: 'left', md: 'center' },
-              justifyContent: { xs: 'left', sm: 'center' },
-              fontWeight: 400,
-              mt: { xs: 12, md: 0 },
-              // px: theme.spacing(1),
-            }}>Client Login
+          <Box sx={{
+            px: 0,
+          }}>
+            <Button
+              to="/client-login"
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={e => handleCloseNavMenu()}
+              sx={{
+                display: { xs: 'flex', sm: 'flex' },
+                textAlign: { xs: 'left', md: 'center' },
+                justifyContent: { xs: 'left', sm: 'center' },
+                fontWeight: 400,
+                mt: { xs: 6, md: 0 },
+                // px: theme.spacing(1),
+              }}>Client Login
 
-          </Button>
-        </motion.li>
-        <motion.li variants={item}>
-          <Box sx={{ display: { xs: "block", md: "none" } }}>
-
-            Some component
-
+            </Button>
           </Box>
         </motion.li>
+
+        <Box sx={{ display: { xs: "block", md: "none" }, mt: 6, }}>
+
+          {definedSiteSettings && definedSiteSettings?.companyDetails.map((location, i) => {
+
+            return (
+              <motion.li variants={item}>
+                <Box sx={{ display: { xs: "block", md: "none", flexDirection: "column", } }}>
+                  <List sx={{ px: 4,  py: 6, }}>
+                    {location?.title &&
+                      <ListItem disablePadding>
+                        <ListItemIcon sx={{ minWidth: 0, pr: 3 }}>
+                          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: 24, color: "primary.main" }}>
+                            <CiLocationOn style={{ width: "100%", height: "auto" }} />
+                          </Box>
+                        </ListItemIcon>
+                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={location?.title} />
+                      </ListItem>
+                    }
+                    {location?.phone &&
+                      <ListItem disablePadding>
+                        <ListItemIcon sx={{ minWidth: 0, pr: 3 }}>
+                          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: 24, color: "primary.main" }}>
+                            <CiPhone style={{ width: "100%", height: "auto" }} />
+                          </Box>
+                        </ListItemIcon>
+                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={location?.phone} />
+                      </ListItem>
+                    }
+                    {location?.email &&
+                      <ListItem disablePadding>
+                        <ListItemIcon sx={{ minWidth: 0, pr: 3 }}>
+                          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: 24, color: "primary.main" }}>
+                            <CiMail style={{ width: "100%", height: "auto" }} />
+                          </Box>
+                        </ListItemIcon>
+                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={location?.email} />
+                      </ListItem>
+                    }
+                  </List>
+                  <Divider />
+                </Box>
+              </motion.li>
+            )
+          })}
+
+        </Box>
+
 
       </MotionContainer>
     </Box>

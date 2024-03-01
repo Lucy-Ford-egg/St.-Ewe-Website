@@ -6,7 +6,7 @@ import { VisualEditing } from "./visualEditing"
 import {Box} from "@mui/material"
 // Preview
 import { useQuery } from "../../sanity/store";
-import {NAV_QUERY} from '../queries/documentQueries';
+import {NAV_QUERY, SITE_SETTINGS} from '../queries/documentQueries';
 
 export const Layout = (props) => {
 
@@ -15,10 +15,13 @@ export const Layout = (props) => {
   const definedSlug = (props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy || props.data.sanityPage )
   
   const { data: previewData, sourceMap } = useQuery(
-    NAV_QUERY,
+    `{ "siteSettings": ${SITE_SETTINGS}, "nav":${NAV_QUERY}}`,
     {slug: definedSlug?.slug?.current},
     { initial }
   );
+
+  const pageData = previewData?.nav
+  const definedSiteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
   const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
   const navOverlay = data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay
@@ -29,7 +32,7 @@ export const Layout = (props) => {
     return (
     <div>
       <VisualEditing {...props}/>
-      <Header definedNavColor={definedNavColor} navOverlay={definedNavOverlay}/>
+      <Header definedSiteSettings={definedSiteSettings} definedNavColor={definedNavColor} navOverlay={definedNavOverlay}/>
       <Box previewData={previewData}>{
          React.Children.map(children, child => {
           // Clone the child element and pass additional props
