@@ -23,6 +23,7 @@ let defaultTheme = createTheme({
     },
     secondary: {
       main: '#002856', // Navy
+      bright: '#00397A', // Bright Navy
       mid: '#375073', // Navy Uncoated
       light: '#42608A', // Light Navy 
     },

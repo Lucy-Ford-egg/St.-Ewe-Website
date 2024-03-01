@@ -7,6 +7,11 @@ export default defineType({
   title: "Client Login Section",
   fields: [
     defineField({
+      title: 'Subtitle',
+      name: 'subtitle',
+      type: 'string',
+    }),
+    defineField({
       title: 'Title',
       name: 'title',
       type: 'array',
