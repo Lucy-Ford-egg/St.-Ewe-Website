@@ -152,7 +152,7 @@ export const query = graphql`
   fragment ClientLoginSectionFragment on SanityClientLoginSection {
     _key
     _type
-    subtitle
+    
     _rawTitle(resolveReferences: { maxDepth: 10 })
     _rawText(resolveReferences: { maxDepth: 10 })
     image {
@@ -174,9 +174,8 @@ export const query = graphql`
       }
     }
     topPadding
-    featuresTile {
+    loginTile {
       title
-      text
       link {
         text
         link {
