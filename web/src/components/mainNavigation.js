@@ -5,6 +5,7 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
+  useMediaQuery,
 } from "@mui/material"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import { CiLocationOn, CiPhone, CiMail } from "react-icons/ci";
@@ -22,6 +23,7 @@ const MotionContainer = motion(ContainerComponent)
 
 const MainNavigation = (props) => {
   const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("md"))
   const { menu, definedSiteSettings, handleCloseNavMenu } = props
 
   const childRef = React.useRef();
@@ -29,7 +31,7 @@ const MainNavigation = (props) => {
   const list = {
     visible: {
       opacity: 1,
-      height: "100vh",
+      height: mobile ? "100vh" : "auto",
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.1,
@@ -120,7 +122,7 @@ const MainNavigation = (props) => {
           <Box sx={{
             px: 0,
           }}>
-            <Button
+            <GatsbyButton
               to="/client-login"
               variant="contained"
               color="primary"
@@ -135,7 +137,7 @@ const MainNavigation = (props) => {
                 // px: theme.spacing(1),
               }}>Client Login
 
-            </Button>
+            </GatsbyButton>
           </Box>
         </motion.li>
 
