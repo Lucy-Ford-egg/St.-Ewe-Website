@@ -42,7 +42,8 @@ import timelineSectionType from '../schemas/sections/timelineSection'
 import timeTileType from '../schemas/sections/timeTile'
 import contactSectionType from '../schemas/sections/contactSection'
 import locationSectionType from '../schemas/sections/locationSection'
-
+import loginTileType from '../schemas/sections/loginTile'
+import clientLoginSectionType from '../schemas/sections/clientLoginSection'
 
 
 // Older schema
@@ -107,6 +108,8 @@ export const schemaTypes = [
   stepDividerType,
   timelineSectionType,
   timeTileType,
+  loginTileType,
+  clientLoginSectionType,
 
   // faqsType,
   iconsType,

@@ -19,6 +19,8 @@ import stepSectionType from '../schemas/sections/stepsSection'
 import timelineSectionType from '../schemas/sections/timelineSection'
 import contactSectionType from '../schemas/sections/contactSection'
 import locationSectionType from '../schemas/sections/locationSection'
+import clientLoginSectionType from '../schemas/sections/clientLoginSection'
+
 
 // Modules
 import featureSectionType from './modules/featureSection'
@@ -119,20 +121,21 @@ export default defineType({
       description:
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
-        {type: headerSectionType.name},
-        {type: testimonialSectionType.name},
-        {type: teamSectionType.name},
-        {type: caseStudySectionType.name},
-        {type: videoSectionType.name},
-        {type: featuresListSectionType.name},
-        {type: ctaSectionType.name},
-        {type: newsletterSectionType.name},
-        {type: imageCarouselSectionType.name},
-        {type: blogSectionType.name},
-        {type: stepSectionType.name},
-        {type: timelineSectionType.name},
+        { type: headerSectionType.name},
+        { type: testimonialSectionType.name},
+        { type: teamSectionType.name},
+        { type: caseStudySectionType.name},
+        { type: videoSectionType.name},
+        { type: featuresListSectionType.name},
+        { type: ctaSectionType.name},
+        { type: newsletterSectionType.name},
+        { type: imageCarouselSectionType.name},
+        { type: blogSectionType.name},
+        { type: stepSectionType.name},
+        { type: timelineSectionType.name},
         { type: locationSectionType.name},
         { type: contactSectionType.name},
+        { type: clientLoginSectionType.name},
 
         // {type: featureSectionType.name},
         // {type: servicesSectionType.name},

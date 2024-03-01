@@ -18,6 +18,7 @@ import { TeamSection } from './teamSection'
 import { CaseStudySection} from './caseStudySection'
 import { NewsletterSection } from './newsletterSection'
 import { StepsSection } from './stepsSection'
+import { ClientLoginSection } from './clientLoginSection'
 
 const Modules = (props) => {
 
@@ -201,6 +202,15 @@ const Modules = (props) => {
                     if (isModule(module, 'contactSection')) {
                         return (
                             <ContactSection
+                                previewData={previewData && previewData[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
+                    if (isModule(module, 'clientLoginSection')) {
+                        return (
+                            <ClientLoginSection
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

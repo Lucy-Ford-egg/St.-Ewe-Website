@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { Link } from "gatsby-theme-material-ui"
+import { Link, Button as GatsbyButton } from "gatsby-theme-material-ui"
 import {
   Container,
   Typography,
@@ -182,13 +182,13 @@ const Header = (props) => {
                   gap: '1rem',
                 }}
               >
-                {!sm && <Button
+                {!sm && <GatsbyButton
                   to="/client-login"
                   variant="contained"
                   color="primary"
                   size={!smallDesktop ? "large" : "small"}
                  
-                >Client Login</Button>
+                >Client Login</GatsbyButton>
                 }
                 <IconButton
                   size="large"

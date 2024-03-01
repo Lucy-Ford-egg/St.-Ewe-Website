@@ -20,6 +20,8 @@ import stepSectionType from '../schemas/sections/stepsSection'
 import timelineSectionType from '../schemas/sections/timelineSection'
 import contactSectionType from '../schemas/sections/contactSection'
 import locationSectionType from '../schemas/sections/locationSection'
+import clientLoginSectionType from '../schemas/sections/clientLoginSection'
+
 
 // Module
 import featureSectionType from './modules/featureSection'
@@ -178,6 +180,7 @@ export default defineType({
         {type: timelineSectionType.name},
         { type: locationSectionType.name},
         { type: contactSectionType.name},
+        { type: clientLoginSectionType.name},
 
         // { type: servicesSectionType.name },
         // { type: locationSectionType.name },

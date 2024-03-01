@@ -16,7 +16,7 @@ export const Layout = (props) => {
   
   const { data: previewData, sourceMap } = useQuery(
     NAV_QUERY,
-    {slug: definedSlug.slug.current},
+    {slug: definedSlug?.slug?.current},
     { initial }
   );
 
