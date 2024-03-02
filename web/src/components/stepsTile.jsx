@@ -8,9 +8,6 @@ export const StepsTile = props => {
   const { previewData, tile, sanityConfig, tileColor, index, displayNumber, pieSegments } =
     props
 
-  const [hover, setHover] = useState(false)
-  const theme = useTheme()
-
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.90 })
 

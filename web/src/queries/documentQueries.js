@@ -346,6 +346,7 @@ export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {
 
 export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   pageBuilder[] {
+    ...,
     images[] { 
       asset->,
       hotspot{...},

@@ -12,7 +12,7 @@ export const contrastColour = (backgroundColour) => {
   let pie = {}
 
   const checkedColour = backgroundColour?.label
-
+debugger
   switch (checkedColour?.toLowerCase()) {
     //Navy
     case "navy":
@@ -136,8 +136,8 @@ export const contrastColour = (backgroundColour) => {
     case "coral":
       textColour = "white.main"
       tonalLight = {
-        mui: "primary.lightest",
-        hex: clientTheme.palette.primary.lightest,
+        mui: "primary.light",
+        hex: clientTheme.palette.primary.light,
       }
       svg = {
         default: {
@@ -176,8 +176,8 @@ export const contrastColour = (backgroundColour) => {
     case "coral light":
       textColour = "white.main"
       tonalLight = {
-        mui: "primary.lightest",
-        hex: clientTheme.palette.primary.lightest,
+        mui: "primary.main",
+        hex: clientTheme.palette.primary.main,
       }
       svg = {
         default: {
@@ -218,6 +218,46 @@ export const contrastColour = (backgroundColour) => {
       tonalLight = {
         mui: "primary.lightest",
         hex: clientTheme.palette.primary.lightest,
+      }
+      svg = {
+        default: {
+          mui: "secondary",
+          hex: clientTheme.palette.secondary.main,
+        },
+        active: {
+          mui: "text.mid",
+          hex: clientTheme.palette.text.mid,
+        }
+      }
+      pie = {
+        default: {
+          mui: "primary.lightest",
+          hex: clientTheme.palette.primary.lightest,
+        },
+        active: {
+          mui: "primary.main",
+          hex: clientTheme.palette.primary.main,
+        }
+      }
+      spiro = {
+        fill: clientTheme.palette.primary.lightest,
+        opacity: 1,
+      }
+      divider = {
+        mui: "text.mid",
+        hex: clientTheme.palette.text.mid,
+      }
+      buttonColour = {
+        contained: "primary"
+        ,
+        outlined: "white"
+      }; break;
+    // Coral Lightest
+    case "coral lightest":
+      textColour = "text.main"
+      tonalLight = {
+        mui: "primary.lighter",
+        hex: clientTheme.palette.primary.lighter,
       }
       svg = {
         default: {
@@ -331,6 +371,45 @@ export const contrastColour = (backgroundColour) => {
         contained: "primary",
         outlined: "white"
       }; break;
+    // Mid Grey
+    case "mid grey":
+      textColour = "white.main"
+      tonalLight = {
+        mui: "text.primary",
+        hex: clientTheme.palette.text.primary,
+      }
+      svg = {
+        default: {
+          mui: "primary",
+          hex: clientTheme.palette.primary.main,
+        },
+        active: {
+          mui: "text.mid",
+          hex: clientTheme.palette.text.mid,
+        }
+      }
+      pie = {
+        default: {
+          mui: "text.light",
+          hex: clientTheme.palette.text.light,
+        },
+        active: {
+          mui: "text.mid",
+          hex: clientTheme.palette.text.mid,
+        }
+      }
+      spiro = {
+        fill: clientTheme.palette.white.main,
+        opacity: 0.4,
+      }
+      divider = {
+        mui: "white.main",
+        hex: clientTheme.palette.white.main,
+      }
+      buttonColour = {
+        contained: "primary",
+        outlined: "white"
+      }; break;
     // White
     case "white":
       textColour = "secondary.main"
@@ -373,6 +452,10 @@ export const contrastColour = (backgroundColour) => {
     
     default:
       textColour = "text.main"
+      tonalLight = {
+        mui: "primary.lighter",
+        hex: clientTheme.palette.primary.lighter,
+      }
       svg = {
         default: {
           mui: "primary",

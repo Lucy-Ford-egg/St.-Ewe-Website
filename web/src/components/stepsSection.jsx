@@ -50,11 +50,11 @@ export const StepsSection = props => {
     sanityConfig,
   } = props
 
-  const definedTitle = (previewData && previewData.title) || _rawTitle
-  const definedText = (previewData && previewData.text) || _rawText
-  const definedSteps = (previewData && previewData.steps) || steps
-  const defineTileColor = (previewData && previewData.tileColor) || tileColor
-
+  const definedTitle = (previewData && previewData?.title) || _rawTitle
+  const definedText = (previewData && previewData?.text) || _rawText
+  const definedSteps = (previewData && previewData?.steps) || steps
+  const definedTileColor = (previewData && previewData?.tileColor) || tileColor
+  const definedTextAlign = (previewData && previewData?.textAlign) || textAlign
   
 
   const [pieSegments, setPieSegments] = useState(null)
@@ -123,7 +123,7 @@ export const StepsSection = props => {
         >
           
             <StepsTile
-              tileColor={defineTileColor}
+              tileColor={definedTileColor}
               tile={currentItem }
               previewData={previewData}
               index={i}
@@ -155,7 +155,7 @@ export const StepsSection = props => {
       <Grid
         container
         rowSpacing={6}
-        justifyContent={textAlign}
+        justifyContent={definedTextAlign}
         sx={{
           pb: { xs: 10, md: 15 },
         }}
@@ -166,7 +166,7 @@ export const StepsSection = props => {
               variant="overline"
               color="primary.main"
               sx={{
-                textAlign: textAlign === "flex-start" ? "left" : textAlign,
+                textAlign: definedTextAlign === "flex-start" ? "left" : definedTextAlign,
               }}
             >
               {subtitle}
@@ -177,7 +177,7 @@ export const StepsSection = props => {
               previewData={previewData}
               sanityConfig={sanityConfig}
               variant={false}
-              textAlign={textAlign}
+              textAlign={definedTextAlign}
               value={definedTitle}
             />
           )}
@@ -197,7 +197,7 @@ export const StepsSection = props => {
               previewData={previewData}
               sanityConfig={sanityConfig}
               variant={false}
-              textAlign={textAlign}
+              textAlign={definedTextAlign}
               value={definedText}
             />
           )}
