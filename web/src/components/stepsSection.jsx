@@ -25,7 +25,7 @@ export const StepsSection = props => {
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start start", "end end"],
+    offset: ["-50vh start", "end end"],
   })
 
   const scaleY = useSpring(scrollYProgress, {
