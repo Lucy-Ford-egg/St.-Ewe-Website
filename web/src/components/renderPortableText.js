@@ -10,21 +10,21 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 
 export const RenderPortableText = (props) => {
 
-  const { setAsHeading = false, previewData, sanityConfig, value, textAlign,  animate = false, subtitlePosition = null, component } = props
+  const { setAsHeading = false, previewData, sanityConfig, value, textAlign, component } = props
 
   const theme = useTheme()
 
   const block = {
-    normal: ({ children, node  }) => <Typography sx={{  py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
-    body2: ({ children, node  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
-    h1: ({ children, node  }) => { 
+    normal: ({ children  }) => <Typography sx={{  py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
+    body2: ({ children  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
+    h1: ({ children  }) => { 
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h1">{children}</Typography>
     },
-    h2: ({ children, node  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>,
-    h3: ({ children, node  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h3">{children}</Typography>,
-    h4: ({ children, node  }) => <Typography sx={{ py: { xs: 7 }, color: 'inherit' }} variant="h4">{children}</Typography>,
-    h5: ({ children, node  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h5">{children}</Typography>,
-    h6: ({ children, node  }) => {
+    h2: ({ children  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>,
+    h3: ({ children  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h3">{children}</Typography>,
+    h4: ({ children  }) => <Typography sx={{ py: { xs: 7 }, color: 'inherit' }} variant="h4">{children}</Typography>,
+    h5: ({ children  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h5">{children}</Typography>,
+    h6: ({ children  }) => {
       
     return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h6">{children}</Typography>
     },
@@ -42,7 +42,7 @@ export const RenderPortableText = (props) => {
 
   const marks = {
     em: ({ children }) => <Typography sx={{ color: value.value, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
-    strong: ({ children, node  }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
+    strong: ({ children  }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
     
     link: ({ children, value }) => {
       
