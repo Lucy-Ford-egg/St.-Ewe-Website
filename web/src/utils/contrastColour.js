@@ -12,7 +12,7 @@ export const contrastColour = (backgroundColour) => {
   let pie = {}
 
   const checkedColour = backgroundColour?.label
-debugger
+
   switch (checkedColour?.toLowerCase()) {
     //Navy
     case "navy":

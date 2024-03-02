@@ -24,21 +24,18 @@ export const HeaderSection = props => {
     backgroundColor,
   } = props
 
-  // const data = previewData
- 
 
-  const [rendered, setRendered] = useState(false)
   const [addSpiro, setAddSpiro] = useState(false)
   useEffect(() => {
-    setRendered(true)
+    
     setAddSpiro(previewData && previewData?.spiro || spiro)
   }, [])
 
-  const definedTitle = (previewData && previewData.title) || _rawTitle
-  const definedText = (previewData && previewData.text) || _rawText
+  const definedTitle = (previewData && previewData?.title) || _rawTitle
+  const definedText = (previewData && previewData?.text) || _rawText
   const definedLinks = (previewData && previewData?.links) || links
-  const definedImage = (previewData && previewData.image && previewData.image) || image && image 
-  const definedBackgroundColour = ( previewData && previewData?.backgroundColor?.value) || backgroundColor?.value
+  const definedImage = (previewData && previewData?.image) || image 
+  const definedBackgroundColour = ( previewData && previewData?.backgroundColor) || backgroundColor
 
   return (
     <Container
@@ -57,7 +54,7 @@ export const HeaderSection = props => {
         position: "relative",
         pt: addSpiro ? 17 : 0,
         pb: definedBackgroundColour && !definedImage && 15,
-        backgroundColor: definedBackgroundColour,
+        backgroundColor: definedBackgroundColour?.value,
       }}
     >
       {addSpiro &&  (

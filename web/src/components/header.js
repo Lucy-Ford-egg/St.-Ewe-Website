@@ -93,7 +93,7 @@ const Header = (props) => {
   `)
 
   const setColor = definedNavColor ? definedNavColor?.value : "#002856";
-
+  
   return (
     <>
     <motion.div

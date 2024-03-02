@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react"
-import { Box, Divider, Paper, Grid, Typography, useTheme } from "@mui/material"
+import React, { useRef, useEffect } from "react"
+import { Box, Divider, Paper, Grid, Typography } from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import { contrastColour } from "../utils/contrastColour"
 import { useInView, useAnimate, motion } from "framer-motion"

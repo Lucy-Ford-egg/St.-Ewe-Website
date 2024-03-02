@@ -12,7 +12,7 @@ export const LoginTile = props => {
 
   const definedImage = image
   const definedTitle = title
-debugger
+
   return (
     <Paper
       sx={{
