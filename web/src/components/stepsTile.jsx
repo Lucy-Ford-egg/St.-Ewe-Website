@@ -30,7 +30,6 @@ export const StepsTile = props => {
 
   const definedSecondtitle =  (previewData && previewData?.steps && previewData?.steps[index]?.secondTitle) || tile?.secondTitle
 
-
   const [scope, animate] = useAnimate()
 
   useEffect(() => {

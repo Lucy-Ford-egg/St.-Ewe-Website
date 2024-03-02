@@ -75,6 +75,7 @@ export const StepsSection = props => {
     let steps = []
     let acc = 0
     for (let i = 0; i < definedSteps.length; i++) {
+      
       let currentItem = definedSteps[i]
 
       if (currentItem._type === "stepDivider") {

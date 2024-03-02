@@ -236,7 +236,7 @@ export const TimelineSection = props => {
                   exit={{ opacity: 1 }}
                   viewport={{
                     amount: "all",
-                    margin: "-10%",
+                    margin: "-5%",
                     once: false,
                   }}
                 >
