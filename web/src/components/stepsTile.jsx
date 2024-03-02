@@ -12,7 +12,7 @@ export const StepsTile = props => {
   const theme = useTheme()
 
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.90 })
+  const isInView = useInView(ref, { once: false, amount: 0.90 })
 
   const definedTitle =
     (previewData && previewData?.steps && previewData?.steps[index]?.title) || tile._rawTitle
