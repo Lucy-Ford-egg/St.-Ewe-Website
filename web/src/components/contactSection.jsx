@@ -1,24 +1,17 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { Link } from "gatsby-theme-material-ui"
 import {
   Container,
   Grid,
-  Typography,
   Box,
   useTheme,
   TextField,
   Button,
-  Checkbox,
   FormLabel,
-  FormControl,
-  InputLabel,
-  FormControlLabel,
   Select,
   MenuItem,
 } from "@mui/material"
-import CheckBoxSharpIcon from "@mui/icons-material/CheckBoxSharp"
-import CheckBoxOutlineBlankSharpIcon from "@mui/icons-material/CheckBoxOutlineBlankSharp"
+
 import { RenderPortableText } from "../components/renderPortableText"
 
 export const ContactSection = props => {
@@ -32,16 +25,11 @@ export const ContactSection = props => {
     _rawFormTerms,
   } = props
 
-  const textColour = theme.palette.text.main
-
   const definedTopPadding =
     (previewData && previewData.topPadding) || topPadding
   const definedTitle = (previewData && previewData.title) || _rawTitle
   const definedText = (previewData && previewData.text) || _rawText
   const definedFormTerms = (previewData && previewData.formTerms) || _rawFormTerms
-
-  // Forms
-  const label = { inputProps: { "aria-label": "Checkbox demo" } }
 
   // Form State
   const [serviceOfInterest, setServiceOfInterest] = useState("")

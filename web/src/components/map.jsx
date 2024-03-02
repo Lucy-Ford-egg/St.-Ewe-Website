@@ -4,7 +4,6 @@ import {
   Container,
   Box,
   useTheme,
-  Typography,
   List,
   ListItem,
   ListItemText,
@@ -15,7 +14,7 @@ import { mapStyles } from "../utils/mapStyles"
 import { motion } from "framer-motion"
 
 // TODO: State management for popup boxes.
-const AnyReactComponent = ({ text, theme, children }) => (
+const AnyReactComponent = ({ children }) => (
   <Box
     sx={{
       marginTop: "-33px",
@@ -38,7 +37,7 @@ export const Map = props => {
     return setMarker(ref)
   }
 
-  const { geopoint, sanitySiteSettings } = props
+  const { sanitySiteSettings } = props
 
   const zoom = {
     [md]: 6,

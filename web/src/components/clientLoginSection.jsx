@@ -6,7 +6,6 @@ import {
   Box,
   Typography,
   Divider,
-  useMediaQuery,
   useTheme,
 } from "@mui/material"
 import { LoginTile } from "./loginTile"
@@ -14,7 +13,7 @@ import { RenderPortableText } from "../components/renderPortableText"
 
 export const ClientLoginSection = props => {
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
+
   const {
     _rawTitle,
     _rawText,
