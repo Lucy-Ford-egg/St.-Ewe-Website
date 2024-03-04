@@ -200,7 +200,7 @@ export const contrastColour = (backgroundColour) => {
         }
       }
       spiro = {
-        fill: clientTheme.palette.primary.lightest,
+        fill: clientTheme.palette.white.main,
         opacity: 1,
       }
       divider = {
@@ -208,8 +208,7 @@ export const contrastColour = (backgroundColour) => {
         hex: clientTheme.palette.white.main,
       }
       buttonColour = {
-        contained: "primary"
-        ,
+        contained: "primary",
         outlined: "white"
       }; break;
       // Coral Lighter
@@ -240,7 +239,7 @@ export const contrastColour = (backgroundColour) => {
         }
       }
       spiro = {
-        fill: clientTheme.palette.primary.lightest,
+        fill: clientTheme.palette.text.mid,
         opacity: 1,
       }
       divider = {
@@ -280,7 +279,7 @@ export const contrastColour = (backgroundColour) => {
         }
       }
       spiro = {
-        fill: clientTheme.palette.primary.lightest,
+        fill: clientTheme.palette.text.mid,
         opacity: 1,
       }
       divider = {
