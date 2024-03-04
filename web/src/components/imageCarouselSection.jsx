@@ -125,8 +125,8 @@ export const ImageCarouselSection = props => {
                               <Box
                                 ref={ref}
                                 sx={{
-                                  width: { xs: 394, md: 1440 },
-                                  height: { xs: 380, md: 581 },
+                                  width: { xs: 394, sm: '100vw', md: "100vw" },
+                                  height: { xs: 380, sm: 581, md: 581 },
                                 }}
                               >
                                 {definedImage && (
