@@ -50,13 +50,14 @@ export const TimelineSection = props => {
     sanityConfig,
   } = props
 
-  const definedTitle = (previewData && previewData.title) || _rawTitle
-  const definedLeftText = (previewData && previewData.leftText) || _rawLeftText
+  const definedSubtitle = (previewData && previewData?.subtitle) || subtitle
+  const definedTitle = (previewData && previewData?.title) || _rawTitle
+  const definedLeftText = (previewData && previewData?.leftText) || _rawLeftText
   const definedRightText =
-    (previewData && previewData.rightText) || _rawRightText
-  const definedSteps = (previewData && previewData.steps) || steps
+    (previewData && previewData?.rightText) || _rawRightText
+  const definedSteps = (previewData && previewData?.steps) || steps
   const defineTimelineColor =
-    (previewData && previewData.timelineColor) || timelineColor
+    (previewData && previewData?.timelineColor) || timelineColor
 
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {
@@ -95,7 +96,7 @@ export const TimelineSection = props => {
         }}
       >
         <Grid item xs={12} sm={12} md={7}>
-          {subtitle && (
+          {definedSubtitle && (
             <Typography
               variant="overline"
               color="primary.main"
@@ -103,7 +104,7 @@ export const TimelineSection = props => {
                 textAlign: textAlign === "flex-start" ? "left" : textAlign,
               }}
             >
-              {subtitle}
+              {definedSubtitle}
             </Typography>
           )}
           {definedTitle && (
