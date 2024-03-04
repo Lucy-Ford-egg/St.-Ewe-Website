@@ -229,15 +229,15 @@ export const TimelineSection = props => {
                 <motion.div
                   key={`event-${index}`}
                   initial={{
-                    opacity: 0.1,
+                    opacity: 0.3,
                   }}
                   whileInView={{
                     opacity: 1,
                   }}
-                  exit={{ opacity: 1 }}
+                  //exit={{ opacity: 0.1 }}
                   viewport={{
                     amount: "all",
-                    margin: "-5%",
+                    //margin: "25%",
                     once: false,
                   }}
                 >
