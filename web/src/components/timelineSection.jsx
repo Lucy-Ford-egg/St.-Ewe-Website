@@ -24,9 +24,8 @@ export const TimelineSection = props => {
   const referenceRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
-    target: targetRef,
-    //offset: [`${mobile ? "start" : "end"}${mobile ? "center" : "end"}`, "end end"],
-    offset: ["start end", "end end"],
+    target: targetRef,    
+    offset: ["-50vh start", "end end"],
   })
 
   const scaleY = useSpring(scrollYProgress, {
@@ -176,6 +175,8 @@ export const TimelineSection = props => {
               top: 24,
               left: { xs: "0%", sm: "4%", md: "0%", lg: "100%" },
               ml: { xs: 0, sm: 10, md: 10, lg: -5, xl: 0 },
+              mt: 0,
+              mb: 0,
               height: "100%",
               display: "flex",
             }}
