@@ -1,14 +1,15 @@
 import React, { useState } from "react"
 import { Box, Paper, Typography, useTheme, Divider } from "@mui/material"
-import Image from "gatsby-plugin-sanity-image"
-import { urlFor } from "../utils/imageHelpers"
 import { ButtonFormat } from "./buttonFormat"
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt"
 
 export const FeaturesTile = props => {
-  const { title, text, previewData, node, sanityConfig, link } = props
+  const { previewData, node, index, } = props
   const [hover, setHover] = useState(false)
   const theme = useTheme()
+
+  const definedTitle = (previewData && previewData?.featuresTile[index]?.title) || node?.title
+  const definedText = (previewData && previewData?.featuresTile[index]?.text) || node?.text
+  const definedLink = (previewData && previewData?.featuresTile[index]?.text) || node?.link
 
   return (
     <Paper
@@ -30,9 +31,10 @@ export const FeaturesTile = props => {
         <Box
           sx={{ display: "flex", flexDirection: "column", flexBasis: "100%" }}
         >
-          <Typography color="text.primary" sx={{ my: { xs: 5 } }} variant="h3">
-            {previewData && previewData.title ? previewData.title : title}
-          </Typography>
+          {definedTitle && (<Typography color="text.primary" sx={{ my: { xs: 5 } }} variant="h3">
+            {definedTitle}
+          </Typography>)
+}
 
           <Divider
             component="div"
@@ -40,16 +42,16 @@ export const FeaturesTile = props => {
             sx={{ borderColor: theme.palette.primary.main, maxWidth: 305 }}
           />
 
-          <Typography
+{definedText && (<Typography
             color="text.primary"
             sx={{ my: { xs: 5 } }}
             variant="body1"
           >
-            {previewData && previewData.text ? previewData.text : text}
-          </Typography>
+            {definedText}
+          </Typography>)}
         </Box>
 
-        <Box
+        {definedLink && (<Box
           onMouseOver={e => setHover(!hover)}
           onMouseOut={e => setHover(false)}
           sx={{
@@ -62,10 +64,11 @@ export const FeaturesTile = props => {
         >
           <ButtonFormat
             variant="contained"
-            node={previewData && previewData.link ? previewData.link : link}
+            node={definedLink}
             sx={{ pl: 0, textTransform: "uppercase" }}
           />
         </Box>
+        )}
       </Box>
     </Paper>
   )

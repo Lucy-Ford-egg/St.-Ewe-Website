@@ -2,21 +2,35 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import Modules from "../components/modules"
+// Preview
+import { useQuery } from "../../sanity/store";
+import {PAGE_QUERY, SITE_SETTINGS} from '../queries/documentQueries';
+
+import {getSanityClient } from "../../sanityUtils/sanity"
 
 const IndexPage = props => {
-  const { data, pageContext, location, previewData } = props
+  const { data, pageContext, initial } = props
+
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
+    `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
+    {slug: 'home-page'},
+    { initial }
+  );
+
+  const pageData = previewData?.page
+  const siteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
   return (
-    <>
       <Modules
-        //sanityConfig={getSanityClient}
-        previewData={previewData?.pageBuilder}
-        //allSanityPost={data.allSanityPost}
-        //allCaseStudy={data.allSanityCaseStudy}
+        sanityConfig={getSanityClient}
+        previewData={pageData?.pageBuilder}
+        allSanityPost={data.allSanityPost}
+        allCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
         modules={data?.sanityPage?.pageBuilder}
+        sanitySiteSettings={siteSettings }
       />
-    </>
   )
 }
 

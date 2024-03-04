@@ -33,7 +33,7 @@ export const FeaturesListSection = props => {
   const definedFeaturesTile =
     (previewData && previewData?.featuresTile) || featuresTile
   // const definedMirror = (previewData && previewData.mirror) || mirror
-
+debugger
   return (
     <Container
       maxWidth="xl"
@@ -46,20 +46,24 @@ export const FeaturesListSection = props => {
     >
       <Grid
         container
-        rowSpacing={6}
+        rowSpacing={{xs:2, md:6}}
         justifyContent="center"
         sx={{
-          pb: { xs: 10, md: 15 },
+          pb: { xs: 0, md: 15 },
         }}
       >
         <Box
           sx={{
             opacity: 0.3,
+            maxWidth: {xs:70, md:165},
+            svg:{
+              width:"100%",
+              height:"auto"
+            }
           }}
         >
           <svg
-            width="165"
-            height="166"
+          
             viewBox="0 0 165 166"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -133,12 +137,9 @@ export const FeaturesListSection = props => {
             definedFeaturesTile.map((tile, i) => {
               return (
                 <FeaturesTile
-                  title={tile.title}
-                  text={tile.text}
                   node={tile}
-                  link={tile.link}
-                  previewData
-                  sanityConfig
+                  index={i}
+                  previewData={previewData}
                 />
               )
             })}
