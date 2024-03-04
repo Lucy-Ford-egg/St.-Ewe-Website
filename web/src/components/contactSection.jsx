@@ -260,8 +260,9 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={6}>
                       <FormLabel htmlFor="firstName">First Name</FormLabel>
                       <TextField
-                        label="First Name"
+                        //label="First Name"
                         name="firstName"
+                        notched={false}
                         required
                         fullWidth
                         margin="normal"
@@ -270,8 +271,9 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={6}>
                       <FormLabel htmlFor="lastName">Last Name</FormLabel>
                       <TextField
-                        label="Last Name"
+                        //label="Last Name"
                         name="lastName"
+                        notched={false}
                         required
                         fullWidth
                         margin="normal"
@@ -288,10 +290,12 @@ export const ContactSection = props => {
                         value={serviceOfInterest}
                         label="Service of interest?"
                         onChange={handleServiceOfInterest}
+                        displayEmpty={true}
+                        notched={false}
                         required
                         fullWidth
                       >
-                        {/* <MenuItem value={"default"}>Please Select</MenuItem> */}
+                        <MenuItem value={""}>Please Select</MenuItem>
                         <MenuItem value={"Wealth Planning"}>
                           Wealth Planning
                         </MenuItem>
@@ -300,6 +304,7 @@ export const ContactSection = props => {
                       </Select>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
+                      
                       <FormLabel htmlFor="timeToCall-label">
                         Best time to call?
                       </FormLabel>
@@ -309,9 +314,12 @@ export const ContactSection = props => {
                         value={timeToCall}
                         label="Best time to call?"
                         onChange={handleTimeToCall}
+                        displayEmpty={true}
+                        notched={false}
                         required
                         fullWidth
                       >
+                        <MenuItem value={""}>Please Select</MenuItem>
                         <MenuItem value={"Wealth Panning"}>
                           Wealth Panning
                         </MenuItem>
@@ -321,7 +329,7 @@ export const ContactSection = props => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <FormLabel htmlFor="timeToCall-label">
-                        Best time to call?
+                        Portfolio Value?
                       </FormLabel>
                       <Select
                         labelId="portfolioValue-label"
@@ -329,9 +337,12 @@ export const ContactSection = props => {
                         value={portfolioValue}
                         label="Portfolio Value?"
                         onChange={handlePortfolioValue}
+                        displayEmpty={true}
+                        notched={false}
                         required
                         fullWidth
                       >
+                        <MenuItem value={""}>Please Select</MenuItem>
                         <MenuItem value={"500K-1 Million"}>500K - 1M</MenuItem>
                         <MenuItem value={"1-2 Million"}>1M - 2M</MenuItem>
                         <MenuItem value={"2-3 Million"}>1M - 2M</MenuItem>
@@ -342,8 +353,9 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={5}>
                       <FormLabel htmlFor="phone">Phone Number</FormLabel>
                       <TextField
-                        label="Phone"
+                        //label="Phone"
                         name="phone"
+                        notched={false}
                         required
                         fullWidth
                         type="phone"
@@ -354,8 +366,9 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={7}>
                       <FormLabel htmlFor="email">Email Address</FormLabel>
                       <TextField
-                        label="Email"
+                        //label="Email"
                         name="email"
+                        notched={false}
                         required
                         fullWidth
                         type="email"
@@ -368,8 +381,9 @@ export const ContactSection = props => {
                     <Grid item xs={12}>
                       <FormLabel htmlFor="message">Message</FormLabel>
                       <TextField
-                        label="Message"
+                        //label="Message"
                         name="message"
+                        notched={false}
                         multiline
                         rows={4}
                         fullWidth
