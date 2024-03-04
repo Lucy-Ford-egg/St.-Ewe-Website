@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import Modules from "../components/modules"
-
 //Preview
 import { useQuery } from "../../sanity/store"
 import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const BlogArchiveTemplate = props => {
-  const { data, pageContext, location, initial } = props
-  const [posts, setPosts] = useState(null)
-  const [modules, setModules] = useState(null)
-  const [blogInserted, setBlogInserted] = useState(null)
-
-  let i = 0
-
-  useEffect(() => {
-    setPosts(data.allSanityPost)
-    setModules(data?.sanityPage?.pageBuilder)
-
-    setBlogInserted(i)
-    i++
-  }, [data])
+  const { data, pageContext, initial } = props
 
   // Preview
   const { data: previewData, sourceMap } = useQuery(
@@ -33,15 +19,13 @@ const BlogArchiveTemplate = props => {
 
   return (
     <>
-      {posts && modules && (
-        <Modules
+      <Modules
           previewData={previewData?.pageBuilder}
           sanityConfig={getSanityClient}
           allSanityPost={data.allSanityPost}
           pageContext={pageContext}
-          modules={modules}
+          modules={data?.sanityPage?.pageBuilder}
         />
-      )}
     </>
   )
 }
