@@ -27,7 +27,7 @@ const Header = (props) => {
 
   // Header hide
   const { scrollY } = useScroll({
-    offset: 0
+    offset: "100px"
   });
   const opacity = useTransform(scrollY, [0, 200], [1, 0]);
 
@@ -95,7 +95,7 @@ const Header = (props) => {
   const setColor = definedNavColor ? definedNavColor?.value : "#002856";
   
   return (
-    <>
+    <Box ref={targetRef}>
     <motion.div
       style={{
         position: "fixed",
@@ -103,15 +103,15 @@ const Header = (props) => {
         width: "100%",
         background: "white",
         zIndex: 999,
-        opacity: (anchorElNav !== true) && opacity,
+        opacity: (anchorElNav === false) ? opacity : 1,
         pointerEvents: opacity === 0 ? "none" : "auto",
         boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)"
       }}
       initial={{ opacity: 1 }}
-      animate={{ opacity: (anchorElNav !== true) && 0 }}
+      animate={{ opacity: (anchorElNav === false) ? 1 : 0  }}
     >
       <AppBar
-        ref={targetRef}
+        
         color={anchorElNav ? "background" : navOverlay === true ? 'linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 87.43%)' : 'transparent'}
         sx={{
           boxShadow: 'unset',
@@ -196,7 +196,7 @@ const Header = (props) => {
         </>}
       </AppBar>
       </motion.div>
-    </>
+    </Box>
      )
     
 }

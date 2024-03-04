@@ -9,7 +9,7 @@ export const StepsTile = props => {
     props
 
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.90 })
+  const isInView = useInView(ref, { once: false })
 
   const definedTitle =
     (previewData && previewData?.steps && previewData?.steps[index]?.title) || tile._rawTitle

@@ -222,6 +222,8 @@ export const StepsSection = props => {
               position: "absolute",
               top: 24,
               left: {xs: -8, md: -41},
+              mt: 0,
+              mb: 0,
               ml: 0,
               height: "100%",
               display: "flex",
