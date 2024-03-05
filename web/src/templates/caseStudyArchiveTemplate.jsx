@@ -10,37 +10,26 @@ import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const CaseStudyArchiveTemplate = props => {
+
   const { data, pageContext, initial } = props
-  const [caseStudies, setCaseStudies] = useState(null)
-  const [modules, setModules] = useState(null)
-  const [blogInserted, setBlogInserted] = useState(null)
-  
-  let i = 0
 
-  useEffect(() => {
-  
-    setCaseStudies(data.allSanityCaseStudy)
-    setModules(data?.sanityPage?.pageBuilder)
-   
-    setBlogInserted(i)
-    i ++
-  }, [data])
-
-   // Preview
-   const { data: previewData, sourceMap } = useQuery(
+  // Preview
+  const { data: previewData, sourceMap } = useQuery(
     PAGE_QUERY,
     { slug: data.sanityPage.slug.current },
     { initial },
   )
 
   return (
-
+    <>
       <Modules
-        previewData={previewData?.pageBuilder}
-        allSanityCaseStudy={data.allSanityCaseStudy}
-        pageContext={pageContext}
-        modules={modules}
-      />
+          previewData={previewData?.pageBuilder}
+          sanityConfig={getSanityClient}
+          allSanityCaseStudy={data.allSanityCaseStudy}
+          pageContext={pageContext}
+          modules={data?.sanityPage?.pageBuilder}
+        />
+    </>
   )
 }
 
