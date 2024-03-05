@@ -68,6 +68,7 @@ export const LocationSection = props => {
               sx={{ mt: { xs: 4, md: 4 }, textAlign: definedAlign }}
               variant="overline"
               component="p"
+              color="primary.main"
             >
               {definedSubtitle}
             </Typography>
