@@ -9,7 +9,7 @@ export const StepsTile = props => {
     props
 
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false })
+  const isInView = useInView(ref, { amount: "all", once: false })
 
   const definedTitle =
     (previewData && previewData?.steps && previewData?.steps[index]?.title) || tile._rawTitle
@@ -86,6 +86,7 @@ export const StepsTile = props => {
 
   return (
     <Paper
+   
       sx={{
         boxShadow: "none",
         display: "flex",
@@ -141,7 +142,7 @@ export const StepsTile = props => {
               </Grid>
               <Grid item xs={4} md={4} sx={{ pr: {xs: 9, md: 12}, pb: {xs: 9, md: 12}, pt: {xs: 9, md: 12}, display: 'flex', flexDirection: "column", alignItems: "center" }}>
                 <Box
-                 ref={scope}
+                  ref={ref}
                   sx={{
                     display: "grid",
                     flexDirection: "row",
@@ -158,14 +159,14 @@ export const StepsTile = props => {
                   }}
                 >
                   <motion.svg     
-                    
+                   ref={scope}
                     viewBox="0 0 146 146"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     // animation prop
                     variants={pieContainer}
                     initial="hidden"
-                    animate={isInView && "show"}
+                    animate={isInView === true && "show"}
                     style={{
                       position: "relative",
                       gridColumn: "1/3",
@@ -186,7 +187,7 @@ export const StepsTile = props => {
                   </motion.svg>
 
                   <motion.svg     
-                    
+                   ref={scope}
                     viewBox="0 0 146 146"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
