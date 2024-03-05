@@ -101,7 +101,7 @@ export const TeamSection = props => {
           </Grid>
         </Grid>
       </Container>
-
+            {definedTeamTiles && (
       <Container
         maxWidth="xl"
         sx={{
@@ -135,6 +135,7 @@ export const TeamSection = props => {
           })}
         </Grid>
       </Container>
+      )}
     </>
   )
 }
