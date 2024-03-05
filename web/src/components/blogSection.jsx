@@ -96,7 +96,7 @@ export const BlogSection = props => {
                   transform: 'scale(1.01)',
                   boxShadow: '0 0 10px 1px rgba(0,0,0,0.2)', 
                 }}}}>
-                <GatsbyLink style={{textDecoration: 'none', color: 'inherit' }} to={slug.current}>
+                <GatsbyLink style={{textDecoration: 'none', color: 'inherit', display: "flex", height: "100%", flexBasis: "100%" }} to={slug.current}>
                 <Paper
                 className="wrapper"
                   elevation={0}
@@ -106,6 +106,7 @@ export const BlogSection = props => {
                     display: "flex",
                     flexDirection: "column",
                     position: "relative",
+                    flexBasis: "100%"
                   }}
                 >
                   <Box
@@ -115,11 +116,12 @@ export const BlogSection = props => {
                       alignItems: "center",
                       justifyContent: "center",
                       height: "100%",
-                      minHeight: "310px",
-                      maxHeight: { xs: "", md: "310px" },
+                      minHeight: { xs: `calc(100vw - ${theme.spacing(8)})`, md: "310px" },
+                      maxHeight: { xs: `calc(100vw - ${theme.spacing(8)})`, md: "310px" },
                       overflow: "hidden",
                       px: "0 !important",
                       backgroundColor: tileColor?.value,
+                      flexBasis: "100%",
                     }}
                   >
                     <Container

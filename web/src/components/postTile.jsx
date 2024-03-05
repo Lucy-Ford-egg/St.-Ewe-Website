@@ -74,8 +74,8 @@ export const PostTile = ({ categories, title, image, date, to }) => {
   }
 
   return (
-    <Link to={`/blog/${to}`} style={{ textDecoration: 'none' }}>
-      <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 } }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
+    <Link to={`/blog/${to}`} style={{ textDecoration: 'none', display: "flex !important" }}>
+      <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 }, flexBasis: "100%", height: "100%" }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
       <Box  
         sx={{
           display: "grid",

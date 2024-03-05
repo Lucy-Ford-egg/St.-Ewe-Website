@@ -128,5 +128,17 @@ export const deskStructure = (S, context) => {
             )
             .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
+      S.listItem()
+      .title('Services')
+      .icon(MdCategory)
+      .child(
+        S.documentTypeList('services')
+          .title('Services')
+          .child(
+            (id) => S.document().schemaType('services').documentId(id),
+            //.views(Views(S, context)),
+          )
+          .defaultOrdering([{field: 'title', direction: 'asc'}]),
+      ),
     ])
 }
