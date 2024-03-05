@@ -39,7 +39,7 @@ const Header = (props) => {
     setAnchorElNav(null)
   }
 
-  const md = useMediaQuery(theme.breakpoints.down("md"))
+  const sm = useMediaQuery(theme.breakpoints.down("sm"))
 
   const data = useStaticQuery(graphql`
     query MainNavigationQuery {
@@ -103,12 +103,12 @@ const Header = (props) => {
         width: "100%",
         background: "white",
         zIndex: 999,
-        opacity: (anchorElNav === false) ? opacity : 1,
+        opacity: anchorElNav ? 1 :opacity,
         pointerEvents: opacity === 0 ? "none" : "auto",
         boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)"
       }}
       initial={{ opacity: 1 }}
-      animate={{ opacity: (anchorElNav === false) ? 1 : 0  }}
+      animate={{ opacity: 0 }}
     >
       <AppBar
         
@@ -118,7 +118,7 @@ const Header = (props) => {
         }}
       >
         <Container maxWidth="xl" sx={{ mt: 1 }}>
-          <Divider sx={{my: 5, borderColor: (anchorElNav !== true) ? setColor : theme.palette.secondary.main }}/>
+          <Divider sx={{my: 5, borderColor: anchorElNav !== true ? setColor : theme.palette.secondary.main }}/>
           <Toolbar
             disableGutters
             sx={{ display: "flex", alignItems: "center", justifyContent: { xs: 'space-between', sm: 'space-between', md: 'space-between', lg: 'space-between' }, flexWrap: { xs: 'wrap', sm: 'wrap', md: 'wrap', lg: 'wrap' } }}
@@ -185,7 +185,7 @@ const Header = (props) => {
           </Toolbar>
           <Divider sx={{my: 5, borderColor: anchorElNav !== true ? setColor : theme.palette.secondary.main }}/>
         </Container>
-        {md && anchorElNav && <>
+        {sm && anchorElNav && <>
           <MainNavigation
             navColor={setColor}
             menu={data}
