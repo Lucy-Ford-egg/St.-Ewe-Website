@@ -36,6 +36,7 @@ export const HeaderSection = props => {
   const definedLinks = (previewData && previewData?.links) || links
   const definedImage = (previewData && previewData?.image) || image 
   const definedBackgroundColour = ( previewData && previewData?.backgroundColor) || backgroundColor
+  const definedTextAlign = (previewData && previewData?.textAlign) || textAlign
 
   return (
     <Container
@@ -94,7 +95,7 @@ export const HeaderSection = props => {
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
-          alignItems: textAlign ? textAlign : "flexstart",
+          alignItems: definedTextAlign ? definedTextAlign : "flexstart",
           justifyContent: "center",
           pt: { xs: 20, md: 20 },
         }}
@@ -103,7 +104,7 @@ export const HeaderSection = props => {
           <Box
             sx={{
               maxWidth: 800,
-              margin: textAlign ? "0 auto" : "unset",
+              margin: definedTextAlign ? "0 auto" : "unset",
             }}
           >
             
@@ -116,7 +117,7 @@ export const HeaderSection = props => {
                   previewData={previewData}
                   sanityConfig={sanityConfig}
                   variant={false}
-                  textAlign={textAlign}
+                  textAlign={definedTextAlign}
                   value={
                     definedTitle
                   }
@@ -124,7 +125,7 @@ export const HeaderSection = props => {
               </motion.div>
         
             {previewData && previewData.spiro || spiro && (
-              <Box sx={{display: 'flex', width: '100%', justifyContent: textAlign ? textAlign : "flexstart",}}>
+              <Box sx={{display: 'flex', width: '100%', justifyContent: definedTextAlign ? definedTextAlign : "flexstart",}}>
               <Divider
                 sx={{
                   display: "flex",
@@ -146,7 +147,7 @@ export const HeaderSection = props => {
                 previewData={previewData}
                 sanityConfig={sanityConfig}
                 variant={false}
-                textAlign={textAlign}
+                textAlign={definedTextAlign}
                 value={
                   definedText
                 }
