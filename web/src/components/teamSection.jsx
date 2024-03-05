@@ -1,20 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Image from "gatsby-plugin-sanity-image"
-import { urlFor } from "../utils/imageHelpers"
 import {
   Container,
   Grid,
   Typography,
   useTheme,
   Divider,
-  Box,
-  Button,
-  IconButton,
 } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
-import { CiMail, CiLinkedin } from "react-icons/ci"
-import { contrastColour } from "../utils/contrastColour"
+import {TeamTile } from "../components/teamTile"
+
 
 export const TeamSection = props => {
   const theme = useTheme()
@@ -24,6 +19,7 @@ export const TeamSection = props => {
     _rawTitle,
     _rawLeftText,
     _rawRightText,
+    _rawExcerpt,
     title,
     leftText,
     rightText,
@@ -45,6 +41,7 @@ export const TeamSection = props => {
   const definedRightText = (previewData && previewData?.rightText) || rightText || _rawRightText
   const definedTeamTiles = (previewData && previewData?.teamTiles) || teamTiles
   const definedTileColor = (previewData && previewData?.tileColor) || tileColor
+
 
   return (
     <>
@@ -132,130 +129,8 @@ export const TeamSection = props => {
           }}
         >
           {definedTeamTiles && definedTeamTiles?.map((member, i) => {
-            let image = member?.image
-            let memberShortName = member?.name.split(" ")
             return (
-              <Grid
-                key={`${member?.name}-member-${i}`}
-                item
-                xs="auto"
-                md={3}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: { xs: 312 },
-                  flexBasis: { xs: 312 },
-                }}
-              >
-                {image && (
-                  <Image
-                    // pass asset, hotspot, and crop fields
-                    crop={image?.crop}
-                    hotspot={image?.hotspot}
-                    asset={(image?._ref && urlFor(image).width(250).url()) || image.asset }
-                    width={312}
-                    style={{
-                      objectFit: "cover",
-                      width: "100%",
-                      height: 220,
-                    }}
-                  />
-                )}
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    backgroundColor: definedTileColor?.value,
-                    py: 5,
-                    px: 5,
-                    flexGrow: 1,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      flexGrow: 1,
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "flex-end",
-                    }}
-                  >
-                    {member.position && (
-                      <Typography color={contrastColour(definedTileColor).textColour} variant="overline">
-                        {member.position}
-                      </Typography>
-                    )}
-                  </Box>
-                  <Divider
-                    sx={{
-                      borderColor: contrastColour(definedTileColor).textColour,
-                      my: 5,
-                    }}
-                  />
-                  {member.name && (
-                    <Typography color={contrastColour(definedTileColor).textColour} variant="h4">
-                      {member.name}
-                    </Typography>
-                  )}
-                  <Divider
-                    sx={{
-                      borderColor: contrastColour(definedTileColor).textColour,
-                      my: 5,
-                    }}
-                  />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          pr: 3,
-                          display: "flex",
-                          alignItems: "center",
-                          color: contrastColour(definedTileColor).textColour,
-                        }}
-                      >
-                        <CiMail style={{color: "inherit"}}/>
-                      </Box>
-                      <Typography
-                        variant="caption"
-                        color={contrastColour(definedTileColor).textColour}
-                        component="p"
-                        sx={{
-                          fontStyle: "italic",
-                        }}
-                      >{`Email ${memberShortName[0]}`}</Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      {member.linkedIn && (
-                        <IconButton
-                          size="small"
-                          href={member.linkedIn}
-                          aria-label={`Go to ${member?.name} linkedIn profile`}
-                          sx={{
-                            color: contrastColour(definedTileColor).textColour,
-                          }}
-                        >
-                          <CiLinkedin style={{color: "inherit"}}/>
-                        </IconButton>
-                      )}
-                    </Box>
-                  </Box>
-                </Box>
-              </Grid>
+              <TeamTile key={`${member?.name}-member-${i}`} definedTileColor={definedTileColor} member={member}/>
             )
           })}
         </Grid>
@@ -295,10 +170,10 @@ export const query = graphql`
           top
         }
       }
+      excerpt
       bio {
         _rawChildren
       }
-      excerpt
       name
       position
       linkedIn
