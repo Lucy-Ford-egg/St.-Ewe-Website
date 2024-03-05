@@ -47,7 +47,7 @@ export const TeamTile = props => {
       xs="auto"
       sm="auto"
       md="auto"
-      lg="auto"
+      lg={3}
       xl={3}
       sx={{
         display: "flex",
