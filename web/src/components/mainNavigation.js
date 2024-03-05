@@ -146,7 +146,7 @@ const MainNavigation = (props) => {
           {definedSiteSettings && definedSiteSettings?.companyDetails.map((location, i) => {
 
             return (
-              <motion.li variants={item}>
+              <motion.li key={`main-menu-item-settings-${i}`} variants={item}>
                 <Box sx={{ display: { xs: "block", md: "none", flexDirection: "column", } }}>
                   <List sx={{ px: 4,  py: 6, }}>
                     {location?.title &&
