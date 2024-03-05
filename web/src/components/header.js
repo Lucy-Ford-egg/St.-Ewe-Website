@@ -24,10 +24,11 @@ const Header = (props) => {
 
   const targetRef = useRef()
 
+  const sm = useMediaQuery(theme.breakpoints.down("sm"))
 
   // Header hide
   const { scrollY } = useScroll({
-    offset: "100px"
+    offset: sm ? "0px" : "100px"
   });
   const opacity = useTransform(scrollY, [0, 200], [1, 0]);
 
@@ -39,8 +40,7 @@ const Header = (props) => {
     setAnchorElNav(null)
   }
 
-  const sm = useMediaQuery(theme.breakpoints.down("sm"))
-
+ 
   const data = useStaticQuery(graphql`
     query MainNavigationQuery {
       sanityNavigation(navId: { current: { eq: "main-menu" } }) {
@@ -103,7 +103,7 @@ const Header = (props) => {
         width: "100%",
         background: "white",
         zIndex: 999,
-        opacity: anchorElNav ? 1 :opacity,
+        opacity: anchorElNav ? 1 : opacity,
         pointerEvents: opacity === 0 ? "none" : "auto",
         boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)"
       }}
