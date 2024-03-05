@@ -262,7 +262,7 @@ export const ContactSection = props => {
                       <TextField
                         //label="First Name"
                         name="firstName"
-                        notched={false}
+                        notched="false"
                         required
                         fullWidth
                         margin="normal"
@@ -273,7 +273,7 @@ export const ContactSection = props => {
                       <TextField
                         //label="Last Name"
                         name="lastName"
-                        notched={false}
+                        notched="false"
                         required
                         fullWidth
                         margin="normal"
@@ -355,7 +355,7 @@ export const ContactSection = props => {
                       <TextField
                         //label="Phone"
                         name="phone"
-                        notched={false}
+                        notched="false"
                         required
                         fullWidth
                         type="phone"
@@ -368,7 +368,7 @@ export const ContactSection = props => {
                       <TextField
                         //label="Email"
                         name="email"
-                        notched={false}
+                        notched="false"
                         required
                         fullWidth
                         type="email"
@@ -383,7 +383,7 @@ export const ContactSection = props => {
                       <TextField
                         //label="Message"
                         name="message"
-                        notched={false}
+                        notched="false"
                         multiline
                         rows={4}
                         fullWidth
