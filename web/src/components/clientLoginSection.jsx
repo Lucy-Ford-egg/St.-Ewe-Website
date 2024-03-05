@@ -45,7 +45,7 @@ export const ClientLoginSection = props => {
       <Grid
         container
         rowSpacing={12}
-        columnSpacing={{xs: 0, md: 12}}
+        columnSpacing={{xs: 0, sm: 6, md: 12}}
         sx={{
           pb: { xs: 10, md: 15 },
         }}
@@ -93,7 +93,7 @@ export const ClientLoginSection = props => {
               <Grid
                 item
                 xs={12}
-                sm={12}
+                sm={4}
                 md={4}
                 sx={{ display: "flex", flexDirection: "column" }}
               >

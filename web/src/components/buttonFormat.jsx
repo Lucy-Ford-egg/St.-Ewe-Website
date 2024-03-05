@@ -25,8 +25,9 @@ export const ButtonFormat = props => {
         size="small"
         color={color}
         variant={variant} 
-        to={definedExternal} 
-        // sx={{...sx}}
+        href={definedExternal} 
+        rel="noopener"
+        target="_blank"
         endIcon={endIcon}>
           {node.text}
         </Button>
