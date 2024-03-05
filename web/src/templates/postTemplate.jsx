@@ -56,8 +56,8 @@ const PostTemplate = props => {
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          minHeight: "100vh",
-          maxHeight: { xs: "", md: "100vh" },
+          minHeight: { xs: "85vh", md: "65vh", lg: "85vh" },
+          maxHeight: { xs: "85vh", md: "65vh", lg: "85vh" },
           overflow: "hidden",
           px: "0 !important",
           backgroundColor: definedTileColor?.value,
@@ -65,7 +65,7 @@ const PostTemplate = props => {
       >
         <Container
           maxWidth="xl"
-          disableGutters={true}
+          //disableGutters={false}
           sx={{
             gridColumn: "1/25",
             gridRow: "1/auto",
@@ -209,6 +209,17 @@ const PostTemplate = props => {
               }}
             />
           )}
+          {definedImage && <Box
+            sx={{
+              position: "relative",
+              zIndex: 1,
+              gridColumn: "1/25",
+              gridRow: "1/auto",
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0,0,0,0.5)",
+            }}
+          />}
 
         </Box>
       </Container>
