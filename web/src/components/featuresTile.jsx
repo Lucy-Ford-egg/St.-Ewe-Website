@@ -7,9 +7,9 @@ export const FeaturesTile = props => {
   const [hover, setHover] = useState(false)
   const theme = useTheme()
 
-  const definedTitle = (previewData && previewData?.featuresTile[index]?.title) || node?.title
-  const definedText = (previewData && previewData?.featuresTile[index]?.text) || node?.text
-  const definedLink = (previewData && previewData?.featuresTile[index]?.text) || node?.link
+  const definedTitle =  node?.title
+  const definedText = node?.text
+  const definedLink = node?.link
 
   return (
     <Paper
