@@ -45,14 +45,19 @@ export const TeamTile = props => {
     <Grid
       item
       xs="auto"
-      md={3}
+      sm="auto"
+      md="auto"
+      lg="auto"
+      xl={3}
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: { xs: "87vw", md: "100%" },
-        flexBasis: {xs: "87vw", md: "100%"},
+        width: { xs: "87vw", sm: "45vw", md: "32.5vw", md: "32.5vw", lg: "100%" },
+        maxWidth: 315,
+        flexBasis: {xs: "87vw", sm: "45vw", md: "32.5vw", md: "32.5vw", lg: "100%"},
+        height: "100%",
         "&:last-of-type":{
-          mr: {xs: 6, md: "unset"}
+          mr: {xs: 6, lg: "unset"}
         }
       }}
     >

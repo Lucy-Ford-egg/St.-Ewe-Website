@@ -121,10 +121,10 @@ export const TeamSection = props => {
           columnSpacing={6}
           rowSpacing={6}
           sx={{
-            flexDirection: { xs: "row", md: "row" },
+            flexDirection: { xs: "row", sm: "row", md: "row", lg: "row" },
             flexWrap: "nowrap",
-            overflowX: { xs: "scroll", md: "unset" },
-            scrollSnapType: { xs: "x mandatory", md: "unset" },
+            overflowX: { xs: "scroll", sm: "scroll", md: "scroll", lg: "unset" },
+            scrollSnapType: { xs: "x mandatory", sm: "x mandatory", md: "x mandatory", lg: "unset" },
             scrollSnapAlign: "center",
           }}
         >
