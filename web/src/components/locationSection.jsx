@@ -105,7 +105,7 @@ export const LocationSection = props => {
           const definedImage = location.image
         
           return (
-            <Grid item xs={12} sm={12} md={6}>
+            <Grid key={`location-${i}`} item xs={12} sm={12} md={6}>
               <Grid container columnSpacing={{xs: 4, md: 6}} rowSpacing={{xs: 6, md: 0}} alignItems="stretch" sx={{
                 display: "flex",
                 flexDirection: {sm: i%2 && "row-reverse", md: "row"}

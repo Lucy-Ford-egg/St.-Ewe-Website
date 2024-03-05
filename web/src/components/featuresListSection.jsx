@@ -33,7 +33,7 @@ export const FeaturesListSection = props => {
   const definedFeaturesTile =
     (previewData && previewData?.featuresTile) || featuresTile
   // const definedMirror = (previewData && previewData.mirror) || mirror
-debugger
+
   return (
     <Container
       maxWidth="xl"
