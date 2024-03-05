@@ -128,7 +128,7 @@ export const TestimonialSection = props => {
   return (
     <Box
       sx={{
-        py: { xs: 14 },
+        //py: { xs: 14 },
         position: "relative",
         backgroundColor: definedBackgroundColor.value,
         overflowX: "hidden",
