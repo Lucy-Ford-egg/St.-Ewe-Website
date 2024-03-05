@@ -64,6 +64,7 @@ export const HeaderSection = props => {
             position: "absolute",
             top: { xs:"5%", sm: "50%" },
             bottom: { xs: 0, sm: "unset" },
+            mt: {xs: 0, md: 20},
             transform: {
               xs: "translateX(-30px) rotate(180deg)",
               sm: "translateX(-150px) translateY(-50%) rotate(180deg)",
@@ -124,7 +125,7 @@ export const HeaderSection = props => {
                 />
               </motion.div>
         
-            {previewData && previewData.spiro || spiro && (
+            {addSpiro && (
               <Box sx={{display: 'flex', width: '100%', justifyContent: definedTextAlign ? definedTextAlign : "flexstart",}}>
               <Divider
                 sx={{
@@ -229,6 +230,7 @@ export const HeaderSection = props => {
               md: "translateY(-50%)",
             },
             right: 0,
+            mt: {xs: 0, md: 20},
             width: { xs: "85px", sm: "auto" },
             height: { xs: "239.91px", sm: "auto" },
             display: "flex",
