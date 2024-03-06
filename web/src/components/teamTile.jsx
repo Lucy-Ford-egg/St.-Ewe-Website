@@ -114,7 +114,7 @@ export const TeamTile = props => {
                 >
                   {memberExcerpt}
                 </Typography>
-                {member?.slug?.current && (
+                {member?.slug?.current && member.bio &&  (
                 <Button
                   sx={{
                     ...theme.typography.caption,
