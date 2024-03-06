@@ -57,7 +57,7 @@ export const NewsletterSection = props => {
         <Grid
           item
           xs={12}
-          md={5}
+          sm={5}
           sx={{
             backgroundColor:
               (previewData && previewData.backgroundColor?.value) ||
@@ -103,7 +103,7 @@ export const NewsletterSection = props => {
             )}
           </Box>
         </Grid>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} sm={7}>
           <Box
             sx={{
               display: "grid",
