@@ -47,7 +47,7 @@ export const HeaderSection = props => {
         alignItems: "center",
         justifyContent: "center",
         height: "100%",
-        minHeight: definedImage ? "100vh" : "min-content",
+        minHeight: definedImage ? "78vh" : "min-content",
         maxHeight: { xs: "", md: "" },
         overflow: "hidden",
         px: "0 !important",
