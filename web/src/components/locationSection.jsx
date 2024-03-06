@@ -206,7 +206,7 @@ export const LocationSection = props => {
                         <CiMail style={{width: "100%", height: "auto"}}/>
                         </Box>
                       </ListItemIcon>
-                      <ListItemText primary={location?.email} />
+                      <ListItemText primary={<a style={{color: "inherit", textDecoration: "none"}} href={`mailto:${location?.email}`}>{location?.email}</a>} />
                     </ListItem>
                     }
                   </List>
