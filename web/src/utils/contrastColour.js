@@ -32,6 +32,7 @@ export const contrastColour = (backgroundColour) => {
   let spiro = {}
   let tonalLight = {}
   let pie = {}
+  let line = {}
 
   const checkedColour = backgroundColour?.label
 
@@ -52,6 +53,10 @@ export const contrastColour = (backgroundColour) => {
           mui: "text.mid",
           hex: clientTheme.palette.text.mid,
         }
+      }
+      line = {
+        mui: "secondary.main",
+        hex: clientTheme.palette.secondary.main,
       }
       pie = {
         default: {
@@ -85,13 +90,17 @@ export const contrastColour = (backgroundColour) => {
       }
       pie = {
         default: {
-          mui: "secondary.light",
-          hex: clientTheme.palette.secondary.light,
+          mui: "secondary.mid",
+          hex: clientTheme.palette.secondary.mid,
         },
         active: {
-          mui: "secondary.main",
-          hex: clientTheme.palette.secondary.main,
+          mui: "secondary.light",
+          hex: clientTheme.palette.secondary.light,
         }
+      }
+      line = {
+        mui: "secondary.mid",
+        hex: clientTheme.palette.secondary.mid,
       }
       svg = {
         default: {
@@ -132,6 +141,10 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.text.mid,
         }
       }
+      line = {
+        mui: "secondary.mid",
+        hex: clientTheme.palette.secondary.mid,
+      }
       pie = {
         default: {
           mui: "secondary.mid",
@@ -170,6 +183,10 @@ export const contrastColour = (backgroundColour) => {
           mui: "primary.main",
           hex: clientTheme.palette.primary.main,
         }
+      }
+      line = {
+        mui: "primary.main",
+        hex: clientTheme.palette.primary.main,
       }
       pie = {
         default: {
@@ -211,6 +228,10 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.text.mid,
         }
       }
+      line = {
+        mui: "primary.main",
+        hex: clientTheme.palette.primary.main,
+      }
       pie = {
         default: {
           mui: "primary.light",
@@ -250,14 +271,18 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.text.mid,
         }
       }
+      line = {
+        mui: "primary.main",
+        hex: clientTheme.palette.primary.main,
+      }
       pie = {
         default: {
-          mui: "primary.lightest",
-          hex: clientTheme.palette.primary.lightest,
+          mui: "primary.lighter",
+          hex: clientTheme.palette.primary.lighter,
         },
         active: {
           mui: "primary.main",
-          hex: clientTheme.palette.primary.main,
+          hex: clientTheme.palette.primary.lightest,
         }
       }
       spiro = {
@@ -289,6 +314,10 @@ export const contrastColour = (backgroundColour) => {
           mui: "text.mid",
           hex: clientTheme.palette.text.mid,
         }
+      }
+      line = {
+        mui: "primary.main",
+        hex: clientTheme.palette.primary.main,
       }
       pie = {
         default: {
@@ -330,6 +359,10 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.text.mid,
         }
       }
+      line = {
+        mui: "text.mid",
+        hex: clientTheme.palette.text.mid,
+      }
       pie = {
         default: {
           mui: "white.main",
@@ -370,6 +403,10 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.text.mid,
         }
       }
+      line = {
+        mui: "text.main",
+        hex: clientTheme.palette.text.main,
+      }
       pie = {
         default: {
           mui: "text.light",
@@ -408,6 +445,10 @@ export const contrastColour = (backgroundColour) => {
           mui: "text.mid",
           hex: clientTheme.palette.text.mid,
         }
+      }
+      line = {
+        mui: "text.main",
+        hex: clientTheme.palette.text.main,
       }
       pie = {
         default: {
@@ -448,6 +489,10 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.white.main,
         }
       }
+      line = {
+        mui: "primary.main",
+        hex: clientTheme.palette.primary.main,
+      }
       pie = {
         default: {
           mui: "primary.lightest",
@@ -487,6 +532,10 @@ export const contrastColour = (backgroundColour) => {
           hex: clientTheme.palette.text.mid,
         }
       }
+      line = {
+        mui: "primary.main",
+        hex: clientTheme.palette.primary.main,
+      }
       pie = {
         default: {
           mui: "primary.lightest",
@@ -510,5 +559,5 @@ export const contrastColour = (backgroundColour) => {
         outlined: "white"
       };
   }
-  return { svg, spiro, divider, textColour, buttonColour, tonalLight, pie }
+  return { svg, spiro, divider, textColour, buttonColour, tonalLight, pie, line }
 }

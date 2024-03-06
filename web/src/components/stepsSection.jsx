@@ -248,7 +248,7 @@ export const StepsSection = props => {
                 style={{
                   position: "relative",
                   width: 8,
-                  backgroundColor: contrastColour(tileColor).pie.active.hex,
+                  backgroundColor: contrastColour(tileColor).line.hex,
                   transformOrigin: "0% 0%",
                   scaleY: scaleY,
                   height: "100%"
