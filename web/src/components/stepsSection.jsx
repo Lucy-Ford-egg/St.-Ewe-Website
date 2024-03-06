@@ -85,7 +85,7 @@ export const StepsSection = props => {
           key={`step-${i}`}
           item
           xs={12}
-          sm={12}
+          sm={11}
           md={12}
           sx={{ display: "flex", flexDirection: "column" }}
         >
@@ -95,14 +95,14 @@ export const StepsSection = props => {
               flexDirection: "column",
               textAlign: "center",
               mb: 6,
-              py: 6,
+              py: {xs: 6, sm:  4, lg: 6},
             }}
           >
             <Typography variant="overline"  sx={{mb: 3}}>
               {definedSteps[i].subtitle}
             </Typography>
             <Divider variant="fullWidth" component="div" role="presentation" sx={{ whiteSpace: {xs: "wrap", md: "pre-wrap"} }}>
-              <Typography variant="body2" sx={{ textAlign: "center", width: { md: 400} }}>
+              <Typography variant="body2" sx={{ textAlign: "center", width: { sm: 400} }}>
                 {definedSteps[i].title}
               </Typography>
             </Divider>
@@ -117,8 +117,8 @@ export const StepsSection = props => {
           key={`step-${i}`}
           item
           xs={12}
-          sm={12}
-          md={currentItem.tileOrientation === true ? 12 : 6}
+          
+          sm={currentItem.tileOrientation === true ? 12 : 6}
           sx={{ display: "flex", flexDirection: "column" }}
         >
           
@@ -160,7 +160,7 @@ export const StepsSection = props => {
           pb: { xs: 10, md: 15 },
         }}
       >
-        <Grid item xs={12} sm={12} md={7}>
+        <Grid item xs={12} md={7}>
           {subtitle && (
             <Typography
               variant="overline"
@@ -221,7 +221,7 @@ export const StepsSection = props => {
             sx={{
               position: "absolute",
               top: 24,
-              left: {xs: -8, md: -41},
+              left: {xs: -8, sm: 8, md: -41},
               mt: 0,
               mb: 0,
               ml: 0,

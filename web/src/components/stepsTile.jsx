@@ -140,7 +140,7 @@ export const StepsTile = props => {
                   </>
                 )}
               </Grid>
-              <Grid item xs={4} md={4} sx={{ pr: {xs: 9, md: 12}, pb: {xs: 9, md: 12}, pt: {xs: 9, md: 12}, display: 'flex', flexDirection: "column", alignItems: "center" }}>
+              <Grid item xs={4} md={4} sx={{ pr: {xs: 9, md: 12}, pb: {xs: 9, lg: 12}, pt: {xs: 9, lg: 12}, display: 'flex', flexDirection: "column", alignItems: "center" }}>
                 <Box
                   ref={ref}
                   sx={{
@@ -243,7 +243,7 @@ export const StepsTile = props => {
               <Grid
                 xs={12}
                 md={definedOrientation ? 12 : 12}
-                sx={{ px: {xs: 9, md: 12},  py: {xs: 6, md: 12}}}
+                sx={{ px: {xs: 9, md: 12},  py: {xs: 6, sm: 6, lg: 12}}}
                 color={contrastColour(tileColor).textColour}
               >
                 
@@ -263,9 +263,9 @@ export const StepsTile = props => {
                 xs={12}
                 md={definedOrientation ? 6 : 12}
                 sx={{
-                  px: {xs: 9, md: 12},
-                  pt: {xs: 9, md: 12},
-                  pb: {xs: 9, md: 12},
+                  px: {xs: 9, lg: 12},
+                  pt: {xs: 9, lg: 12},
+                  pb: {xs: 9, lg: 12},
                   backgroundColor: contrastColour(tileColor).tonalLight.mui,
                 }}
               >
