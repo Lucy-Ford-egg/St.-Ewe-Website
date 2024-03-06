@@ -128,7 +128,6 @@ export const TestimonialSection = props => {
   return (
     <Box
       sx={{
-        //py: { xs: 14 },
         position: "relative",
         backgroundColor: definedBackgroundColor.value,
         overflowX: "hidden",
@@ -146,7 +145,6 @@ export const TestimonialSection = props => {
           },
           left: 0,
           width: { xs: "85px", sm: "auto" },
-          height: { xs: "239.91px", sm: "auto" },
           zIndex: 0,
           opacity: contrastColour(definedBackgroundColor).spiro.opacity,
           svg: {
@@ -476,7 +474,6 @@ export const TestimonialSection = props => {
           },
           right: 0,
           width: { xs: "85px", sm: "auto" },
-          height: { xs: "239.91px", sm: "auto" },
           display: "flex",
           alignItems: { xs: "flex-end", sm: "unset" },
           zIndex: 0,

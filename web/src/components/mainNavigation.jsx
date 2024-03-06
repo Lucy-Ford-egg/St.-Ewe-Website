@@ -65,11 +65,12 @@ const MainNavigation = (props) => {
           marginTop: { xs: 0, sm: 0, md: 0 },
           width: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
           flexBasis: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
-          flexGrow: 100,
+          flexGrow: 1,
           order: { xs: 0, sm: 0, md: 0, lg: 0 },
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
-          justifyContent: { xs: 'flex-start', sm: 'flex-start', md: 'flex-end', lg: 'flex-end' }
+          justifyContent: { xs: 'flex-start', sm: 'center', md: 'flex-end', lg: 'flex-end' },
+          //maxHeight: {xs: "auto", sm: "100vh", md: "auto"}
         }}
       >
         {menu?.sanityNavigation?.items && menu.sanityNavigation.items.map((menuItem, i) => {
@@ -77,7 +78,7 @@ const MainNavigation = (props) => {
           return (
             <motion.li variants={item} key={`main-menu-item-${i}`}>
               <Box
-                sx={{ my: 0, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, display: 'flex', textTransform: "unset" }}
+                sx={{ my: {xs: 0, sm: 2, md: 0}, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, display: 'flex', textTransform: "unset" }}
               >
                 <Box>
                   {menuItem?.link?.link?.internal ? <GatsbyButton
@@ -141,7 +142,7 @@ const MainNavigation = (props) => {
           </Box>
         </motion.li>
 
-        <Box sx={{ display: { xs: "block", md: "none" }, mt: 6, }}>
+        <Box sx={{ display: { xs: "block", md: "none" }, mt: {xs: 6, sm: 12, md: 6} }}>
 
           {definedSiteSettings && definedSiteSettings?.companyDetails.map((location, i) => {
 
