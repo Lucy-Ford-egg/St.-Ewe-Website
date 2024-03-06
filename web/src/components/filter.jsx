@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { graphql, useStaticQuery } from "gatsby"
 
 
-export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
+export const Filter = ({type, allData, filterData, setFilterData}) => {
   
   const [selectedFilters, setSelectedFilters] = useState(null)
   const [categoriesUsed, setCategoriesUsed] = useState(null)
@@ -75,20 +75,21 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
   
 
   return(
-    <Container className="component-filter" maxWidth="xl" sx={{py: 8}}>
+    <Box sx={{py: 8}}>
 
         
           <Box sx={{flexDirection: {xs: 'column', md: 'row'}, backgroundColor: "background.default"}} display="flex">
 
             <Box display="flex" flexWrap="wrap" sx={{justifyContent: {xs: 'space-around', md: 'flex-start'}, columnGap: 3, rowGap: 3, flexGrow: 1, order: {xs: 2, md: 1}}}> 
-            <Typography variant="h4" component="h6">Filter Posts</Typography>
+            <Typography variant="h4" component="h6">Filter Posts:</Typography>
               
                  
-                 <Button key={`all`} onClick={e => addToFilter(null)} variant="text" disableElevation sx={{borderRadius: 0, }}>All</Button>
+                 <Button key={`all`} onClick={e => addToFilter(null)} color={selectedFilters === null ? "primary" : "tertiary"} variant="text" disableElevation sx={{borderRadius: 0 }}>All</Button>
 
                  {categoriesUsed && categoriesUsed.map((node) => {
+                  debugger
                   return(
-                    <Button key={node.name} onClick={e => addToFilter(node.name)} variant="text" disableElevation sx={{borderRadius: 0, }}>{node.name}</Button>
+                    <Button key={node.name} onClick={e => addToFilter(node.name)} color={selectedFilters === node.name ? "primary" : "tertiary"} variant="text" disableElevation sx={{borderRadius: 0 }}>{node.name}</Button>
                   )
                 })}
             
@@ -96,6 +97,6 @@ export const Filter = ({type, allData, filterPlaces, setFilterData}) => {
 
           </Box> 
        
-    </Container>
+    </Box>
   )
 }
