@@ -36,7 +36,7 @@ let defaultTheme = createTheme({
     },
     background: {
       default: '#F3F3F2', // Light Grey
-      main:  '#F3F3F2', // Light Grey // OLD VALUE HERE ->'#002856',
+      main: '#F3F3F2', // Light Grey // OLD VALUE HERE ->'#002856',
     },
     white: {
       main: '#ffffff', // White
@@ -227,11 +227,11 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: defaultTheme.palette.white.main,
-          "&:before":{
+          "&:before": {
             borderBottom: "unset !important",
           },
         },
-        underline:{
+        underline: {
           borderBottomColor: "transparent !important",
         },
         input: {
@@ -361,8 +361,25 @@ let clientTheme = createTheme({
 
           },
         },
+      },
+    },
+    MuiTabs: {
+      indicator: {
+        //backgroundColor: orange[700]
       }
     },
+    // MuiTab: {
+    //   styleOverrides: {
+    //     root: {
+    //       fontFamily: 'Open Sans',
+    //       fontSize: `${clientSpacing[2]} !important`,
+    //       fontWeight: 400,
+    //       lineHeight: 1.5,
+    //       textTransform: 'uppercase',
+    //       letterSpacing: 0.3,
+    //     },
+    //   },
+    // },
     MuiTypography: {
       styleOverrides: {
         root: {},

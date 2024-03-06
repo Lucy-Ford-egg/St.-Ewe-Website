@@ -153,6 +153,7 @@ export const BlogSection = props => {
                         height: "100%",
                         minHeight: {
                           xs: `calc(100vw - ${theme.spacing(8)})`,
+                          sm: `310px`,
                           md: "310px",
                         },
                         maxHeight: {

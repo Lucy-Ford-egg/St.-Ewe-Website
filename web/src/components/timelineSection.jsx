@@ -214,7 +214,7 @@ export const TimelineSection = props => {
           item
           xs={11}
           md={9}
-          sx={{ transform: { xs: "unset", md: "translateX(-222px)" } }}
+          sx={{ transform: { xs: "unset", md: "translateX(-222px)"} }}
         >
           {definedSteps &&
             definedSteps.map((step, index) => {
@@ -243,7 +243,7 @@ export const TimelineSection = props => {
                   }}
                 >
                   <Box
-                    ref={eventRef}
+                    // ref={eventRef}
                     sx={{
                       py: { xs: 6, md: 16 },
                       display: { xs: "flex", md: "grid" },
