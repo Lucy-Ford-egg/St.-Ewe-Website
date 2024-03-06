@@ -24,6 +24,7 @@ const MotionContainer = motion(ContainerComponent)
 const MainNavigation = (props) => {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
+  const tablet = useMediaQuery(theme.breakpoints.up("sm"))
   const { menu, definedSiteSettings, handleCloseNavMenu } = props
 
   const childRef = React.useRef();
@@ -66,10 +67,10 @@ const MainNavigation = (props) => {
           width: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
           flexBasis: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
           flexGrow: 1,
-          order: { xs: 0, sm: 0, md: 0, lg: 0 },
+          flexWrap: {xs: "wrap"},
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          justifyContent: { xs: 'flex-start', sm: 'center', md: 'flex-end', lg: 'flex-end' },
+          flexDirection: { xs: 'column', sm: 'column', md: "row" },
+          justifyContent: { xs: 'flex-start', sm: 'flex-start', md: 'flex-end', lg: 'flex-end' },
           //maxHeight: {xs: "auto", sm: "100vh", md: "auto"}
         }}
       >
@@ -134,7 +135,7 @@ const MainNavigation = (props) => {
                 textAlign: { xs: 'left', md: 'center' },
                 justifyContent: { xs: 'left', sm: 'center' },
                 fontWeight: 400,
-                mt: { xs: 6, md: 0 },
+                mt: { xs: 6, sm: 0 },
                 // px: theme.spacing(1),
               }}>Client Login
 
@@ -142,13 +143,15 @@ const MainNavigation = (props) => {
           </Box>
         </motion.li>
 
-        <Box sx={{ display: { xs: "block", md: "none" }, mt: {xs: 6, sm: 12, md: 6} }}>
+      <Divider sx={{py: 6, display: {xs: "none", sm: "flex", lg: "none"}}} variant="middle" />
+
+        <Box sx={{ display: { xs: "flex", sm: "grid", lg: "none" }, gridTemplateColumns: {xs: "unset", sm: "repeat(2, 1fr)", md: "unset"}, mt: {xs: 6, sm: 6, md: 6} , flexDirection: {xs: "column", sm: "row"}}}>
 
           {definedSiteSettings && definedSiteSettings?.companyDetails.map((location, i) => {
 
             return (
               <motion.li key={`main-menu-item-settings-${i}`} variants={item}>
-                <Box sx={{ display: { xs: "block", md: "none", flexDirection: "column", } }}>
+                <Box sx={{ display: { xs: "block", md: "none", flexDirection: {xs: "column", sm: "row"}, } }}>
                   <List sx={{ px: 4,  py: 6, }}>
                     {location?.title &&
                       <ListItem disablePadding>
@@ -177,11 +180,11 @@ const MainNavigation = (props) => {
                             <CiMail style={{ width: "100%", height: "auto" }} />
                           </Box>
                         </ListItemIcon>
-                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={location?.email} />
+                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={<a style={{color: "inherit", textDecoration: "none"}} href={`mailto:${location?.email}`}>{location?.email}</a>} />
                       </ListItem>
                     }
                   </List>
-                  <Divider />
+                  <Divider sx={{display: {xs: "flex", sm: "none"}}}/>
                 </Box>
               </motion.li>
             )
