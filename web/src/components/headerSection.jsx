@@ -185,11 +185,30 @@ export const HeaderSection = props => {
           }}
         >
           {definedImage && (
+            <motion.div style={{
+              height: "100%",
+                flexGrow: 1,
+                minHeight: "100%",
+                gridColumn: "1/25",
+                gridRow: "1/auto",
+                minHeight: definedImage ? "78vh" : "min-content",
+            }} 
+            initial={{
+              opacity: 0,
+            }} 
+            animate={{
+              opacity: 1
+            }}
+            transition={{
+              type: "smooth",
+              duration: 1,
+              delay: 1,
+            }}>
             <Image
               // pass asset, hotspot, and crop fields
               crop={definedImage?.crop}
               hotspot={definedImage?.hotspot}
-              loading="eager"
+              //loading="eager"
               asset={
                 (definedImage &&
                   definedImage &&
@@ -198,17 +217,15 @@ export const HeaderSection = props => {
                 definedImage.asset
               }
               width={1440}
-              height={700}
+              height={708}
               style={{
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
-                flexGrow: 1,
-                minHeight: "100%",
-                gridColumn: "1/25",
-                gridRow: "1/auto",
+                //backgroundColor: theme.palette.text.mid,
               }}
             />
+            </motion.div>
           )}
           <Box
             sx={{
