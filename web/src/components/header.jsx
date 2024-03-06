@@ -197,7 +197,7 @@ const Header = props => {
               <Box
                 sx={{
                   width: "inherit",
-                  display: { xs: "none", lg: "block" },
+                  display: { xs: "none", md: "block" },
                   color: setColor,
                 }}
               >
@@ -260,18 +260,20 @@ const Header = props => {
               }}
             />
           </Container>
-          {anchorElNav && (
-            <>
-              <Box sx={{ display: { xs: "block", lg: "none" } }}>
+          
+         
+              <Box sx={{ display: { xs: "block", md: "none" } }}>
+              {anchorElNav && (
                 <MainNavigation
                   navColor={setColor}
                   menu={data}
                   handleCloseNavMenu={handleCloseNavMenu}
                   definedSiteSettings={definedSiteSettings}
                 />
+                )}
               </Box>
-            </>
-          )}
+          
+         
         </AppBar>
       </motion.div>
     </Box>
