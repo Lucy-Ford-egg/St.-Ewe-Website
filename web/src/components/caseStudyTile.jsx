@@ -106,7 +106,7 @@ export const CaseStudyTile = (props) => {
         onMouseLeave={e => setHovered(false)}
       >
         <Grid container sx={{display: 'flex', flexDirection: {xs: 'row', md: i % 2 ? 'row-reverse' : 'row'}}}>
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} sm={7}>
             <Box sx={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", alignItems: 'flex-end', minHeight: '100%' }}>
               {coverImage && (
                 <Image
@@ -200,7 +200,7 @@ export const CaseStudyTile = (props) => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={5} sx={{ display: "flex" }}>
+          <Grid item xs={12} sm={5} sx={{ display: "flex" }}>
             <Box
               sx={{
                 px: {xs: 6, md: 13},

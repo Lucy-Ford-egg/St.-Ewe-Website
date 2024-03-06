@@ -24,18 +24,17 @@ export const HeaderSection = props => {
     backgroundColor,
   } = props
 
-
   const [addSpiro, setAddSpiro] = useState(false)
   useEffect(() => {
-    
-    setAddSpiro(previewData && previewData?.spiro || spiro)
+    setAddSpiro((previewData && previewData?.spiro) || spiro)
   }, [])
 
   const definedTitle = (previewData && previewData?.title) || _rawTitle
   const definedText = (previewData && previewData?.text) || _rawText
   const definedLinks = (previewData && previewData?.links) || links
-  const definedImage = (previewData && previewData?.image) || image 
-  const definedBackgroundColour = ( previewData && previewData?.backgroundColor) || backgroundColor
+  const definedImage = (previewData && previewData?.image) || image
+  const definedBackgroundColour =
+    (previewData && previewData?.backgroundColor) || backgroundColor
   const definedTextAlign = (previewData && previewData?.textAlign) || textAlign
 
   return (
@@ -48,23 +47,23 @@ export const HeaderSection = props => {
         alignItems: "center",
         justifyContent: "center",
         height: "100%",
-        minHeight: "100vh",
+        minHeight: definedImage ? "100vh" : "min-content",
         maxHeight: { xs: "", md: "" },
         overflow: "hidden",
         px: "0 !important",
         position: "relative",
-        pt: addSpiro ? {xs: 15, md: 17} : 0,
+        pt: addSpiro ? { xs: 15, md: 17 } : 0,
         pb: definedBackgroundColour && !definedImage && 15,
         backgroundColor: definedBackgroundColour?.value,
       }}
     >
-      {addSpiro &&  (
+      {addSpiro && (
         <Box
           sx={{
             position: "absolute",
-            top: { xs:"5%", sm: "50%" },
+            top: { xs: "5%", sm: "50%" },
             bottom: { xs: 0, sm: "unset" },
-            mt: {xs: 6, md: 20},
+            mt: { xs: 6, md: 20 },
             transform: {
               xs: "translateX(-30px) rotate(180deg)",
               sm: "translateX(-150px) translateY(-50%) rotate(180deg)",
@@ -108,33 +107,38 @@ export const HeaderSection = props => {
               margin: definedTextAlign ? "0 auto" : "unset",
             }}
           >
-            
-            
-              <motion.div
+            <motion.div
               initial={{ y: 0, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
-                <RenderPortableText
-                  previewData={previewData}
-                  sanityConfig={sanityConfig}
-                  variant={false}
-                  textAlign={definedTextAlign}
-                  value={
-                    definedTitle
-                  }
-                />
-              </motion.div>
-        
+              <RenderPortableText
+                previewData={previewData}
+                sanityConfig={sanityConfig}
+                variant={false}
+                textAlign={definedTextAlign}
+                value={definedTitle}
+              />
+            </motion.div>
+
             {addSpiro && (
-              <Box sx={{display: 'flex', width: '100%', justifyContent: definedTextAlign ? definedTextAlign : "flexstart",}}>
-              <Divider
+              <Box
                 sx={{
                   display: "flex",
-                  my: 10,
-                  width: "19.1875rem",
-                  borderColor: contrastColour(definedBackgroundColour).divider.hex,
+                  width: "100%",
+                  justifyContent: definedTextAlign
+                    ? definedTextAlign
+                    : "flexstart",
                 }}
-              />
+              >
+                <Divider
+                  sx={{
+                    display: "flex",
+                    my: 10,
+                    width: "19.1875rem",
+                    borderColor: contrastColour(definedBackgroundColour).divider
+                      .hex,
+                  }}
+                />
               </Box>
             )}
           </Box>
@@ -149,75 +153,76 @@ export const HeaderSection = props => {
                 sanityConfig={sanityConfig}
                 variant={false}
                 textAlign={definedTextAlign}
-                value={
-                  definedText
-                }
+                value={definedText}
               />
             )}
           </Box>
-          {definedLinks && definedLinks.length > 0 && <Box sx={{
-            pt: 8,
-          }}>
-          <Links
-            linkOne="secondary"
-            links={definedLinks}
-            previewData={previewData}
-            highlighted
-          />
-          </Box>}
+          {definedLinks && definedLinks.length > 0 && (
+            <Box
+              sx={{
+                pt: 8,
+              }}
+            >
+              <Links
+                linkOne="secondary"
+                links={definedLinks}
+                previewData={previewData}
+                highlighted
+              />
+            </Box>
+          )}
         </Box>
       </Container>
-
-      <Box
-        sx={{
-          gridColumn: "1/25",
-          gridRow: "1/auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(24, 1fr)",
-          height: "100%",
-          maxHeight: "100%",
-        }}
-      >
-        {definedImage && (
-          <Image
-            // pass asset, hotspot, and crop fields
-            crop={definedImage?.crop}
-            hotspot={
-              definedImage?.hotspot
-            }
-            loading="eager"
-            asset={
-              (definedImage &&
-                definedImage &&
-                definedImage?._ref &&
-                urlFor(definedImage).width(200).url()) ||
-                definedImage.asset
-            }
-            width={1440}
-            height={700}
-            style={{
-              objectFit: "cover",
-              width: "100%",
-              height: "100%",
-              flexGrow: 1,
-              minHeight: "100%",
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-            }}
-          />
-        )}
+      {definedImage && (
         <Box
           sx={{
-            position: "relative",
-            zIndex: 1,
             gridColumn: "1/25",
             gridRow: "1/auto",
-            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "repeat(24, 1fr)",
             height: "100%",
-            //backgroundColor: "rgba(0,0,0,0.3)",
+            maxHeight: "100%",
           }}
-        />
-      </Box>
+        >
+          {definedImage && (
+            <Image
+              // pass asset, hotspot, and crop fields
+              crop={definedImage?.crop}
+              hotspot={definedImage?.hotspot}
+              loading="eager"
+              asset={
+                (definedImage &&
+                  definedImage &&
+                  definedImage?._ref &&
+                  urlFor(definedImage).width(200).url()) ||
+                definedImage.asset
+              }
+              width={1440}
+              height={700}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+                flexGrow: 1,
+                minHeight: "100%",
+                gridColumn: "1/25",
+                gridRow: "1/auto",
+              }}
+            />
+          )}
+          <Box
+            sx={{
+              position: "relative",
+              zIndex: 1,
+              gridColumn: "1/25",
+              gridRow: "1/auto",
+              width: "100%",
+              height: "100%",
+              //backgroundColor: "rgba(0,0,0,0.3)",
+            }}
+          />
+        </Box>
+      )}
       {addSpiro && (
         <Box
           sx={{
@@ -230,7 +235,7 @@ export const HeaderSection = props => {
               md: "translateY(-50%)",
             },
             right: 0,
-            mt: {xs: 6, md: 20},
+            mt: { xs: 6, md: 20 },
             width: { xs: "85px", sm: "auto" },
             height: { xs: "239.91px", sm: "auto" },
             display: "flex",
