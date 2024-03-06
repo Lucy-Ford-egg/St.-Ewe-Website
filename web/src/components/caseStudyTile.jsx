@@ -107,16 +107,17 @@ export const CaseStudyTile = (props) => {
       >
         <Grid container sx={{display: 'flex', flexDirection: {xs: 'row', md: i % 2 ? 'row-reverse' : 'row'}}}>
           <Grid item xs={12} sm={7}>
-            <Box sx={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", alignItems: 'flex-end', minHeight: '100%' }}>
+            <Box sx={{ display: {xs:"grid", sm: "flex", md: "grid"}, flexDirection: {sm: "column", md: "unset"}, gridTemplateColumns: "repeat(12, 1fr)", alignItems: 'flex-end', minHeight: '100%' }}>
               {coverImage && (
                 <Image
                   // pass asset, hotspot, and crop fields
                   crop={coverImage?.crop}
                   hotspot={coverImage?.hotspot}
                   asset={(coverImage?._ref &&
-                      urlFor(coverImage).width(200).url()) ||
+                      urlFor(coverImage).width(700).url()) ||
                     coverImage?.asset
                   }
+                  width={700}
                   style={{
                     objectFit: "cover",
                     width: "100%",
@@ -124,12 +125,13 @@ export const CaseStudyTile = (props) => {
                     flexGrow: 1,
                     minHeight: "100%",
                     gridColumn: "1/25",
-                    gridRow: "1/auto",
+                    gridRow:  "1/auto",
+                    flexBasis: ""
                   }}
                 />
               )}
-              <Box sx={{ flexGrow: 1, gridColumn: {xs: "1/25", md: "2/24"}, gridRow: {xs: "2/auto", md: "1/auto"}, pb: {xs:0, md: 12} }}>
-                <Grid container>
+              <Box sx={{ display: "flex", flexBasis: "100%", width: "100%", flexGrow: 1, gridColumn: {xs: "1/25", md: "2/24"}, gridRow: {xs: "2/auto", md: "1/auto"}, pb: {xs:0, md: 12} }}>
+                <Grid container sx={{display: "flex", flexBasis: "100%"}}>
                   <Grid item xs={6} md={3} sx={{display: 'flex'}}>
                     <Box
                       sx={{
