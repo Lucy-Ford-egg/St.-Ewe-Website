@@ -13,7 +13,6 @@ import {
 import { mapStyles } from "../utils/mapStyles"
 import { motion } from "framer-motion"
 
-// TODO: State management for popup boxes.
 const AnyReactComponent = ({ children }) => (
   <Box
     sx={{
