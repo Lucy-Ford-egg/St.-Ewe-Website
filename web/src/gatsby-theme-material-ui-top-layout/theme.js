@@ -105,7 +105,7 @@ let clientTheme = createTheme({
       fontFamily: 'Merriweather',
       fontWeight: 700,
       [defaultTheme.breakpoints.down('sm')]: {
-        fontSize: clientSpacing[9],
+        fontSize: clientSpacing[11],
       },
     },
     h2: {

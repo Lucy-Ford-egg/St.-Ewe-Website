@@ -53,7 +53,7 @@ export const HeaderSection = props => {
         overflow: "hidden",
         px: "0 !important",
         position: "relative",
-        pt: addSpiro ? 17 : 0,
+        pt: addSpiro ? {xs: 15, md: 17} : 0,
         pb: definedBackgroundColour && !definedImage && 15,
         backgroundColor: definedBackgroundColour?.value,
       }}
@@ -64,7 +64,7 @@ export const HeaderSection = props => {
             position: "absolute",
             top: { xs:"5%", sm: "50%" },
             bottom: { xs: 0, sm: "unset" },
-            mt: {xs: 0, md: 20},
+            mt: {xs: 6, md: 20},
             transform: {
               xs: "translateX(-30px) rotate(180deg)",
               sm: "translateX(-150px) translateY(-50%) rotate(180deg)",
@@ -230,7 +230,7 @@ export const HeaderSection = props => {
               md: "translateY(-50%)",
             },
             right: 0,
-            mt: {xs: 0, md: 20},
+            mt: {xs: 6, md: 20},
             width: { xs: "85px", sm: "auto" },
             height: { xs: "239.91px", sm: "auto" },
             display: "flex",
