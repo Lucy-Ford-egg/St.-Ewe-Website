@@ -20,7 +20,7 @@ export const deskStructure = (S, context) => {
     .title('Site Content')
     .items([
       SiteSettingsMenu(S),
-      DesignSystemColorsMenu(S),
+      // DesignSystemColorsMenu(S),
       //FaqsMenu(S),
       S.divider(),
 
