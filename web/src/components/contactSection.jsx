@@ -271,7 +271,6 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={6}>
                       <FormLabel htmlFor="lastName">Last Name</FormLabel>
                       <TextField
-                        //label="Last Name"
                         name="lastName"
                         notched="false"
                         required
@@ -283,7 +282,7 @@ export const ContactSection = props => {
                       <FormLabel htmlFor="firstName">
                         Service of interest?
                       </FormLabel>
-                      {/* <InputLabel id="serviceOfInterest-label">Service of interest?</InputLabel> */}
+
                       <Select
                         labelId="serviceOfInterest-label"
                         id="serviceOfInterest"
@@ -353,7 +352,6 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={5}>
                       <FormLabel htmlFor="phone">Phone Number</FormLabel>
                       <TextField
-                        //label="Phone"
                         name="phone"
                         notched="false"
                         required
@@ -366,7 +364,6 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={7}>
                       <FormLabel htmlFor="email">Email Address</FormLabel>
                       <TextField
-                        //label="Email"
                         name="email"
                         notched="false"
                         required
@@ -381,7 +378,6 @@ export const ContactSection = props => {
                     <Grid item xs={12}>
                       <FormLabel htmlFor="message">Message</FormLabel>
                       <TextField
-                        //label="Message"
                         name="message"
                         notched="false"
                         multiline
