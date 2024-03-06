@@ -48,8 +48,8 @@ const MainNavigation = (props) => {
   }
 
   const item = {
-    visible: { opacity: 1, y: 0, listStyle: "none", display: "flex", alignItems: "center" },
-    hidden: { opacity: 0, y: 0, listStyle: "none", display: "flex", alignItems: "center" },
+    visible: { opacity: 1, y: 0, listStyle: "none", display: "flex", alignItems: "center", },
+    hidden: { opacity: 0, y: 0, listStyle: "none", display: "flex", alignItems: "center", },
   }
 
   return (
@@ -67,7 +67,6 @@ const MainNavigation = (props) => {
           width: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
           flexBasis: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
           flexGrow: 1,
-          flexWrap: {xs: "wrap"},
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'column', md: "row" },
           justifyContent: { xs: 'flex-start', sm: 'flex-start', md: 'flex-end', lg: 'flex-end' },

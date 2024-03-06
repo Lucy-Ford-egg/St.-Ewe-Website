@@ -73,17 +73,18 @@ const CaseStudyTemplate = props => {
           }}
         >
           <Grid container>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} md={4}>
               <Box
                 sx={{
                   backgroundColor: "primary.main",
                   px: { xs: 6, md: 13 },
                   pt: 13,
                   pb: { xs: 6, md: 13 },
+                  maxWidth: "100%",
                 }}
               >
                 {definedRawPerson && (
-                  <Box sx={{ color: "white.main" }}>
+                  <Box sx={{ color: "white.main",  maxWidth: "100%", }}>
                     <RenderPortableText
                       setAsHeading="h1"
                       value={definedRawPerson}
@@ -93,12 +94,12 @@ const CaseStudyTemplate = props => {
               </Box>
             </Grid>
 
-            <Grid item xs={6} md={2} sx={{ flexGrow: 1 }}>
+            <Grid item xs={12} md={2} sx={{ flexGrow: 1 }}>
               <Box sx={{ height: "100%" }}>
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: "column",
+                    flexDirection: {xs: "row", sm: "column"},
                     height: "100%",
                     flexGrow: 1,
                   }}
@@ -111,6 +112,7 @@ const CaseStudyTemplate = props => {
                       display: "flex",
                       flexGrow: 1,
                       alignItems: "flex-end",
+                      maxWidth: "100%",
                     }}
                   >
                     <Typography
@@ -130,6 +132,7 @@ const CaseStudyTemplate = props => {
                       display: "flex",
                       flexGrow: 1,
                       alignItems: "flex-end",
+                      maxWidth: "100%",
                     }}
                   >
                     {definedService && (
@@ -190,7 +193,6 @@ const CaseStudyTemplate = props => {
               gridRow: "1/auto",
               width: "100%",
               height: "100%",
-              //backgroundColor: "rgba(0,0,0,0.3)",
             }}
           />
         </Box>

@@ -134,12 +134,13 @@ export const CaseStudyTile = (props) => {
                     <Box
                       sx={{
                         backgroundColor: i % 2 ? "secondary.main" :"primary.main",
-                        px: 6,
-                        py: 6,
+                        px: {xs: 2, md: 6},
+                        py: {xs: 6, md: 6},
                         display: "flex",
                         flexBasis: '100%',
                         flexGrow: 1,
                         alignItems: "flex-end",
+                        maxWidth: "100%",
                       }}
                     ><Typography
                     variant="h1"
@@ -165,11 +166,12 @@ export const CaseStudyTile = (props) => {
                         <Box
                           sx={{
                             backgroundColor: i % 2 ? "secondary.light" : "primary.light",
-                            px: 6,
-                            py: 6,
+                            px: {xs: 2, md: 6},
+                            py: {xs: 6, md: 6},
                             display: "flex",
                             flexGrow: 1,
                             alignItems: "flex-end",
+                            maxWidth: "100%",
                           }}
                         >
                          {definedPerson && <Box sx={{color: 'white.main'}}><RenderPortableText setAsHeading='h5' value={definedPerson} /></Box> }
@@ -177,11 +179,12 @@ export const CaseStudyTile = (props) => {
                         <Box
                           sx={{
                             backgroundColor: i % 2 ? "secondary.mid" : "primary.mid",
-                            px: 6,
-                            py: 6,
+                            px: {xs: 2, md: 6},
+                            py: {xs: 6, md: 6},
                             display: "flex",
                             flexGrow: 1,
                             alignItems: "flex-end",
+                            maxWidth: "100%",
                           }}
                         >
                           <Typography
@@ -211,6 +214,7 @@ export const CaseStudyTile = (props) => {
                 flexBasis: "100%",
                 flexGrow: 1,
                 backgroundColor: i % 2 ? "secondary.main" : "primary.main",
+                maxWidth: "100%",
               }}
             >
               <Typography variant="h3" color="white.main">
