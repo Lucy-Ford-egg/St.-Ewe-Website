@@ -277,7 +277,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     paginate({
       createPage,
       items: blogPosts,
-      itemsPerPage: 3,
+      itemsPerPage: 4,
       pathPrefix: `/${node.slug.current}`,
       component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
       context: {

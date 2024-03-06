@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -16,6 +16,7 @@ import { contrastColour } from "../utils/contrastColour"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { formattedDate } from "../utils/formattedDate"
+import { Filter } from "./filter"
 
 //Preview
 import { useQuery } from "../../sanity/store"
@@ -33,6 +34,8 @@ export const BlogSection = props => {
   } = props
 
   const theme = useTheme()
+
+  const [filtersPosts, setFilterData] = useState(null)
 
   const pages = Array.from(
     { length: pageContext.numberOfPages },
@@ -55,12 +58,20 @@ export const BlogSection = props => {
 
   const definedTopPadding =
     (previewData && previewData?.topPadding) || topPadding
+  
+
   const definedAllSanityPost =
     (postData && postData.length > 0 && postData) ||
     (previewData?.showArchive?.setArchive === true &&
       allPostData &&
       allPostData) ||
     allSanityPost.nodes
+
+  useEffect(() => {
+    setFilterData(definedAllSanityPost )
+  }, [])
+  
+  
 
   return (
     <Container
@@ -81,10 +92,10 @@ export const BlogSection = props => {
             },
       }}
     >
+      <Filter className="component-filter" type="posts" allData={definedAllSanityPost} filtersData={filtersPosts} setFilterData={setFilterData}/>
+
       <Grid container columnSpacing={6} rowSpacing={12}>
-        {definedAllSanityPost &&
-          definedAllSanityPost &&
-          definedAllSanityPost.map((post, i) => {
+        {filtersPosts && filtersPosts.map((post, i) => {
             const {
               coverImage: image,
               category,
