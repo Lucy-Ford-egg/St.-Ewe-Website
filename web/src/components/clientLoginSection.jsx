@@ -28,7 +28,6 @@ export const ClientLoginSection = props => {
     (previewData && previewData?.topPadding) || topPadding
   const definedTitle = (previewData && previewData?.title) || _rawTitle
   const definedText = (previewData && previewData?.text) || _rawText
-  // const definedImage = (previewData && previewData?.image) || image
   const definedLoginTile = (previewData && previewData?.loginTile) || loginTile
   const definedSubtitle = (previewData && previewData.subtitle) || subtitle
 

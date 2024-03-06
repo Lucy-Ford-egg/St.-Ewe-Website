@@ -1,12 +1,12 @@
 import React, { useState } from "react"
-import { Box, Paper, Typography, useTheme, Divider } from "@mui/material"
+import { Box, Paper, useTheme, Divider } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { ButtonFormat } from "./buttonFormat"
 import { RenderPortableText } from "../components/renderPortableText"
 
 export const LoginTile = props => {
-  const { title, text, previewData, image, node, sanityConfig, link } = props
+  const { title, previewData, image, sanityConfig, link } = props
   const [hover, setHover] = useState(false)
   const theme = useTheme()
 
