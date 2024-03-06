@@ -118,15 +118,15 @@ const Header = props => {
           color={
             anchorElNav
               ? "background"
-              : navOverlay === true
-                ? "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 87.43%)"
                 : "transparent"
           }
           sx={{
             boxShadow: "unset",
+            background: navOverlay === true && !anchorElNav
+      && {xs: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 100%)", lg: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 87.43%)"},
           }}
         >
-          <Container maxWidth="xl" sx={{ mt: 1 }}>
+          <Container maxWidth="xl" sx={{ pt: 1}} >
             <Divider
               sx={{
                 my: 5,
@@ -252,7 +252,8 @@ const Header = props => {
             </Toolbar>
             <Divider
               sx={{
-                my: 5,
+                mt: 5,
+                mb:  navOverlay === true ? 0 : 5,
                 borderColor:
                   anchorElNav !== true
                     ? setColor

@@ -19,13 +19,12 @@ export const Layout = (props) => {
     {slug: definedSlug?.slug?.current},
     { initial }
   );
-
-  const pageData = previewData?.nav
+  
   const definedSiteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
   const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
-  const navOverlay = data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay
-
+  const navOverlay = data?.sanityPost?.navOverlay || data?.sanityPage?.navOverlay
+  
   const definedNavColor = (previewData && previewData?.nav?.navColor) || navColor
   const definedNavOverlay = (previewData && previewData?.nav?.navOverlay) || navOverlay
 
