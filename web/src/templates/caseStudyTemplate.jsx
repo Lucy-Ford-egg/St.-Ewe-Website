@@ -169,7 +169,7 @@ const CaseStudyTemplate = props => {
               asset={
                 (definedImage?._ref &&
                   urlFor(definedImage).width(1400).url()) ||
-                definedImage.asset
+                definedImage?.asset
               }
               width={1440}
               style={{
