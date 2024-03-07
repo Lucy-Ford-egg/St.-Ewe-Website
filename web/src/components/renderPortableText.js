@@ -76,7 +76,7 @@ export const RenderPortableText = (props) => {
                   previewData?.image?.asset,
                   { maxWidth: 100 },
                   sanityConfig,
-                ) || value.asset
+                ) || value?.asset
               }
               // tell Sanity how large to make the image (does not set any CSS)
               // width={1300}
@@ -93,18 +93,18 @@ export const RenderPortableText = (props) => {
       },
       callToAction: ({ value, isInline }) =>
         isInline ? (
-          <a style={{ color: 'blue' }} href={value.url}>{value.text}</a>
+          <a style={{ color: 'blue' }} href={value?.url}>{value?.text}</a>
         ) : (
-          <div style={{ color: 'blue' }} className="callToAction">{value.text}</div>
+          <div style={{ color: 'blue' }} className="callToAction">{value?.text}</div>
         ),
       blockquote: ({ value }) => {
         return (
           <Box sx={{ mx: { xs: 0, md: -9 } }} component="figure">
 
-            <Typography sx={{ py: { xs: 6, md: 6 }, color: value.markDefs[0].value, pl: 1, borderLeft: `1px solid ${theme.palette.highlight.main}` }} align="center" variant="h2" component="blockquote">
-              {value.text}
+            <Typography sx={{ py: { xs: 6, md: 6 }, color: value?.markDefs[0].value, pl: 1, borderLeft: `1px solid ${theme.palette.highlight.main}` }} align="center" variant="h2" component="blockquote">
+              {value?.text}
             </Typography>
-            {value.cite && <Typography align="center" variant="subtitle1" component="figcaption">{value.cite}</Typography>}
+            {value?.cite && <Typography align="center" variant="subtitle1" component="figcaption">{value?.cite}</Typography>}
           </Box>
         )
       },
