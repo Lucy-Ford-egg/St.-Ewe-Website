@@ -4,9 +4,16 @@ import { Button } from "@mui/material"
 
 export const ButtonFormat = props => {
   const { node, sx, endIcon, variant, color } = props
-  
-  const definedInternal = node?.link?.internal?.slug?.current
+
+  let definedInternal = node?.link?.internal?.slug?.current
   const definedExternal = node?.link?.external
+
+  if(node?.link?.internal._type === "post"){
+    definedInternal = `/blog/${definedInternal}`
+  }
+  if(node?.link?.internal._type === "caseStudy" ){
+    definedInternal = `/case-studies/${definedInternal}`
+  }
   return (
     <>
       {node?.link?.internal ? (

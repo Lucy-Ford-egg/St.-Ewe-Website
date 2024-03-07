@@ -205,15 +205,19 @@ export const query = graphql`
         internal {
           ... on SanityPage {
             id
+            _type
             slug {
               current
             }
+            
           }
           ... on SanityPost {
             id
+            _type
             slug {
               current
             }
+            
           }
         }
         external

@@ -362,6 +362,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     links[]{
       link{
         internal->{
+          ...,
           slug {
             current
           }
