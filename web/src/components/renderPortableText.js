@@ -87,7 +87,7 @@ export const RenderPortableText = (props) => {
                 height: 'auto',
               }}
             />
-            <Typography sx={{ pl: 1, borderLeft: `1px solid ${theme.palette.tertiary.main}` }} variant='body2'>{value.asset.description}</Typography>
+            <Typography sx={{ pl: 1, borderLeft: `1px solid ${theme.palette.tertiary.main}` }} variant='body2'>{value?.asset?.description}</Typography>
           </Box>
         )
       },
