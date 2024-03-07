@@ -193,7 +193,7 @@ const PostTemplate = props => {
               asset={
                 (definedImage && definedImage?._ref &&
                   urlFor(definedImage).width(1440).url(definedImage)) ||
-                definedImage.asset
+                definedImage?.asset
               }
               width={1440}
               height={702}
