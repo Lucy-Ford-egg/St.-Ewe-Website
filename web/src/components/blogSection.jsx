@@ -97,7 +97,7 @@ export const BlogSection = props => {
       <Grid container columnSpacing={6} rowSpacing={12}>
         {filtersPosts && filtersPosts.map((post, i) => {
             const {
-              coverImage: image,
+              image,
               category,
               author,
               title,

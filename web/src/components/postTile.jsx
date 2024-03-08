@@ -265,7 +265,7 @@ export const query = graphql`
     _key
     _type
     posts {
-      coverImage {
+      image {
         asset {
           gatsbyImageData(width: 525, height: 323)
           altText

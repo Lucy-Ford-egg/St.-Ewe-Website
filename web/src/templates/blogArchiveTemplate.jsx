@@ -62,10 +62,9 @@ export const blogArchiveTemplateQuery = graphql`
           value
           label
         }
-        coverImage {
+        image {
           asset {
             _id
-
             gatsbyImageData
           }
           hotspot {

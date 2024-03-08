@@ -43,7 +43,7 @@ const PostTemplate = props => {
   const definedDate = (previewData && previewData?.date) || data.sanityPost?.date
   const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author 
   const definedImage = (previewData && previewData?.image) || image
-
+debugger
 
   return (
    <>
@@ -262,10 +262,9 @@ export const pageTemplateQuery = graphql`
         value
         label
       }
-      image: coverImage {
+      image {
         asset {
           _id
-
           gatsbyImageData
         }
         hotspot {

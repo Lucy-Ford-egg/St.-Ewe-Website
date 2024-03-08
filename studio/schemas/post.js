@@ -72,7 +72,7 @@ export default defineType({
       group: 'pageContent',
     }),
   defineField({
-    name: 'coverImage',
+    name: 'image',
     title: 'Cover Image',
     type: 'image',
     options: {
@@ -202,7 +202,6 @@ export default defineType({
     title: 'Page builder',
     description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
     of: [
-      { type: headerSectionType.name},
       { type: testimonialSectionType.name},
       { type: teamSectionType.name},
       { type: caseStudySectionType.name},
@@ -216,11 +215,7 @@ export default defineType({
       { type: timelineSectionType.name},
       { type: locationSectionType.name},
       { type: contactSectionType.name},
-      { type: featureSectionType.name},
-      { type: servicesSectionType.name}, 
       { type: clientLoginSectionType.name},
-      // { type: faqsSectionType.name},
-      { type: benifitsSectionType.name},
       
       // etc...
     ],

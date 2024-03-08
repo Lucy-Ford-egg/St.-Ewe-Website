@@ -56,7 +56,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
     limit: $limit 
   ) {
     nodes {
-      image: coverImage {
+      image {
         asset {
           _id
           gatsbyImageData
