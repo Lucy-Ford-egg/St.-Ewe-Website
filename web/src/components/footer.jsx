@@ -673,6 +673,10 @@ export const Footer = props => {
             "& .float-end":{
               display: "flex",
               columnGap: 6,
+            },
+            // options
+            "& .cookie-list":{
+              color: "white.main"
             }
           }}
         >
