@@ -17,6 +17,7 @@ export const RenderPortableText = (props) => {
   const block = {
     normal: ({ children  }) => <Typography sx={{  py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
     body2: ({ children  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
+    caption: ({ children  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='caption'>{children}</Typography>,  
     h1: ({ children  }) => { 
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h1">{children}</Typography>
     },
@@ -25,7 +26,6 @@ export const RenderPortableText = (props) => {
     h4: ({ children  }) => <Typography sx={{ py: { xs: 7 }, color: 'inherit' }} variant="h4">{children}</Typography>,
     h5: ({ children  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h5">{children}</Typography>,
     h6: ({ children  }) => {
-      
     return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h6">{children}</Typography>
     },
     blockquote: ({ children }) => {

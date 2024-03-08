@@ -137,6 +137,7 @@ export default defineType({
       ], // yes please, both bullet and numbered
       styles: [
         // { title: 'Heading 2', value: 'h2' },
+        { title: 'Small', value: 'caption' },
         { title: 'Lead', value: 'body2' },
         { title: 'Heading 3', value: 'h3' },
         { title: 'Heading 4', value: 'h4' },
