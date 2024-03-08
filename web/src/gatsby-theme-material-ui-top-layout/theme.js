@@ -161,7 +161,117 @@ let clientTheme = createTheme({
             opacity: 0.2
           }
         }
+        .backgroundWrapperClasses{
+          position: fixed;
+          z-index: 10;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: ${defaultTheme.spacing(6)};
+          background-color: ${defaultTheme.palette.secondary.mid};
+          display: flex;
+          align-items: flex-end;
+        }
+        .cookie-notice {
+          display: flex;
+          column-gap: ${defaultTheme.spacing(6)};
+          row-gap: ${defaultTheme.spacing(6)};
+        }
+        ${[defaultTheme.breakpoints.down('md')]}{
+          .cookie-notice{
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+          }
+        }
+        .backgroundClasses{
+          display: flex;
+          column-gap: ${defaultTheme.spacing(12)};
+        }
+        ${[defaultTheme.breakpoints.down('sm')]}{
+          .backgroundClasses{
+            flex-direction: column;
+          }
+        }
+        .buttonWrapperClasses{
+          display: flex;
+          column-gap: ${defaultTheme.spacing(6)};
+          align-items: center;
+        }
+        .cookieButton{
+          padding-top: ${defaultTheme.spacing(1)};
+          padding-bottom: ${defaultTheme.spacing(1)};
+          padding-left: ${defaultTheme.spacing(6)};
+          padding-right: ${defaultTheme.spacing(6)};
+          border-radius: 1000px;
+          text-transform: uppercase;
+          border: none;
+          outline: none;
+        }
+        .buttonOutlined{
+          background-color: transparent;
+          border: 1px solid ${defaultTheme.palette.primary.main};
+          color: ${defaultTheme.palette.primary.main};
+        }
+        .buttonTertiary{
+          border: 1px solid ${defaultTheme.palette.white.main};
+          color: ${defaultTheme.palette.white.main};
+          align-self: center;
+        }
+        .acceptButtonClasses{
+          background-color: ${defaultTheme.palette.primary.main};
+          color: white;
+        }
+        .declineButtonClass{
+           
+        }
+        .cookie-list{
+          color: ${defaultTheme.palette.white.main};
+        }
+
+
+        .bg-cookie{
+          
+          
+          
+          
+          .btn-primary, .btn-secondary {             
+            
+            outline: none;
+            border: none;
+            font-family: Open Sans;
+            border-radius: 1000;
+            text-transform: uppercase;
+            letterspacing: 0.075rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: max-content;
+            font-weight: 400;
+            font-size: ${defaultTheme.spacing(2)}; 
+            &:hover{
+              cursor: pointer;
+            }           
+          }
+          .btn-primary {
+            color: ${defaultTheme.palette.white.main};
+            background-color: ${defaultTheme.palette.primary.main};
+          }
+          .btn-secondary {
+            color: ${defaultTheme.palette.white.main};
+            background-color: transparent;
+            border: 1px solid ${defaultTheme.palette.primary.main};
+          }
+          
+          .float-end{
+            display: flex;
+            column-gap: 6;
+          }
+          
+          
+        }
         
+
       `
     },
     MuiContainer: {
