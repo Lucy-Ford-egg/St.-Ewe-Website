@@ -18,7 +18,7 @@ import {
 } from "@mui/material"
 import { ButtonFormat } from "../components/buttonFormat"
 import { SocialIcon } from "react-social-icons"
-import {RenderPortableText} from "../components/renderPortableText"
+import { RenderPortableText } from "../components/renderPortableText"
 
 export const Footer = props => {
   const { previewData, definedSiteSettings, sanityConfig } = props
@@ -101,11 +101,14 @@ export const Footer = props => {
   `)
 
   const definedTitle =
-    (definedSiteSettings && definedSiteSettings?.footerDetails?.title) || data?.sanitySiteSettings?.footerDetails?.title
+    (definedSiteSettings && definedSiteSettings?.footerDetails?.title) ||
+    data?.sanitySiteSettings?.footerDetails?.title
   const definedText =
-    (definedSiteSettings && definedSiteSettings?.footerDetails?.text) || data?.sanitySiteSettings?.footerDetails?._rawText
+    (definedSiteSettings && definedSiteSettings?.footerDetails?.text) ||
+    data?.sanitySiteSettings?.footerDetails?._rawText
   const definedLinks =
-    (definedSiteSettings && definedSiteSettings?.footerDetails?.links) || data?.sanitySiteSettings?.footerDetails?.links
+    (definedSiteSettings && definedSiteSettings?.footerDetails?.links) ||
+    data?.sanitySiteSettings?.footerDetails?.links
 
   const renderLink = menuItem => {
     return (
@@ -462,42 +465,47 @@ export const Footer = props => {
                   </svg>
                 </Box>
                 <Box>
-                  {definedTitle && <Typography
-                    variant="h5"
-                    color="white.main"
-                    sx={{
-                      mb: 6,
-                    }}
-                  >
-                    {definedTitle}
-                  </Typography>}
+                  {definedTitle && (
+                    <Typography
+                      variant="h5"
+                      color="white.main"
+                      sx={{
+                        mb: 6,
+                      }}
+                    >
+                      {definedTitle}
+                    </Typography>
+                  )}
                   {definedText && (
-                  <Box
-                    color="white.main"
-                    sx={{
-                      mb: { xs: 14, md: 8 },
-                    }}
-                  >
+                    <Box
+                      color="white.main"
+                      sx={{
+                        mb: { xs: 14, md: 8 },
+                      }}
+                    >
                       <RenderPortableText
                         previewData={definedText}
                         sanityConfig={sanityConfig}
                         setAsHeading={false}
                         value={definedText}
                       />
-                   
-                  </Box>
-                   )}
-                  {definedLinks &&
-                    definedLinks.map((node, i) => {
-                      return (
-                        <ButtonFormat
-                          variant={i === 0 ? "contained" : "outlined"}
-                          color={i === 0 ? "primary" : "primary"}
-                          node={node}
-                          sx={{}}
-                        />
-                      )
-                    })}
+                    </Box>
+                  )}
+                  {definedLinks && (
+                    <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"}, columnGap: 6, rowGap: 6, }}>
+                      {definedLinks &&
+                        definedLinks.map((node, i) => {
+                          return (
+                            <ButtonFormat
+                              variant={i === 0 ? "contained" : "outlined"}
+                              color={i === 0 ? "primary" : "primary"}
+                              node={node}
+                              sx={{}}
+                            />
+                          )
+                        })}
+                    </Box>
+                  )}
                 </Box>
               </Grid>
             </Grid>

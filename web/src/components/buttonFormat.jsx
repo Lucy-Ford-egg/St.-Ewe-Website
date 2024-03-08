@@ -1,6 +1,6 @@
 import React from "react"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
-import { Button } from "@mui/material"
+import { Button, Box } from "@mui/material"
 
 export const ButtonFormat = props => {
   const { node, sx, endIcon, variant, color } = props
@@ -18,7 +18,7 @@ export const ButtonFormat = props => {
     definedInternal = `/team-members/${definedInternal}`
   }
   return (
-    <>
+    <Box sx={sx}>
       {node?.link?.internal ? (
         <GatsbyButton
           size="small"
@@ -42,6 +42,6 @@ export const ButtonFormat = props => {
           {node.text}
         </Button>
       ) : null}
-    </>
+    </Box>
   )
 }
