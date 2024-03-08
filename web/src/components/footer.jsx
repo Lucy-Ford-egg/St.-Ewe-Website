@@ -1,4 +1,5 @@
 import React from "react"
+import { CookieNotice } from "gatsby-cookie-notice"
 import { useStaticQuery, graphql } from "gatsby"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import { CiLocationOn, CiPhone, CiMail } from "react-icons/ci"
@@ -491,7 +492,14 @@ export const Footer = props => {
                     </Box>
                   )}
                   {definedLinks && (
-                    <Box sx={{ display: "flex", flexDirection: {xs: "column", md: "row"}, columnGap: 6, rowGap: 6, }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", md: "row" },
+                        columnGap: 6,
+                        rowGap: 6,
+                      }}
+                    >
                       {definedLinks &&
                         definedLinks.map((node, i) => {
                           return (
@@ -613,6 +621,78 @@ export const Footer = props => {
             </svg>
           </IconButton>
         </Container>
+        <Box
+          sx={{
+            position: "fixed",
+            zIndex: 10,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            p: 12,
+            backgroundColor: "secondary.mid",
+            "& .cookie-notice": {
+              display: "flex",
+              columnGap: 6,
+            },
+            "& .container":{
+              display: "flex",
+              columnGap: 6,
+              alignItems: "center",
+            },
+            "& .btn-primary, .btn-secondary": {             
+              paddingTop: theme.spacing(2),
+              paddingBottom: theme.spacing(2),
+              paddingLeft: theme.spacing(7),
+              paddingRight: theme.spacing(7),
+              outline: "none",
+              border: "none",
+              fontFamily: "Open Sans",
+              borderRadius: 100,
+              textTransform: "uppercase",
+              letterspacing: "0.075rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "max-content",
+              fontWeight: 400,
+              fontSize: theme.spacing(2), 
+              "&:hover":{
+                cursor: "pointer",
+              },           
+            },
+            "& .btn-primary": {
+              color: "white.main",
+              backgroundColor: "primary.main",
+            },
+            "& .btn-secondary": {
+              color: "white.main",
+              backgroundColor: "transparent",
+              border: `1px solid ${theme.palette.primary.main}`,
+            },
+            
+            "& .float-end":{
+              display: "flex",
+              columnGap: 6,
+            }
+          }}
+        >
+          <Container maxWidth="xl">
+          <CookieNotice>
+            <Box>
+              <Typography color="white.main" variant="h5" sx={{mb: 4}}>
+                This websites uses cookies.
+              </Typography>
+              <Typography color="white.main" variant="caption" sx={{mb: {xs: 6, md: 0}, display: "flex"}}>
+                We use cookies to make the site work better, but also to see how
+                you interact with it. how you interact with it. We will only use
+                cookies if you allow us to do so by clicking by clicking on
+                "Accept Cookies". You can also choose which cookie you want to
+                allow.
+              </Typography>
+              </Box>
+          </CookieNotice>
+          </Container>
+        </Box>
       </Box>
     </>
   )
