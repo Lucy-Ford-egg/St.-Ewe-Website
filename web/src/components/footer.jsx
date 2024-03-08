@@ -16,10 +16,12 @@ import {
   Divider,
   IconButton,
 } from "@mui/material"
+import { ButtonFormat } from "../components/buttonFormat"
 import { SocialIcon } from "react-social-icons"
+import {RenderPortableText} from "../components/renderPortableText"
 
 export const Footer = props => {
-  const { previewData, sanityConfig, } = props
+  const { previewData, definedSiteSettings, sanityConfig } = props
 
   const theme = useTheme()
   const data = useStaticQuery(graphql`
@@ -66,9 +68,44 @@ export const Footer = props => {
           phone
           postcode
         }
+        footerDetails {
+          _type
+          _rawText(resolveReferences: { maxDepth: 10 })
+          title
+          links {
+            link {
+              _type
+              external
+              internal {
+                ... on SanityPage {
+                  id
+                  slug {
+                    current
+                    _type
+                  }
+                }
+                ... on SanityPost {
+                  id
+                  slug {
+                    current
+                    _type
+                  }
+                }
+              }
+            }
+            text
+          }
+        }
       }
     }
   `)
+
+  const definedTitle =
+    (definedSiteSettings && definedSiteSettings?.footerDetails?.title) || data?.sanitySiteSettings?.footerDetails?.title
+  const definedText =
+    (definedSiteSettings && definedSiteSettings?.footerDetails?.text) || data?.sanitySiteSettings?.footerDetails?._rawText
+  const definedLinks =
+    (definedSiteSettings && definedSiteSettings?.footerDetails?.links) || data?.sanitySiteSettings?.footerDetails?.links
 
   const renderLink = menuItem => {
     return (
@@ -107,17 +144,28 @@ export const Footer = props => {
 
   return (
     <>
-      <Box sx={{ 
-        mt: {
-          xs: theme.spacing(10),
-          md: theme.spacing(14),
-        },
-        backgroundColor: "secondary.main", py: { xs: 11, md: 14 } }}>
+      <Box
+        sx={{
+          mt: {
+            xs: theme.spacing(10),
+            md: theme.spacing(14),
+          },
+          backgroundColor: "secondary.main",
+          py: { xs: 11, md: 14 },
+        }}
+      >
         <Container maxWidth="xl" sx={{ position: "relative" }}>
           <Grid container rowSpacing={6} sx={{ py: 11 }}>
             <Grid container sx={{ py: 8 }}>
               <Grid item xs={12} md={7} sx={{ mb: { xs: 6, md: 0 } }}>
-                <Grid item xs={12} sx={{ mb: { xs: 16 }, svg: {maxWidth: '100%', height: 'auto'} }}>
+                <Grid
+                  item
+                  xs={12}
+                  sx={{
+                    mb: { xs: 16 },
+                    svg: { maxWidth: "100%", height: "auto" },
+                  }}
+                >
                   <svg
                     width="584"
                     height="138"
@@ -162,11 +210,15 @@ export const Footer = props => {
                       })}
                   </List>
                 </Grid>
-                <Grid container item xs={12} sx={{ mt :{xs: 16, md: 12}, mb: {xs: 16, md: 0} }}>
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  sx={{ mt: { xs: 16, md: 12 }, mb: { xs: 16, md: 0 } }}
+                >
                   {data?.sanitySiteSettings?.companyDetails &&
                     data?.sanitySiteSettings.companyDetails.map(
                       (companyDetail, i) => {
- 
                         return (
                           <Grid item xs={12} md={6} key={`company-${i}`}>
                             <List dense={true} sx={{ pb: 0 }}>
@@ -182,19 +234,25 @@ export const Footer = props => {
                                     color: "white.main",
                                     variant: "body1",
                                   }}
-                                  secondary={companyDetail.county === 'London' && 'By appointment only'}
+                                  secondary={
+                                    companyDetail.county === "London" &&
+                                    "By appointment only"
+                                  }
                                   secondaryTypographyProps={{
                                     color: "white.main",
-                                    fontStyle: 'italic',
+                                    fontStyle: "italic",
                                     variant: "h5",
-                                    fontSize: {xs: theme.spacing(2), md: theme.spacing(2)},
-                                    pt: '3px',
+                                    fontSize: {
+                                      xs: theme.spacing(2),
+                                      md: theme.spacing(2),
+                                    },
+                                    pt: "3px",
                                     pl: 2,
-                                    color: 'text.mid'
+                                    color: "text.mid",
                                   }}
                                   sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
+                                    display: "flex",
+                                    alignItems: "center",
                                   }}
                                 />
                               </ListItem>
@@ -228,7 +286,16 @@ export const Footer = props => {
                                 />
                               </ListItem>
                             </List>
-                            {i === 0 && <Divider sx={{display: {xs: 'block', md: 'none'}, pt: 10, mb: 8, borderColor: 'white.main'}}/>}
+                            {i === 0 && (
+                              <Divider
+                                sx={{
+                                  display: { xs: "block", md: "none" },
+                                  pt: 10,
+                                  mb: 8,
+                                  borderColor: "white.main",
+                                }}
+                              />
+                            )}
                           </Grid>
                         )
                       },
@@ -241,11 +308,11 @@ export const Footer = props => {
                 md={5}
                 sx={{
                   display: "flex",
-                  flexDirection: {xs: "column-reverse", md: "column"},
+                  flexDirection: { xs: "column-reverse", md: "column" },
                   justifyContent: "space-between",
-                  alignItems: {xs: 'unset', md: 'flex-end'},
+                  alignItems: { xs: "unset", md: "flex-end" },
                   pb: 1,
-                  position: 'relative',
+                  position: "relative",
                 }}
               >
                 <Box
@@ -253,16 +320,16 @@ export const Footer = props => {
                     display: "flex",
                     justifyContent: "flex-end",
                     width: "100%",
-                    maxWidth: {xs: 54, md: 78},
-                    ml: {xs: "auto", md: "unset"},
-                    position: {xs: ' absolute', md: 'relative'},
-                    right: {xs: 20, md: 'unset'},
-                    bottom: {xs: 0, md: 'unset'},
-                    alignItems: {xs: 'flex-end', md: 'flex-end'},
+                    maxWidth: { xs: 54, md: 78 },
+                    ml: { xs: "auto", md: "unset" },
+                    position: { xs: " absolute", md: "relative" },
+                    right: { xs: 20, md: "unset" },
+                    bottom: { xs: 0, md: "unset" },
+                    alignItems: { xs: "flex-end", md: "flex-end" },
                     svg: {
-                      maxWidth: '100%',
-                      height: 'auto',
-                    }
+                      maxWidth: "100%",
+                      height: "auto",
+                    },
                   }}
                 >
                   <svg
@@ -395,30 +462,42 @@ export const Footer = props => {
                   </svg>
                 </Box>
                 <Box>
-                  <Typography
+                  {definedTitle && <Typography
                     variant="h5"
                     color="white.main"
                     sx={{
                       mb: 6,
                     }}
                   >
-                    Let us call you back
-                  </Typography>
-                  <Typography
-                    variant="body1"
+                    {definedTitle}
+                  </Typography>}
+                  {definedText && (
+                  <Box
                     color="white.main"
                     sx={{
-                      mb: {xs: 14,md: 8},
+                      mb: { xs: 14, md: 8 },
                     }}
                   >
-                    Aenean tellus metus, bibendum sed, posuere ac, mattis non,
-                    nunc. Ut varius tincidunt libero. Etiam ultricies nisi vel
-                    augue. Praesent ut ligula non mi varius sagittis. Nam
-                    commodo suscipit quam.
-                  </Typography>
-                  <Button to="/contact" variant="contained" color="primary">
-                    Request Callback
-                  </Button>
+                      <RenderPortableText
+                        previewData={definedText}
+                        sanityConfig={sanityConfig}
+                        setAsHeading={false}
+                        value={definedText}
+                      />
+                   
+                  </Box>
+                   )}
+                  {definedLinks &&
+                    definedLinks.map((node, i) => {
+                      return (
+                        <ButtonFormat
+                          variant={i === 0 ? "contained" : "outlined"}
+                          color={i === 0 ? "primary" : "primary"}
+                          node={node}
+                          sx={{}}
+                        />
+                      )
+                    })}
                 </Box>
               </Grid>
             </Grid>

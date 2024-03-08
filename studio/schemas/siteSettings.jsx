@@ -71,10 +71,99 @@ export const companyDetailType = defineType({
 export const companyDetailsType = defineType({
   name: 'companyDetails',
   type: 'array',
-  title: 'Company Detials',
+  title: 'Company Details',
   of: [{type: 'companyDetailType'}],
   description: 'Shown in the footer.',
   validation: (Rule) => Rule.min(1).max(2),
+})
+
+export const footerDetailsType = defineType({
+  name: 'footerDetails',
+  type: 'object',
+  title: 'Footer Details',
+  fields:[
+    defineField({
+      name: 'title',
+      type: 'string',
+      title: 'Title',
+      description: '',
+    }),
+    defineField({
+      name: 'text',
+      type: 'array',
+      title: 'Text',
+      of: [{
+        type: 'block',
+        lists: [
+          { title: 'Bullet', value: 'bullet' },
+          { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          { title: 'Lead', value: 'body2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+        ],
+        marks: {
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
+          ],
+          annotations: [
+            {
+              name: 'internalLink',
+              type: 'object',
+              title: 'Internal link',
+              fields: [
+                {
+                  name: 'reference',
+                  type: 'reference',
+                  title: 'Reference',
+                  to: [
+                    { type: 'post' }, {type: 'page'}
+                    // other types you may want to link to
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'link',
+              type: 'object',
+              title: 'External link',
+              fields: [
+                {
+                  name: 'href',
+                  type: 'url',
+                  title: 'URL'
+                },
+                {
+                  title: 'Open in new tab',
+                  name: 'blank',
+                  default: true,
+                  type: 'boolean'
+                }
+              ]
+            },
+          ],
+        }
+      },
+    ],
+      validation: (rule) => rule.required(),
+      description: "",
+    }),
+    defineField({
+      name: 'links',
+      type: 'array',
+      title: 'Link(s)',
+      of: [
+        {type: 'linkDefined'}
+      ],
+      description: 'Add a link(s). Optional',
+      validation: Rule => Rule.min(1).max(2),
+    }),
+  ],
+  description: 'Shown in the footer.',
 })
 
 export const newsletterType = defineType({
@@ -124,6 +213,10 @@ export default defineType({
       name: 'companyDetails',
       title: 'Company Details',
     },
+    {
+      name: 'footerDetails',
+      title: 'Footer Details',
+    },
   ],
   icon: MdOutlineMenu,
   fields: [
@@ -144,6 +237,12 @@ export default defineType({
       type: 'companyDetails',
       title: 'Company Details',
       group: 'companyDetails',
+    }),
+    defineField({
+      name: 'footerDetails',
+      type: 'footerDetails',
+      title: 'Footer Details',
+      group: 'footerDetails',
     }),
   ],
 })

@@ -14,6 +14,9 @@ export const ButtonFormat = props => {
   if(node?.link?.internal?._type === "caseStudy" ){
     definedInternal = `/case-studies/${definedInternal}`
   }
+  if(node?.link?.internal?._type === "teamMembers" ){
+    definedInternal = `/team-members/${definedInternal}`
+  }
   return (
     <>
       {node?.link?.internal ? (
@@ -21,7 +24,7 @@ export const ButtonFormat = props => {
           size="small"
           color={color}
           variant={variant}
-          to={definedInternal} 
+          to={`/${definedInternal}`} 
           // sx={{...sx}}
           endIcon={endIcon}
         >

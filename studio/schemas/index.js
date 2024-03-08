@@ -4,7 +4,7 @@ import linkDefinedType from '../schemas/linkDefined'
 import subItemType from '../schemas/subItem'
 import linkType from '../schemas/link'
 import categoriesType from '../schemas/categories'
-import siteSettingsType, { companyDetailType, companyDetailsType, newsletterType } from '../schemas/siteSettings'
+import siteSettingsType, { companyDetailType, companyDetailsType, newsletterType, footerDetailsType } from '../schemas/siteSettings'
 import designSystemColorType from '../schemas/designSystemColor'
 // import faqsType from '../schemas/faqs'
 import showArchiveType from '../schemas/showArchive'
@@ -76,6 +76,7 @@ export const schemaTypes = [
   companyDetailsType,
   newsletterType,
   designSystemColorType,
+  footerDetailsType,
 
   // Atoms
   citeType,

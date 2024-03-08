@@ -4,6 +4,7 @@ import groq from 'groq'
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
   ...,
+  text[]{...},
 }`
 
 export const NAV_QUERY = groq`*[_type in ["post", "page", "caseStudy", "teamMember"] && slug.current == $slug][0] {
