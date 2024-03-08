@@ -15,7 +15,7 @@ import { motion, useScroll, useSpring } from "framer-motion"
 
 export const TimelineSection = props => {
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
+  const smallMobile = useMediaQuery("@media screen and (max-width: 320px)")
 
   // Scroll animation
   const lineRef = useRef(null)
@@ -237,7 +237,7 @@ export const TimelineSection = props => {
                   }}
                   //exit={{ opacity: 0.1 }}
                   viewport={{
-                    amount: "all",
+                    amount: smallMobile ? "some" : "all",
                     //margin: "25%",
                     once: false,
                   }}
