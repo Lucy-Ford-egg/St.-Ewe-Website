@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react"
-import { Box, Divider, Paper, Grid, Typography } from "@mui/material"
+import { Box, Divider, Paper, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import { contrastColour } from "../utils/contrastColour"
 import { useInView, useAnimate, motion } from "framer-motion"
@@ -7,9 +7,10 @@ import { useInView, useAnimate, motion } from "framer-motion"
 export const StepsTile = props => {
   const { previewData, tile, sanityConfig, tileColor, index, displayNumber, pieSegments } =
     props
-
+  const theme = useTheme()
+  const sm = useMediaQuery(theme.breakpoints.down("sm"))
   const ref = useRef(null)
-  const isInView = useInView(ref, { amount: "all", once: false })
+  const isInView = useInView(ref, { amount: sm ? "some" : "all", once: false })
 
   const definedTitle =
     (previewData && previewData?.steps && previewData?.steps[index]?.title) || tile._rawTitle
@@ -85,8 +86,7 @@ export const StepsTile = props => {
 
 
   return (
-    <Paper
-   
+    <Paper 
       sx={{
         boxShadow: "none",
         display: "flex",
@@ -99,6 +99,7 @@ export const StepsTile = props => {
       }}
     >
       <Box
+     
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -129,7 +130,7 @@ export const StepsTile = props => {
                         color={contrastColour(tileColor).textColour}
                       >{`Step ${displayNumber}`}</Typography>
                     )}
-                    <Box color={contrastColour(tileColor).textColour} sx={{mt: {xs: -1, md: -1}}}>
+                    <Box ref={ref} color={contrastColour(tileColor).textColour} sx={{mt: {xs: -1, md: -1}}}>
                       <RenderPortableText
                         previewData={previewData?.steps && previewData?.steps[index]}
                         sanityConfig={sanityConfig}
@@ -142,7 +143,7 @@ export const StepsTile = props => {
               </Grid>
               <Grid item xs={4} md={4} sx={{ pr: {xs: 9, md: 12}, pb: {xs: 9, lg: 12}, pt: {xs: 9, lg: 12}, display: 'flex', flexDirection: "column", alignItems: "center" }}>
                 <Box
-                  ref={ref}
+                   
                   sx={{
                     display: "grid",
                     flexDirection: "row",
@@ -241,6 +242,7 @@ export const StepsTile = props => {
               </Grid>
               {definedDescription && (
               <Grid
+              
                 xs={12}
                 md={definedOrientation ? 12 : 12}
                 sx={{ px: {xs: 9, md: 12},  py: {xs: 6, sm: 6, lg: 12}}}
