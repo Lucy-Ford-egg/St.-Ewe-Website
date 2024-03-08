@@ -9,6 +9,7 @@ import {
   ListItemText,
   IconButton,
   useMediaQuery,
+  Link,
 } from "@mui/material"
 import { mapStyles } from "../utils/mapStyles"
 import { motion } from "framer-motion"
@@ -238,7 +239,7 @@ export const Map = props => {
                                     variant: "caption",
                                   }}
                                   sx={{ my: "0 !important" }}
-                                  primary={location?.email}
+                                  primary={<Link href={`mailto:${location?.email}`}>{location?.email}</Link>}
                                 />
                               </ListItem>
                             )}
