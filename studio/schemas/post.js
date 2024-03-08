@@ -190,7 +190,8 @@ export default defineType({
         ],
       }
     }, {
-      type: 'image'
+      type: 'image',
+      validation: (rule) => rule.required(),
     }],
     validation: (rule) => rule.required(),
     description: "This works slightly differently to page modules. You can add images, quotes and other textural decoration in the editor.",
