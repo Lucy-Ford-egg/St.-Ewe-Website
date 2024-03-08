@@ -239,7 +239,7 @@ export const Map = props => {
                                     variant: "caption",
                                   }}
                                   sx={{ my: "0 !important" }}
-                                  primary={<Link href={`mailto:${location?.email}`}>{location?.email}</Link>}
+                                  primary={<Link target="_top" href={`mailto:${location?.email}`}>{location?.email}</Link>}
                                 />
                               </ListItem>
                             )}
