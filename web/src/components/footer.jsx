@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { Button, Button as GatsbyButton } from "gatsby-theme-material-ui"
+import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import { CiLocationOn, CiPhone, CiMail } from "react-icons/ci"
 import {
   Container,
@@ -21,7 +21,7 @@ import { SocialIcon } from "react-social-icons"
 import { RenderPortableText } from "../components/renderPortableText"
 
 export const Footer = props => {
-  const { previewData, definedSiteSettings, sanityConfig } = props
+  const { definedSiteSettings, sanityConfig } = props
 
   const theme = useTheme()
   const data = useStaticQuery(graphql`
@@ -242,7 +242,6 @@ export const Footer = props => {
                                     "By appointment only"
                                   }
                                   secondaryTypographyProps={{
-                                    color: "white.main",
                                     fontStyle: "italic",
                                     variant: "h5",
                                     fontSize: {

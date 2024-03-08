@@ -1,18 +1,13 @@
 import React from 'react'
-
 import { BlogSection } from "./blogSection"
-
 import { HeaderSection } from './headerSection'
 import { TimelineSection } from './timelineSection'
 import { VideoSection } from './videoSection'
 import { FeaturesListSection } from './featuresListSection'
 import { CtaSection } from './ctaSection'
-import { ServicesSection } from './servicesSection'
 import { TestimonialSection } from './testimonialSection'
 import { ImageCarouselSection } from './imageCarouselSection'
 import { LocationSection } from './locationSection'
-import { FaqsSection } from './faqsSection'
-import { BenifitsSection } from './benifitsSection'
 import { ContactSection } from './contactSection'
 import { TeamSection } from './teamSection'
 import { CaseStudySection} from './caseStudySection'
@@ -22,7 +17,7 @@ import { ClientLoginSection } from './clientLoginSection'
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, allFeature, placeLocation, pageContext, allSanityPost, allSanityCaseStudy,  blogInserted, sanitySiteSettings } = props
+    const { sanityConfig, previewData, modules, pageContext, allSanityPost, allSanityCaseStudy, sanitySiteSettings } = props
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -152,15 +147,6 @@ const Modules = (props) => {
                                 {...module} />
                         )
                     }
-                    if (isModule(module, 'servicesSection')) {
-                        return (
-                            <ServicesSection
-                                previewData={previewData && previewData[i]}
-                                sanityConfig={sanityConfig}
-                                key={module._key + i}
-                                {...module} />
-                        )
-                    }
                     
                     if (isModule(module, 'imageCarouselSection')) {
                         return (
@@ -181,24 +167,7 @@ const Modules = (props) => {
                                 {...module} />
                         )
                     }
-                    if (isModule(module, 'faqsSection')) {
-                        return (
-                            <FaqsSection
-                                previewData={previewData && previewData[i]}
-                                sanityConfig={sanityConfig}
-                                key={module._key + i}
-                                {...module} />
-                        )
-                    }
-                    if (isModule(module, 'benifitsSection')) {
-                        return (
-                            <BenifitsSection
-                                previewData={previewData && previewData[i]}
-                                sanityConfig={sanityConfig}
-                                key={module._key + i}
-                                {...module} />
-                        )
-                    }
+                    
                     if (isModule(module, 'contactSection')) {
                         return (
                             <ContactSection
@@ -217,62 +186,7 @@ const Modules = (props) => {
                                 {...module} />
                         )
                     }
-                    // if (isModule(module, 'imageCarouselSubtitleTitleTextLink')) {
-                    //     return <Carousel {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "placesGrid")) {
-                    //     return <Places {...module} allPlace={allPlace} key={module._key + i} pageContext={pageContext} />
-                    // }
-                    // else if (isModule(module, "postsGrid")) {
-                    //     return <Posts {...module} allPost={allPost} key={module._key + i} pageContext={pageContext} />
-                    // }
-                    // else if (isModule(module, "featureGrid")) {
-                    //     return <Features {...module} disableTopPadding={i === 0 ? true : false}  allFeature={allFeature} key={module._key + i} pageContext={pageContext} />
-                    // }
-                    // else if (isModule(module, "imageWithCaption")) {
-                    //     return <ImageCaption {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "textBlock")) {
-
-                    //     return <Text previewData={previewData && previewData.pageBuilder[i]} sanityConfig={sanityConfig} {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "imageCarouselCaptionLink")) {
-                    //     return <GalleryCarousel {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "heroCallToAction")) {
-                    //     return <HeroCallToAction previewData={previewData && previewData.pageBuilder && previewData.pageBuilder[i]} sanityConfig={sanityConfig} {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "heroNewsletter")) {
-                    //     return <HeroNewsletter {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "map")) {
-                    //     return <Map {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "twoColumnTitleTextCta")) {
-                    //     return <MultiColumnTitleTextLink {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "categoryFeature")) {
-                    //     return <CategoryFeature {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "heroInfoCallToAction")) {
-                    //     return <HeroInfoCallToAction {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "titleSubtitleText")) {
-                    //     return <TitleSubtitleText disableTopPadding={i === 0 ? false : true} placeLocation={placeLocation} {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "imageTextCallToActionImage")) {
-                    //     return <ImageTextCallToActionImage {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "imageWithLink")) {
-                    //     return <ImageLink {...module} key={module._key + i} />
-                    // }
-                    // else if (isModule(module, "instagramModule")) {
-
-                    //     return <InstagramEmbed {...module} key={module._key + i} />
-                    // }
-
-                    // else
-                    //     return null
+                    
                     return null
 
                 })}
