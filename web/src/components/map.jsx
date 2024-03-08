@@ -29,11 +29,18 @@ export const Map = props => {
   const md = useMediaQuery(theme.breakpoints.down("md"))
   const lg = useMediaQuery(theme.breakpoints.up("md"))
   const [marker, setMarker] = useState(null)
+  const [center, setCenter] = useState({
+    lat: 50.91,
+    lng: -2.55,
+  })
   const markerRef = useRef()
 
   const handleMarker = (ref) => {
-
     return setMarker(ref)
+  }
+
+  const handleMarkerClick = (latLng) => {
+    setCenter(latLng)
   }
 
   const { sanitySiteSettings } = props
@@ -45,8 +52,8 @@ export const Map = props => {
 
   const defaultProps = {
     center: {
-      lat: 50.784886806526465,
-      lng: -2.363844061627551,
+      lat: 50.91,
+      lng: -2.55,
     },
     zoom: zoom.true
   }
@@ -68,6 +75,7 @@ export const Map = props => {
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_MAPS_API_KEY }}
           defaultCenter={defaultProps.center}
+          center={center}
           defaultZoom={defaultProps.zoom}
           options={mapOptions}
         >
@@ -79,8 +87,18 @@ export const Map = props => {
                 lat={location?.geopoint?.lat}
                 lng={location?.geopoint?.lng}
                 text="My Marker"
+                
               >
-                <Box sx={{ 
+                <Box 
+                lat={location?.geopoint?.lat}
+                lng={location?.geopoint?.lng}
+                onClick={e => handleMarkerClick(
+                  {
+                    lat: location?.geopoint?.lat,
+                    lng: location?.geopoint?.lng,
+                  }
+                )}
+                sx={{ 
                   position: 'absolute',
                   left: 0,
                   top: -12,
