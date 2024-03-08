@@ -166,7 +166,8 @@ export default defineType({
           ]
         }
       }, {
-        type: 'image'
+        type: 'image',
+        validation: (rule) => rule.required(),
       }],
       group: 'pageContent',
       //validation: (rule) => rule.required(),
