@@ -38,7 +38,7 @@ const CaseStudyTemplate = props => {
     data.sanityCaseStudy?.service?.name
 
   const definedRawBody = (previewData && previewData?.body) || data?.sanityCaseStudy._rawBody
-  const definedPageBuilder = (previewData && previewData?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
+  const definedModules = (previewData && previewData?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
     
   return (
     <>
@@ -208,7 +208,7 @@ const CaseStudyTemplate = props => {
             )}
       <Modules
         pageContext={pageContext}
-        modules={definedPageBuilder}
+        modules={definedModules}
       />
             
     </>

@@ -23,8 +23,10 @@ export const ContactSection = props => {
     sanityConfig,
     topPadding,
     _rawFormTerms,
+    _key,
   } = props
 
+  const definedKey = (previewData && previewData._key) || _key
   const definedTopPadding =
     (previewData && previewData.topPadding) || topPadding
   const definedTitle = (previewData && previewData.title) || _rawTitle
@@ -50,7 +52,7 @@ export const ContactSection = props => {
 
   //
   return (
-    <Container
+    <Container key={definedKey}
       maxWidth={false}
       sx={{
         mt: definedTopPadding

@@ -17,6 +17,8 @@ const BlogArchiveTemplate = props => {
     { initial },
   )
 
+  const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
+
   return (
     <>
       <Modules
@@ -24,7 +26,7 @@ const BlogArchiveTemplate = props => {
           sanityConfig={getSanityClient}
           allSanityPost={data.allSanityPost}
           pageContext={pageContext}
-          modules={data?.sanityPage?.pageBuilder}
+          modules={definedModules}
         />
     </>
   )

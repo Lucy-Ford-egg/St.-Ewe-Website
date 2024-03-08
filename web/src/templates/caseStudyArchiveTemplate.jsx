@@ -20,6 +20,8 @@ const CaseStudyArchiveTemplate = props => {
     { initial },
   )
 
+  const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
+
   return (
     <>
       <Modules
@@ -27,7 +29,7 @@ const CaseStudyArchiveTemplate = props => {
           sanityConfig={getSanityClient}
           allSanityCaseStudy={data.allSanityCaseStudy}
           pageContext={pageContext}
-          modules={data?.sanityPage?.pageBuilder}
+          modules={definedModules }
         />
     </>
   )

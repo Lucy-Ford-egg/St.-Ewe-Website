@@ -37,7 +37,7 @@ const TeamMembersTemplate = props => {
     data.sanityTeamMember?.image
   const definedRawBio =
     (pageData && pageData?.bio) || data?.sanityTeamMember._rawBio
-  const definedPageBuilder =
+  const definedModules =
     (pageData && pageData?.pageBuilder) ||
     data?.sanityTeamMember?.pageBuilder
 
@@ -102,7 +102,7 @@ const TeamMembersTemplate = props => {
         <RenderPortableText value={definedRawBio} />
       </Container>
 
-      <Modules pageContext={pageContext} modules={definedPageBuilder} />
+      <Modules pageContext={pageContext} modules={definedModules} />
     </>
   )
 }

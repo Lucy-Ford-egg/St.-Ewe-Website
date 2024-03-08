@@ -35,15 +35,13 @@ const PostTemplate = props => {
   )
 
   const definedRawBody = (previewData && previewData?.body) || data?.sanityPost._rawBody
-  const definedPageBuilder = (previewData && previewData?.pageBuilder)  || data?.sanityPost?.pageBuilder
-
+  const definedModules = (previewData && previewData?.pageBuilder)  || data?.sanityPost?.pageBuilder
   const definedTileColor = (previewData && previewData?.tileColor) || tileColor
   const definedCategory = (previewData && previewData?.category) || data.sanityPost?.category
   const definedTitle = (previewData && previewData?.title) || data?.sanityPost?.title
   const definedDate = (previewData && previewData?.date) || data.sanityPost?.date
   const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author 
   const definedImage = (previewData && previewData?.image) || image
-debugger
 
   return (
    <>
@@ -230,7 +228,7 @@ debugger
 
       <Modules
         pageContext={pageContext}
-        modules={definedPageBuilder}
+        modules={definedModules}
       />
     </>
   )

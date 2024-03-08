@@ -30,7 +30,10 @@ export const LocationSection = props => {
     topPadding,
     textAlign,
     sanitySiteSettings,
+    _key,
   } = props
+
+  const definedKey = (previewData && previewData._key) || _key
 
   const definedTopPadding =
     (previewData && previewData?.topPadding) || topPadding
@@ -42,7 +45,7 @@ export const LocationSection = props => {
   const definedSiteSettings = sanitySiteSettings?.companyDetails
 
   return (
-    <Container
+    <Container key={definedKey}
       maxWidth="xl"
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
