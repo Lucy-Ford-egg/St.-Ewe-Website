@@ -51,6 +51,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
       description,
       involves,
       _type, 
+      text[]{...},
     },
     showArchive{
       ...,

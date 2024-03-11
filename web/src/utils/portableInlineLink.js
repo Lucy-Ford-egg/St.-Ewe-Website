@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from '@mui/material';
 
 export const PortableTextInlineLink = ({value, children, color}) => {
+  debugger
   const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
   let linkType = <Link sx={{color: color, display: 'inline-block', mx: '5px'}} className="portableTextInlineLink link-animation" href={value.href} rel={rel} aria-label={`Link to ${children}`}> {children}</Link>
 

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdOutlineQuestionAnswer } from "react-icons/md"
+import { MdOutlineQuestionAnswer, MdPictureAsPdf } from "react-icons/md"
 
 export default defineType({
   name: "accordionTile",
@@ -32,8 +32,45 @@ export default defineType({
             {title: 'Strong', value: 'strong'},
             {title: 'Emphasis', value: 'em'},
             {title: 'Underline', value: 'underline'}
-          ]
-        }
+          ],
+          annotations: [
+            {
+              name: 'internalLink',
+              type: 'object',
+              title: 'Internal link',
+              fields: [
+                {
+                  name: 'reference',
+                  type: 'reference',
+                  title: 'Reference',
+                  to: [
+                    { type: 'post' }, {type: 'page'}
+                    // other types you may want to link to
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'link',
+              type: 'object',
+              title: 'External link',
+              fields: [
+                {
+                  name: 'href',
+                  type: 'url',
+                  title: 'URL'
+                },
+                {
+                  title: 'Open in new tab',
+                  name: 'blank',
+                  default: true,
+                  type: 'boolean'
+                }
+              ]
+            },
+            {type: 'file', icon: MdPictureAsPdf},
+          ],
+        },
       }],
       validation: (rule) => rule.required(),
     }),

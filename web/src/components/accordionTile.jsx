@@ -23,18 +23,16 @@ export const AccordionTile = props => {
 
   const theme = useTheme()
   const {
-    title,
-    _rawText,
-    index,
     tileColor,
-    _key,
     tile,
     previewData,
+    index,
   } = props
 
 
-  const definedTitle = (previewData && previewData?.tile?.title) || tile?.title
-  const definedText = (previewData && previewData?.tile?._rawText) || tile?._rawText
+  const definedTitle = (previewData && previewData?.steps[index]?.title) || tile?.title
+  const definedText = (previewData && previewData?.steps[index]?.text) || tile?._rawText
+  const definedKey = (previewData && previewData?.steps[index]?._key) || tile?._key
 debugger
   return (
     <Paper 
@@ -42,11 +40,10 @@ debugger
         boxShadow: "none",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: tileColor.value,
         flexBasis: "100%",
         width: "100%",
         height: "100%",
-        mb: 6,
+        mb: 0,
         borderRadius: 0,
       }}
     >
@@ -55,21 +52,30 @@ debugger
                   square={true}
                   disableGutters={true}
                   elevation={0}
-                  key={_key}
-                  expanded={expanded === `panel${index}`}
-                  onChange={handleChange(`panel${index}`)}
+                  key={definedKey}
+                  expanded={expanded === `panel${definedKey}`}
+                  onChange={handleChange(`panel${definedKey}`)}
                   sx={{backgroundColor: 'unset'}}
                 >
                   <AccordionSummary
-                    aria-controls={`panel${index}-content`}
-                    id={`panel${index}-header`}
-                    expandIcon={<CiCircleChevDown color={contrastColour(tileColor).divider.hex}/>}
+                    aria-controls={`panel${definedKey}-content`}
+                    id={`panel${definedKey}-header`}
+                    expandIcon={<CiCircleChevDown style={{fontSize: 24}} color={contrastColour(tileColor).divider.hex}/>}
+                    sx={{ backgroundColor: tileColor.value}}
                   >
                     {definedTitle && <Typography variant="overline" color={contrastColour(tileColor).textColour}>{definedTitle}</Typography>}
                   </AccordionSummary>
-                  <AccordionDetails>
-                    {definedText && 
-                    <RenderPortableText color={contrastColour(tileColor).textColour} variant={false} value={definedText}/>}
+                  <AccordionDetails sx={{backgroundColor: "white.main"}}>
+                  
+                    {definedText && (
+                      <RenderPortableText
+                        previewData={definedText}
+                        //sanityConfig={sanityConfig}
+                        setAsHeading={false}
+                        value={definedText}
+                        color={contrastColour(tileColor).textColour}
+                      />
+                    )}
                   </AccordionDetails>
                 </Accordion>
              

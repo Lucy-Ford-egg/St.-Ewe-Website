@@ -128,6 +128,7 @@ export const StepsSection = props => {
               tile={currentItem }
               previewData={previewData}
               index={i}
+              key={currentItem._key}
               displayNumber={[acc ]}
               sanityConfig={sanityConfig}
               pieSegments={pieSegments && pieSegments.length}
