@@ -302,6 +302,12 @@ export const query = graphql`
         secondTitle
         tileOrientation
       }
+      ... on SanityAccordionTile {
+        _key
+        _type
+        _rawRichText(resolveReferences: {maxDepth: 10})
+        title
+      }
     }
   }
 `

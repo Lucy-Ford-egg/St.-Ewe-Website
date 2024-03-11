@@ -95,7 +95,8 @@ export default defineType({
       type: 'array',
       of: [
         { type: 'stepTile'},
-        { type: 'stepDivider'}
+        { type: 'stepDivider'},
+        { type: 'accordionTile'}
       ]
     }),
 

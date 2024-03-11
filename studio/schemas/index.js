@@ -22,6 +22,7 @@ import citeType from '../schemas/components/cite'
 import externalCiteType from '../schemas/components/externalCite'
 import sevicesType from '../schemas/taxonomies/services'
 import showCaseStudyArchiveType from '../schemas/components/showCaseStudyArchive'
+import accordionTileType from '../schemas/components/accordionTile'
 
 //Sections
 import headerSectionType from '../schemas/sections/headerSection'
@@ -82,6 +83,7 @@ export const schemaTypes = [
   citeType,
   externalCiteType,
   showCaseStudyArchiveType,
+  accordionTileType,
   
   // Taxonomies
   sevicesType,
