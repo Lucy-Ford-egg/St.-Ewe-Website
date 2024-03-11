@@ -4,7 +4,6 @@ import Header from "./header"
 import { Footer } from "./footer"
 import { VisualEditing } from "./visualEditing"
 import {Box} from "@mui/material"
-import {Seo} from "../components/seo"
 // Preview
 import { useQuery } from "../../sanity/store";
 import {NAV_QUERY, SITE_SETTINGS} from '../queries/documentQueries';
@@ -29,12 +28,10 @@ export const Layout = (props) => {
   const definedNavColor = (previewData && previewData?.nav?.navColor) || navColor
   const definedNavOverlay = (previewData && previewData?.nav?.navOverlay) || navOverlay
 
-  const definedSeoContext = (props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy || props.data.sanityPage )
-  
     return (
     <div>
       <VisualEditing {...props}/>
-      <Seo seoContext={definedSeoContext} {...props}/>
+     
       <Header definedSiteSettings={definedSiteSettings} definedNavColor={definedNavColor} navOverlay={definedNavOverlay}/>
       <Box previewData={previewData}>{
          React.Children.map(children, child => {
