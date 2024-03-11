@@ -8,11 +8,10 @@ import {
   AccordionSummary,
   Accordion,
 } from "@mui/material"
-// // import { Icons } from "../components/icons"
-import { textAlignToJustifyContent } from "../utils/alignment"
 import { RenderPortableText } from "./renderPortableText"
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { ButtonFormat } from "./buttonFormat"
+import { CiCircleChevDown } from "react-icons/ci";
+import { contrastColour } from "../utils/contrastColour"
+
 
 
 export const AccordionTile = props => {
@@ -34,9 +33,9 @@ export const AccordionTile = props => {
   } = props
 
 
-  const definedTitle = (previewData && previewData?.tile?.title) || tile?.tile
+  const definedTitle = (previewData && previewData?.tile?.title) || tile?.title
   const definedText = (previewData && previewData?.tile?._rawText) || tile?._rawText
-
+debugger
   return (
     <Paper 
       sx={{
@@ -45,6 +44,7 @@ export const AccordionTile = props => {
         flexDirection: "column",
         backgroundColor: tileColor.value,
         flexBasis: "100%",
+        width: "100%",
         height: "100%",
         mb: 6,
         borderRadius: 0,
@@ -63,13 +63,13 @@ export const AccordionTile = props => {
                   <AccordionSummary
                     aria-controls={`panel${index}-content`}
                     id={`panel${index}-header`}
-                    expandIcon={<KeyboardArrowDownIcon color='secondary'/>}
+                    expandIcon={<CiCircleChevDown color={contrastColour(tileColor).divider.hex}/>}
                   >
-                    {definedTitle && <Typography color='secondary.main' variant='h5'>{definedTitle}</Typography>}
+                    {definedTitle && <Typography variant="overline" color={contrastColour(tileColor).textColour}>{definedTitle}</Typography>}
                   </AccordionSummary>
                   <AccordionDetails>
                     {definedText && 
-                    <RenderPortableText color='secondary.main' variant={false} value={definedText}/>}
+                    <RenderPortableText color={contrastColour(tileColor).textColour} variant={false} value={definedText}/>}
                   </AccordionDetails>
                 </Accordion>
              

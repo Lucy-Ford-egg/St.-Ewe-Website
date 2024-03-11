@@ -119,7 +119,7 @@ export const StepsSection = props => {
           item
           xs={12}
           
-          sm={currentItem.tileOrientation === true ? 12 : 6}
+          sm={currentItem.tileOrientation === true ? 12 : 12}
           sx={{ display: "flex", flexDirection: "column" }}
         >
           

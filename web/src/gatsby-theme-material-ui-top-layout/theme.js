@@ -307,16 +307,16 @@ let clientTheme = createTheme({
     MuiAccordionSummary: {
       styleOverrides: {
         root: {
-          flexDirection: 'row-reverse',
+          flexDirection: 'row',
           columnGap: 10,
-          padding: 0,
+          
         },
       },
     },
     MuiAccordionDetails: {
       styleOverrides: {
         root: {
-          padding: 0,
+          
         }
       }
     },
