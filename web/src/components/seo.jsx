@@ -67,7 +67,7 @@ export const query = graphql`
       }
     }
   }
-  fragment SeoPlaceFragment on SanityPlace {
+  fragment SeoCaseStudyFragment on SanityCaseStudy {
     metaDescription
     metaTitle
     ogDescription

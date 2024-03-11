@@ -23,7 +23,7 @@ const CaseStudyTemplate = props => {
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
   // Preview
-  const { data: previewData, sourceMap } = useQuery(
+  const { data: previewData } = useQuery(
     CASE_STUDY_QUERY,
     { slug: data.sanityCaseStudy.slug.current },
     { initial },
@@ -222,6 +222,7 @@ export const Head = ({ data, location }) => {
 export const caseStudyTemplateQuery = graphql`
   query caseStudyTemplateQuery($slug: String!) {
     sanityCaseStudy(slug: { current: { eq: $slug } }) {
+      ... SeoCaseStudyFragment
       slug {
         current
       }

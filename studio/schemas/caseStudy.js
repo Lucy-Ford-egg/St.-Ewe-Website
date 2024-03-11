@@ -1,9 +1,10 @@
 import { MdOutlineChat } from "react-icons/md";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
-import openGraph from './openGraph'
 import authorType from './author'
 import servicesType from './taxonomies/services'
+import openGraph from '../schemas/openGraph'
+import siteMeta from '../schemas/siteMeta'
 
 // Sections 
 import headerSectionType from './sections/headerSection'
@@ -23,24 +24,6 @@ import locationSectionType from '../schemas/sections/locationSection'
 import clientLoginSectionType from '../schemas/sections/clientLoginSection'
 
 
-
-// Modules
-// import featureSectionType from './modules/featureSection'
-// import servicesSectionType from "./modules/servicesSection"
-
-// import faqsSectionType from "./modules/faqsSection"
-// import benifitsSectionType from "./modules/benifitsSection"
-
-/**
- * This file is the schema definition for a post.
- *
- * Here you'll be able to edit the different fields that appear when you 
- * create or edit a post in the studio.
- * 
- * Here you can see the different schema types that are available:
-  https://www.sanity.io/docs/schema-types
- */
-
 export default defineType({
   name: 'caseStudy',
   title: 'Case Study',
@@ -52,13 +35,22 @@ export default defineType({
       title: 'Page Content',
       default: true,
     },
-    // {
-    //   name: 'og',
-    //   title: 'SEO',
-    // },
+    {
+      name: 'og',
+      title: 'SEO',
+    },
+    {
+      name: 'meta',
+      title: 'Page Meta',
+    },
+    {
+      name: 'seo',
+      title: 'Seo Details',
+    },
   ],
   fields: [
-    //...openGraph.fields,
+    ...siteMeta.fields,
+    ...openGraph.fields,
     defineField({
       name: 'coverImage',
       title: 'Cover Image',

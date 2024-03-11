@@ -15,7 +15,7 @@ const PageTemplate = props => {
   // Preview
   const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
 
-  const { data: previewData, sourceMap } = useQuery(
+  const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
     {slug: definedSlug.slug.current},
     { initial }
@@ -114,6 +114,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
     }
   }
   sanityPage(slug: {current: {eq: $slug}}) {
+    ... SeoPageFragment
     slug {
       current
     }

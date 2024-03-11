@@ -22,14 +22,6 @@ import locationSectionType from '../schemas/sections/locationSection'
 import clientLoginSectionType from '../schemas/sections/clientLoginSection'
 
 
-// Modules
-import featureSectionType from './modules/featureSection'
-import servicesSectionType from './modules/servicesSection'
-
-// import faqsSectionType from './modules/faqsSection'
-import benifitsSectionType from './modules/benifitsSection'
-
-
 /**
  * This file is the schema definition for a post.
  *
@@ -136,12 +128,6 @@ export default defineType({
         { type: locationSectionType.name},
         { type: contactSectionType.name},
         { type: clientLoginSectionType.name},
-
-        // {type: featureSectionType.name},
-        // {type: servicesSectionType.name},
-        // //{type: faqsSectionType.name},
-        // {type: benifitsSectionType.name},
-       
         // etc...
       ],
       group: 'pageContent',

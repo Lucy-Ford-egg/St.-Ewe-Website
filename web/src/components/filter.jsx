@@ -1,8 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react"
 import { Tabs, Tab, Box, Typography, useTheme, useMediaQuery } from "@mui/material"
-import { motion } from "framer-motion"
 import { graphql, useStaticQuery } from "gatsby"
-import { CiCircleChevLeft, CiCircleChevRight } from "react-icons/ci";
+import { CiCircleChevLeft } from "react-icons/ci";
 
 
 export const Filter = ({ type, allData, filterData, setFilterData }) => {
@@ -12,16 +11,6 @@ export const Filter = ({ type, allData, filterData, setFilterData }) => {
   const [categoriesUsed, setCategoriesUsed] = useState(null)
   const [filterTabsValue, setFilterTabsValue] = useState(0)
 
-  // const addToFilter = (taxonomy) => {
-  //   setSelectedFilters(taxonomy)
-  //   if(taxonomy === null) {
-  //     setFilterData(allData)
-  //   }
-  //   else{
-  //   const filtered = allData.filter(e => e.category.name === taxonomy);
-  //   setFilterData(filtered)
-  //   }
-  // }
 
   const handleChange = (event, value) => {
     // setValue(taxonomy);
@@ -48,21 +37,6 @@ export const Filter = ({ type, allData, filterData, setFilterData }) => {
       }
     }
   `)
-
-  const filterBox = {
-    hidden: {
-      opacity: 0,
-      height: 0,
-      y: 50,
-      display: "none",
-    },
-    visible: {
-      opacity: 1,
-      height: "auto",
-      y: 0,
-      display: "block",
-    },
-  }
 
   const sortCategories = useCallback(() => {
     const array = data.allSanityPost.nodes.map(tax => {

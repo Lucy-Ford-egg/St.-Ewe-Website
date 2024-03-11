@@ -28,7 +28,7 @@ const PostTemplate = props => {
   const { image, tileColor } = data.sanityPost
 
   // Preview
-  const { data: previewData, sourceMap } = useQuery(
+  const { data: previewData } = useQuery(
     POST_QUERY,
     { slug: data.sanityPost.slug.current },
     { initial },
@@ -241,6 +241,7 @@ export const Head = ({ data, location }) => {
 export const pageTemplateQuery = graphql`
   query postTemplateQuery($slug: String!) {
     sanityPost(slug: { current: { eq: $slug } }) {
+      ... SeoPostFragment
       navOverlay
       navColor {
         value
