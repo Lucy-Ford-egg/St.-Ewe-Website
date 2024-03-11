@@ -2,6 +2,17 @@ import {SEOPane} from 'sanity-plugin-seo-pane'
 
 // ...all other list items
 
+const remoteURL = 'https://taylormoney.netlify.app' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
+const localURL = 'https://localhost:8000' // local development port from Gatsby
+const previewUrl = window.location.hostname.includes('localhost') ? localURL : remoteURL
+
+
+export const resolveProductionUrl = (doc) => {
+  console.log(`RPU - ${previewUrl}`)
+  return previewUrl
+}
+
+
 export const SeoPreview = (S, context) => {
   
   return (

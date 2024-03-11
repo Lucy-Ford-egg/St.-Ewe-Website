@@ -1,17 +1,16 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
-import {schemaTypes, brandColors, googleMaps } from './schemas'
+import {schemaTypes, brandColors, googleMaps} from './schemas'
 
-
-import { Logo } from './plugins/logo/logo'
-import { googleMapsInput } from "@sanity/google-maps-input"
-import { colorInput } from '@sanity/color-input'
+import {Logo} from './plugins/logo/logo'
+import {googleMapsInput} from '@sanity/google-maps-input'
+import {colorInput} from '@sanity/color-input'
 import {media} from 'sanity-plugin-media'
 import {deskStructure} from './structure/deskStructure'
-import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
+import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/studioTheme'
-import { simplerColorInput } from 'sanity-plugin-simpler-color-input'
+import {simplerColorInput} from 'sanity-plugin-simpler-color-input'
 
 import {presentationTool} from 'sanity/presentation'
 import {locate} from './locate'
@@ -22,7 +21,7 @@ export default defineConfig({
   title: 'Taylor Money',
   projectId: '0y4lutj5',
   dataset: 'production',
-  apiVersion: "2023-08-01",
+  apiVersion: '2023-08-01',
   theme,
   graphql: [
     {
@@ -33,14 +32,14 @@ export default defineConfig({
     },
   ],
   plugins: [
-    structureTool({ 
-        structure: deskStructure, 
-      }),
+    structureTool({
+      structure: deskStructure,
+    }),
     presentationTool({
       previewUrl: async () => {
-        const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL  || "http://localhost:8000"
+        const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
         return url
-      }, 
+      },
       locate: locate,
     }),
     visionTool(),
@@ -48,7 +47,7 @@ export default defineConfig({
     unsplashImageAsset(),
     colorInput(),
     googleMapsInput(googleMaps),
-    simplerColorInput(brandColors)
+    simplerColorInput(brandColors),
   ],
   schema: {
     types: schemaTypes,
