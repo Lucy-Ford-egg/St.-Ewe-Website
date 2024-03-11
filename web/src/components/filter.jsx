@@ -27,7 +27,7 @@ export const Filter = ({ type, allData, filterData, setFilterData }) => {
     // setValue(taxonomy);
     setFilterTabsValue(value)
     const taxonomy = event.currentTarget.textContent
-    debugger
+   
     setSelectedFilters(taxonomy)
     if (taxonomy === "All") {
       setFilterData(allData)
@@ -137,26 +137,6 @@ export const Filter = ({ type, allData, filterData, setFilterData }) => {
             )
           })}
       </Tabs>
-
-      {/* sx={{color:{selectedFilters === node.name ? "primary" : "tertiary"}}} */}
-      {/* <Box sx={{flexDirection: {xs: 'column', md: 'row'}, backgroundColor: "background.default"}} display="flex">
-
-            <Box display="flex" flexWrap="wrap" sx={{justifyContent: {xs: 'space-around', md: 'flex-start'}, columnGap: 3, rowGap: 3, flexGrow: 1, order: {xs: 2, md: 1}}}> 
-            
-              
-                 
-                 <Button key={`all`} onClick={e => addToFilter(null)} color={selectedFilters === null ? "primary" : "tertiary"} variant="text" disableElevation sx={{borderRadius: 0 }}>All</Button>
-
-                 {categoriesUsed && categoriesUsed.map((node) => {
-                  debugger
-                  return(
-                    <Button key={node.name} onClick={e => addToFilter(node.name)} color={selectedFilters === node.name ? "primary" : "tertiary"} variant="text" disableElevation sx={{borderRadius: 0 }}>{node.name}</Button>
-                  )
-                })}
-            
-            </Box>
-
-          </Box>  */}
     </Box>
   )
 }

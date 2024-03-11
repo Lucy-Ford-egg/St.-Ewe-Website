@@ -33,7 +33,7 @@ export const AccordionTile = props => {
   const definedTitle = (previewData && previewData?.steps[index]?.title) || tile?.title
   const definedText = (previewData && previewData?.steps[index]?.text) || tile?._rawText
   const definedKey = (previewData && previewData?.steps[index]?._key) || tile?._key
-debugger
+
   return (
     <Paper 
       sx={{
