@@ -13,8 +13,9 @@ export default defineType({
     }),
 
     defineField({
-      name: 'richText',
+      name: 'text',
       type: 'array',
+      title: 'Text',
       of: [{ 
         type: 'block',
         lists: [

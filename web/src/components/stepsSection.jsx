@@ -13,6 +13,7 @@ import { StepsTile } from "./stepsTile"
 import { RenderPortableText } from "../components/renderPortableText"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { contrastColour } from "../utils/contrastColour"
+import {AccordionTile} from "../components/accordionTile"
 
 export const StepsSection = props => {
   const theme = useTheme()
@@ -110,7 +111,32 @@ export const StepsSection = props => {
         </Grid>)
         
       }
-      if (currentItem._type !== "stepDivider") {
+      if (currentItem._type === "accordionTile") {
+        acc++
+        steps.push(
+        <Grid
+          key={`step-${i}`}
+          item
+          xs={12}
+          
+          sm={currentItem.tileOrientation === true ? 12 : 6}
+          sx={{ display: "flex", flexDirection: "column" }}
+        >
+          
+            <AccordionTile
+              tileColor={definedTileColor}
+              tile={currentItem }
+              previewData={previewData}
+              index={i}
+              displayNumber={[acc ]}
+              sanityConfig={sanityConfig}
+              pieSegments={pieSegments && pieSegments.length}
+            />
+         
+        </Grid>
+        )
+      }
+      if (currentItem._type === "stepTile") {
         acc++
         steps.push(
         <Grid
@@ -305,7 +331,7 @@ export const query = graphql`
       ... on SanityAccordionTile {
         _key
         _type
-        _rawRichText(resolveReferences: {maxDepth: 10})
+        _rawText(resolveReferences: {maxDepth: 10})
         title
       }
     }
