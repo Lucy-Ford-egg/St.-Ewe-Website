@@ -61,11 +61,11 @@ export const BlogSection = props => {
   
 
   const definedAllSanityPost =
-    (postData && postData.length > 0 && postData) ||
+    (postData && postData?.length > 0 && postData) ||
     (previewData?.showArchive?.setArchive === true &&
       allPostData &&
       allPostData) ||
-    allSanityPost.nodes
+      allSanityPost?.nodes
 
   useEffect(() => {
     setFilterData(definedAllSanityPost )
