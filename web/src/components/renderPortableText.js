@@ -53,16 +53,16 @@ export const RenderPortableText = (props) => {
     // Color
     textColor: ({children, value}) => <span style={{color: value.value}}>{children}</span>,
     highlightColor: ({children, value}) => (
-      <span style={{background: value.value}}>{children}</span>
+      <span style={{background: value?.value}}>{children}</span>
     ),
-    file: ({children, value}) => <Link target="_blank" rel="noopener" href={value.asset.url} style={{color: value.value}}>{children}</Link>,
+    file: ({children, value}) => <Link target="_blank" rel="noopener" href={value?.asset?.url} style={{color: value?.value}}>{children}</Link>,
   };
   
   const standardPortableText = {
     types: {
       span: ({ value }) => {
         
-      return <Typography sx={{ color: 'inherit' }} variant={'body1'} component={component}>{value.children.text}</Typography>
+      return <Typography sx={{ color: 'inherit' }} variant={'body1'} component={component}>{value?.children?.text}</Typography>
       },
       image: ({ value }) => {
 
