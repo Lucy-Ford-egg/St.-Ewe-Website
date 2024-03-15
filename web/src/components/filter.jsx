@@ -39,9 +39,9 @@ export const Filter = ({ type, allData, filterData, setFilterData }) => {
   `)
 
   const sortCategories = useCallback(() => {
-    const array = data.allSanityPost.nodes.map(tax => {
-      if (tax.category.name && tax.category.name.length > 0) {
-        return { name: tax.category.name }
+    const array = data.allSanityPost?.nodes.map(tax => {
+      if (tax?.category?.name && tax?.category?.name?.length > 0) {
+        return { name: tax?.category?.name }
       }
     })
 

@@ -5,7 +5,6 @@ import Modules from "../components/modules"
 // Preview
 import { useQuery } from "../../sanity/store";
 import {PAGE_QUERY, SITE_SETTINGS} from '../queries/documentQueries';
-
 import {getSanityClient } from "../../sanityUtils/sanity"
 
 const IndexPage = props => {
