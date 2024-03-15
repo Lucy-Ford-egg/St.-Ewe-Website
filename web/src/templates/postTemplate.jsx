@@ -42,7 +42,7 @@ const PostTemplate = props => {
   const definedDate = (previewData && previewData?.date) || data.sanityPost?.date
   const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author 
   const definedImage = (previewData && previewData?.image) || image
-
+debugger
   return (
    <>
       <Container
@@ -229,6 +229,7 @@ const PostTemplate = props => {
       <Modules
         pageContext={pageContext}
         modules={definedModules}
+        allSanityPost={data.allSanityPost}
       />
     </>
   )
@@ -239,7 +240,7 @@ export const Head = ({ data, location }) => {
 }
 
 export const pageTemplateQuery = graphql`
-  query postTemplateQuery($slug: String!) {
+  query postTemplateQuery($slug: String!,  $postIds: [String!]) {
     sanityPost(slug: { current: { eq: $slug } }) {
       ... SeoPostFragment
       navOverlay
@@ -283,6 +284,53 @@ export const pageTemplateQuery = graphql`
       #...SeoPageFragment
       pageBuilder {
         ...PageBuilderFragment
+      }
+    }
+    allSanityPost(
+      filter: {
+        category: {
+          _id: {
+            in: $postIds
+          }
+        }
+      }
+    ) {
+      nodes {
+        image {
+          asset {
+            _id
+            gatsbyImageData
+          }
+          hotspot {
+            x
+            y
+            width
+            height
+          }
+          crop {
+            bottom
+            left
+            right
+            top
+          }
+        }
+     
+        slug {
+          current
+        }
+        date(formatString: "MMM Do, YYYY")
+        category {
+          name
+          _id
+        }
+        author {
+          name
+        }
+        title
+        tileColor{
+          value
+          label
+        }
       }
     }
   }

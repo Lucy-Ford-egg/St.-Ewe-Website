@@ -317,7 +317,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         coverImage: node.coverImage,
         date: node.date,
         categories: node.categories,
-        navColor: node.navColor
+        navColor: node.navColor,
+        postIds: getShowArchiveIds(node?.pageBuilder, "blogSection"),
       },
     })
   })

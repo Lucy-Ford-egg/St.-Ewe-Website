@@ -71,7 +71,7 @@ export const BlogSection = props => {
     setFilterData(definedAllSanityPost )
   }, [])
   
-  
+  debugger
 
   return (
     <Container
@@ -130,7 +130,7 @@ export const BlogSection = props => {
                     height: "100%",
                     flexBasis: "100%",
                   }}
-                  to={slug.current}
+                  to={`/blog/${slug.current}`}
                 >
                   <Paper
                     className="wrapper"
