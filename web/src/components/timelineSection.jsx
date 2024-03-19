@@ -48,16 +48,17 @@ export const TimelineSection = props => {
     timelineColor,
     previewData,
     sanityConfig,
+    _type,
   } = props
 
-  const definedSubtitle = (previewData && previewData?.subtitle) || subtitle
-  const definedTitle = (previewData && previewData?.title) || _rawTitle
-  const definedLeftText = (previewData && previewData?.leftText) || _rawLeftText
+  const definedSubtitle = (previewData && _type === previewData?._type && previewData?.subtitle) || subtitle
+  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+  const definedLeftText = (previewData && _type === previewData?._type && previewData?.leftText) || _rawLeftText
   const definedRightText =
-    (previewData && previewData?.rightText) || _rawRightText
-  const definedSteps = (previewData && previewData?.steps) || steps
+    (previewData && _type === previewData?._type && previewData?.rightText) || _rawRightText
+  const definedSteps = (previewData && _type === previewData?._type && previewData?.steps) || steps
   const defineTimelineColor =
-    (previewData && previewData?.timelineColor) || timelineColor
+    (previewData && _type === previewData?._type && previewData?.timelineColor) || timelineColor
 
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {

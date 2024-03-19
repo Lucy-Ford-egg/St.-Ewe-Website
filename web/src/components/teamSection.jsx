@@ -29,19 +29,19 @@ export const TeamSection = props => {
     topPadding,
     links,
     tileColor,
+    _type,
   } = props
 
   
   const definedTopPadding =
-    (previewData && previewData?.topPadding) || topPadding
-  const definedSubtitle = (previewData && previewData?.subtitle ) || subtitle
-  const definedTitle = (previewData && previewData?.title) || title || _rawTitle 
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
+  const definedSubtitle = (previewData && _type === previewData?._type && previewData?.subtitle ) || subtitle
+  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || title || _rawTitle 
 
-  const definedLeftText = (previewData && previewData?.leftText) || leftText || _rawLeftText
-  const definedRightText = (previewData && previewData?.rightText) || rightText || _rawRightText
-  const definedTeamTiles = (previewData && previewData?.teamTiles) || teamTiles
-  const definedTileColor = (previewData && previewData?.tileColor) || tileColor
-
+  const definedLeftText = (previewData && _type === previewData?._type && previewData?.leftText) || leftText || _rawLeftText
+  const definedRightText = (previewData && _type === previewData?._type && previewData?.rightText) || rightText || _rawRightText
+  const definedTeamTiles = (previewData && _type === previewData?._type && previewData?.teamTiles) || teamTiles
+  const definedTileColor = (previewData && _type === previewData?._type && previewData?.tileColor) || tileColor
 
   return (
     <>

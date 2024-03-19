@@ -15,22 +15,24 @@ export const RenderPortableText = (props) => {
   const theme = useTheme()
 
   const block = {
-    normal: ({ children  }) => <Typography sx={{  py: 2, color: 'inherit'}} variant={ setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
-    body2: ({ children  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='body2'>{children}</Typography>,
-    caption: ({ children  }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit'}} variant='caption'>{children}</Typography>,  
-    h1: ({ children  }) => { 
+    normal: ({ children }) => <Typography sx={{ py: 2, color: 'inherit' }} variant={setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
+    body2: ({ children }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit' }} variant='body2'>{children}</Typography>,
+    caption: ({ children }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit' }} variant='caption'>{children}</Typography>,
+    h1: ({ children }) => {
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h1">{children}</Typography>
     },
-    h2: ({ children  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>,
-    h3: ({ children  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h3">{children}</Typography>,
-    h4: ({ children  }) => <Typography sx={{ py: { xs: 7 }, color: 'inherit' }} variant="h4">{children}</Typography>,
-    h5: ({ children  }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h5">{children}</Typography>,
-    h6: ({ children  }) => {
-    return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h6">{children}</Typography>
+    h2: ({ children }) => {
+      return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>
+    },
+    h3: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h3">{children}</Typography>,
+    h4: ({ children }) => <Typography sx={{ py: { xs: 7 }, color: 'inherit' }} variant="h4">{children}</Typography>,
+    h5: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h5">{children}</Typography>,
+    h6: ({ children }) => {
+      return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h6">{children}</Typography>
     },
     blockquote: ({ children }) => {
       return (
-        <Box sx={{ py: {xs: 5}, mx: 0}} component="figure">
+        <Box sx={{ py: { xs: 5 }, mx: 0 }} component="figure">
           <Typography sx={{ fontStyle: 'italic', py: { xs: 0 }, color: 'inherit', pl: 3 }} variant="h3" component="blockquote">
             {children}
           </Typography>
@@ -42,27 +44,28 @@ export const RenderPortableText = (props) => {
 
   const marks = {
     em: ({ children }) => <Typography sx={{ color: value.value, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
-    strong: ({ children  }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
-    
+    strong: ({ children }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
+
     link: ({ children, value }) => {
-      
+
       return (
-    <PortableTextInlineLink color={value.value} value={value}>{children}</PortableTextInlineLink>
-      )},
+        <PortableTextInlineLink color={value.value} value={value}>{children}</PortableTextInlineLink>
+      )
+    },
     underline: ({ children }) => <Typography variant="body1" className="underline" component="span">{children}</Typography>,
     // Color
-    textColor: ({children, value}) => <span style={{color: value.value}}>{children}</span>,
-    highlightColor: ({children, value}) => (
-      <span style={{background: value?.value}}>{children}</span>
+    textColor: ({ children, value }) => <span style={{ color: value.value }}>{children}</span>,
+    highlightColor: ({ children, value }) => (
+      <span style={{ background: value?.value }}>{children}</span>
     ),
-    file: ({children, value}) => <Link target="_blank" rel="noopener" href={value?.asset?.url} style={{color: value?.value}}>{children}</Link>,
+    file: ({ children, value }) => <Link target="_blank" rel="noopener" href={value?.asset?.url} style={{ color: value?.value }}>{children}</Link>,
   };
-  
+
   const standardPortableText = {
     types: {
       span: ({ value }) => {
-        
-      return <Typography sx={{ color: 'inherit' }} variant={'body1'} component={component}>{value?.children?.text}</Typography>
+
+        return <Typography sx={{ color: 'inherit' }} variant={'body1'} component={component}>{value?.children?.text}</Typography>
       },
       image: ({ value }) => {
 
@@ -109,35 +112,36 @@ export const RenderPortableText = (props) => {
         )
       },
     },
-    list: ({value, children,}) =>
-      // console.log("list", props) ||
-      (value.listItem === "bullet" ? (
-        <List sx={{ listStyle: 'inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ul" dense={true}>{children}</List>
-      ) : (
-        <List sx={{ listStyle: 'decimal inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ol" dense={true}>{children}</List>
-      )),
-    listItem: ({value, children}) => {
+    list: ({ value, children, }) =>
+    // console.log("list", props) ||
+    (value.listItem === "bullet" ? (
+      <List sx={{ listStyle: 'inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ul" dense={true}>{children}</List>
+    ) : (
+      <List sx={{ listStyle: 'decimal inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ol" dense={true}>{children}</List>
+    )),
+    listItem: ({ value, children }) => {
       return (
-      (value.listItem === "bullet" ? (
-        <ListItem sx={{ color: 'inherit', pl: 0 }}>
-          <ListItemIcon sx={{ minWidth: 16 }}>
-            <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
-          </ListItemIcon>{children[0]}
-        </ListItem>
-      ) : (
-        <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0 }}>
-          <ListItemIcon sx={{ minWidth: 16 }}>
-          </ListItemIcon>{children}
-        </ListItem>
-      ))
-      )},
+        (value.listItem === "bullet" ? (
+          <ListItem sx={{ color: 'inherit', pl: 0 }}>
+            <ListItemIcon sx={{ minWidth: 16 }}>
+              <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
+            </ListItemIcon>{children[0]}
+          </ListItem>
+        ) : (
+          <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0 }}>
+            <ListItemIcon sx={{ minWidth: 16 }}>
+            </ListItemIcon>{children}
+          </ListItem>
+        ))
+      )
+    },
     marks: marks,
     block: block,
   }
 
   return (
     <Box className={``}>
-      <PortableText value={value || [] } components={standardPortableText}/>
+      <PortableText value={value || []} components={standardPortableText} />
     </Box>
   )
 

@@ -12,10 +12,10 @@ import {  CASE_STUDIES_BY_ID, ALL_CASE_STUDIES } from "../queries/documentQuerie
 export const CaseStudySection = ({
   allSanityCaseStudy,
   searching = false,
-  pageContext,
   topPadding,
   previewData,
   initial,
+  _type,
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
@@ -45,7 +45,7 @@ export const CaseStudySection = ({
   )
 
   const definedTopPadding =
-    (previewData && previewData?.topPadding) || topPadding
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
   
   const definedAllSanityCaseStudy = (caseStudyData && caseStudyData.length > 0 && caseStudyData) || (previewData?.showCaseStudyArchive?.setArchive === true && allCaseStudies && allCaseStudies) || allSanityCaseStudy.nodes
 
@@ -55,7 +55,7 @@ export const CaseStudySection = ({
       className="component-postsGrid"
       sx={{ 
         pb: { xs: theme.spacing(16), md: theme.spacing(16) },
-          pt: topPadding
+          pt: definedTopPadding
             ? {
                 xs: theme.spacing(16),
                 md: theme.spacing(0),

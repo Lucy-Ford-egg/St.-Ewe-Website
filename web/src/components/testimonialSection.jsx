@@ -39,6 +39,7 @@ export const TestimonialSection = props => {
     testimonialTiles,
     topPadding,
     backgroundColor,
+    _type,
   } = props
 
   const [[page, direction], setPage] = useState([0, 0])
@@ -85,42 +86,42 @@ export const TestimonialSection = props => {
   })
 
   const definedPreviewInternalAvatar =
-    (previewData && previewData?.[slideIndex]?.cite?.teamMemberCite?.image) ||
+    (previewData && _type === previewData?._type && previewData?.[slideIndex]?.cite?.teamMemberCite?.image) ||
     testimonialTiles[slideIndex]?.cite?.teamMemberCite?.image
 
   const definedPreviewExternalAvatar =
-    (previewData && previewData?.[slideIndex]?.cite?.externalCite?.image) ||
+    (previewData && _type === previewData?._type && previewData?.[slideIndex]?.cite?.externalCite?.image) ||
     testimonialTiles[slideIndex]?.cite?.externalCite?.image
 
   const definedBackgroundColor =
-    (previewData && previewData?.backgroundColor) || backgroundColor
+    (previewData && _type === previewData?._type && previewData?.backgroundColor) || backgroundColor
 
   const definedTopPadding =
-    (previewData && previewData?.topPadding) || topPadding
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
 
   const definedQuoteText =
-    (previewData && previewData?.testimonialTiles && previewData?.testimonialTiles[slideIndex] && previewData?.testimonialTiles[slideIndex]._rawQuoteText) ||
+    (previewData && _type === previewData?._type && previewData?.testimonialTiles && previewData?.testimonialTiles[slideIndex] && previewData?.testimonialTiles[slideIndex]._rawQuoteText) ||
     testimonialTiles[slideIndex]._rawQuoteText
 
   const definedInternalQuoteCite =
-    (previewData &&  previewData?.testimonialTiles &&
+    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name) ||
     testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name
 
   const definedExternalQuoteCite =
-    (previewData &&  previewData?.testimonialTiles &&
+    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
         ?.citeName) ||
     testimonialTiles[slideIndex]?.cite?.externalCite?.citeName
 
   const definedInternalQuotePosition =
-    (previewData &&  previewData?.testimonialTiles &&
+    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite
         ?.position) ||
     testimonialTiles[slideIndex]?.cite?.teamMemberCite?.position
 
   const definedExternalQuotePosition =
-    (previewData &&  previewData?.testimonialTiles &&
+    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
         ?.citePosition) ||
     testimonialTiles[slideIndex]?.cite?.externalCite?.citeLocation

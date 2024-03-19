@@ -24,14 +24,15 @@ export const ContactSection = props => {
     topPadding,
     _rawFormTerms,
     _key,
+    _type,
   } = props
 
-  const definedKey = (previewData && previewData._key) || _key
+  const definedKey = (previewData && _type === previewData?._type && previewData._key) || _key
   const definedTopPadding =
-    (previewData && previewData.topPadding) || topPadding
-  const definedTitle = (previewData && previewData.title) || _rawTitle
-  const definedText = (previewData && previewData.text) || _rawText
-  const definedFormTerms = (previewData && previewData.formTerms) || _rawFormTerms
+    (previewData && _type === previewData?._type && previewData.topPadding) || topPadding
+  const definedTitle = (previewData && _type === previewData?._type && previewData.title) || _rawTitle
+  const definedText = (previewData && _type === previewData?._type && previewData.text) || _rawText
+  const definedFormTerms = (previewData && _type === previewData?._type && previewData.formTerms) || _rawFormTerms
 
   // Form State
   const [serviceOfInterest, setServiceOfInterest] = useState("")

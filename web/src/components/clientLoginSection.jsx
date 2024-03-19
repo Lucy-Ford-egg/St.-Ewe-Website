@@ -22,14 +22,15 @@ export const ClientLoginSection = props => {
     topPadding,
     loginTile,
     subtitle,
+    _type,
   } = props
 
   const definedTopPadding =
-    (previewData && previewData?.topPadding) || topPadding
-  const definedTitle = (previewData && previewData?.title) || _rawTitle
-  const definedText = (previewData && previewData?.text) || _rawText
-  const definedLoginTile = (previewData && previewData?.loginTile) || loginTile
-  const definedSubtitle = (previewData && previewData.subtitle) || subtitle
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
+  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+  const definedText = (previewData && _type === previewData?._type && previewData?.text) || _rawText
+  const definedLoginTile = (previewData && _type === previewData?._type && previewData?.loginTile) || loginTile
+  const definedSubtitle = (previewData && _type === previewData?._type && previewData.subtitle) || subtitle
 
   return (
     <Container

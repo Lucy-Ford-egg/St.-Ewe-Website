@@ -31,16 +31,17 @@ export const LocationSection = props => {
     textAlign,
     sanitySiteSettings,
     _key,
+    _type,
   } = props
 
-  const definedKey = (previewData && previewData._key) || _key
+  const definedKey = (previewData && _type === previewData?._type && previewData._key) || _key
 
   const definedTopPadding =
-    (previewData && previewData?.topPadding) || topPadding
-  const definedSubtitle = (previewData && previewData?.subtitle) || subtitle
-  const definedTitle = (previewData && previewData?.title) || _rawTitle
-  const definedText = (previewData && previewData?.text) || _rawText
-  const definedAlign = (previewData && previewData?.textAlign) || textAlign
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
+  const definedSubtitle = (previewData && _type === previewData?._type && previewData?.subtitle) || subtitle
+  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+  const definedText = (previewData && _type === previewData?._type && previewData?.text) || _rawText
+  const definedAlign = (previewData && _type === previewData?._type && previewData?.textAlign) || textAlign
 
   const definedSiteSettings = sanitySiteSettings?.companyDetails
 

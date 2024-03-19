@@ -11,22 +11,22 @@ export const CtaSection = props => {
     text,
     image,
     previewData,
-    sanityConfig,
     overlay,
     leftAlign,
     links,
     topPadding,
+    _type,
   } = props
 
   const theme = useTheme()
 
-  const definedTopPadding = (previewData && previewData?.topPadding) || topPadding
-  const definedImage = (previewData && previewData?.image) || image
-  const definedOverlay = (previewData && previewData?.overlay) || overlay
-  const definedAlign = (previewData && previewData?.leftAlign) || leftAlign
-  const definedTitle = (previewData && previewData?.title)  || title
-  const definedText = (previewData && previewData?.text) || text
-  const definedLinks = (previewData && previewData?.links) || links
+  const definedTopPadding = ( previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
+  const definedImage = ( previewData && _type === previewData?._type && previewData?.image) || image
+  const definedOverlay = ( previewData && _type === previewData?._type && previewData?.overlay) || overlay
+  const definedAlign = ( previewData && _type === previewData?._type && previewData?.leftAlign) || leftAlign
+  const definedTitle = ( previewData && _type === previewData?._type && previewData?.title)  || title
+  const definedText = ( previewData && _type === previewData?._type && previewData?.text) || text
+  const definedLinks = ( previewData && _type === previewData?._type && previewData?.links) || links
 
   return (
     <Container

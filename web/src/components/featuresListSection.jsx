@@ -23,15 +23,16 @@ export const FeaturesListSection = props => {
     topPadding,
     featuresTile,
     image,
+    _type,
   } = props
 
   const definedTopPadding =
-    (previewData && previewData?.topPadding) || topPadding
-  const definedTitle = (previewData && previewData?.title) || _rawTitle
-  const definedText = (previewData && previewData?.text) || _rawText
-  const definedImage = (previewData && previewData?.image) || image
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
+  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+  const definedText = (previewData && _type === previewData?._type && previewData?.text) || _rawText
+  const definedImage = (previewData && _type === previewData?._type && previewData?.image) || image
   const definedFeaturesTile =
-    (previewData && previewData?.featuresTile) || featuresTile
+    (previewData && _type === previewData?._type && previewData?.featuresTile) || featuresTile
   // const definedMirror = (previewData && previewData.mirror) || mirror
 
   return (

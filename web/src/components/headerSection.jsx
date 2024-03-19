@@ -11,7 +11,6 @@ import { contrastColour } from "../utils/contrastColour"
 
 export const HeaderSection = props => {
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const {
     _rawTitle,
     _rawText,
@@ -22,20 +21,21 @@ export const HeaderSection = props => {
     links,
     spiro,
     backgroundColor,
+    _type,
   } = props
 
   const [addSpiro, setAddSpiro] = useState(false)
   useEffect(() => {
-    setAddSpiro((previewData && previewData?.spiro) || spiro)
+    setAddSpiro(( previewData && _type === previewData?._type && previewData?.spiro) || spiro)
   }, [])
 
-  const definedTitle = (previewData && previewData?.title) || _rawTitle
-  const definedText = (previewData && previewData?.text) || _rawText
-  const definedLinks = (previewData && previewData?.links) || links
-  const definedImage = (previewData && previewData?.image) || image
+  const definedTitle = ( previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+  const definedText = ( previewData && _type === previewData?._type && previewData?.text) || _rawText
+  const definedLinks = ( previewData && _type === previewData?._type && previewData?.links) || links
+  const definedImage = ( previewData && _type === previewData?._type && previewData?.image) || image
   const definedBackgroundColour =
-    (previewData && previewData?.backgroundColor) || backgroundColor
-  const definedTextAlign = (previewData && previewData?.textAlign) || textAlign
+    ( previewData && _type === previewData?._type && previewData?.backgroundColor) || backgroundColor
+  const definedTextAlign = ( previewData && _type === previewData?._type && previewData?.textAlign) || textAlign
 
   return (
     <Container
@@ -188,7 +188,6 @@ export const HeaderSection = props => {
             <motion.div style={{
               height: "100%",
                 flexGrow: 1,
-                minHeight: "100%",
                 gridColumn: "1/25",
                 gridRow: "1/auto",
                 minHeight: definedImage ? "78vh" : "min-content",

@@ -26,11 +26,11 @@ export const BlogSection = props => {
   const {
     allSanityPost,
     previewData,
-    sanityConfig,
     topPadding,
     pageContext,
     showArchive,
     initial,
+    _type
   } = props
 
   const theme = useTheme()
@@ -57,7 +57,7 @@ export const BlogSection = props => {
   )
 
   const definedTopPadding =
-    (previewData && previewData?.topPadding) || topPadding
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
   
 
   const definedAllSanityPost =
@@ -71,7 +71,6 @@ export const BlogSection = props => {
     setFilterData(definedAllSanityPost )
   }, [])
   
-  debugger
 
   return (
     <Container

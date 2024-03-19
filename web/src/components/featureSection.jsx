@@ -28,6 +28,7 @@ export const FeatureSection = props => {
     subtitle,
     links,
     highlighted,
+    _type,
   } = props
 
   const textColour = highlighted

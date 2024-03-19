@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -6,7 +6,7 @@ import {
   useTheme,
   Grid,
   Divider,
-  useMediaQuery,
+
 } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -24,15 +24,15 @@ export const NewsletterSection = props => {
     topPadding,
     backgroundColor,
     mirror,
+    _type,
   } = props
 
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
-  const definedTopPadding = (previewData && previewData.topPadding) || topPadding
-  const definedTitle = (previewData && previewData.title) || _rawTitle
-  const definedText = (previewData && previewData.text) || _rawText
-  const definedMirror = (previewData && previewData.mirror) || mirror
+  const definedTopPadding = (previewData && _type === previewData?._type && previewData.topPadding) || topPadding
+  const definedTitle = (previewData && _type === previewData?._type && previewData.title) || _rawTitle
+  const definedText = (previewData && _type === previewData?._type && previewData.text) || _rawText
+  const definedMirror = (previewData && _type === previewData?._type && previewData.mirror) || mirror
 
   return (
     <Container

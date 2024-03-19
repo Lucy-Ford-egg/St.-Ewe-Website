@@ -49,13 +49,14 @@ export const StepsSection = props => {
     steps,
     previewData,
     sanityConfig,
+    _type,
   } = props
 
-  const definedTitle = (previewData && previewData?.title) || _rawTitle
-  const definedText = (previewData && previewData?.text) || _rawText
-  const definedSteps = (previewData && previewData?.steps) || steps
-  const definedTileColor = (previewData && previewData?.tileColor) || tileColor
-  const definedTextAlign = (previewData && previewData?.textAlign) || textAlign
+  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+  const definedText = (previewData && _type === previewData?._type && previewData?.text) || _rawText
+  const definedSteps = (previewData && _type === previewData?._type && previewData?.steps) || steps
+  const definedTileColor = (previewData && _type === previewData?._type && previewData?.tileColor) || tileColor
+  const definedTextAlign = (previewData && _type === previewData?._type && previewData?.textAlign) || textAlign
   
 
   const [pieSegments, setPieSegments] = useState(null)

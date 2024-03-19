@@ -32,6 +32,7 @@ export const ImageCarouselSection = props => {
     sanityConfig,
     images,
     topPadding,
+    _type,
   } = props
   const [slides, setSlides] = useState(null)
   const ref = useRef(null)
@@ -47,7 +48,7 @@ export const ImageCarouselSection = props => {
 
   const sm = useMediaQuery("(max-width:640px)")
 
-  const definedTopPadding = (previewData && previewData?.topPadding) || topPadding
+  const definedTopPadding = (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
   // const definedTitle = (previewData && previewData?.title) || _rawTitle
   // const definedText = (previewData && previewData?.text) || _rawText
 
