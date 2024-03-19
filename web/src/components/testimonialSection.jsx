@@ -99,28 +99,28 @@ export const TestimonialSection = props => {
     (previewData && previewData?.topPadding) || topPadding
 
   const definedQuoteText =
-    (previewData && previewData?.testimonialTiles[slideIndex] && previewData?.testimonialTiles[slideIndex]._rawQuoteText) ||
+    (previewData && previewData?.testimonialTiles && previewData?.testimonialTiles[slideIndex] && previewData?.testimonialTiles[slideIndex]._rawQuoteText) ||
     testimonialTiles[slideIndex]._rawQuoteText
 
   const definedInternalQuoteCite =
-    (previewData &&
+    (previewData &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name) ||
     testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name
 
   const definedExternalQuoteCite =
-    (previewData &&
+    (previewData &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
         ?.citeName) ||
     testimonialTiles[slideIndex]?.cite?.externalCite?.citeName
 
   const definedInternalQuotePosition =
-    (previewData &&
+    (previewData &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite
         ?.position) ||
     testimonialTiles[slideIndex]?.cite?.teamMemberCite?.position
 
   const definedExternalQuotePosition =
-    (previewData &&
+    (previewData &&  previewData?.testimonialTiles &&
       previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
         ?.citePosition) ||
     testimonialTiles[slideIndex]?.cite?.externalCite?.citeLocation
