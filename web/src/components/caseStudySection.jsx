@@ -47,7 +47,7 @@ export const CaseStudySection = ({
   const definedTopPadding =
     (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
   
-  const definedAllSanityCaseStudy = (caseStudyData && caseStudyData.length > 0 && caseStudyData) || (previewData?.showCaseStudyArchive?.setArchive === true && allCaseStudies && allCaseStudies) || allSanityCaseStudy.nodes
+  const definedAllSanityCaseStudy = (caseStudyData && caseStudyData?.length > 0 && caseStudyData) || (previewData?.showCaseStudyArchive?.setArchive === true && allCaseStudies && allCaseStudies) || allSanityCaseStudy.nodes
 
 
   return (
