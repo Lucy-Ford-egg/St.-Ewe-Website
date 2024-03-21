@@ -120,16 +120,36 @@ module.exports = {
       options: {
         webFontsConfig: {
           fonts: {
-            google: [
-              {
-                family: `Merriweather`,
-                variants: [`400`, `700`],
-              },
+            selfHosted: [
               {
                 family: `Open Sans`,
-                variants: [`400`, `500`, `700`],
+                urls: {
+                  woff2: `../web/src/assets/fonts/open-sans/opensans-regular-webfont.woff2`,
+                  woff: `../web/src/assets/fonts/open-sans/opensans-regular-webfont.woff`,
+                },
               },
-            ],
+              {
+                family: `Open Sans SemiBold`,
+                urls: {
+                  woff2: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff2`,
+                  woff: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff`,
+                },
+              },
+              {
+                family: `Merriweather`,
+                urls: {
+                  woff2: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff2`,
+                  woff: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff`,
+                },
+              },
+              {
+                family: `Merriweather Bold`,
+                urls: {
+                  woff2: `../web/src/assets/fonts/merriweather/merriweather-bold-webfont.woff2`,
+                  woff: `../web/src/assets/fonts/merriweather/merriweather-bold-webfont.woff`,
+                },
+              },
+            ]
           },
         },
       },
