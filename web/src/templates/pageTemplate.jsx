@@ -79,7 +79,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       slug {
         current
       }
-      date(formatString: "MMM Do, YYYY")
+      date
       category {
         name
         _id

@@ -74,7 +74,7 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
       slug {
         current
       }
-      date(formatString: "MMM Do, YYYY")
+      date
       category {
         name
         _id
