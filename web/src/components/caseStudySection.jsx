@@ -20,7 +20,6 @@ import {
 
 export const CaseStudySection = ({
   allSanityCaseStudy,
-  allCaseStudy,
   searching = false,
   topPadding,
   previewData,
@@ -85,7 +84,6 @@ export const CaseStudySection = ({
       setFilterData(definedAllSanityCaseStudy )
     }, [])
 
-debugger
   return (
     <Container
       className="component-postsGrid"
