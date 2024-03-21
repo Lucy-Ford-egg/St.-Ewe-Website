@@ -1,47 +1,52 @@
 import React from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Grid,
-  Typography,
-  useTheme,
-  Divider,
-} from "@mui/material"
+import { Container, Grid, Typography, useTheme, Divider } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
-import {TeamTile } from "../components/teamTile"
-
+import { TeamTile } from "../components/teamTile"
 
 export const TeamSection = props => {
   const theme = useTheme()
   const {
     teamTiles,
     subtitle,
+    title,
     _rawTitle,
     _rawLeftText,
     _rawRightText,
-    _rawExcerpt,
-    title,
     leftText,
     rightText,
-    linkGroup,
     previewData,
     sanityConfig,
     topPadding,
-    links,
     tileColor,
     _type,
   } = props
 
-  
   const definedTopPadding =
-    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
-  const definedSubtitle = (previewData && _type === previewData?._type && previewData?.subtitle ) || subtitle
-  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || title || _rawTitle 
+    (previewData && _type === previewData?._type && previewData?.topPadding) ||
+    topPadding
+  const definedSubtitle =
+    (previewData && _type === previewData?._type && previewData?.subtitle) ||
+    subtitle
+  const definedTitle =
+    (previewData && _type === previewData?._type && previewData?.title) ||
+    title ||
+    _rawTitle
 
-  const definedLeftText = (previewData && _type === previewData?._type && previewData?.leftText) || leftText || _rawLeftText
-  const definedRightText = (previewData && _type === previewData?._type && previewData?.rightText) || rightText || _rawRightText
-  const definedTeamTiles = (previewData && _type === previewData?._type && previewData?.teamTiles) || teamTiles
-  const definedTileColor = (previewData && _type === previewData?._type && previewData?.tileColor) || tileColor
+  const definedLeftText =
+    (previewData && _type === previewData?._type && previewData?.leftText) ||
+    leftText ||
+    _rawLeftText
+  const definedRightText =
+    (previewData && _type === previewData?._type && previewData?.rightText) ||
+    rightText ||
+    _rawRightText
+  const definedTeamTiles =
+    (previewData && _type === previewData?._type && previewData?.teamTiles) ||
+    teamTiles
+  const definedTileColor =
+    (previewData && _type === previewData?._type && previewData?.tileColor) ||
+    tileColor
 
   return (
     <>
@@ -101,40 +106,55 @@ export const TeamSection = props => {
           </Grid>
         </Grid>
       </Container>
-            {definedTeamTiles && (
-      <Container
-        maxWidth="xl"
-        sx={{
-          pb: {
-            xs: theme.spacing(15),
-            md: theme.spacing(15),
-          },
-          paddingRight: {
-            xs: "0 !important",
-            overflowX: "hidden",
-            maxWidth: "100vw",
-          },
-        }}
-      >
-        <Grid
-          container
-          columnSpacing={6}
-          rowSpacing={6}
+      {definedTeamTiles && (
+        <Container
+          maxWidth="xl"
           sx={{
-            flexDirection: { xs: "row", sm: "row", md: "row", lg: "row" },
-            flexWrap: "nowrap",
-            overflowX: { xs: "scroll", sm: "scroll", md: "scroll", lg: "unset" },
-            scrollSnapType: { xs: "x mandatory", sm: "x mandatory", md: "x mandatory", lg: "unset" },
-            scrollSnapAlign: "center",
+            pb: {
+              xs: theme.spacing(15),
+              md: theme.spacing(15),
+            },
+            paddingRight: {
+              xs: "0 !important",
+              overflowX: "hidden",
+              maxWidth: "100vw",
+            },
           }}
         >
-          {definedTeamTiles && definedTeamTiles?.map((member, i) => {
-            return (
-              <TeamTile key={`${member?.name}-member-${i}`} definedTileColor={definedTileColor} member={member}/>
-            )
-          })}
-        </Grid>
-      </Container>
+          <Grid
+            container
+            columnSpacing={6}
+            rowSpacing={6}
+            sx={{
+              flexDirection: { xs: "row", sm: "row", md: "row", lg: "row" },
+              flexWrap: "nowrap",
+              overflowX: {
+                xs: "scroll",
+                sm: "scroll",
+                md: "scroll",
+                lg: "unset",
+              },
+              scrollSnapType: {
+                xs: "x mandatory",
+                sm: "x mandatory",
+                md: "x mandatory",
+                lg: "unset",
+              },
+              scrollSnapAlign: "center",
+            }}
+          >
+            {definedTeamTiles &&
+              definedTeamTiles?.map((member, i) => {
+                return (
+                  <TeamTile
+                    key={`${member?.name}-member-${i}`}
+                    definedTileColor={definedTileColor}
+                    member={member}
+                  />
+                )
+              })}
+          </Grid>
+        </Container>
       )}
     </>
   )

@@ -42,7 +42,7 @@ const PostTemplate = props => {
   const definedDate = (previewData && previewData?.date) || data.sanityPost?.date
   const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author 
   const definedImage = (previewData && previewData?.image) || image
-debugger
+
   return (
    <>
       <Container
@@ -254,7 +254,7 @@ export const pageTemplateQuery = graphql`
         current
       }
       title
-      date(formatString: "MMM Do, YYYY")
+      date
       category {
         name
       }
@@ -318,7 +318,7 @@ export const pageTemplateQuery = graphql`
         slug {
           current
         }
-        date(formatString: "MMM Do, YYYY")
+        date
         category {
           name
           _id

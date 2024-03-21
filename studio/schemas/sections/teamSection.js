@@ -124,7 +124,7 @@ export default defineType({
     prepare(selection) {
       const { teamTiles } = selection
       return {
-        title: `${teamTiles.length} - Team Members`,
+        title: `${teamTiles ? teamTiles?.length : 0 } - Team Members`,
         subtitle: `Team Section`,
         // media: media,
         icon: MdAccessibilityNew

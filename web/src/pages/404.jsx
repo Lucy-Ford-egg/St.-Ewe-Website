@@ -13,23 +13,24 @@ const IndexPage = props => {
   // Preview
   const { data: previewData, sourceMap } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
-    {slug: 'home-page'},
+    {slug: '404'},
     { initial }
   );
 
   const pageData = previewData?.page
   const siteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
+  const definedModules = (previewData && previewData?.page?.pageBuilder) || data?.sanityPage?.pageBuilder
 
   return (
-      <Modules
-        sanityConfig={getSanityClient}
-        previewData={pageData?.pageBuilder}
-        allSanityPost={data.allSanityPost}
-        allCaseStudy={data.allSanityCaseStudy}
-        pageContext={pageContext}
-        modules={data?.sanityPage?.pageBuilder}
-        sanitySiteSettings={siteSettings }
-      />
+    <Modules
+    sanityConfig={getSanityClient}
+    previewData={pageData?.pageBuilder}
+    allSanityPost={data.allSanityPost}
+    allCaseStudy={data.allSanityCaseStudy}
+    pageContext={pageContext}
+    modules={definedModules}
+    sanitySiteSettings={siteSettings }
+  />
   )
 }
 
@@ -38,7 +39,74 @@ export const Head = ({ data, location }) => {
 }
 
 export const homeQuery = graphql`
-query homeQuery{
+query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int, $limit: Int) {
+  allSanityPost(
+    filter: {
+      category: {
+        _id: {
+          in: $postIds
+        }
+      }
+    }
+    skip: $skip 
+    limit: $limit 
+  ) {
+    nodes {
+      image {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+   
+      slug {
+        current
+      }
+      date
+      category {
+        name
+        _id
+      }
+      author {
+        name
+      }
+      title
+      tileColor{
+        value
+        label
+      }
+    }
+  }
+  allSanityCaseStudy(
+    filter: {
+      service: {
+        _id: {
+          in: $caseStudyIds
+        }
+      }
+    }
+    skip: $skip 
+    limit: $limit 
+  ) {
+    nodes {
+      _key
+      _id
+      ...CaseStudyTileFragment
+     
+    }
+  }
     sanityPage(slug: {current: {eq: "home-page"}}) {
       slug {
         current
