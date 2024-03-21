@@ -20,6 +20,7 @@ import {
 
 export const CaseStudySection = ({
   allSanityCaseStudy,
+  allCaseStudy,
   searching = false,
   topPadding,
   previewData,

@@ -30,7 +30,7 @@ debugger
         sanityConfig={getSanityClient}
         previewData={pageData?.pageBuilder}
         allSanityPost={data.allSanityPost}
-        allCaseStudy={data.allSanityCaseStudy}
+        allSanityCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
         modules={definedModules}
         sanitySiteSettings={siteSettings }
