@@ -17,6 +17,7 @@ import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { formattedDate } from "../utils/formattedDate"
 import { Filter } from "./filter"
+import { RenderPortableText } from "./renderPortableText"
 
 //Preview
 import { useQuery } from "../../sanity/store"
@@ -30,7 +31,14 @@ export const BlogSection = props => {
     pageContext,
     showArchive,
     initial,
-    _type
+    _type,
+    subtitle,
+  title,
+  _rawTitle,
+  _rawLeftText,
+  _rawRightText,
+  leftText,
+  rightText,
   } = props
 
   const theme = useTheme()
@@ -59,6 +67,22 @@ export const BlogSection = props => {
   const definedTopPadding =
     (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
   
+    const definedSubtitle =
+    (previewData && _type === previewData?._type && previewData?.subtitle) ||
+    subtitle
+  const definedTitle =
+    (previewData && _type === previewData?._type && previewData?.title) ||
+    title ||
+    _rawTitle
+
+  const definedLeftText =
+    (previewData && _type === previewData?._type && previewData?.leftText) ||
+    leftText ||
+    _rawLeftText
+  const definedRightText =
+    (previewData && _type === previewData?._type && previewData?.rightText) ||
+    rightText ||
+    _rawRightText
 
   const definedAllSanityPost =
     (postData && postData?.length > 0 && postData) ||
@@ -91,7 +115,52 @@ export const BlogSection = props => {
             },
       }}
     >
-      <Filter className="component-filter" type="posts" allData={definedAllSanityPost} filtersData={filtersPosts} setFilterData={setFilterData}/>
+      <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
+          <Grid item xs={12} md={7}>
+            {definedSubtitle && (
+              <Typography color="primary" variant="overline">
+                {definedSubtitle}
+              </Typography>
+            )}
+
+            {definedTitle && (
+              <RenderPortableText
+                previewData={definedTitle}
+                setAsHeading={false}
+                value={definedTitle}
+              />
+            )}
+            {definedLeftText && (
+              <Divider
+                sx={{
+                  borderColor: "primary.main",
+                  mb: 5,
+                  maxWidth: 307,
+                }}
+              />
+            )}
+            {definedLeftText && (
+              <RenderPortableText
+                previewData={definedLeftText}
+                variant={false}
+                value={definedLeftText}
+              />
+            )}
+          </Grid>
+          <Grid item xs={12} md={5} sx={{ alignSelf: "flex-end" }}>
+            {definedRightText && (
+              <RenderPortableText
+                previewData={definedRightText}
+                variant={false}
+                value={definedRightText}
+              />
+            )}
+          </Grid>
+        </Grid>
+      {
+      // ** Hide the filter if using the archive function as you can curate with more than one cataegory
+      }
+      {showArchive?.setArchive && <Filter className="component-filter" type="posts" allData={definedAllSanityPost} filtersData={filtersPosts} setFilterData={setFilterData}/>}
 
       <Grid container columnSpacing={6} rowSpacing={12}>
         {filtersPosts && filtersPosts.map((post, i) => {
@@ -432,6 +501,10 @@ export const query = graphql`
   fragment BlogSectionFragment on SanityBlogSection {
     _key
     _type
+    _rawTitle(resolveReferences: { maxDepth: 10 })
+    _rawLeftText(resolveReferences: { maxDepth: 10 })
+    _rawRightText(resolveReferences: { maxDepth: 10 })
+    subtitle
     showArchive {
       setArchive
       archive {

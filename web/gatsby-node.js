@@ -222,7 +222,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const blogPostsCategories = blogPosts.map(({ category }) => category && category._id)
   const caseStudyCategories = caseStudies.map(({ service }) => service && service._id)
 
-  function getShowArchiveIds(pageBuilder, type) {
+  function getShowArchiveBlogIds(pageBuilder, type) {
     const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
 
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
@@ -238,6 +238,17 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           });
         }
       }
+      return acc;
+    }, []);
+
+    console.table(`Blog IDs: ${blogPostsCategories} - ids: ${ids}`)
+    return ids.length === 0 ? blogPostsCategories : ids
+  }
+
+  function getShowArchiveCaseStudyIds(pageBuilder, type) {
+    const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
+
+    const ids = pageBuilderArray.reduce((acc, currentItem) => {
       if (type === "caseStudySection") {
         if (currentItem && currentItem.showCaseStudyArchive && currentItem.showCaseStudyArchive.archive) {
           const archiveItems = currentItem.showCaseStudyArchive.archive;
@@ -247,30 +258,46 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               acc.push(archiveItem._id);
             }
           });
-          console.log(`Acc - ${JSON.stringify(acc)}`)
+          console.log(`CaseStudy IDs- ${JSON.stringify(acc)}`)
         }
       }
       return acc;
     }, []);
 
-    console.log(`BPC: ${blogPostsCategories} - ids: ${ids}`)
-    return ids.length === 0 ? type === "blogSection" ? blogPostsCategories : caseStudyCategories : ids;
+    console.table(`BPC: ${caseStudyCategories} - ids: ${ids}`)
+    return ids.length === 0 ? caseStudyCategories : ids
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
+    if (node.slug.current === "home-page") {
+      createPage({
+        path: `/`,
+        component: require.resolve(`./src/templates/pageTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+          postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
+          caseStudyIds: getShowArchiveCaseStudyIds(node?.pageBuilder, "caseStudySection"),
+          navColor: node.navColor
+        },
+      })
+    }
+    else {
 
-    createPage({
-      path: node.slug.current,
-      component: require.resolve(`./src/templates/pageTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.slug.current}`,
-        node: node,
-        postIds: getShowArchiveIds(node?.pageBuilder, "blogSection"),
-        caseStudyIds: getShowArchiveIds(node?.pageBuilder, "caseStudySection"),
-        navColor: node.navColor
-      },
-    })
+      createPage({
+        path: node.slug.current,
+        component: require.resolve(`./src/templates/pageTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+          postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
+          caseStudyIds: getShowArchiveCaseStudyIds(node?.pageBuilder, "caseStudySection"),
+          navColor: node.navColor
+        },
+      })
+    }
   })
 
   result.data.blogPage.nodes.forEach(node => {
@@ -284,7 +311,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         id: node.id,
         slug: `${node.slug.current}`,
         node: node,
-        postIds: getShowArchiveIds(node.pageBuilder, "blogSection")
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection")
       },
     })
   })
@@ -299,8 +326,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         id: node.id,
         slug: `${node.slug.current}`,
         node: node,
-        postIds: getShowArchiveIds(node.pageBuilder, "blogSection"),
-        caseStudyIds: getShowArchiveIds(node.pageBuilder, "caseStudySection")
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
       },
     })
   })
@@ -318,7 +345,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         date: node.date,
         categories: node.categories,
         navColor: node.navColor,
-        postIds: getShowArchiveIds(node?.pageBuilder, "blogSection"),
+        postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
       },
     })
   })
