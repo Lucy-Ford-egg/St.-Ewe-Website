@@ -55,8 +55,8 @@ export const ImageCarouselSection = props => {
   
   return (
     <Container
-      maxWidth={slides && slides.length === 1 ? false : false}
-      disableGutters={sm || (slides && slides.length === 1) ? true : true}
+      maxWidth={slides && slides?.length === 1 ? false : false}
+      disableGutters={sm || (slides && slides?.length === 1) ? true : true}
       sx={{
         pb: { xs: theme.spacing(10), md: theme.spacing(10) },
         pt: definedTopPadding
@@ -67,7 +67,7 @@ export const ImageCarouselSection = props => {
           : { xs: theme.spacing(10), md: theme.spacing(10) },
       }}
     >
-      {slides && slides.length >= 1 && (
+      {slides && slides?.length >= 1 && (
         <Box
           sx={{
             position: "relative",
@@ -110,13 +110,13 @@ export const ImageCarouselSection = props => {
                         x:
                           index === 0
                             ? `0`
-                            : `-${(ref.current.offsetWidth + 20) * index}px`,
+                            : `-${(ref?.current?.offsetWidth + 20) * index}px`,
                       }}
                       style={{ display: "flex", columnGap: 20 }}
-                      className={ref.current && ref.current.offsetWidth}
+                      className={ref?.current && ref?.current?.offsetWidth}
                     >
                       {slides &&
-                        slides.map((image, i) => {
+                        slides?.map((image, i) => {
     
                           const definedImage = (previewData && previewData?.image) || image
 
@@ -140,7 +140,7 @@ export const ImageCarouselSection = props => {
                                         urlFor(definedImage)
                                           .width(200)
                                           .url()) ||
-                                      definedImage.asset
+                                      definedImage?.asset
                                     }
                                     style={{
                                       objectFit: "cover",
@@ -158,7 +158,7 @@ export const ImageCarouselSection = props => {
                 </Box>
               </MotionConfig>
             </Box>
-            {slides && slides.length > 1 && (
+            {slides && slides?.length > 1 && (
               <Box
                 sx={{
                   gridColumn: "1/25",
@@ -194,7 +194,7 @@ export const ImageCarouselSection = props => {
                     color="primary"
                     sx={{ backgroundColor: theme.palette.white.main }}
                     onClick={() => setIndex(index + 1)}
-                    disabled={index === images.length - 1 ? true : false}
+                    disabled={index === images?.length - 1 ? true : false}
                   >
                     <ArrowForwardIcon color="primary" />
                   </IconButton>
@@ -203,7 +203,7 @@ export const ImageCarouselSection = props => {
             )}
           </Box>
 
-          {slides && slides.length > 1 && (
+          {slides && slides?.length > 1 && (
             <Box
               sx={{
                 width: "100%",
@@ -225,8 +225,8 @@ export const ImageCarouselSection = props => {
                   sx={{ position: "relative" }}
                 >
                   {slides &&
-                    slides.length >= 1 &&
-                    slides.map((dot, dotIndex) => {
+                    slides?.length >= 1 &&
+                    slides?.map((dot, dotIndex) => {
                       let dotColour =
                         dotIndex === index
                           ? theme.palette.primary.main
@@ -253,7 +253,7 @@ export const ImageCarouselSection = props => {
           )}
         </Box>
       )}
-      {slides && slides.length === 0 && (
+      {slides && slides?.length === 0 && (
         slides && (
           <Image
             // pass asset, hotspot, and crop fields
@@ -261,10 +261,10 @@ export const ImageCarouselSection = props => {
             hotspot={slides[0]?.hotspot}
             asset={
               (slides[0]?._ref &&
-                urlFor(previewData.slides[0])
+                urlFor(previewData?.slides[0])
                   .width(200)
                   .url()) ||
-              slides[0].asset
+              slides[0]?.asset
             }
             style={{
               objectFit: "cover",
