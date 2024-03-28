@@ -23,7 +23,7 @@ export const TeamTile = props => {
   const [showBio, setShowBio] = useState(false)
   const image = member?.image
   const memberShortName = member?.name.split(" ")
-  const email = member.email
+  const email = member?.email
   const memberExcerpt = member?.excerpt
 
   const arrowRight = (
