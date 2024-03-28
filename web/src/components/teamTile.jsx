@@ -231,12 +231,12 @@ export const TeamTile = props => {
                   justifyContent: "flex-end",
                 }}
               >
-                {member.position && (
+                {member?.position && (
                   <Typography
                     color={contrastColour(definedTileColor).textColour}
                     variant="overline"
                   >
-                    {member.position}
+                    {member?.position}
                   </Typography>
                 )}
               </Box>
@@ -246,12 +246,12 @@ export const TeamTile = props => {
                   my: 5,
                 }}
               />
-              {member.name && (
+              {member?.name && (
                 <Typography
                   color={contrastColour(definedTileColor).textColour}
                   variant="h4"
                 >
-                  {member.name}
+                  {member?.name}
                 </Typography>
               )}
               <Divider
@@ -328,10 +328,10 @@ export const TeamTile = props => {
                     alignItems: "center",
                   }}
                 >
-                  {member.linkedIn && (
+                  {member?.linkedIn && (
                     <IconButton
                       size="small"
-                      href={member.linkedIn}
+                      href={member?.linkedIn}
                       aria-label={`Go to ${member?.name} linkedIn profile`}
                       sx={{
                         color: contrastColour(definedTileColor).textColour,
