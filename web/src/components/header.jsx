@@ -148,7 +148,7 @@ const Header = props => {
                   md: "space-between",
                   lg: "space-between",
                 },
-                flexWrap: { xs: "wrap", sm: "wrap", md: "wrap", lg: "wrap" },
+                flexWrap: { xs: "wrap", sm: "wrap", md: "nowrap", lg: "wrap" },
               }}
             >
               <Link
