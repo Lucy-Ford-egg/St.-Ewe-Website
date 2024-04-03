@@ -179,7 +179,7 @@ export const Footer = props => {
             variant="text"
             to={menuItem?.link?.link?.internal?.slug?.current}
             sx={{
-              transform: "translateX(-20px)",
+              transform: "translateX(-10px)",
               fontWeight: "400 !important",
             }}
           >
