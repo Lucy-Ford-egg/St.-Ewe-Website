@@ -11,6 +11,8 @@ import { contrastColour } from "../utils/contrastColour"
 
 export const HeaderSection = props => {
   const theme = useTheme()
+
+  const mobile = useMediaQuery(theme.breakpoints.down("md"))
   const {
     _rawTitle,
     _rawText,
@@ -47,8 +49,8 @@ export const HeaderSection = props => {
         alignItems: "center",
         justifyContent: "center",
         height: "100%",
-        minHeight: definedImage ? "78vh" : "min-content",
-        maxHeight: { xs: "", md: "" },
+        minHeight: {xs: "78vh", sm: "min-content"},
+        //maxHeight: (!addSpiro && !definedTitle && !definedText) && { xs: "55vh", sm: "65vh" },
         overflow: "hidden",
         px: "0 !important",
         position: "relative",
@@ -192,7 +194,7 @@ export const HeaderSection = props => {
                 flexGrow: 1,
                 gridColumn: "1/25",
                 gridRow: "1/auto",
-                minHeight: definedImage ? "78vh" : "min-content",
+                minHeight: {xs: "78vh", sm: "min-content"},
             }} 
             initial={{
               opacity: 0,
@@ -214,11 +216,11 @@ export const HeaderSection = props => {
                 (definedImage &&
                   definedImage &&
                   definedImage?._ref &&
-                  urlFor(definedImage).width(200).url()) ||
+                  urlFor(definedImage).width(1440).url()) ||
                 definedImage.asset
               }
-              width={1440}
-              height={708}
+              width={mobile ? 600 : 1440}
+              height={mobile ? 400 : 708}
               style={{
                 objectFit: "cover",
                 width: "100%",

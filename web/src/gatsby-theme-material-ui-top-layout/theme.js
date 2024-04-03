@@ -105,7 +105,7 @@ let clientTheme = createTheme({
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[11],
       },
-      
+
     },
     h2: {
       fontSize: clientSpacing[13],
@@ -274,6 +274,14 @@ let clientTheme = createTheme({
 
         },
         maxWidthXl: {
+          [defaultTheme.breakpoints.down('lg')]: {
+            paddingLeft: `${defaultTheme.spacing(10)} !important`,
+            paddingRight: `${defaultTheme.spacing(10)} !important`,
+          },
+          [defaultTheme.breakpoints.down('md')]: {
+            paddingLeft: `${defaultTheme.spacing(7)} !important`,
+            paddingRight: `${defaultTheme.spacing(7)} !important`,
+          },
           [defaultTheme.breakpoints.down('sm')]: {
             paddingLeft: `${defaultTheme.spacing(5)} !important`,
             paddingRight: `${defaultTheme.spacing(5)} !important`,

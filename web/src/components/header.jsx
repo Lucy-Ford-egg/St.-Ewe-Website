@@ -124,7 +124,7 @@ const Header = props => {
           sx={{
             boxShadow: "unset",
             background: (setOverlay === true && !anchorElNav)
-      ? {xs: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 100%)", lg: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 87.43%)"} : "unset",
+      && {xs: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 100%)", lg: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 87.43%)"},
           }}
         >
           <Container maxWidth="xl" sx={{ pt: 1}} >

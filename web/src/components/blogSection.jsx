@@ -115,7 +115,7 @@ export const BlogSection = props => {
             },
       }}
     >
-      <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
+      {definedTitle && <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
           <Grid item xs={12} md={7}>
             {definedSubtitle && (
               <Typography color="primary" variant="overline">
@@ -157,6 +157,7 @@ export const BlogSection = props => {
             )}
           </Grid>
         </Grid>
+}
       {
       // ** Hide the filter if using the archive function as you can curate with more than one cataegory
       }
