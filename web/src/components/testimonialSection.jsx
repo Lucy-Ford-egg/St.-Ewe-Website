@@ -70,7 +70,7 @@ export const TestimonialSection = props => {
   const definedTestimonialTiles =
     (previewData && previewData?.testimonialTiles) || testimonialTiles
 
-  const slideIndex = wrap(0, definedTestimonialTiles.length, page)
+  const slideIndex = wrap(0, definedTestimonialTiles?.length, page)
 
   const paginate = newDirection => {
     setPage([page + newDirection, newDirection])
@@ -87,11 +87,11 @@ export const TestimonialSection = props => {
 
   const definedPreviewInternalAvatar =
     (previewData && _type === previewData?._type && previewData?.[slideIndex]?.cite?.teamMemberCite?.image) ||
-    testimonialTiles[slideIndex]?.cite?.teamMemberCite?.image
+    testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.image
 
   const definedPreviewExternalAvatar =
     (previewData && _type === previewData?._type && previewData?.[slideIndex]?.cite?.externalCite?.image) ||
-    testimonialTiles[slideIndex]?.cite?.externalCite?.image
+    testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.externalCite?.image
 
   const definedBackgroundColor =
     (previewData && _type === previewData?._type && previewData?.backgroundColor) || backgroundColor
@@ -101,36 +101,36 @@ export const TestimonialSection = props => {
 
   const definedQuoteText =
     (previewData && _type === previewData?._type && previewData?.testimonialTiles && previewData?.testimonialTiles[slideIndex] && previewData?.testimonialTiles[slideIndex]._rawQuoteText) ||
-    testimonialTiles[slideIndex]._rawQuoteText
+    testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]._rawQuoteText
 
   const definedInternalQuoteCite =
     (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
-      previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name) ||
-    testimonialTiles[slideIndex]?.cite?.teamMemberCite?.name
+      previewData?.testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.name) ||
+      testimonialTiles?.[slideIndex] &&  testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.name
 
   const definedExternalQuoteCite =
     (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
-      previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
+      previewData?.testimonialTiles?.[slideIndex]?.cite?.externalCite
         ?.citeName) ||
-    testimonialTiles[slideIndex]?.cite?.externalCite?.citeName
+        testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.externalCite?.citeName
 
   const definedInternalQuotePosition =
     (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
-      previewData?.testimonialTiles[slideIndex]?.cite?.teamMemberCite
+      previewData?.testimonialTiles?.[slideIndex]?.cite?.teamMemberCite
         ?.position) ||
-    testimonialTiles[slideIndex]?.cite?.teamMemberCite?.position
+        testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.position
 
   const definedExternalQuotePosition =
     (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
-      previewData?.testimonialTiles[slideIndex]?.cite?.externalCite
+      previewData?.testimonialTiles?.[slideIndex]?.cite?.externalCite
         ?.citePosition) ||
-    testimonialTiles[slideIndex]?.cite?.externalCite?.citeLocation
+        testimonialTiles?.[slideIndex] &&  testimonialTiles?.[slideIndex]?.cite?.externalCite?.citeLocation
 
   return (
     <Box
       sx={{
         position: "relative",
-        backgroundColor: definedBackgroundColor.value,
+        backgroundColor: definedBackgroundColor?.value,
         overflowX: "hidden",
         mb: { xs: theme.spacing(16), md: theme.spacing(16) },
           mt: definedTopPadding
@@ -154,12 +154,12 @@ export const TestimonialSection = props => {
           left: 0,
           width: { xs: "85px", sm: "auto" },
           zIndex: 0,
-          opacity: contrastColour(definedBackgroundColor).spiro.opacity,
+          opacity: contrastColour(definedBackgroundColor)?.spiro?.opacity,
           svg: {
             width: "100%",
             height: "auto",
             path: {
-              stroke: contrastColour(definedBackgroundColor).spiro.fill,
+              stroke: contrastColour(definedBackgroundColor)?.spiro?.fill,
             },
           },
         }}
@@ -296,7 +296,7 @@ export const TestimonialSection = props => {
                             asset={
                               (definedPreviewInternalAvatar._ref &&
                                 urlFor(definedPreviewInternalAvatar)
-                                  .width(582)
+                                  .width(100)
                                   .url()) ||
                               definedPreviewInternalAvatar.asset
                             }
@@ -343,7 +343,7 @@ export const TestimonialSection = props => {
                             asset={
                               (definedPreviewExternalAvatar._ref &&
                                 urlFor(definedPreviewExternalAvatar)
-                                  .width(582)
+                                  .width(100)
                                   .url()) ||
                               definedPreviewExternalAvatar.asset
                             }
@@ -398,6 +398,7 @@ export const TestimonialSection = props => {
             </AnimatePresence>
           </Box>
         </Box>
+        {testimonialTiles?.length > 1 && (
         <Container maxWidth="md"
           sx={{
             gridColumn: "1/25",
@@ -462,7 +463,9 @@ export const TestimonialSection = props => {
             />
           </IconButton>
         </Container>
+        )}
       </Container>
+    
       <Box
         sx={{
           position: "absolute",
