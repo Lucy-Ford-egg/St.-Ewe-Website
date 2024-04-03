@@ -99,7 +99,7 @@ export const HeaderSection = props => {
           flexDirection: "column",
           alignItems: definedTextAlign ? definedTextAlign : "flexstart",
           justifyContent: "center",
-          py: { xs: 20, md: 20 },
+          py: !definedImage ? { xs: 20, sm: 0, md: 20 } : { xs: 20, sm: 20, md: 20 } ,
 
         }}
       >

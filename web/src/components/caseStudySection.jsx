@@ -100,7 +100,7 @@ export const CaseStudySection = ({
     >
       {/* <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/> */}
       
-        <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
+        { definedTitle && <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
           <Grid item xs={12} md={7}>
             {definedSubtitle && (
               <Typography color="primary" variant="overline">
@@ -142,6 +142,7 @@ export const CaseStudySection = ({
             )}
           </Grid>
         </Grid>
+}
       
       
         {filtersPosts && (
