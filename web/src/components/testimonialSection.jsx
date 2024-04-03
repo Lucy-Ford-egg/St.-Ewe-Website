@@ -132,6 +132,13 @@ export const TestimonialSection = props => {
         position: "relative",
         backgroundColor: definedBackgroundColor.value,
         overflowX: "hidden",
+        mb: { xs: theme.spacing(16), md: theme.spacing(16) },
+          mt: definedTopPadding
+            ? {
+                xs: theme.spacing(16),
+                md: theme.spacing(0),
+              }
+            : { xs: theme.spacing(16), md: theme.spacing(16) },
       }}
     >
       <Box
@@ -160,15 +167,8 @@ export const TestimonialSection = props => {
         <Spiro />
       </Box>
       <Container
-        maxWidth="xl"
-        sx={{
-          pb: { xs: theme.spacing(16), md: theme.spacing(16) },
-          pt: definedTopPadding
-            ? {
-                xs: theme.spacing(16),
-                md: theme.spacing(0),
-              }
-            : { xs: theme.spacing(16), md: theme.spacing(16) },
+        maxWidth="xl" sx={{
+          py: {xs: theme.spacing(16), md: theme.spacing(16)}
         }}
       >
         <Box
