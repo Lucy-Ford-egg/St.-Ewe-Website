@@ -141,7 +141,6 @@ let clientTheme = createTheme({
         // *{
         //   border: 1px solid tomato;
         // }
-       
         @keyframes backToTopAnimation {
           0%,
           50%,
@@ -154,6 +153,10 @@ let clientTheme = createTheme({
             translateY: 0px;
             opacity: 0.2
           }
+        }
+        a{
+          color: inherit;
+          text-decoration: none;
         }
         .backgroundWrapperClasses{
           position: fixed;
@@ -216,21 +219,11 @@ let clientTheme = createTheme({
           background-color: ${defaultTheme.palette.primary.main};
           color: white;
         }
-        .declineButtonClass{
-           
-        }
         .cookie-list{
           color: ${defaultTheme.palette.white.main};
         }
-
-
         .bg-cookie{
-          
-          
-          
-          
           .btn-primary, .btn-secondary {             
-            
             outline: none;
             border: none;
             font-family: Open Sans;
@@ -261,11 +254,7 @@ let clientTheme = createTheme({
             display: flex;
             column-gap: 6;
           }
-          
-          
         }
-        
-
       `
     },
     MuiContainer: {
