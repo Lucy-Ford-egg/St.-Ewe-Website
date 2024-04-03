@@ -105,6 +105,7 @@ let clientTheme = createTheme({
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[11],
       },
+      
     },
     h2: {
       fontSize: clientSpacing[13],

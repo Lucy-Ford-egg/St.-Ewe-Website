@@ -22,7 +22,7 @@ export const RenderPortableText = (props) => {
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5, md: 0 }, color: 'inherit' }} variant="h1" component="div">{children}</Typography>
     },
     h2: ({ children }) => {
-      return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>
+      return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>
     },
     h3: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h3">{children}</Typography>,
     h4: ({ children }) => <Typography sx={{ py: { xs: 7 }, color: 'inherit' }} variant="h4">{children}</Typography>,

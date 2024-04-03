@@ -27,7 +27,7 @@ export const HeaderSection = props => {
   const [addSpiro, setAddSpiro] = useState(false)
   useEffect(() => {
     setAddSpiro(( previewData && _type === previewData?._type && previewData?.spiro) || spiro)
-  }, [])
+  }, [previewData, spiro])
 
   const definedTitle = ( previewData && _type === previewData?._type && previewData?.title) || _rawTitle
   const definedText = ( previewData && _type === previewData?._type && previewData?.text) || _rawText
@@ -52,7 +52,7 @@ export const HeaderSection = props => {
         overflow: "hidden",
         px: "0 !important",
         position: "relative",
-        pt: addSpiro ? { xs: 15, md: 17 } : 0,
+        pt: addSpiro && !definedImage ?  { xs: 15, md: 17 } : 0,
         pb: definedBackgroundColour && !definedImage && 15,
         backgroundColor: definedBackgroundColour?.value,
       }}
@@ -97,7 +97,8 @@ export const HeaderSection = props => {
           flexDirection: "column",
           alignItems: definedTextAlign ? definedTextAlign : "flexstart",
           justifyContent: "center",
-          pt: { xs: 20, md: 20 },
+          py: { xs: 20, md: 20 },
+
         }}
       >
         <Box>
@@ -105,6 +106,7 @@ export const HeaderSection = props => {
             sx={{
               maxWidth: 800,
               margin: definedTextAlign ? "0 auto" : "unset",
+              mt:  {xs: "9vh", md: "9vh"}
             }}
           >
             <motion.div

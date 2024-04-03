@@ -9,6 +9,7 @@ export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
 
 export const NAV_QUERY = groq`*[_type in ["post", "page", "caseStudy", "teamMember"] && slug.current == $slug][0] {
   navColor{...},
+  navOverlay,
 }`
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
