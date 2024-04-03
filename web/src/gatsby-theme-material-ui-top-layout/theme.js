@@ -80,7 +80,6 @@ let clientTheme = createTheme({
     body2: {
       fontFamily: 'Open Sans SemiBold',
       fontSize: clientSpacing[7],
-      fontWeight: 500,
       letterSpacing: '0em',
     },
     button: {
@@ -103,7 +102,6 @@ let clientTheme = createTheme({
     h1: {
       fontSize: clientSpacing[17],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[11],
       },
@@ -111,12 +109,10 @@ let clientTheme = createTheme({
     h2: {
       fontSize: clientSpacing[13],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
     },
     h3: {
       fontSize: clientSpacing[10],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       lineHeight: 1.35,
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[8],
@@ -125,18 +121,15 @@ let clientTheme = createTheme({
     h4: {
       fontSize: clientSpacing[7],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       letterSpacing: '0em',
     },
     h5: {
       fontSize: clientSpacing[5],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
     },
     h6: {
       fontSize: clientSpacing[4],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       letterSpacing: '0em',
     },
   },
