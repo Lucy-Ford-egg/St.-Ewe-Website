@@ -122,8 +122,8 @@ export const RenderPortableText = (props) => {
     listItem: ({ value, children }) => {
       return (
         (value.listItem === "bullet" ? (
-          <ListItem sx={{ color: 'inherit', pl: 0 }}>
-            <ListItemIcon sx={{ minWidth: 16 }}>
+          <ListItem sx={{ alignItems: "flex-start",  color: 'inherit', pl: 0 }}>
+            <ListItemIcon sx={{ mt: 2, minWidth: 16 }}>
               <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
             </ListItemIcon>{children[0]}
           </ListItem>
