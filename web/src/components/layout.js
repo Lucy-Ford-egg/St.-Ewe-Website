@@ -28,7 +28,7 @@ export const Layout = (props) => {
   const definedNavColor = (previewData && previewData?.nav?.navColor) || navColor
   const definedNavOverlay = (previewData && previewData?.nav?.navOverlay) || navOverlay 
 
-  debugger
+
 
     return (
     <div>

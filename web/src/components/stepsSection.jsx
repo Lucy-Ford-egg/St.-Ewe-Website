@@ -13,7 +13,8 @@ import { StepsTile } from "./stepsTile"
 import { RenderPortableText } from "../components/renderPortableText"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { contrastColour } from "../utils/contrastColour"
-import {AccordionTile} from "../components/accordionTile"
+import { AccordionTile } from "../components/accordionTile"
+import { red } from "@mui/material/colors"
 
 export const StepsSection = props => {
   const theme = useTheme()
@@ -21,10 +22,11 @@ export const StepsSection = props => {
 
   // Scroll animation
   const lineRef = useRef(null)
-  const targetRef = useRef(null);
-  const referenceRef = useRef(null);
+  const targetRef = useRef(null)
+  const referenceRef = useRef(null)
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress, scrollY } = useScroll({
+    //container: referenceRef,
     target: targetRef,
     offset: ["-50vh start", "end end"],
   })
@@ -34,12 +36,15 @@ export const StepsSection = props => {
     damping: 30,
     restDelta: 0.001,
   })
+  const heightY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
 
+  const [height, setHeight] = useState(0)
 
-  const [height, setHeight] = useState(0);
-
-  
-   const {
+  const {
     _rawTitle,
     tileColor,
     _rawText,
@@ -52,118 +57,133 @@ export const StepsSection = props => {
     _type,
   } = props
 
-  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
-  const definedText = (previewData && _type === previewData?._type && previewData?.text) || _rawText
-  const definedSteps = (previewData && _type === previewData?._type && previewData?.steps) || steps
-  const definedTileColor = (previewData && _type === previewData?._type && previewData?.tileColor) || tileColor
-  const definedTextAlign = (previewData && _type === previewData?._type && previewData?.textAlign) || textAlign
-  
+  const definedTitle =
+    (previewData && _type === previewData?._type && previewData?.title) ||
+    _rawTitle
+  const definedText =
+    (previewData && _type === previewData?._type && previewData?.text) ||
+    _rawText
+  const definedSteps =
+    (previewData && _type === previewData?._type && previewData?.steps) || steps
+  const definedTileColor =
+    (previewData && _type === previewData?._type && previewData?.tileColor) ||
+    tileColor
+  const definedTextAlign =
+    (previewData && _type === previewData?._type && previewData?.textAlign) ||
+    textAlign
 
   const [pieSegments, setPieSegments] = useState(null)
 
   useEffect(() => {
-    setPieSegments(definedSteps.filter(item => item._type === "stepTile"));
-  }, [definedSteps]);
+    setPieSegments(definedSteps.filter(item => item._type === "stepTile"))
+  }, [definedSteps])
 
   useEffect(() => {
-    if (referenceRef.current && targetRef.current) {
-      const referenceHeight = referenceRef.current.clientHeight;
-      setHeight(referenceHeight);
+
+    const lastChild = referenceRef.current.lastChild
+    if (referenceRef.current && targetRef.current && lastChild.classList.contains("stepDivider")) {
+      const referenceHeight = referenceRef.current.clientHeight
+      setHeight(referenceHeight - ((lastChild.clientHeight/2) + 12))
     }
-  }, [referenceRef, targetRef]);
+    else{
+      const referenceHeight = referenceRef.current.clientHeight
+      setHeight(referenceHeight)
+    }
+  }, [referenceRef, targetRef])
 
   const renderSteps = () => {
-
     let steps = []
     let acc = 0
     for (let i = 0; i < definedSteps.length; i++) {
-      
       let currentItem = definedSteps[i]
 
       if (currentItem._type === "stepDivider") {
         // Skip the divider
-        
-        steps.push(<Grid
-          key={`step-${i}`}
-          item
-          xs={12}
-          sm={11}
-          md={12}
-          sx={{ display: "flex", flexDirection: "column" }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              textAlign: "center",
-              mb: 6,
-              py: {xs: 6, sm:  4, lg: 6},
-            }}
+
+        steps.push(
+          <Grid
+            key={`step-${i}`}
+            item
+            xs={12}
+            sm={11}
+            md={12}
+            sx={{ display: "flex", flexDirection: "column" }}
+            className="stepDivider"
           >
-            <Typography variant="overline"  sx={{mb: 3}}>
-              {definedSteps[i].subtitle}
-            </Typography>
-            <Divider variant="fullWidth" component="div" role="presentation" sx={{ whiteSpace: {xs: "wrap", md: "pre-wrap"} }}>
-              <Typography variant="body2" sx={{ textAlign: "center", width: { sm: 400} }}>
-                {definedSteps[i].title}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "center",
+                mb: 6,
+                py: { xs: 6, sm: 4, lg: 6 },
+              }}
+            >
+              <Typography variant="overline" sx={{ mb: 3 }}>
+                {definedSteps[i].subtitle}
               </Typography>
-            </Divider>
-          </Box>
-        </Grid>)
-        
+              <Divider
+                variant="fullWidth"
+                component="div"
+                role="presentation"
+                sx={{ whiteSpace: { xs: "wrap", md: "pre-wrap" } }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{ textAlign: "center", width: { sm: 400 } }}
+                >
+                  {definedSteps[i].title}
+                </Typography>
+              </Divider>
+            </Box>
+          </Grid>,
+        )
       }
       if (currentItem._type === "accordionTile") {
         acc++
         steps.push(
-        <Grid
-          key={`step-${i}`}
-          item
-          xs={12}
-          
-          sm={currentItem.tileOrientation === true ? 12 : 12}
-          sx={{ display: "flex", flexDirection: "column" }}
-        >
-          
+          <Grid
+            key={`step-${i}`}
+            item
+            xs={12}
+            sm={currentItem.tileOrientation === true ? 12 : 12}
+            sx={{ display: "flex", flexDirection: "column" }}
+          >
             <AccordionTile
               tileColor={definedTileColor}
-              tile={currentItem }
+              tile={currentItem}
               previewData={previewData}
               index={i}
               key={currentItem._key}
-              displayNumber={[acc ]}
+              displayNumber={[acc]}
               sanityConfig={sanityConfig}
               pieSegments={pieSegments && pieSegments.length}
             />
-         
-        </Grid>
+          </Grid>,
         )
       }
       if (currentItem._type === "stepTile") {
         acc++
         steps.push(
-        <Grid
-          key={`step-${i}`}
-          item
-          xs={12}
-          
-          sm={currentItem.tileOrientation === true ? 12 : 6}
-          sx={{ display: "flex", flexDirection: "column" }}
-        >
-          
+          <Grid
+            key={`step-${i}`}
+            item
+            xs={12}
+            sm={currentItem.tileOrientation === true ? 12 : 6}
+            sx={{ display: "flex", flexDirection: "column" }}
+          >
             <StepsTile
               tileColor={definedTileColor}
-              tile={currentItem }
+              tile={currentItem}
               previewData={previewData}
               index={i}
-              displayNumber={[acc ]}
+              displayNumber={[acc]}
               sanityConfig={sanityConfig}
               pieSegments={pieSegments && pieSegments.length}
             />
-         
-        </Grid>
+          </Grid>,
         )
       }
-      
     }
     return steps
   }
@@ -194,7 +214,8 @@ export const StepsSection = props => {
               variant="overline"
               color="primary.main"
               sx={{
-                textAlign: definedTextAlign === "flex-start" ? "left" : definedTextAlign,
+                textAlign:
+                  definedTextAlign === "flex-start" ? "left" : definedTextAlign,
               }}
             >
               {subtitle}
@@ -231,7 +252,11 @@ export const StepsSection = props => {
           )}
         </Grid>
       </Grid>
-      <Container disableGutters={mobile ? true : false} maxWidth="lg" style={{ position: "relative" }}>
+      <Container
+        disableGutters={mobile ? true : false}
+        maxWidth="lg"
+        style={{ position: "relative" }}
+      >
         <Grid
           ref={referenceRef}
           container
@@ -242,14 +267,15 @@ export const StepsSection = props => {
             justifyContent: "center",
             display: "flex",
             position: "relative",
+            height: "min-content",
           }}
         >
           <Box
-          ref={targetRef}
+            ref={targetRef}
             sx={{
               position: "absolute",
               top: 24,
-              left: {xs: -8, sm: 8, md: -41},
+              left: { xs: -8, sm: 8, md: -41 },
               mt: 0,
               mb: 0,
               ml: 0,
@@ -270,28 +296,42 @@ export const StepsSection = props => {
                 minHeight: height,
               }}
             >
-              <motion.div
-                key={lineRef.current}
+              {/* <motion.div
+                key={lineRef}
                 className="line"
+                
                 style={{
                   position: "relative",
                   width: 8,
                   backgroundColor: contrastColour(tileColor).line.hex,
                   transformOrigin: "0% 0%",
-                  scaleY: scaleY,
-                  height: "100%"
+                  //scaleY: scaleY,
+                  height: "100%",
+                  //y: heightY,
+                  
                 }}
-              ></motion.div>
-              {/* <motion.div
-                style={{
-                  width: 23,
-                  height: 23,
-                  display: "block",
-                  backgroundColor: "#F04D5F",
-                  borderRadius: 1000,
-                  bottom: 0,
-                }}
-              /> */}
+              ></motion.div> */}
+
+              <svg
+                style={{ display: "flex", flexDirection: "column" }}
+                width="25"
+                height={height}
+                viewBox={`0 0 25 ${height}`}
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <motion.line
+                  marker-end="url(#circle)"
+                  pathLength={heightY}
+                  x1="12.3203"
+                  y1="0.98584"
+                  x2="12.3203"
+                  y2={height}
+                  stroke="#F04D5F"
+                  stroke-width="8"
+                />
+                {/* <circle cx="11.6758" cy="49.7163" r="11.6309" fill="#F04D5F"/> */}
+              </svg>
             </Box>
           </Box>
           {definedSteps && renderSteps()}
@@ -333,7 +373,7 @@ export const query = graphql`
       ... on SanityAccordionTile {
         _key
         _type
-        _rawText(resolveReferences: {maxDepth: 10})
+        _rawText(resolveReferences: { maxDepth: 10 })
         title
       }
     }
