@@ -268,6 +268,7 @@ export const StepsSection = props => {
             display: "flex",
             position: "relative",
             height: "min-content",
+            pl: {xs: 4, sm: 4, md: "unset"}
           }}
         >
           <Box
@@ -275,7 +276,7 @@ export const StepsSection = props => {
             sx={{
               position: "absolute",
               top: 24,
-              left: { xs: -8, sm: 8, md: -41 },
+              left: { xs: -12, sm: 8, md: -41 },
               mt: 0,
               mb: 0,
               ml: 0,
@@ -327,7 +328,7 @@ export const StepsSection = props => {
                   y1="0.98584"
                   x2="12.3203"
                   y2={height}
-                  stroke="#F04D5F"
+                  stroke={contrastColour(tileColor).line.hex}
                   stroke-width="8"
                 />
                 {/* <circle cx="11.6758" cy="49.7163" r="11.6309" fill="#F04D5F"/> */}
