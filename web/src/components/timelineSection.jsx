@@ -274,9 +274,11 @@ export const TimelineSection = props => {
                               xs: "flex-start",
                               md: "flex-end",
                             },
-                            alignItems: "center",
                             textAlign: { xs: "left", md: "right" },
-                            
+                            alignItems: { xs: "center", md: "flex-start"}
+
+
+
                           }}
                         >
                           <Box
@@ -285,9 +287,14 @@ export const TimelineSection = props => {
                               pr: { xs: 0, md: 18 },
                               order: { xs: 1, md: 0 },
                               position: { md: "absolute" },
+                              pt:{
+                                md: 1,
+                              },
                               h3: {
                                 pb: 0,
+                                pt: {md: 0},
                               },
+
                             }}
                           >
                             {definedTitle && (
