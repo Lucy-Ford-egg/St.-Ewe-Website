@@ -366,6 +366,13 @@ let clientTheme = createTheme({
         }
       }
     },
+    MuiFormControl:{
+      styleOverrides:{
+        root:{
+          marginTop: defaultTheme.spacing(0),
+        },
+      },
+    },
     MuiFormLabel: {
       styleOverrides: {
         root: {
@@ -520,6 +527,7 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: defaultTheme.palette.white.main,
+           marginTop: defaultTheme.spacing(1),
         },
       },
     },
