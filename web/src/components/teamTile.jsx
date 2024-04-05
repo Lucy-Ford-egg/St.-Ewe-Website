@@ -52,9 +52,10 @@ export const TeamTile = props => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        width: { xs: "87vw", sm: "45vw", md: "32.5vw", md: "32.5vw", lg: "100%" },
-        maxWidth: 315,
-        flexBasis: {xs: "87vw", sm: "45vw", md: "32.5vw", md: "32.5vw", lg: "100%"},
+        width: { xs: "unset", sm: "45vw", md: "32.5vw", lg: "100%" },
+        minWidth: { xs: "87vw", sm: "unset", md: "unset", lg: "unset"},
+        maxWidth: { xs: 315, sm: "50%", md: "25%", lg: "35%", xl: "25%"},
+        flexBasis: {xs: "unset", sm: "unset", md: "unset", lg: "100%"},
         height: "100%",
         "&:last-of-type":{
           mr: {xs: 6, lg: "unset"}

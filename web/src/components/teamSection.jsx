@@ -125,6 +125,7 @@ export const TeamSection = props => {
             container
             columnSpacing={6}
             rowSpacing={6}
+            alignItems="stretch"
             sx={{
               flexDirection: { xs: "row", sm: "row", md: "row", lg: "row" },
               flexWrap: "nowrap",
