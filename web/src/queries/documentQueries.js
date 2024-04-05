@@ -99,7 +99,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
     crop{...}
   },
   navColor{...},
-  tileColor{...},
+  tileColor->{...},
   mobileImage {
     asset->,
     hotspot{...},
@@ -384,6 +384,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     overlay,
     topPadding,
     leftAlign, 
+    tileColor->{...},
     steps[]{
       ...,
       title,
