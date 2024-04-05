@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -19,7 +19,6 @@ export const TimelineSection = props => {
 
   // Scroll animation
   const lineRef = useRef(null)
-  const eventRef = useRef(null)
   const targetRef = useRef(null)
   const referenceRef = useRef(null)
 
@@ -38,7 +37,6 @@ export const TimelineSection = props => {
 
   const {
     _rawTitle,
-    tileColor,
     _rawLeftText,
     _rawRightText,
     textAlign,
@@ -294,7 +292,7 @@ export const TimelineSection = props => {
                                 pb: 0,
                                 pt: {md: 0},
                               },
-                              maxWidth: {sm: "200px", lg: "unset"}
+                              maxWidth: {sm: "250px", lg: "unset"}
                             }}
                           >
                             {definedTitle && (
