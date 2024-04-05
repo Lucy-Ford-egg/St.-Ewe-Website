@@ -99,13 +99,13 @@ export const FeaturesListSection = props => {
       <Grid
         container
         rowSpacing={6}
-        columnSpacing={{ xs: 13, sm: 6, md: 16 }}
+        columnSpacing={{ xs: 13, sm: 13, md: 16 }}
         sx={{
           pt: theme.spacing(6),
-          px: { xs: 0, sm: theme.spacing(12) },
+          px: { xs: 0, md: theme.spacing(12) },
         }}
       >
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid item xs={12} sm={6} md={6}>
           {definedImage && (
             <Image
               // pass asset, hotspot, and crop fields
@@ -130,7 +130,7 @@ export const FeaturesListSection = props => {
         <Grid
           item
           xs={12}
-          sm={12}
+          sm={6}
           md={6}
           sx={{ display: "flex", flexDirection: "column" }}
         >
