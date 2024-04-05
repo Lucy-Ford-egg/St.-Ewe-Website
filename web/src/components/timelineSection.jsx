@@ -294,7 +294,7 @@ export const TimelineSection = props => {
                                 pb: 0,
                                 pt: {md: 0},
                               },
-                              maxWidth: {sm: "max-content", lg: "unset"}
+                              maxWidth: {sm: "200px", lg: "unset"}
                             }}
                           >
                             {definedTitle && (
