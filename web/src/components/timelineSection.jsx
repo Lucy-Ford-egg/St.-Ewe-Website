@@ -284,7 +284,7 @@ export const TimelineSection = props => {
                           <Box
                             sx={{
                               pl: { xs: 3, md: "unset" },
-                              pr: { xs: 0, md: 18 },
+                              pr: { xs: 0, md: 17 },
                               order: { xs: 1, md: 0 },
                               position: { md: "absolute" },
                               pt:{
@@ -294,7 +294,7 @@ export const TimelineSection = props => {
                                 pb: 0,
                                 pt: {md: 0},
                               },
-
+                              maxWidth: {sm: "max-content", lg: "unset"}
                             }}
                           >
                             {definedTitle && (
