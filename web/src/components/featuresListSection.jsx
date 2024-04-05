@@ -177,7 +177,7 @@ export const query = graphql`
     topPadding
     featuresTile {
       title
-      text
+      _rawText(resolveReferences: { maxDepth: 10 })
       link {
         text
         link {

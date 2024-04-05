@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { Box, Paper, Typography, useTheme, Divider } from "@mui/material"
 import { ButtonFormat } from "./buttonFormat"
+import { RenderPortableText } from "../components/renderPortableText"
+
 
 export const FeaturesTile = props => {
   const { previewData, node, index, } = props
@@ -8,7 +10,7 @@ export const FeaturesTile = props => {
   const theme = useTheme()
 
   const definedTitle =  node?.title
-  const definedText = node?.text
+  const definedText = (node?.text) || node?._rawText
   const definedLink = node?.link
 
   return (
@@ -42,13 +44,16 @@ export const FeaturesTile = props => {
             sx={{ borderColor: theme.palette.primary.main, maxWidth: 305 }}
           />
 
-{definedText && (<Typography
-            color="text.primary"
-            sx={{ my: { xs: 5 } }}
-            variant="body1"
-          >
-            {definedText}
-          </Typography>)}
+
+          {definedText && (
+            <Box sx={{ my: { xs: 5 } }}>
+            <RenderPortableText
+              previewData={definedText}
+              setAsHeading={false}
+              value={definedText}
+            />
+            </Box>
+          )}
         </Box>
 
         {definedLink && (<Box
