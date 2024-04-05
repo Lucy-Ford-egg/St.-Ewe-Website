@@ -17,6 +17,7 @@ export const ButtonFormat = props => {
   if(node?.link?.internal?._type === "teamMembers" ){
     definedInternal = `/team-members/${definedInternal}`
   }
+
   return (
     <Box sx={sx}>
       {node?.link?.internal ? (

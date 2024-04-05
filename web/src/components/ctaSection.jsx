@@ -20,20 +20,19 @@ export const CtaSection = props => {
 
   const theme = useTheme()
 
-  const definedTopPadding = ( previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
-  const definedImage = ( previewData && _type === previewData?._type && previewData?.image) || image
-  const definedOverlay = ( previewData && _type === previewData?._type && previewData?.overlay) || overlay
-  const definedAlign = ( previewData && _type === previewData?._type && previewData?.leftAlign) || leftAlign
-  const definedTitle = ( previewData && _type === previewData?._type && previewData?.title)  || title
-  const definedText = ( previewData && _type === previewData?._type && previewData?.text) || text
-  const definedLinks = ( previewData && _type === previewData?._type && previewData?.links) || links
+  const definedTopPadding = ( _type === previewData?._type && previewData && previewData?.topPadding) || topPadding
+  const definedImage = ( _type === previewData?._type && previewData && previewData?.image) || image
+  const definedOverlay = ( _type === previewData?._type && previewData && previewData?.overlay) || overlay
+  const definedAlign = ( _type === previewData?._type && previewData && previewData?.leftAlign) || leftAlign
+  const definedTitle = ( _type === previewData?._type && previewData && previewData?.title)  || title
+  const definedText = ( _type === previewData?._type && previewData && previewData?.text) || text
+  const definedLinks = ( _type === previewData?._type && previewData && previewData?.links) || links
 
   return (
     <Container
       maxWidth="false"
       disableGutters="true"
       sx={{
-        //backgroundColor: theme.palette.background.main,
         pt: definedTopPadding
           ? 0
           : {
@@ -202,6 +201,7 @@ export const query = graphql`
     text
     links {
       link {
+        external
         internal {
           ... on SanityPage {
             id
@@ -220,7 +220,6 @@ export const query = graphql`
             
           }
         }
-        external
       }
       text
     }
