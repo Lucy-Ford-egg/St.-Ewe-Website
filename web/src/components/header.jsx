@@ -97,6 +97,7 @@ const Header = props => {
   `)
 
   const setColor = definedNavColor ? definedNavColor?.value : "#002856"
+  const setOverlay = navOverlay
 
   return (
     <Box ref={targetRef}>
@@ -122,7 +123,7 @@ const Header = props => {
           }
           sx={{
             boxShadow: "unset",
-            background: navOverlay === true && !anchorElNav
+            background: (setOverlay === true && !anchorElNav)
       && {xs: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 100%)", lg: "linear-gradient(85deg, #F3F3F3 48.08%, rgba(243, 243, 243, 0.00) 87.43%)"},
           }}
         >
@@ -147,7 +148,7 @@ const Header = props => {
                   md: "space-between",
                   lg: "space-between",
                 },
-                flexWrap: { xs: "wrap", sm: "wrap", md: "wrap", lg: "wrap" },
+                flexWrap: { xs: "wrap", sm: "wrap", md: "nowrap", lg: "wrap" },
               }}
             >
               <Link

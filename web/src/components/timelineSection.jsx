@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -19,12 +19,11 @@ export const TimelineSection = props => {
 
   // Scroll animation
   const lineRef = useRef(null)
-  const eventRef = useRef(null)
   const targetRef = useRef(null)
   const referenceRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
-    target: targetRef,    
+    target: targetRef,
     offset: ["-50vh start", "end end"],
   })
 
@@ -38,7 +37,6 @@ export const TimelineSection = props => {
 
   const {
     _rawTitle,
-    tileColor,
     _rawLeftText,
     _rawRightText,
     textAlign,
@@ -51,14 +49,25 @@ export const TimelineSection = props => {
     _type,
   } = props
 
-  const definedSubtitle = (previewData && _type === previewData?._type && previewData?.subtitle) || subtitle
-  const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
-  const definedLeftText = (previewData && _type === previewData?._type && previewData?.leftText) || _rawLeftText
+  const definedSubtitle =
+    (previewData && _type === previewData?._type && previewData?.subtitle) ||
+    subtitle
+  const definedTitle =
+    (previewData && _type === previewData?._type && previewData?.title) ||
+    _rawTitle
+  const definedLeftText =
+    (previewData && _type === previewData?._type && previewData?.leftText) ||
+    _rawLeftText
   const definedRightText =
-    (previewData && _type === previewData?._type && previewData?.rightText) || _rawRightText
-  const definedSteps = (previewData && _type === previewData?._type && previewData?.steps) || steps
+    (previewData && _type === previewData?._type && previewData?.rightText) ||
+    _rawRightText
+  const definedSteps =
+    (previewData && _type === previewData?._type && previewData?.steps) || steps
   const defineTimelineColor =
-    (previewData && _type === previewData?._type && previewData?.timelineColor) || timelineColor
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.timelineColor) ||
+    timelineColor
 
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {
@@ -160,170 +169,187 @@ export const TimelineSection = props => {
           </Grid>
         )}
       </Grid>
-
-      <Grid ref={referenceRef} sx={{ position: "relative" }} container>
+      <Container maxWidth="sm">
         <Grid
-          item
-          xs={1}
-          md={3}
+          ref={referenceRef}
           sx={{
             position: "relative",
           }}
+          container
         >
-          <Box
-            ref={targetRef}
-            sx={{
-              position: "absolute",
-              top: 24,
-              left: { xs: "0%", sm: "4%", md: "0%", lg: "100%" },
-              ml: { xs: 0, sm: 10, md: 10, lg: -5, xl: 0 },
-              mt: 0,
-              mb: 0,
-              height: "100%",
-              display: "flex",
-            }}
-            component="figure"
-          >
+          <Grid item xs={1} md={1} sx={{}}>
             <Box
-              component="span"
+              ref={targetRef}
               sx={{
-                position: "relative",
-                flexBasis: "100%",
+                mt: 24,
+                height: "100%",
+                mx: "unset",
                 display: "flex",
-                flexDirection: "column",
                 justifyContent: "flex-start",
-                alignItems: "center",
-                minHeight: height,
               }}
+              component="figure"
             >
-              <motion.div
-                key={lineRef.current}
-                className="line"
-                style={{
+              <Box
+                component="span"
+                sx={{
                   position: "relative",
-                  width: 8,
-                  backgroundColor: defineTimelineColor.value,
-                  transformOrigin: "0% 0%",
-                  scaleY: scaleY,
-                  height: "100%",
+                  flexBasis: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  minHeight: height,
                 }}
-              ></motion.div>
-            </Box>
-          </Box>
-        </Grid>
-        <GridMotion
-          item
-          xs={11}
-          md={9}
-          sx={{ transform: { xs: "unset", md: "translateX(-222px)"} }}
-        >
-          {definedSteps &&
-            definedSteps.map((step, index) => {
-              const definedTitle =
-                (previewData && definedSteps && definedSteps[index]?.title) ||
-                step._rawTitle
-
-              const definedDescription =
-                (definedSteps && definedSteps[index]?.description) ||
-                step._rawDescription
-
-              return (
+              >
                 <motion.div
-                  key={`event-${index}`}
-                  initial={{
-                    opacity: 0.3,
+                  key={lineRef.current}
+                  className="line"
+                  style={{
+                    position: "relative",
+                    width: 8,
+                    backgroundColor: defineTimelineColor.value,
+                    transformOrigin: "0% 0%",
+                    scaleY: scaleY,
+                    height: "100%",
                   }}
-                  whileInView={{
-                    opacity: 1,
-                  }}
-                  //exit={{ opacity: 0.1 }}
-                  viewport={{
-                    amount: smallMobile ? "some" : "all",
-                    //margin: "25%",
-                    once: false,
-                  }}
-                >
-                  <Box
-                    // ref={eventRef}
-                    sx={{
-                      py: { xs: 6, md: 16 },
-                      display: { xs: "flex", md: "grid" },
-                      flexDirection: { xs: "column", md: "row" },
-                      gridTemplateColumns: {
-                        xs: "unset",
-                        md: "minmax(200px, 2fr) 0.8fr 6fr",
-                      },
+                ></motion.div>
+              </Box>
+            </Box>
+          </Grid>
+          <GridMotion
+            item
+            xs={11}
+            md={11}
+            sx={{
+              pl: {md: 6}
+            }}
+          >
+            {definedSteps &&
+              definedSteps.map((step, index) => {
+                const definedTitle =
+                  (previewData && definedSteps && definedSteps[index]?.title) ||
+                  step._rawTitle
+
+                const definedDescription =
+                  (definedSteps && definedSteps[index]?.description) ||
+                  step._rawDescription
+
+                return (
+                  <motion.div
+                    key={`event-${index}`}
+                    initial={{
+                      opacity: 0.3,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                    }}
+                    //exit={{ opacity: 0.1 }}
+                    viewport={{
+                      amount: smallMobile ? "some" : "all",
+                      //margin: "25%",
+                      once: false,
                     }}
                   >
-                    {definedTitle && (
-                      <Box
-                        sx={{
-                          gridColumn: "1/2",
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: { xs: "flex-start", md: "flex-end" },
-                          alignItems: "center",
-                          textAlign: { xs: "left", md: "right" },
-                        }}
-                      >
+                    <Box
+                      // ref={eventRef}
+                      sx={{
+                        py: { xs: 6, md: 16 },
+                        display: { xs: "flex", md: "grid" },
+                        flexDirection: { xs: "column", md: "row" },
+                        gridTemplateColumns: {
+                          xs: "unset",
+                          md: "unset", //repeat(12, 1fr)
+                        },
+                      }}
+                    >
+                      {definedTitle && (
                         <Box
                           sx={{
-                            pr: { xs: 0, md: "104px" },
-                            order: { xs: 1, md: 0 },
-                            h3: {
-                              pb: 0,
+                            gridColumn: "1/2",
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: {
+                              xs: "flex-start",
+                              md: "flex-end",
                             },
+                            textAlign: { xs: "left", md: "right" },
+                            alignItems: { xs: "center", md: "flex-start"}
+
+
+
                           }}
                         >
-                          {definedTitle && (
-                            <RenderPortableText
-                              previewData={
-                                previewData && previewData?.steps && 
-                                previewData?.steps[index] &&
-                                previewData?.steps[index]
-                              }
-                              sanityConfig={sanityConfig}
-                              setAsHeading="h2"
-                              value={definedTitle}
-                            />
-                          )}
+                          <Box
+                            sx={{
+                              pl: { xs: 3, md: "unset" },
+                              pr: { xs: 0, md: 17 },
+                              order: { xs: 1, md: 0 },
+                              position: { md: "absolute" },
+                              pt:{
+                                md: 1,
+                              },
+                              h3: {
+                                pb: 0,
+                                pt: {md: 0},
+                              },
+                              maxWidth: {sm: "250px", lg: "unset"}
+                            }}
+                          >
+                            {definedTitle && (
+                              <RenderPortableText
+                                previewData={
+                                  previewData &&
+                                  previewData?.steps &&
+                                  previewData?.steps[index] &&
+                                  previewData?.steps[index]
+                                }
+                                sanityConfig={sanityConfig}
+                                setAsHeading="h2"
+                                value={definedTitle}
+                              />
+                            )}
+                          </Box>
+                          <Box
+                            sx={{
+                              order: { xs: 0, md: 1 },
+                              opacity: "1 !important",
+                              display: "flex",
+                              width: "20px",
+                              height: "20px",
+                              borderRadius: "1000px",
+                              backgroundColor: timelineColor.value,
+                              position: "absolute",
+                              left: "4.1%",
+                              mt: 1,
+                              transform: "translateX(-50%)",
+                            }}
+                          />
                         </Box>
+                      )}
+                      {definedDescription && (
                         <Box
                           sx={{
-                            order: { xs: 0, md: 1 },
-                            opacity: "1 !important",
-                            mr: { xs: 0, md: "-46px" },
-                            ml: { xs: 2, md: 0 },
-                            color: timelineColor.value,
-                            display: "list-item",
-                            fontSize: "64px",
+                            pl: { xs: 3, md: "unset" },
+                            gridColumn: "3/4",
+                            display: "flex",
+                            alignItems: "center",
                           }}
-                        />
-                      </Box>
-                    )}
-                    {definedDescription && (
-                      <Box
-                        sx={{
-                          pl: { xs: 3, md: "unset" },
-                          gridColumn: "3/4",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <RenderPortableText
-                          previewData={definedSteps[index]}
-                          sanityConfig={sanityConfig}
-                          setAsHeading={false}
-                          value={definedDescription}
-                        />
-                      </Box>
-                    )}
-                  </Box>
-                </motion.div>
-              )
-            })}
-        </GridMotion>
-      </Grid>
+                        >
+                          <RenderPortableText
+                            previewData={definedSteps[index]}
+                            sanityConfig={sanityConfig}
+                            setAsHeading={false}
+                            value={definedDescription}
+                          />
+                        </Box>
+                      )}
+                    </Box>
+                  </motion.div>
+                )
+              })}
+          </GridMotion>
+        </Grid>
+      </Container>
     </Container>
   )
 }

@@ -80,7 +80,6 @@ let clientTheme = createTheme({
     body2: {
       fontFamily: 'Open Sans SemiBold',
       fontSize: clientSpacing[7],
-      fontWeight: 500,
       letterSpacing: '0em',
     },
     button: {
@@ -103,20 +102,18 @@ let clientTheme = createTheme({
     h1: {
       fontSize: clientSpacing[17],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[11],
       },
+
     },
     h2: {
       fontSize: clientSpacing[13],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
     },
     h3: {
       fontSize: clientSpacing[10],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       lineHeight: 1.35,
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[8],
@@ -125,18 +122,15 @@ let clientTheme = createTheme({
     h4: {
       fontSize: clientSpacing[7],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       letterSpacing: '0em',
     },
     h5: {
       fontSize: clientSpacing[5],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
     },
     h6: {
       fontSize: clientSpacing[4],
       fontFamily: 'Merriweather Bold',
-      fontWeight: 700,
       letterSpacing: '0em',
     },
   },
@@ -147,7 +141,6 @@ let clientTheme = createTheme({
         // *{
         //   border: 1px solid tomato;
         // }
-       
         @keyframes backToTopAnimation {
           0%,
           50%,
@@ -160,6 +153,10 @@ let clientTheme = createTheme({
             translateY: 0px;
             opacity: 0.2
           }
+        }
+        a{
+          color: inherit;
+          text-decoration: none;
         }
         .backgroundWrapperClasses{
           position: fixed;
@@ -222,21 +219,11 @@ let clientTheme = createTheme({
           background-color: ${defaultTheme.palette.primary.main};
           color: white;
         }
-        .declineButtonClass{
-           
-        }
         .cookie-list{
           color: ${defaultTheme.palette.white.main};
         }
-
-
         .bg-cookie{
-          
-          
-          
-          
           .btn-primary, .btn-secondary {             
-            
             outline: none;
             border: none;
             font-family: Open Sans;
@@ -267,11 +254,7 @@ let clientTheme = createTheme({
             display: flex;
             column-gap: 6;
           }
-          
-          
         }
-        
-
       `
     },
     MuiContainer: {
@@ -280,6 +263,14 @@ let clientTheme = createTheme({
 
         },
         maxWidthXl: {
+          [defaultTheme.breakpoints.down('lg')]: {
+            paddingLeft: `${defaultTheme.spacing(10)} !important`,
+            paddingRight: `${defaultTheme.spacing(10)} !important`,
+          },
+          [defaultTheme.breakpoints.down('md')]: {
+            paddingLeft: `${defaultTheme.spacing(7)} !important`,
+            paddingRight: `${defaultTheme.spacing(7)} !important`,
+          },
           [defaultTheme.breakpoints.down('sm')]: {
             paddingLeft: `${defaultTheme.spacing(5)} !important`,
             paddingRight: `${defaultTheme.spacing(5)} !important`,

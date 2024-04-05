@@ -30,7 +30,7 @@ export const ClientLoginSection = props => {
   const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
   const definedText = (previewData && _type === previewData?._type && previewData?.text) || _rawText
   const definedLoginTile = (previewData && _type === previewData?._type && previewData?.loginTile) || loginTile
-  const definedSubtitle = (previewData && _type === previewData?._type && previewData.subtitle) || subtitle
+  const definedSubtitle = (previewData && _type === previewData?._type && previewData?.subtitle) || subtitle
 
   return (
     <Container
@@ -50,8 +50,8 @@ export const ClientLoginSection = props => {
           pb: { xs: 10, md: 15 },
         }}
       >
-        <Grid item xs={12} sm={definedLoginTile.length > 1 ? 12 : 8} md={definedLoginTile.length > 1 ? 12 : 8}>
-          <Grid item xs={12} sm={definedLoginTile.length > 1 ? 6 : 9} md={definedLoginTile.length > 1 ? 6 : 9}>
+        <Grid item xs={12} sm={definedLoginTile?.length > 1 ? 12 : 8} md={definedLoginTile?.length > 1 ? 12 : 8}>
+          <Grid item xs={12} sm={definedLoginTile?.length > 1 ? 6 : 9} md={definedLoginTile?.length > 1 ? 6 : 9}>
             {definedSubtitle && (
               <Typography variant="overline" color="primary.main">
                 {definedSubtitle}
@@ -88,7 +88,7 @@ export const ClientLoginSection = props => {
         </Grid>
 
         {definedLoginTile &&
-          definedLoginTile.map((tile, i) => {
+          definedLoginTile?.map((tile, i) => {
             return (
               <Grid
                 item

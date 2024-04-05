@@ -22,7 +22,7 @@ export const RenderPortableText = (props) => {
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5, md: 0 }, color: 'inherit' }} variant="h1" component="div">{children}</Typography>
     },
     h2: ({ children }) => {
-      return <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>
+      return <Typography sx={{ textAlign: textAlign, py: { xs: 5 }, color: 'inherit' }} variant="h2">{children}</Typography>
     },
     h3: ({ children }) => <Typography sx={{ py: { xs: 5 }, color: 'inherit' }} variant="h3">{children}</Typography>,
     h4: ({ children }) => <Typography sx={{ py: { xs: 7 }, color: 'inherit' }} variant="h4">{children}</Typography>,
@@ -33,7 +33,7 @@ export const RenderPortableText = (props) => {
     blockquote: ({ children }) => {
       return (
         <Box sx={{ py: { xs: 5 }, mx: 0 }} component="figure">
-          <Typography sx={{ fontStyle: 'italic', py: { xs: 0 }, color: 'inherit', pl: 3 }} variant="h3" component="blockquote">
+          <Typography sx={{ fontStyle: 'italic', py: { xs: 0 }, color: 'primary.main', pl: 3 }} variant="h3" component="blockquote">
             {children}
           </Typography>
           {value.cite && <Typography align="center" variant="subtitle1" component="figcaption">{value.cite}</Typography>}
@@ -122,8 +122,8 @@ export const RenderPortableText = (props) => {
     listItem: ({ value, children }) => {
       return (
         (value.listItem === "bullet" ? (
-          <ListItem sx={{ color: 'inherit', pl: 0 }}>
-            <ListItemIcon sx={{ minWidth: 16 }}>
+          <ListItem sx={{ alignItems: "flex-start",  color: 'inherit', pl: 0 }}>
+            <ListItemIcon sx={{ mt: 2, minWidth: 16 }}>
               <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
             </ListItemIcon>{children[0]}
           </ListItem>

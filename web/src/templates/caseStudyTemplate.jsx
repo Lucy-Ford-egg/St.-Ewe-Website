@@ -51,8 +51,7 @@ const CaseStudyTemplate = props => {
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          minHeight: "100vh",
-          maxHeight: { xs: "", md: "100vh" },
+          minHeight: {xs: "78vh", sm: "min-content"},
           overflow: "hidden",
           px: "0 !important",
         }}
@@ -73,7 +72,7 @@ const CaseStudyTemplate = props => {
           }}
         >
           <Grid container>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={4}>
               <Box
                 sx={{
                   backgroundColor: "primary.main",
@@ -86,7 +85,7 @@ const CaseStudyTemplate = props => {
                 {definedRawPerson && (
                   <Box sx={{ color: "white.main",  maxWidth: "100%", }}>
                     <RenderPortableText
-                      setAsHeading="h1"
+                      setAsHeading={mobile ? "h2" : "h1"}
                       value={definedRawPerson}
                     />
                   </Box>
@@ -94,7 +93,7 @@ const CaseStudyTemplate = props => {
               </Box>
             </Grid>
 
-            <Grid item xs={12} md={2} sx={{ flexGrow: 1 }}>
+            <Grid item xs={12} sm={2} sx={{ flexGrow: 1 }}>
               <Box sx={{ height: "100%" }}>
                 <Box
                   sx={{

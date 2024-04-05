@@ -26,7 +26,9 @@ export const Layout = (props) => {
   const navOverlay = data?.sanityPost?.navOverlay || data?.sanityPage?.navOverlay
   
   const definedNavColor = (previewData && previewData?.nav?.navColor) || navColor
-  const definedNavOverlay = (previewData && previewData?.nav?.navOverlay) || navOverlay
+  const definedNavOverlay = (previewData && previewData?.nav?.navOverlay) || navOverlay 
+
+
 
     return (
     <div>

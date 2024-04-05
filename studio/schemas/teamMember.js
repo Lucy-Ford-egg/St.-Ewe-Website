@@ -117,7 +117,6 @@ export default defineType({
       name: 'position',
       title: 'Position',
       type: 'string',
-      validation: (rule) => rule.required(),
       group: 'particulars',
     }),
     defineField({

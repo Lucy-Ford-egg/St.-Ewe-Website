@@ -13,11 +13,39 @@ export default defineType({
       validation: Rule => Rule.required(),
     }), 
     defineField({
-      name: 'text',
-      type: 'text',
-      rows: 6,
       title: 'Text',
-      description: 'Add some textual content.'
+      name: 'text',
+      type: 'array',
+      of: [{
+        type: 'block',
+        lists: [
+          { title: 'Bullet', value: 'bullet' },
+          { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          // { title: 'Heading 2', value: 'h2' },
+          // { title: 'Heading 2', value: 'h2' },
+          // { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          // { title: 'Lead', value: 'body2' },
+          // { title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          annotations: [
+            {
+              type: 'textColor',
+            }
+          ],
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
+          ]
+        }
+      }
+      ],
+      description: 'Optional Text'
     }),
     defineField({
       name: 'link',
