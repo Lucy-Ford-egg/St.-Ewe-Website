@@ -53,7 +53,7 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
     #limit: $limit 
   ) {
     nodes {
-      image {
+      tileImage {
         asset {
           _id
           gatsbyImageData
