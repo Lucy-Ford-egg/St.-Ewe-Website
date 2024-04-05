@@ -284,6 +284,7 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
         ..., 
       },
     },
+    tileColor->{...},
     teamTiles[]->{...},
     testimonialTiles[]->{
       cite{
