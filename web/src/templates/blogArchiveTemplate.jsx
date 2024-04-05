@@ -64,7 +64,7 @@ export const blogArchiveTemplateQuery = graphql`
           value
           label
         }
-        image {
+        tileImage {
           asset {
             _id
             gatsbyImageData

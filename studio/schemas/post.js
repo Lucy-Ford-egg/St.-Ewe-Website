@@ -1,4 +1,5 @@
-import { MdOutlineChat, MdPictureAsPdf } from "react-icons/md";
+import { MdOutlineChat, MdPictureAsPdf, MdViewModule } from "react-icons/md";
+
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import authorType from './author'
@@ -83,6 +84,18 @@ export default defineType({
     },
     //validation: Rule => Rule.required(),
     group: 'pageContent',
+    description: 'This is used on the single blog page.'
+  }),
+  defineField({
+    name: 'tileImage',
+    title: 'Tile Image',
+    type: 'image',
+    options: {
+      hotspot: true,
+    },
+    //validation: Rule => Rule.required(),
+    group: 'pageContent',
+    description: 'This is used on the tile.'
   }),
   defineField({
     title: 'Tile Colour',

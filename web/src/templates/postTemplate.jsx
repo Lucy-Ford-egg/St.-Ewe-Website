@@ -104,8 +104,9 @@ const PostTemplate = props => {
                 />
                 {definedTitle && (
                   <Typography
-                    variant="h1"
+                    variant={definedTitle.length > 40 ? "h2" : "h1"}
                     color={contrastColour(definedTileColor).textColour}
+                    component="h1"
                     sx={{
                       wordBreak: 'break-word'
                     }}

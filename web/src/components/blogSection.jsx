@@ -166,7 +166,7 @@ export const BlogSection = props => {
       <Grid container columnSpacing={6} rowSpacing={12}>
         {filtersPosts && filtersPosts.map((post, i) => {
             const {
-              image,
+              tileImage,
               category,
               author,
               title,
@@ -367,16 +367,16 @@ export const BlogSection = props => {
                           overflow: "hidden",
                         }}
                       >
-                        {image && (
+                        {tileImage && (
                           <Image
                             // pass asset, hotspot, and crop fields
-                            crop={image?.crop}
-                            hotspot={image?.hotspot}
+                            crop={tileImage?.crop}
+                            hotspot={tileImage?.hotspot}
                             asset={
-                              (image &&
-                                image?._ref &&
-                                urlFor(image).width(600).url()) ||
-                              image.asset
+                              (tileImage &&
+                                tileImage?._ref &&
+                                urlFor(tileImage).width(600).url()) ||
+                              tileImage.asset
                             }
                             width={310}
                             height={310}
@@ -392,7 +392,7 @@ export const BlogSection = props => {
                             }}
                           />
                         )}
-                        {image && (
+                        {tileImage && (
                           <Box
                             sx={{
                               position: "relative",

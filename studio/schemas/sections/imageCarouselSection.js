@@ -6,37 +6,6 @@ export default defineType({
   type: "object",
   title: "Image Carousel Section",
   fields: [
-    // defineField({
-    //   name: 'icon',
-    //   type: 'icons',
-    //   title: 'Icon',
-    // }),
-    // defineField({
-    //   name: 'subtitle',
-    //   type: 'string',
-    //   title: 'Subtitle',
-    //   hidden: ({ parent, value }) => !value && parent?.icon
-    // }),
-    // defineField({
-    //   name: 'title',
-    //   type: 'string',
-    //   title: 'Title',
-    // }),
-
-    // defineField({
-    //   name: 'text',
-    //   type: 'text',
-    //   rows: 6,
-    //   title: 'Text',
-    //   description: 'Add some textual content. Optional'
-    // }),
-
-    // defineField({
-    //   name: 'textAlign',
-    //   type: 'textAlign',
-    //   title: 'Choose Text Alignment',
-    // }),
-
     defineField({
       name: 'topPadding',
       type: 'boolean',
