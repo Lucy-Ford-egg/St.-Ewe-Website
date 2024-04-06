@@ -151,7 +151,7 @@ export const StepsTile = props => {
         boxShadow: "none",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: tileColor.value,
+        backgroundColor: tileColor?.value,
         flexBasis: "100%",
         height: "100%",
         mb: 6,

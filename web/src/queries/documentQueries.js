@@ -33,7 +33,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
             current
           }
         },
-        external{...},
+        external,
       },
       text,
     },
@@ -153,7 +153,7 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
             current
           }
         },
-        external{...},
+        external,
       },
       text,
     },
@@ -255,7 +255,7 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
             current
           }
         },
-        external{...},
+        external,
       },
       text,
     },
@@ -371,7 +371,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
             current
           }
         },
-        external{...},
+        external,
       },
       text,
     },
@@ -440,6 +440,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     crop{...}
   },
   navColor{navColor->, ...},
+  tileColor->{...},
   mobileImage {
     asset->,
     hotspot{...},

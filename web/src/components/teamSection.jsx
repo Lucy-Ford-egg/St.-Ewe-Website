@@ -34,18 +34,18 @@ export const TeamSection = props => {
     _rawTitle
 
   const definedLeftText =
-    (previewData && _type === previewData?._type && previewData?.leftText) ||
+    ((_type === previewData?._type) && (previewData && previewData?.leftText)) ||
     leftText ||
     _rawLeftText
   const definedRightText =
-    (previewData && _type === previewData?._type && previewData?.rightText) ||
+    ((_type === previewData?._type) && (previewData && previewData?.rightText)) ||
     rightText ||
     _rawRightText
   const definedTeamTiles =
-    (previewData && _type === previewData?._type && previewData?.teamTiles) ||
+    ((_type === previewData?._type) && (previewData && previewData?.teamTiles)) ||
     teamTiles
   const definedTileColor =
-    (previewData && _type === previewData?._type && previewData?.tileColor) ||
+    ((_type === previewData?._type) && (previewData && previewData?.tileColor)) ||
     tileColor
 
   return (
@@ -169,8 +169,9 @@ export const query = graphql`
     _rawLeftText(resolveReferences: { maxDepth: 10 })
     _rawRightText(resolveReferences: { maxDepth: 10 })
     subtitle
-    tileColor {
+    tileColor{
       value
+      label
     }
     teamTiles {
       email

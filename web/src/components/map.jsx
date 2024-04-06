@@ -101,7 +101,7 @@ export const Map = props => {
                 )}
                 sx={{ 
                   position: 'absolute',
-                  left: 0,
+                  left: "50%",
                   top: -12,
                   transform: 'translate(-50%, -50%)'
                    }}>
@@ -118,16 +118,16 @@ export const Map = props => {
                       <Box
                         sx={{
                           position: "absolute",
-                          px: 2,
-                          py: 2,
+                          px: {xs: 1, md: 2},
+                          py: {xs: 1, md: 2},
                           backgroundColor: "primary.lightest",
                           width: "min-content",
                         }}
                       >
                         <Box sx={{ 
-                          px: 2,
-                          pt: 3,
-                          pb: 1,
+                          px: {xs: 1, md:2 },
+                          pt: {xs: 2, md:3 },
+                          pb: {xs: 1, md:1 },
                           boxShadow: "inset 0 0 0 1px white" }}>
                           <svg
                             width="133"

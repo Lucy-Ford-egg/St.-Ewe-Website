@@ -50,8 +50,67 @@ export const ContactSection = props => {
   const handlePortfolioValue = event => {
     setPortfolioValue(event.target.value)
   }
-
   //
+  const serviceOfInterestOptions = [
+    {
+      title: "Wealth Planning",
+      value: "Wealth Planning",
+    },
+    {
+      title: "Retirement Planning",
+      value: "Retirement Planning"
+    },
+    {
+      title: "Defined Benefit Pension Advice",
+      value: "Defined Benefit Pension Advice"
+    },
+    {
+      title: "Investment Advice",
+      value: "Investment Advice"
+    },
+    {
+      title: "Inheritance Tax Planning",
+      value: "Inheritance Tax Planning"
+    },
+    {
+      title: "Other",
+      value: "Other"
+    },
+  ]
+
+  const timeToCallOptions = [
+    {
+      title: "AM",
+      value: "AM"
+    },
+    {
+      title: "PM",
+      value: "PM"
+    },
+    {
+      title: "Anytime",
+      value: "Anytime"
+    }
+  ]
+
+  const portfolioValueOptions = [
+    {
+      title: "£500K - £1M",
+      value: "£500K - £1M"
+    },
+    {
+      title: "£1M - £3M",
+      value: "£1M - £3M"
+    },
+    {
+      title: "£3M+",
+      value: "£3M+"
+    },
+    {
+      title: "Prefer not to say",
+      value: "Prefer not to say"
+    },
+  ]
   return (
     <Container key={definedKey}
       maxWidth={false}
@@ -298,11 +357,13 @@ export const ContactSection = props => {
                         fullWidth
                       >
                         <MenuItem value={""}>Please Select</MenuItem>
-                        <MenuItem value={"Wealth Planning"}>
-                          Wealth Planning
+                        {serviceOfInterestOptions.map((node) => {
+                          return (
+                        <MenuItem value={`${node.value}`}>
+                          {node?.title}
                         </MenuItem>
-                        <MenuItem value={"Option Two"}>Option Two</MenuItem>
-                        <MenuItem value={"Option Three"}>Option Three</MenuItem>
+                          )
+                        })}                    
                       </Select>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
@@ -322,11 +383,15 @@ export const ContactSection = props => {
                         fullWidth
                       >
                         <MenuItem value={""}>Please Select</MenuItem>
-                        <MenuItem value={"Wealth Panning"}>
-                          Wealth Panning
-                        </MenuItem>
-                        <MenuItem value={"Option Two"}>Option Two</MenuItem>
-                        <MenuItem value={"Option Three"}>Option Three</MenuItem>
+                        {
+                          timeToCallOptions.map((node) => {
+                            return (
+                          <MenuItem value={`${node.value}`}>
+                            {node?.title}
+                          </MenuItem>
+                            )
+                          })
+                        }
                       </Select>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
@@ -345,10 +410,15 @@ export const ContactSection = props => {
                         fullWidth
                       >
                         <MenuItem value={""}>Please Select</MenuItem>
-                        <MenuItem value={"500K-1 Million"}>500K - 1M</MenuItem>
-                        <MenuItem value={"1-2 Million"}>1M - 2M</MenuItem>
-                        <MenuItem value={"2-3 Million"}>1M - 2M</MenuItem>
-                        <MenuItem value={"3 Million +"}>3M +</MenuItem>
+                        {
+                          portfolioValueOptions.map((node) => {
+                            return (
+                          <MenuItem value={`${node.value}`}>
+                            {node?.title}
+                          </MenuItem>
+                            )
+                          })
+                        }
                       </Select>
                     </Grid>
 

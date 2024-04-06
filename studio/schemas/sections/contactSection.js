@@ -76,8 +76,7 @@ export default defineType({
       //   type: 'image'
       // }
     ],
-      description: 'Add your quote. We got a max character count on this so they don`t get too long',
-      validation: Rule =>
+    validation: Rule =>
         Rule.required().max(260)
     }),
     defineField({
