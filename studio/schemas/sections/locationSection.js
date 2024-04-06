@@ -75,12 +75,12 @@ export default defineType({
       }
       ],
     }),
-    defineField({
-      title: 'Locations',
-      name: 'locations',
-      type: 'array',
-      of: [{type: 'featuresTile'}]
-    }),
+    // defineField({
+    //   title: 'Locations',
+    //   name: 'locations',
+    //   type: 'array',
+    //   of: [{type: 'featuresTile'}]
+    // }),
     defineField({
       name: 'topPadding',
       type: 'boolean',
