@@ -26,7 +26,9 @@ export const VideoSection = props => {
         border: {xs: 'unset', md: `1px solid ${theme.palette.primary.main}`}
       }}>
         <Grid item xs={12} sm={12}>
-          <Box sx={{iframe: {width: '100%', height: {xs: `215px`, md:`583px`}, minHeight: '100%'} }}>
+          <Box sx={{
+            iframe: { width: "100%", height: { xs: `215px`, sm: `445px`, md: `749px` } },
+            }}>
             {video && (
              <Vimeo
              video={video.url}
