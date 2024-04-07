@@ -169,9 +169,9 @@ export const query = graphql`
     _rawLeftText(resolveReferences: { maxDepth: 10 })
     _rawRightText(resolveReferences: { maxDepth: 10 })
     subtitle
-    tileColor{
-      value
+    tileColor {
       label
+      value
     }
     teamTiles {
       email

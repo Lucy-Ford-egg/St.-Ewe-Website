@@ -65,6 +65,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
       },
     },
     teamTiles[]->{...},
+    tileColor->{...},
     testimonialTiles[]->{
       cite{
         teamMemberCite->{
@@ -99,7 +100,6 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
     crop{...}
   },
   navColor{...},
-  tileColor->{...},
   mobileImage {
     asset->,
     hotspot{...},
@@ -183,6 +183,7 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
       },
     },
     teamTiles[]->{...},
+    tileColor->{...},
     testimonialTiles[]->{
       cite{
         teamMemberCite->{
@@ -284,8 +285,8 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
         ..., 
       },
     },
-    tileColor->{...},
     teamTiles[]->{...},
+    tileColor->{...},
     testimonialTiles[]->{
       cite{
         teamMemberCite->{
@@ -384,7 +385,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     overlay,
     topPadding,
     leftAlign, 
-    tileColor->{...},
+    
     steps[]{
       ...,
       title,
@@ -440,7 +441,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     crop{...}
   },
   navColor{navColor->, ...},
-  tileColor->{...},
+  
   mobileImage {
     asset->,
     hotspot{...},
