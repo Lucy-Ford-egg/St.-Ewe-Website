@@ -257,7 +257,7 @@ export const BlogSection = props => {
                               sx={{
                                 pt: 13,
                                 pb: { xs: 6, md: 6 },
-                                px: { xs: 4, md: 4 },
+                                px: { xs: 0, md: 4 },
                               }}
                             >
                               {category && (
