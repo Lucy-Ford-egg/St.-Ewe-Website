@@ -421,6 +421,7 @@ let clientTheme = createTheme({
           fontWeight: 400,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(5)}`,
           fontSize: `${defaultTheme.spacing(2)} !important`,
+          boxShadow: "none",
         },
         sizeLarge: {
           display: "flex",
