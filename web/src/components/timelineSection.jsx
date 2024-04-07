@@ -254,18 +254,14 @@ export const TimelineSection = props => {
                       // ref={eventRef}
                       sx={{
                         py: { xs: 6, md: 16 },
-                        display: { xs: "flex", md: "grid" },
+                        display: { xs: "flex", md: "flex" },
                         flexDirection: { xs: "column", md: "row" },
-                        gridTemplateColumns: {
-                          xs: "unset",
-                          md: "unset", //repeat(12, 1fr)
-                        },
                       }}
                     >
                       {definedTitle && (
                         <Box
                           sx={{
-                            gridColumn: "1/2",
+                            
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: {
@@ -286,11 +282,15 @@ export const TimelineSection = props => {
                               order: { xs: 1, md: 0 },
                               position: { md: "absolute" },
                               pt:{
-                                md: 1,
+                                md: 0,
                               },
                               h3: {
                                 pb: 0,
                                 pt: {md: 0},
+                              },
+                              h2: {
+                                pb: 0,
+                                pt: {md: "0 !important"},
                               },
                               maxWidth: {sm: "250px", lg: "unset"}
                             }}
@@ -330,7 +330,6 @@ export const TimelineSection = props => {
                         <Box
                           sx={{
                             pl: { xs: 3, md: "unset" },
-                            gridColumn: "3/4",
                             display: "flex",
                             alignItems: "center",
                           }}

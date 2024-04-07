@@ -126,7 +126,7 @@ export const StepsSection = props => {
                 variant="fullWidth"
                 component="div"
                 role="presentation"
-                sx={{ whiteSpace: { xs: "wrap", md: "pre-wrap" } }}
+                sx={{ whiteSpace: { xs: "normal", md: "pre-wrap" } }}
               >
                 <Typography
                   variant="body2"
@@ -276,7 +276,7 @@ export const StepsSection = props => {
             sx={{
               position: "absolute",
               top: 24,
-              left: { xs: -12, sm: 8, md: -41 },
+              left: { xs: -12, sm: 8, md: -22 },
               mt: 0,
               mb: 0,
               ml: 0,
