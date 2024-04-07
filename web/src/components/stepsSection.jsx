@@ -276,7 +276,7 @@ export const StepsSection = props => {
             sx={{
               position: "absolute",
               top: 24,
-              left: { xs: -12, sm: 8, md: -41 },
+              left: { xs: -12, sm: 8, md: -22 },
               mt: 0,
               mb: 0,
               ml: 0,
