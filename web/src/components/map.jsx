@@ -122,6 +122,7 @@ export const Map = props => {
                           py: {xs: 1, md: 2},
                           backgroundColor: "primary.lightest",
                           width: "min-content",
+                          left: {xs: "-100px", md: 0},
                         }}
                       >
                         <Box sx={{ 

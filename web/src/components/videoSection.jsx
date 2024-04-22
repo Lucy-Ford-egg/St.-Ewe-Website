@@ -31,6 +31,7 @@ export const VideoSection = props => {
             }}>
             {video && (
              <Vimeo
+             muted={true}
              video={video.url}
              autoplay
              controls={true}

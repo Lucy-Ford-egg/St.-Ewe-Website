@@ -311,11 +311,12 @@ export const ContactSection = props => {
             <Box>
               <form
                 method="POST"
-                name="contact-mui"
+                action="/success"
+                name="contact"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
               >
-                <input type="hidden" name="form-name" value="contact-mui" />
+                <input type="hidden" name="form-name" value="contact" />
                 <Grid container columnSpacing={{ xs: 6, sm: 6, md: 6 }}>
                   <Grid item xs={12} sm={12} md={6} columnSpacing={{ xs: 6, sm: 6, md: 6 }}>
                   <Grid container columnSpacing={{ xs: 6, sm: 6, md: 6 }}>
@@ -342,7 +343,7 @@ export const ContactSection = props => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <FormLabel htmlFor="firstName">
-                        Service of interest?
+                      Advice required?
                       </FormLabel>
 
                       <Select
@@ -369,7 +370,7 @@ export const ContactSection = props => {
                     <Grid item xs={12} sm={12} md={4}>
                       
                       <FormLabel htmlFor="timeToCall-label">
-                        Best time to call?
+                        Best time to call
                       </FormLabel>
                       <Select
                         labelId="timeToCall-label"
@@ -379,7 +380,6 @@ export const ContactSection = props => {
                         onChange={handleTimeToCall}
                         displayEmpty={true}
                         notched={false}
-                        required
                         fullWidth
                       >
                         <MenuItem value={""}>Please Select</MenuItem>
@@ -396,7 +396,7 @@ export const ContactSection = props => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <FormLabel htmlFor="timeToCall-label">
-                        Portfolio Value?
+                      Investable Assets?
                       </FormLabel>
                       <Select
                         labelId="portfolioValue-label"

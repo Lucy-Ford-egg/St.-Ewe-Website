@@ -72,13 +72,16 @@ export const NewsletterSection = props => {
               px: { xs: 9, md: 18 },
             }}
           >
+             
             {definedTitle && (
+              <Box color={contrastColour(backgroundColor).textColour}>
               <RenderPortableText
                 previewData={definedTitle}
                 sanityConfig={sanityConfig}
                 setAsHeading={false}
                 value={definedTitle}
               />
+              </Box>
             )}
 
             {definedText && (

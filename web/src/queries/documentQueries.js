@@ -5,6 +5,19 @@ import groq from 'groq'
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
   ...,
   text[]{...},
+  footerDetails{
+    links[]{
+      link{
+        internal->{
+          slug {
+            current
+          }
+        },
+        external,
+      },
+      text,
+    },
+  }
 }`
 
 export const NAV_QUERY = groq`*[_type in ["post", "page", "caseStudy", "teamMember"] && slug.current == $slug][0] {

@@ -338,6 +338,7 @@ export const Footer = props => {
                                 >
                                   <CiMail />
                                 </ListItemIcon>
+                                <Link sx={{textDecoration: "none", color: "inherit"}} href={`mailto:${companyDetail.email}`}>
                                 <ListItemText
                                   primary={companyDetail.email}
                                   primaryTypographyProps={{
@@ -345,6 +346,7 @@ export const Footer = props => {
                                     variant: "body1",
                                   }}
                                 />
+                                </Link>
                               </ListItem>
                             </List>
                             {i === 0 && (
