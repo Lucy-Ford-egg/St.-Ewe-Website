@@ -60,7 +60,7 @@ pageBuilder[] {
   author->{...},
   featuresTile[]{
     ...,
-    links[]{
+    link{
       ${LINK},
     },
   },
