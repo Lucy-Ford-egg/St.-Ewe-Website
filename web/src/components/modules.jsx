@@ -17,7 +17,7 @@ import { ClientLoginSection } from './clientLoginSection'
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, pageContext, allSanityPost, allSanityCaseStudy, sanitySiteSettings } = props
+    const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, allSanityCaseStudy, sanitySiteSettings } = props
 
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
@@ -43,6 +43,7 @@ const Modules = (props) => {
                             pageContext={pageContext}
                             key={module._key + i}
                             allSanityPost={allSanityPost}
+                            getAllPosts={getAllPosts}
                             {...module} />
                     }
 

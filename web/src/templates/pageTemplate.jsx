@@ -30,6 +30,7 @@ const PageTemplate = props => {
         sanityConfig={getSanityClient}
         previewData={pageData?.pageBuilder}
         allSanityPost={data.allSanityPost}
+        getAllPosts={data.getAllPosts}
         allSanityCaseStudy={data.allSanityCaseStudy}
         pageContext={pageContext}
         modules={definedModules}
@@ -56,6 +57,45 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
     skip: $skip 
     limit: $limit 
   ) {
+    nodes {
+      tileImage {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+   
+      slug {
+        current
+      }
+      date
+      category {
+        name
+        _id
+      }
+      author {
+        name
+      }
+      title
+      tileColor{
+        value
+        label
+      }
+    }
+  }
+  getAllPosts: allSanityPost{
     nodes {
       tileImage {
         asset {

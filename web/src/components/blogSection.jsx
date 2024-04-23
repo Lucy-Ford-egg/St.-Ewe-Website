@@ -30,6 +30,7 @@ export const BlogSection = props => {
     topPadding,
     pageContext,
     showArchive,
+    getAllPosts,
     initial,
     _type,
     subtitle,
@@ -163,15 +164,15 @@ export const BlogSection = props => {
         <Filter
           className="component-filter"
           type="posts"
-          allData={definedAllSanityPost}
+          allData={getAllPosts.nodes}
           filtersData={filtersPosts}
           setFilterData={setFilterData}
         />
 
 
       <Grid container columnSpacing={6} rowSpacing={12}>
-        {filtersPosts &&
-          filtersPosts.map((post, i) => {
+        {!props.pageContext.humanPageNumber && filtersPosts &&
+          filtersPosts.slice(0, 8).map((post, i) => {
             const {
               tileImage,
               category,
