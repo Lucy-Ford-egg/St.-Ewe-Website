@@ -91,8 +91,10 @@ export const CaseStudyTile = (props) => {
   const definedPerson = (_rawPerson && _rawPerson) || person && person
   const definedService = (service && service.name) || service && service.name
 
+  const backgroundColor = i % 2 ? "secondary" : "primary"
+
   return (
-    <Link to={`/case-studies/${slug.current}`} style={{ textDecoration: "none" }}>
+    <Link to={`/case-studies/${slug.current}`} style={{ textDecoration: "none" }} state={{ backgroundColor: backgroundColor }}>
       <Card
         elevation={0}
         sx={{

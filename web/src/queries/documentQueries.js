@@ -2,20 +2,101 @@ import groq from 'groq'
 
 // * Helpful - https://www.sanity.io/docs/query-cheat-sheet
 
+export const LINK = `
+link{
+  internal->{
+    slug {
+      current
+    }
+  },
+  external,
+},
+text
+`
+
+export const PAGE_BUILDER = `
+pageBuilder[] {
+  ...,
+  images[] { 
+    asset->,
+    hotspot{...},
+    crop{...}
+  },
+  image {
+    asset->,
+    hotspot{...},
+    crop{...}
+  },
+  links[]{
+    ${LINK},
+  },
+  subtitle,
+  title[]{...},
+  text[]{...},
+  title,
+  text,
+  navColor->,
+  overlay,
+  topPadding,
+  leftAlign, 
+  
+  steps[]{
+    ...,
+    title,
+    description,
+    involves,
+    _type, 
+  },
+  showArchive{
+    ...,
+    archive[]->{...},  
+  },
+  showCaseStudyArchive{
+    ...,
+    archive[]->{
+      ..., 
+    },
+  },
+  author->{...},
+  featuresTile[]{
+    ...,
+    links[]{
+      ${LINK},
+    },
+  },
+  teamTiles[]->{...},
+  testimonialTiles[]->{
+    ...,
+    "_rawQuoteText": quoteText,
+    cite{
+      teamMemberCite->{
+        name,
+        position,
+        image {
+          asset->,
+          hotspot{...},
+          crop{...}
+        },
+      },
+      externalCite{
+        citeName,
+        citeLocation,
+        image {
+          asset->,
+          hotspot{...},
+          crop{...}
+        },
+      },
+    },
+  },
+}`
+
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
   ...,
   text[]{...},
   footerDetails{
     links[]{
-      link{
-        internal->{
-          slug {
-            current
-          }
-        },
-        external,
-      },
-      text,
+      ${LINK},
     },
   }
 }`
@@ -27,82 +108,7 @@ export const NAV_QUERY = groq`*[_type in ["post", "page", "caseStudy", "teamMemb
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   ...,
-  pageBuilder[] {
-    ...,
-    images[] { 
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    image {
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    links[]{
-      link{
-        internal->{
-          slug {
-            current
-          }
-        },
-        external,
-      },
-      text,
-    },
-    title[]{...},
-    text[]{...},
-    title,
-    text,
-    navColor->,
-    backgroundColor{navColor->, ...},
-    overlay,
-    topPadding,
-    leftAlign,
-    author->{...}, 
-    steps[]{
-      title,
-      description,
-      involves,
-      _type, 
-      text[]{...},
-    },
-    showArchive{
-      ...,
-      archive[]->{...},  
-    },
-    showCaseStudyArchive{
-      ...,
-      archive[]->{
-        ..., 
-      },
-    },
-    teamTiles[]->{...},
-    tileColor->{...},
-    testimonialTiles[]->{
-      cite{
-        teamMemberCite->{
-          name,
-          position,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-        externalCite{
-          citeName,
-          citeLocation,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-      },
-      "_rawQuoteText": quoteText,
-    },
-  },
+  ${PAGE_BUILDER},
   title,
   text,
   date,
@@ -160,15 +166,7 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
       crop{...}
     },
     links[]{
-      link{
-        internal->{
-          slug {
-            current
-          }
-        },
-        external,
-      },
-      text,
+      ${LINK},
     },
     title[]{...},
     text[]{...},
@@ -250,80 +248,7 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
 
 export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.current == $slug][0] {
   ...,
-  pageBuilder[] {
-    ...,
-    images[] { 
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    image {
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    links[]{
-      link{
-        internal->{
-          slug {
-            current
-          }
-        },
-        external,
-      },
-      text,
-    },
-    title[]{...},
-    text[]{...},
-    title,
-    text,
-    navColor->,
-    backgroundColor{navColor->, ...},
-    overlay,
-    topPadding,
-    leftAlign, 
-    steps[]{
-      title,
-      description,
-      involves,
-      _type, 
-    },
-    showArchive{
-      ...,
-      archive[]->{...},  
-    },
-    showCaseStudyArchive{
-      ...,
-      archive[]->{
-        ..., 
-      },
-    },
-    teamTiles[]->{...},
-    tileColor->{...},
-    testimonialTiles[]->{
-      cite{
-        teamMemberCite->{
-          name,
-          position,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-        externalCite{
-          citeName,
-          citeLocation,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-      },
-      "_rawQuoteText": quoteText,
-    },
-  },
+  ${PAGE_BUILDER},
   title,
   text,
   image {
@@ -365,87 +290,7 @@ export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {
 }`
 
 export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
-  pageBuilder[] {
-    ...,
-    images[] { 
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    image {
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    links[]{
-      link{
-        internal->{
-          ...,
-          slug {
-            current
-          }
-        },
-        external,
-      },
-      text,
-    },
-    subtitle,
-    title[]{...},
-    text[]{...},
-    title,
-    text,
-    navColor->,
-    overlay,
-    topPadding,
-    leftAlign, 
-    
-    steps[]{
-      ...,
-      title,
-      description,
-      involves,
-      _type, 
-    },
-    showArchive{
-      ...,
-      archive[]->{...},  
-    },
-    showCaseStudyArchive{
-      ...,
-      archive[]->{
-        ..., 
-      },
-    },
-    author->{...},
-    featuresTile[]{
-      ...,
-    },
-    teamTiles[]->{...},
-    testimonialTiles[]->{
-      ...,
-      "_rawQuoteText": quoteText,
-      cite{
-        teamMemberCite->{
-          name,
-          position,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-        externalCite{
-          citeName,
-          citeLocation,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-      },
-    },
-  },
+  ${PAGE_BUILDER},
   title,
   text,
   image {

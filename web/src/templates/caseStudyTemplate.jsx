@@ -18,7 +18,7 @@ import { useQuery } from "../../sanity/store"
 import { CASE_STUDY_QUERY } from "../queries/documentQueries"
 
 const CaseStudyTemplate = props => {
-  const { data, pageContext, initial } = props
+  const { data, pageContext, initial, location } = props
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
@@ -39,7 +39,7 @@ const CaseStudyTemplate = props => {
 
   const definedRawBody = (previewData && previewData?.body) || data?.sanityCaseStudy._rawBody
   const definedModules = (previewData && previewData?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
-    
+   
   return (
     <>
       <Container
@@ -75,7 +75,7 @@ const CaseStudyTemplate = props => {
             <Grid item xs={12} sm={4}>
               <Box
                 sx={{
-                  backgroundColor: "primary.main",
+                  backgroundColor: `${location?.state?.backgroundColor}.main`,
                   px: { xs: 6, md: 13 },
                   pt: 13,
                   pb: { xs: 6, md: 13 },
@@ -105,7 +105,7 @@ const CaseStudyTemplate = props => {
                 >
                   <Box
                     sx={{
-                      backgroundColor: "primary.light",
+                      backgroundColor: `${location?.state?.backgroundColor}.light`,
                       px: 6,
                       py: 6,
                       display: "flex",
@@ -125,7 +125,7 @@ const CaseStudyTemplate = props => {
                   </Box>
                   <Box
                     sx={{
-                      backgroundColor: "primary.mid",
+                      backgroundColor: `${location?.state?.backgroundColor}.mid`,
                       px: 6,
                       py: 6,
                       display: "flex",

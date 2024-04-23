@@ -83,7 +83,7 @@ export const StepsSection = props => {
     const lastChild = referenceRef.current.lastChild
     if (referenceRef.current && targetRef.current && lastChild.classList.contains("stepDivider")) {
       const referenceHeight = referenceRef.current.clientHeight
-      setHeight(referenceHeight - ((lastChild.clientHeight/2) + 12))
+      setHeight(referenceHeight - ((lastChild.clientHeight/2)))
     }
     else{
       const referenceHeight = referenceRef.current.clientHeight
@@ -295,6 +295,7 @@ export const StepsSection = props => {
                 justifyContent: "flex-start",
                 alignItems: "center",
                 minHeight: height,
+                maxHeight: "inherit"
               }}
             >
               {/* <motion.div

@@ -25,14 +25,21 @@ export const ContactSection = props => {
     _rawFormTerms,
     _key,
     _type,
+    title,
+    text,
+    formTerms,
   } = props
 
-  const definedKey = (previewData && _type === previewData?._type && previewData._key) || _key
+  const definedKey = (previewData && _type === previewData?._type && previewData?._key) || _key
   const definedTopPadding =
-    (previewData && _type === previewData?._type && previewData.topPadding) || topPadding
-  const definedTitle = (previewData && _type === previewData?._type && previewData.title) || _rawTitle
-  const definedText = (previewData && _type === previewData?._type && previewData.text) || _rawText
-  const definedFormTerms = (previewData && _type === previewData?._type && previewData.formTerms) || _rawFormTerms
+    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
+  const definedTitle =
+    (previewData && _type === previewData?._type && previewData?.title) ||
+    title ||
+    _rawTitle
+  //const definedTitle = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+  const definedText = (previewData && _type === previewData?._type && previewData?.text) || text || _rawText
+  const definedFormTerms = (previewData && _type === previewData?._type && previewData?.formTerms) || formTerms || _rawFormTerms
 
   // Form State
   const [serviceOfInterest, setServiceOfInterest] = useState("")
@@ -53,8 +60,8 @@ export const ContactSection = props => {
   //
   const serviceOfInterestOptions = [
     {
-      title: "Wealth Planning",
-      value: "Wealth Planning",
+      title: "Wealth Building",
+      value: "Wealth Building",
     },
     {
       title: "Retirement Planning",
