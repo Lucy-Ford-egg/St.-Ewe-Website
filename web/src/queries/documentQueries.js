@@ -60,11 +60,12 @@ pageBuilder[] {
   author->{...},
   featuresTile[]{
     ...,
-    links[]{
+    link{
       ${LINK},
     },
   },
   teamTiles[]->{...},
+
   testimonialTiles[]->{
     ...,
     "_rawQuoteText": quoteText,
@@ -281,6 +282,8 @@ export const ALL_POSTS = groq`*[_type == "post"] {
   title,
   ...,
   category->{...},
+  person,
+  _rawPerson,
 }`
 
 export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {

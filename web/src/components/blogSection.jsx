@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -33,12 +33,12 @@ export const BlogSection = props => {
     initial,
     _type,
     subtitle,
-  title,
-  _rawTitle,
-  _rawLeftText,
-  _rawRightText,
-  leftText,
-  rightText,
+    title,
+    _rawTitle,
+    _rawLeftText,
+    _rawRightText,
+    leftText,
+    rightText,
   } = props
 
   const theme = useTheme()
@@ -65,9 +65,10 @@ export const BlogSection = props => {
   )
 
   const definedTopPadding =
-    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
-  
-    const definedSubtitle =
+    (previewData && _type === previewData?._type && previewData?.topPadding) ||
+    topPadding
+
+  const definedSubtitle =
     (previewData && _type === previewData?._type && previewData?.subtitle) ||
     subtitle
   const definedTitle =
@@ -89,12 +90,11 @@ export const BlogSection = props => {
     (previewData?.showArchive?.setArchive === true &&
       allPostData &&
       allPostData) ||
-      allSanityPost?.nodes
+    allSanityPost?.nodes
 
   useEffect(() => {
-    setFilterData(definedAllSanityPost )
+    setFilterData(definedAllSanityPost)
   }, [])
-  
 
   return (
     <Container
@@ -115,7 +115,8 @@ export const BlogSection = props => {
             },
       }}
     >
-      {definedTitle && <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
+      {definedTitle && (
+        <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
           <Grid item xs={12} md={7}>
             {definedSubtitle && (
               <Typography color="primary" variant="overline">
@@ -157,14 +158,20 @@ export const BlogSection = props => {
             )}
           </Grid>
         </Grid>
-}
-      {
-      // ** Hide the filter if using the archive function as you can curate with more than one cataegory
-      }
-      {showArchive?.setArchive && <Filter className="component-filter" type="posts" allData={definedAllSanityPost} filtersData={filtersPosts} setFilterData={setFilterData}/>}
+      )}
+      
+        <Filter
+          className="component-filter"
+          type="posts"
+          allData={definedAllSanityPost}
+          filtersData={filtersPosts}
+          setFilterData={setFilterData}
+        />
+
 
       <Grid container columnSpacing={6} rowSpacing={12}>
-        {filtersPosts && filtersPosts.map((post, i) => {
+        {filtersPosts &&
+          filtersPosts.map((post, i) => {
             const {
               tileImage,
               category,
@@ -413,6 +420,29 @@ export const BlogSection = props => {
             )
           })}
       </Grid>
+
+      {!props.pageContext.humanPageNumber && (
+        <Container maxWidth="lg" sx={{py: {xs: 12, md: 16}}}>
+          <Divider
+            sx={{
+              display: "flex",
+              my: 3,
+              width: "100%",
+             
+              "&:before":{
+                borderTopColor: "text.mid",
+                borderTopStyle: "dashed",
+              },
+              "&:after":{
+                borderTopColor: "text.mid",
+                borderTopStyle: "dashed",
+              }
+            }}
+          >
+            <Button variant="contained" color="primary" to="/blog">See All Posts</Button>
+          </Divider>
+        </Container>
+      )}
 
       {props.pageContext.humanPageNumber && (
         <Box
