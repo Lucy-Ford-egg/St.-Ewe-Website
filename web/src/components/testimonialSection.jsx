@@ -245,7 +245,8 @@ export const TestimonialSection = props => {
                           textAlign: "center",
                         }}
                       >
-                        <RenderPortableText
+                       
+                       <RenderPortableText
                           previewData={definedQuoteText}
                           sanityConfig={sanityConfig}
                           setAsHeading="h3"

@@ -30,6 +30,7 @@ const CaseStudyArchiveTemplate = props => {
           allSanityCaseStudy={data.allSanityCaseStudy}
           pageContext={pageContext}
           modules={definedModules }
+          getAllPosts={data.getAllPosts}
         />
     </>
   )
@@ -81,6 +82,45 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
         }
       }
       _rawBody(resolveReferences: { maxDepth: 10 })
+    }
+  }
+  getAllPosts: allSanityPost{
+    nodes {
+      tileImage {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+   
+      slug {
+        current
+      }
+      date
+      category {
+        name
+        _id
+      }
+      author {
+        name
+      }
+      title
+      tileColor{
+        value
+        label
+      }
     }
   }
   sanityPage(slug: {current: {eq: $slug}}) {

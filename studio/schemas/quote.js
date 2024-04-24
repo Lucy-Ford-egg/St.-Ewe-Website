@@ -63,7 +63,7 @@ export default defineType({
           }
         }
       ],
-      description: 'Add your quote. We got a max character count on this so they don`t get too long',
+      description: 'Add your quote. We got a max character count on this so they don`t get too long for the curly quotes see: https://www.lifewire.com/typing-quotes-apostrophes-and-primes-1074104',
       validation: Rule =>
         Rule.required().max(260)
     }),
