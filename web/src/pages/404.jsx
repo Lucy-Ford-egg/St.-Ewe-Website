@@ -30,6 +30,7 @@ const IndexPage = props => {
     pageContext={pageContext}
     modules={definedModules}
     sanitySiteSettings={siteSettings }
+    getAllPosts={data.getAllPosts}
   />
   )
 }
@@ -53,6 +54,45 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
   ) {
     nodes {
       image {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+   
+      slug {
+        current
+      }
+      date
+      category {
+        name
+        _id
+      }
+      author {
+        name
+      }
+      title
+      tileColor{
+        value
+        label
+      }
+    }
+  }
+  getAllPosts: allSanityPost{
+    nodes {
+      tileImage {
         asset {
           _id
           gatsbyImageData
