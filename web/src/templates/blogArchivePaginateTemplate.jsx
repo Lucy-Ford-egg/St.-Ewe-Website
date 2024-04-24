@@ -29,6 +29,7 @@ const BlogArchiveTemplate = props => {
       <Modules
         pageContext={pageContext}
         modules={modules}
+        getAllPosts={data.getAllPosts}
       />
 }
     </>
@@ -78,6 +79,45 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       category {
         name
         _id
+      }
+    }
+  }
+  getAllPosts: allSanityPost{
+    nodes {
+      tileImage {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+   
+      slug {
+        current
+      }
+      date
+      category {
+        name
+        _id
+      }
+      author {
+        name
+      }
+      title
+      tileColor{
+        value
+        label
       }
     }
   }

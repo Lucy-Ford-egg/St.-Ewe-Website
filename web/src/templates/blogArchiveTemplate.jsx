@@ -27,6 +27,7 @@ const BlogArchiveTemplate = props => {
           allSanityPost={data.allSanityPost}
           pageContext={pageContext}
           modules={definedModules}
+          getAllPosts={data.getAllPosts}
         />
     </>
   )
@@ -81,6 +82,45 @@ export const blogArchiveTemplateQuery = graphql`
             right
             top
           }
+        }
+      }
+    }
+    getAllPosts: allSanityPost{
+      nodes {
+        tileImage {
+          asset {
+            _id
+            gatsbyImageData
+          }
+          hotspot {
+            x
+            y
+            width
+            height
+          }
+          crop {
+            bottom
+            left
+            right
+            top
+          }
+        }
+     
+        slug {
+          current
+        }
+        date
+        category {
+          name
+          _id
+        }
+        author {
+          name
+        }
+        title
+        tileColor{
+          value
+          label
         }
       }
     }
