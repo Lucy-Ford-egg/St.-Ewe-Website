@@ -3,7 +3,6 @@ import { PortableText } from '@portabletext/react'
 import { Typography, Box, List, ListItem, ListItemIcon, useTheme, Link } from '@mui/material'
 import CircleIcon from '@mui/icons-material/Circle';
 import { PortableTextInlineLink } from "../utils/portableInlineLink"
-import { motion } from "framer-motion"
 import Image from "gatsby-plugin-sanity-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
 
