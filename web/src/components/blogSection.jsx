@@ -89,14 +89,15 @@ export const BlogSection = props => {
   const definedAllSanityPost =
     (postData && postData?.length > 0 && postData) ||
     (previewData?.showArchive?.setArchive === true &&
-      allPostData &&
-      allPostData) ||
+      getAllPosts?.nodes
+    ) ||
     allSanityPost?.nodes
 
   useEffect(() => {
     setFilterData(definedAllSanityPost)
-  }, [])
+  }, [definedAllSanityPost])
 
+  debugger
   return (
     <Container
       maxWidth="xl"
@@ -173,6 +174,256 @@ export const BlogSection = props => {
       <Grid container columnSpacing={6} rowSpacing={12}>
         {!props.pageContext.humanPageNumber && filtersPosts &&
           filtersPosts.slice(0, 8).map((post, i) => {
+            const {
+              tileImage,
+              category,
+              author,
+              title,
+              tileColor,
+              date,
+              slug,
+            } = post
+
+            return (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                sx={{
+                  "&:hover": {
+                    "& .wrapper": {
+                      transition: "all 0.2s ease-in-out 0s",
+                      transform: "scale(1.01)",
+                      boxShadow: "0 0 10px 1px rgba(0,0,0,0.2)",
+                    },
+                  },
+                }}
+              >
+                <GatsbyLink
+                  style={{
+                    textDecoration: "none",
+                    color: "inherit",
+                    display: "flex",
+                    height: "100%",
+                    flexBasis: "100%",
+                  }}
+                  to={`/blog/${slug.current}`}
+                >
+                  <Paper
+                    className="wrapper"
+                    elevation={0}
+                    square
+                    sx={{
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      position: "relative",
+                      flexBasis: "100%",
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(24, 1fr)",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        height: "100%",
+                        minHeight: {
+                          xs: `calc(100vw - ${theme.spacing(8)})`,
+                          sm: `310px`,
+                          md: "310px",
+                        },
+                        maxHeight: {
+                          xs: `calc(100vw - ${theme.spacing(8)})`,
+                          md: "310px",
+                        },
+                        overflow: "hidden",
+                        px: "0 !important",
+                        backgroundColor: tileColor?.value,
+                        flexBasis: "100%",
+                      }}
+                    >
+                      <Container
+                        maxWidth="xl"
+                        disableGutters={true}
+                        sx={{
+                          gridColumn: "1/25",
+                          gridRow: "1/auto",
+                          position: "relative",
+                          zIndex: 3,
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "flex-end",
+
+                          pt: { xs: 0, md: 0 },
+                          alignSelf: { xs: "end", md: "end" },
+                        }}
+                      >
+                        <Grid container sx={{ height: "100%" }}>
+                          <Grid item xs={12} md={12}>
+                            <Box
+                              sx={{
+                                pt: 13,
+                                pb: { xs: 6, md: 6 },
+                                px: { xs: 0, lg: 4 },
+                              }}
+                            >
+                              {category && (
+                                <Typography
+                                  variant="overline"
+                                  component="h3"
+                                  color={contrastColour(tileColor).textColour}
+                                >
+                                  {category.name}
+                                </Typography>
+                              )}
+
+                              <Divider
+                                sx={{
+                                  display: "flex",
+                                  my: 3,
+                                  width: "100%",
+                                  borderColor:
+                                    contrastColour(tileColor).divider.hex,
+                                }}
+                              />
+                              {title && (
+                                <Typography
+                                  variant="h4"
+                                  color={contrastColour(tileColor).textColour}
+                                  sx={{
+                                    wordBreak: "break-word",
+                                  }}
+                                >
+                                  {title}
+                                </Typography>
+                              )}
+                              <Divider
+                                sx={{
+                                  display: "flex",
+                                  my: 3,
+                                  width: "100%",
+                                  borderColor:
+                                    contrastColour(tileColor).divider.hex,
+                                }}
+                              />
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                }}
+                              >
+                                {date && (
+                                  <Typography
+                                    variant="h6"
+                                    component="p"
+                                    color={contrastColour(tileColor).textColour}
+                                    sx={{
+                                      fontStyle: "italic",
+                                      fontWeight: "400",
+                                      fontSize: theme.spacing(2),
+                                    }}
+                                  >
+                                    {formattedDate(date)}
+                                  </Typography>
+                                )}
+                                <Box
+                                  sx={{
+                                    display: "inline-flex",
+                                    color: contrastColour(tileColor).textColour,
+                                    ml: "5px",
+                                    lineHeight: 1,
+                                  }}
+                                >{` | `}</Box>
+                                {author && (
+                                  <Typography
+                                    variant="h6"
+                                    component="p"
+                                    color={contrastColour(tileColor).textColour}
+                                    sx={{
+                                      fontStyle: "italic",
+                                      fontWeight: "400",
+                                      fontSize: theme.spacing(2),
+                                    }}
+                                  >
+                                    <Box
+                                      sx={{
+                                        display: "inline-flex",
+                                        color:
+                                          contrastColour(tileColor).textColour,
+                                        ml: "5px",
+                                      }}
+                                    >{` By `}</Box>{" "}
+                                    {author.name}
+                                  </Typography>
+                                )}
+                              </Box>
+                            </Box>
+                          </Grid>
+                        </Grid>
+                      </Container>
+
+                      <Box
+                        sx={{
+                          gridColumn: "1/25",
+                          gridRow: "1/auto",
+                          display: "grid",
+                          gridTemplateColumns: "repeat(24, 1fr)",
+                          height: "100%",
+                          maxHeight: "100%",
+                          position: "relative",
+                          zIndex: 0,
+                          overflow: "hidden",
+                        }}
+                      >
+                        {tileImage && (
+                          <Image
+                            // pass asset, hotspot, and crop fields
+                            crop={tileImage?.crop}
+                            hotspot={tileImage?.hotspot}
+                            asset={
+                              (tileImage &&
+                                tileImage?._ref &&
+                                urlFor(tileImage).width(600).url()) ||
+                              tileImage.asset
+                            }
+                            width={310}
+                            height={310}
+                            style={{
+                              objectFit: "cover",
+                              width: "100%",
+                              height: "100%",
+                              flexGrow: 1,
+                              minHeight: "100%",
+                              maxHeight: "100%",
+                              gridColumn: "1/25",
+                              gridRow: "1/auto",
+                            }}
+                          />
+                        )}
+                        {tileImage && (
+                          <Box
+                            sx={{
+                              position: "relative",
+                              zIndex: 1,
+                              gridColumn: "1/25",
+                              gridRow: "1/auto",
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "rgba(0,0,0,0.5)",
+                            }}
+                          />
+                        )}
+                      </Box>
+                    </Box>
+                  </Paper>
+                </GatsbyLink>
+              </Grid>
+            )
+          })}
+
+{props.pageContext.humanPageNumber && filtersPosts &&
+          filtersPosts.map((post, i) => {
             const {
               tileImage,
               category,
