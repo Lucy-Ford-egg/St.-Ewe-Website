@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -7,6 +7,7 @@ import {
   useMediaQuery,
   Divider,
   useTheme,
+  Box,
 } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 import { CaseStudyTile } from "./caseStudyTile"
@@ -17,6 +18,8 @@ import {
   CASE_STUDIES_BY_ID,
   ALL_CASE_STUDIES,
 } from "../queries/documentQueries"
+// import { CaseStudyCarousel } from "./caseStudyCarousel"
+import { Carousel } from "../components/framer-motion-carousel/src/carousel"
 
 export const CaseStudySection = ({
   allSanityCaseStudy,
@@ -32,11 +35,15 @@ export const CaseStudySection = ({
   _rawRightText,
   leftText,
   rightText,
+  asCarousel,
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
+  const sm = useMediaQuery(theme.breakpoints.down("sm"))
+
+  const slide = useRef(null)
 
   const { data: allCaseStudies } = useQuery(ALL_CASE_STUDIES, {}, { initial })
 
@@ -80,72 +87,79 @@ export const CaseStudySection = ({
     rightText ||
     _rawRightText
 
-    useEffect(() => {
-      setFilterData(definedAllSanityCaseStudy )
-    }, [])
+  const definedAsCarousel = (previewData && _type === previewData?._type && previewData?.asCarousel) || asCarousel
+
+  useEffect(() => {
+    setFilterData(definedAllSanityCaseStudy)
+  }, [])
 
   return (
-    <Container
-      className="component-postsGrid"
-      sx={{
-        pb: { xs: theme.spacing(16), md: theme.spacing(16) },
-        pt: definedTopPadding
-          ? {
-              xs: theme.spacing(16),
-              md: theme.spacing(0),
-            }
-          : { xs: theme.spacing(16), md: theme.spacing(16) },
-      }}
-      maxWidth={mobile ? false : "xl"}
-    >
-      {/* <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/> */}
-      
-        { definedTitle && <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
-          <Grid item xs={12} md={7}>
-            {definedSubtitle && (
-              <Typography color="primary" variant="overline">
-                {definedSubtitle}
-              </Typography>
-            )}
+    <>
+      <Container
+        className="component-postsGrid"
+        sx={{
+          pb: {
+            xs: !definedAsCarousel && theme.spacing(16),
+            md: !definedAsCarousel && theme.spacing(16),
+          },
+          pt: definedTopPadding
+            ? {
+                xs: theme.spacing(16),
+                md: theme.spacing(0),
+              }
+            : { xs: theme.spacing(16), md: theme.spacing(16) },
+            overflowX: "hidden",
+        }}
+        maxWidth={mobile ? false : "xl"}
+      >
+        {/* <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/> */}
 
-            {definedTitle && (
-              <RenderPortableText
-                previewData={definedTitle}
-                setAsHeading={false}
-                value={definedTitle}
-              />
-            )}
-            {definedLeftText && (
-              <Divider
-                sx={{
-                  borderColor: "primary.main",
-                  mb: 5,
-                  maxWidth: 307,
-                }}
-              />
-            )}
-            {definedLeftText && (
-              <RenderPortableText
-                previewData={definedLeftText}
-                variant={false}
-                value={definedLeftText}
-              />
-            )}
+        {definedTitle && (
+          <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
+            <Grid item xs={12} md={7}>
+              {definedSubtitle && (
+                <Typography color="primary" variant="overline">
+                  {definedSubtitle}
+                </Typography>
+              )}
+
+              {definedTitle && (
+                <RenderPortableText
+                  previewData={definedTitle}
+                  setAsHeading={false}
+                  value={definedTitle}
+                />
+              )}
+              {definedLeftText && (
+                <Divider
+                  sx={{
+                    borderColor: "primary.main",
+                    mb: 5,
+                    maxWidth: 307,
+                  }}
+                />
+              )}
+              {definedLeftText && (
+                <RenderPortableText
+                  previewData={definedLeftText}
+                  variant={false}
+                  value={definedLeftText}
+                />
+              )}
+            </Grid>
+            <Grid item xs={12} md={5} sx={{ alignSelf: "flex-end" }}>
+              {definedRightText && (
+                <RenderPortableText
+                  previewData={definedRightText}
+                  variant={false}
+                  value={definedRightText}
+                />
+              )}
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={5} sx={{ alignSelf: "flex-end" }}>
-            {definedRightText && (
-              <RenderPortableText
-                previewData={definedRightText}
-                variant={false}
-                value={definedRightText}
-              />
-            )}
-          </Grid>
-        </Grid>
-}
-      
-      
-        {filtersPosts && (
+        )}
+
+        {!definedAsCarousel && filtersPosts && (
           <Grid container rowSpacing={{ xs: 6, md: 9 }}>
             {definedAllSanityCaseStudy &&
               definedAllSanityCaseStudy.map((tile, i) => {
@@ -157,9 +171,55 @@ export const CaseStudySection = ({
               })}
           </Grid>
         )}
-     
-      {/* <Pagination pageContext={pageContext}/> */}
-    </Container>
+
+        {/* <Pagination pageContext={pageContext}/> */}
+      </Container>
+{definedAsCarousel && 
+      <Container maxWidth={false} disableGutters={sm ? false : true}
+        sx={{
+          pb: {
+            xs: definedAsCarousel && theme.spacing(16),
+            md: definedAsCarousel && theme.spacing(16),
+          },
+          pl: {sm: "3vw", lg: "34px", xl: "6%"},
+          pr: {sm: 0},
+          overflowY: "hidden",
+          position: "relative",
+         // maxWidth: {xl: "1300px"},
+        }}
+      >
+       
+          
+          
+        <Carousel
+          autoPlay={false}
+          loop={true}
+          ref={slide}
+          renderDots={false}
+          style={{
+            columnGap: theme.spacing(0),
+           
+          }}
+        >
+          {definedAsCarousel &&
+            filtersPosts &&
+            filtersPosts.map((tile, i) => {
+              return (
+                <Box
+                  ref={slide}
+                  sx={{
+                    pr: {sm: 16, md: 16, lg: 16},  
+                  }}
+                >
+                  <CaseStudyTile disableSummary={true} {...tile} i={i} />
+                </Box>
+              )
+            })}
+        </Carousel>
+        
+      </Container>
+      }
+    </>
   )
 }
 
@@ -175,5 +235,6 @@ export const query = graphql`
     showCaseStudyArchive {
       setArchive
     }
+    asCarousel
   }
 `

@@ -31,6 +31,7 @@ export const CaseStudyTile = (props) => {
     i,
     slug,
     coverImage,
+    disableSummary = false
   } = props
 
   
@@ -94,22 +95,22 @@ export const CaseStudyTile = (props) => {
   const backgroundColor = i % 2 ? "secondary" : "primary"
 
   return (
-    <Link to={`/case-studies/${slug.current}`} style={{ textDecoration: "none" }} state={{ backgroundColor: backgroundColor }}>
+    <Link to={`/case-studies/${slug.current}`} style={{ display: "block", width: "inherit", textDecoration: "none" }} state={{ backgroundColor: backgroundColor }}>
       <Card
         elevation={0}
         sx={{
           cursor: "pointer",
           display: "flex",
           flexDirection: "column",
-          maxHeight: { xs: "auto", md: 578 },
+          maxHeight: { xs: "auto", md: !disableSummary && 578 },
         }}
         square
         onMouseEnter={e => setHovered(true)}
         onMouseLeave={e => setHovered(false)}
       >
         <Grid container sx={{display: 'flex', flexDirection: {xs: 'row', md: i % 2 ? 'row-reverse' : 'row'}}}>
-          <Grid item xs={12} sm={7}>
-            <Box sx={{ display: {xs:"grid", sm: "flex", md: "grid"}, flexDirection: {sm: "column", md: "unset"}, gridTemplateColumns: "repeat(12, 1fr)", alignItems: 'flex-end', minHeight: '100%' }}>
+          <Grid item xs={12} sm={disableSummary ? 12 : 7}>
+            <Box sx={{ display: {xs:"grid", sm: "flex", md: "grid"}, flexDirection: {sm: "column", md: "unset"}, gridTemplateColumns: "repeat(12, 1fr)", alignItems: 'flex-end', minHeight: {xs: disableSummary ? 300 : '100%', md: disableSummary ? 600 : '100%'} }}>
               {coverImage && (
                 <Image
                   // pass asset, hotspot, and crop fields
@@ -119,20 +120,20 @@ export const CaseStudyTile = (props) => {
                       urlFor(coverImage).width(700).url()) ||
                     coverImage?.asset
                   }
-                  width={700}
+                  width={disableSummary ? 1024 : 700}
+                  height={disableSummary ? 583 : false}
                   style={{
                     objectFit: "cover",
                     width: "100%",
-                    height: "100%",
+                    height: disableSummary ? "100%" : "100%",
                     flexGrow: 1,
                     minHeight: "100%",
                     gridColumn: "1/25",
                     gridRow:  "1/auto",
-                    flexBasis: ""
                   }}
                 />
               )}
-              <Box sx={{ display: "flex", flexBasis: "100%", width: "100%", flexGrow: 1, gridColumn: {xs: "1/25", md: "2/24"}, gridRow: {xs: "2/auto", md: "1/auto"}, pb: {xs:0, md: 12} }}>
+              <Box sx={{ display: "flex", flexBasis: "100%", width: "100%", flexGrow: 1, gridColumn: {xs: "1/25", md: "2/24"}, gridRow: {xs: "2/auto", md: "1/auto"}, pb: {xs:0, md: disableSummary ? 12 : 12} }}>
                 <Grid container sx={{display: "flex", flexBasis: "100%"}}>
                   <Grid item xs={6} md={3} sx={{display: 'flex'}}>
                     <Box
@@ -150,7 +151,7 @@ export const CaseStudyTile = (props) => {
                     variant="h1"
                     component="h3"
                     color="white.main"
-                    sx={{ fontSize: {xs:theme.spacing(17), md: theme.spacing(6)} }}
+                    sx={{ fontSize: !disableSummary && {xs:theme.spacing(17), md: theme.spacing(6)} }}
                   >
                     {String(i+ 1).padStart(2, '0')}
                   </Typography>
@@ -207,7 +208,7 @@ export const CaseStudyTile = (props) => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} sm={5} sx={{ display: "flex" }}>
+          {!disableSummary && <Grid item xs={12} sm={5} sx={{ display: "flex" }}>
             <Box
               sx={{
                 px: {xs: 6, md: 13},
@@ -252,6 +253,7 @@ export const CaseStudyTile = (props) => {
               </CardActions>
             </Box>
           </Grid>
+          }
         </Grid>
       </Card>
     </Link>

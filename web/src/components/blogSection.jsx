@@ -97,7 +97,6 @@ export const BlogSection = props => {
     setFilterData(definedAllSanityPost)
   }, [definedAllSanityPost])
 
-  debugger
   return (
     <Container
       maxWidth="xl"

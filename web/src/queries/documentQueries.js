@@ -38,6 +38,7 @@ pageBuilder[] {
   navColor->,
   overlay,
   topPadding,
+  asCarousel,
   leftAlign, 
   
   steps[]{

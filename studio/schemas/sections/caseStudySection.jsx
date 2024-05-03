@@ -103,7 +103,12 @@ export default defineType({
       name: 'topPadding',
       type: 'boolean',
       title: 'Remove top padding',
-    }), 
+    }),
+    defineField({
+      name: 'asCarousel',
+      type: 'boolean',
+      title: 'Display as carousel',
+    }),  
   ],
   preview: {
     select: {
