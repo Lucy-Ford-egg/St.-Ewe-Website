@@ -584,16 +584,18 @@ export const Footer = props => {
             <Grid
               item
               xs={12}
-              md={12}
+              md={8}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 mb: { xs: 2, md: 0 },
               }}
             >
-              <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <Typography color="white.main" variant="caption">
-                  {`Taylor Money Limited is authorised and regulated by the Financial Conduct Authority FCA ref: 583300. Copyright © ${new Date().getFullYear()} Taylor Money  |  Designed & Developed by `}{" "}
+                  {`Taylor Money Limited is authorised and regulated by the Financial Conduct Authority FCA ref: 583300.`}</Typography>
+                <Typography color="white.main" variant="caption">
+                {`Copyright © ${new Date().getFullYear()} Taylor Money  |  Designed & Developed by `}
                   <Link
                     color="white.main"
                     className="link-animation"
@@ -602,14 +604,15 @@ export const Footer = props => {
                     Gendall
                   </Link>
                 </Typography>
+                  
               </Box>
             </Grid>
 
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={4}>
               <Box
                 sx={{
                   display: "flex",
-                  justifyContent: { xs: "flex-start", md: "flex-end" },
+                  justifyContent: { xs: "flex-end", md: "flex-end" },
                 }}
               >
                 {data?.socialMenu?.items &&
@@ -636,14 +639,9 @@ export const Footer = props => {
                       </Box>
                     )
                   })}
-              </Box>
-            </Grid>
-          </Grid>
-          <IconButton
+                  <IconButton
             sx={{
-              position: "absolute",
-              bottom: theme.spacing(6),
-              right: theme.spacing(6),
+              justifySelf: "flex-end",
               "&:hover": {
                 animation: "backToTopAnimation 2s ease 0s 1 normal forwards",
               },
@@ -680,6 +678,10 @@ export const Footer = props => {
               </defs>
             </svg>
           </IconButton>
+              </Box>
+            </Grid>
+          </Grid>
+          
         </Container>
 
         <CookieNotice 

@@ -96,7 +96,7 @@ export const RenderPortableText = (props) => {
       },
       // New Image block
       imageOptions: ({ value }) => {
-debugger
+
         return (
           <Box sx={{ py: 6, }}>
             <Image
