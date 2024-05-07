@@ -72,13 +72,28 @@ export default defineType({
     }),
     defineField({
       name: 'image',
+      title: 'Cover Image',
       type: 'image',
-      title: 'Avatar',
-      validation: Rule => Rule.required(),
       options: {
         hotspot: true,
       },
+      //validation: Rule => Rule.required(),
+      validation: Rule => Rule.required(),
       group: 'particulars',
+      description: 'This is used on the single team member page.'
+    }),
+    defineField({
+      name: 'tileImage',
+      title: 'Tile Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      //validation: Rule => Rule.required(),
+      validation: Rule => Rule.required(),
+      group: 'particulars',
+      description: 'This is used on the tile.'
+
     }),
     defineField({
       name: 'name',

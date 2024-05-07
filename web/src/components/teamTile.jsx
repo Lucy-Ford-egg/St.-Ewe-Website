@@ -21,7 +21,7 @@ export const TeamTile = props => {
   const theme = useTheme()
 
   const [showBio, setShowBio] = useState(false)
-  const image = member?.image
+  const image = member?.tileImage 
   const memberShortName = member?.name.split(" ")
   const email = member?.email
   const memberExcerpt = member?.excerpt

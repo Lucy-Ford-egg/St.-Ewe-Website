@@ -175,7 +175,7 @@ export const query = graphql`
     }
     teamTiles {
       email
-      image {
+      tileImage {
         asset {
           _id
           gatsbyImageData
