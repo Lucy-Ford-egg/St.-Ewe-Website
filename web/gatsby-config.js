@@ -142,10 +142,10 @@ module.exports = {
                 },
               },
               {
-                family: `Merriweather`,
+                family: `Merriweather Regular`,
                 urls: {
-                  woff2: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff2`,
-                  woff: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff`,
+                  woff2: `../web/src/assets/fonts/merriweather/merriweather-regular-webfont.woff2`,
+                  woff: `../web/src/assets/fonts/merriweather/merriweather-regular-webfont.woff`,
                 },
               },
               {

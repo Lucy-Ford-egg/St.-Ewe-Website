@@ -109,11 +109,11 @@ let clientTheme = createTheme({
     },
     h2: {
       fontSize: clientSpacing[13],
-      fontFamily: 'Merriweather Bold',
+      fontFamily: 'Merriweather Regular',
     },
     h3: {
       fontSize: clientSpacing[10],
-      fontFamily: 'Merriweather Bold',
+      fontFamily: 'Merriweather Regular',
       lineHeight: 1.35,
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[8],
@@ -121,16 +121,16 @@ let clientTheme = createTheme({
     },
     h4: {
       fontSize: clientSpacing[7],
-      fontFamily: 'Merriweather Bold',
+      fontFamily: 'Merriweather Regular',
       letterSpacing: '0em',
     },
     h5: {
       fontSize: clientSpacing[5],
-      fontFamily: 'Merriweather Bold',
+      fontFamily: 'Merriweather Regular',
     },
     h6: {
       fontSize: clientSpacing[4],
-      fontFamily: 'Merriweather Bold',
+      fontFamily: 'Merriweather Regular',
       letterSpacing: '0em',
     },
   },
