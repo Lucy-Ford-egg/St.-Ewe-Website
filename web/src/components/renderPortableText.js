@@ -66,6 +66,7 @@ export const RenderPortableText = (props) => {
 
         return <Typography sx={{ color: 'inherit' }} variant={'body1'} component={component}>{value?.children?.text}</Typography>
       },
+      // ! Old Image block for deprecation 
       image: ({ value }) => {
 
         return (
@@ -87,6 +88,35 @@ export const RenderPortableText = (props) => {
                 objectFit: "cover",
                 maxWidth: '100%',
                 height: 'auto',
+              }}
+            />
+            <Typography sx={{ pl: 1, borderLeft: `1px solid ${theme.palette.tertiary.main}` }} variant='body2'>{value?.asset?.description}</Typography>
+          </Box>
+        )
+      },
+      // New Image block
+      imageOptions: ({ value }) => {
+debugger
+        return (
+          <Box sx={{ py: 6, }}>
+            <Image
+              // pass asset, hotspot, and crop fields
+              asset={
+                getGatsbyImageData(
+                  previewData &&
+                  previewData?.image?.asset,
+                  { maxWidth: 100 },
+                  sanityConfig,
+                ) || value?.image?.asset
+              }
+              // tell Sanity how large to make the image (does not set any CSS)
+              // width={1300}
+              // style it how you want it
+              style={{
+                objectFit: "cover",
+                maxWidth: '100%',
+                height: 'auto',
+                mixBlendMode: value?.mixBlendMode && value?.mixBlendMode,
               }}
             />
             <Typography sx={{ pl: 1, borderLeft: `1px solid ${theme.palette.tertiary.main}` }} variant='body2'>{value?.asset?.description}</Typography>

@@ -48,6 +48,12 @@ module.exports = {
       resolve: `gatsby-plugin-gatsby-cloud`
     },
     {
+      resolve: `gatsby-plugin-brotli`,
+      options: {
+        extensions: ['css', 'html', 'js', 'svg']
+      }
+    },
+    {
       resolve: `gatsby-plugin-sanity-image`,
       options: {
         // Sanity project info (required)

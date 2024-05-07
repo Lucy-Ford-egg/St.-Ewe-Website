@@ -59,6 +59,7 @@ const MainNavigation = (props) => {
         initial="hidden"
         animate="visible"
         variants={list}
+        disableGutters={mobile ? false : true}
         sx={{
           backgroundColor: { xs: "background.default", md: "transparent" },
           pt: { xs: 6, sm: 12, md: 0 },
@@ -142,7 +143,7 @@ const MainNavigation = (props) => {
           </Box>
         </motion.li>
 
-      <Divider sx={{py: 6, display: {xs: "none", sm: "flex", lg: "none"}}} variant="middle" />
+      <Divider sx={{py: 6, display: {xs: "none", sm: "none", lg: "none"}}} variant="middle" />
 
         <Box sx={{ display: { xs: "flex", sm: "grid", lg: "none" }, gridTemplateColumns: {xs: "unset", sm: "repeat(2, 1fr)", md: "unset"}, mt: {xs: 6, sm: 6, md: 6} , flexDirection: {xs: "column", sm: "row"}}}>
 

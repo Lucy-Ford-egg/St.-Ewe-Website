@@ -12,7 +12,7 @@ export const Layout = (props) => {
 
   const {children, data, initial} = props
   // Preview
-  const definedSlug = (props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy || props.data.sanityPage )
+  const definedSlug = (data.sanityPost || data.sanityTeamMember || data.sanityCaseStudy || data.sanityPage )
   
   const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "nav":${NAV_QUERY}}`,
@@ -23,7 +23,7 @@ export const Layout = (props) => {
   const definedSiteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
   const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
-  const navOverlay = data?.sanityPost?.navOverlay || data?.sanityPage?.navOverlay
+  const navOverlay = data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay 
   
   const definedNavColor = (previewData && previewData?.nav?.navColor) || navColor
   const definedNavOverlay = (previewData && previewData?.nav?.navOverlay) || navOverlay 

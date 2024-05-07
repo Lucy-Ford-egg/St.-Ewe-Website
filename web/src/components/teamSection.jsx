@@ -133,13 +133,13 @@ export const TeamSection = props => {
                 xs: "scroll",
                 sm: "scroll",
                 md: "scroll",
-                lg: "unset",
+                lg: "scroll",
               },
               scrollSnapType: {
                 xs: "x mandatory",
                 sm: "x mandatory",
                 md: "x mandatory",
-                lg: "unset",
+                lg: "x mandatory",
               },
               scrollSnapAlign: "center",
             }}

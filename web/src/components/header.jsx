@@ -156,6 +156,9 @@ const Header = props => {
                 sx={{
                   display: "flex",
                   width: { xs: "auto", sm: "auto", md: "auto", lg: "auto" },
+                  svg:{
+                    maxWidth: "100%",
+                  }
                 }}
                 aria-label="Return to home page"
               >

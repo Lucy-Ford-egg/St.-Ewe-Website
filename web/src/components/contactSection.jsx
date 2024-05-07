@@ -350,7 +350,7 @@ export const ContactSection = props => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={4}>
                       <FormLabel htmlFor="firstName">
-                      Advice required?
+                      Type of advice required?
                       </FormLabel>
 
                       <Select

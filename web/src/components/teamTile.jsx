@@ -59,7 +59,7 @@ export const TeamTile = props => {
         height: "100%",
         "&:last-of-type":{
           mr: {xs: 6, lg: "unset"}
-        }
+        },
       }}
     >
       <Box sx={{ position: "relative" }}>
@@ -156,7 +156,9 @@ export const TeamTile = props => {
           }}
         >
           <Box onClick={e => setShowBio(!showBio)}>
-            <Box sx={{ position: "relative" }}>
+            <Box sx={{ position: "relative", "&:hover":{
+                    cursor: "pointer",
+                  } }}>
               <motion.div
                 initial={{
                   opacity: 0,
@@ -179,6 +181,7 @@ export const TeamTile = props => {
                     definedTileColor?.value,
                     0.6,
                   ),
+                  
                 }}
               >
                 <motion.div
@@ -211,6 +214,7 @@ export const TeamTile = props => {
                     objectFit: "cover",
                     width: "100%",
                     height: 220,
+                    
                   }}
                 />
               )}

@@ -1,28 +1,28 @@
 import { MdOutlineChat, MdPictureAsPdf, MdViewModule } from "react-icons/md";
 
 import { format, parseISO } from 'date-fns'
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, defineArrayMember } from 'sanity'
 import authorType from './author'
 import categoriesType from './categories'
-import openGraph from '../schemas/openGraph'
-import siteMeta from '../schemas/siteMeta'
+import openGraph from './openGraph'
+import siteMeta from './siteMeta'
 
 // Sections 
 import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
 import caseStudySectionType from './sections/caseStudySection'
-import ctaSectionType from '../schemas/sections/ctaSection'
-import featuresListSectionType from '../schemas/sections/featuresListSection'
-import videoSectionType from '../schemas/sections/videoSection'
-import newsletterSectionType from '../schemas/sections/newsletterSection'
-import imageCarouselSectionType from '../schemas/sections/imageCarouselSection'
+import ctaSectionType from './sections/ctaSection'
+import featuresListSectionType from './sections/featuresListSection'
+import videoSectionType from './sections/videoSection'
+import newsletterSectionType from './sections/newsletterSection'
+import imageCarouselSectionType from './sections/imageCarouselSection'
 import blogSectionType from './modules/blogSection'
-import stepSectionType from '../schemas/sections/stepsSection'
-import timelineSectionType from '../schemas/sections/timelineSection'
-import contactSectionType from '../schemas/sections/contactSection'
-import locationSectionType from '../schemas/sections/locationSection'
-import clientLoginSectionType from '../schemas/sections/clientLoginSection'
+import stepSectionType from './sections/stepsSection'
+import timelineSectionType from './sections/timelineSection'
+import contactSectionType from './sections/contactSection'
+import locationSectionType from './sections/locationSection'
+import clientLoginSectionType from './sections/clientLoginSection'
 
 
 /**
@@ -203,13 +203,34 @@ export default defineType({
           },
           {type: 'file', icon: MdPictureAsPdf},
           {type: 'textColor',},
-        
+          // {type: 'imageOptions'},  
         ],
       }
-    }, {
+    },
+    {
+      type: 'imageOptions',
+      validation: (rule) => rule.required(),
+    },
+    {
       type: 'image',
       validation: (rule) => rule.required(),
-    }],
+      readOnly: true,
+    }
+    // defineArrayMember({
+    //   type: 'image',
+    //   // Replace the preview of all block images
+    //   // with the edit form for that image, bypassing
+    //   // the modal step.
+    //   components: {
+    //     block: (props) => {
+    //       return props.renderDefault({
+    //         ...props,
+    //         renderPreview: () => props.children,
+    //       })
+    //     },
+    //   },
+    // }),
+  ],
     validation: (rule) => rule.required(),
     description: "This works slightly differently to page modules. You can add images, quotes and other textural decoration in the editor.",
     group: 'pageContent',

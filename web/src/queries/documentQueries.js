@@ -103,7 +103,7 @@ export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
   }
 }`
 
-export const NAV_QUERY = groq`*[_type in ["post", "page", "caseStudy", "teamMember"] && slug.current == $slug][0] {
+export const NAV_QUERY = groq`*[slug.current == $slug][0] {
   navColor{...},
   navOverlay,
 }`
@@ -285,12 +285,14 @@ export const ALL_POSTS = groq`*[_type == "post"] {
   category->{...},
   person,
   _rawPerson,
+  author->{...},
 }`
 
 export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {
   _id,
   ...,
   category->{...},
+  author->{...},
 }`
 
 export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
