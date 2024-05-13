@@ -150,23 +150,25 @@ export const Carousel = React.forwardRef(
             </Contaier>
 
             <Container
-                    maxWidth="xl"
+                    maxWidth="lg"
                     sx={{
                         display: {xs: "none", sm: "block"},
                         position: {xs: "relative", sm: "absolute"},
-                        top: {xs: 6, sm: "25%"},
+                        top: {xs: "unset", sm: "25%"},
                         left:{xs: "unset", sm: "50%"},
-                        transform: {xs: "translate(-50%, -25%)", sm: "translate(-40%, -25%)"},
-                        ml: {sm: "-3vw", lg: "-34px", xl: "-6%"},
-                        
+                        transform: {xs: "translate(-50%, -25%)", sm: "translate(-50%, -25%)"}, 
                     }}
                 >
+                    <Box sx={{
+                         mx: {sm: 4, lg: 8, xl: 8},
+                         position: "relative",
+                    }}>
                     {/* left arrow */}
                     {renderArrowLeft ? (
                         renderArrowLeft({ handlePrev, activeIndex: index })
                     ) : (
                         <Arrow left onClick={handlePrev}>
-                            <ArrowBackIcon sx={{color: sm ? "tertiary.main" : "white.main"}}/>
+                            <ArrowBackIcon sx={{color: sm ? "tertiary.main" : "primary.main"}}/>
                         </Arrow>
                     )}
 
@@ -176,10 +178,10 @@ export const Carousel = React.forwardRef(
                     ) : (
                         <Arrow onClick={handleNext}>
                             <ArrowForwardIcon
-                                sx={{color: sm ? "tertiary.main" : "white.main"}}                            />
+                                sx={{color: sm ? "tertiary.main" : "primary.main"}}                            />
                         </Arrow>
                     )}
-                   
+                   </Box>
                 </Container>
 
             <Container
@@ -187,7 +189,7 @@ export const Carousel = React.forwardRef(
                     sx={{
                         display: {xs: "flex", sm: "none"},
                         position: "relative",
-                        pt: 6,
+                        mt: 10,
                     }}
                 >
                     {/* left arrow */}

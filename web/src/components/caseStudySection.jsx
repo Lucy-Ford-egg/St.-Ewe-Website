@@ -36,6 +36,7 @@ export const CaseStudySection = ({
   leftText,
   rightText,
   asCarousel,
+  disableSummary
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
@@ -88,6 +89,8 @@ export const CaseStudySection = ({
     _rawRightText
 
   const definedAsCarousel = (previewData && _type === previewData?._type && previewData?.asCarousel) || asCarousel
+
+  const definedDisableSummary = (previewData && _type === previewData?._type && previewData?.disableSummary) || disableSummary
 
   useEffect(() => {
     setFilterData(definedAllSanityCaseStudy)
@@ -183,14 +186,16 @@ export const CaseStudySection = ({
           },
           pl: {sm: "3vw", lg: "34px", xl: "6%"},
           pr: {sm: 0},
-          overflowY: "hidden",
           position: "relative",
          // maxWidth: {xl: "1300px"},
         }}
       >
        
           
-          
+          <Box sx={{
+            overflowX: {md: "hidden"},
+            maxWidth: "100vw"
+          }}>
         <Carousel
           autoPlay={false}
           loop={true}
@@ -211,12 +216,12 @@ export const CaseStudySection = ({
                     pr: {sm: 16, md: 16, lg: 16},  
                   }}
                 >
-                  <CaseStudyTile disableSummary={true} {...tile} i={i} />
+                  <CaseStudyTile disableSummary={definedDisableSummary} {...tile} i={i} />
                 </Box>
               )
             })}
         </Carousel>
-        
+        </Box>
       </Container>
       }
     </>
@@ -236,5 +241,6 @@ export const query = graphql`
       setArchive
     }
     asCarousel
+    disableSummary
   }
 `

@@ -30,7 +30,8 @@ const Arrow = ({ left = false, children, onClick }: ArrowProps) => {
             right: !left ? "10px" : "initial",
         }}
         sx={{
-            border: `1px solid ${sm ? theme.palette.text.primary : "white"}`,
+            border: `1px solid ${sm ? theme.palette.text.primary : theme.palette.primary.main}`,
+            backgroundColor: `rgba(255,255,255,0.3)`
           }}
     >
         {children}

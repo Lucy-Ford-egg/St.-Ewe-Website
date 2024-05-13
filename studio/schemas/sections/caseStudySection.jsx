@@ -108,6 +108,11 @@ export default defineType({
       name: 'asCarousel',
       type: 'boolean',
       title: 'Display as carousel',
+    }), 
+    defineField({
+      name: 'disableSummary',
+      type: 'boolean',
+      title: 'Disable Summary',
     }),  
   ],
   preview: {

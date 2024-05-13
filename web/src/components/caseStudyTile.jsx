@@ -102,7 +102,7 @@ export const CaseStudyTile = (props) => {
           cursor: "pointer",
           display: "flex",
           flexDirection: "column",
-          maxHeight: { xs: "auto", md: !disableSummary && 578 },
+          maxHeight: { xs: !disableSummary && "auto", md: !disableSummary && 578 },
         }}
         square
         onMouseEnter={e => setHovered(true)}
@@ -110,8 +110,21 @@ export const CaseStudyTile = (props) => {
       >
         <Grid container sx={{display: 'flex', flexDirection: {xs: 'row', md: i % 2 ? 'row-reverse' : 'row'}}}>
           <Grid item xs={12} sm={disableSummary ? 12 : 7}>
-            <Box sx={{ display: {xs:"grid", sm: "flex", md: "grid"}, flexDirection: {sm: "column", md: "unset"}, gridTemplateColumns: "repeat(12, 1fr)", alignItems: 'flex-end', minHeight: {xs: disableSummary ? 300 : '100%', md: disableSummary ? 600 : '100%'} }}>
+            <Box sx={{ 
+              display: {xs:"grid", sm: "flex", md: "grid"}, 
+              flexDirection: {sm: "column", md: "unset"}, 
+              gridTemplateColumns: "repeat(12, 1fr)", 
+              alignItems: 'flex-end', 
+              minHeight: {xs: disableSummary ? 'unset' : '100%', md: disableSummary ? 600 : '100%'},
+              gridTemplateRows: {xs: "1.75fr 1fr", md: "1.75fr 1fr 0.2fr"},
+              }}>
               {coverImage && (
+                <Box sx={{
+                  display: "flex",
+                  gridColumn: "1/25",
+                  gridRow:  {xs: "1/2", md: "1/4"},
+                  height: "100%",
+                }}>
                 <Image
                   // pass asset, hotspot, and crop fields
                   crop={coverImage?.crop}
@@ -127,13 +140,13 @@ export const CaseStudyTile = (props) => {
                     width: "100%",
                     height: disableSummary ? "100%" : "100%",
                     flexGrow: 1,
-                    minHeight: "100%",
-                    gridColumn: "1/25",
-                    gridRow:  "1/auto",
+                    minHeight: disableSummary ? "100%" : "100%",
+                   
                   }}
                 />
+                </Box>
               )}
-              <Box sx={{ display: "flex", flexBasis: "100%", width: "100%", flexGrow: 1, gridColumn: {xs: "1/25", md: "2/24"}, gridRow: {xs: "2/auto", md: "1/auto"}, pb: {xs:0, md: disableSummary ? 12 : 12} }}>
+              <Box sx={{ display: "flex", flexBasis: "100%", width: "100%", flexGrow: 1, gridColumn: {xs: "1/25", md: "2/24"}, gridRow: {xs: "2/auto", md: "2/3"}, pb: {xs:0, md: disableSummary ? 12 : 0} }}>
                 <Grid container sx={{display: "flex", flexBasis: "100%"}}>
                   <Grid item xs={6} md={3} sx={{display: 'flex'}}>
                     <Box
