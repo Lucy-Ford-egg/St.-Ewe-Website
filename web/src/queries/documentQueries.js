@@ -39,6 +39,7 @@ pageBuilder[] {
   overlay,
   topPadding,
   asCarousel,
+  disableSummary,
   leftAlign, 
   
   steps[]{
