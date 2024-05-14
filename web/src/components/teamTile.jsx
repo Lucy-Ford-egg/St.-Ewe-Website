@@ -13,7 +13,7 @@ import {
 import { CiMail, CiLinkedin, CiCircleRemove } from "react-icons/ci"
 import { contrastColour, convertHexToRGBA } from "../utils/contrastColour"
 import { Button } from "gatsby-theme-material-ui"
-import { motion } from "framer-motion"
+import { LazyMotion, domAnimation } from "framer-motion"
 
 export const TeamTile = props => {
   const { definedTileColor, member, i } = props
@@ -64,7 +64,7 @@ export const TeamTile = props => {
     >
       <Box sx={{ position: "relative" }}>
         {showBio && memberExcerpt && (
-          <motion.div
+          <LazyMotion features={domAnimation}
             initial={{
               opacity: 0,
             }}
@@ -83,7 +83,6 @@ export const TeamTile = props => {
           >
             <Box
               sx={{
-                
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -145,7 +144,7 @@ export const TeamTile = props => {
                 )}
               </Box>
             </Box>
-          </motion.div>
+          </LazyMotion>
         )}
 
         <Box
@@ -159,7 +158,7 @@ export const TeamTile = props => {
             <Box sx={{ position: "relative", "&:hover":{
                     cursor: "pointer",
                   } }}>
-              <motion.div
+              <LazyMotion features={domAnimation}
                 initial={{
                   opacity: 0,
                 }}
@@ -184,7 +183,7 @@ export const TeamTile = props => {
                   
                 }}
               >
-                <motion.div
+                <LazyMotion features={domAnimation}
                   intial={{
                     y: 10,
                   }}
@@ -198,8 +197,8 @@ export const TeamTile = props => {
                   >
                     Read Bio
                   </Typography>
-                </motion.div>
-              </motion.div>
+                </LazyMotion>
+              </LazyMotion>
               {image && (
                 <Image
                   // pass asset, hotspot, and crop fields
@@ -266,7 +265,7 @@ export const TeamTile = props => {
                 }}
               />
             </Box>
-            <motion.div
+            <LazyMotion features={domAnimation}
               initial={{
                 opacity: 1,
               }}
@@ -347,7 +346,7 @@ export const TeamTile = props => {
                   )}
                 </Box>
               </Box>
-            </motion.div>
+            </LazyMotion>
           </Box>
         </Box>
       </Box>

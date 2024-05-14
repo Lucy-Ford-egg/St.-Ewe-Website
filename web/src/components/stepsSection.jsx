@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import {
   Container,
@@ -14,7 +14,6 @@ import { RenderPortableText } from "../components/renderPortableText"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { contrastColour } from "../utils/contrastColour"
 import { AccordionTile } from "../components/accordionTile"
-import { red } from "@mui/material/colors"
 
 export const StepsSection = props => {
   const theme = useTheme()
@@ -31,11 +30,6 @@ export const StepsSection = props => {
     offset: ["-50vh start", "end end"],
   })
 
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  })
   const heightY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -298,22 +292,6 @@ export const StepsSection = props => {
                 maxHeight: "inherit"
               }}
             >
-              {/* <motion.div
-                key={lineRef}
-                className="line"
-                
-                style={{
-                  position: "relative",
-                  width: 8,
-                  backgroundColor: contrastColour(tileColor).line.hex,
-                  transformOrigin: "0% 0%",
-                  //scaleY: scaleY,
-                  height: "100%",
-                  //y: heightY,
-                  
-                }}
-              ></motion.div> */}
-
               <svg
                 style={{ display: "flex", flexDirection: "column" }}
                 width="25"
@@ -322,6 +300,7 @@ export const StepsSection = props => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
+                
                 <motion.line
                   marker-end="url(#circle)"
                   pathLength={heightY}
@@ -332,7 +311,6 @@ export const StepsSection = props => {
                   stroke={contrastColour(tileColor).line.hex}
                   stroke-width="8"
                 />
-                {/* <circle cx="11.6758" cy="49.7163" r="11.6309" fill="#F04D5F"/> */}
               </svg>
             </Box>
           </Box>
