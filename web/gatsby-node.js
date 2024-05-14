@@ -146,6 +146,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           ... on SanityCaseStudySection {
             _key
             _type
+            disableSummary
+            asCarousel
             showCaseStudyArchive {
               archive {
                 name

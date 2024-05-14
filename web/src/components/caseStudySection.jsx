@@ -23,7 +23,6 @@ import { Carousel } from "../components/framer-motion-carousel/src/carousel"
 
 export const CaseStudySection = ({
   allSanityCaseStudy,
-  searching = false,
   topPadding,
   previewData,
   initial,

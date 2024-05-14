@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
-import { motion } from "framer-motion"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import {
@@ -14,7 +13,6 @@ import {
   Divider,
   useTheme,
 } from "@mui/material"
-import clientTheme from "../gatsby-theme-material-ui-top-layout/theme"
 import { RenderPortableText } from "./renderPortableText"
 
 export const CaseStudyTile = (props) => {
@@ -24,14 +22,11 @@ export const CaseStudyTile = (props) => {
     _rawPerson,
     person,
     excerpt,
-    date,
-    to,
-    previewData,
     service,
     i,
     slug,
     coverImage,
-    disableSummary = false
+    disableSummary
   } = props
 
   
@@ -39,55 +34,6 @@ export const CaseStudyTile = (props) => {
   const [hovered, setHovered] = useState(false)
   const theme = useTheme()
 
-  const variants = {
-    hovered: {
-      opacity: 1,
-      y: 0,
-      height: "auto",
-      transition: {
-        type: "spring",
-        bounce: 0,
-      },
-    },
-    unhovered: {
-      opacity: 0,
-      y: -10,
-      height: 0,
-    },
-  }
-
-  const textColour = {
-    hovered: {
-      color: clientTheme.palette.white.main,
-    },
-    unhovered: {
-      color: clientTheme.palette.text.main,
-    },
-  }
-
-  const cardBodyColour = {
-    hovered: {
-      backgroundColor: clientTheme.palette.primary.main,
-    },
-    unhovered: {
-      backgroundColor: clientTheme.palette.white.main,
-    },
-  }
-
-  const cardBody = {
-    hovered: {
-      display: "flex",
-      flexBasis: "75%",
-      transition: {
-        type: "spring",
-        bounce: 0,
-      },
-    },
-    unhovered: {
-      display: "flex",
-      flexBasis: "50%",
-    },
-  }
   
   const definedPerson = (_rawPerson && _rawPerson) || person && person
   const definedService = (service && service.name) || service && service.name
@@ -260,6 +206,7 @@ export const CaseStudyTile = (props) => {
                     transition: "all 0.2s ease-in 0s",
                     textAlign: "center",
                   }}
+                  state={{ backgroundColor: backgroundColor }}
                 >
                   Read More
                 </Button>

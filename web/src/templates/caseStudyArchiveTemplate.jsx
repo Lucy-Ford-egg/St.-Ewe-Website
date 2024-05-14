@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
-import { IncludePreview } from "../context/includePreview"
 import Modules from "../components/modules"
 
 //Preview
@@ -12,9 +11,9 @@ import { getSanityClient } from "../../sanityUtils/sanity"
 const CaseStudyArchiveTemplate = props => {
 
   const { data, pageContext, initial } = props
-
+debugger
   // Preview
-  const { data: previewData, sourceMap } = useQuery(
+  const { data: previewData } = useQuery(
     PAGE_QUERY,
     { slug: data.sanityPage.slug.current },
     { initial },
@@ -127,7 +126,6 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
     slug {
       current
     }
-
     pageTitle
     pageBuilder {
       ...PageBuilderFragment

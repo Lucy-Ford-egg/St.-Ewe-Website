@@ -113,6 +113,7 @@ export default defineType({
       name: 'disableSummary',
       type: 'boolean',
       title: 'Disable Summary',
+      initialValue: false,
     }),  
   ],
   preview: {
