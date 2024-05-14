@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { Container, Grid, Typography, useTheme, Divider } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 import { TeamTile } from "../components/teamTile"
+import { ButtonFormat } from "./buttonFormat"
 
 export const TeamSection = props => {
   const theme = useTheme()
@@ -20,6 +21,7 @@ export const TeamSection = props => {
     topPadding,
     tileColor,
     _type,
+    links,
   } = props
 
   const definedTopPadding =
@@ -34,19 +36,21 @@ export const TeamSection = props => {
     _rawTitle
 
   const definedLeftText =
-    ((_type === previewData?._type) && (previewData && previewData?.leftText)) ||
+    (_type === previewData?._type && previewData && previewData?.leftText) ||
     leftText ||
     _rawLeftText
   const definedRightText =
-    ((_type === previewData?._type) && (previewData && previewData?.rightText)) ||
+    (_type === previewData?._type && previewData && previewData?.rightText) ||
     rightText ||
     _rawRightText
   const definedTeamTiles =
-    ((_type === previewData?._type) && (previewData && previewData?.teamTiles)) ||
+    (_type === previewData?._type && previewData && previewData?.teamTiles) ||
     teamTiles
   const definedTileColor =
-    ((_type === previewData?._type) && (previewData && previewData?.tileColor)) ||
+    (_type === previewData?._type && previewData && previewData?.tileColor) ||
     tileColor
+  const definedLinks =
+    (_type === previewData?._type && previewData && previewData?.links) || links
 
   return (
     <>
@@ -103,6 +107,19 @@ export const TeamSection = props => {
                 value={definedRightText}
               />
             )}
+          </Grid>
+          <Grid item xs={12}>
+            {definedLinks &&
+              definedLinks.map((node, i) => {
+                return (
+                  <ButtonFormat
+                    variant={i === 0 ? "contained" : "outlined"}
+                    color={i === 0 ? "primary" : "secondary"}
+                    node={node}
+                    sx={{}}
+                  />
+                )
+              })}
           </Grid>
         </Grid>
       </Container>
@@ -172,6 +189,28 @@ export const query = graphql`
     tileColor {
       label
       value
+    }
+    links {
+      link {
+        external
+        internal {
+          ... on SanityPage {
+            id
+            _type
+            slug {
+              current
+            }
+          }
+          ... on SanityPost {
+            id
+            _type
+            slug {
+              current
+            }
+          }
+        }
+      }
+      text
     }
     teamTiles {
       email

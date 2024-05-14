@@ -101,6 +101,16 @@ export default defineType({
       }],
     }),
     defineField({
+      name: 'links',
+      type: 'array',
+      title: 'Link(s)',
+      of: [
+        {type: 'linkDefined'}
+      ],
+      description: 'Add a link(s). Optional',
+      validation: Rule => Rule.min(1).max(2),
+    }),
+    defineField({
       title: 'Tile Colour',
       name: 'tileColor',
       type: 'simplerColor',
