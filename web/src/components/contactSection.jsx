@@ -1,16 +1,14 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Grid,
-  Box,
-  useTheme,
-  TextField,
-  Button,
-  FormLabel,
-  Select,
-  MenuItem,
-} from "@mui/material"
+import {useTheme} from "@mui/material" 
+import Container from "@mui/material/Container" 
+import Grid from "@mui/material/Grid" 
+import Box from "@mui/material/Box" 
+import TextField from "@mui/material/TextField" 
+import Button from "@mui/material/Button" 
+import FormLabel from "@mui/material/FormLabel" 
+import Select from "@mui/material/Select" 
+import MenuItem from "@mui/material/MenuItem" 
 
 import { RenderPortableText } from "../components/renderPortableText"
 
