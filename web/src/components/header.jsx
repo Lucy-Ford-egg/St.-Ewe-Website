@@ -14,7 +14,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 import MainNavigation from "./mainNavigation"
-import { LazyMotion, domAnimation, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 const Header = props => {
   const { definedNavColor, navOverlay, definedSiteSettings } = props
@@ -101,7 +101,7 @@ const Header = props => {
 
   return (
     <Box ref={targetRef}>
-      <LazyMotion features={domAnimation}
+      <motion.div
         style={{
           position: "fixed",
           top: 0,
@@ -280,7 +280,7 @@ const Header = props => {
           
          
         </AppBar>
-      </LazyMotion>
+      </motion.div>
     </Box>
   )
 }
