@@ -12,7 +12,7 @@ import {
   Link,
 } from "@mui/material"
 import { mapStyles } from "../utils/mapStyles"
-import { LazyMotion, domAnimation } from "framer-motion"
+import { motion } from "framer-motion"
 
 const AnyReactComponent = ({ children }) => (
   <Box
@@ -106,7 +106,7 @@ export const Map = props => {
                   transform: 'translate(-50%, -50%)'
                    }}>
                   {marker === location?.geopoint?.lat && (
-                    <LazyMotion features={domAnimation}
+                    <motion.div
                       ref={markerRef}
                       initial={{
                         opacity: 0,
@@ -247,7 +247,7 @@ export const Map = props => {
                           </List>
                         </Box>
                       </Box>
-                    </LazyMotion>
+                    </motion.div>
                   )}
                   {marker !== location?.geopoint?.lat && (
                     <IconButton

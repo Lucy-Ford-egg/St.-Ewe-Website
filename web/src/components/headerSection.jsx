@@ -5,7 +5,7 @@ import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"
-import { LazyMotion, domAnimation} from "framer-motion"
+import { motion } from "framer-motion"
 import { Spiro } from "../components/spiro"
 import { contrastColour } from "../utils/contrastColour"
 
@@ -111,7 +111,7 @@ export const HeaderSection = props => {
               mt:  {xs: "9vh", md: "9vh"}
             }}
           >
-            <LazyMotion features={domAnimation}
+            <motion.div
               initial={{ y: 0, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
@@ -122,7 +122,7 @@ export const HeaderSection = props => {
                 textAlign={definedTextAlign}
                 value={definedTitle}
               />
-            </LazyMotion>
+            </motion.div>
 
             {addSpiro && (
               <Box
@@ -189,14 +189,13 @@ export const HeaderSection = props => {
           }}
         >
           {definedImage && (
-            <Box sx={{
+            <motion.div style={{
               height: "100%",
-              flexGrow: 1,
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-            }}>
-            <LazyMotion features={domAnimation} 
-            
+                flexGrow: 1,
+                gridColumn: "1/25",
+                gridRow: "1/auto",
+                minHeight: {xs: "78vh", sm: "min-content"},
+            }} 
             initial={{
               opacity: 0,
             }} 
@@ -229,8 +228,7 @@ export const HeaderSection = props => {
                 //backgroundColor: theme.palette.text.mid,
               }}
             />
-            </LazyMotion>
-            </Box>
+            </motion.div>
           )}
           <Box
             sx={{
