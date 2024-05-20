@@ -10,7 +10,6 @@ export default defineType({
       name: 'image',
       type: 'image',
       title: 'Avatar',
-      validation: Rule => Rule.required(),
       options:{
         hotspot: true,
       }
