@@ -99,7 +99,6 @@ export default defineType({
         { type: 'accordionTile'}
       ],
       validation: (Rule) => Rule.custom((parentDepartment, context) => {
-        debugger
         return (
         context.document.isSubDepartment && parentDepartment === undefined ? "Parent department required for sub-departments" : true
      

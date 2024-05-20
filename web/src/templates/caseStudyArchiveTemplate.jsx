@@ -11,7 +11,7 @@ import { getSanityClient } from "../../sanityUtils/sanity"
 const CaseStudyArchiveTemplate = props => {
 
   const { data, pageContext, initial } = props
-debugger
+
   // Preview
   const { data: previewData } = useQuery(
     PAGE_QUERY,
