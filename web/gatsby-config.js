@@ -107,12 +107,20 @@ module.exports = {
         resolvePages: ({
           allSitePage: { nodes: allPages },
           allSanityPost: { nodes: allPosts },
-          allSanityUnit: { nodes: allUnits },
+          allSanityTeamMember: { nodes: allTeams },
+          allSanityCaseStudy: { nodes: allCaseStudies },
         }) => {
 
-          const unitsNodeMap = allUnits.reduce((acc, node) => {
+          const teamsNodeMap = allTeams.reduce((acc, node) => {
             const { slug } = node
-            acc[`/holiday-homes/${slug?.current}`] = node
+            acc[`/team-members/${slug?.current}`] = node
+
+            return acc
+          }, {})
+
+          const caseStudiesNodeMap = allCaseStudies.reduce((acc, node) => {
+            const { slug } = node
+            acc[`/case-studies/${slug?.current}`] = node
 
             return acc
           }, {})
@@ -126,7 +134,7 @@ module.exports = {
           }, {})
           // console.log(`postsNodeMap - ${JSON.stringify(postsNodeMap)}`)
 
-         const combined = [ unitsNodeMap, postsNodeMap ]
+         const combined = [ teamsNodeMap, caseStudiesNodeMap, postsNodeMap ]
 
           return allPages.map(page => {
             return { ...page, ...combined[page.path] }
