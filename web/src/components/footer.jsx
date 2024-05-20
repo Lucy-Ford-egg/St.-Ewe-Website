@@ -177,7 +177,7 @@ export const Footer = props => {
             size="large"
             color="white"
             variant="text"
-            to={menuItem?.link?.link?.internal?.slug?.current}
+            to={`/${menuItem?.link?.link?.internal?.slug?.current}`}
             sx={{
               transform: "translateX(-10px)",
               fontWeight: "400 !important",
