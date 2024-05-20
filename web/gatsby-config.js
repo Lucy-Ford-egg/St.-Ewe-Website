@@ -7,6 +7,8 @@ const netlifyAdapter = require("gatsby-adapter-netlify").default;
 const isProd = process.env.NODE_ENV === "production"
 const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() === "true"
 
+const siteUrl = process.env.GATSBY_FRONTEND || `https://taylormoney.netlify.app/`
+
 module.exports = {
   adapter: netlifyAdapter({
     excludeDatastoreFromEngineFunction: false,
@@ -52,6 +54,91 @@ module.exports = {
       options: {
         extensions: ['css', 'html', 'js', 'svg']
       }
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+        {
+          allSitePage {
+            nodes {
+              path
+            }
+          }
+          allSanityPage {
+            nodes {
+              _updatedAt
+              _id
+              slug {
+                current
+              }
+            }
+          }
+          allSanityPost {
+            nodes {
+              _updatedAt
+              _id
+              slug {
+                current
+              }
+            }
+          }
+          allSanityTeamMember {
+            nodes {
+              _updatedAt
+              _id
+              slug {
+                current
+              }
+            }
+          }
+          allSanityCaseStudy {
+            nodes {
+              _updatedAt
+              _id
+              slug {
+                current
+              }
+            }
+          }
+        }
+      `,
+        resolveSiteUrl: () => siteUrl,
+        resolvePages: ({
+          allSitePage: { nodes: allPages },
+          allSanityPost: { nodes: allPosts },
+          allSanityUnit: { nodes: allUnits },
+        }) => {
+
+          const unitsNodeMap = allUnits.reduce((acc, node) => {
+            const { slug } = node
+            acc[`/holiday-homes/${slug?.current}`] = node
+
+            return acc
+          }, {})
+          // console.log(`unitsNodeMap - ${JSON.stringify(unitsNodeMap)}`)
+
+          const postsNodeMap = allPosts.reduce((acc, node) => {
+            const { slug } = node
+            acc[`/blog/${slug?.current}`] = node
+
+            return acc
+          }, {})
+          // console.log(`postsNodeMap - ${JSON.stringify(postsNodeMap)}`)
+
+         const combined = [ unitsNodeMap, postsNodeMap ]
+
+          return allPages.map(page => {
+            return { ...page, ...combined[page.path] }
+          })
+        },
+        serialize: ({ path, _updatedAt }) => {
+          return {
+            url: path,
+            lastmod: _updatedAt,
+          }
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-sanity-image`,
