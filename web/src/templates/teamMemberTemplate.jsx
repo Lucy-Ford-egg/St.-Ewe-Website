@@ -102,7 +102,7 @@ const TeamMembersTemplate = props => {
         <RenderPortableText value={definedRawBio} />
       </Container>
 
-      <Modules pageContext={pageContext} modules={definedModules} getAllPosts={data.getAllPosts}/>
+      <Modules pageContext={pageContext} modules={definedModules} allSanityPost={data.allSanityPost} getAllPosts={data.getAllPosts}/>
     </>
   )
 }
@@ -112,7 +112,7 @@ export const Head = ({ data, location }) => {
 }
 
 export const teamMemberTemplateQuery = graphql`
-  query teamMemberTemplateQuery($slug: String!) {
+  query teamMemberTemplateQuery($slug: String!, $postIds:[String!], $skip: Int, $limit: Int) {
     sanityTeamMember(slug: { current: { eq: $slug } }) {
       slug {
         current
@@ -142,6 +142,55 @@ export const teamMemberTemplateQuery = graphql`
       #...SeoPageFragment
       pageBuilder {
         ...PageBuilderFragment
+      }
+    }
+    allSanityPost(
+      filter: {
+        category: {
+          _id: {
+            in: $postIds
+          }
+        }
+      }
+      skip: $skip 
+      limit: $limit 
+    ) {
+      nodes {
+        tileImage {
+          asset {
+            _id
+            gatsbyImageData
+          }
+          hotspot {
+            x
+            y
+            width
+            height
+          }
+          crop {
+            bottom
+            left
+            right
+            top
+          }
+        }
+     
+        slug {
+          current
+        }
+        date
+        category {
+          name
+          _id
+        }
+        author {
+          name
+        }
+        title
+        tileColor{
+          value
+          label
+        }
       }
     }
     getAllPosts: allSanityPost{

@@ -171,6 +171,32 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug{
           current
         }
+        pageBuilder{
+          ... on SanityBlogSection {
+            _key
+            _type
+            showArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+          ... on SanityCaseStudySection {
+            _key
+            _type
+            disableSummary
+            asCarousel
+            showCaseStudyArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+        }
       }
     }
     allSanityCaseStudy {
@@ -313,7 +339,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         id: node.id,
         slug: `${node.slug.current}`,
         node: node,
-        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection")
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
       },
     })
   })
@@ -347,7 +374,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         date: node.date,
         categories: node.categories,
         navColor: node.navColor,
-        postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
       },
     })
   })
@@ -365,6 +393,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         date: node.date,
         service: node.service,
         excerpt: node.excerpt,
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
       },
     })
   })
@@ -381,6 +411,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         date: node.date,
         categories: node.categories,
         excerpt: node.excerpt,
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
       },
     })
   })

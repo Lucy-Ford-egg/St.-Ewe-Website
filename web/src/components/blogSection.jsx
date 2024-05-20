@@ -85,7 +85,7 @@ export const BlogSection = props => {
     (previewData && _type === previewData?._type && previewData?.rightText) ||
     rightText ||
     _rawRightText
-
+debugger
   const definedAllSanityPost =
     (postData && postData?.length > 0 && postData) ||
     (previewData?.showArchive?.setArchive === true &&
