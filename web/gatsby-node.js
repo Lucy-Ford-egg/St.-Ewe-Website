@@ -230,6 +230,32 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           name
           _id
         }
+        pageBuilder{
+          ... on SanityBlogSection {
+            _key
+            _type
+            showArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+          ... on SanityCaseStudySection {
+            _key
+            _type
+            disableSummary
+            asCarousel
+            showCaseStudyArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+        }
       }
     }
   }
