@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Container, Grid, Typography, useTheme, Divider } from "@mui/material"
+import { Container, Grid, Typography, useTheme, Divider, Box, } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 import { TeamTile } from "../components/teamTile"
 import { ButtonFormat } from "./buttonFormat"
@@ -131,16 +131,17 @@ export const TeamSection = props => {
               xs: theme.spacing(15),
               md: theme.spacing(15),
             },
-            paddingRight: {
-              xs: "0 !important",
-              overflowX: "hidden",
-              maxWidth: "100vw",
-            },
+            // paddingRight: {
+            //   xs: "0 !important",
+            //   overflowX: "hidden",
+            //   maxWidth: "100vw",
+            // },
+            
           }}
         >
           <Grid
             container
-            columnSpacing={6}
+            columnSpacing={0}
             rowSpacing={6}
             alignItems="stretch"
             sx={{
@@ -159,16 +160,20 @@ export const TeamSection = props => {
                 lg: "x mandatory",
               },
               scrollSnapAlign: "center",
+              
             }}
           >
             {definedTeamTiles &&
               definedTeamTiles?.map((member, i) => {
                 return (
+                 
                   <TeamTile
                     key={`${member?.name}-member-${i}`}
                     definedTileColor={definedTileColor}
                     member={member}
+
                   />
+                  
                 )
               })}
           </Grid>

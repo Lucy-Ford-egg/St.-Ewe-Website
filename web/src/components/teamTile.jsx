@@ -57,9 +57,10 @@ export const TeamTile = props => {
         maxWidth: { xs: 315, sm: "50%", md: "25%", lg: "35%", xl: "25%"},
         flexBasis: {xs: "unset", sm: "unset", md: "unset", lg: "100%"},
         height: "100%",
+        mr: 6,
         "&:last-of-type":{
-          mr: {xs: 6, lg: "unset"}
-        },
+          mr: 0,
+        }
       }}
     >
       <Box sx={{ position: "relative" }}>
@@ -340,9 +341,10 @@ export const TeamTile = props => {
                       aria-label={`Go to ${member?.name} linkedIn profile`}
                       sx={{
                         color: contrastColour(definedTileColor).textColour,
+                        p: 0
                       }}
                     >
-                      <CiLinkedin style={{ color: "inherit" }} />
+                      <CiLinkedin style={{ padding: 0, color: "inherit" }} />
                     </IconButton>
                   )}
                 </Box>
