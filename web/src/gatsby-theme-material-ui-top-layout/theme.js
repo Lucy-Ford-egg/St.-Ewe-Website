@@ -141,6 +141,29 @@ let clientTheme = createTheme({
         // *{
         //   border: 1px solid tomato;
         // }
+        /* width */
+        ::-moz-scrollbar-button, ::-webkit-scrollbar-button {
+          width: 0px;
+          display: none;
+        }
+::-webkit-scrollbar {
+  width: ${defaultTheme.spacing(1)};
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: ${defaultTheme.palette.background.default};
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: ${defaultTheme.palette.primary.main};
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: ${defaultTheme.palette.primary.light};
+}
         @keyframes backToTopAnimation {
           0%,
           50%,
@@ -308,27 +331,27 @@ let clientTheme = createTheme({
           paddingRight: defaultTheme.spacing(13),
           paddingTop: defaultTheme.spacing(6),
           paddingBottom: defaultTheme.spacing(6),
-           [defaultTheme.breakpoints.down('sm')]: {
+          [defaultTheme.breakpoints.down('sm')]: {
             paddingLeft: defaultTheme.spacing(10),
             paddingRight: defaultTheme.spacing(10),
-           }
+          }
         },
       },
     },
     MuiAccordionDetails: {
       styleOverrides: {
         root: {
-          
+
           paddingLeft: defaultTheme.spacing(13),
           paddingRight: defaultTheme.spacing(13),
           paddingTop: defaultTheme.spacing(11),
           paddingBottom: defaultTheme.spacing(11),
-           [defaultTheme.breakpoints.down('sm')]: {
+          [defaultTheme.breakpoints.down('sm')]: {
             paddingLeft: defaultTheme.spacing(10),
             paddingRight: defaultTheme.spacing(10),
             paddingTop: defaultTheme.spacing(10),
             paddingBottom: defaultTheme.spacing(10),
-           }
+          }
         }
       }
     },
@@ -371,9 +394,9 @@ let clientTheme = createTheme({
         }
       }
     },
-    MuiFormControl:{
-      styleOverrides:{
-        root:{
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
           marginTop: defaultTheme.spacing(0),
         },
       },
@@ -533,7 +556,7 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: defaultTheme.palette.white.main,
-           marginTop: defaultTheme.spacing(1),
+          marginTop: defaultTheme.spacing(1),
         },
       },
     },
