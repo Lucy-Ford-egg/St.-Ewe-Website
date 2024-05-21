@@ -21,6 +21,8 @@ export const TimelineSection = props => {
   const lineRef = useRef(null)
   const targetRef = useRef(null)
   const referenceRef = useRef(null)
+  const lastElement  = useRef(null)
+
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -71,10 +73,11 @@ export const TimelineSection = props => {
 
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {
-      const referenceHeight = referenceRef.current.clientHeight
-      setHeight(referenceHeight)
+      debugger
+      const referenceHeight = referenceRef.current.clientHeight - (lastElement.current.clientHeight)
+      setHeight(referenceHeight )
     }
-  }, [referenceRef, targetRef])
+  }, [referenceRef, targetRef, lastElement])
 
   const GridComponent = React.forwardRef((props, ref) => (
     <Grid {...props} ref={ref} />
@@ -199,6 +202,7 @@ export const TimelineSection = props => {
                   justifyContent: "flex-start",
                   alignItems: "center",
                   minHeight: height,
+                  maxHeight: height,
                 }}
               >
                 <motion.div
@@ -234,8 +238,21 @@ export const TimelineSection = props => {
                   (definedSteps && definedSteps[index]?.description) ||
                   step._rawDescription
 
+                const nodes = definedSteps.length
+                const final = definedSteps[nodes]
+
                 return (
+                  <Box sx={{
+                    py: { xs: 6, md: 16 },
+                    "&:first-of-type": {
+                      pt: 0,
+                    },
+                    "&:last-of-type": {
+                      pb: 0,
+                    }
+                  }}>
                   <motion.div
+                    ref={lastElement}
                     key={`event-${index}`}
                     initial={{
                       opacity: 0.3,
@@ -253,9 +270,10 @@ export const TimelineSection = props => {
                     <Box
                       // ref={eventRef}
                       sx={{
-                        py: { xs: 6, md: 16 },
+                       
                         display: { xs: "flex", md: "flex" },
                         flexDirection: { xs: "column", md: "row" },
+                       
                       }}
                     >
                       {definedTitle && (
@@ -344,6 +362,7 @@ export const TimelineSection = props => {
                       )}
                     </Box>
                   </motion.div>
+                  </Box>
                 )
               })}
           </GridMotion>

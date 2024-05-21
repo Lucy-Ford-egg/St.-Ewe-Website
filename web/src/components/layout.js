@@ -44,7 +44,10 @@ export const Layout = (props) => {
           } else {
             console.log("React InVaild")
             // Handle if child is not a React element (regular object)
-            return <Box>Loading</Box>; // or any other handling logic
+            return <Box sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}>Loading</Box>; // or any other handling logic
           }
 
         })}

@@ -154,6 +154,11 @@ let clientTheme = createTheme({
             opacity: 0.2
           }
         }
+        @keyframes blinker {
+          50% {
+            opacity: 0;
+          }
+        }
         a{
           color: inherit;
           text-decoration: none;

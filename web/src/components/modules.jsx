@@ -1,4 +1,5 @@
 import React from 'react'
+import {Box, Typography} from "@mui/material"
 const BlogSection= React.lazy(() =>  import("./blogSection").then(module => ({ default: module.BlogSection })));
 const HeaderSection = React.lazy(() =>  import('./headerSection').then(module => ({ default: module.HeaderSection })));
 const TimelineSection = React.lazy(() =>  import('./timelineSection').then(module => ({ default: module.TimelineSection })));
@@ -18,7 +19,6 @@ const ClientLoginSection= React.lazy(() =>  import('./clientLoginSection').then(
 const Modules = (props) => {
 
     const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, allSanityCaseStudy, sanitySiteSettings } = props
-
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
     
@@ -32,7 +32,13 @@ const Modules = (props) => {
     if (modules != null) {
       
         return (
-            <React.Suspense fallback="Loading...">
+            <React.Suspense fallback={
+            <Box sx={{
+                display: "flex", 
+                justifyContent: "center", 
+                py: 6,  
+                animation: "blinker 1s linear infinite",
+              }}><Typography variant="caption">Loading...</Typography></Box>}>
             <main data-content="main">
                 
                 {modules && modules.map((module, i) => {
