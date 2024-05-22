@@ -4,10 +4,13 @@ import {
   GetAnimationObjectParameter,
 } from "react-adobe-animate"
 import { Script, withPrefix } from "gatsby"
-import { Box } from "@mui/material"
+import { Box, useTheme, useMediaQuery } from "@mui/material"
 
 export const AdobeAnimate = props => {
   const { useAnimation } = props
+
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
   const [isCreateJSLoaded, setIsCreateJSLoaded] = useState(false)
   const [scriptsLoadedCount, setScriptsLoadedCount] = useState(0)
@@ -33,23 +36,31 @@ export const AdobeAnimate = props => {
         onLoad={() => setIsCreateJSLoaded(true)}
       />
 
-      {isCreateJSLoaded && (
+      {isCreateJSLoaded && (mobile === false) && (
         <Script
           strategy="post-hydrate"
           src={withPrefix("taylor-money-animation-html5.js")}
           onLoad={() => onScriptLoad()}
         />
       )}
+      {isCreateJSLoaded && (mobile === true) && (
+        <Script
+          strategy="post-hydrate"
+          src={withPrefix("taylor-money-animation-html5-mobile.js")}
+          onLoad={() => onScriptLoad()}
+        />
+      )}
       {!areScriptsLoaded && "Loading scripts..."}
       {areScriptsLoaded && (
+        <>
         <Box
           sx={{
             width: "100%",
             height: "100%",
             position: "relative",
-            display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            display: {xs: "none", md: "flex"},
           }}
         >
           <AnimateCC
@@ -59,6 +70,24 @@ export const AdobeAnimate = props => {
             onError={() => console.log("onError")}
           />
         </Box>
+        <Box
+        sx={{
+          width: "100%",
+          height: "100vh",
+          position: "relative",
+          justifyContent: "center",
+          alignItems: "center",
+          display: {xs: "flex", md: "none"},
+        }}
+      >
+        <AnimateCC
+          animationName="taylormoneyrevision1spinningspiromobile"
+          composition="12ABE26C81814E43AEB504FB91596CBA"
+          getAnimationObject={getAnimationObject}
+          onError={() => console.log("onError")}
+        />
+      </Box>
+      </>
       )}
     </>
   )
