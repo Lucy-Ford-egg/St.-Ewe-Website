@@ -94,6 +94,13 @@ export default defineType({
     }),
 
     defineField({
+      title: 'Use Animation',
+      name: 'useAnimation',
+      type: 'boolean',
+      description: 'Shows animation.'
+    }),
+
+    defineField({
       title: 'Add Spiro',
       name: 'spiro',
       type: 'boolean',

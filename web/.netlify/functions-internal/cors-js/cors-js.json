@@ -1,0 +1,1 @@
+{"config":{"name":"/api/cors","generator":"gatsby-adapter-netlify@1.1.3","includedFiles":[".cache/functions/cors.js"],"externalNodeModules":["msgpackr-extract"]},"version":1}

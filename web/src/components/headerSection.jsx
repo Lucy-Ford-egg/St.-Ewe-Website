@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import { Container, Box, useTheme, useMediaQuery, Divider } from "@mui/material"
+import {
+  Container,
+  Box,
+  useTheme,
+  useMediaQuery,
+  Divider,
+} from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -8,6 +14,7 @@ import { Links } from "../components/links"
 import { motion } from "framer-motion"
 import { Spiro } from "../components/spiro"
 import { contrastColour } from "../utils/contrastColour"
+import {AdobeAnimate} from "../components/animation/adobeAnimate"
 
 export const HeaderSection = props => {
   const theme = useTheme()
@@ -23,21 +30,40 @@ export const HeaderSection = props => {
     links,
     spiro,
     backgroundColor,
+    useAnimation,
     _type,
   } = props
 
   const [addSpiro, setAddSpiro] = useState(false)
-  useEffect(() => {
-    setAddSpiro(( previewData && _type === previewData?._type && previewData?.spiro) || spiro)
-  }, [previewData, spiro])
 
-  const definedTitle = ( previewData && _type === previewData?._type && previewData?.title) || _rawTitle
-  const definedText = ( previewData && _type === previewData?._type && previewData?.text) || _rawText
-  const definedLinks = ( previewData && _type === previewData?._type && previewData?.links) || links
-  const definedImage = ( previewData && _type === previewData?._type && previewData?.image) || image
+  useEffect(() => {
+    setAddSpiro(
+      (previewData && _type === previewData?._type && previewData?.spiro) ||
+        spiro,
+    )
+  }, [previewData, spiro, _type])
+
+  const definedTitle =
+    (previewData && _type === previewData?._type && previewData?.title) ||
+    _rawTitle
+  const definedText =
+    (previewData && _type === previewData?._type && previewData?.text) ||
+    _rawText
+  const definedLinks =
+    (previewData && _type === previewData?._type && previewData?.links) || links
+  const definedImage =
+    (previewData && _type === previewData?._type && previewData?.image) || image
   const definedBackgroundColour =
-    ( previewData && _type === previewData?._type && previewData?.backgroundColor) || backgroundColor
-  const definedTextAlign = ( previewData && _type === previewData?._type && previewData?.textAlign) || textAlign
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.backgroundColor) ||
+    backgroundColor
+  const definedTextAlign =
+    (previewData && _type === previewData?._type && previewData?.textAlign) ||
+    textAlign
+
+  const definedAnimation =  (previewData && _type === previewData?._type && previewData?.useAnimation) ||
+  useAnimation 
 
   return (
     <Container
@@ -49,12 +75,12 @@ export const HeaderSection = props => {
         alignItems: "center",
         justifyContent: "center",
         height: "100%",
-        minHeight: {xs: "78vh", sm: "min-content"},
+        minHeight: { xs: "78vh", sm: "min-content" },
         //maxHeight: (!addSpiro && !definedTitle && !definedText) && { xs: "55vh", sm: "65vh" },
         overflow: "hidden",
         px: "0 !important",
         position: "relative",
-        pt: addSpiro && !definedImage ?  { xs: 15, md: 17 } : 0,
+        pt: addSpiro && !definedImage ? { xs: 15, md: 17 } : 0,
         pb: definedBackgroundColour && !definedImage && 15,
         backgroundColor: definedBackgroundColour?.value,
       }}
@@ -88,96 +114,124 @@ export const HeaderSection = props => {
           <Spiro />
         </Box>
       )}
-      <Container
-        maxWidth="xl"
-        sx={{
-          gridColumn: "1/25",
-          gridRow: "1/auto",
-          position: "relative",
-          zIndex: 2,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: definedTextAlign ? definedTextAlign : "flexstart",
-          justifyContent: "center",
-          py: !definedImage ? { xs: 20, sm: 0, md: 20 } : { xs: 20, sm: 20, md: 20 } ,
-
-        }}
-      >
-        <Box>
-          <Box
-            sx={{
-              maxWidth: 800,
-              margin: definedTextAlign ? "0 auto" : "unset",
-              mt:  {xs: "9vh", md: "9vh"}
-            }}
-          >
-            <motion.div
-              initial={{ y: 0, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+      {!definedAnimation && (
+        <Container
+          maxWidth="xl"
+          sx={{
+            gridColumn: "1/25",
+            gridRow: "1/auto",
+            position: "relative",
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: definedTextAlign ? definedTextAlign : "flexstart",
+            justifyContent: "center",
+            py: !definedImage
+              ? { xs: 20, sm: 0, md: 20 }
+              : { xs: 20, sm: 20, md: 20 },
+          }}
+        >
+          <Box>
+            <Box
+              sx={{
+                maxWidth: 800,
+                margin: definedTextAlign ? "0 auto" : "unset",
+                mt: { xs: "9vh", md: "9vh" },
+              }}
             >
-              <RenderPortableText
-                previewData={previewData}
-                sanityConfig={sanityConfig}
-                variant={false}
-                textAlign={definedTextAlign}
-                value={definedTitle}
-              />
-            </motion.div>
-
-            {addSpiro && (
-              <Box
-                sx={{
-                  display: "flex",
-                  width: "100%",
-                  justifyContent: definedTextAlign
-                    ? definedTextAlign
-                    : "flexstart",
-                }}
+              <motion.div
+                initial={{ y: 0, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
               >
-                <Divider
+                <RenderPortableText
+                  previewData={previewData}
+                  sanityConfig={sanityConfig}
+                  variant={false}
+                  textAlign={definedTextAlign}
+                  value={definedTitle}
+                />
+              </motion.div>
+
+              {addSpiro && (
+                <Box
                   sx={{
                     display: "flex",
-                    my: 10,
-                    width: "19.1875rem",
-                    borderColor: contrastColour(definedBackgroundColour).divider
-                      .hex,
+                    width: "100%",
+                    justifyContent: definedTextAlign
+                      ? definedTextAlign
+                      : "flexstart",
                   }}
+                >
+                  <Divider
+                    sx={{
+                      display: "flex",
+                      my: 10,
+                      width: "19.1875rem",
+                      borderColor: contrastColour(definedBackgroundColour)
+                        .divider.hex,
+                    }}
+                  />
+                </Box>
+              )}
+            </Box>
+            <Box
+              sx={{
+                maxWidth: 750,
+              }}
+            >
+              {definedText && (
+                <RenderPortableText
+                  previewData={previewData}
+                  sanityConfig={sanityConfig}
+                  variant={false}
+                  textAlign={definedTextAlign}
+                  value={definedText}
+                />
+              )}
+            </Box>
+            {definedLinks && definedLinks.length > 0 && (
+              <Box
+                sx={{
+                  pt: 8,
+                }}
+              >
+                <Links
+                  linkOne="secondary"
+                  links={definedLinks}
+                  previewData={previewData}
+                  highlighted
                 />
               </Box>
             )}
           </Box>
+        </Container>
+      )}
+
+      {definedAnimation && (
+        <Box
+          sx={{
+            gridColumn: "1/25",
+            gridRow: "1/auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(24, 1fr)",
+            height: "85vh",
+            maxHeight: "100%",
+          }}
+        >
+      
           <Box
             sx={{
-              maxWidth: 750,
+              gridColumn: "1/25",
             }}
           >
-            {definedText && (
-              <RenderPortableText
-                previewData={previewData}
-                sanityConfig={sanityConfig}
-                variant={false}
-                textAlign={definedTextAlign}
-                value={definedText}
-              />
-            )}
+            <AdobeAnimate/>
+            
           </Box>
-          {definedLinks && definedLinks.length > 0 && (
-            <Box
-              sx={{
-                pt: 8,
-              }}
-            >
-              <Links
-                linkOne="secondary"
-                links={definedLinks}
-                previewData={previewData}
-                highlighted
-              />
-            </Box>
-          )}
+
+          
         </Box>
-      </Container>
-      {definedImage && (
+      )}
+      {definedImage && !definedAnimation && (
         <Box
           sx={{
             gridColumn: "1/25",
@@ -189,45 +243,47 @@ export const HeaderSection = props => {
           }}
         >
           {definedImage && (
-            <motion.div style={{
-              height: "100%",
+            <motion.div
+              style={{
+                height: "100%",
                 flexGrow: 1,
                 gridColumn: "1/25",
                 gridRow: "1/auto",
-                minHeight: {xs: "78vh", sm: "min-content"},
-            }} 
-            initial={{
-              opacity: 0,
-            }} 
-            animate={{
-              opacity: 1
-            }}
-            transition={{
-              type: "smooth",
-              duration: 1,
-              delay: 1,
-            }}>
-            <Image
-              // pass asset, hotspot, and crop fields
-              crop={definedImage?.crop}
-              hotspot={definedImage?.hotspot}
-              //loading="eager"
-              asset={
-                (definedImage &&
-                  definedImage &&
-                  definedImage?._ref &&
-                  urlFor(definedImage).width(1440).url()) ||
-                definedImage.asset
-              }
-              width={mobile ? 600 : 1440}
-              height={mobile ? 400 : 708}
-              style={{
-                objectFit: "cover",
-                width: "100%",
-                height: "100%",
-                //backgroundColor: theme.palette.text.mid,
+                minHeight: { xs: "78vh", sm: "min-content" },
               }}
-            />
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                type: "smooth",
+                duration: 1,
+                delay: 1,
+              }}
+            >
+              <Image
+                // pass asset, hotspot, and crop fields
+                crop={definedImage?.crop}
+                hotspot={definedImage?.hotspot}
+                //loading="eager"
+                asset={
+                  (definedImage &&
+                    definedImage &&
+                    definedImage?._ref &&
+                    urlFor(definedImage).width(1440).url()) ||
+                  definedImage.asset
+                }
+                width={mobile ? 600 : 1440}
+                height={mobile ? 400 : 708}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
+                  //backgroundColor: theme.palette.text.mid,
+                }}
+              />
             </motion.div>
           )}
           <Box
@@ -286,6 +342,7 @@ export const query = graphql`
     _rawText(resolveReferences: { maxDepth: 10 })
     textAlign
     spiro
+    useAnimation
     backgroundColor {
       value
       label
