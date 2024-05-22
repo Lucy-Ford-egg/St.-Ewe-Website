@@ -52,8 +52,9 @@ const TeamMembersTemplate = props => {
           alignItems: "center",
           justifyContent: "center",
           height: "100%",
-          minHeight: { xs: "65vh", md: "65vh", lg: "75vh" },
-          maxHeight: { xs: "65vh", md: "65vh", lg: "75vh" },
+          //minHeight: { xs: "85vh", md: "65vh", lg: "100vh" },
+          //maxHeight: { xs: "85vh", md: "65vh", lg: "100vh" },
+          minHeight: { xs: "78vh", sm: "min-content" },
           overflow: "hidden",
           px: "0 !important",
         }}
