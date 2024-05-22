@@ -338,7 +338,7 @@ export const TimelineSection = props => {
                               backgroundColor: timelineColor.value,
                               position: "absolute",
                               left: "4.1%",
-                              mt: 1,
+                              // mt: 1,
                               transform: "translateX(-50%)",
                             }}
                           />
