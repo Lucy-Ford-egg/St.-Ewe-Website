@@ -293,7 +293,7 @@ export const StepsTile = props => {
                         zIndex: 2,
                         textAlign: "center",
                         opacity: isInView ? 1 : 0,
-                        transition: `all 0.2s cubic-bezier(0.17, 0.55, 0.55, 1) ${pie[pieSegments].length / 10 + 0.3}s`,
+                        //transition: `all 0.2s cubic-bezier(0.17, 0.55, 0.55, 1) ${pie[pieSegments].length / 10 + 0.3}s`,
                       }}
                     >
                       {String(displayNumber).padStart(2, "0")}
