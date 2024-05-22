@@ -233,7 +233,7 @@ export const UnitCarousel = props => {
               }}
             >
               <IconButton
-                aria-label="delete"
+                 aria-label="previous image"
                 onClick={() => paginate(-1)}
                 sx={{
                   backgroundColor: theme.palette.secondary.main,
@@ -243,7 +243,7 @@ export const UnitCarousel = props => {
               </IconButton>
 
               <IconButton
-                aria-label="delete"
+                 aria-label="next image"
                 onClick={() => paginate(+1)}
                 sx={{
                   backgroundColor: theme.palette.secondary.main,

@@ -99,6 +99,7 @@ export const TeamTile = props => {
             >
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <IconButton
+                aria-label="close bio excerpt"
                   onClick={e => setShowBio(false)}
                   sx={{ color: "inherit", "&:hover": { cursor: "pointer" } }}
                 >

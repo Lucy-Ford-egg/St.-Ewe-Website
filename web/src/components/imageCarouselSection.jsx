@@ -180,7 +180,7 @@ export const ImageCarouselSection = props => {
                   }}
                 >
                   <IconButton
-                    aria-label="delete"
+                    aria-label="previous image"
                     color="primary"
                     sx={{ backgroundColor: theme.palette.white.main }}
                     onClick={() => setIndex(index - 1)}
@@ -190,7 +190,7 @@ export const ImageCarouselSection = props => {
                   </IconButton>
 
                   <IconButton
-                    aria-label="delete"
+                    aria-label="next image"
                     color="primary"
                     sx={{ backgroundColor: theme.palette.white.main }}
                     onClick={() => setIndex(index + 1)}

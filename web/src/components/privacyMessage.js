@@ -47,7 +47,7 @@ export const PrivacyMessage = () => {
         }}
         action={
             <IconButton
-              aria-label="close"
+              aria-label="close privacy message"
               color="secondary"
               size="small"
               onClick={e => handleClick(e)}

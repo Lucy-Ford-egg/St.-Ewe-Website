@@ -406,7 +406,7 @@ export const TestimonialSection = props => {
           }}
         >
           <IconButton
-            aria-label="delete"
+            aria-label="previous testimonial"
             onClick={() => paginate(-1)}
             sx={{
               border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,
@@ -444,7 +444,7 @@ export const TestimonialSection = props => {
           </Box>
 
           <IconButton
-            aria-label="delete"
+            aria-label="next testimonial"
             onClick={() => paginate(1)}
             sx={{
               border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,

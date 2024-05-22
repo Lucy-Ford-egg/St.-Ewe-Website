@@ -110,13 +110,13 @@ export const Carousel = (props) => {
 
         <Box sx={{ pt: 4, height: 'min-content', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexDirection: 'row' }}>
           
-            <IconButton aria-label="delete" onClick={() => paginate(1)} sx={{
+            <IconButton aria-label="previous image" onClick={() => paginate(1)} sx={{
               pl: 0
             }}>
               <ArrowBackIcon color='primary' />
             </IconButton>
 
-            <IconButton aria-label="delete" onClick={() => paginate(-1)} sx={{
+            <IconButton aria-label="next image" onClick={() => paginate(-1)} sx={{
               pr: 0
             }}>
               <ArrowForwardIcon color='primary' />

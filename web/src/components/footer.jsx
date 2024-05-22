@@ -640,6 +640,7 @@ export const Footer = props => {
                     )
                   })}
                   <IconButton
+                  aria-label="return to top of page"
             sx={{
               justifySelf: "flex-end",
               "&:hover": {
