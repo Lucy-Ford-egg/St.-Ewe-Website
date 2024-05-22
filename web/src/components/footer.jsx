@@ -597,6 +597,8 @@ export const Footer = props => {
                 <Typography color="white.main" variant="caption">
                 {`Copyright © ${new Date().getFullYear()} Taylor Money  |  Designed & Developed by `}
                   <Link
+                    rel="noopener"
+                    target="_blank"
                     color="white.main"
                     className="link-animation"
                     href="https://www.gendall.co.uk"
@@ -633,6 +635,8 @@ export const Footer = props => {
                           }
                           style={{ height: 38, width: 38 }}
                           url={node.link._rawLink.external}
+                          rel="noopener"
+                          target="_blank"
                           bgColor="transparent"
                           fgColor={theme.palette.background.main}
                         />
