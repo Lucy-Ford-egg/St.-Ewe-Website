@@ -5,16 +5,14 @@ import { wrap } from "popmotion"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { RenderPortableText } from "../components/renderPortableText"
+import Container from "@mui/material/Container"
+import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
+import IconButton from "@mui/material/IconButton"
+import SvgIcon from "@mui/material/SvgIcon"
+import Divider from "@mui/material/Divider"
+import { useTheme } from "@mui/material"
 
-import {
-  Container,
-  Typography,
-  Box,
-  useTheme,
-  IconButton,
-  SvgIcon,
-  Divider,
-} from "@mui/material"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { Spiro } from "../components/spiro"
@@ -48,7 +46,7 @@ export const TestimonialSection = props => {
     enter: direction => {
       return {
         opacity: 0,
-        display: "none"
+        display: "none",
       }
     },
     center: {
@@ -58,7 +56,7 @@ export const TestimonialSection = props => {
     exit: direction => {
       return {
         opacity: 0,
-        display: "none"
+        display: "none",
       }
     },
   }
@@ -77,45 +75,73 @@ export const TestimonialSection = props => {
   }
 
   const definedPreviewInternalAvatar =
-    (previewData && _type === previewData?._type && previewData?.[slideIndex]?.cite?.teamMemberCite?.image) ||
-    testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.image
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.[slideIndex]?.cite?.teamMemberCite?.image) ||
+    (testimonialTiles?.[slideIndex] &&
+      testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.image)
 
   const definedPreviewExternalAvatar =
-    (previewData && _type === previewData?._type && previewData?.[slideIndex]?.cite?.externalCite?.image) ||
-    testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.externalCite?.image
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.[slideIndex]?.cite?.externalCite?.image) ||
+    (testimonialTiles?.[slideIndex] &&
+      testimonialTiles?.[slideIndex]?.cite?.externalCite?.image)
 
   const definedBackgroundColor =
-    (previewData && _type === previewData?._type && previewData?.backgroundColor) || backgroundColor
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.backgroundColor) ||
+    backgroundColor
 
   const definedTopPadding =
-    (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
+    (previewData && _type === previewData?._type && previewData?.topPadding) ||
+    topPadding
 
   const definedQuoteText =
-    (previewData && _type === previewData?._type && previewData?.testimonialTiles && previewData?.testimonialTiles[slideIndex] && previewData?.testimonialTiles[slideIndex]._rawQuoteText) ||
-    testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]._rawQuoteText
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.testimonialTiles &&
+      previewData?.testimonialTiles[slideIndex] &&
+      previewData?.testimonialTiles[slideIndex]._rawQuoteText) ||
+    (testimonialTiles?.[slideIndex] &&
+      testimonialTiles?.[slideIndex]._rawQuoteText)
 
   const definedInternalQuoteCite =
-    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
-      previewData?.testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.name) ||
-      testimonialTiles?.[slideIndex] &&  testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.name
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.testimonialTiles &&
+      previewData?.testimonialTiles?.[slideIndex]?.cite?.teamMemberCite
+        ?.name) ||
+    (testimonialTiles?.[slideIndex] &&
+      testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.name)
 
   const definedExternalQuoteCite =
-    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.testimonialTiles &&
       previewData?.testimonialTiles?.[slideIndex]?.cite?.externalCite
         ?.citeName) ||
-        testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.externalCite?.citeName
+    (testimonialTiles?.[slideIndex] &&
+      testimonialTiles?.[slideIndex]?.cite?.externalCite?.citeName)
 
   const definedInternalQuotePosition =
-    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.testimonialTiles &&
       previewData?.testimonialTiles?.[slideIndex]?.cite?.teamMemberCite
         ?.position) ||
-        testimonialTiles?.[slideIndex] && testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.position
+    (testimonialTiles?.[slideIndex] &&
+      testimonialTiles?.[slideIndex]?.cite?.teamMemberCite?.position)
 
   const definedExternalQuotePosition =
-    (previewData && _type === previewData?._type &&  previewData?.testimonialTiles &&
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.testimonialTiles &&
       previewData?.testimonialTiles?.[slideIndex]?.cite?.externalCite
         ?.citePosition) ||
-        testimonialTiles?.[slideIndex] &&  testimonialTiles?.[slideIndex]?.cite?.externalCite?.citeLocation
+    (testimonialTiles?.[slideIndex] &&
+      testimonialTiles?.[slideIndex]?.cite?.externalCite?.citeLocation)
 
   return (
     <Box
@@ -124,12 +150,12 @@ export const TestimonialSection = props => {
         backgroundColor: definedBackgroundColor?.value,
         overflowX: "hidden",
         mb: { xs: theme.spacing(16), md: theme.spacing(16) },
-          mt: definedTopPadding
-            ? {
-                xs: theme.spacing(16),
-                md: theme.spacing(0),
-              }
-            : { xs: theme.spacing(16), md: theme.spacing(16) },
+        mt: definedTopPadding
+          ? {
+              xs: theme.spacing(16),
+              md: theme.spacing(0),
+            }
+          : { xs: theme.spacing(16), md: theme.spacing(16) },
       }}
     >
       <Box
@@ -158,8 +184,9 @@ export const TestimonialSection = props => {
         <Spiro />
       </Box>
       <Container
-        maxWidth="xl" sx={{
-          py: {xs: theme.spacing(16), md: theme.spacing(16)}
+        maxWidth="xl"
+        sx={{
+          py: { xs: theme.spacing(16), md: theme.spacing(16) },
         }}
       >
         <Box
@@ -207,7 +234,7 @@ export const TestimonialSection = props => {
                   maxWidth="md"
                   className="slide"
                   sx={{
-                    position:"relative",
+                    position: "relative",
                     top: 0,
                     bottom: 0,
                     left: 0,
@@ -236,8 +263,7 @@ export const TestimonialSection = props => {
                           textAlign: "center",
                         }}
                       >
-                       
-                       <RenderPortableText
+                        <RenderPortableText
                           previewData={definedQuoteText}
                           sanityConfig={sanityConfig}
                           setAsHeading="h3"
@@ -267,92 +293,93 @@ export const TestimonialSection = props => {
                       {
                         // Internal
                         definedPreviewInternalAvatar && (
-                          <Box sx={{            
-                            "&:after":{
-                              content: "''",
-                              position: "absolute",
-                              top: 0,
-                              bottom: 0,
-                              right: 0,
-                              left: 0,
-                              width: 56,
-                              height: 56,
-                              borderRadius: 1000,
-                              background: "rgba(0,40,86,0.5)",
-                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
-                            }
-                          }}>
-                          <Image
-                            crop={definedPreviewInternalAvatar?.crop}
-                            hotspot={definedPreviewInternalAvatar?.hotspot}
-                            asset={
-                              (definedPreviewInternalAvatar._ref &&
-                                urlFor(definedPreviewInternalAvatar)
-                                  .width(100)
-                                  .url()) ||
-                              definedPreviewInternalAvatar.asset
-                            }
-                            // tell Sanity how large to make the image (does not set any CSS)
-                            width={100}
-                            // style it how you want it
-                            style={{
-                              width: 56,
-                              height: 56,
-                              objectFit: "cover",
-                              borderRadius: 1000,
-                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
-                              filter: "grayscale(1)",
+                          <Box
+                            sx={{
+                              "&:after": {
+                                content: "''",
+                                position: "absolute",
+                                top: 0,
+                                bottom: 0,
+                                right: 0,
+                                left: 0,
+                                width: 56,
+                                height: 56,
+                                borderRadius: 1000,
+                                background: "rgba(0,40,86,0.5)",
+                                border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                              },
                             }}
-                          />
+                          >
+                            <Image
+                              crop={definedPreviewInternalAvatar?.crop}
+                              hotspot={definedPreviewInternalAvatar?.hotspot}
+                              asset={
+                                (definedPreviewInternalAvatar._ref &&
+                                  urlFor(definedPreviewInternalAvatar)
+                                    .width(100)
+                                    .url()) ||
+                                definedPreviewInternalAvatar.asset
+                              }
+                              // tell Sanity how large to make the image (does not set any CSS)
+                              width={100}
+                              // style it how you want it
+                              style={{
+                                width: 56,
+                                height: 56,
+                                objectFit: "cover",
+                                borderRadius: 1000,
+                                border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                                filter: "grayscale(1)",
+                              }}
+                            />
                           </Box>
-                          
                         )
                       }
                       {
                         // External
                         definedPreviewExternalAvatar && (
-                          <Box sx={{
-                            
-                            "&:after":{
-                              content: "''",
-                              position: "absolute",
-                              top: 0,
-                              bottom: 0,
-                              right: 0,
-                              left: 0,
-                              width: 56,
-                              height: 56,
-                              borderRadius: 1000,
-                              background: "rgba(0,40,86,0.5)",
-                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
-                            }
-                          }}>
-                          <Image
-                            // pass asset, hotspot, and crop fields
-                            // {...testimonialTiles[slideIndex].image}
-                            crop={definedPreviewExternalAvatar?.crop}
-                            hotspot={definedPreviewExternalAvatar?.hotspot}
-                            asset={
-                              (definedPreviewExternalAvatar._ref &&
-                                urlFor(definedPreviewExternalAvatar)
-                                  .width(100)
-                                  .url()) ||
-                              definedPreviewExternalAvatar.asset
-                            }
-                            // tell Sanity how large to make the image (does not set any CSS)
-                            width={100}
-                            // style it how you want it
-                            style={{
-                              width: 56,
-                              height: 56,
-                              objectFit: "cover",
-                              borderRadius: 1000,
-                              border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
-                              filter: "grayscale(1)",
+                          <Box
+                            sx={{
+                              "&:after": {
+                                content: "''",
+                                position: "absolute",
+                                top: 0,
+                                bottom: 0,
+                                right: 0,
+                                left: 0,
+                                width: 56,
+                                height: 56,
+                                borderRadius: 1000,
+                                background: "rgba(0,40,86,0.5)",
+                                border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                              },
                             }}
-                          />
+                          >
+                            <Image
+                              // pass asset, hotspot, and crop fields
+                              // {...testimonialTiles[slideIndex].image}
+                              crop={definedPreviewExternalAvatar?.crop}
+                              hotspot={definedPreviewExternalAvatar?.hotspot}
+                              asset={
+                                (definedPreviewExternalAvatar._ref &&
+                                  urlFor(definedPreviewExternalAvatar)
+                                    .width(100)
+                                    .url()) ||
+                                definedPreviewExternalAvatar.asset
+                              }
+                              // tell Sanity how large to make the image (does not set any CSS)
+                              width={100}
+                              // style it how you want it
+                              style={{
+                                width: 56,
+                                height: 56,
+                                objectFit: "cover",
+                                borderRadius: 1000,
+                                border: `1px solid ${contrastColour(definedBackgroundColor).divider.hex}`,
+                                filter: "grayscale(1)",
+                              }}
+                            />
                           </Box>
-                          
                         )
                       }
 
@@ -391,73 +418,80 @@ export const TestimonialSection = props => {
           </Box>
         </Box>
         {testimonialTiles?.length > 1 && (
-        <Container maxWidth="md"
-          sx={{
-            gridColumn: "1/25",
-            gridRow: "1/auto",
-            height: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexDirection: "row",
-            position: "relative",
-            zIndex: 2,
-            mt: { xs: 12, md: 0 },
-          }}
-        >
-          <IconButton
-            aria-label="previous testimonial"
-            onClick={() => paginate(-1)}
+          <Container
+            maxWidth="md"
             sx={{
-              border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,
-            }}
-          >
-            <ArrowBackIcon
-              color={contrastColour(definedBackgroundColor).svg.default.mui}
-            />
-          </IconButton>
-
-          <Box
-            sx={{
+              gridColumn: "1/25",
+              gridRow: "1/auto",
+              height: "100%",
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
+              justifyContent: "space-between",
               alignItems: "center",
+              flexDirection: "row",
               position: "relative",
+              zIndex: 2,
+              mt: { xs: 12, md: 0 },
             }}
           >
-            {testimonialTiles.map((dot, index) => {
-              let dotColour =
-                index === slideIndex
-                  ? contrastColour(definedBackgroundColor).svg?.default?.mui
-                  : contrastColour(definedBackgroundColor).svg?.active?.hex
-              return (
-                <SvgIcon
-                  color={dotColour}
-                  key={`dot-${index}`}
-                  sx={{ width: 16, height: 16 }}
-                >
-                  <circle id="dot" cx="5.5" cy="5.5" r="5.5" fill={dotColour} />
-                </SvgIcon>
-              )
-            })}
-          </Box>
+            <IconButton
+              aria-label="previous testimonial"
+              onClick={() => paginate(-1)}
+              sx={{
+                border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,
+              }}
+            >
+              <ArrowBackIcon
+                color={contrastColour(definedBackgroundColor).svg.default.mui}
+              />
+            </IconButton>
 
-          <IconButton
-            aria-label="next testimonial"
-            onClick={() => paginate(1)}
-            sx={{
-              border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,
-            }}
-          >
-            <ArrowForwardIcon
-              color={contrastColour(definedBackgroundColor).svg.default.mui}
-            />
-          </IconButton>
-        </Container>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+              }}
+            >
+              {testimonialTiles.map((dot, index) => {
+                let dotColour =
+                  index === slideIndex
+                    ? contrastColour(definedBackgroundColor).svg?.default?.mui
+                    : contrastColour(definedBackgroundColor).svg?.active?.hex
+                return (
+                  <SvgIcon
+                    color={dotColour}
+                    key={`dot-${index}`}
+                    sx={{ width: 16, height: 16 }}
+                  >
+                    <circle
+                      id="dot"
+                      cx="5.5"
+                      cy="5.5"
+                      r="5.5"
+                      fill={dotColour}
+                    />
+                  </SvgIcon>
+                )
+              })}
+            </Box>
+
+            <IconButton
+              aria-label="next testimonial"
+              onClick={() => paginate(1)}
+              sx={{
+                border: `1px solid ${contrastColour(definedBackgroundColor).svg.default.hex}`,
+              }}
+            >
+              <ArrowForwardIcon
+                color={contrastColour(definedBackgroundColor).svg.default.mui}
+              />
+            </IconButton>
+          </Container>
         )}
       </Container>
-    
+
       <Box
         sx={{
           position: "absolute",

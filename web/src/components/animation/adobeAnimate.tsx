@@ -4,7 +4,11 @@ import {
   GetAnimationObjectParameter,
 } from "react-adobe-animate"
 import { Script, withPrefix } from "gatsby"
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
+import useMediaQuery from '@mui/material/useMediaQuery';
+import {useTheme} from "@mui/material/styles"
+
 
 export const AdobeAnimate = props => {
   const { useAnimation } = props

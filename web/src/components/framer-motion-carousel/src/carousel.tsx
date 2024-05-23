@@ -5,7 +5,11 @@ import {
     PanInfo,
     useMotionValue,
 } from "framer-motion"
-import { Container, useTheme, useMediaQuery, Box } from "@mui/material"
+import Container from "@mui/material/Container"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import Box from "@mui/material/Box"
+import {useTheme } from "@mui/material"
+
 import { CarouselProps, CarouselRef } from "./types"
 import Arrow from "./arrow"
 import Slider from "./slider"

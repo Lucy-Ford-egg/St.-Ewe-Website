@@ -1,14 +1,14 @@
 import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Grid,
-  Typography,
-  Divider,
-  useMediaQuery,
-  Box,
-  useTheme,
-} from "@mui/material"
+
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import Divider from "@mui/material/Divider"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import Box from "@mui/material/Box"
+import { useTheme } from "@mui/material"
+
 // import { TimeTile } from "./timeTile"
 import { RenderPortableText } from "../components/renderPortableText"
 import { motion, useScroll, useSpring } from "framer-motion"
@@ -21,8 +21,7 @@ export const TimelineSection = props => {
   const lineRef = useRef(null)
   const targetRef = useRef(null)
   const referenceRef = useRef(null)
-  const lastElement  = useRef(null)
-
+  const lastElement = useRef(null)
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -74,8 +73,9 @@ export const TimelineSection = props => {
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {
       debugger
-      const referenceHeight = referenceRef.current.clientHeight - (lastElement.current.clientHeight)
-      setHeight(referenceHeight )
+      const referenceHeight =
+        referenceRef.current.clientHeight - lastElement.current.clientHeight
+      setHeight(referenceHeight)
     }
   }, [referenceRef, targetRef, lastElement])
 
@@ -225,7 +225,7 @@ export const TimelineSection = props => {
             xs={11}
             md={11}
             sx={{
-              pl: {md: 6}
+              pl: { md: 6 },
             }}
           >
             {definedSteps &&
@@ -242,126 +242,122 @@ export const TimelineSection = props => {
                 const final = definedSteps[nodes]
 
                 return (
-                  <Box sx={{
-                    py: { xs: 6, md: 16 },
-                    "&:first-of-type": {
-                      pt: 0,
-                    },
-                    "&:last-of-type": {
-                      pb: 0,
-                    }
-                  }}>
-                  <motion.div
-                    ref={lastElement}
-                    key={`event-${index}`}
-                    initial={{
-                      opacity: 0.3,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                    }}
-                    //exit={{ opacity: 0.1 }}
-                    viewport={{
-                      amount: smallMobile ? "some" : "all",
-                      //margin: "25%",
-                      once: false,
+                  <Box
+                    sx={{
+                      py: { xs: 6, md: 16 },
+                      "&:first-of-type": {
+                        pt: 0,
+                      },
+                      "&:last-of-type": {
+                        pb: 0,
+                      },
                     }}
                   >
-                    <Box
-                      // ref={eventRef}
-                      sx={{
-                       
-                        display: { xs: "flex", md: "flex" },
-                        flexDirection: { xs: "column", md: "row" },
-                       
+                    <motion.div
+                      ref={lastElement}
+                      key={`event-${index}`}
+                      initial={{
+                        opacity: 0.3,
+                      }}
+                      whileInView={{
+                        opacity: 1,
+                      }}
+                      //exit={{ opacity: 0.1 }}
+                      viewport={{
+                        amount: smallMobile ? "some" : "all",
+                        //margin: "25%",
+                        once: false,
                       }}
                     >
-                      {definedTitle && (
-                        <Box
-                          sx={{
-                            
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: {
-                              xs: "flex-start",
-                              md: "flex-end",
-                            },
-                            textAlign: { xs: "left", md: "right" },
-                            alignItems: { xs: "center", md: "flex-start"}
-
-
-
-                          }}
-                        >
+                      <Box
+                        // ref={eventRef}
+                        sx={{
+                          display: { xs: "flex", md: "flex" },
+                          flexDirection: { xs: "column", md: "row" },
+                        }}
+                      >
+                        {definedTitle && (
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "row",
+                              justifyContent: {
+                                xs: "flex-start",
+                                md: "flex-end",
+                              },
+                              textAlign: { xs: "left", md: "right" },
+                              alignItems: { xs: "center", md: "flex-start" },
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                pl: { xs: 3, md: "unset" },
+                                pr: { xs: 0, md: 17 },
+                                order: { xs: 1, md: 0 },
+                                position: { md: "absolute" },
+                                pt: {
+                                  md: 0,
+                                },
+                                h3: {
+                                  pb: 0,
+                                  pt: { md: 0 },
+                                },
+                                h2: {
+                                  pb: 0,
+                                  pt: { md: "0 !important" },
+                                },
+                                maxWidth: { sm: "250px", lg: "unset" },
+                              }}
+                            >
+                              {definedTitle && (
+                                <RenderPortableText
+                                  previewData={
+                                    previewData &&
+                                    previewData?.steps &&
+                                    previewData?.steps[index] &&
+                                    previewData?.steps[index]
+                                  }
+                                  sanityConfig={sanityConfig}
+                                  setAsHeading="h2"
+                                  value={definedTitle}
+                                />
+                              )}
+                            </Box>
+                            <Box
+                              sx={{
+                                order: { xs: 0, md: 1 },
+                                opacity: "1 !important",
+                                display: "flex",
+                                width: "20px",
+                                height: "20px",
+                                borderRadius: "1000px",
+                                backgroundColor: timelineColor.value,
+                                position: "absolute",
+                                left: "4.1%",
+                                // mt: 1,
+                                transform: "translateX(-50%)",
+                              }}
+                            />
+                          </Box>
+                        )}
+                        {definedDescription && (
                           <Box
                             sx={{
                               pl: { xs: 3, md: "unset" },
-                              pr: { xs: 0, md: 17 },
-                              order: { xs: 1, md: 0 },
-                              position: { md: "absolute" },
-                              pt:{
-                                md: 0,
-                              },
-                              h3: {
-                                pb: 0,
-                                pt: {md: 0},
-                              },
-                              h2: {
-                                pb: 0,
-                                pt: {md: "0 !important"},
-                              },
-                              maxWidth: {sm: "250px", lg: "unset"}
+                              display: "flex",
+                              alignItems: "center",
                             }}
                           >
-                            {definedTitle && (
-                              <RenderPortableText
-                                previewData={
-                                  previewData &&
-                                  previewData?.steps &&
-                                  previewData?.steps[index] &&
-                                  previewData?.steps[index]
-                                }
-                                sanityConfig={sanityConfig}
-                                setAsHeading="h2"
-                                value={definedTitle}
-                              />
-                            )}
+                            <RenderPortableText
+                              previewData={definedSteps[index]}
+                              sanityConfig={sanityConfig}
+                              setAsHeading={false}
+                              value={definedDescription}
+                            />
                           </Box>
-                          <Box
-                            sx={{
-                              order: { xs: 0, md: 1 },
-                              opacity: "1 !important",
-                              display: "flex",
-                              width: "20px",
-                              height: "20px",
-                              borderRadius: "1000px",
-                              backgroundColor: timelineColor.value,
-                              position: "absolute",
-                              left: "4.1%",
-                              // mt: 1,
-                              transform: "translateX(-50%)",
-                            }}
-                          />
-                        </Box>
-                      )}
-                      {definedDescription && (
-                        <Box
-                          sx={{
-                            pl: { xs: 3, md: "unset" },
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <RenderPortableText
-                            previewData={definedSteps[index]}
-                            sanityConfig={sanityConfig}
-                            setAsHeading={false}
-                            value={definedDescription}
-                          />
-                        </Box>
-                      )}
-                    </Box>
-                  </motion.div>
+                        )}
+                      </Box>
+                    </motion.div>
                   </Box>
                 )
               })}

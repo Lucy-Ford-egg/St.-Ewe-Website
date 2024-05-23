@@ -1,6 +1,8 @@
 import React from 'react'
 import {ArrowProps} from './types'
-import { IconButton, useMediaQuery, useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 const baseArrowStyle: React.CSSProperties = {
     position: "absolute",
