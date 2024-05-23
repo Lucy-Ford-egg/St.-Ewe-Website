@@ -175,6 +175,7 @@ let clientTheme = createTheme({
           75% {
             translateY: 0px;
             opacity: 0.2
+            filter: blur(5px);
           }
         }
         @keyframes blinker {

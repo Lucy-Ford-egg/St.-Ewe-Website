@@ -50,21 +50,16 @@ export const AdobeAnimate = props => {
           onLoad={() => onScriptLoad()}
         />
       )}
-      {!areScriptsLoaded && <Box
-          sx={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: { xs: "100vh", sm: "100vh" },
-          }}
-        ><Box sx={{
-      display: "flex", 
-      justifyContent: "center", 
-      py: 6,  
-      animation: "blinker 1s linear infinite",
-    }}><Typography variant="caption">Loading...</Typography></Box></Box>}
+      {!isCreateJSLoaded && !areScriptsLoaded && <Box sx={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          position: "relative",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: { xs: "100vh", sm: "100vh" }, 
+          animation: "blinker 1s linear infinite",
+    }}><Typography variant="caption">Loading...</Typography></Box>}
       {areScriptsLoaded && (
         <>
         <Box
