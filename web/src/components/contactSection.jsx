@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import {useTheme} from "@mui/material" 
+import { useTheme } from "@mui/material/styles" 
 import Container from "@mui/material/Container" 
 import Grid from "@mui/material/Grid" 
 import Box from "@mui/material/Box" 

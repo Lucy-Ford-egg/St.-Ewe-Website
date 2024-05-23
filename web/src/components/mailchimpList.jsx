@@ -1,17 +1,15 @@
 import React, { useMemo, useState } from "react"
 import addToMailchimp from "gatsby-plugin-mailchimp"
-import {
-  Typography,
-  Button,
-  FormHelperText,
-  Box,
-  TextField,
-  useFormControl,
-  FormLabel,
-  FormControl,
-} from "@mui/material"
+import Typography from "@mui/material/Typography"
+import Button from "@mui/material/Button"
+import TextField from "@mui/material/TextField"
+import FormHelperText from "@mui/material/FormHelperText"
+import Box from "@mui/material/Box"
+import FormLabel from "@mui/material/FormLabel"
+import FormControl, { useFormControl }  from "@mui/material/FormControl"
+
 import CheckIcon from "@mui/icons-material/Check"
-import DoNotTouchIcon from '@mui/icons-material/DoNotTouch';
+import DoNotTouchIcon from "@mui/icons-material/DoNotTouch"
 
 export const MailchimpList = () => {
   // Since `addToMailchimp` returns a promise, you
@@ -169,7 +167,7 @@ export const MailchimpList = () => {
       )}
 
       <>
-        {MCResult?.result === "success" &&  (
+        {MCResult?.result === "success" && (
           <Box display="flex" alignItems="center">
             <Typography
               sx={{ pr: { xs: 4, md: 4 }, py: { xs: 4, md: 4 } }}
@@ -181,20 +179,26 @@ export const MailchimpList = () => {
             <CheckIcon color="tertiary" />
           </Box>
         )}
-        {MCResult?.result === "error" &&  (
+        {MCResult?.result === "error" && (
           <Box display="flex" alignItems="center" flexDirection="column">
             <Box display="flex" alignItems="center" flexDirection="row">
-            <Typography
-              sx={{ pr: { xs: 4, md: 4 }, py: { xs: 4, md: 4 } }}
-              variant="h4"
-              component="p"
-            >
-              {MCResult?.msg}
-            </Typography>
-            <DoNotTouchIcon color="primary" />
+              <Typography
+                sx={{ pr: { xs: 4, md: 4 }, py: { xs: 4, md: 4 } }}
+                variant="h4"
+                component="p"
+              >
+                {MCResult?.msg}
+              </Typography>
+              <DoNotTouchIcon color="primary" />
             </Box>
-            <Box sx={{display: "block", width: "100%"}}>
-            <Button onClick={e => setMCResult(null)} variant="outlined" color="secondary">Start Again</Button>
+            <Box sx={{ display: "block", width: "100%" }}>
+              <Button
+                onClick={e => setMCResult(null)}
+                variant="outlined"
+                color="secondary"
+              >
+                Start Again
+              </Button>
             </Box>
           </Box>
         )}

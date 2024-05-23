@@ -1,80 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { graphql, Link } from "gatsby"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { Card, Container, Box, Typography } from '@mui/material';
-import clientTheme from '../gatsby-theme-material-ui-top-layout/theme'
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import { contrastColour } from "../utils/contrastColour"
 
 export const PostTile = ({ categories, title, tileImage, date, to }) => {
 
-  const [hovered, setHovered] = useState(false)
-
-  // const renderTaxonomies = (categories) => {
-
-  //   const taxonomies = categories?.map((tax, i) => {
-  //     return (
-  //       tax.name
-  //     )
-  //   })
-  //   return (
-  //     taxonomies && taxonomies.join(', ')
-  //   )
-  // }
-
-  // const variants = {
-  //   hovered: {
-  //     opacity: 1,
-  //     y: 0,
-  //     height: 'auto',
-  //     transition: {
-  //       type: "spring",
-  //       bounce: 0
-  //     }
-  //   },
-  //   unhovered: {
-  //     opacity: 0,
-  //     y: -10,
-  //     height: 0,
-  //   },
-  // }
-
-  // const textColour = {
-  //   hovered: {
-  //     color: clientTheme.palette.white.main
-  //   },
-  //   unhovered: {
-  //     color: clientTheme.palette.text.main
-  //   },
-  // }
-
-  // const cardBodyColour = {
-  //   hovered: {
-  //     backgroundColor: clientTheme.palette.primary.main,
-  //   },
-  //   unhovered: {
-  //     backgroundColor: clientTheme.palette.white.main,
-  //   },
-  // }
-
-  // const cardBody = {
-  //   hovered: {
-  //     display: 'flex',
-  //     flexBasis: '75%',
-  //     transition: {
-  //       type: "spring",
-  //       bounce: 0
-  //     }
-  //   },
-  //   unhovered: {
-  //     display: 'flex',
-  //     flexBasis: '50%',
-  //   },
-  // }
-
   return (
     <Link to={`/blog/${to}`} style={{ textDecoration: 'none', display: "flex !important" }}>
-      <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 }, flexBasis: "100%", height: "100%" }} square onMouseEnter={e => setHovered(true)} onMouseLeave={e => setHovered(false)}>
+      <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 }, flexBasis: "100%", height: "100%" }} square>
       <Box  
         sx={{
           display: "grid",
@@ -238,17 +176,6 @@ export const PostTile = ({ categories, title, tileImage, date, to }) => {
               }}
             />
           )}
-          {/* <Box
-            sx={{
-              position: "relative",
-              zIndex: 1,
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-              width: "100%",
-              height: "100%",
-              //backgroundColor: "rgba(0,0,0,0.3)",
-            }}
-          /> */}
         </Box>
       </Box>
 

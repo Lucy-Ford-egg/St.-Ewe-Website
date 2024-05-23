@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react"
-import { Container, Grid, useMediaQuery, useTheme } from "@mui/material"
+import Grid  from "@mui/material/Grid"
+import useMediaQuery  from "@mui/material/useMediaQuery"
+import Container from "@mui/material/Container"
+import { useTheme } from "@mui/material"
+
 import { Pagination } from "../components/pagination"
 import { PostTile } from "../components/postTile"
 import { Filter } from "./filter"
