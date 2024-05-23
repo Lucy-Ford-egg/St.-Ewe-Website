@@ -36,8 +36,10 @@ const Modules = (props) => {
             <Box sx={{
                 display: "flex", 
                 justifyContent: "center", 
+                alignItems: "center",
                 py: 6,  
                 animation: "blinker 1s linear infinite",
+                minHeight: { xs: "100vh", sm: "100vh" },
               }}><Typography variant="caption">Loading...</Typography></Box>}>
             <main data-content="main">
                 

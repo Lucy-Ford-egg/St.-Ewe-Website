@@ -4,7 +4,7 @@ import {
   GetAnimationObjectParameter,
 } from "react-adobe-animate"
 import { Script, withPrefix } from "gatsby"
-import { Box, useTheme, useMediaQuery } from "@mui/material"
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material"
 
 export const AdobeAnimate = props => {
   const { useAnimation } = props
@@ -50,7 +50,21 @@ export const AdobeAnimate = props => {
           onLoad={() => onScriptLoad()}
         />
       )}
-      {!areScriptsLoaded && "Loading scripts..."}
+      {!areScriptsLoaded && <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: { xs: "100vh", sm: "100vh" },
+          }}
+        ><Box sx={{
+      display: "flex", 
+      justifyContent: "center", 
+      py: 6,  
+      animation: "blinker 1s linear infinite",
+    }}><Typography variant="caption">Loading...</Typography></Box></Box>}
       {areScriptsLoaded && (
         <>
         <Box
@@ -60,7 +74,7 @@ export const AdobeAnimate = props => {
             position: "relative",
             justifyContent: "center",
             alignItems: "center",
-            display: {xs: "none", md: "flex"},
+            display: {xs: "none", sm: "flex"},
           }}
         >
           <AnimateCC
@@ -77,7 +91,7 @@ export const AdobeAnimate = props => {
           position: "relative",
           justifyContent: "center",
           alignItems: "center",
-          display: {xs: "flex", md: "none"},
+          display: {xs: "flex", sm: "none"},
         }}
       >
         <AnimateCC

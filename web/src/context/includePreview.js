@@ -86,7 +86,12 @@ export const IncludePreview = (props) => {
 
   // Show a Loading message
   if (sanityPreviewIsLoading) {
-    return <div>Loading...</div>
+    return <Box sx={{
+      display: "flex", 
+      justifyContent: "center", 
+      py: 6,  
+      animation: "blinker 1s linear infinite",
+    }}><Typography variant="caption">Loading...</Typography></Box>
   }
   if (!sanityPreviewIsLoading && isNewUnpublishedDoc) {
     return (
