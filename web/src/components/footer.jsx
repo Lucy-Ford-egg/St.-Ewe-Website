@@ -3,20 +3,19 @@ import { CookieNotice } from "gatsby-cookie-notice"
 import { useStaticQuery, graphql } from "gatsby"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import { CiLocationOn, CiPhone, CiMail } from "react-icons/ci"
-import {
-  Container,
-  Grid,
-  Box,
-  Link,
-  Typography,
-  useTheme,
-  ListItem,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  IconButton,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
+import Link from "@mui/material/Link"
+import Typography from "@mui/material/Typography"
+import {useTheme} from "@mui/material/styles"
+import ListItem from "@mui/material/ListItem"
+import List from "@mui/material/List"
+import ListItemIcon from "@mui/material/ListItemIcon"
+import ListItemText from "@mui/material/ListItemText"
+import Divider from "@mui/material/Divider"
+import IconButton from "@mui/material/IconButton"
+
 import { ButtonFormat } from "../components/buttonFormat"
 import { SocialIcon } from "react-social-icons"
 import { RenderPortableText } from "../components/renderPortableText"
