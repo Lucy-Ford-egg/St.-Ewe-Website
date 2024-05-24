@@ -354,6 +354,7 @@ export const ContactSection = props => {
                       <Select
                         labelId="serviceOfInterest-label"
                         id="serviceOfInterest"
+                        name="serviceOfInterest"
                         value={serviceOfInterest}
                         label="Service of interest?"
                         onChange={handleServiceOfInterest}
@@ -380,6 +381,7 @@ export const ContactSection = props => {
                       <Select
                         labelId="timeToCall-label"
                         id="timeToCall"
+                        name="timeToCall"
                         value={timeToCall}
                         label="Best time to call?"
                         onChange={handleTimeToCall}
@@ -406,6 +408,7 @@ export const ContactSection = props => {
                       <Select
                         labelId="portfolioValue-label"
                         id="portfolioValue"
+                        name="portfolioValue"
                         value={portfolioValue}
                         label="Portfolio Value?"
                         onChange={handlePortfolioValue}
