@@ -1,13 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Box,
-  useTheme,
-  Grid,
-  Divider,
-
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
+import Divider from "@mui/material/Divider"
+import { useTheme } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { contrastColour } from "../utils/contrastColour"

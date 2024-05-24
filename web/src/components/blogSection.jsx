@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Typography,
-  Grid,
-  useTheme,
-  Box,
-  Paper,
-  Divider,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Typography from "@mui/material/Typography"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
+import Paper from "@mui/material/Paper"
+import Divider from "@mui/material/Divider"
+import { useTheme } from "@mui/material"
 import { Button, GatsbyLink } from "gatsby-theme-material-ui"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
@@ -21,7 +19,7 @@ import { RenderPortableText } from "./renderPortableText"
 
 //Preview
 import { useQuery } from "../../sanity/store"
-import { POSTS_BY_ID, ALL_POSTS } from "../queries/documentQueries"
+import { POSTS_BY_ID } from "../queries/documentQueries"
 
 export const BlogSection = props => {
   const {
@@ -29,7 +27,6 @@ export const BlogSection = props => {
     previewData,
     topPadding,
     pageContext,
-    showArchive,
     getAllPosts,
     initial,
     _type,
@@ -50,8 +47,6 @@ export const BlogSection = props => {
     { length: pageContext.numberOfPages },
     (_, index) => index + 1,
   )
-
-  const { data: allPostData } = useQuery(ALL_POSTS, {}, { initial })
 
   const { data: postData } = useQuery(
     POSTS_BY_ID,

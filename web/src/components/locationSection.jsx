@@ -2,18 +2,16 @@ import React from "react"
 import { graphql } from "gatsby"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import {
-  Container,
-  Typography,
-  Box,
-  useTheme,
-  Grid,
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
+import Divider from "@mui/material/Divider"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemIcon from "@mui/material/ListItemIcon"
+import ListItemText from "@mui/material/ListItemText"
+import { useTheme } from "@mui/material"
 import { Map } from "./map"
 import { CiLocationOn, CiPhone,  CiMail } from "react-icons/ci";
 import { RenderPortableText } from "../components/renderPortableText"
@@ -26,7 +24,6 @@ export const LocationSection = props => {
     subtitle,
     _rawTitle,
     _rawText,
-    geopoint,
     topPadding,
     textAlign,
     sanitySiteSettings,

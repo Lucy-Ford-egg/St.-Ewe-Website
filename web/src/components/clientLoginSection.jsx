@@ -1,13 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Grid,
-  Box,
-  Typography,
-  Divider,
-  useTheme,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
+import Divider from "@mui/material/Divider"
+import { useTheme } from "@mui/material"
 import { LoginTile } from "./loginTile"
 import { RenderPortableText } from "../components/renderPortableText"
 

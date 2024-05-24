@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import { Container, Box, useTheme, Typography, Grid } from "@mui/material"
+import Typography from "@mui/material/Typography"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
+import { useTheme } from "@mui/material"
+
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { ButtonFormat } from "./buttonFormat"

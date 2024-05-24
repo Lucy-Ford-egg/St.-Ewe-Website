@@ -1,18 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import {
-  Card,
-  CardActions,
-  CardContent,
-  Box,
-  Button,
-  Typography,
-  Grid,
-  Divider,
-  useTheme,
-} from "@mui/material"
+import  Card from "@mui/material/Card"
+import CardActions from "@mui/material/CardActions"
+import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
+import Typography from "@mui/material/Typography"
+import Grid from "@mui/material/Grid"
+import Divider from "@mui/material"
+import { useTheme } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 
 export const CaseStudyTile = (props) => {
@@ -31,12 +28,11 @@ export const CaseStudyTile = (props) => {
 
   
     
-  const [hovered, setHovered] = useState(false)
   const theme = useTheme()
 
   
-  const definedPerson = (_rawPerson && _rawPerson) || person && person
-  const definedService = (service && service.name) || service && service.name
+  const definedPerson = (_rawPerson && _rawPerson) || (person) && person
+  const definedService = (service && service.name) || (service) && service.name
 
   const backgroundColor = i % 2 ? "secondary" : "primary"
 
@@ -51,8 +47,6 @@ export const CaseStudyTile = (props) => {
           maxHeight: { xs: !disableSummary && "auto", md: !disableSummary && 578 },
         }}
         square
-        onMouseEnter={e => setHovered(true)}
-        onMouseLeave={e => setHovered(false)}
       >
         <Grid container sx={{display: 'flex', flexDirection: {xs: 'row', md: i % 2 ? 'row-reverse' : 'row'}}}>
           <Grid item xs={12} sm={disableSummary ? 12 : 7}>

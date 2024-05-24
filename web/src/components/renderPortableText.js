@@ -1,6 +1,12 @@
 import React from "react"
 import { PortableText } from '@portabletext/react'
-import { Typography, Box, List, ListItem, ListItemIcon, useTheme, Link } from '@mui/material'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import Link from '@mui/material/Link'
+import { useTheme } from '@mui/material'
 import CircleIcon from '@mui/icons-material/Circle';
 import { PortableTextInlineLink } from "../utils/portableInlineLink"
 import Image from "gatsby-plugin-sanity-image"

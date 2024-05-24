@@ -1,11 +1,16 @@
 import React from "react"
-import { Container, Box, useTheme, Typography, Grid } from "@mui/material"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
+import Grid from "@mui/material/Grid"
+import { useTheme } from "@mui/material"
+
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { Icons } from "../components/icons"
 import { MailchimpList } from "./mailchimpList"
 
-// !is this still used?
+
 export const Newsletter = props => {
   const { newsletterSetup, previewData, sanityConfig, icon = "bud" } = props
 

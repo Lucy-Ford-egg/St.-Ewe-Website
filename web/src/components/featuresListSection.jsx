@@ -1,13 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Grid,
-  Box,
-  useMediaQuery,
-  useTheme,
-  Divider,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useTheme } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { FeaturesTile } from "./featuresTile"
@@ -108,9 +105,7 @@ export const FeaturesListSection = props => {
         }}
       >
         
-        <Grid item xs={12} sm={6} md={6} sx={{
-          borderLeft: {md: `1px solid ${theme.palette.primary.main}`},
-        }}>
+        <Grid item xs={12} sm={6} md={6}>
           {definedImage && (
             <Image
               // pass asset, hotspot, and crop fields

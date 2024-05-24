@@ -1,5 +1,7 @@
 import React from "react"
-import { Container, Box, useTheme } from "@mui/material"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import { useTheme } from "@mui/material"
 import { Button } from "gatsby-theme-material-ui"
 import EastIcon from "@mui/icons-material/East"
 import WestIcon from "@mui/icons-material/West"

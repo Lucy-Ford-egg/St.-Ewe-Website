@@ -1,5 +1,6 @@
 import React from 'react'
-import {Box, Typography} from "@mui/material"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
 const BlogSection= React.lazy(() =>  import("./blogSection").then(module => ({ default: module.BlogSection })));
 const HeaderSection = React.lazy(() =>  import('./headerSection').then(module => ({ default: module.HeaderSection })));
 const TimelineSection = React.lazy(() =>  import('./timelineSection').then(module => ({ default: module.TimelineSection })));

@@ -2,12 +2,10 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import Modules from "../components/modules"
-import {
-  Container,
-  useTheme,
-  Box,
-  useMediaQuery,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useTheme } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { RenderPortableText } from "../components/renderPortableText"
@@ -23,14 +21,13 @@ const TeamMembersTemplate = props => {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
-  const { data: previewData, sourceMap } = useQuery(
+  const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "page":${TEAM_MEMBER_PAGE_QUERY}}`,
     { slug: data?.sanityTeamMember?.slug.current },
     { initial },
   )
 
   const pageData = previewData?.page
-  const siteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
   const definedImage =
     (pageData && pageData?.image) ||

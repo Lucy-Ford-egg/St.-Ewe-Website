@@ -1,12 +1,11 @@
 import React from 'react'
-import { graphql } from "gatsby"
-import {Box} from '@mui/material'
+import Box from '@mui/material/Box'
 import { ButtonFormat } from "./buttonFormat"
 
 export const Links = (props) => {
 const {links, highlighted, previewData, linkOne = 'primary'} = props
 
-const definedLinks = previewData && previewData.links && previewData?.links || links 
+const definedLinks = (previewData && previewData.links && previewData?.links) || links 
   return (
     <Box
     sx={{

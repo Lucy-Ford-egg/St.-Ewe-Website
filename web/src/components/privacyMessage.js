@@ -1,5 +1,11 @@
 import React from "react"
-import { Alert, Snackbar, Typography, useTheme, IconButton, Container } from "@mui/material"
+import Alert from "@mui/material/Alert"
+import Snackbar from "@mui/material/Snackbar"
+import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
+import Container from "@mui/material/Container"
+import { useTheme } from "@mui/material"
+
 import {Link} from "gatsby-theme-material-ui"
 import CloseIcon from '@mui/icons-material/Close';
 

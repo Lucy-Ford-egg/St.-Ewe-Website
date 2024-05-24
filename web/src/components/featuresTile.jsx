@@ -1,11 +1,15 @@
 import React, { useState } from "react"
-import { Box, Paper, Typography, useTheme, Divider } from "@mui/material"
+import Box from "@mui/material/Box"
+import Paper from "@mui/material/Paper"
+import Typography from "@mui/material/Typography"
+import Divider from "@mui/material/Divider"
+import { useTheme } from "@mui/material"
 import { ButtonFormat } from "./buttonFormat"
 import { RenderPortableText } from "../components/renderPortableText"
 
 
 export const FeaturesTile = props => {
-  const { previewData, node, index, } = props
+  const { node } = props
   const [hover, setHover] = useState(false)
   const theme = useTheme()
 

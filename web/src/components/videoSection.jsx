@@ -1,16 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Vimeo from '@u-wave/react-vimeo';
-import { Container, Grid, Box, useTheme } from "@mui/material"
-
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
+import { useTheme } from "@mui/material"
 import 'react-html5video/dist/styles.css';
 
 
 export const VideoSection = props => {
   const theme = useTheme()
   const {
-    previewData,
-    sanityConfig,
     topPadding,
     video,
   } = props

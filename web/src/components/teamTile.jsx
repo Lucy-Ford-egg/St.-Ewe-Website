@@ -1,22 +1,20 @@
 import React, { useState } from "react"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import {
-  Grid,
-  Typography,
-  Divider,
-  Box,
-  IconButton,
-  SvgIcon,
-  useTheme,
-} from "@mui/material"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import Divider from "@mui/material/Divider"
+import Box from "@mui/material/Box"
+import IconButton from "@mui/material/IconButton"
+import SvgIcon from "@mui/material/SvgIcon"
+import { useTheme } from "@mui/material"
 import { CiMail, CiLinkedin, CiCircleRemove } from "react-icons/ci"
 import { contrastColour, convertHexToRGBA } from "../utils/contrastColour"
 import { Button } from "gatsby-theme-material-ui"
 import { motion } from "framer-motion"
 
 export const TeamTile = props => {
-  const { definedTileColor, member, i } = props
+  const { definedTileColor, member } = props
 
   const theme = useTheme()
 

@@ -3,14 +3,12 @@ import { graphql } from "gatsby"
 import { motion, MotionConfig } from "framer-motion"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import {
-  Container,
-  Box,
-  useTheme,
-  useMediaQuery,
-  IconButton,
-  SvgIcon,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import IconButton from "@mui/material/IconButton"
+import SvgIcon from "@mui/material/SvgIcon"
+import { useTheme } from "@mui/material"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 
@@ -20,16 +18,11 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack"
  * Should accomodate longer swipes and short flicks without having binary checks on
  * just distance thresholds and velocity >= 1.
  */
-const swipeConfidenceThreshold = 10000
-const swipePower = (offset, velocity) => {
-  return Math.abs(offset) * velocity
-}
 
 export const ImageCarouselSection = props => {
   const theme = useTheme()
   const {
     previewData,
-    sanityConfig,
     images,
     topPadding,
     _type,
@@ -40,18 +33,13 @@ export const ImageCarouselSection = props => {
   useEffect(() => {
      setSlides((previewData && previewData?.images) || images) 
   }, [previewData, images])
-  // useEffect(() => {
-  //   setWidth(ref.current.getBoundingClientRect().width)
-  // }, []) //empty dependency array so it only runs once at render
+
   
   let [index, setIndex] = useState(0)
 
   const sm = useMediaQuery("(max-width:640px)")
 
   const definedTopPadding = (previewData && _type === previewData?._type && previewData?.topPadding) || topPadding
-  // const definedTitle = (previewData && previewData?.title) || _rawTitle
-  // const definedText = (previewData && previewData?.text) || _rawText
-
   
   return (
     <Container

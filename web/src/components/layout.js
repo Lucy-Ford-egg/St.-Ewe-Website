@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import { Footer } from "./footer"
 import { VisualEditing } from "./visualEditing"
-import {Box} from "@mui/material"
+import Box from "@mui/material/Box"
 // Preview
 import { useQuery } from "../../sanity/store";
 import {NAV_QUERY, SITE_SETTINGS} from '../queries/documentQueries';

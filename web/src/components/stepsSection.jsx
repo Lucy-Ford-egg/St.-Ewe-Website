@@ -1,14 +1,12 @@
 import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Grid,
-  Typography,
-  Divider,
-  useMediaQuery,
-  Box,
-  useTheme,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import Divider from "@mui/material/Divider"
+import Box from "@mui/material/Box"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useTheme } from "@mui/material"
 import { StepsTile } from "./stepsTile"
 import { RenderPortableText } from "../components/renderPortableText"
 import { motion, useScroll, useSpring } from "framer-motion"
@@ -20,11 +18,10 @@ export const StepsSection = props => {
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
   // Scroll animation
-  const lineRef = useRef(null)
   const targetRef = useRef(null)
   const referenceRef = useRef(null)
 
-  const { scrollYProgress, scrollY } = useScroll({
+  const { scrollYProgress } = useScroll({
     //container: referenceRef,
     target: targetRef,
     offset: ["-50vh start", "end end"],

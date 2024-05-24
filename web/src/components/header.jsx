@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby-theme-material-ui"
-import {
-  Container,
-  AppBar,
-  Toolbar,
-  Box,
-  IconButton,
-  useMediaQuery,
-  useTheme,
-  Divider,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import AppBar from "@mui/material/AppBar"
+import Toolbar from "@mui/material/Toolbar"
+import Box from "@mui/material/Box"
+import IconButton from "@mui/material/IconButton"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import Divider from "@mui/material/Divider"
+import { useTheme } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
 import MainNavigation from "./mainNavigation"

@@ -1,12 +1,14 @@
 import React from "react"
-import {
-  Container, useTheme, Button, Box, List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  useMediaQuery,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Button from "@mui/material/Button"
+import Box from "@mui/material/Box"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemIcon from "@mui/material/ListItemIcon"
+import ListItemText from "@mui/material/ListItemText"
+import Divider from "@mui/material/Divider"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useTheme } from "@mui/material"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import { CiLocationOn, CiPhone, CiMail } from "react-icons/ci";
 import { motion } from "framer-motion"
@@ -24,7 +26,6 @@ const MotionContainer = motion(ContainerComponent)
 const MainNavigation = (props) => {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
-  const tablet = useMediaQuery(theme.breakpoints.up("sm"))
   const { menu, definedSiteSettings, handleCloseNavMenu } = props
 
   const childRef = React.useRef();

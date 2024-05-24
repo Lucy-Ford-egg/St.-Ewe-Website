@@ -1,6 +1,7 @@
 import React from "react"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
-import { Button, Box } from "@mui/material"
+import Button from "@mui/material/Button"
+import Box from "@mui/material/Box"
 
 export const ButtonFormat = props => {
   const { node, sx, endIcon, variant, color } = props

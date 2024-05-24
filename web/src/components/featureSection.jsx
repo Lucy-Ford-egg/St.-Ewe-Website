@@ -2,14 +2,12 @@ import React from "react"
 import { graphql } from "gatsby"
 import Image from "gatsby-plugin-sanity-image"
 import {urlFor} from "../utils/imageHelpers"
-import {
-  Container,
-  Grid,
-  Typography,
-  Box,
-  Divider,
-  useTheme,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
+import Divider from "@mui/material/Divider"
+import { useTheme } from "@mui/material"
 import { Icons } from "../components/icons"
 import {Links} from '../components/links'
 

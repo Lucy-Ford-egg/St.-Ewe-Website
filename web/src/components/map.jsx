@@ -1,16 +1,14 @@
 import React, { useState, useRef } from "react"
 import GoogleMapReact from "google-map-react"
-import {
-  Container,
-  Box,
-  useTheme,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton,
-  useMediaQuery,
-  Link,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemText from "@mui/material/ListItemText"
+import IconButton from "@mui/material/IconButton"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import Link from "@mui/material/Link"
+import { useTheme } from "@mui/material"
 import { mapStyles } from "../utils/mapStyles"
 import { motion } from "framer-motion"
 

@@ -24,64 +24,6 @@ export const Footer = props => {
   const { definedSiteSettings, sanityConfig } = props
   const theme = useTheme()
 
-  const cookieStyles = {
-    position: "fixed",
-    zIndex: 10,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    p: 12,
-    backgroundColor: "secondary.mid",
-    "& .cookie-notice": {
-      display: "flex",
-      columnGap: 6,
-    },
-    "& .container": {
-      display: "flex",
-      columnGap: 6,
-      alignItems: "center",
-    },
-    "& .btn-primary, .btn-secondary": {
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
-      paddingLeft: theme.spacing(7),
-      paddingRight: theme.spacing(7),
-      outline: "none",
-      border: "none",
-      fontFamily: "Open Sans",
-      borderRadius: 100,
-      textTransform: "uppercase",
-      letterspacing: "0.075rem",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "max-content",
-      fontWeight: 400,
-      fontSize: theme.spacing(2),
-      "&:hover": {
-        cursor: "pointer",
-      },
-    },
-    "& .btn-primary": {
-      color: "white.main",
-      backgroundColor: "primary.main",
-    },
-    "& .btn-secondary": {
-      color: "white.main",
-      backgroundColor: "transparent",
-      border: `1px solid ${theme.palette.primary.main}`,
-    },
-
-    "& .float-end": {
-      display: "flex",
-      columnGap: 6,
-    },
-    // options
-    "& .cookie-list": {
-      color: "white.main",
-    },
-  }
-
   const data = useStaticQuery(graphql`
     query FooterMenu {
       footerMenu: sanityNavigation(navId: { current: { eq: "footer-menu" } }) {

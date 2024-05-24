@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from "react"
 import { graphql } from "gatsby"
-import {
-  Container,
-  Grid,
-  Typography,
-  useMediaQuery,
-  Divider,
-  useTheme,
-  Box,
-} from "@mui/material"
+import Container from "@mui/material/Container"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import Divider from "@mui/material/Divider"
+import Box from "@mui/material/Box"
+import { useTheme } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 import { CaseStudyTile } from "./caseStudyTile"
 
@@ -18,7 +16,6 @@ import {
   CASE_STUDIES_BY_ID,
   ALL_CASE_STUDIES,
 } from "../queries/documentQueries"
-// import { CaseStudyCarousel } from "./caseStudyCarousel"
 import { Carousel } from "../components/framer-motion-carousel/src/carousel"
 
 export const CaseStudySection = ({

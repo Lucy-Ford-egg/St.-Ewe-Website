@@ -72,7 +72,6 @@ export const TimelineSection = props => {
 
   useEffect(() => {
     if (referenceRef.current && targetRef.current) {
-      debugger
       const referenceHeight =
         referenceRef.current.clientHeight - lastElement.current.clientHeight
       setHeight(referenceHeight)
@@ -238,8 +237,6 @@ export const TimelineSection = props => {
                   (definedSteps && definedSteps[index]?.description) ||
                   step._rawDescription
 
-                const nodes = definedSteps.length
-                const final = definedSteps[nodes]
 
                 return (
                   <Box

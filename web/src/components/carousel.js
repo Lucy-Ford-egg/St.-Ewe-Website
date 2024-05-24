@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
-import { Container, Box, useMediaQuery,IconButton, useTheme } from '@mui/material'
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import IconButton from '@mui/material/IconButton'
+import { useTheme } from '@mui/material'
 import {ServicesTile} from '../components/servicesTile'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'

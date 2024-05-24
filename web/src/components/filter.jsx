@@ -1,10 +1,15 @@
 import React, { useState, useCallback, useEffect } from "react"
-import { Tabs, Tab, Box, Typography, useTheme, useMediaQuery } from "@mui/material"
+import Tabs from "@mui/material/Tabs"
+import Tab from "@mui/material/Tab"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useTheme } from "@mui/material"
 import { graphql, useStaticQuery } from "gatsby"
 import { CiCircleChevLeft } from "react-icons/ci";
 
 
-export const Filter = ({ type, allData, filterData, setFilterData }) => {
+export const Filter = ({ type, allData, setFilterData }) => {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
   const [selectedFilters, setSelectedFilters] = useState(null)
@@ -50,7 +55,7 @@ export const Filter = ({ type, allData, filterData, setFilterData }) => {
       ...new Map(flattenArray.map(item => [item["name"], item])).values(),
     ]
     return unique
-  }, [type, data.allSanityPost])
+  }, [ data.allSanityPost])
 
   useEffect(() => {
     const array = sortCategories()
