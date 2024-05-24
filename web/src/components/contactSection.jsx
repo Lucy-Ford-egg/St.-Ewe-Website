@@ -357,7 +357,7 @@ export const ContactSection = props => {
                         name="serviceOfInterest"
                         value={serviceOfInterest}
                         label="Service of interest?"
-                        onChange={e => handleServiceOfInterest()}
+                        onChange={e => handleServiceOfInterest(e)}
                         displayEmpty={true}
                         notched={false}
                         required
@@ -384,7 +384,7 @@ export const ContactSection = props => {
                         name="timeToCall"
                         value={timeToCall}
                         label="Best time to call?"
-                        onChange={e => handleTimeToCall()}
+                        onChange={e => handleTimeToCall(e)}
                         displayEmpty={true}
                         notched={false}
                         fullWidth
