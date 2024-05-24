@@ -99,7 +99,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Management", "bold 34px 'Merriweather'", "#FFFFFF");
+	this.text = new cjs.Text("Management", "bold 34px 'Merriweather Bold'", "#FFFFFF");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 240;
@@ -126,7 +126,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Management", "bold 34px 'Merriweather'", "#FFFFFF");
+	this.text = new cjs.Text("Management", "bold 34px 'Merriweather Bold'", "#FFFFFF");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 240;
@@ -153,7 +153,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Management", "bold 34px 'Merriweather'", "#FFFFFF");
+	this.text = new cjs.Text("Management", "bold 34px 'Merriweather Bold'", "#FFFFFF");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 240;
@@ -180,7 +180,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Management", "bold 34px 'Merriweather'", "#FFFFFF");
+	this.text = new cjs.Text("Management", "bold 34px 'Merriweather Bold'", "#FFFFFF");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 240;
@@ -207,7 +207,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Investment", "bold 34px 'Merriweather'", "#EF4E5F");
+	this.text = new cjs.Text("Investment", "bold 34px 'Merriweather Bold'", "#EF4E5F");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 299;
@@ -234,7 +234,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Planning", "bold 34px 'Merriweather'", "#EF4E5F");
+	this.text = new cjs.Text("Planning", "bold 34px 'Merriweather Bold'", "#EF4E5F");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 231;
@@ -261,7 +261,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Wealth", "bold 34px 'Merriweather'", "#FFFFFF");
+	this.text = new cjs.Text("Wealth", "bold 34px 'Merriweather Bold'", "#FFFFFF");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 250;
@@ -393,14 +393,14 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.text = new cjs.Text("Wealth", "bold 34px 'Merriweather'", "#F04D5F");
+	this.text = new cjs.Text("Wealth", "bold 34px 'Merriweather Bold'", "#F04D5F");
 	this.text.textAlign = "center";
 	this.text.lineHeight = 36;
 	this.text.lineWidth = 250;
 	this.text.parent = this;
 	this.text.setTransform(127.15,2);
 
-	this.text_1 = new cjs.Text("Management", "bold 34px 'Merriweather'", "#F04D5F");
+	this.text_1 = new cjs.Text("Management", "bold 34px 'Merriweather Bold'", "#F04D5F");
 	this.text_1.textAlign = "center";
 	this.text_1.lineHeight = 36;
 	this.text_1.lineWidth = 240;
