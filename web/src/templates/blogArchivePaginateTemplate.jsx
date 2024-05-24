@@ -50,6 +50,7 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
         }
       }
     }
+    sort: {date: DESC}
     #skip: $skip 
     #limit: $limit 
   ) {
@@ -82,7 +83,7 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       }
     }
   }
-  getAllPosts: allSanityPost{
+  getAllPosts: allSanityPost(sort: {date: DESC}){
     nodes {
       tileImage {
         asset {

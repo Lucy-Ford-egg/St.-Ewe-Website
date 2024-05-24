@@ -257,7 +257,7 @@ export const caseStudyTemplateQuery = graphql`
         ...PageBuilderFragment
       }
     }
-    getAllPosts: allSanityPost{
+    getAllPosts: allSanityPost(sort: {date: DESC}){
       nodes {
         tileImage {
           asset {

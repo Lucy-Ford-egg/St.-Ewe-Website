@@ -74,7 +74,7 @@ module.exports = {
               }
             }
           }
-          allSanityPost {
+          allSanityPost(sort: {date: DESC}) {
             nodes {
               _updatedAt
               _id

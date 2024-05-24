@@ -54,6 +54,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
         }
       }
     }
+    sort: {date: DESC}
     skip: $skip 
     limit: $limit 
   ) {
@@ -95,7 +96,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       }
     }
   }
-  getAllPosts: allSanityPost{
+  getAllPosts: allSanityPost(sort: {date: DESC}){
     nodes {
       tileImage {
         asset {

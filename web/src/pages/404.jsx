@@ -49,6 +49,7 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
         }
       }
     }
+    sort: {date: DESC}
     skip: $skip 
     limit: $limit 
   ) {

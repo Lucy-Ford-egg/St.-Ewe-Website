@@ -150,6 +150,7 @@ export const teamMemberTemplateQuery = graphql`
           }
         }
       }
+      sort: {date: DESC}
       skip: $skip 
       limit: $limit 
     ) {
@@ -191,7 +192,7 @@ export const teamMemberTemplateQuery = graphql`
         }
       }
     }
-    getAllPosts: allSanityPost{
+    getAllPosts: allSanityPost(sort: {date: DESC}){
       nodes {
         tileImage {
           asset {

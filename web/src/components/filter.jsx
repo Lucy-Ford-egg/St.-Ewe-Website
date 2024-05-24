@@ -33,7 +33,7 @@ export const Filter = ({ type, allData, setFilterData }) => {
 
   const data = useStaticQuery(graphql`
     query CategoriesQuery {
-      allSanityPost {
+      allSanityPost(sort: {date: DESC}) {
         nodes {
           category {
             name

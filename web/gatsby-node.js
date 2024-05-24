@@ -213,7 +213,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-    allSanityPost {
+    allSanityPost(sort: {date: DESC}) {
       nodes {
         navColor{
           value

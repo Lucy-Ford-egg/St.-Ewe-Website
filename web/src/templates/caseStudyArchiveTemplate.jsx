@@ -83,7 +83,7 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
       _rawBody(resolveReferences: { maxDepth: 10 })
     }
   }
-  getAllPosts: allSanityPost{
+  getAllPosts: allSanityPost(sort: {date: DESC}){
     nodes {
       tileImage {
         asset {

@@ -288,7 +288,7 @@ export const pageTemplateQuery = graphql`
         ...PageBuilderFragment
       }
     }
-    getAllPosts: allSanityPost{
+    getAllPosts: allSanityPost(sort: {date: DESC}){
       nodes {
         tileImage {
           asset {
@@ -335,6 +335,7 @@ export const pageTemplateQuery = graphql`
           }
         }
       }
+      sort: {date: DESC}
     ) {
       nodes {
         image {

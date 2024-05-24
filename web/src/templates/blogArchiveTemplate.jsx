@@ -48,6 +48,7 @@ export const blogArchiveTemplateQuery = graphql`
       filter: { category: { _id: { in: $postIds } } }
       skip: $skip
       limit: $limit
+      sort: {date: DESC}
     ) {
       nodes {
         author {
@@ -85,7 +86,7 @@ export const blogArchiveTemplateQuery = graphql`
         }
       }
     }
-    getAllPosts: allSanityPost{
+    getAllPosts: allSanityPost(sort: {date: DESC}){
       nodes {
         tileImage {
           asset {
