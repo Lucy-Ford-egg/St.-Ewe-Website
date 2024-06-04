@@ -47,9 +47,10 @@ export const RenderPortableText = (props) => {
     },
   };
 
-  const marks = {
+  const marks = { 
     em: ({ children }) => <Typography sx={{ color: value.value, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
-    strong: ({ children }) => <Box component="span" sx={{ fontWeight: 900 }}>{children}</Box>,
+    strong: ({ children }) => { return (<Box component="span" sx={{ fontWeight: 900
+     }}>{children}</Box>)},
 
     link: ({ children, value }) => {
 
@@ -68,10 +69,6 @@ export const RenderPortableText = (props) => {
 
   const standardPortableText = {
     types: {
-      span: ({ value }) => {
-
-        return <Typography sx={{ color: 'inherit' }} variant={'body1'} component={component}>{value?.children?.text}</Typography>
-      },
       // ! Old Image block for deprecation 
       image: ({ value }) => {
 
@@ -155,23 +152,31 @@ export const RenderPortableText = (props) => {
       <List sx={{ listStyle: 'decimal inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ol" dense={true}>{children}</List>
     )),
     listItem: ({ value, children }) => {
+      
       return (
         (value.listItem === "bullet" ? (
           <ListItem sx={{ alignItems: "flex-start",  color: 'inherit', pl: 0 }}>
             <ListItemIcon sx={{ mt: 2, minWidth: 16 }}>
               <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
-            </ListItemIcon>{children[0]}
+            </ListItemIcon>
+              <Box sx={{display: 'block'
+              }}>{children}</Box>
+              
           </ListItem>
         ) : (
           <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0 }}>
             <ListItemIcon sx={{ minWidth: 16 }}>
-            </ListItemIcon>{children}
+            </ListItemIcon>
+              <Box sx={{display: 'block'
+              }}>{children}</Box>
+              
           </ListItem>
         ))
       )
     },
     marks: marks,
     block: block,
+
   }
 
   return (
