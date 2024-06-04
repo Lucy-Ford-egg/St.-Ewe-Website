@@ -66,7 +66,7 @@ export const StepsSection = props => {
   const [pieSegments, setPieSegments] = useState(null)
 
   useEffect(() => {
-    setPieSegments(definedSteps.filter(item => item._type === "stepTile"))
+    setPieSegments(definedSteps?.filter(item => item._type === "stepTile"))
   }, [definedSteps])
 
   useEffect(() => {
