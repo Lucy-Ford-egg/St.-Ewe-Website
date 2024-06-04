@@ -203,6 +203,8 @@ export const TestimonialSection = props => {
               minHeight: 415,
               gridColumn: "1/25",
               gridRow: "1/auto",
+              overflow: "hidden",
+              transition: "all 0.2s ease-in-out 0s",
             }}
           >
             <AnimatePresence initial={false} custom={direction}>
@@ -244,6 +246,8 @@ export const TestimonialSection = props => {
                     alignItems: "flex-start",
                     justifyContent: "center",
                     minHeight: { xs: 415, md: "unset" },
+                    overflow: "hidden",
+                    transition: "all 0.2s ease-in-out 0s",
                   }}
                 >
                   <Box
