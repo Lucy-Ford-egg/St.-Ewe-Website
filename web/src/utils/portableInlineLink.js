@@ -1,22 +1,45 @@
 import React from 'react'
 import { Link } from '@mui/material';
+import { Link as GatsbyLink } from "gatsby-theme-material-ui"
 
-export const PortableTextInlineLink = ({value, children, color}) => {
+export const PortableTextInlineLink = ({ value, children, color }) => {
+  
+  let linkType = ""
+  let definedInternal = value?.reference?.slug?.current
+  const definedExternal = value?.href
 
-  const rel = !value?.href?.startsWith('/') ? 'noreferrer noopener' : undefined
-  let linkType = value?.href && <Link sx={{color: color, display: 'inline-block', mx: '5px'}} className="portableTextInlineLink link-animation" href={value?.href} rel={rel} aria-label={`Link to ${children}`}> {children}</Link>
+  const isExternal = value?._type === "link"
 
-  // if(linkGroup && linkGroup.internalLinkGroup && linkGroup?.internalLinkGroup?.reference && linkGroup?.internalLinkGroup?.reference?.slug && linkGroup?.internalLinkGroup?.reference?.slug?.current){
-  //   linkType = <GatsbyLink variant={buttonType} color={color} component={Link} to={linkGroup?.internalLinkGroup?.reference?.slug?.current}  aria-label={`Link to ${linkGroup?.internalLinkGroup?.label}`}>
-  //         {linkGroup?.internalLinkGroup && linkGroup?.internalLinkGroup?.label}
-  //       </GatsbyLink>
-  // }
-  // if(linkGroup && linkGroup.externalLinkGroup){
-  //   linkType = <Link href={linkGroup?.externalLinkGroup?.href} aria-label={`Link to ${linkGroup?.externalLinkGroup?.label}`}>{linkGroup?.externalLinkGroup && linkGroup?.externalLinkGroup?.label}</Link>
-  // }
-  // else{
-  //   return 
-  // }
+  function checkStringType(str) {
+    const validStrings = ["post", "caseStudy", "page", "teamMembers"];
+    return validStrings.includes(str);
+  }
 
-  return(linkType)
+  const isInternal = checkStringType(value?.reference?._type)
+  const isFile = value.reference?._type === "file"
+
+  if (value.reference?._type === "post") {
+    definedInternal = `/blog/${definedInternal}`
+  }
+  if (value.reference?._type === "caseStudy") {
+    definedInternal = `/case-studies/${definedInternal}`
+  }
+  if (value.reference?._type === "teamMembers") {
+    definedInternal = `/team-members/${definedInternal}`
+  }
+  if (isExternal) {
+    linkType = <Link rel={value?.blank && 'noopener'}
+      target={value?.blank && "_blank"} sx={{ a: { "&:hover": { cursor: "pointer" } }, color: color, display: 'inline-block', mx: '5px' }} className="portableTextInlineLink link-animation" href={definedExternal} aria-label={`Link to ${children}`}>{children}</Link>
+  }
+  if (isInternal && !isFile) {
+    linkType = <GatsbyLink sx={{ a: { "&:hover": { cursor: "pointer" } }, color: color, display: 'inline-block', mx: '5px' }} className="portableTextInlineLink link-animation" to={definedInternal} aria-label={`Link to ${children}`}> {children}</GatsbyLink>
+  }
+  if (isFile) {
+    linkType = <Link rel='noopener'
+      target="_blank" sx={{ a: { "&:hover": { cursor: "pointer" } }, color: color, display: 'inline-block', mx: '5px' }} className="portableTextInlineLink link-animation" href={definedExternal} aria-label={`Link to ${children}`}> {children}</Link>
+  }
+
+  return (
+    linkType
+  )
 }

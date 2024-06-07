@@ -58,6 +58,12 @@ export const RenderPortableText = (props) => {
         <PortableTextInlineLink color={value.value} value={value}>{children}</PortableTextInlineLink>
       )
     },
+    internalLink: ({ children, value }) => {
+
+      return (
+        <PortableTextInlineLink color={value.value} value={value}>{children}</PortableTextInlineLink>
+      )
+    },
     underline: ({ children }) => <Typography variant="body1" className="underline" component="span">{children}</Typography>,
     // Color
     textColor: ({ children, value }) => <span style={{ color: value.value }}>{children}</span>,

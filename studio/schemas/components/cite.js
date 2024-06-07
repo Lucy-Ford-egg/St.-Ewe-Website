@@ -11,19 +11,11 @@ export default defineType({
       type: 'reference',
       title: 'Internal Cite',
       to: [{ type: 'teamMember', title: 'Team Member' }],
-      // hidden: ({ parent, value }) => {
-      //   debugger
-      //    return ( value && parent?.externalCite
-      //     ) }
     }),
     defineField({
       name: 'externalCite',
       title: 'Person',
       type: 'externalCite',
-      // hidden: ({ parent, value }) => {
-      //   debugger
-      //    return ( value && parent?.teamMemberCite)
-      //   }
     }),
   ],
   preview: {
