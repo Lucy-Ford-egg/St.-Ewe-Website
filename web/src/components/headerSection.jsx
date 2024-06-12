@@ -194,7 +194,7 @@ export const HeaderSection = props => {
                 }}
               >
                 <Links
-                  linkOne="secondary"
+                  linkOne="primary"
                   links={definedLinks}
                   previewData={previewData}
                   highlighted
