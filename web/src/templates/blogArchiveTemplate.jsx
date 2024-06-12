@@ -18,7 +18,7 @@ const BlogArchiveTemplate = props => {
   )
 
   const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
-
+debugger
   return (
     <>
       <Modules
@@ -27,7 +27,7 @@ const BlogArchiveTemplate = props => {
           allSanityPost={data.allSanityPost}
           pageContext={pageContext}
           modules={definedModules}
-          getAllPosts={data.getAllPosts}
+          getAllPosts={data.allSanityPost}
         />
     </>
   )
@@ -39,13 +39,11 @@ export const Head = ({ data, location }) => {
 
 export const blogArchiveTemplateQuery = graphql`
   query blogArchiveTemplateQuery(
-    $postIds: [String!]
     $slug: String!
     $skip: Int
     $limit: Int
   ) {
     allSanityPost(
-      filter: { category: { _id: { in: $postIds } } }
       skip: $skip
       limit: $limit
       sort: {date: DESC}
@@ -83,45 +81,6 @@ export const blogArchiveTemplateQuery = graphql`
             right
             top
           }
-        }
-      }
-    }
-    getAllPosts: allSanityPost(sort: {date: DESC}){
-      nodes {
-        tileImage {
-          asset {
-            _id
-            gatsbyImageData
-          }
-          hotspot {
-            x
-            y
-            width
-            height
-          }
-          crop {
-            bottom
-            left
-            right
-            top
-          }
-        }
-     
-        slug {
-          current
-        }
-        date
-        category {
-          name
-          _id
-        }
-        author {
-          name
-        }
-        title
-        tileColor{
-          value
-          label
         }
       }
     }
