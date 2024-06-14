@@ -199,7 +199,7 @@ export const StepsSection = props => {
           pb: { xs: 10, md: 15 },
         }}
       >
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={7} display="flex" flexDirection="column" justifyContent={definedTextAlign}>
           {subtitle && (
             <Typography
               variant="overline"
@@ -229,6 +229,7 @@ export const StepsSection = props => {
                 my: 10,
                 width: "19.1875rem",
                 borderColor: "primary.main",
+                alignSelf: definedTextAlign,
               }}
             />
           )}
