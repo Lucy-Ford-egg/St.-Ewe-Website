@@ -189,7 +189,7 @@ export const CaseStudySection = ({
        
           
           <Box sx={{
-            overflowX: {md: "hidden"},
+            overflowX: {sm: "hidden"},
             maxWidth: "100vw"
           }}>
         <Carousel

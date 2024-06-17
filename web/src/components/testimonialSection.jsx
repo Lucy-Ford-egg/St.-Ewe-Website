@@ -236,7 +236,7 @@ export const TestimonialSection = props => {
                   maxWidth="md"
                   className="slide"
                   sx={{
-                    position: {xs: "relative", sm: "absolute"},
+                    position: {xs: "absolute", sm: "absolute"},
                     top: 0,
                     bottom: 0,
                     left: 0,
