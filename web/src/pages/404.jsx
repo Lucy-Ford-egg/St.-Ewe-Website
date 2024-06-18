@@ -11,7 +11,7 @@ const IndexPage = props => {
   const { data, pageContext, initial } = props
 
   // Preview
-  const { data: previewData, sourceMap } = useQuery(
+  const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
     {slug: '404'},
     { initial }

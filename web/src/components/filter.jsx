@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react"
-import Tabs from "@mui/material/Tabs"
-import Tab from "@mui/material/Tab"
+// import Tabs from "@mui/material/Tabs"
+// import Tab from "@mui/material/Tab"
 import Box from "@mui/material/Box"
+import {Button} from "gatsby-theme-material-ui"
 import Typography from "@mui/material/Typography"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTheme } from "@mui/material"
@@ -12,62 +13,85 @@ import { CiCircleChevLeft } from "react-icons/ci";
 export const Filter = ({ type, allData, setFilterData }) => {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
-  const [selectedFilters, setSelectedFilters] = useState(null)
-  const [categoriesUsed, setCategoriesUsed] = useState(null)
-  const [filterTabsValue, setFilterTabsValue] = useState(0)
+  // const [selectedFilters, setSelectedFilters] = useState(null)
+  // const [categoriesUsed, setCategoriesUsed] = useState(null)
+  // const [filterTabsValue, setFilterTabsValue] = useState(0)
 
-
-  const handleChange = (event, value) => {
-    // setValue(taxonomy);
-    setFilterTabsValue(value)
-    const taxonomy = event.currentTarget.textContent
-   
-    setSelectedFilters(taxonomy)
-    if (taxonomy === "All") {
-      setFilterData(allData)
-    } else {
-      const filtered = allData.filter(e => e.category.name === taxonomy)
-      setFilterData(filtered)
-    }
-  }
 
   const data = useStaticQuery(graphql`
     query CategoriesQuery {
-      allSanityPost(sort: {date: DESC}) {
+      allSanityCategories {
         nodes {
-          category {
-            name
+          slug {
+            current
           }
+          name
         }
       }
     }
   `)
 
-  const sortCategories = useCallback(() => {
-    const array = data.allSanityPost?.nodes.map(tax => {
-      if (tax?.category?.name && tax?.category?.name?.length > 0) {
-        return { name: tax?.category?.name }
-      }
-    })
+  // const sortCategories = useCallback(() => {
+  //   const array = data.allSanityPost?.nodes.map(tax => {
+  //     if (tax?.category?.name && tax?.category?.name?.length > 0) {
+  //       return { name: tax?.category?.name, slug:tax?.category?.slug?.current  }
+  //     }
+  //   })
 
-    var flattenArray = [].concat.apply([], array)
-    const unique = [
-      ...new Map(flattenArray.map(item => [item["name"], item])).values(),
-    ]
-    return unique
-  }, [ data.allSanityPost])
+  //   var flattenArray = [].concat.apply([], array)
+  //   const unique = [
+  //     ...new Map(flattenArray.map(item => [item["name"], item])).values(),
+  //   ]
+  //   return unique
+  // }, [ data.allSanityPost])
 
-  useEffect(() => {
-    const array = sortCategories()
-    setCategoriesUsed(array)
-  }, [sortCategories])
+  // useEffect(() => {
+  //   const array = sortCategories()
+  //   setCategoriesUsed(array)
+  // }, [sortCategories])
 
   return (
-    <Box sx={{ py: 8, display: "flex", flexDirection: {xs: "column", md: "row"}, alignItems: {xs: "flex-start", md: "center"} }}>
-      <Typography variant="h4" component="h6" sx={{mr: 4,}}>
+    <Box
+      sx={{
+        py: 8,
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
+        alignItems: { xs: "flex-start", md: "center" },
+        overflowX: "hidden",
+      }}
+    >
+      <Typography variant="h4" component="h6" sx={{ mr: 4 }}>
         Filter Posts:
       </Typography>
-      <Tabs
+      <Box
+        sx={{
+          overflowScrolling: "touch",
+          display: "flex",
+          flexWrap: "nowrap",
+          overflowX: "auto",
+          width: "100%",
+        }}
+      >
+        <Button variant="text" key="all" to={`/blog`}
+        sx={{flex: "0 0 auto"}}>
+          All
+        </Button>
+        {data.allSanityCategories?.nodes &&
+          data.allSanityCategories?.nodes.map(node => {
+            return (
+              <Button
+                color="tertiary"
+                variant="text"
+                key={node?.name}
+                to={`/blog/category/${node?.slug?.current}/`}
+                sx={{flex: "0 0 auto"}}
+              >
+                {node?.name}
+              </Button>
+            )
+          })}
+      </Box>
+      {/* <Tabs
         value={filterTabsValue}
         onChange={handleChange}
         variant="scrollable"
@@ -106,16 +130,16 @@ export const Filter = ({ type, allData, setFilterData }) => {
           label="All"
           color={selectedFilters === null ? "primary" : "tertiary"}
         />
-        {categoriesUsed &&
-          categoriesUsed.map(node => {
+        {data.allSanityPost?.nodes &&
+          data.allSanityPost?.nodes.map(node => {
             return (
-              <Tab               
-                key={node.name}
-                label={node.name}
-              />
+               <Tab        
+                label={node?.category?.name}>
+                <Link key={node?.category?.name} to={`/blog/category/${node?.category?.slug?.current}/`}>{node?.category.name}</Link>
+              </Tab>
             )
           })}
-      </Tabs>
+      </Tabs> */}
     </Box>
   )
 }

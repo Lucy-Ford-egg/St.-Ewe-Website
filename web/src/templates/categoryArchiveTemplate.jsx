@@ -7,17 +7,17 @@ import { useQuery } from "../../sanity/store"
 import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
-const BlogArchiveTemplate = props => {
+const CategoryArchiveTemplate = props => {
   const { data, pageContext, initial } = props
 
   // Preview
   const { data: previewData } = useQuery(
     PAGE_QUERY,
-    { slug: data.sanityPage.slug.current },
+    { slug: data.sanityCategories.slug.current },
     { initial },
   )
 
-  const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
+  const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityCategories?.pageBuilder
 
   return (
     <>
@@ -47,6 +47,7 @@ export const blogArchiveTemplateQuery = graphql`
       skip: $skip
       limit: $limit
       sort: {date: DESC}
+      filter: {category: {slug: {current: {eq: $slug}}}}
     ) {
       nodes {
         author {
@@ -84,7 +85,7 @@ export const blogArchiveTemplateQuery = graphql`
         }
       }
     }
-    sanityPage(slug: { current: { eq: $slug } }) {
+    sanityCategories(slug: { current: { eq: $slug } }) {
       slug {
         current
       }
@@ -93,11 +94,11 @@ export const blogArchiveTemplateQuery = graphql`
         value
         label
       }
-      pageTitle
+
       pageBuilder {
         ...PageBuilderFragment
       }
     }
   }
 `
-export default BlogArchiveTemplate
+export default CategoryArchiveTemplate

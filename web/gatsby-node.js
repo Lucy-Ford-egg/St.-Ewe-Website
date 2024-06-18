@@ -229,6 +229,9 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         category {
           name
           _id
+          slug {
+            current
+          }
         }
         pageBuilder{
           ... on SanityBlogSection {
@@ -295,7 +298,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       return acc;
     }, []);
 
-    console.table(`Blog IDs: ${blogPostsCategories} - ids: ${ids}`)
+    //console.table(`Blog IDs: ${blogPostsCategories} - ids: ${ids}`)
     return ids.length === 0 ? blogPostsCategories : ids
   }
 
@@ -312,13 +315,13 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               acc.push(archiveItem._id);
             }
           });
-          console.log(`CaseStudy IDs- ${JSON.stringify(acc)}`)
+          //console.log(`CaseStudy IDs- ${JSON.stringify(acc)}`)
         }
       }
       return acc;
     }, []);
 
-    console.table(`BPC: ${caseStudyCategories} - ids: ${ids}`)
+    //console.table(`BPC: ${caseStudyCategories} - ids: ${ids}`)
     return ids.length === 0 ? caseStudyCategories : ids
   }
 
@@ -370,6 +373,88 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       },
     })
   })
+
+  // Paginate Categories
+
+  // Function to filter posts by category
+function filterPostsByCategory(posts) {
+  const categories = {};
+
+  posts.forEach(post => {
+    const categorySlug = post.category.slug.current;
+
+    if (!categories[categorySlug]) {
+      categories[categorySlug] = [];
+    }
+
+    categories[categorySlug].push(post);
+  });
+
+  return categories;
+}
+
+// Usage
+const posts = result.data.allSanityPost.nodes;
+const categorizedPosts = filterPostsByCategory(posts);
+
+console.log(`Categorized Posts: ${categorizedPosts}`)
+
+Object.keys(categorizedPosts).forEach(categoryName => {
+  console.log(`Category: ${categoryName}`);
+
+  categorizedPosts[categoryName].forEach(node => {
+    console.log(`CatNode: ${JSON.stringify(node)}`);
+    createPage({
+      path: `blog/category/${node.category.slug.current}`,
+      component: require.resolve(`./src/templates/categoryTemplate.jsx`),
+      context: {
+        id: node.id,
+        key: node.category.slug.current,
+        slug: `${node.category.slug.current}`,
+        // title: node.title,
+        // coverImage: node.coverImage,
+        // date: node.date,
+        // service: node.service,
+        // excerpt: node.excerpt,
+        // postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        // caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
+      },
+    })
+    paginate({
+      createPage,
+      items: categorizedPosts[categoryName],
+      itemsPerPage: 12,
+      pathPrefix: `/blog/category/${node.category.slug.current}`,
+      component: require.resolve(`./src/templates/categoryArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.category.slug.current}`,
+        node: node,
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
+      },
+    })
+
+  });
+});
+
+  result.data.blogPage.nodes.forEach(node => {
+    paginate({
+      createPage,
+      items: blogPosts,
+      itemsPerPage: 12,
+      pathPrefix: `/${node.slug.current}`,
+      component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        node: node,
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        caseStudyIds: getShowArchiveCaseStudyIds(node.pageBuilder, "caseStudySection")
+      },
+    })
+  })
+
   result.data.caseStudyPage.nodes.forEach(node => {
     paginate({
       createPage,
@@ -387,10 +472,9 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     })
   })
 
-
   blogPosts.forEach(node => {
     createPage({
-      path: `blog/${node.slug.current}`,
+      path: `blog/${node.category.slug.current}/${node.slug.current}`,
       component: require.resolve(`./src/templates/postTemplate.jsx`),
       context: {
         id: node.id,

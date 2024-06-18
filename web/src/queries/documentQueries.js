@@ -255,6 +255,100 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
   _id,
 }`
 
+export const CATEGORIES_QUERY = groq`*[_type == "caseStudy" && slug.current == $slug][0] {
+  pageBuilder[] {
+    ...,
+    images[] { 
+      asset->,
+      hotspot{...},
+      crop{...}
+    },
+    image {
+      asset->,
+      hotspot{...},
+      crop{...}
+    },
+    links[]{
+      ${LINK},
+    },
+    title[]{...},
+    text[]{...},
+    title,
+    text,
+    navColor->,
+    backgroundColor{navColor->, ...},
+    overlay,
+    topPadding,
+    leftAlign, 
+    steps[]{
+      title,
+      description,
+      involves,
+      _type, 
+    },
+    showArchive{
+      ...,
+      archive[]->{...},  
+    },
+    showCaseStudyArchive{
+      ...,
+      archive[]->{
+        ..., 
+      },
+    },
+    teamTiles[]->{...},
+    tileColor->{...},
+    testimonialTiles[]->{
+      cite{
+        teamMemberCite->{
+          name,
+          position,
+          image {
+            asset->,
+            hotspot{...},
+            crop{...}
+          },
+        },
+        externalCite{
+          citeName,
+          citeLocation,
+          image {
+            asset->,
+            hotspot{...},
+            crop{...}
+          },
+        },
+      },
+      "_rawQuoteText": quoteText,
+    },
+  },
+  title,
+  text,
+  image {
+    asset->,
+    hotspot{...},
+    crop{...}
+  },
+  navColor{navColor->, ...},
+  mobileImage {
+    asset->,
+    hotspot{...},
+    crop{...}
+  },
+  textAlign,
+  slug,
+  companyDetails,
+  person,
+  _rawPerson,
+  coverImage {
+    asset->,
+    hotspot{...},
+    crop{...}
+  },
+  body[]{...},
+  _id,
+}`
+
 export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.current == $slug][0] {
   ...,
   ${PAGE_BUILDER},
