@@ -111,6 +111,9 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
       category {
         name
         _id
+        slug{
+          current
+        }
       }
       author {
         name

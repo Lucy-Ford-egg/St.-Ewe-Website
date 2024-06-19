@@ -85,6 +85,9 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       category {
         name
         _id
+         slug {
+          current
+        }
       }
       author {
         name
@@ -116,7 +119,6 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
           top
         }
       }
-   
       slug {
         current
       }
@@ -124,6 +126,9 @@ query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: Str
       category {
         name
         _id
+        slug{
+          current
+        }
       }
       author {
         name

@@ -62,12 +62,12 @@ export default defineType({
         source: 'name',
         maxLength: 96,
         isUnique: (value, context) => { 
-     
           return (
           context.defaultIsUnique(value, context)
         )},
       },
       validation: (rule) => rule.required(),
+      group: 'pageContent',
     }),
     // defineField({
     //   name: 'excerpt',

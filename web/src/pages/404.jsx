@@ -80,6 +80,9 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
       category {
         name
         _id
+         slug {
+            current
+          }
       }
       author {
         name
@@ -119,6 +122,9 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
       category {
         name
         _id
+         slug {
+            current
+          }
       }
       author {
         name

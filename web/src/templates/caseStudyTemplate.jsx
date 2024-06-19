@@ -167,7 +167,7 @@ const CaseStudyTemplate = props => {
               hotspot={definedImage?.hotspot}
               asset={
                 (definedImage?._ref &&
-                  urlFor(definedImage).width(1400).url()) ||
+                  urlFor(definedImage).width(1400).height(900).url()) ||
                 definedImage?.asset
               }
               width={1440}
@@ -285,6 +285,9 @@ export const caseStudyTemplateQuery = graphql`
         category {
           name
           _id
+          slug{
+            current
+          }
         }
         author {
           name

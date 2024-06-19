@@ -60,6 +60,9 @@ export const blogArchiveTemplateQuery = graphql`
         date
         category {
           name
+          slug{
+            current
+          }
         }
         tileColor {
           value

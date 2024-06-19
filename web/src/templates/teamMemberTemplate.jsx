@@ -181,6 +181,9 @@ export const teamMemberTemplateQuery = graphql`
         category {
           name
           _id
+          slug{
+            current
+          }
         }
         author {
           name

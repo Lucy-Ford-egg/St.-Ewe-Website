@@ -316,6 +316,9 @@ export const pageTemplateQuery = graphql`
         category {
           name
           _id
+          slug{
+            current
+          }
         }
         author {
           name

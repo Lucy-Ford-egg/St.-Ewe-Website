@@ -86,6 +86,9 @@ export const categoryTemplateQuery = graphql`
         category {
           name
           _id
+          slug{
+            current
+          }
         }
         author {
           name

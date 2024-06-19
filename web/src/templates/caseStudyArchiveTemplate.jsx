@@ -111,6 +111,9 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
       category {
         name
         _id
+        slug{
+          current
+        }
       }
       author {
         name

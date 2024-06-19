@@ -202,7 +202,7 @@ export const BlogSection = props => {
                     height: "100%",
                     flexBasis: "100%",
                   }}
-                  to={`/blog/${slug.current}`}
+                  to={`/blog/${category?.slug?.current}/${slug.current}`}
                 >
                   <Paper
                     className="wrapper"
@@ -452,7 +452,7 @@ export const BlogSection = props => {
                     height: "100%",
                     flexBasis: "100%",
                   }}
-                  to={`/blog/${slug.current}`}
+                  to={`/blog/${category?.slug?.current}/${slug.current}`}
                 >
                   <Paper
                     className="wrapper"
