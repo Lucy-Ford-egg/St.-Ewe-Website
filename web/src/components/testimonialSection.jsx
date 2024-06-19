@@ -200,7 +200,7 @@ export const TestimonialSection = props => {
           <Box
             sx={{
               position: "relative",
-              minHeight: 415,
+              minHeight: { xs: 600, sm: 450, md: 485 },
               gridColumn: "1/25",
               gridRow: "1/auto",
               overflow: "hidden",
@@ -245,7 +245,7 @@ export const TestimonialSection = props => {
                     flexDirection: "column",
                     alignItems: "flex-start",
                     justifyContent: "center",
-                    minHeight: { xs: 415, md: "unset" },
+                   
                     overflow: "hidden",
                     transition: "all 0.2s ease-in-out 0s",
                   }}
