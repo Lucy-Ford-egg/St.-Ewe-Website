@@ -337,6 +337,8 @@ export const TeamTile = props => {
                     <IconButton
                       size="small"
                       href={member?.linkedIn}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={`Go to ${member?.name} linkedIn profile`}
                       sx={{
                         color: contrastColour(definedTileColor).textColour,
