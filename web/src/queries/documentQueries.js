@@ -392,7 +392,10 @@ export const ALL_POSTS = groq`*[_type == "post"] {
 export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {
   _id,
   ...,
-  category->{...},
+  category->{
+    ...,
+    slug,
+  },
   author->{...},
 }`
 

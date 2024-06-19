@@ -259,6 +259,9 @@ export const pageTemplateQuery = graphql`
       date
       category {
         name
+        slug{
+            current
+          }
       }
       tileColor {
         value
@@ -367,6 +370,9 @@ export const pageTemplateQuery = graphql`
         category {
           name
           _id
+          slug{
+            current
+          }
         }
         author {
           name
