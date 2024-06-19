@@ -70,11 +70,11 @@ export const CaseStudyTile = (props) => {
                   crop={coverImage?.crop}
                   hotspot={coverImage?.hotspot}
                   asset={(coverImage?._ref &&
-                      urlFor(coverImage).width(700).url()) ||
+                      urlFor(coverImage).width(700).height(400).url()) ||
                     coverImage?.asset
                   }
                   width={disableSummary ? 1024 : 700}
-                  height={disableSummary ? 583 : false}
+                  height={disableSummary ? 583 : 400}
                   style={{
                     objectFit: "cover",
                     width: "100%",

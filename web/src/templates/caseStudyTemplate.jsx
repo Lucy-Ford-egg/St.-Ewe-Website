@@ -48,7 +48,7 @@ const CaseStudyTemplate = props => {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(24, 1fr)",
-          alignItems: "center",
+          alignItems: "flex-end",
           justifyContent: "center",
           height: "100%",
           minHeight: {xs: "78vh", sm: "min-content"},
@@ -66,7 +66,7 @@ const CaseStudyTemplate = props => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
-            pb: 6,
+            pb: {xs: 6, md: 16},
             pt: { xs: 0, md: 0 },
             alignSelf: { xs: "end", md: "unset" },
           }}
@@ -167,10 +167,11 @@ const CaseStudyTemplate = props => {
               hotspot={definedImage?.hotspot}
               asset={
                 (definedImage?._ref &&
-                  urlFor(definedImage).width(1400).height(900).url()) ||
+                  urlFor(definedImage).width(1400).height(700).url()) ||
                 definedImage?.asset
               }
               width={1440}
+              height={700}
               style={{
                 objectFit: "cover",
                 width: "100%",
