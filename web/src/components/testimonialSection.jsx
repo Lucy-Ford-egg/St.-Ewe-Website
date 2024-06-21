@@ -200,7 +200,7 @@ export const TestimonialSection = props => {
           <Box
             sx={{
               position: "relative",
-              minHeight: { xs: 600, sm: 450, md: 485 },
+              minHeight: { xs: 680, sm: 450, md: 485 },
               gridColumn: "1/25",
               gridRow: "1/auto",
               overflow: "hidden",
