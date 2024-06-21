@@ -15,7 +15,7 @@ import { urlFor } from "../utils/imageHelpers"
 import { RenderPortableText } from "../components/renderPortableText"
 //Preview
 import { useQuery } from "../../sanity/store"
-import { CASE_STUDY_QUERY } from "../queries/documentQueries"
+import { CASE_STUDY_QUERY, CASE_STUDIES_BY_ID } from "../queries/documentQueries"
 
 const CaseStudyTemplate = props => {
   const { data, pageContext, initial, location } = props
@@ -24,22 +24,22 @@ const CaseStudyTemplate = props => {
 
   // Preview
   const { data: previewData } = useQuery(
-    CASE_STUDY_QUERY,
+    `{"caseStudyQuery:" ${CASE_STUDY_QUERY}`,
     { slug: data.sanityCaseStudy.slug.current },
     { initial },
   )
 
   const definedImage =
-    (previewData && previewData?.coverImage) || data.sanityCaseStudy?.coverImage
+    (previewData && previewData?.caseStudyQuery?.coverImage) || data.sanityCaseStudy?.coverImage
   const definedRawPerson =
-    (previewData && previewData?.person) || data.sanityCaseStudy?._rawPerson
+    (previewData && previewData?.caseStudyQuery?.person) || data.sanityCaseStudy?._rawPerson
   const definedService =
-    (previewData && previewData?.service?.name) ||
+    (previewData && previewData?.caseStudyQuery?.service?.name) ||
     data.sanityCaseStudy?.service?.name
 
-  const definedRawBody = (previewData && previewData?.body) || data?.sanityCaseStudy._rawBody
-  const definedModules = (previewData && previewData?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
-   
+  const definedRawBody = (previewData && previewData?.caseStudyQuery?.body) || data?.sanityCaseStudy._rawBody
+  const definedModules = (previewData && previewData?.caseStudyQuery?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
+  
   return (
     <>
       <Container
@@ -210,6 +210,7 @@ const CaseStudyTemplate = props => {
         pageContext={pageContext}
         modules={definedModules}
         getAllPosts={data.getAllPosts}
+        allSanityCaseStudy={data.allSanityCaseStudy}
       />
             
     </>
@@ -221,7 +222,7 @@ export const Head = ({ data, location }) => {
 }
 
 export const caseStudyTemplateQuery = graphql`
-  query caseStudyTemplateQuery($slug: String!) {
+  query caseStudyTemplateQuery($slug: String!, $caseStudyIds:[String!]) {
     sanityCaseStudy(slug: { current: { eq: $slug } }) {
       ... SeoCaseStudyFragment
       slug {
@@ -258,6 +259,19 @@ export const caseStudyTemplateQuery = graphql`
         ...PageBuilderFragment
       }
     }
+    allSanityCaseStudy(filter: {
+      service: {
+        _id: {
+          in: $caseStudyIds
+        }
+      }
+    }) {
+    nodes {
+      _key
+      _id
+      ...CaseStudyTileFragment 
+    }
+  }
     getAllPosts: allSanityPost(sort: {date: DESC}){
       nodes {
         tileImage {

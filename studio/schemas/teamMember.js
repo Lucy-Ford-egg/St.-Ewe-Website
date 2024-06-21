@@ -1,4 +1,5 @@
-import { MdAccessibilityNew } from "react-icons/md";
+import { MdPictureAsPdf, MdAccessibilityNew } from "react-icons/md";
+
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import openGraph from '../schemas/openGraph'
@@ -178,8 +179,47 @@ export default defineType({
             { title: 'Strong', value: 'strong' },
             { title: 'Emphasis', value: 'em' },
             { title: 'Underline', value: 'underline' },
-          ]
-        }
+          ],
+          annotations: [
+            {
+              name: 'internalLink',
+              type: 'object',
+              title: 'Internal link',
+              fields: [
+                {
+                  name: 'reference',
+                  type: 'reference',
+                  title: 'Reference',
+                  to: [
+                    { type: 'post' }, {type: 'page'}
+                    // other types you may want to link to
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'link',
+              type: 'object',
+              title: 'External link',
+              fields: [
+                {
+                  name: 'href',
+                  type: 'url',
+                  title: 'URL'
+                },
+                {
+                  title: 'Open in new tab',
+                  name: 'blank',
+                  default: true,
+                  type: 'boolean'
+                }
+              ]
+            },
+            {type: 'file', icon: MdPictureAsPdf},
+            {type: 'textColor',},
+            // {type: 'imageOptions'},  
+          ],
+        },
       }, {
         type: 'image',
         validation: (rule) => rule.required(),

@@ -211,6 +211,32 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           name
           _id
         }
+          pageBuilder{
+          ... on SanityBlogSection {
+            _key
+            _type
+            showArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+          ... on SanityCaseStudySection {
+            _key
+            _type
+            disableSummary
+            asCarousel
+            showCaseStudyArchive {
+              archive {
+                name
+                _id
+              }
+              setArchive
+            }
+          }
+        }
       }
     }
     allSanityPost(sort: {date: DESC}) {
@@ -284,7 +310,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
 
-      if (type === "blogSection") {
+      if (type === currentItem?._type) {
         if (currentItem && currentItem.showArchive && currentItem.showArchive.archive) {
           const archiveItems = currentItem.showArchive.archive;
 
@@ -303,26 +329,30 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   }
 
   function getShowArchiveCaseStudyIds(pageBuilder, type) {
+    //!
     const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
-
+// console.log(`PageBuilder type: ${JSON.stringify(pageBuilder)}`)
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
-      if (type === "caseStudySection") {
+      // console.log(`Current Item: ${JSON.stringify(currentItem)}`)
+      if (type === currentItem?._type) {
+        // console.log(`CaseStudy acc : ${JSON.stringify(currentItem) }`)
         if (currentItem && currentItem.showCaseStudyArchive && currentItem.showCaseStudyArchive.archive) {
           const archiveItems = currentItem.showCaseStudyArchive.archive;
-
+          
           archiveItems.forEach(archiveItem => {
             if (archiveItem._id) {
               acc.push(archiveItem._id);
             }
           });
-          //console.log(`CaseStudy IDs- ${JSON.stringify(acc)}`)
         }
       }
+      // console.log(`CaseStudy acc : ${JSON.stringify(acc) }`)
       return acc;
     }, []);
+    // console.log(`CaseStudy ids : ${JSON.stringify(ids) }`)
+    // console.log(`CaseStudy ids.length : ${ids.length }`)
 
-    //console.table(`BPC: ${caseStudyCategories} - ids: ${ids}`)
-    return ids.length === 0 ? caseStudyCategories : ids
+    return ids.length === 0 ? caseStudyCategories : ids    
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
