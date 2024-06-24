@@ -251,7 +251,13 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
     hotspot{...},
     crop{...}
   },
-  body[]{...},
+  body[]{
+    ...,
+    file{
+      ...,
+      },
+    },
+  },
   _id,
 }`
 
@@ -376,6 +382,13 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
     crop{...}
   },
   bio[]{...},
+  body[]{
+    ...,
+    file{
+      ...,
+      },
+    },
+  },
   _id,
 }`
 
