@@ -259,13 +259,13 @@ module.exports = {
       resolve: `gatsby-plugin-gdpr-cookies`,
       options: {
         googleAnalytics: {
-          trackingId: 'YOUR_GOOGLE_ANALYTICS_TRACKING_ID', // leave empty if you want to disable the tracker
+          trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID, // leave empty if you want to disable the tracker
           cookieName: 'gatsby-gdpr-google-analytics', // default
           anonymize: true, // default
           allowAdFeatures: false // default
         },
         googleTagManager: {
-          trackingId: 'YOUR_GOOGLE_TAG_MANAGER_TRACKING_ID', // leave empty if you want to disable the tracker
+          trackingId: process.env.GOOGLE_TAG_MANAGER_TRACKING_ID, // leave empty if you want to disable the tracker
           cookieName: 'gatsby-gdpr-google-tagmanager', // default
           dataLayerName: 'dataLayer', // default
         },
@@ -291,5 +291,5 @@ module.exports = {
       },
     },
   ],
-  partytownProxiedURLs: [`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG}`]
+  partytownProxiedURLs: [`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_TAG_MANAGER_TRACKING_ID}`]
 }

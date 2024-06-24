@@ -637,7 +637,12 @@ export const Footer = props => {
         buttonWrapperClasses="buttonWrapperClasses"
         acceptButtonClasses="cookieButton acceptButtonClasses"
         declineButtonClasses="cookieButton buttonOutlined"
-        personalizeButtonClasses="cookieButton buttonOutlined buttonTertiary">
+        personalizeButtonClasses="cookieButton buttonOutlined buttonTertiary"
+        cookies={[
+          {name: 'necessary', editable: false, default: true, title: 'Essential', text: 'Essential cookies are necessary for the proper functioning of the site. The site cannot function properly without them.' },
+          {name: 'gatsby-gdpr-google-analytics', editable: true, default: true, title: 'Google Analytics', text: 'Google Analytics is a statistical tool of Google allowing to measure the audience of the website.' },
+          {name: 'gatsby-gdpr-google-tagmanager', editable: true, default: true, title: 'Google Tag Manager', text: 'Google Tag Manager is a tag management system to manage JavaScript and HTML tags, including web beacons, for web tracking and analytics.' }
+    ]}>
           <Box>
             <Typography color="white.main" variant="h5" sx={{ mb: 4 }}>
               This websites uses cookies.
