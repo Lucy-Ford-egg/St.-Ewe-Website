@@ -7,7 +7,7 @@ const netlifyAdapter = require("gatsby-adapter-netlify").default;
 const isProd = process.env.NODE_ENV === "production"
 const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() === "true"
 
-const siteUrl = process.env.GATSBY_FRONTEND || `https://taylormoney.netlify.app/`
+const siteUrl = process.env.GATSBY_FRONTEND || `https://taylormoney.com/`
 
 module.exports = {
   adapter: netlifyAdapter({

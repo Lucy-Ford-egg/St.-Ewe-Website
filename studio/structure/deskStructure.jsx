@@ -12,7 +12,7 @@ import {
 } from 'react-icons/md'
 // import {SEOPane} from 'sanity-plugin-seo-pane'
 
-// const remoteURL = 'https://taylormoney.netlify.app' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
+// const remoteURL = 'https://taylormoney.com' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
 // const localURL = 'https://localhost:8000' // local development port from Gatsby
 // const previewUrl = window.location.hostname.includes('localhost') ? localURL : remoteURL
 
