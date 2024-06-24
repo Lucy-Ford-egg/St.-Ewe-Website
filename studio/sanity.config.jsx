@@ -16,21 +16,14 @@ import {presentationTool} from 'sanity/presentation'
 import {locate} from './locate'
 
 
-export default defineConfig({
+export default defineConfig([{
   name: 'default',
   title: 'Taylor Money',
   projectId: '0y4lutj5',
   dataset: 'production',
+  basePath: '/production',
   apiVersion: '2023-08-01',
   theme,
-  graphql: [
-    {
-      playground: true,
-      tag: 'production',
-      workspace: 'production',
-      id: 'production',
-    },
-  ],
   plugins: [
     structureTool({
       structure: deskStructure,
@@ -52,5 +45,37 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-  icon: Logo,
-})
+  icon: Logo("production"),
+}, 
+{
+  name: 'beta',
+  title: 'Beta Taylor Money',
+  projectId: '0y4lutj5',
+  dataset: 'beta',
+  basePath: '/beta',
+  apiVersion: '2023-08-01',
+  theme,
+  plugins: [
+    structureTool({
+      structure: deskStructure,
+    }),
+    presentationTool({
+      previewUrl: async () => {
+        const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
+        return url
+      },
+      locate: locate,
+    }),
+    visionTool(),
+    media(),
+    unsplashImageAsset(),
+    colorInput(),
+    googleMapsInput(googleMaps),
+    simplerColorInput(brandColors),
+  ],
+  schema: {
+    types: schemaTypes,
+  },
+  icon: Logo("beta"),
+}
+])
