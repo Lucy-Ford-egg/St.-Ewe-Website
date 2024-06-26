@@ -139,7 +139,9 @@ export const HeaderSection = props => {
             >
               <motion.div
                 initial={{ y: 0, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                animate={{ y: 0, opacity: 1, transition: {
+                  delay: 0.5,
+                } }}
               >
                 <RenderPortableText
                   previewData={previewData}
@@ -178,6 +180,12 @@ export const HeaderSection = props => {
               }}
             >
               {definedText && (
+                <motion.div
+                initial={{ y: 0, opacity: 0 }}
+                animate={{ y: 0, opacity: 1, transition: {
+                  delay: 0.6,
+                } }}
+              >
                 <RenderPortableText
                   previewData={previewData}
                   sanityConfig={sanityConfig}
@@ -185,9 +193,16 @@ export const HeaderSection = props => {
                   textAlign={definedTextAlign}
                   value={definedText}
                 />
+                </motion.div>
               )}
             </Box>
             {definedLinks && definedLinks.length > 0 && (
+               <motion.div
+               initial={{ y: 0, opacity: 0 }}
+               animate={{ y: 0, opacity: 1, transition: {
+                 delay: 0.7,
+               } }}
+             >
               <Box
                 sx={{
                   pt: 8,
@@ -200,6 +215,7 @@ export const HeaderSection = props => {
                   highlighted
                 />
               </Box>
+              </motion.div>
             )}
           </Box>
         </Container>
@@ -257,8 +273,8 @@ export const HeaderSection = props => {
               }}
               transition={{
                 type: "smooth",
-                duration: 1,
-                delay: 1,
+                duration: 0.5,
+                delay: 0,
               }}
             >
               <Image
