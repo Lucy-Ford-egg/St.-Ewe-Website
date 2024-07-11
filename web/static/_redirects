@@ -1,5 +1,4 @@
 /*  /blog/:splat
-/sample-page/	home
 /blog/uncategorised/	/blog/
 /signup/	/contact/
 /invest-money-wisely/	/blog/
@@ -14,8 +13,7 @@
 /blog/smart-money-newsletters/	/blog/
 /services/	/what-we-do/
 /slider-test/	/what-we-do/
-/blog/commentary-insights/	/blog/
-/privacy-policy/	
+/blog/commentary-insights/	/blog/	
 /login/	/client-login/
 /category/commentary-insights/	/blog/
 /category/entrepreneur-series/	/blog/
