@@ -128,7 +128,7 @@ module.exports = {
 
           const postsNodeMap = allPosts.reduce((acc, node) => {
             const { slug } = node
-            acc[`/blog/${slug?.current}`] = node
+            acc[`/blog/${node?.reference?.category?.slug?.current}/${slug?.current}`] = node
 
             return acc
           }, {})
