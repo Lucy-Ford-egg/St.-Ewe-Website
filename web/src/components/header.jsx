@@ -63,6 +63,13 @@ const Header = props => {
                   id
                   slug {
                     current
+                    _type
+                  }
+                  category {
+                    name
+                    slug{
+                      current
+                    }
                   }
                 }
               }
@@ -83,6 +90,13 @@ const Header = props => {
                   id
                   slug {
                     current
+                    _type
+                  }
+                  category {
+                    name
+                    slug{
+                      current
+                    }
                   }
                 }
               }

@@ -10,7 +10,8 @@ export const ButtonFormat = props => {
   const definedExternal = node?.link?.external
 
   if(node?.link?.internal?._type === "post"){
-    definedInternal = `/blog/${node?.reference?.category?.slug?.current}/${definedInternal}`
+
+    definedInternal = `blog/${node?.link?.internal?.category?.slug?.current}/${definedInternal}`
   }
   if(node?.link?.internal?._type === "caseStudy" ){
     definedInternal = `/case-studies/${definedInternal}`

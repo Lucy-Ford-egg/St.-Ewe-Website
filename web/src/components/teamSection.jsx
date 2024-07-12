@@ -212,10 +212,16 @@ export const query = graphql`
           }
           ... on SanityPost {
             id
-            _type
-            slug {
-              current
-            }
+                  slug {
+                    current
+                    _type
+                  }
+                  category {
+                    name
+                    slug{
+                      current
+                    }
+                  }
           }
         }
       }
