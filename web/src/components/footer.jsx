@@ -43,6 +43,13 @@ export const Footer = props => {
                   id
                   slug {
                     current
+                    _type
+                  }
+                  category {
+                    name
+                    slug{
+                      current
+                    }
                   }
                 }
               }
@@ -89,6 +96,12 @@ export const Footer = props => {
                   slug {
                     current
                     _type
+                  }
+                  category {
+                    name
+                    slug{
+                      current
+                    }
                   }
                 }
               }

@@ -6,8 +6,14 @@ export const LINK = `
 link{
   internal->{
     slug {
-      current
-    }
+      current,
+      _type
+    },
+    category-> {
+      ...,
+    },
+    _type,
+    id,             
   },
   external,
 },
