@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby-theme-material-ui"
 import Container from "@mui/material/Container"
@@ -28,12 +28,8 @@ const Header = props => {
     offset: md ? "200px" : "100px",
   })
   const opacity = useTransform(scrollY, [0, 200], [1, 0])
-
-  
-
-  useEffect(() => {
-    console.log(`opacity @ ${JSON.stringify(opacity)}`)
-  }, [scrollY])
+  const visibility = useTransform(scrollY, [0, 200], ["visible", "hidden"])
+  const pointerEvents = useTransform(scrollY, [0, 200], ["auto", "none"])
   
   const toggleOpenNavMenu = toggle => {
     setAnchorElNav(toggle)
@@ -121,7 +117,8 @@ const Header = props => {
           background: "white",
           zIndex: 999,
           opacity: anchorElNav || opacity === null ? 1 : opacity,
-          pointerEvents: opacity === 0 ? "none" : "auto",
+          visibility: visibility,
+          pointerEvents: pointerEvents,
           boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.1)",
         }}
         initial={false}
