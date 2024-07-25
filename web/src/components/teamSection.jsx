@@ -254,6 +254,9 @@ export const query = graphql`
       name
       position
       linkedIn
+      slug{
+        current
+      }
     }
     topPadding
   }
