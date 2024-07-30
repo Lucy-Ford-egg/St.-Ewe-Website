@@ -43,10 +43,79 @@ export const BlogSection = props => {
 
   const [filtersPosts, setFilterData] = useState(null)
 
+  const [pagination, setPagination ] = useState(null)
+
+  const [chunkIndex, setChunkIndex] = useState(0)
+
+  function findArrayIndexContainingPage(nestedArray, pageNumber) {
+    for (let i = 0; i < nestedArray.length; i++) {
+      if (nestedArray[i].includes(pageNumber)) {
+        return i; // Return the index of the sub-array
+      }
+    }
+    return -1; // Return -1 if the page number is not found in any sub-array
+  }
+
+  function removeFirstAndLast(array) {
+    // Check if the array has at least two elements
+    if (array.length >= 2) {
+      // Remove the first element
+      array.shift();
+      // Remove the last element
+      array.pop();
+    }
+    // Return the modified array
+    return array;
+  }
+
   const pages = Array.from(
     { length: pageContext.numberOfPages },
-    (_, index) => index + 1,
+    (_, index) => {
+      return (
+        index + 1
+      )
+        
+    },
   )
+
+  function chunkArray(array, chunkSize) {
+    // Create an empty array to hold the chunks
+    let chunks = [];
+    
+
+    // Loop through the array, incrementing by chunkSize each time
+    for (let i = 0; i < array.length; i += chunkSize) {
+      // Slice the array from the current index i to i + chunkSize
+      let chunk = array.slice(i, i + chunkSize);
+      // Add the sliced chunk to the chunks array
+      chunks.push(chunk);
+    }
+    
+    // Return the array of chunks
+    return chunks;
+  }
+
+  function prepareChunks() {
+    return findArrayIndexContainingPage(pagination, humanPageNumber)
+  }
+  useEffect(() => {
+    
+    pages && setPagination(chunkArray(removeFirstAndLast(pages), 5))
+  }, [setPagination, chunkArray, pages, removeFirstAndLast])
+
+  let humanPageNumber = props.pageContext.humanPageNumber === 1 ? 2 : props.pageContext.humanPageNumber === pageContext.numberOfPages ? pageContext.numberOfPages - 1 : props.pageContext.humanPageNumber
+  useEffect(() => {  
+
+     // === 0 ? 2 : props.pageContext.humanPageNumber
+
+    pagination && setChunkIndex(prepareChunks())
+  }, [ setChunkIndex, pagination, prepareChunks])
+
+  // function createArrayFromNumber(num) {
+  //   return Array.from({ length: num }, (v, i) => i + 1);
+  // }
+
+  
 
   const { data: postData } = useQuery(
     POSTS_BY_ID,
@@ -731,7 +800,25 @@ export const BlogSection = props => {
                 columnGap: 3,
               }}
             >
-              {pages.map(node => {
+              <Typography
+                    sx={{
+                      color:
+                        1 === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                        "&:hover": {
+                            cursor: "pointer",
+                            color: theme.palette.primary.main
+                        }
+                    }}
+                  >
+                    <GatsbyLink sx={{
+                      color: "inherit"
+                    }} to={`/blog/`}>{1}</GatsbyLink>
+                  </Typography>
+              {chunkIndex > 0 && '...'}
+              { pagination && pagination[chunkIndex].map(node => {
+                
                 return (
                   <Typography
                     sx={{
@@ -751,6 +838,23 @@ export const BlogSection = props => {
                   </Typography>
                 )
               })}
+              ...
+              <Typography
+                    sx={{
+                      color:
+                        props.pageContext.numberOfPages === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                        "&:hover": {
+                            cursor: "pointer",
+                            color: theme.palette.primary.main
+                        }
+                    }}
+                  >
+                    <GatsbyLink sx={{
+                      color: "inherit"
+                    }} to={`/blog/${props.pageContext?.numberOfPages}`}>{props.pageContext?.numberOfPages}</GatsbyLink>
+                  </Typography>
             </Box>
 
             <Button

@@ -18,7 +18,7 @@ export const Filter = ({ type, allData, setFilterData, pageContext }) => {
       }
     }
   `)
-debugger
+
   return (
     <Box
       sx={{
