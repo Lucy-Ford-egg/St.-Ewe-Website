@@ -35,9 +35,9 @@ export const CaseStudyTile = (props) => {
   const definedService = (service && service.name) || (service) && service.name
 
   const backgroundColor = i % 2 ? "secondary" : "primary"
-
+  const number = i + 1
   return (
-    <Link to={`/case-studies/${slug.current}`} style={{ display: "block", width: "inherit", textDecoration: "none" }} state={{ backgroundColor: backgroundColor }}>
+    <Link to={`/case-studies/${slug.current}`} style={{ display: "block", width: "inherit", textDecoration: "none" }} state={{ backgroundColor: backgroundColor, number: number}}>
       <Card
         elevation={0}
         sx={{
@@ -200,7 +200,7 @@ export const CaseStudyTile = (props) => {
                     transition: "all 0.2s ease-in 0s",
                     textAlign: "center",
                   }}
-                  state={{ backgroundColor: backgroundColor }}
+                  state={{ backgroundColor: backgroundColor, number: number}}
                 >
                   Read More
                 </Button>

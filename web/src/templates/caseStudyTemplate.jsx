@@ -39,7 +39,7 @@ const CaseStudyTemplate = props => {
 
   const definedRawBody = (previewData && previewData?.caseStudyQuery?.body) || data?.sanityCaseStudy._rawBody
   const definedModules = (previewData && previewData?.caseStudyQuery?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
-  
+
   return (
     <>
       <Container
@@ -72,7 +72,7 @@ const CaseStudyTemplate = props => {
           }}
         >
           <Grid container>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm="auto">
               <Box
                 sx={{
                   backgroundColor: `${location?.state?.backgroundColor}.main`,
@@ -85,7 +85,7 @@ const CaseStudyTemplate = props => {
                 {definedRawPerson && (
                   <Box sx={{ color: "white.main",  maxWidth: "100%", }}>
                     <RenderPortableText
-                      setAsHeading={mobile ? "h2" : "h1"}
+                      setAsHeading={mobile ? "h2" : "h2"}
                       value={definedRawPerson}
                     />
                   </Box>
@@ -120,7 +120,7 @@ const CaseStudyTemplate = props => {
                       color="white.main"
                       sx={{ fontSize: theme.spacing(6) }}
                     >
-                      {String(pageContext.key + 1).padStart(2, "0")}
+                      {String(location?.state?.number).padStart(2, "0")}
                     </Typography>
                   </Box>
                   <Box
