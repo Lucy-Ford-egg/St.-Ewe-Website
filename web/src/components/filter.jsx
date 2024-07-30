@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography"
 import { graphql, useStaticQuery } from "gatsby"
 
 
-export const Filter = ({ type, allData, setFilterData }) => {
+export const Filter = ({ type, allData, setFilterData, pageContext }) => {
   const data = useStaticQuery(graphql`
     query CategoriesQuery {
       allSanityCategories {
@@ -18,7 +18,7 @@ export const Filter = ({ type, allData, setFilterData }) => {
       }
     }
   `)
-
+debugger
   return (
     <Box
       sx={{
@@ -42,18 +42,28 @@ export const Filter = ({ type, allData, setFilterData }) => {
         }}
       >
         <Button variant="text" key="all" to={`/blog`}
-        sx={{flex: "0 0 auto"}}>
+        sx={{
+          flex: "0 0 auto", 
+          color: pageContext?.slug === "blog" ? "primary.main" : "tertiary.main"}}>
           All
         </Button>
         {data.allSanityCategories?.nodes &&
           data.allSanityCategories?.nodes.map(node => {
+       
             return (
               <Button
-                color="tertiary"
+                
                 variant="text"
                 key={node?.name}
                 to={`/blog/category/${node?.slug?.current}/`}
-                sx={{flex: "0 0 auto"}}
+                sx={{
+                  flex: "0 0 auto",
+                  color: pageContext?.slug === node?.slug?.current ? "primary.main" : "tertiary.main",
+                  "&:hover": {
+                    cursor: "pointer",
+                    color: "primary.main"
+                }
+              }}
               >
                 {node?.name}
               </Button>

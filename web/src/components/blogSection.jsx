@@ -162,6 +162,7 @@ export const BlogSection = props => {
           allData={getAllPosts.nodes}
           filtersData={filtersPosts}
           setFilterData={setFilterData}
+          pageContext={ pageContext}
         />
 
 
