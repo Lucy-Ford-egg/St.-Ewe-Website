@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
@@ -740,7 +740,7 @@ export const BlogSection = props => {
                           : "inherit",
                     }}
                   >
-                    {node}
+                    <Link to={`/blog/${node}`}>{node}</Link>
                   </Typography>
                 )
               })}
