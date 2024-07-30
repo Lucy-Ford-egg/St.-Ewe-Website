@@ -738,12 +738,14 @@ export const BlogSection = props => {
                         node === props.pageContext.humanPageNumber
                           ? "primary.main"
                           : "inherit",
+                        "&:hover": {
+                            cursor: "pointer",
+                            color: theme.palette.primary.main
+                        }
                     }}
                   >
                     <GatsbyLink sx={{
-                      "&:hover": {
-                        cursor: "pointer",
-                      }
+                      color: "inherit"
                     }} to={`/blog/${node === 1 ? "" : node}`}>{node}</GatsbyLink>
                   </Typography>
                 )
