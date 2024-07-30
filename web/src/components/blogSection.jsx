@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { graphql, Link } from "gatsby"
+import { graphql} from "gatsby"
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
@@ -740,7 +740,11 @@ export const BlogSection = props => {
                           : "inherit",
                     }}
                   >
-                    <Link to={`/blog/${node}`}>{node}</Link>
+                    <GatsbyLink sx={{
+                      "&:hover": {
+                        cursor: "pointer",
+                      }
+                    }} to={`/blog/${node === 1 ? "" : node}`}>{node}</GatsbyLink>
                   </Typography>
                 )
               })}
