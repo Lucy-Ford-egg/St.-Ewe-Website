@@ -244,6 +244,7 @@ export const BlogSection = props => {
 
             return (
               <Grid
+              key={title}
                 item
                 xs={12}
                 sm={6}
