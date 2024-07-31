@@ -95,25 +95,19 @@ export const BlogSection = props => {
     return chunks;
   }
 
-  function prepareChunks() {
-    return findArrayIndexContainingPage(pagination, humanPageNumber)
-  }
   useEffect(() => {
     
     pages && setPagination(chunkArray(removeFirstAndLast(pages), 5))
   }, [setPagination, chunkArray, pages, removeFirstAndLast])
 
   let humanPageNumber = props.pageContext.humanPageNumber === 1 ? 2 : props.pageContext.humanPageNumber === pageContext.numberOfPages ? pageContext.numberOfPages - 1 : props.pageContext.humanPageNumber
+  
   useEffect(() => {  
 
      // === 0 ? 2 : props.pageContext.humanPageNumber
 
-    pagination && setChunkIndex(prepareChunks())
-  }, [ setChunkIndex, pagination, prepareChunks])
-
-  // function createArrayFromNumber(num) {
-  //   return Array.from({ length: num }, (v, i) => i + 1);
-  // }
+    pagination && setChunkIndex(findArrayIndexContainingPage(pagination, humanPageNumber))
+  }, [ setChunkIndex, pagination, findArrayIndexContainingPage, humanPageNumber])
 
   
 
@@ -159,7 +153,7 @@ export const BlogSection = props => {
 
   useEffect(() => {
     setFilterData(definedAllSanityPost)
-  }, [definedAllSanityPost])
+  }, [definedAllSanityPost, setFilterData])
 
   return (
     <Container
@@ -817,7 +811,7 @@ export const BlogSection = props => {
                     }} to={`/blog/`}>{1}</GatsbyLink>
                   </Typography>
               {chunkIndex > 0 && '...'}
-              { pagination && pagination[chunkIndex].map(node => {
+              { pagination && pagination[chunkIndex] && pagination[chunkIndex].map(node => {
                 
                 return (
                   <Typography
@@ -838,7 +832,7 @@ export const BlogSection = props => {
                   </Typography>
                 )
               })}
-              ...
+              {pagination && pagination.length > 0 && '...'}
               <Typography
                     sx={{
                       color:
