@@ -398,7 +398,7 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
   _id,
 }`
 
-export const ALL_POSTS = groq`*[_type == "post"] {
+export const ALL_POSTS = groq`*[_type == "post"] |  order(date desc){
   _id,
   title,
   ...,
@@ -408,7 +408,7 @@ export const ALL_POSTS = groq`*[_type == "post"] {
   author->{...},
 }`
 
-export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {
+export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] |  order(date desc){
   _id,
   ...,
   category->{
