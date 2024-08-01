@@ -1,14 +1,14 @@
-import { MdOutlineChat, MdPictureAsPdf, MdViewModule } from "react-icons/md";
+import { MdOutlineChat, MdPictureAsPdf } from "react-icons/md";
 
 import { format, parseISO } from 'date-fns'
-import { defineField, defineType, defineArrayMember } from 'sanity'
+import { defineField, defineType } from 'sanity'
 import authorType from './author'
 import categoriesType from './categories'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
 // Sections 
-import headerSectionType from './sections/headerSection'
+// import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
 import caseStudySectionType from './sections/caseStudySection'
@@ -191,7 +191,10 @@ export default defineType({
               {
                 name: 'href',
                 type: 'url',
-                title: 'URL'
+                title: 'URL',
+                validation: Rule => Rule.uri({
+                  scheme: ['http', 'https', 'mailto', 'tel']
+                })
               },
               {
                 title: 'Open in new tab',

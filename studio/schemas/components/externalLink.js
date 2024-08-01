@@ -13,7 +13,10 @@ export default defineType({
     defineField({
       name: 'href',
       type: 'url',
-      title: 'URL'
+      title: 'URL',
+      validation: Rule => Rule.uri({
+        scheme: ['http', 'https', 'mailto', 'tel']
+      })
     }),
     defineField({
       title: 'Open in new tab',

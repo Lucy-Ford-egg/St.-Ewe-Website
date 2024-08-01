@@ -26,6 +26,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
             {
               title: doc.title || "Untitled",
               href: `/blog/${doc.category.current}/${doc.slug.current}`,
+              
             },
           ],
         };
