@@ -10,7 +10,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
   if (params.type === "post") {
     // Subscribe to the latest slug and title
     const doc$ = context.documentStore.listenQuery(
-      `*[_id == $id][0]{slug,title}`,
+      `*[_id == $id][0]{slug,title, category->{...}}`,
       params,
       { perspective: "previewDrafts" } // returns a draft article if it exists
     );
@@ -25,7 +25,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
           locations: [
             {
               title: doc.title || "Untitled",
-              href: `/blog/${doc.slug.current}`,
+              href: `/blog/${doc.category.current}/${doc.slug.current}`,
             },
           ],
         };
