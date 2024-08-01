@@ -519,7 +519,6 @@ export const Footer = props => {
                     >
                       {definedLinks &&
                         definedLinks.map((node, i) => {
-                        
                           return (
                             <ButtonFormat
                               key={node?._key}

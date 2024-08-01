@@ -138,6 +138,7 @@ export const FeaturesListSection = props => {
             definedFeaturesTile.map((tile, i) => {
               return (
                 <FeaturesTile
+                  key={tile._key}
                   node={tile}
                   index={i}
                   previewData={previewData}
@@ -177,6 +178,7 @@ export const query = graphql`
     topPadding
     featuresTile {
       title
+      _key
       _rawText(resolveReferences: { maxDepth: 10 })
       link {
         text

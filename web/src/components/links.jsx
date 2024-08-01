@@ -21,6 +21,7 @@ const definedLinks = (previewData && previewData.links && previewData?.links) ||
       definedLinks.map((node, i) => {
         return (
           <ButtonFormat
+            key={node._key}
             {...props}
             variant={i === 0 ? "contained" : "outlined"}
             color={i === 0 ? linkOne === 'primary' ? "primary" : "secondary" : highlighted ? "secondary" : "tertiary"}
