@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { graphql} from "gatsby"
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
@@ -41,73 +41,59 @@ export const BlogSection = props => {
 
   const theme = useTheme()
 
-  const [filtersPosts, setFilterData] = useState(null)
+  const [filtersPosts, setFilterData] = useState(null);
+const [pagination, setPagination] = useState(null);
+const [chunkIndex, setChunkIndex] = useState(0);
 
-  const [pagination, setPagination ] = useState(null)
-
-  const [chunkIndex, setChunkIndex] = useState(0)
-
-  function findArrayIndexContainingPage(nestedArray, pageNumber) {
-    for (let i = 0; i < nestedArray.length; i++) {
-      if (nestedArray[i].includes(pageNumber)) {
-        return i; // Return the index of the sub-array
-      }
+function findArrayIndexContainingPage(nestedArray, pageNumber) {
+  for (let i = 0; i < nestedArray.length; i++) {
+    if (nestedArray[i].includes(pageNumber)) {
+      return i; // Return the index of the sub-array
     }
-    return -1; // Return -1 if the page number is not found in any sub-array
   }
+  return -1; // Return -1 if the page number is not found in any sub-array
+}
 
-  function removeFirstAndLast(array) {
-    // Check if the array has at least two elements
-    if (array.length >= 2) {
-      // Remove the first element
-      array.shift();
-      // Remove the last element
-      array.pop();
-    }
-    // Return the modified array
-    return array;
+function removeFirstAndLast(array) {
+  if (array.length >= 2) {
+    array.shift();
+    array.pop();
   }
+  return array;
+}
 
-  const pages = Array.from(
-    { length: pageContext.numberOfPages },
-    (_, index) => {
-      return (
-        index + 1
-      )
-        
-    },
-  )
+const pages = Array.from(
+  { length: pageContext.numberOfPages },
+  (_, index) => index + 1
+);
 
-  function chunkArray(array, chunkSize) {
-    // Create an empty array to hold the chunks
-    let chunks = [];
-    
-
-    // Loop through the array, incrementing by chunkSize each time
-    for (let i = 0; i < array.length; i += chunkSize) {
-      // Slice the array from the current index i to i + chunkSize
-      let chunk = array.slice(i, i + chunkSize);
-      // Add the sliced chunk to the chunks array
-      chunks.push(chunk);
-    }
-    
-    // Return the array of chunks
-    return chunks;
+const chunkArray = useCallback((array, chunkSize) => {
+  let chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    let chunk = array.slice(i, i + chunkSize);
+    chunks.push(chunk);
   }
+  return chunks;
+}, []);
 
-  useEffect(() => {
-    
-    pages && setPagination(chunkArray(removeFirstAndLast(pages), 5))
-  }, [setPagination, chunkArray, pages, removeFirstAndLast])
+useEffect(() => {
+  if (pages.length > 0) {
+    setPagination(chunkArray(removeFirstAndLast(pages), 5));
+  }
+}, [chunkArray, pages]);
 
-  let humanPageNumber = props.pageContext.humanPageNumber === 1 ? 2 : props.pageContext.humanPageNumber === pageContext.numberOfPages ? pageContext.numberOfPages - 1 : props.pageContext.humanPageNumber
-  
-  useEffect(() => {  
+let humanPageNumber = props.pageContext.humanPageNumber === 1 
+  ? 2 
+  : props.pageContext.humanPageNumber === pageContext.numberOfPages 
+  ? pageContext.numberOfPages - 1 
+  : props.pageContext.humanPageNumber;
 
-     // === 0 ? 2 : props.pageContext.humanPageNumber
+useEffect(() => {
+  if (pagination) {
+    setChunkIndex(findArrayIndexContainingPage(pagination, humanPageNumber));
+  }
+}, [pagination, humanPageNumber]);
 
-    pagination && setChunkIndex(findArrayIndexContainingPage(pagination, humanPageNumber))
-  }, [ setChunkIndex, pagination, findArrayIndexContainingPage, humanPageNumber])
 
   
 
@@ -397,7 +383,7 @@ export const BlogSection = props => {
                                 {author && (
                                   <Typography
                                     variant="h6"
-                                    component="p"
+                                    component="span"
                                     color={contrastColour(tileColor).textColour}
                                     sx={{
                                       fontStyle: "italic",
