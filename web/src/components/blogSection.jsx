@@ -770,8 +770,11 @@ useEffect(() => {
               }
               to={props.pageContext.previousPagePath}
               disabled={props.pageContext.humanPageNumber === 1 && true}
+              sx={{
+                fontSize: "1rem !important",
+              }}
             >
-              Recent Posts
+              Previous
             </Button>
 
             <Box
@@ -841,6 +844,9 @@ useEffect(() => {
             <Button
               variant="text"
               color="tertiary"
+              sx={{
+                fontSize: "1rem !important",
+              }}
               endIcon={
                 <ChevronRightIcon
                   color="primary"
@@ -857,7 +863,7 @@ useEffect(() => {
                   props.pageContext.numberOfPages && true
               }
             >
-              Older Posts
+              Next
             </Button>
           </Box>
         </Box>
