@@ -120,7 +120,7 @@ const CaseStudyTemplate = props => {
                       color="white.main"
                       sx={{ fontSize: theme.spacing(6) }}
                     >
-                       {pageContext.key ? String(pageContext.key + 1).padStart(2, "0") : "01"}
+                       {location?.state ? String(location?.state?.number).padStart(2, "0")  : pageContext.number ? String(pageContext.key + 1).padStart(2, "0") : "01"}
                     </Typography>
                   </Box>
                   <Box
