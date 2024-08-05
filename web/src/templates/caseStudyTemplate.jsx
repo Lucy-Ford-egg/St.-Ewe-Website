@@ -15,7 +15,7 @@ import { urlFor } from "../utils/imageHelpers"
 import { RenderPortableText } from "../components/renderPortableText"
 //Preview
 import { useQuery } from "../../sanity/store"
-import { CASE_STUDY_QUERY, CASE_STUDIES_BY_ID } from "../queries/documentQueries"
+import { CASE_STUDY_QUERY } from "../queries/documentQueries"
 
 const CaseStudyTemplate = props => {
   const { data, pageContext, initial, location } = props
@@ -39,7 +39,7 @@ const CaseStudyTemplate = props => {
 
   const definedRawBody = (previewData && previewData?.caseStudyQuery?.body) || data?.sanityCaseStudy._rawBody
   const definedModules = (previewData && previewData?.caseStudyQuery?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
-  
+
   return (
     <>
       <Container
@@ -72,10 +72,10 @@ const CaseStudyTemplate = props => {
           }}
         >
           <Grid container>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm="auto">
               <Box
                 sx={{
-                  backgroundColor: `${location?.state?.backgroundColor}.main`,
+                  backgroundColor: location?.state?.backgroundColor ? `${location?.state?.backgroundColor}.main` : "primary.main",
                   px: { xs: 6, md: 13 },
                   pt: 13,
                   pb: { xs: 6, md: 13 },
@@ -85,7 +85,7 @@ const CaseStudyTemplate = props => {
                 {definedRawPerson && (
                   <Box sx={{ color: "white.main",  maxWidth: "100%", }}>
                     <RenderPortableText
-                      setAsHeading={mobile ? "h2" : "h1"}
+                      setAsHeading={mobile ? "h2" : "h2"}
                       value={definedRawPerson}
                     />
                   </Box>
@@ -105,7 +105,7 @@ const CaseStudyTemplate = props => {
                 >
                   <Box
                     sx={{
-                      backgroundColor: `${location?.state?.backgroundColor}.light`,
+                      backgroundColor: location?.state?.backgroundColor ? `${location?.state?.backgroundColor}.light` : "primary.light",
                       px: 6,
                       py: 6,
                       display: "flex",
@@ -120,12 +120,12 @@ const CaseStudyTemplate = props => {
                       color="white.main"
                       sx={{ fontSize: theme.spacing(6) }}
                     >
-                      {String(pageContext.key + 1).padStart(2, "0")}
+                       {pageContext.key ? String(pageContext.key + 1).padStart(2, "0") : "01"}
                     </Typography>
                   </Box>
                   <Box
                     sx={{
-                      backgroundColor: `${location?.state?.backgroundColor}.mid`,
+                      backgroundColor: location?.state?.backgroundColor ? `${location?.state?.backgroundColor}.mid` : "primary.mid",
                       px: 6,
                       py: 6,
                       display: "flex",

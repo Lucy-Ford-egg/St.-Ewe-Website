@@ -207,6 +207,7 @@ export const CaseStudySection = ({
             filtersPosts.map((tile, i) => {
               return (
                 <Box
+                  key={tile?._key}
                   ref={slide}
                   sx={{
                     pr: {sm: 16, md: 16, lg: 16},  

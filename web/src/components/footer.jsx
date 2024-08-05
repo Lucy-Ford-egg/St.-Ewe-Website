@@ -29,6 +29,7 @@ export const Footer = props => {
       footerMenu: sanityNavigation(navId: { current: { eq: "footer-menu" } }) {
         items {
           _type
+          _key
           link {
             link {
               external
@@ -61,6 +62,7 @@ export const Footer = props => {
       }
       socialMenu: sanityNavigation(navId: { current: { eq: "social" } }) {
         items {
+          _key
           link {
             _rawLink
           }
@@ -80,6 +82,7 @@ export const Footer = props => {
           _rawText(resolveReferences: { maxDepth: 10 })
           title
           links {
+            _key
             link {
               _type
               external
@@ -217,7 +220,7 @@ export const Footer = props => {
                       data.footerMenu.items.map((menuItem, i) => {
                         return (
                           <ListItem
-                            key={`footer-menu-item-${i}`}
+                            key={`footer-menu-item-${menuItem._key}`}
                             sx={{ pl: 0, ml: 0 }}
                           >
                             {renderLink(menuItem)}
@@ -518,6 +521,7 @@ export const Footer = props => {
                         definedLinks.map((node, i) => {
                           return (
                             <ButtonFormat
+                              key={node?._key}
                               variant={i === 0 ? "contained" : "outlined"}
                               color={i === 0 ? "primary" : "primary"}
                               node={node}
@@ -580,6 +584,7 @@ export const Footer = props => {
                           alignItems: "center",
                           justifyContent: { xs: "flex-start", md: "flex-end" },
                         }}
+                        key={node?._key}
                       >
                         <SocialIcon
                           network={

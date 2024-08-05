@@ -4,6 +4,7 @@ import groq from 'groq'
 
 export const LINK = `
 link{
+  _key,
   internal->{
     slug {
       current,
@@ -17,6 +18,7 @@ link{
   },
   external,
 },
+_key,
 text
 `
 
@@ -154,7 +156,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   _id,
 }`
 
-export const ALL_CASE_STUDIES = groq`*[_type == "caseStudy"] {
+export const ALL_CASE_STUDIES = groq`*[_type == "caseStudy"][0..4] {
   _id,
   title,
   ...,
@@ -398,17 +400,18 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
   _id,
 }`
 
-export const ALL_POSTS = groq`*[_type == "post"] {
-  _id,
-  title,
-  ...,
-  category->{...},
-  person,
-  _rawPerson,
-  author->{...},
-}`
+// Not currently used
+// export const ALL_POSTS = groq`*[_type == "post"][0..8] |  order(date desc){
+//   _id,
+//   title,
+//   ...,
+//   category->{...},
+//   person,
+//   _rawPerson,
+//   author->{...},
+// }`
 
-export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] {
+export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] | order(date desc)[0..7] {
   _id,
   ...,
   category->{

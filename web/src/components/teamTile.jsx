@@ -14,7 +14,7 @@ import { Button } from "gatsby-theme-material-ui"
 import { motion } from "framer-motion"
 
 export const TeamTile = props => {
-  const { definedTileColor, member } = props
+  const { definedTileColor, member, key } = props
 
   const theme = useTheme()
 
@@ -41,6 +41,7 @@ export const TeamTile = props => {
 
   return (
     <Grid
+      key={key}
       item
       xs="auto"
       sm="auto"

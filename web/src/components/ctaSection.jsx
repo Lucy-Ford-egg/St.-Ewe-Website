@@ -36,7 +36,7 @@ export const CtaSection = props => {
   return (
     <Container
       maxWidth="false"
-      disableGutters="true"
+      disableGutters={true}
       sx={{
         pt: definedTopPadding
           ? 0
@@ -161,10 +161,11 @@ export const CtaSection = props => {
                         definedLinks.map((node, i) => {
                           return (
                             <ButtonFormat
+                               key={node._key}
                               variant={i === 0 ? "contained" : "outlined"}
                               color={i === 0 ? "primary" : "secondary"}
                               node={ node }
-                              sx={{}}
+                              
                             />
                           )
                         })}

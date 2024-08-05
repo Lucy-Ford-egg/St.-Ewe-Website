@@ -503,7 +503,7 @@ let clientTheme = createTheme({
           borderRadius: 0,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(1)}`,
           '&:hover': {
-            color: defaultTheme.palette.tertiary.main,
+            color: defaultTheme.palette.primary.main,
             backgroundColor: 'transparent'
           },
         },

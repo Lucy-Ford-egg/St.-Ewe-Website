@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { graphql } from "gatsby"
+import React, { useState, useEffect, useCallback } from "react"
+import { graphql} from "gatsby"
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
@@ -41,12 +41,61 @@ export const BlogSection = props => {
 
   const theme = useTheme()
 
-  const [filtersPosts, setFilterData] = useState(null)
+  const [filtersPosts, setFilterData] = useState(null);
+const [pagination, setPagination] = useState(null);
+const [chunkIndex, setChunkIndex] = useState(0);
 
-  const pages = Array.from(
-    { length: pageContext.numberOfPages },
-    (_, index) => index + 1,
-  )
+function findArrayIndexContainingPage(nestedArray, pageNumber) {
+  for (let i = 0; i < nestedArray.length; i++) {
+    if (nestedArray[i].includes(pageNumber)) {
+      return i; // Return the index of the sub-array
+    }
+  }
+  return -1; // Return -1 if the page number is not found in any sub-array
+}
+
+function removeFirstAndLast(array) {
+  if (array.length >= 2) {
+    array.shift();
+    array.pop();
+  }
+  return array;
+}
+
+const pages = Array.from(
+  { length: pageContext.numberOfPages },
+  (_, index) => index + 1
+);
+
+const chunkArray = useCallback((array, chunkSize) => {
+  let chunks = [];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    let chunk = array.slice(i, i + chunkSize);
+    chunks.push(chunk);
+  }
+  return chunks;
+}, []);
+
+useEffect(() => {
+  if (pages.length > 0) {
+    setPagination(chunkArray(removeFirstAndLast(pages), 5));
+  }
+}, [chunkArray, pages]);
+
+let humanPageNumber = props.pageContext.humanPageNumber === 1 
+  ? 2 
+  : props.pageContext.humanPageNumber === pageContext.numberOfPages 
+  ? pageContext.numberOfPages - 1 
+  : props.pageContext.humanPageNumber;
+
+useEffect(() => {
+  if (pagination) {
+    setChunkIndex(findArrayIndexContainingPage(pagination, humanPageNumber));
+  }
+}, [pagination, humanPageNumber]);
+
+
+  
 
   const { data: postData } = useQuery(
     POSTS_BY_ID,
@@ -90,7 +139,7 @@ export const BlogSection = props => {
 
   useEffect(() => {
     setFilterData(definedAllSanityPost)
-  }, [definedAllSanityPost])
+  }, [definedAllSanityPost, setFilterData])
 
   return (
     <Container
@@ -162,6 +211,7 @@ export const BlogSection = props => {
           allData={getAllPosts.nodes}
           filtersData={filtersPosts}
           setFilterData={setFilterData}
+          pageContext={ pageContext}
         />
 
 
@@ -180,6 +230,7 @@ export const BlogSection = props => {
 
             return (
               <Grid
+              key={title}
                 item
                 xs={12}
                 sm={6}
@@ -332,7 +383,7 @@ export const BlogSection = props => {
                                 {author && (
                                   <Typography
                                     variant="h6"
-                                    component="p"
+                                    component="span"
                                     color={contrastColour(tileColor).textColour}
                                     sx={{
                                       fontStyle: "italic",
@@ -719,8 +770,11 @@ export const BlogSection = props => {
               }
               to={props.pageContext.previousPagePath}
               disabled={props.pageContext.humanPageNumber === 1 && true}
+              sx={{
+                fontSize: "1rem !important",
+              }}
             >
-              Recent Posts
+              Previous
             </Button>
 
             <Box
@@ -730,7 +784,25 @@ export const BlogSection = props => {
                 columnGap: 3,
               }}
             >
-              {pages.map(node => {
+              <Typography
+                    sx={{
+                      color:
+                        1 === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                        "&:hover": {
+                            cursor: "pointer",
+                            color: theme.palette.primary.main
+                        }
+                    }}
+                  >
+                    <GatsbyLink sx={{
+                      color: "inherit"
+                    }} to={`/blog/`}>{1}</GatsbyLink>
+                  </Typography>
+              {chunkIndex > 0 && '...'}
+              { pagination && pagination[chunkIndex] && pagination[chunkIndex].map(node => {
+                
                 return (
                   <Typography
                     sx={{
@@ -738,17 +810,43 @@ export const BlogSection = props => {
                         node === props.pageContext.humanPageNumber
                           ? "primary.main"
                           : "inherit",
+                        "&:hover": {
+                            cursor: "pointer",
+                            color: theme.palette.primary.main
+                        }
                     }}
                   >
-                    {node}
+                    <GatsbyLink sx={{
+                      color: "inherit"
+                    }} to={`/blog/${node === 1 ? "" : node}`}>{node}</GatsbyLink>
                   </Typography>
                 )
               })}
+              {pagination && pagination.length > 0 && '...'}
+              <Typography
+                    sx={{
+                      color:
+                        props.pageContext.numberOfPages === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                        "&:hover": {
+                            cursor: "pointer",
+                            color: theme.palette.primary.main
+                        }
+                    }}
+                  >
+                    <GatsbyLink sx={{
+                      color: "inherit"
+                    }} to={`/blog/${props.pageContext?.numberOfPages}`}>{props.pageContext?.numberOfPages}</GatsbyLink>
+                  </Typography>
             </Box>
 
             <Button
               variant="text"
               color="tertiary"
+              sx={{
+                fontSize: "1rem !important",
+              }}
               endIcon={
                 <ChevronRightIcon
                   color="primary"
@@ -765,7 +863,7 @@ export const BlogSection = props => {
                   props.pageContext.numberOfPages && true
               }
             >
-              Older Posts
+              Next
             </Button>
           </Box>
         </Box>

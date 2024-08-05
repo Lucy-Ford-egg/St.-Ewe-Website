@@ -10,7 +10,8 @@ export default defineType({
         type: 'externalLink',
         title: 'External link',
         hidden: ({ parent, value }) => { 
-          return(!value && parent?.internalLinkGroup._type === "internalLink")}  
+          return(!value && parent?.internalLinkGroup._type === "internalLink")},
+       
     }),
     defineField({
         name: 'internalLinkGroup',

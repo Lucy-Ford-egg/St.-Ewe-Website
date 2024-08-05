@@ -17,7 +17,7 @@ export const PortableTextInlineLink = ({ value, children, color }) => {
 
   const isInternal = checkStringType(value?.reference?._type)
   const isFile = value.reference?._type === "file"
-debugger
+
   if (value.reference?._type === "post") {
     definedInternal = `/blog/${value?.reference?.category?.slug?.current}/${definedInternal}`
   }

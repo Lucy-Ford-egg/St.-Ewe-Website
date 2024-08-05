@@ -45,61 +45,9 @@ export const Head = ({ data, location }) => {
 
 export const pageTemplateQuery = graphql`
 
-query pageTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
-  allSanityPost(
-    filter: {
-      category: {
-        _id: {
-          in: $postIds
-        }
-      }
-    }
-    sort: {date: DESC}
-    skip: $skip 
-    limit: $limit 
-  ) {
-    nodes {
-      tileImage {
-        asset {
-          _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
-      }
-   
-      slug {
-        current
-      }
-      date
-      category {
-        name
-        _id
-         slug {
-          current
-        }
-      }
-      author {
-        name
-      }
-      title
-      tileColor{
-        value
-        label
-      }
-    }
-  }
-  getAllPosts: allSanityPost(sort: {date: DESC}){
+query pageTemplateQuery( $caseStudyIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+  
+  getAllPosts: allSanityPost(sort: {date: DESC}, limit: 8){
     nodes {
       tileImage {
         asset {

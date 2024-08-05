@@ -117,10 +117,11 @@ export const TeamSection = props => {
               definedLinks.map((node, i) => {
                 return (
                   <ButtonFormat
+                    key={node?._key}
                     variant={i === 0 ? "contained" : "outlined"}
                     color={i === 0 ? "primary" : "secondary"}
                     node={node}
-                    sx={{}}
+            
                   />
                 )
               })}
@@ -169,10 +170,11 @@ export const TeamSection = props => {
           >
             {definedTeamTiles &&
               definedTeamTiles?.map((member, i) => {
+                debugger
                 return (
                  
                   <TeamTile
-                    key={`${member?.name}-member-${i}`}
+                    key={member?._id}
                     definedTileColor={definedTileColor}
                     member={member}
 
@@ -200,6 +202,7 @@ export const query = graphql`
       value
     }
     links {
+      _key
       link {
         external
         internal {
@@ -228,6 +231,7 @@ export const query = graphql`
       text
     }
     teamTiles {
+      _id
       email
       tileImage {
         asset {
