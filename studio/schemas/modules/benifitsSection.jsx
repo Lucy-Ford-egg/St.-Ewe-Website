@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
+import {LiaImage} from "react-icons/lia"
 
 export default defineType({
   name: "benifitsSection",
@@ -84,14 +84,14 @@ export default defineType({
     prepare(selection) {
       const { title, media, showSearch, highlighted } = selection
 
-      const thumb = highlighted ? <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%',backgroundColor: '#698F68'}}>{<MdOutlinePhotoSizeSelectActual style={{color: 'white'}}/>}</span> : media
+      const thumb = highlighted ? <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%',backgroundColor: '#698F68'}}>{<LiaImage style={{color: 'white'}}/>}</span> : media
 
       return {
         title: title,
         subtitle: `Benefits Section`,
         // media: media,
         media: thumb,
-        icon: MdOutlinePhotoSizeSelectActual
+        icon: LiaImage
       }
     }
   },

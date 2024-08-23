@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoLibrary} from "react-icons/md"
+import {MdOutlinePhotoLibrary} from "react-icons/lia"
 
 export default defineType({
   name: "imageCarouselCaptionLink",

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdMap} from "react-icons/md"
+import {LiaMap} from "react-icons/lia"
 
 export default defineType({
   name: "locationSection",
@@ -112,7 +112,7 @@ export default defineType({
         title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Location Section`,
         // media: media,
-        icon: MdMap
+        icon: LiaMap
       }
     }
   },

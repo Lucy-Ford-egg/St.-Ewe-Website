@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdWebStories} from "react-icons/md"
+import {LiaFile} from "react-icons/lia"
 
 export default defineType({
   name: "postsGrid",
@@ -36,7 +36,7 @@ export default defineType({
       return {
         title: title ? title?.displayTitle[0].children[0].text : "Empty Title",
         subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Posts" : "All Posts"} | Module: Module: Posts Grid module`,
-        icon: MdWebStories
+        icon: LiaFile
       }
     }
   },

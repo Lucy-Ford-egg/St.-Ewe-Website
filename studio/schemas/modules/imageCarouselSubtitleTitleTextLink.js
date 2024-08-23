@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdViewCarousel} from "react-icons/md"
+import {MdViewCarousel} from "react-icons/lia"
 
 export default defineType({
   name: "imageCarouselSubtitleTitleTextLink",

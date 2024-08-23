@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdMoreTime} from "react-icons/md"
+import {LiaClock} from "react-icons/lia"
 
 export default defineType({
   name: "timeTile",
@@ -73,7 +73,7 @@ export default defineType({
       return {
         title: `${ title[0].children[0].text}`,
         subtitle: `Time Tile`,
-        icon: MdMoreTime
+        icon: LiaClock
       }
     }
   },

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOndemandVideo} from "react-icons/md"
+import {LiaVimeo } from "react-icons/lia"
 
 export default defineType({
   name: "videoSection",
@@ -30,7 +30,7 @@ export default defineType({
         title: video && `Video Added`,
         subtitle: `Video Section`,
         media: media,
-        icon: MdOndemandVideo
+        icon: LiaVimeo 
       }
     }
   },

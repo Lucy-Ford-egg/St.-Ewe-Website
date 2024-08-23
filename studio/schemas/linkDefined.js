@@ -1,12 +1,12 @@
 import { defineField, defineType } from 'sanity'
-import { MdAddLink } from "react-icons/md";
+import { LiaLinkSolid } from "react-icons/lia";
 
 
 export default defineType({
   name: 'linkDefined',
   type: 'object',
   title: 'Link',
-  icon: MdAddLink,
+  icon: LiaLinkSolid,
   fields: [
     defineField({
       name: "text",

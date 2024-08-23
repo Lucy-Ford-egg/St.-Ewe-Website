@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdViewModule } from "react-icons/md"
+import { LiaGripHorizontalSolid } from "react-icons/lia"
 
 export default defineType({
   name: "imageCarouselSection",
@@ -36,7 +36,7 @@ export default defineType({
         title: title,
         subtitle: `Image Carousel Section`,
         media: media[0],
-        icon: MdViewModule
+        icon: LiaGripHorizontalSolid
       }
     }
   },

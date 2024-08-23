@@ -1,11 +1,11 @@
-import { MdOutlineMenu } from "react-icons/md";
+import { LiaBarsSolid } from "react-icons/lia";
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
     name: 'navigation',
     title: 'Navigation',
     type: 'document',
-    icon: MdOutlineMenu,
+    icon: LiaBarsSolid,
     fields: [
       defineField({
         name: "title",

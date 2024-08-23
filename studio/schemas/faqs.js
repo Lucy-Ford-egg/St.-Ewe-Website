@@ -1,11 +1,11 @@
-import { MdOutlineQuestionAnswer } from "react-icons/md";
+import { LiaQuestionCircle } from "react-icons/lia";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'faqs',
   title: `FAQ's`,
-  icon: MdOutlineQuestionAnswer,
+  icon: LiaQuestionCircle,
   type: 'document',
   fields: [
    

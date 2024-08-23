@@ -1,5 +1,5 @@
 import React from "react"
-import { MdOutlineColorLens } from "react-icons/md"
+import {LiaBrushSolid } from "react-icons/lia"
 
 export const DesignSystemColorsMenu = S => S.listItem()
   .title("Brand Colours")

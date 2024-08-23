@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdWebAsset} from "react-icons/md"
+import {LiaBuromobelexperte} from "react-icons/lia"
 
 export default defineType({
   name: "servicesTile",
@@ -47,7 +47,7 @@ export default defineType({
         title: title,
         subtitle: `Services Tile`,
         media: media,
-        icon: MdWebAsset
+        icon: LiaBuromobelexperte
       }
     }
   },

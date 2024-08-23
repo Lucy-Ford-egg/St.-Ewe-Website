@@ -1,10 +1,10 @@
-import { MdOutlineTagFaces } from "react-icons/md";
+import { LiaSmile } from "react-icons/lia";
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'author',
   title: 'Author',
-  icon: MdOutlineTagFaces,
+  icon: LiaSmile,
   type: 'document',
   fields: [
     defineField({

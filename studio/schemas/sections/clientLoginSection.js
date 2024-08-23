@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdPictureAsPdf, MdViewModule } from "react-icons/md";
+import { LiaFilePdfSolid, LiaGripHorizontalSolid } from "react-icons/lia";
 
 export default defineType({
   name: "clientLoginSection",
@@ -106,7 +106,7 @@ export default defineType({
                 }
               ]
             },
-            {type: 'file', icon: MdPictureAsPdf},
+            {type: 'file', icon: LiaFilePdfSolid},
             {type: 'textColor',},
             // {type: 'imageOptions'},  
           ],
@@ -140,7 +140,7 @@ export default defineType({
         title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Client Login Section`,
         // media: media,
-        icon: MdViewModule
+        icon: LiaGripHorizontalSolid
       }
     }
   },

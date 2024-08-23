@@ -1,15 +1,16 @@
 import {SiteSettingsMenu} from './siteSettingsMenu'
 // import {Views} from './views/preview'
 import {
-  MdCategory,
-  MdOutlineMenu,
-  MdOutlineChat,
-  MdAutoStories,
-  MdOutlineTagFaces,
-  MdKitchen,
-  MdFormatQuote,
-  MdAccessibilityNew,
-} from 'react-icons/md'
+  LiaShapesSolid,
+  LiaBarsSolid,
+  LiaNewspaper,
+  LiaBookOpenSolid,
+  LiaSmile,
+  LiaUtensilsSolid,
+  LiaQuoteLeftSolid,
+  LiaMaleSolid,
+  LiaCarrotSolid,
+} from "react-icons/lia"
 
 export const deskStructure = (S, context) => {
   return (
@@ -21,7 +22,7 @@ export const deskStructure = (S, context) => {
 
         S.listItem()
           .title('Navigation')
-          .icon(MdOutlineMenu)
+          .icon(LiaBarsSolid)
           .child(
             S.documentTypeList('navigation')
               .title('Navigation')
@@ -33,7 +34,7 @@ export const deskStructure = (S, context) => {
         S.divider(),
         S.listItem()
           .title('Posts')
-          .icon(MdOutlineChat)
+          .icon(LiaNewspaper)
           .child(
             S.documentTypeList('post')
               .title('Posts')
@@ -45,7 +46,7 @@ export const deskStructure = (S, context) => {
 
         S.listItem()
           .title('Pages')
-          .icon(MdAutoStories)
+          .icon(LiaBookOpenSolid)
           .child(
             S.documentTypeList('page')
               .title('Pages')
@@ -57,7 +58,7 @@ export const deskStructure = (S, context) => {
 
         S.listItem()
           .title('Recipies')
-          .icon(MdKitchen)
+          .icon(LiaUtensilsSolid)
           .child(
             S.documentTypeList('recipies')
               .title('Recipies')
@@ -67,10 +68,21 @@ export const deskStructure = (S, context) => {
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
-
+          S.listItem()
+          .title('Ingredients')
+          .icon(LiaCarrotSolid)
+          .child(
+            S.documentTypeList('ingredients')
+              .title('Ingredients')
+              .child(
+                (id) => S.document().schemaType('ingredients').documentId(id),
+                //.views(Views(S, context))
+              )
+              .defaultOrdering([{field: 'title', direction: 'asc'}]),
+          ),
         S.listItem()
           .title('Quotes')
-          .icon(MdFormatQuote)
+          .icon(LiaQuoteLeftSolid)
           .child(
             S.documentTypeList('quote')
               .title('Quotes')
@@ -83,7 +95,7 @@ export const deskStructure = (S, context) => {
 
         S.listItem()
           .title('Team Members')
-          .icon(MdAccessibilityNew)
+          .icon(LiaMaleSolid)
           .child(
             S.documentTypeList('teamMember')
               .title('Team Members')
@@ -97,7 +109,7 @@ export const deskStructure = (S, context) => {
 
         S.listItem()
           .title('Authors')
-          .icon(MdOutlineTagFaces)
+          .icon(LiaSmile)
           .child(
             S.documentTypeList('author')
               .title('Authors')
@@ -110,7 +122,7 @@ export const deskStructure = (S, context) => {
         S.divider(),
         S.listItem()
           .title('Post Categories')
-          .icon(MdCategory)
+          .icon(LiaShapesSolid)
           .child(
             S.documentTypeList('categories')
               .title('Post Categories')
@@ -122,7 +134,7 @@ export const deskStructure = (S, context) => {
           ),
         S.listItem()
           .title('Recipie Categories')
-          .icon(MdCategory)
+          .icon(LiaShapesSolid)
           .child(
             S.documentTypeList('services')
               .title('Recipie Categories')

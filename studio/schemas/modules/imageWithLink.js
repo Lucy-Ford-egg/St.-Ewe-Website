@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlineImage} from "react-icons/md"
+import {LiaImage} from "react-icons/lia"
 
 export default defineType({
   name: "imageWithLink",
@@ -47,7 +47,7 @@ export default defineType({
         title: subtitle ? "Marked as Advert" : "Not Marked as Advert",
         subtitle: `Module: Linked Image Module`,
         media: media,
-        icon: MdOutlineImage
+        icon: LiaImage
       }
     }
   },

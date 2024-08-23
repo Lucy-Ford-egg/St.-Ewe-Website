@@ -1,4 +1,4 @@
-import {MdOutlineMenu} from 'react-icons/md'
+import {LiaBarsSolid} from "react-icons/lia"
 import {defineField, defineType} from 'sanity'
 
 export const companyDetailType = defineType({
@@ -221,7 +221,7 @@ export default defineType({
       title: 'Footer Details',
     },
   ],
-  icon: MdOutlineMenu,
+  icon: LiaBarsSolid,
   fields: [
     defineField({
       name: 'title',

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdViewColumn} from "react-icons/md"
+import {MdViewColumn} from "react-icons/lia"
 
 export default defineType({
   name: "categoryFeature",

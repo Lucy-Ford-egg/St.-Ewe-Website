@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import CategorySelect from '../schemas/categorySelect'
-// import { MdAddLink } from "react-icons/md";
+// import { LiaLinkSolid } from "react-icons/lia";
 
 export default defineType({
   name: 'categoryMultiSelect',

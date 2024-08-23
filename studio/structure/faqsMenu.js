@@ -1,9 +1,9 @@
 import React from "react"
-import { MdOutlineQuestionAnswer } from "react-icons/md"
+import { LiaQuestionCircle } from "react-icons/lia"
 
 export const FaqsMenu = S => S.listItem()
 	.title(`FAQ's`)
-	.icon(MdOutlineQuestionAnswer)
+	.icon(LiaQuestionCircle)
 	.child(
 		S.documentTypeList('faqs')
 			.title(`FAQ`)

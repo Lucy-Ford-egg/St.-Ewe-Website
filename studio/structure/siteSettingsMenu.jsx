@@ -1,9 +1,9 @@
 import React from "react"
-import { MdDisplaySettings } from "react-icons/md"
+import { LiaCogsSolid } from "react-icons/lia"
 
 
 const Icon = () => (
-  <MdDisplaySettings/>
+  <LiaCogsSolid/>
 )
 
 export const SiteSettingsMenu = S => 

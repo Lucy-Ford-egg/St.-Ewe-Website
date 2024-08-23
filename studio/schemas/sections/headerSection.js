@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdOutlinePhotoSizeSelectActual, MdBorderColor } from "react-icons/md"
+import { LiaImage, LiaBorderStyleSolid } from "react-icons/lia"
 
 export default defineType({
   name: "headerSection",
@@ -122,7 +122,7 @@ export default defineType({
         title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Header Section`,
         media: media,
-        icon: MdOutlinePhotoSizeSelectActual
+        icon: LiaImage
       }
     }
   },

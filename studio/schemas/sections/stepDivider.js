@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdInfoOutline} from "react-icons/md"
+import {LiaInfoCircleSolid} from "react-icons/lia"
 
 export default defineType({
   name: "stepDivider",
@@ -27,7 +27,7 @@ export default defineType({
       return {
         title: `${ title}`,
         subtitle: `Step Divider`,
-        icon: MdInfoOutline
+        icon: LiaInfoCircleSolid
       }
     }
   },

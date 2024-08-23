@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdMailOutline} from "react-icons/md"
+import {LiaMailBulkSolid } from "react-icons/lia"
 
 export default defineType({
   name: "heroNewsletter",
@@ -41,7 +41,7 @@ export default defineType({
         title: title ? title : "Empty Title",
         subtitle: `Module: Hero Newsletter, CTA, Caption Module`,
         media: media,
-        icon: MdMailOutline
+        icon: LiaMailBulkSolid 
       }
     }
   },

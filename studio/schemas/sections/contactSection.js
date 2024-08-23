@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdMailOutline} from "react-icons/md"
+import {LiaMailBulkSolid } from "react-icons/lia"
 
 export default defineType({
   name: "contactSection",
@@ -66,7 +66,7 @@ export default defineType({
             //     }
             //   ]
             // },
-            // {type: 'file', icon: MdPictureAsPdf},
+            // {type: 'file', icon: LiaFilePdfSolid},
             // {type: 'textColor',},
           
           ],
@@ -142,7 +142,7 @@ export default defineType({
                 }
               ]
             },
-            // {type: 'file', icon: MdPictureAsPdf},
+            // {type: 'file', icon: LiaFilePdfSolid},
             // {type: 'textColor',},
           
           ],
@@ -219,7 +219,7 @@ export default defineType({
                 }
               ]
             },
-            // {type: 'file', icon: MdPictureAsPdf},
+            // {type: 'file', icon: LiaFilePdfSolid},
             // {type: 'textColor',},
           
           ],
@@ -249,7 +249,7 @@ export default defineType({
       return {
         title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Contact Section`,
-        icon: MdMailOutline
+        icon: LiaMailBulkSolid 
       }
     }
   },

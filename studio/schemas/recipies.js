@@ -1,8 +1,8 @@
-import { LiaUtensilsSolid } from "react-icons/lia"
+import { LiaUtensilsSolid, LiaCarrotSolid,  LiaStopwatchSolid } from "react-icons/lia"
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import authorType from './author'
-import servicesType from './taxonomies/services'
+import recipieCategoryType from './taxonomies/recipiesCategory'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
@@ -58,25 +58,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      validation: Rule => Rule.required(),
-      group: 'pageContent',
-    }),
-    defineField({
-      name: 'person',
-      title: 'Person',
-      type: 'array',
-      of: [{
-        type: 'block',
-        lists: [
-
-        ], // yes please, both bullet and numbered
-        styles: [],
-        marks: {
-          decorators: [],
-          annotations: [],
-        }
-      }],
-      validation: (rule) => rule.required(),
+      //validation: Rule => Rule.required(),
       group: 'pageContent',
     }),
     defineField({
@@ -99,13 +81,48 @@ export default defineType({
       group: 'pageContent',
     }),
     defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      rows: 2,
-      type: 'text',
-      description: 'Small snippet of text shown on the blog tile when hovered.',
+      name: 'duration',
+      title: 'Duration',
+      type: 'object',
+      fields: [
+        {
+          name: "hours",
+          title: "hours",
+          type: "number",
+        },
+        {
+          name: "minutes",
+          title: "Minutes",
+          type: "number",
+          validation: (rule) => rule.max(60),
+        },
+      ],
+      options: {
+        columns: 2,
+      },
+      description: 'Shows the duration for the recipie',
       group: 'pageContent',
-      validation: (rule) => rule.required().max(252)
+     
+      // validation: (rule) => rule.required().max(252)
+    }),
+    defineField({
+      name: 'serves',
+      title: 'Serves',
+      type: 'object',
+      fields: [
+        {
+          name: "serves",
+          title: "Serves",
+          type: "number",
+        },
+      ],
+      options: {
+        columns: 2,
+      },
+      description: 'How many does this recipies serve',
+      group: 'pageContent',
+     
+      // validation: (rule) => rule.required().max(252)
     }),
     defineField({
       name: 'date',
@@ -115,16 +132,87 @@ export default defineType({
       group: 'pageContent',
     }),
     defineField({
-      title: 'Nav Colour',
-      name: 'navColor',
-      type: 'simplerColor',
+      name: "ingredients",
+      title: "Ingredients",
+      type: "array",
+      of: [
+        {
+          type: 'reference',
+          to: [
+            { type: 'recipies' },
+          ]
+        },
+        {
+          title: "Ingredient",
+          type: "object",
+          fields: [
+            {
+              title: "Ingredient",
+              name: "ingredient",
+              type: "reference",
+              to: [{ type: "ingredients" }],
+            },
+            {
+              name: "wholeNumber",
+              title: "Whole Numbers",
+              type: "number",
+            },
+            {
+              name: "fraction",
+              title: "Fraction Amount",
+              type: "string",
+              options: {
+                list: ["1/2", "1/3", "1/4", "3/4", "2/3"],
+              },
+            },
+            {
+              name: "unit",
+              title: "Unit",
+              type: "string",
+              options: {
+                list: ["grams", "cup", "Tbsp.", "tsp.", "bunch"],
+              },
+            },
+            {
+              name: "preparation",
+              title: "Preparation",
+              type: "string",
+              options: {
+                list: ["Roughly Chopped", "Chopped", "Finely Chopped", "Shredded", "Crushed", "Drained & Rinsed", "Drained & Finely Chopped", "Juice of"],
+              },
+            },
+          ],
+          preview: {
+            select: {
+              title: "ingredient.title",
+              name: "ingredient.title",
+              media: "ingredient.image",
+              wholeNumber: "wholeNumber",
+              fraction: "fraction",
+              unit: "unit",
+              preparation: "preparation",
+            },
+            prepare({
+              title,
+              subtitle,
+              media,
+              wholeNumber,
+              fraction,
+              unit,
+              preparation,
+            }) {
+              return {
+                title,
+                subtitle: `${wholeNumber ? wholeNumber : ''} ${fraction ? fraction : ''} ${unit ? unit : ''} - ${preparation ? preparation: ''} `,
+                media,
+                icon:  LiaCarrotSolid, 
+              };
+            },
+          },
+        },
+      ],
       group: 'pageContent',
-    }),
-    defineField({
-      title: 'Nav Overlay',
-      name: 'navOverlay',
-      type: 'boolean',
-      group: 'pageContent',
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'author',
@@ -134,9 +222,9 @@ export default defineType({
       group: 'pageContent',
     }),
     defineField({
-      name: 'body',
+      name: 'instructions',
       type: 'array',
-      title: 'Case Study Content',
+      title: 'Instructions',
       of: [{
         type: 'block',
         lists: [
@@ -198,10 +286,10 @@ export default defineType({
     }),
 
     defineField({
-      name: 'service',
-      title: 'Service',
+      name: 'category',
+      title: 'Recipie Category',
       type: 'reference',
-      to: [{ type: servicesType.name }],
+      to: [{ type: recipieCategoryType.name }],
       group: 'pageContent',
       validation: (rule) => rule.required(),
       // to: [{ type:  }],
@@ -224,3 +312,5 @@ export default defineType({
     },
   },
 })
+
+

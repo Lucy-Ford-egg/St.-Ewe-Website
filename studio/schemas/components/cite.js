@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdAddLink } from "react-icons/md";
+import { LiaLinkSolid } from "react-icons/lia";
 
 export default defineType({
   name: 'cite',
@@ -30,7 +30,7 @@ export default defineType({
       return {
         title: internal ? "Internal Link" : "External Link",
         //subtitle: `${children && children.length} Child Items`,
-        icon: MdAddLink,
+        icon: LiaLinkSolid,
       }
     }
   },

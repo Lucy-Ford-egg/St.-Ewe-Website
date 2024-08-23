@@ -1,10 +1,10 @@
-import { MdOutlineChat } from "react-icons/md";
+import { LiaNewspaper } from "react-icons/lia";
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
   name: 'menus',
   title: 'Menus',
-  icon: MdOutlineChat,
+  icon: LiaNewspaper,
   type: 'document',
   fields: [
     defineField({

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdAccessibilityNew} from "react-icons/md"
+import {LiaMaleSolid} from "react-icons/lia"
 
 export default defineType({
   name: "teamSection",
@@ -137,7 +137,7 @@ export default defineType({
         title: `${teamTiles ? teamTiles?.length : 0 } - Team Members`,
         subtitle: `Team Section`,
         // media: media,
-        icon: MdAccessibilityNew
+        icon: LiaMaleSolid
       }
     }
   },

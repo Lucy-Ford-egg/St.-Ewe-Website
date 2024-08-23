@@ -1,4 +1,4 @@
-import {MdAutoStories} from 'react-icons/md'
+import {LiaBookOpenSolid} from "react-icons/lia"
 import {format, parseISO} from 'date-fns'
 import {defineField, defineType} from 'sanity'
 import openGraph from '../schemas/openGraph'
@@ -35,7 +35,7 @@ import clientLoginSectionType from '../schemas/sections/clientLoginSection'
 export default defineType({
   name: 'page',
   title: 'Page',
-  icon: MdAutoStories,
+  icon: LiaBookOpenSolid,
   type: 'document',
   groups: [
     {

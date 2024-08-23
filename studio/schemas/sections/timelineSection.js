@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdAccessTime } from "react-icons/md"
+import { LiaBusinessTimeSolid  } from "react-icons/lia"
 
 export default defineType({
   name: "timelineSection",
@@ -127,7 +127,7 @@ export default defineType({
         title: `${steps.length} - Events`,
         subtitle: `Timeline Section`,
         // media: media,
-        icon: MdAccessTime
+        icon: LiaBusinessTimeSolid 
       }
     }
   },

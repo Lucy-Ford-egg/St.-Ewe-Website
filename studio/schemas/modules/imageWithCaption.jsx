@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
+import {LiaImage} from "react-icons/lia"
 import sizes from '../sizes'
 
 export default defineType({
@@ -41,7 +41,7 @@ export default defineType({
         title: `Image Size ${subtitle}`,
         subtitle: `Module: Image, Caption`,
         media: media,
-        icon: MdOutlinePhotoSizeSelectActual
+        icon: LiaImage
       }
     }
   },

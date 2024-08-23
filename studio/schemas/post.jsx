@@ -1,4 +1,4 @@
-import { MdOutlineChat, MdPictureAsPdf } from "react-icons/md";
+import { LiaNewspaper, LiaFilePdfSolid } from "react-icons/lia";
 
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
@@ -38,7 +38,7 @@ import clientLoginSectionType from './sections/clientLoginSection'
 export default defineType({
   name: 'post',
   title: 'Post',
-  icon: MdOutlineChat,
+  icon: LiaNewspaper,
   type: 'document',
   groups: [
     {
@@ -204,7 +204,7 @@ export default defineType({
               }
             ]
           },
-          {type: 'file', icon: MdPictureAsPdf},
+          {type: 'file', icon: LiaFilePdfSolid},
           {type: 'textColor',},
           // {type: 'imageOptions'},  
         ],

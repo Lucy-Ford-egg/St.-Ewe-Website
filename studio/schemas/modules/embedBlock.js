@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdEditNote } from "react-icons/md";
+import { MdEditNote } from "react-icons/lia";
 
 export default defineType({
   name: "embedBlock",

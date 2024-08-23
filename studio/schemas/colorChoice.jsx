@@ -1,10 +1,10 @@
-import { MdOutlineColorLens } from 'react-icons/md'
+import {LiaBrushSolid } from "react-icons/lia"
 
 export default {
   name: 'colorChoice',
   title: 'Color Choice',
   type: 'object',
-  icon: MdOutlineColorLens,
+  icon:LiaBrushSolid,
   options: {
 	  collapsible: true,
 	  collapsed: true,

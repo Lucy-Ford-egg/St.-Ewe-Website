@@ -1,4 +1,4 @@
-import { MdOutlineChat } from "react-icons/md";
+import { LiaNewspaper } from "react-icons/lia";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 
@@ -18,7 +18,7 @@ import categoriesType from './categories'
 export default defineType({
   name: 'news',
   title: 'News',
-  icon: MdOutlineChat,
+  icon: LiaNewspaper,
   type: 'document',
   fields: [
     defineField({

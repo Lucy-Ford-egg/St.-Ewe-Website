@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdOutlineQuestionAnswer, MdPictureAsPdf } from "react-icons/md"
+import { LiaQuestionCircle, LiaFilePdfSolid } from "react-icons/lia"
 
 export default defineType({
   name: "accordionTile",
@@ -71,7 +71,7 @@ export default defineType({
                 }
               ]
             },
-            {type: 'file', icon: MdPictureAsPdf},
+            {type: 'file', icon: LiaFilePdfSolid},
           ],
         },
       }],
@@ -87,7 +87,7 @@ export default defineType({
       return {
         title: `${title ? title : 'No Title'}`,
         subtitle: `Accordion Tile`,
-        icon: MdOutlineQuestionAnswer
+        icon: LiaQuestionCircle
       }
     }
   },

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
+import {LiaImage} from "react-icons/lia"
 
 export default defineType({
   name: "blogSection",
@@ -116,7 +116,7 @@ export default defineType({
         title: showArchive.setArchive === true ? 'Displaying All Posts' : 'By Category',
         subtitle: `Blog Section`,
         // media: media,
-        icon: MdOutlinePhotoSizeSelectActual
+        icon: LiaImage
       }
     }
   },

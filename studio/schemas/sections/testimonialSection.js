@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdFormatQuote} from "react-icons/md"
+import {LiaQuoteLeftSolid} from "react-icons/lia"
 
 export default defineType({
   name: "testimonialSection",
@@ -38,7 +38,7 @@ export default defineType({
         title: `${testimonialTiles.length} - Testimonials`,
         subtitle: `Testimonial Section`,
         // media: media,
-        icon: MdFormatQuote
+        icon: LiaQuoteLeftSolid
       }
     }
   },

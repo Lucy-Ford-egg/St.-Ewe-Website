@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdViewModule} from "react-icons/md"
+import {LiaGripHorizontalSolid} from "react-icons/lia"
 
 export default defineType({
   name: "servicesSection",
@@ -63,7 +63,7 @@ export default defineType({
         title: `${title} ${showSearch && '| Search active'}`,
         subtitle: `Sevices Section | Text align ${textAlign}`,
         // media: media,
-        icon: MdViewModule
+        icon: LiaGripHorizontalSolid
       }
     }
   },

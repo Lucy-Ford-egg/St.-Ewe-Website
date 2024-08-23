@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdViewModule} from "react-icons/md"
+import {LiaGripHorizontalSolid} from "react-icons/lia"
 
 export default defineType({
   name: "featuresListSection",
@@ -105,7 +105,7 @@ export default defineType({
         title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Features List Section`,
         // media: media,
-        icon: MdViewModule
+        icon: LiaGripHorizontalSolid
       }
     }
   },

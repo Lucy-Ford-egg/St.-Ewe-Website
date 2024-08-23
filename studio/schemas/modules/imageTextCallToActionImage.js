@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdCenterFocusWeak } from "react-icons/md"
+import { MdCenterFocusWeak } from "react-icons/lia"
 
 export default defineType({
   name: "imageTextCallToActionImage",

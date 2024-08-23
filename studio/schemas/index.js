@@ -18,6 +18,9 @@ import pageType from '../schemas/page'
 import teamMemberType from '../schemas/teamMember'
 
 // Atoms
+import ingredientsType from './ingredients'
+import recipiesCategoryType from '../schemas/taxonomies/recipiesCategory'
+
 import citeType from '../schemas/components/cite'
 import externalCiteType from '../schemas/components/externalCite'
 import sevicesType from '../schemas/taxonomies/services'
@@ -82,6 +85,8 @@ export const schemaTypes = [
   imageOptionsType,
 
   // Atoms
+  ingredientsType,
+  recipiesCategoryType,
   citeType,
   externalCiteType,
   showRecipiesArchiveType,

@@ -1,4 +1,4 @@
-import { MdPictureAsPdf, MdAccessibilityNew } from "react-icons/md";
+import { LiaFilePdfSolid, LiaMaleSolid } from "react-icons/lia";
 
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
@@ -36,7 +36,7 @@ import clientLoginSectionType from '../schemas/sections/clientLoginSection'
 export default defineType({
   name: 'teamMember',
   title: 'Team Member',
-  icon: MdAccessibilityNew,
+  icon: LiaMaleSolid,
   type: 'document',
   groups: [
     {
@@ -218,7 +218,7 @@ export default defineType({
                 }
               ]
             },
-            {type: 'file', icon: MdPictureAsPdf},
+            {type: 'file', icon: LiaFilePdfSolid},
             {type: 'textColor',},
             // {type: 'imageOptions'},  
           ],

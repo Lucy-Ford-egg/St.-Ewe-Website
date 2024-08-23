@@ -1,12 +1,12 @@
 import { defineField, defineType } from 'sanity'
-import { MdOutlineImage } from "react-icons/md";
+import { LiaImage } from "react-icons/lia";
 
 
 export default defineType({
   name: 'imageOptions',
   type: 'object',
   title: 'Image',
-  icon: MdOutlineImage,
+  icon: LiaImage,
   fields: [
     defineField({
       name: "image",

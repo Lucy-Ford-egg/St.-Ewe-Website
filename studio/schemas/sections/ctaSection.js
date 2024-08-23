@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
+import {LiaImage} from "react-icons/lia"
 
 export default defineType({
   name: "ctaSection",
@@ -68,7 +68,7 @@ export default defineType({
         title: title,
         subtitle: `CTA Section ${leftAlign && 'Left Aligned text version'}`,
         media: media,
-        icon: MdOutlinePhotoSizeSelectActual
+        icon: LiaImage
       }
     }
   },

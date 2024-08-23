@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdFormatListNumbered } from "react-icons/md"
+import { LiaListOlSolid  } from "react-icons/lia"
 
 export default defineType({
   name: "stepsSection",
@@ -118,7 +118,7 @@ export default defineType({
         title: `${steps.length} - Steps`,
         subtitle: `Steps Section`,
         // media: media,
-        icon: MdFormatListNumbered
+        icon: LiaListOlSolid 
       }
     }
   },

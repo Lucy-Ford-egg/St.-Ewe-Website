@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdOutlinePhotoSizeSelectActual} from "react-icons/md"
+import {LiaImage} from "react-icons/lia"
 
 export default defineType({
   name: "headerSectionAccommodationSearch",
@@ -57,7 +57,7 @@ export default defineType({
         title: `${title} ${showSearch && '| Search active'}`,
         subtitle: `Header Section w/Accommodation Search`,
         media: media,
-        icon: MdOutlinePhotoSizeSelectActual
+        icon: LiaImage
       }
     }
   },

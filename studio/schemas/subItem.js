@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdOutlineDataset } from "react-icons/md";
+import { LiaListSolid } from "react-icons/lia";
 
 
 
@@ -7,7 +7,7 @@ export default defineType({
   name: 'subItem',
   type: 'object',
   title: 'SubItem',
-  icon: MdOutlineDataset,
+  icon: LiaListSolid,
   fields: [
     defineField({
       name: 'icon',

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdCampaign} from "react-icons/md"
+import {LiaMailchimp} from "react-icons/lia"
 
 export default defineType({
   name: "newsletterSection",
@@ -105,7 +105,7 @@ export default defineType({
         title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Newsletter Section`,
         media: media,
-        icon: MdCampaign
+        icon: LiaMailchimp
       }
     }
   },

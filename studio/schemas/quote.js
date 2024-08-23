@@ -1,4 +1,4 @@
-import { MdFormatQuote } from "react-icons/md";
+import { LiaQuoteLeftSolid } from "react-icons/lia";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import openGraph from '../schemas/openGraph'
@@ -21,7 +21,7 @@ import categoriesType from './categories'
 export default defineType({
   name: 'quote',
   title: 'Quote',
-  icon: MdFormatQuote,
+  icon: LiaQuoteLeftSolid,
   type: 'document',
   groups: [
     {

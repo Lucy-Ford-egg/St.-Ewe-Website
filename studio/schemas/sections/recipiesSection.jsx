@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import {MdWebStories} from "react-icons/md"
+import {LiaFile} from "react-icons/lia"
 
 export default defineType({
   name: "recipiesSection",
@@ -127,7 +127,7 @@ export default defineType({
       return {
         title:  (title && title?.[0]?.children[0]?.text) || "Empty Title",
         subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Case Studies" : "All Case Studies"} | Case Study Section`,
-        icon: MdWebStories
+        icon: LiaFile
       }
     }
   },

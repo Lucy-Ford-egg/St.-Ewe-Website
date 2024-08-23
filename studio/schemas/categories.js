@@ -1,4 +1,4 @@
-import { MdCategory } from "react-icons/md";
+import {LiaSortAlphaDownSolid } from "react-icons/lia";
 import { defineField, defineType } from 'sanity'
 
 import openGraph from '../schemas/openGraph'
@@ -24,7 +24,7 @@ import clientLoginSectionType from '../schemas/sections/clientLoginSection'
 export default defineType({
   name: 'categories',
   title: 'Post Categories',
-  icon: MdCategory,
+  icon:LiaSortAlphaDownSolid,
   type: 'document',
   groups: [
     {

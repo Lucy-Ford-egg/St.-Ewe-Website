@@ -1,5 +1,5 @@
-import { MdOutlineMenu } from "react-icons/md";
-import { MdAddLink } from "react-icons/md";
+import { LiaBarsSolid } from "react-icons/lia";
+import { LiaLinkSolid } from "react-icons/lia";
 
 import { defineField, defineType } from 'sanity'
 
@@ -34,7 +34,7 @@ export default defineType({
         return {
           title: `${link.text}` ,
           subtitle: children && children.length >= 1 ? `${children.length} Child Items` : `No Child Items`,
-          // icon: MdAddLink,
+          // icon: LiaLinkSolid,
         }
       }
     },

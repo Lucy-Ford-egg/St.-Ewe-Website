@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { MdOutlineQuestionAnswer } from "react-icons/md"
+import { LiaQuestionCircle } from "react-icons/lia"
 
 export default defineType({
   name: "faqsSection",
@@ -89,7 +89,7 @@ export default defineType({
       return {
         title: `${title ? title : 'No Title'}`,
         subtitle: `FAQ Section`,
-        icon: MdOutlineQuestionAnswer
+        icon: LiaQuestionCircle
       }
     }
   },
