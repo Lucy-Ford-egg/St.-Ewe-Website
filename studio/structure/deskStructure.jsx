@@ -6,47 +6,13 @@ import {
   MdOutlineChat,
   MdAutoStories,
   MdOutlineTagFaces,
-  MdPerson,
+  MdKitchen,
   MdFormatQuote,
   MdAccessibilityNew,
 } from 'react-icons/md'
-// import {SEOPane} from 'sanity-plugin-seo-pane'
-
-// const remoteURL = 'https://taylormoney.com' // ! For some reason env.vars aren't working process.env.SANITY_STUDIO_FRONTEND // either production or a specialized deploy branch for previews
-// const localURL = 'https://localhost:8000' // local development port from Gatsby
-// const previewUrl = window.location.hostname.includes('localhost') ? localURL : remoteURL
-
-// const resolveProductionUrl = (doc) => {
-//   console.log(`RPU - ${previewUrl}`)
-//   return previewUrl
-// }
-
-// S.view
-// .component(SEOPane)
-// .options({
-//   // Retrieve the keywords and synonyms at the given dot-notated strings
-//   keywords: `seo.keywords`,
-//   synonyms: `seo.synonyms`,
-// url: () => resolveProductionUrl(process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'),
-//   url: (doc) => resolveProductionUrl(doc),
-// })
-// .title('SEO')
 
 export const deskStructure = (S, context) => {
   return (
-    // S.view
-    //   .component(SEOPane)
-    //   .options({
-    //     // Retrieve the keywords and synonyms at the given dot-notated strings
-    //     keywords: `seo.keywords`,
-    //     synonyms: `seo.synonyms`,
-    //     url: () =>
-    //       resolveProductionUrl(
-    //         process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000',
-    //       ),
-    //     url: (doc) => resolveProductionUrl(doc),
-    //   })
-    //   .title('SEO'),
     S.list()
       .title('Site Content')
       .items([
@@ -61,7 +27,6 @@ export const deskStructure = (S, context) => {
               .title('Navigation')
               .child(
                 (id) => S.document().schemaType('navigation').documentId(id),
-                //.views(Views(S, context)),
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
@@ -74,7 +39,6 @@ export const deskStructure = (S, context) => {
               .title('Posts')
               .child(
                 (id) => S.document().schemaType('post').documentId(id),
-                //.views(Views(S, context))
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
@@ -87,19 +51,18 @@ export const deskStructure = (S, context) => {
               .title('Pages')
               .child(
                 (id) => S.document().schemaType('page').documentId(id),
-                //.views(Views(S, context))
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
 
         S.listItem()
-          .title('Case Studies')
-          .icon(MdPerson)
+          .title('Recipies')
+          .icon(MdKitchen)
           .child(
-            S.documentTypeList('caseStudy')
-              .title('Case Studies')
+            S.documentTypeList('recipies')
+              .title('Recipies')
               .child(
-                (id) => S.document().schemaType('caseStudy').documentId(id),
+                (id) => S.document().schemaType('recipies').documentId(id),
                 //.views(Views(S, context))
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
@@ -158,11 +121,11 @@ export const deskStructure = (S, context) => {
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
         S.listItem()
-          .title('Services')
+          .title('Recipie Categories')
           .icon(MdCategory)
           .child(
             S.documentTypeList('services')
-              .title('Services')
+              .title('Recipie Categories')
               .child(
                 (id) => S.document().schemaType('services').documentId(id),
                 //.views(Views(S, context)),

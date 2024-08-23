@@ -9,7 +9,7 @@ import {colorInput} from '@sanity/color-input'
 import {media} from 'sanity-plugin-media'
 import {deskStructure} from './structure/deskStructure'
 import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
-import {theme} from './structure/studioTheme'
+import {theme} from 'https://themer.sanity.build/api/hues?default=darkest:2661ab&primary=2661ab&positive=darkest:101112&caution=darkest:101112&critical=darkest:101112&darkest=1b2e51'
 import {simplerColorInput} from 'sanity-plugin-simpler-color-input'
 
 import {presentationTool} from 'sanity/presentation'
@@ -18,12 +18,12 @@ import {locate} from './locate'
 
 export default defineConfig([{
   name: 'default',
-  title: 'Taylor Money',
-  projectId: '0y4lutj5',
+  title: 'St Ewe Eggs',
+  projectId: 'vmhe5utz',
   dataset: 'production',
   basePath: '/production',
   apiVersion: '2023-08-01',
-  theme,
+  theme: theme,
   plugins: [
     structureTool({
       structure: deskStructure,
@@ -49,12 +49,12 @@ export default defineConfig([{
 }, 
 {
   name: 'beta',
-  title: 'Beta Taylor Money',
-  projectId: '0y4lutj5',
+  title: 'Beta St Ewe',
+  projectId: 'vmhe5utz',
   dataset: 'beta',
   basePath: '/beta',
   apiVersion: '2023-08-01',
-  theme,
+  theme: theme,
   plugins: [
     structureTool({
       structure: deskStructure,

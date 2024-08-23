@@ -13,7 +13,7 @@ export const ButtonFormat = props => {
 
     definedInternal = `blog/${node?.link?.internal?.category?.slug?.current}/${definedInternal}`
   }
-  if(node?.link?.internal?._type === "caseStudy" ){
+  if(node?.link?.internal?._type === "recipies" ){
     definedInternal = `/case-studies/${definedInternal}`
   }
   if(node?.link?.internal?._type === "teamMembers" ){

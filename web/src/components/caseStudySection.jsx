@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider"
 import Box from "@mui/material/Box"
 import { useTheme } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
-import { CaseStudyTile } from "./caseStudyTile"
+import { recipiesTile } from "./recipiesTile"
 
 //Preview
 import { useQuery } from "../../sanity/store"
@@ -18,8 +18,8 @@ import {
 } from "../queries/documentQueries"
 import { Carousel } from "../components/framer-motion-carousel/src/carousel"
 
-export const CaseStudySection = ({
-  allSanityCaseStudy,
+export const recipiesSection = ({
+  allSanityrecipies,
   topPadding,
   previewData,
   initial,
@@ -44,13 +44,13 @@ export const CaseStudySection = ({
 
   const { data: allCaseStudies } = useQuery(ALL_CASE_STUDIES, {}, { initial })
 
-  const { data: caseStudyData } = useQuery(
+  const { data: recipiesData } = useQuery(
     CASE_STUDIES_BY_ID,
     {
       categoryId:
         (previewData &&
-          previewData?.showCaseStudyArchive?.archive &&
-          previewData?.showCaseStudyArchive?.archive.map(node => node?._id)) ||
+          previewData?.showrecipiesArchive?.archive &&
+          previewData?.showrecipiesArchive?.archive.map(node => node?._id)) ||
         [],
     },
     { initial },
@@ -60,12 +60,12 @@ export const CaseStudySection = ({
     (previewData && _type === previewData?._type && previewData?.topPadding) ||
     topPadding
 
-  const definedAllSanityCaseStudy =
-    (caseStudyData && caseStudyData?.length > 0 && caseStudyData) ||
-    (previewData?.showCaseStudyArchive?.setArchive === true &&
+  const definedAllSanityrecipies =
+    (recipiesData && recipiesData?.length > 0 && recipiesData) ||
+    (previewData?.showrecipiesArchive?.setArchive === true &&
       allCaseStudies &&
       allCaseStudies) ||
-    allSanityCaseStudy?.nodes
+    allSanityrecipies?.nodes
 
   const definedSubtitle =
     (previewData && _type === previewData?._type && previewData?.subtitle) ||
@@ -89,7 +89,7 @@ export const CaseStudySection = ({
   const definedDisableSummary = (previewData && _type === previewData?._type && previewData?.disableSummary) || disableSummary
 
   useEffect(() => {
-    setFilterData(definedAllSanityCaseStudy)
+    setFilterData(definedAllSanityrecipies)
   }, [])
 
   return (
@@ -160,11 +160,11 @@ export const CaseStudySection = ({
 
         {!definedAsCarousel && filtersPosts && (
           <Grid container rowSpacing={{ xs: 6, md: 9 }}>
-            {definedAllSanityCaseStudy &&
-              definedAllSanityCaseStudy.map((tile, i) => {
+            {definedAllSanityrecipies &&
+              definedAllSanityrecipies.map((tile, i) => {
                 return (
                   <Grid key={`${tile.title}-${i}`} item xs={12} sm={12} md={12}>
-                    <CaseStudyTile {...tile} i={i} />
+                    <recipiesTile {...tile} i={i} />
                   </Grid>
                 )
               })}
@@ -213,7 +213,7 @@ export const CaseStudySection = ({
                     pr: {sm: 16, md: 16, lg: 16},  
                   }}
                 >
-                  <CaseStudyTile disableSummary={definedDisableSummary} {...tile} i={i} />
+                  <recipiesTile disableSummary={definedDisableSummary} {...tile} i={i} />
                 </Box>
               )
             })}
@@ -226,7 +226,7 @@ export const CaseStudySection = ({
 }
 
 export const query = graphql`
-  fragment CaseStudySectionFragment on SanityCaseStudySection {
+  fragment recipiesSectionFragment on SanityrecipiesSection {
     _key
     _type
     topPadding
@@ -234,7 +234,7 @@ export const query = graphql`
     _rawLeftText(resolveReferences: { maxDepth: 10 })
     _rawRightText(resolveReferences: { maxDepth: 10 })
     subtitle
-    showCaseStudyArchive {
+    showrecipiesArchive {
       setArchive
     }
     asCarousel

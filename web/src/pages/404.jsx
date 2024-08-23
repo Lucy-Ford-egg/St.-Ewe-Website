@@ -26,7 +26,7 @@ const IndexPage = props => {
     sanityConfig={getSanityClient}
     previewData={pageData?.pageBuilder}
     allSanityPost={data.allSanityPost}
-    allCaseStudy={data.allSanityCaseStudy}
+    allrecipies={data.allSanityrecipies}
     pageContext={pageContext}
     modules={definedModules}
     sanitySiteSettings={siteSettings }
@@ -40,7 +40,7 @@ export const Head = ({ data, location }) => {
 }
 
 export const homeQuery = graphql`
-query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int, $limit: Int) {
+query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int, $limit: Int) {
   allSanityPost(
     filter: {
       category: {
@@ -136,11 +136,11 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
       }
     }
   }
-  allSanityCaseStudy(
+  allSanityrecipies(
     filter: {
       service: {
         _id: {
-          in: $caseStudyIds
+          in: $recipiesIds
         }
       }
     }
@@ -150,7 +150,7 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
     nodes {
       _key
       _id
-      ...CaseStudyTileFragment
+      ...recipiesTileFragment
      
     }
   }
@@ -174,8 +174,8 @@ query homeTemplateQuery( $caseStudyIds:[String!], $postIds:[String!], $skip: Int
         ... on SanityTeamSection {
           ...TeamSectionFragment
         }
-        ...on SanityCaseStudySection {
-          ... CaseStudySectionFragment
+        ...on SanityrecipiesSection {
+          ... recipiesSectionFragment
         }
         ... on SanityVideoSection {
           ...VideoSectionFragment

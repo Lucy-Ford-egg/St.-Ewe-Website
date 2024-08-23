@@ -17,28 +17,28 @@ import { RenderPortableText } from "../components/renderPortableText"
 import { useQuery } from "../../sanity/store"
 import { CASE_STUDY_QUERY } from "../queries/documentQueries"
 
-const CaseStudyTemplate = props => {
+const recipiesTemplate = props => {
   const { data, pageContext, initial, location } = props
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
   // Preview
   const { data: previewData } = useQuery(
-    `{"caseStudyQuery:" ${CASE_STUDY_QUERY}`,
-    { slug: data.sanityCaseStudy.slug.current },
+    `{"recipiesQuery:" ${CASE_STUDY_QUERY}`,
+    { slug: data.sanityrecipies.slug.current },
     { initial },
   )
 
   const definedImage =
-    (previewData && previewData?.caseStudyQuery?.coverImage) || data.sanityCaseStudy?.coverImage
+    (previewData && previewData?.recipiesQuery?.coverImage) || data.sanityrecipies?.coverImage
   const definedRawPerson =
-    (previewData && previewData?.caseStudyQuery?.person) || data.sanityCaseStudy?._rawPerson
+    (previewData && previewData?.recipiesQuery?.person) || data.sanityrecipies?._rawPerson
   const definedService =
-    (previewData && previewData?.caseStudyQuery?.service?.name) ||
-    data.sanityCaseStudy?.service?.name
+    (previewData && previewData?.recipiesQuery?.service?.name) ||
+    data.sanityrecipies?.service?.name
 
-  const definedRawBody = (previewData && previewData?.caseStudyQuery?.body) || data?.sanityCaseStudy._rawBody
-  const definedModules = (previewData && previewData?.caseStudyQuery?.pageBuilder)  || data?.sanityCaseStudy?.pageBuilder
+  const definedRawBody = (previewData && previewData?.recipiesQuery?.body) || data?.sanityrecipies._rawBody
+  const definedModules = (previewData && previewData?.recipiesQuery?.pageBuilder)  || data?.sanityrecipies?.pageBuilder
 
   return (
     <>
@@ -210,7 +210,7 @@ const CaseStudyTemplate = props => {
         pageContext={pageContext}
         modules={definedModules}
         getAllPosts={data.getAllPosts}
-        allSanityCaseStudy={data.allSanityCaseStudy}
+        allSanityrecipies={data.allSanityrecipies}
       />
             
     </>
@@ -218,13 +218,13 @@ const CaseStudyTemplate = props => {
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityCaseStudy} location={location} />
+  return <Seo seoContext={data.sanityrecipies} location={location} />
 }
 
-export const caseStudyTemplateQuery = graphql`
-  query caseStudyTemplateQuery($slug: String!, $caseStudyIds:[String!]) {
-    sanityCaseStudy(slug: { current: { eq: $slug } }) {
-      ... SeoCaseStudyFragment
+export const recipiesTemplateQuery = graphql`
+  query recipiesTemplateQuery($slug: String!, $recipiesIds:[String!]) {
+    sanityrecipies(slug: { current: { eq: $slug } }) {
+      ... SeorecipiesFragment
       slug {
         current
       }
@@ -259,17 +259,17 @@ export const caseStudyTemplateQuery = graphql`
         ...PageBuilderFragment
       }
     }
-    allSanityCaseStudy(filter: {
+    allSanityrecipies(filter: {
       service: {
         _id: {
-          in: $caseStudyIds
+          in: $recipiesIds
         }
       }
     }) {
     nodes {
       _key
       _id
-      ...CaseStudyTileFragment 
+      ...recipiesTileFragment 
     }
   }
     getAllPosts: allSanityPost(sort: {date: DESC}){
@@ -316,7 +316,7 @@ export const caseStudyTemplateQuery = graphql`
     }
   }
 `
-export default CaseStudyTemplate
+export default recipiesTemplate
 
 // TODO:
 // ... on SanityLocationSection {

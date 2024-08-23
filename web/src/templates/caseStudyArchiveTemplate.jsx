@@ -8,7 +8,7 @@ import { useQuery } from "../../sanity/store"
 import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
-const CaseStudyArchiveTemplate = props => {
+const recipiesArchiveTemplate = props => {
 
   const { data, pageContext, initial } = props
 
@@ -26,7 +26,7 @@ const CaseStudyArchiveTemplate = props => {
       <Modules
           previewData={previewData?.pageBuilder}
           sanityConfig={getSanityClient}
-          allSanityCaseStudy={data.allSanityCaseStudy}
+          allSanityrecipies={data.allSanityrecipies}
           pageContext={pageContext}
           modules={definedModules }
           getAllPosts={data.getAllPosts}
@@ -39,13 +39,13 @@ export const Head = ({ data, location }) => {
   return <Seo seoContext={data.sanityPage} location={location} />
 }
 
-export const caseStudyArchiveTemplateQuery = graphql`
-query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
-  allSanityCaseStudy(
+export const recipiesArchiveTemplateQuery = graphql`
+query recipiesArchiveTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+  allSanityrecipies(
     filter: {
       service: {
         _id: {
-          in: $caseStudyIds
+          in: $recipiesIds
         }
       }
     }
@@ -136,4 +136,4 @@ query caseStudyArchiveTemplateQuery( $caseStudyIds:[String!], $slug: String!, $s
   }
 }
 `
-export default CaseStudyArchiveTemplate
+export default recipiesArchiveTemplate

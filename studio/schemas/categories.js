@@ -8,7 +8,7 @@ import siteMeta from '../schemas/siteMeta'
 import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
-import caseStudySectionType from './sections/caseStudySection'
+import recipiesSectionType from './sections/recipiesSection'
 import ctaSectionType from '../schemas/sections/ctaSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import videoSectionType from '../schemas/sections/videoSection'
@@ -107,7 +107,7 @@ export default defineType({
         {type: headerSectionType.name},
         {type: testimonialSectionType.name},
         {type: teamSectionType.name},
-        {type: caseStudySectionType.name},
+        {type: recipiesSectionType.name},
         {type: videoSectionType.name},
         {type: featuresListSectionType.name},
         {type: ctaSectionType.name},

@@ -92,7 +92,7 @@ module.exports = {
               }
             }
           }
-          allSanityCaseStudy {
+          allSanityrecipies {
             nodes {
               _updatedAt
               _id
@@ -108,7 +108,7 @@ module.exports = {
           allSitePage: { nodes: allPages },
           allSanityPost: { nodes: allPosts },
           allSanityTeamMember: { nodes: allTeams },
-          allSanityCaseStudy: { nodes: allCaseStudies },
+          allSanityrecipies: { nodes: allCaseStudies },
         }) => {
 
           const teamsNodeMap = allTeams.reduce((acc, node) => {

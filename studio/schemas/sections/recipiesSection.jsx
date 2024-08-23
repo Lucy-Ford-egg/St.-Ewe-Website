@@ -2,9 +2,9 @@ import { defineField, defineType } from 'sanity'
 import {MdWebStories} from "react-icons/md"
 
 export default defineType({
-  name: "caseStudySection",
+  name: "recipiesSection",
   type: "object",
-  title: "Case Study Section",
+  title: "Recipies Section",
   fields: [
     defineField({
       name: 'subtitle',
@@ -94,8 +94,8 @@ export default defineType({
       }],
     }),
     defineField({
-      name: 'showCaseStudyArchive',
-      type: 'showCaseStudyArchive',
+      name: 'showRecipiesArchive',
+      type: 'showRecipiesArchive',
       title: 'Show Case Study Archive',
       validation: Rule => Rule.required(),
     }),

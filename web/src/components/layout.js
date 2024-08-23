@@ -12,7 +12,7 @@ export const Layout = (props) => {
 
   const {children, data, initial} = props
   // Preview
-  const definedSlug = (data?.sanityPost || data?.sanityTeamMember || data?.sanityCaseStudy || data?.sanityPage || data?.sanityCategories )
+  const definedSlug = (data?.sanityPost || data?.sanityTeamMember || data?.sanityrecipies || data?.sanityPage || data?.sanityCategories )
   
   const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "nav":${NAV_QUERY}}`,

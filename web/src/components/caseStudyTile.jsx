@@ -12,7 +12,7 @@ import Divider from "@mui/material/Divider"
 import { useTheme } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 
-export const CaseStudyTile = (props) => {
+export const recipiesTile = (props) => {
 
   const {
     title,
@@ -215,7 +215,7 @@ export const CaseStudyTile = (props) => {
 }
 
 export const query = graphql`
-  fragment CaseStudyTileFragment on SanityCaseStudy {
+  fragment recipiesTileFragment on Sanityrecipies {
     coverImage {
       asset {
         _id

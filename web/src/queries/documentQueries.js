@@ -61,7 +61,7 @@ pageBuilder[] {
     ...,
     archive[]->{...},  
   },
-  showCaseStudyArchive{
+  showrecipiesArchive{
     ...,
     archive[]->{
       ..., 
@@ -156,20 +156,20 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   _id,
 }`
 
-export const ALL_CASE_STUDIES = groq`*[_type == "caseStudy"][0..4] {
+export const ALL_CASE_STUDIES = groq`*[_type == "recipies"][0..4] {
   _id,
   title,
   ...,
   service->{name},
 }`
 
-export const CASE_STUDIES_BY_ID = groq`*[_type == "caseStudy" && references($categoryId)] {
+export const CASE_STUDIES_BY_ID = groq`*[_type == "recipies" && references($categoryId)] {
   _id,
   ...,
   service->{name},
 }`
 
-export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $slug][0] {
+export const CASE_STUDY_QUERY = groq`*[_type == "recipies" && slug.current == $slug][0] {
   pageBuilder[] {
     ...,
     images[] { 
@@ -204,7 +204,7 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
       ...,
       archive[]->{...},  
     },
-    showCaseStudyArchive{
+    showrecipiesArchive{
       ...,
       archive[]->{
         ..., 
@@ -269,7 +269,7 @@ export const CASE_STUDY_QUERY = groq`*[_type == "caseStudy" && slug.current == $
   _id,
 }`
 
-export const CATEGORIES_QUERY = groq`*[_type == "caseStudy" && slug.current == $slug][0] {
+export const CATEGORIES_QUERY = groq`*[_type == "recipies" && slug.current == $slug][0] {
   pageBuilder[] {
     ...,
     images[] { 
@@ -304,7 +304,7 @@ export const CATEGORIES_QUERY = groq`*[_type == "caseStudy" && slug.current == $
       ...,
       archive[]->{...},  
     },
-    showCaseStudyArchive{
+    showrecipiesArchive{
       ...,
       archive[]->{
         ..., 

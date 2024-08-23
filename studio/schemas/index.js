@@ -13,7 +13,7 @@ import showArchiveType from '../schemas/showArchive'
 import authorType from '../schemas/author'
 import postType from '../schemas/post'
 import quoteType from '../schemas/quote'
-import caseStudyType from '../schemas/caseStudy'
+import recipiesType from './recipies'
 import pageType from '../schemas/page'
 import teamMemberType from '../schemas/teamMember'
 
@@ -21,7 +21,7 @@ import teamMemberType from '../schemas/teamMember'
 import citeType from '../schemas/components/cite'
 import externalCiteType from '../schemas/components/externalCite'
 import sevicesType from '../schemas/taxonomies/services'
-import showCaseStudyArchiveType from '../schemas/components/showCaseStudyArchive'
+import showRecipiesArchiveType from './components/showRecipiesArchive'
 import accordionTileType from '../schemas/components/accordionTile'
 import imageOptionsType from '../schemas/imageOptions'
 
@@ -30,7 +30,7 @@ import headerSectionType from '../schemas/sections/headerSection'
 import testimonialSectionType from '../schemas/sections/testimonialSection'
 import testimonialTileType from '../schemas/sections/testimonialTile'
 import teamSectionType from '../schemas/sections/teamSection'
-import caseStudySectionType from '../schemas/sections/caseStudySection'
+import recipiesSectionType from './sections/recipiesSection'
 import ctaSectionType from '../schemas/sections/ctaSection'
 import featuresListSectionType from '../schemas/sections/featuresListSection'
 import featuresTileType from '../schemas/sections/featuresTile'
@@ -84,7 +84,7 @@ export const schemaTypes = [
   // Atoms
   citeType,
   externalCiteType,
-  showCaseStudyArchiveType,
+  showRecipiesArchiveType,
   accordionTileType,
   
   // Taxonomies
@@ -93,14 +93,14 @@ export const schemaTypes = [
   // Docs 
   postType,
   pageType,
-  caseStudyType,
+  recipiesType,
   quoteType,
   teamMemberType,
 
   // Sections
   headerSectionType,
   teamSectionType,
-  caseStudySectionType,
+  recipiesSectionType,
   newsletterSectionType,
   videoSectionType,
   featuresListSectionType,

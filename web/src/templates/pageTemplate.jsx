@@ -13,7 +13,7 @@ const PageTemplate = props => {
   const { data, pageContext, initial } = props
 
   // Preview
-  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityCaseStudy
+  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityrecipies
 
   const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
@@ -31,7 +31,7 @@ const PageTemplate = props => {
         previewData={pageData?.pageBuilder}
         allSanityPost={data.allSanityPost}
         getAllPosts={data.getAllPosts}
-        allSanityCaseStudy={data.allSanityCaseStudy}
+        allSanityrecipies={data.allSanityrecipies}
         pageContext={pageContext}
         modules={definedModules}
         sanitySiteSettings={siteSettings }
@@ -45,7 +45,7 @@ export const Head = ({ data, location }) => {
 
 export const pageTemplateQuery = graphql`
 
-query pageTemplateQuery( $caseStudyIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
   
   getAllPosts: allSanityPost(sort: {date: DESC}, limit: 8){
     nodes {
@@ -88,11 +88,11 @@ query pageTemplateQuery( $caseStudyIds:[String!], $slug: String!, $skip: Int, $l
       }
     }
   }
-  allSanityCaseStudy(
+  allSanityrecipies(
     filter: {
       service: {
         _id: {
-          in: $caseStudyIds
+          in: $recipiesIds
         }
       }
     }
@@ -102,7 +102,7 @@ query pageTemplateQuery( $caseStudyIds:[String!], $slug: String!, $skip: Int, $l
     nodes {
       _key
       _id
-      ...CaseStudyTileFragment
+      ...recipiesTileFragment
      
     }
   }
