@@ -19,11 +19,11 @@ module.exports = {
       headers: [
         {
           key: `X-Frame-Options: ALLOW-FROM`,
-          value: `st-ewe.sanity.studio`,
+          value: `https://st-ewe.sanity.studio/`,
         },
         {
           key: `Content-Security-Policy: frame-src`,
-          value: `st-ewe.sanity.studio`,
+          value: `https://st-ewe.sanity.studio/`,
         },
         {
           key: `Content-Security-Policy: frame-src`,
