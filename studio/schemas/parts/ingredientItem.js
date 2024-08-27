@@ -30,7 +30,7 @@ export default defineType({
             title: "Unit",
             type: "string",
             options: {
-              list: ["grams", "cup", "Tbsp.", "tsp.", "bunch"],
+              list: ["grams", "cup", "Tbsp.", "tsp.", "bunch", "handful", "pinch", "glug"],
             },
           }),
           defineField({
@@ -38,7 +38,7 @@ export default defineType({
             title: "Preparation",
             type: "string",
             options: {
-              list: ["Roughly Chopped", "Chopped", "Finely Chopped", "Shredded", "Crushed", "Drained & Rinsed", "Drained & Finely Chopped", "Juice of"],
+              list: ["Roughly Chopped", "Chopped", "Finely Chopped", "Finely Chopped or Sliced", "Sliced",  "Shredded", "Grated", "Crushed", "Drained & Rinsed", "Drained & Finely Chopped", "Juice of", "to taste"],
             },
           }),
           defineField({
