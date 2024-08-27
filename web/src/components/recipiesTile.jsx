@@ -12,18 +12,16 @@ import Divider from "@mui/material/Divider"
 import { useTheme } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
 
-export const recipiesTile = (props) => {
+export const RecipiesTile = (props) => {
 
   const {
     title,
-    _rawPerson,
-    person,
-    excerpt,
-    service,
+    category,
     i,
     slug,
     coverImage,
-    disableSummary
+    disableSummary,
+    _rawInstructions
   } = props
 
   
@@ -31,13 +29,12 @@ export const recipiesTile = (props) => {
   const theme = useTheme()
 
   
-  const definedPerson = (_rawPerson && _rawPerson) || (person) && person
-  const definedService = (service && service.name) || (service) && service.name
+  const definedcategory = (category && category.name) || (category) && category.name
 
   const backgroundColor = i % 2 ? "secondary" : "primary"
   const number = i + 1
   return (
-    <Link to={`/case-studies/${slug.current}`} style={{ display: "block", width: "inherit", textDecoration: "none" }} state={{ backgroundColor: backgroundColor, number: number}}>
+    <Link to={`/recipies/${slug.current}`} style={{ display: "block", width: "inherit", textDecoration: "none" }} state={{ backgroundColor: backgroundColor, number: number}}>
       <Card
         elevation={0}
         sx={{
@@ -132,7 +129,7 @@ export const recipiesTile = (props) => {
                             maxWidth: "100%",
                           }}
                         >
-                         {definedPerson && <Box sx={{color: 'white.main'}}><RenderPortableText setAsHeading='h5' value={definedPerson} /></Box> }
+                         
                         </Box>
                         <Box
                           sx={{
@@ -150,7 +147,7 @@ export const recipiesTile = (props) => {
                             component="h3"
                             color="white.main"
                           >
-                            {definedService && definedService}
+                            {definedcategory && definedcategory}
                           </Typography>
                         </Box>
                       </Box>
@@ -186,14 +183,12 @@ export const recipiesTile = (props) => {
                   borderColor: "white.main",
                 }}
               />
-              <Typography variant="body1" color="white.main">
-                {excerpt}
-              </Typography>
+             
               <CardActions sx={{ py: 10, pb: 0 }}>
                 <Button
                   variant="contained"
                   color={i % 2 ? "primary" : "secondary"}
-                  to={`/case-studies/${slug.current}`}
+                  to={`/recipies/${slug.current}`}
                   component={Link}
                   size="small"
                   sx={{
@@ -215,7 +210,7 @@ export const recipiesTile = (props) => {
 }
 
 export const query = graphql`
-  fragment recipiesTileFragment on Sanityrecipies {
+  fragment RecipiesTileFragment on SanityRecipies {
     coverImage {
       asset {
         _id
@@ -237,14 +232,12 @@ export const query = graphql`
       }
     }
     title
-    _rawPerson(resolveReferences: {maxDepth: 10})
-    service {
+    category {
       name
     }
     slug {
       current
     }
-    excerpt
-    _rawBody(resolveReferences: { maxDepth: 10 })
+    _rawInstructions(resolveReferences: { maxDepth: 10 })
   }
 `

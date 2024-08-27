@@ -20,6 +20,10 @@ import teamMemberType from '../schemas/teamMember'
 // Atoms
 import ingredientsType from './ingredients'
 import recipiesCategoryType from '../schemas/taxonomies/recipiesCategory'
+import durationType from './parts/duration'
+import servesType from './parts/serves'
+import ingredientsList from './parts/ingredientsList'
+import ingredientItem from './parts/ingredientItem'
 
 import citeType from '../schemas/components/cite'
 import externalCiteType from '../schemas/components/externalCite'
@@ -74,6 +78,7 @@ import servicesSectionType from './modules/servicesSection'
 // import faqsSectionType from './modules/faqsSection'
 import blogSectionType from './modules/blogSection'
 
+
 export const schemaTypes = [
   // Settings
   siteSettingsType,
@@ -84,7 +89,14 @@ export const schemaTypes = [
   footerDetailsType,
   imageOptionsType,
 
+  // Parts
+  durationType,
+  servesType,
+  ingredientsList,
+  ingredientItem,
   // Atoms
+
+
   ingredientsType,
   recipiesCategoryType,
   citeType,

@@ -7,7 +7,7 @@ const netlifyAdapter = require("gatsby-adapter-netlify").default;
 const isProd = process.env.NODE_ENV === "production"
 const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() === "true"
 
-const siteUrl = process.env.GATSBY_FRONTEND || `https://taylormoney.com/`
+const siteUrl = process.env.GATSBY_FRONTEND || `https://steweeggs.com/`
 
 module.exports = {
   adapter: netlifyAdapter({
@@ -19,11 +19,11 @@ module.exports = {
       headers: [
         {
           key: `X-Frame-Options: ALLOW-FROM`,
-          value: `https://taylormoney.sanity.studio`,
+          value: `st-ewe.sanity.studio`,
         },
         {
           key: `Content-Security-Policy: frame-src`,
-          value: `https://taylormoney.sanity.studio`,
+          value: `st-ewe.sanity.studio`,
         },
         {
           key: `Content-Security-Policy: frame-src`,
@@ -41,8 +41,8 @@ module.exports = {
     }
   ],
   siteMetadata: {
-    title: `Taylor Money`,
-    description: `Taylor Money Wealth Management. An Asset for life.`,
+    title: `St Ewe Eggs`,
+    description: `A love of eggs. A passion for welfare. An obsession for good food. We are St. Ewe Eggs, an award-winning, family business, based in Cornwall.`,
     author: `@edwardwilson`,
   },
   plugins: [
@@ -92,7 +92,7 @@ module.exports = {
               }
             }
           }
-          allSanityrecipies {
+          allSanityRecipies {
             nodes {
               _updatedAt
               _id
@@ -108,7 +108,7 @@ module.exports = {
           allSitePage: { nodes: allPages },
           allSanityPost: { nodes: allPosts },
           allSanityTeamMember: { nodes: allTeams },
-          allSanityrecipies: { nodes: allCaseStudies },
+          allSanityRecipies: { nodes: allCaseStudies },
         }) => {
 
           const teamsNodeMap = allTeams.reduce((acc, node) => {
@@ -120,7 +120,7 @@ module.exports = {
 
           const caseStudiesNodeMap = allCaseStudies.reduce((acc, node) => {
             const { slug } = node
-            acc[`/case-studies/${slug?.current}`] = node
+            acc[`/recipies/${slug?.current}`] = node
 
             return acc
           }, {})
@@ -194,8 +194,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `heligan-campsite`,
-        short_name: `heligan-campsite`,
+        name: `st-ewe-eggs`,
+        short_name: `st-ewe-eggs`,
         start_url: `/`,
         background_color: `F3F3F2`,
         theme_color: `F3F3F2`,
@@ -203,13 +203,13 @@ module.exports = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `gatsby-plugin-mailchimp`,
-      options: {
-          endpoint: process.env.MAILCHIMP_LIST_ENDPOINT, // string; add your MC list endpoint here; see instructions below
-          timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
-      }
-    },
+    // {
+    //   resolve: `gatsby-plugin-mailchimp`,
+    //   options: {
+    //       endpoint: process.env.MAILCHIMP_LIST_ENDPOINT, // string; add your MC list endpoint here; see instructions below
+    //       timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+    //   }
+    // },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {

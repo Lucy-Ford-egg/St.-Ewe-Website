@@ -61,7 +61,7 @@ pageBuilder[] {
     ...,
     archive[]->{...},  
   },
-  showrecipiesArchive{
+  showRecipiesArchive{
     ...,
     archive[]->{
       ..., 
@@ -204,7 +204,7 @@ export const CASE_STUDY_QUERY = groq`*[_type == "recipies" && slug.current == $s
       ...,
       archive[]->{...},  
     },
-    showrecipiesArchive{
+    showRecipiesArchive{
       ...,
       archive[]->{
         ..., 
@@ -304,7 +304,7 @@ export const CATEGORIES_QUERY = groq`*[_type == "recipies" && slug.current == $s
       ...,
       archive[]->{...},  
     },
-    showrecipiesArchive{
+    showRecipiesArchive{
       ...,
       archive[]->{
         ..., 

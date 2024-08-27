@@ -12,14 +12,14 @@ const ImageCarouselSection= React.lazy(() =>  import('./imageCarouselSection').t
 const LocationSection= React.lazy(() =>  import('./locationSection').then(module => ({ default: module.LocationSection })));
 const ContactSection= React.lazy(() =>  import('./contactSection').then(module => ({ default: module.ContactSection })));
 const TeamSection= React.lazy(() =>  import('./teamSection').then(module => ({ default: module.TeamSection })));
-const recipiesSection = React.lazy(() =>  import('./recipiesSection').then(module => ({ default: module.recipiesSection })));
+const RecipiesSection = React.lazy(() =>  import('./recipiesSection').then(module => ({ default: module.RecipiesSection })));
 const NewsletterSection= React.lazy(() =>  import('./newsletterSection').then(module => ({ default: module.NewsletterSection })));
 const StepsSection= React.lazy(() =>  import('./stepsSection').then(module => ({ default: module.StepsSection })));
 const ClientLoginSection= React.lazy(() =>  import('./clientLoginSection').then(module => ({ default: module.ClientLoginSection })));
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, allSanityrecipies, sanitySiteSettings } = props
+    const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, allSanityRecipies, sanitySiteSettings } = props
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
     
@@ -111,12 +111,12 @@ const Modules = (props) => {
                     }
 
                     if (isModule(module, 'recipiesSection')) {
-                        return <recipiesSection previewData={previewData && previewData[i]}
+                        return <RecipiesSection previewData={previewData && previewData[i]}
                             sanityConfig={sanityConfig}
                             pageContext={pageContext}
                             key={module._key + i}
                             allSanityPost={allSanityPost}
-                            allSanityrecipies={allSanityrecipies}
+                            allSanityRecipies={allSanityRecipies}
                             {...module} />
                     }
                     

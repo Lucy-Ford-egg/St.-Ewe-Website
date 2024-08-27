@@ -78,7 +78,7 @@ export const query = graphql`
         }
       }
     }
-  fragment SeorecipiesFragment on Sanityrecipies {
+  fragment SeoRecipiesFragment on SanityRecipies {
     metaDescription
     metaTitle
     ogDescription

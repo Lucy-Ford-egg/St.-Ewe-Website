@@ -26,7 +26,7 @@ const recipiesArchiveTemplate = props => {
       <Modules
           previewData={previewData?.pageBuilder}
           sanityConfig={getSanityClient}
-          allSanityrecipies={data.allSanityrecipies}
+          allSanityRecipies={data.allSanityRecipies}
           pageContext={pageContext}
           modules={definedModules }
           getAllPosts={data.getAllPosts}
@@ -41,9 +41,9 @@ export const Head = ({ data, location }) => {
 
 export const recipiesArchiveTemplateQuery = graphql`
 query recipiesArchiveTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
-  allSanityrecipies(
+  allSanityRecipies(
     filter: {
-      service: {
+      category: {
         _id: {
           in: $recipiesIds
         }
@@ -58,10 +58,9 @@ query recipiesArchiveTemplateQuery( $recipiesIds:[String!], $slug: String!, $ski
       }
       title
       date(formatString: "Do MMMM YYYY")
-      service {
+      category {
         name
       }
-      _rawPerson(resolveReferences: {maxDepth: 10})
       coverImage {
         asset {
           _id
@@ -80,7 +79,7 @@ query recipiesArchiveTemplateQuery( $recipiesIds:[String!], $slug: String!, $ski
           top
         }
       }
-      _rawBody(resolveReferences: { maxDepth: 10 })
+      _rawInstructions(resolveReferences: { maxDepth: 10 })
     }
   }
   getAllPosts: allSanityPost(sort: {date: DESC}){

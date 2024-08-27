@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider"
 import Box from "@mui/material/Box"
 import { useTheme } from "@mui/material"
 import { RenderPortableText } from "./renderPortableText"
-import { recipiesTile } from "./recipiesTile"
+import { RecipiesTile } from "./recipiesTile"
 
 //Preview
 import { useQuery } from "../../sanity/store"
@@ -16,10 +16,10 @@ import {
   CASE_STUDIES_BY_ID,
   ALL_CASE_STUDIES,
 } from "../queries/documentQueries"
-import { Carousel } from "../components/framer-motion-carousel/src/carousel"
+import { Carousel } from "./framer-motion-carousel/src/carousel"
 
-export const recipiesSection = ({
-  allSanityrecipies,
+export const RecipiesSection = ({
+  allSanityRecipies,
   topPadding,
   previewData,
   initial,
@@ -49,8 +49,8 @@ export const recipiesSection = ({
     {
       categoryId:
         (previewData &&
-          previewData?.showrecipiesArchive?.archive &&
-          previewData?.showrecipiesArchive?.archive.map(node => node?._id)) ||
+          previewData?.showRecipiesArchive?.archive &&
+          previewData?.showRecipiesArchive?.archive.map(node => node?._id)) ||
         [],
     },
     { initial },
@@ -60,12 +60,12 @@ export const recipiesSection = ({
     (previewData && _type === previewData?._type && previewData?.topPadding) ||
     topPadding
 
-  const definedAllSanityrecipies =
+  const definedallSanityRecipies =
     (recipiesData && recipiesData?.length > 0 && recipiesData) ||
-    (previewData?.showrecipiesArchive?.setArchive === true &&
+    (previewData?.showRecipiesArchive?.setArchive === true &&
       allCaseStudies &&
       allCaseStudies) ||
-    allSanityrecipies?.nodes
+    allSanityRecipies?.nodes
 
   const definedSubtitle =
     (previewData && _type === previewData?._type && previewData?.subtitle) ||
@@ -89,7 +89,7 @@ export const recipiesSection = ({
   const definedDisableSummary = (previewData && _type === previewData?._type && previewData?.disableSummary) || disableSummary
 
   useEffect(() => {
-    setFilterData(definedAllSanityrecipies)
+    setFilterData(definedallSanityRecipies)
   }, [])
 
   return (
@@ -160,11 +160,11 @@ export const recipiesSection = ({
 
         {!definedAsCarousel && filtersPosts && (
           <Grid container rowSpacing={{ xs: 6, md: 9 }}>
-            {definedAllSanityrecipies &&
-              definedAllSanityrecipies.map((tile, i) => {
+            {definedallSanityRecipies &&
+              definedallSanityRecipies.map((tile, i) => {
                 return (
                   <Grid key={`${tile.title}-${i}`} item xs={12} sm={12} md={12}>
-                    <recipiesTile {...tile} i={i} />
+                    <RecipiesTile {...tile} i={i} />
                   </Grid>
                 )
               })}
@@ -226,7 +226,7 @@ export const recipiesSection = ({
 }
 
 export const query = graphql`
-  fragment recipiesSectionFragment on SanityrecipiesSection {
+  fragment RecipiesSectionFragment on SanityRecipiesSection {
     _key
     _type
     topPadding
@@ -234,7 +234,7 @@ export const query = graphql`
     _rawLeftText(resolveReferences: { maxDepth: 10 })
     _rawRightText(resolveReferences: { maxDepth: 10 })
     subtitle
-    showrecipiesArchive {
+    showRecipiesArchive {
       setArchive
     }
     asCarousel

@@ -126,7 +126,7 @@ export default defineType({
 
       return {
         title:  (title && title?.[0]?.children[0]?.text) || "Empty Title",
-        subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Case Studies" : "All Case Studies"} | Case Study Section`,
+        subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Recipies" : "All Recipies"} | Recipies Section`,
         icon: LiaFile
       }
     }

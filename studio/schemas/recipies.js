@@ -83,46 +83,14 @@ export default defineType({
     defineField({
       name: 'duration',
       title: 'Duration',
-      type: 'object',
-      fields: [
-        {
-          name: "hours",
-          title: "hours",
-          type: "number",
-        },
-        {
-          name: "minutes",
-          title: "Minutes",
-          type: "number",
-          validation: (rule) => rule.max(60),
-        },
-      ],
-      options: {
-        columns: 2,
-      },
-      description: 'Shows the duration for the recipie',
+      type: 'duration',
       group: 'pageContent',
-     
-      // validation: (rule) => rule.required().max(252)
     }),
     defineField({
       name: 'serves',
       title: 'Serves',
-      type: 'object',
-      fields: [
-        {
-          name: "serves",
-          title: "Serves",
-          type: "number",
-        },
-      ],
-      options: {
-        columns: 2,
-      },
-      description: 'How many does this recipies serve',
+      type: 'serves',
       group: 'pageContent',
-     
-      // validation: (rule) => rule.required().max(252)
     }),
     defineField({
       name: 'date',
@@ -132,87 +100,10 @@ export default defineType({
       group: 'pageContent',
     }),
     defineField({
-      name: "ingredients",
-      title: "Ingredients",
-      type: "array",
-      of: [
-        {
-          type: 'reference',
-          to: [
-            { type: 'recipies' },
-          ]
-        },
-        {
-          title: "Ingredient",
-          type: "object",
-          fields: [
-            {
-              title: "Ingredient",
-              name: "ingredient",
-              type: "reference",
-              to: [{ type: "ingredients" }],
-            },
-            {
-              name: "wholeNumber",
-              title: "Whole Numbers",
-              type: "number",
-            },
-            {
-              name: "fraction",
-              title: "Fraction Amount",
-              type: "string",
-              options: {
-                list: ["1/2", "1/3", "1/4", "3/4", "2/3"],
-              },
-            },
-            {
-              name: "unit",
-              title: "Unit",
-              type: "string",
-              options: {
-                list: ["grams", "cup", "Tbsp.", "tsp.", "bunch"],
-              },
-            },
-            {
-              name: "preparation",
-              title: "Preparation",
-              type: "string",
-              options: {
-                list: ["Roughly Chopped", "Chopped", "Finely Chopped", "Shredded", "Crushed", "Drained & Rinsed", "Drained & Finely Chopped", "Juice of"],
-              },
-            },
-          ],
-          preview: {
-            select: {
-              title: "ingredient.title",
-              name: "ingredient.title",
-              media: "ingredient.image",
-              wholeNumber: "wholeNumber",
-              fraction: "fraction",
-              unit: "unit",
-              preparation: "preparation",
-            },
-            prepare({
-              title,
-              subtitle,
-              media,
-              wholeNumber,
-              fraction,
-              unit,
-              preparation,
-            }) {
-              return {
-                title,
-                subtitle: `${wholeNumber ? wholeNumber : ''} ${fraction ? fraction : ''} ${unit ? unit : ''} - ${preparation ? preparation: ''} `,
-                media,
-                icon:  LiaCarrotSolid, 
-              };
-            },
-          },
-        },
-      ],
+      name: 'ingredientsList',
+      title: 'Ingredients List',
+      type: 'ingredientsList',
       group: 'pageContent',
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'author',

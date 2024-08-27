@@ -26,7 +26,7 @@ const IndexPage = props => {
     sanityConfig={getSanityClient}
     previewData={pageData?.pageBuilder}
     allSanityPost={data.allSanityPost}
-    allrecipies={data.allSanityrecipies}
+    allrecipies={data.allSanityRecipies}
     pageContext={pageContext}
     modules={definedModules}
     sanitySiteSettings={siteSettings }
@@ -136,9 +136,9 @@ query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int,
       }
     }
   }
-  allSanityrecipies(
+  allSanityRecipies(
     filter: {
-      service: {
+      category: {
         _id: {
           in: $recipiesIds
         }
@@ -150,7 +150,7 @@ query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int,
     nodes {
       _key
       _id
-      ...recipiesTileFragment
+      ...RecipiesTileFragment
      
     }
   }
@@ -174,8 +174,8 @@ query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int,
         ... on SanityTeamSection {
           ...TeamSectionFragment
         }
-        ...on SanityrecipiesSection {
-          ... recipiesSectionFragment
+        ...on SanityRecipiesSection {
+          ... RecipiesSectionFragment
         }
         ... on SanityVideoSection {
           ...VideoSectionFragment

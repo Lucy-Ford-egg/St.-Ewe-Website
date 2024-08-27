@@ -13,20 +13,20 @@ exports.createSchemaCustomization = ({ actions }) => {
     type categories implements Node {
       name: String
     }
-    type service implements Node {
+    type category implements Node {
       name: String
     }
     type ShowArchive implements Node {
       setArchive: Boolean
       archive: [SanityCategories]
     }
-    type ShowrecipiesArchive implements Node {
+    type showRecipiesArchive implements Node {
       setArchive: Boolean
-      archive: [SanityServices]
+      archive: [category]
     }
     type SanityPage implements Node {
       showArchive: ShowArchive
-      showrecipiesArchive: ShowrecipiesArchive
+      showRecipiesArchive: showRecipiesArchive
     }
     type SanityPost implements Node {
       metaTitle: String
@@ -46,7 +46,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const { createPage } = actions
   const result = await graphql(`
   query SanityAllData {
-    allSanityPage(filter: {slug: {current: {nin: ["blog", "case-studies"]}}}) {
+    allSanityPage(filter: {slug: {current: {nin: ["blog", "recipies"]}}}) {
       nodes {
         _type
         id
@@ -69,10 +69,10 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityrecipiesSection {
+          ... on SanityRecipiesSection {
             _key
             _type
-            showrecipiesArchive {
+            showRecipiesArchive {
               archive {
                 name
                 _id
@@ -106,10 +106,10 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityrecipiesSection {
+          ... on SanityRecipiesSection {
             _key
             _type
-            showrecipiesArchive {
+            showRecipiesArchive {
               archive {
                 name
                 _id
@@ -120,7 +120,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-    recipiesPage: allSanityPage(filter: {slug: {current: {in: "case-studies"}}}) {
+    recipiesPage: allSanityPage(filter: {slug: {current: {in: "recipies"}}}) {
       nodes {
         _type
         id
@@ -143,12 +143,12 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityrecipiesSection {
+          ... on SanityRecipiesSection {
             _key
             _type
             disableSummary
             asCarousel
-            showrecipiesArchive {
+            showRecipiesArchive {
               archive {
                 name
                 _id
@@ -183,12 +183,12 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityrecipiesSection {
+          ... on SanityRecipiesSection {
             _key
             _type
             disableSummary
             asCarousel
-            showrecipiesArchive {
+            showRecipiesArchive {
               archive {
                 name
                 _id
@@ -199,7 +199,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-    allSanityrecipies {
+    allSanityRecipies {
       nodes {
         _key
         _id
@@ -207,7 +207,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug {
           current
         }
-        service {
+        category {
           name
           _id
         }
@@ -223,12 +223,12 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityrecipiesSection {
+          ... on SanityRecipiesSection {
             _key
             _type
             disableSummary
             asCarousel
-            showrecipiesArchive {
+            showRecipiesArchive {
               archive {
                 name
                 _id
@@ -271,12 +271,12 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityrecipiesSection {
+          ... on SanityRecipiesSection {
             _key
             _type
             disableSummary
             asCarousel
-            showrecipiesArchive {
+            showRecipiesArchive {
               archive {
                 name
                 _id
@@ -297,13 +297,13 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
   // Fetch your items (blog posts, categories, etc).
   const blogPosts = result.data?.allSanityPost?.nodes || []
-  const caseStudies = result.data?.allSanityrecipies.nodes || []
+  const recipies = result.data?.allSanityRecipies.nodes || []
   const teamMembers = result.data?.allSanityTeamMember.nodes || []
 
   //const blogPages = result.data?.blogPages?.nodes || []
 
   const blogPostsCategories = blogPosts.map(({ category }) => category && category._id)
-  const recipiesCategories = caseStudies.map(({ service }) => service && service._id)
+  const recipiesCategories = recipies.map(({ category }) => category && category._id)
 
   function getShowArchiveBlogIds(pageBuilder, type) {
     const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
@@ -336,8 +336,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       // console.log(`Current Item: ${JSON.stringify(currentItem)}`)
       if (type === currentItem?._type) {
         // console.log(`recipies acc : ${JSON.stringify(currentItem) }`)
-        if (currentItem && currentItem.showrecipiesArchive && currentItem.showrecipiesArchive.archive) {
-          const archiveItems = currentItem.showrecipiesArchive.archive;
+        if (currentItem && currentItem.showRecipiesArchive && currentItem.showRecipiesArchive.archive) {
+          const archiveItems = currentItem.showRecipiesArchive.archive;
           
           archiveItems.forEach(archiveItem => {
             if (archiveItem._id) {
@@ -444,7 +444,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         // title: node.title,
         // coverImage: node.coverImage,
         // date: node.date,
-        // service: node.service,
+        // category: node.category,
         // excerpt: node.excerpt,
         // postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
         // recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
@@ -488,7 +488,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
   result.data.recipiesPage.nodes.forEach(node => {
     paginate({
       createPage,
-      items: caseStudies,
+      items: recipies,
       itemsPerPage: 4,
       pathPrefix: `/${node.slug.current}`,
       component: require.resolve(`./src/templates/recipiesArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
@@ -520,9 +520,9 @@ Object.keys(categorizedPosts).forEach(categoryName => {
     })
   })
 
-  caseStudies.forEach((node, index) => {
+  recipies.forEach((node, index) => {
     createPage({
-      path: `case-studies/${node.slug.current}`,
+      path: `recipies/${node.slug.current}`,
       component: require.resolve(`./src/templates/recipiesTemplate.jsx`),
       context: {
         id: node.id,
@@ -531,7 +531,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         title: node.title,
         coverImage: node.coverImage,
         date: node.date,
-        service: node.service,
+        category: node.category,
         excerpt: node.excerpt,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
         recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")

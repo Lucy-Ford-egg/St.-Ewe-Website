@@ -9,7 +9,8 @@ import {colorInput} from '@sanity/color-input'
 import {media} from 'sanity-plugin-media'
 import {deskStructure} from './structure/deskStructure'
 import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
-import {theme} from 'https://themer.sanity.build/api/hues?default=darkest:2661ab&primary=2661ab&positive=darkest:101112&caution=darkest:101112&critical=darkest:101112&darkest=1b2e51'
+import {theme} from './structure/theme'
+
 import {simplerColorInput} from 'sanity-plugin-simpler-color-input'
 
 import {presentationTool} from 'sanity/presentation'
@@ -23,7 +24,7 @@ export default defineConfig([{
   dataset: 'production',
   basePath: '/production',
   apiVersion: '2023-08-01',
-  theme: theme,
+  theme,
   plugins: [
     structureTool({
       structure: deskStructure,
@@ -54,7 +55,7 @@ export default defineConfig([{
   dataset: 'beta',
   basePath: '/beta',
   apiVersion: '2023-08-01',
-  theme: theme,
+  theme,
   plugins: [
     structureTool({
       structure: deskStructure,

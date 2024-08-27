@@ -17,7 +17,7 @@ import { RenderPortableText } from "../components/renderPortableText"
 import { useQuery } from "../../sanity/store"
 import { CASE_STUDY_QUERY } from "../queries/documentQueries"
 
-const recipiesTemplate = props => {
+const RecipiesTemplate = props => {
   const { data, pageContext, initial, location } = props
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
@@ -25,20 +25,19 @@ const recipiesTemplate = props => {
   // Preview
   const { data: previewData } = useQuery(
     `{"recipiesQuery:" ${CASE_STUDY_QUERY}`,
-    { slug: data.sanityrecipies.slug.current },
+    { slug: data.sanityRecipies.slug.current },
     { initial },
   )
 
   const definedImage =
-    (previewData && previewData?.recipiesQuery?.coverImage) || data.sanityrecipies?.coverImage
-  const definedRawPerson =
-    (previewData && previewData?.recipiesQuery?.person) || data.sanityrecipies?._rawPerson
-  const definedService =
-    (previewData && previewData?.recipiesQuery?.service?.name) ||
-    data.sanityrecipies?.service?.name
+    (previewData && previewData?.recipiesQuery?.coverImage) || data.sanityRecipies?.coverImage
 
-  const definedRawBody = (previewData && previewData?.recipiesQuery?.body) || data?.sanityrecipies._rawBody
-  const definedModules = (previewData && previewData?.recipiesQuery?.pageBuilder)  || data?.sanityrecipies?.pageBuilder
+  const definedCategory =
+    (previewData && previewData?.recipiesQuery?.category?.name) ||
+    data.sanityRecipies?.category?.name
+
+  const definedRawBody = (previewData && previewData?.recipiesQuery?.instructions) || data?.sanityRecipies._rawInstructions
+  const definedModules = (previewData && previewData?.recipiesQuery?.pageBuilder)  || data?.sanityRecipies?.pageBuilder
 
   return (
     <>
@@ -82,14 +81,7 @@ const recipiesTemplate = props => {
                   maxWidth: "100%",
                 }}
               >
-                {definedRawPerson && (
-                  <Box sx={{ color: "white.main",  maxWidth: "100%", }}>
-                    <RenderPortableText
-                      setAsHeading={mobile ? "h2" : "h2"}
-                      value={definedRawPerson}
-                    />
-                  </Box>
-                )}
+              
               </Box>
             </Grid>
 
@@ -134,13 +126,13 @@ const recipiesTemplate = props => {
                       maxWidth: "100%",
                     }}
                   >
-                    {definedService && (
+                    {definedCategory && (
                       <Typography
                         variant="overline"
                         component="h3"
                         color="white.main"
                       >
-                        {definedService}
+                        {definedCategory}
                       </Typography>
                     )}
                   </Box>
@@ -210,7 +202,7 @@ const recipiesTemplate = props => {
         pageContext={pageContext}
         modules={definedModules}
         getAllPosts={data.getAllPosts}
-        allSanityrecipies={data.allSanityrecipies}
+        allSanityRecipies={data.allSanityRecipies}
       />
             
     </>
@@ -218,22 +210,21 @@ const recipiesTemplate = props => {
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityrecipies} location={location} />
+  return <Seo seoContext={data.sanityRecipies} location={location} />
 }
 
 export const recipiesTemplateQuery = graphql`
   query recipiesTemplateQuery($slug: String!, $recipiesIds:[String!]) {
-    sanityrecipies(slug: { current: { eq: $slug } }) {
-      ... SeorecipiesFragment
+    sanityRecipies(slug: { current: { eq: $slug } }) {
+      ... SeoRecipiesFragment
       slug {
         current
       }
       title
       date(formatString: "Do MMMM YYYY")
-      service {
+      category {
         name
       }
-      _rawPerson(resolveReferences: { maxDepth: 10 })
       coverImage {
         asset {
           _id
@@ -253,14 +244,14 @@ export const recipiesTemplateQuery = graphql`
           top
         }
       }
-      _rawBody(resolveReferences: { maxDepth: 10 })
+      _rawInstructions(resolveReferences: { maxDepth: 10 })
       #...SeoPageFragment
       pageBuilder {
         ...PageBuilderFragment
       }
     }
-    allSanityrecipies(filter: {
-      service: {
+    allSanityRecipies(filter: {
+      category: {
         _id: {
           in: $recipiesIds
         }
@@ -269,7 +260,7 @@ export const recipiesTemplateQuery = graphql`
     nodes {
       _key
       _id
-      ...recipiesTileFragment 
+      ...RecipiesTileFragment 
     }
   }
     getAllPosts: allSanityPost(sort: {date: DESC}){
@@ -316,7 +307,7 @@ export const recipiesTemplateQuery = graphql`
     }
   }
 `
-export default recipiesTemplate
+export default RecipiesTemplate
 
 // TODO:
 // ... on SanityLocationSection {

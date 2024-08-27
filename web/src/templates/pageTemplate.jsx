@@ -13,7 +13,7 @@ const PageTemplate = props => {
   const { data, pageContext, initial } = props
 
   // Preview
-  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityrecipies
+  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityRecipies
 
   const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
@@ -31,7 +31,7 @@ const PageTemplate = props => {
         previewData={pageData?.pageBuilder}
         allSanityPost={data.allSanityPost}
         getAllPosts={data.getAllPosts}
-        allSanityrecipies={data.allSanityrecipies}
+        allSanityRecipies={data.allSanityRecipies}
         pageContext={pageContext}
         modules={definedModules}
         sanitySiteSettings={siteSettings }
@@ -88,9 +88,9 @@ query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $li
       }
     }
   }
-  allSanityrecipies(
+  allSanityRecipies(
     filter: {
-      service: {
+      category: {
         _id: {
           in: $recipiesIds
         }
@@ -102,7 +102,7 @@ query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $li
     nodes {
       _key
       _id
-      ...recipiesTileFragment
+      ...RecipiesTileFragment
      
     }
   }
