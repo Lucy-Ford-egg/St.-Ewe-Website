@@ -1,5 +1,5 @@
 import { STUDIO_ORIGIN, useLiveMode } from "../../sanity/store";
-import { enableOverlays } from "@sanity/overlays";
+import {enableVisualEditing} from '@sanity/visual-editing'
 import { useEffect, useMemo, useRef } from "react";
 
 export function VisualEditing({location}) {
@@ -36,7 +36,7 @@ export function VisualEditing({location}) {
 
   useEffect(
     () =>
-      enableOverlays({
+    enableVisualEditing({
         allowStudioOrigin: STUDIO_ORIGIN,
         history,
       }),
