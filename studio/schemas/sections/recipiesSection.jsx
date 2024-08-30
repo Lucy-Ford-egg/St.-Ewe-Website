@@ -7,6 +7,12 @@ export default defineType({
   title: "Recipies Section",
   fields: [
     defineField({
+      title: 'Background Colour',
+    name: 'backgroundColour',
+    type: 'simplerColor',
+    description: 'Add a background colour'
+  }),
+    defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
@@ -103,31 +109,21 @@ export default defineType({
       name: 'topPadding',
       type: 'boolean',
       title: 'Remove top padding',
-    }),
-    defineField({
-      name: 'asCarousel',
-      type: 'boolean',
-      title: 'Display as carousel',
-    }), 
-    defineField({
-      name: 'disableSummary',
-      type: 'boolean',
-      title: 'Disable Summary',
-      initialValue: false,
     }),  
   ],
   preview: {
     select: {
       title: 'title',
-      subtitle: 'caseStudies'
+      subtitle: 'caseStudies',
+      backgroundColour: 'backgroundColour',
     },
     prepare(selection) {
-      const {title, subtitle} = selection
-
+      const {title, subtitle, backgroundColour} = selection
+      const thumb = <span style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%', backgroundColor: backgroundColour?.value}}><LiaFile style={{color: 'white'}}/></span>
       return {
         title:  (title && title?.[0]?.children[0]?.text) || "Empty Title",
         subtitle: `${subtitle && subtitle?.length > 0 ? "Curated Recipies" : "All Recipies"} | Recipies Section`,
-        icon: LiaFile
+        media: thumb,
       }
     }
   },

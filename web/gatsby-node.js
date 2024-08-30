@@ -146,8 +146,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           ... on SanityRecipiesSection {
             _key
             _type
-            disableSummary
-            asCarousel
             showRecipiesArchive {
               archive {
                 name
@@ -186,8 +184,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           ... on SanityRecipiesSection {
             _key
             _type
-            disableSummary
-            asCarousel
             showRecipiesArchive {
               archive {
                 name
@@ -226,8 +222,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           ... on SanityRecipiesSection {
             _key
             _type
-            disableSummary
-            asCarousel
             showRecipiesArchive {
               archive {
                 name
@@ -274,8 +268,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           ... on SanityRecipiesSection {
             _key
             _type
-            disableSummary
-            asCarousel
             showRecipiesArchive {
               archive {
                 name

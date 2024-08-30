@@ -1,5 +1,5 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
-import {brandSpacing} from "./brandPalette"
+import { brandSpacing, brandPalette } from "./brandPalette"
 
 const clientSpacing = Object.values(brandSpacing).map(item => item.value)
 
@@ -16,7 +16,7 @@ let defaultTheme = createTheme({
   },
   palette: {
     primary: {
-      main: '#F04D5F', // Coral
+      main: brandPalette["Rich Yolk Primary"].value, // Coral
       mid: '#F26979', // Crayola
       light: '#F47C8A', // Light Coral
       lighter: '#FCD9DE', // Lighter Coral
@@ -152,6 +152,9 @@ let clientTheme = createTheme({
         ::-moz-scrollbar-button, ::-webkit-scrollbar-button {
           width: 0px;
           display: none;
+        }
+        *{
+          box-sizing: border-box;
         }
 ::-webkit-scrollbar {
   width: ${defaultTheme.spacing(1)};

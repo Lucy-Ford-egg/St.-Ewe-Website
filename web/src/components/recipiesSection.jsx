@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react"
-import { brandPalette } from "../gatsby-theme-material-ui-top-layout/brandPalette"
 import { graphql } from "gatsby"
 import {Container, Grid, styled} from "@mui/material/"
 import useMediaQuery from "@mui/material/useMediaQuery"
@@ -16,12 +15,12 @@ import {
 } from "../queries/documentQueries"
 
 const Wrapper = styled('div')(({ backgroundColour, paddingTop, paddingBottom}) => (
-  { backgroundColor: brandPalette[backgroundColour]?.value,
+  { backgroundColor: backgroundColour?.value,
     paddingTop: paddingTop,
     paddingBottom: paddingBottom,
+    overflowX: 'hidden',
   }
 ));
-
 
 export const RecipiesSection = ({
   allSanityRecipies,
@@ -29,7 +28,7 @@ export const RecipiesSection = ({
   previewData,
   initial,
   _type,
-  backgroundColour = 'Orignal Large',
+  backgroundColour,
   paddingTop = 11,
   paddingBottom = 11,
   featuredTile,
@@ -71,7 +70,7 @@ export const RecipiesSection = ({
 
 
   const isInViewRef = useRef(null)
-  const isInView = useInView(isInViewRef, { once: false });
+  const isInView = useInView(isInViewRef, { once: true});
 
   console.log(`Is In View - ${isInView}`)
   const variants = {
@@ -108,9 +107,8 @@ export const RecipiesSection = ({
   const MotionGridItem = motion(GridItem)
 
   return (
-    <Wrapper backgroundColour={backgroundColour} paddingTop={theme.spacing(paddingTop)} paddingBottom={theme.spacing(paddingBottom)}>
+    <Wrapper ref={isInViewRef} backgroundColour={backgroundColour} paddingTop={theme.spacing(paddingTop)} paddingBottom={theme.spacing(paddingBottom)}>
       <Container
-        ref={isInViewRef}
         className="component-postsGrid"
         sx={{
           pb: {
@@ -167,7 +165,9 @@ export const query = graphql`
     showRecipiesArchive {
       setArchive
     }
-    asCarousel
-    disableSummary
+    backgroundColour{
+      label
+      value
+    }
   }
 `
