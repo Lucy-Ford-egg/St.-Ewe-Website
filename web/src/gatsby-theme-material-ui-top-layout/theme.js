@@ -1,6 +1,7 @@
 import { createTheme, responsiveFontSizes } from "@mui/material"
+import {brandSpacing} from "./brandPalette"
 
-const clientSpacing = [0, 9, 12, 14, 16, 18, 20, 23, 26, 30, 34, 40, 46, 51, 58, 67, 75, 87, 98, 113, 127, 147]
+const clientSpacing = Object.values(brandSpacing).map(item => item.value)
 
 let defaultTheme = createTheme({
   spacing: [...clientSpacing],
@@ -72,13 +73,13 @@ let clientTheme = createTheme({
   typography: {
     fontSize: clientSpacing[5],
     body1: {
-      fontFamily: 'Open Sans',
+      fontFamily: 'Roboto Slab',
       fontSize: clientSpacing[5],
       lineHeight: 1.66,
       letterSpacing: '0em',
     },
     body2: {
-      fontFamily: 'Open Sans SemiBold',
+      fontFamily: 'Roboto Slab',
       fontSize: clientSpacing[7],
       letterSpacing: '0em',
     },
@@ -86,13 +87,13 @@ let clientTheme = createTheme({
       lineHeight: 1.43,
     },
     caption: {
-      fontFamily: 'Open Sans',
+      fontFamily: 'Roboto Slab',
       fontSize: clientSpacing[3],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
     overline: {
-      fontFamily: 'Open Sans',
+      fontFamily: 'Roboto Slab',
       fontSize: clientSpacing[2],
       fontWeight: 400,
       lineHeight: 1.5,
@@ -100,8 +101,14 @@ let clientTheme = createTheme({
       letterSpacing: 0.3,
     },
     h1: {
-      fontSize: clientSpacing[17],
-      fontFamily: 'Merriweather Bold',
+      // fontSize: clientSpacing[17],
+      // fontFamily: 'Colby Narrow',
+      fontFamily: 'Colby Narrow',
+      fontSize: clientSpacing[11],
+      fontStyle: 'normal',
+      fontWeight: 700,
+      lineHeight: clientSpacing[11],
+      textTransform: 'uppercase',
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[11],
       },
@@ -109,11 +116,11 @@ let clientTheme = createTheme({
     },
     h2: {
       fontSize: clientSpacing[13],
-      fontFamily: 'Merriweather Regular',
+      fontFamily: 'Colby Narrow',
     },
     h3: {
       fontSize: clientSpacing[10],
-      fontFamily: 'Merriweather Regular',
+      fontFamily: 'Colby Narrow',
       lineHeight: 1.35,
       [defaultTheme.breakpoints.down('sm')]: {
         fontSize: clientSpacing[8],
@@ -121,17 +128,17 @@ let clientTheme = createTheme({
     },
     h4: {
       fontSize: clientSpacing[7],
-      fontFamily: 'Merriweather Regular',
+      fontFamily: 'Colby Narrow',
       letterSpacing: '0em',
     },
     h5: {
       fontSize: clientSpacing[5],
-      fontFamily: 'Merriweather Regular',
+      fontFamily: 'Colby Narrow',
     },
     h6: {
-      fontSize: clientSpacing[4],
-      fontFamily: 'Merriweather Regular',
-      letterSpacing: '0em',
+      fontSize: clientSpacing[6],
+      lineHeight: 1,
+      fontFamily: 'Colby Narrow',
     },
   },
   palette: defaultTheme.palette,

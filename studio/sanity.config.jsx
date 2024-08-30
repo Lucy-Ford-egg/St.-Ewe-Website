@@ -29,13 +29,13 @@ export default defineConfig([{
     structureTool({
       structure: deskStructure,
     }),
-    presentationTool({
-      previewUrl: async () => {
-        const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
-        return url
-      },
-      locate: locate,
-    }),
+    // presentationTool({
+    //   previewUrl: async () => {
+    //     const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
+    //     return url
+    //   },
+    //   locate: locate,
+    // }),
     visionTool(),
     media(),
     unsplashImageAsset(),
@@ -60,13 +60,13 @@ export default defineConfig([{
     structureTool({
       structure: deskStructure,
     }),
-    presentationTool({
-      previewUrl: async () => {
-        const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
-        return url
-      },
-      locate: locate,
-    }),
+    // presentationTool({
+    //   previewUrl: async () => {
+    //     const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
+    //     return url
+    //   },
+    //   locate: locate,
+    // }),
     visionTool(),
     media(),
     unsplashImageAsset(),

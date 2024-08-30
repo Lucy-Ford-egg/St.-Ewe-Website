@@ -221,12 +221,18 @@ module.exports = {
       options: {
         webFontsConfig: {
           fonts: {
+            google: [
+              {
+                family: `Roboto Slab`,
+                variants: [`300`, `400`, `500`],
+              },
+            ],
             selfHosted: [
               {
-                family: `Open Sans`,
+                family: `Colby Narrow`,
                 urls: {
-                  woff2: `../web/src/assets/fonts/open-sans/opensans-regular-webfont.woff2`,
-                  woff: `../web/src/assets/fonts/open-sans/opensans-regular-webfont.woff`,
+                  woff2: `../web/src/assets/fonts/colby-narrow/colby-nrbld-webfont.woff2`,
+                  woff: `../web/src/assets/fonts/colby-narrow/colby-nrbld-webfont.woff`,
                 },
               },
               {
@@ -234,20 +240,6 @@ module.exports = {
                 urls: {
                   woff2: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff2`,
                   woff: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff`,
-                },
-              },
-              {
-                family: `Merriweather Regular`,
-                urls: {
-                  woff2: `../web/src/assets/fonts/merriweather/merriweather-regular-webfont.woff2`,
-                  woff: `../web/src/assets/fonts/merriweather/merriweather-regular-webfont.woff`,
-                },
-              },
-              {
-                family: `Merriweather Bold`,
-                urls: {
-                  woff2: `../web/src/assets/fonts/merriweather/merriweather-bold-webfont.woff2`,
-                  woff: `../web/src/assets/fonts/merriweather/merriweather-bold-webfont.woff`,
                 },
               },
             ]

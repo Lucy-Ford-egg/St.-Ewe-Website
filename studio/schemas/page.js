@@ -5,6 +5,7 @@ import openGraph from '../schemas/openGraph'
 import siteMeta from '../schemas/siteMeta'
 
 // Sections 
+import borderSectionType from './sections/borderSection'
 import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
@@ -113,6 +114,7 @@ export default defineType({
       description:
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
+        { type: borderSectionType.name},
         { type: headerSectionType.name},
         { type: testimonialSectionType.name},
         { type: teamSectionType.name},

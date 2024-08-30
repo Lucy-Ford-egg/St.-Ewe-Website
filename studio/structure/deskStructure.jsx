@@ -32,17 +32,17 @@ export const deskStructure = (S, context) => {
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
         S.divider(),
-        S.listItem()
-          .title('Posts')
-          .icon(LiaNewspaper)
-          .child(
-            S.documentTypeList('post')
-              .title('Posts')
-              .child(
-                (id) => S.document().schemaType('post').documentId(id),
-              )
-              .defaultOrdering([{field: 'title', direction: 'asc'}]),
-          ),
+        // S.listItem()
+        //   .title('Posts')
+        //   .icon(LiaNewspaper)
+        //   .child(
+        //     S.documentTypeList('post')
+        //       .title('Posts')
+        //       .child(
+        //         (id) => S.document().schemaType('post').documentId(id),
+        //       )
+        //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        //   ),
 
         S.listItem()
           .title('Pages')
@@ -80,31 +80,31 @@ export const deskStructure = (S, context) => {
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
-        S.listItem()
-          .title('Quotes')
-          .icon(LiaQuoteLeftSolid)
-          .child(
-            S.documentTypeList('quote')
-              .title('Quotes')
-              .child(
-                (id) => S.document().schemaType('quote').documentId(id),
-                //.views(Views(S, context))
-              )
-              .defaultOrdering([{field: 'title', direction: 'asc'}]),
-          ),
+        // S.listItem()
+        //   .title('Quotes')
+        //   .icon(LiaQuoteLeftSolid)
+        //   .child(
+        //     S.documentTypeList('quote')
+        //       .title('Quotes')
+        //       .child(
+        //         (id) => S.document().schemaType('quote').documentId(id),
+        //         //.views(Views(S, context))
+        //       )
+        //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        //   ),
 
-        S.listItem()
-          .title('Team Members')
-          .icon(LiaMaleSolid)
-          .child(
-            S.documentTypeList('teamMember')
-              .title('Team Members')
-              .child(
-                (id) => S.document().schemaType('teamMember').documentId(id),
-                //.views(Views(S, context))
-              )
-              .defaultOrdering([{field: 'title', direction: 'asc'}]),
-          ),
+        // S.listItem()
+        //   .title('Team Members')
+        //   .icon(LiaMaleSolid)
+        //   .child(
+        //     S.documentTypeList('teamMember')
+        //       .title('Team Members')
+        //       .child(
+        //         (id) => S.document().schemaType('teamMember').documentId(id),
+        //         //.views(Views(S, context))
+        //       )
+        //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        //   ),
         S.divider(),
 
         S.listItem()
@@ -120,18 +120,18 @@ export const deskStructure = (S, context) => {
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
         S.divider(),
-        S.listItem()
-          .title('Post Categories')
-          .icon(LiaShapesSolid)
-          .child(
-            S.documentTypeList('categories')
-              .title('Post Categories')
-              .child(
-                (id) => S.document().schemaType('categories').documentId(id),
-                //.views(Views(S, context)),
-              )
-              .defaultOrdering([{field: 'title', direction: 'asc'}]),
-          ),
+        // S.listItem()
+        //   .title('Post Categories')
+        //   .icon(LiaShapesSolid)
+        //   .child(
+        //     S.documentTypeList('categories')
+        //       .title('Post Categories')
+        //       .child(
+        //         (id) => S.document().schemaType('categories').documentId(id),
+        //         //.views(Views(S, context)),
+        //       )
+        //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        //   ),
         S.listItem()
           .title('Recipie Categories')
           .icon(LiaShapesSolid)

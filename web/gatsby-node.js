@@ -199,7 +199,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-    allSanityRecipies {
+    allSanityRecipies(filter: {coverImage: {_type: {eq: "image"}}}) {
       nodes {
         _key
         _id

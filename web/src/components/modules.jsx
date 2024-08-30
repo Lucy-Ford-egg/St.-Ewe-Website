@@ -1,6 +1,8 @@
 import React from 'react'
 import Box from "@mui/material/Box"
+import { StaticImage } from "gatsby-plugin-image"
 import Typography from "@mui/material/Typography"
+const BorderSection= React.lazy(() =>  import("./borderSection").then(module => ({ default: module.BorderSection })));
 const BlogSection= React.lazy(() =>  import("./blogSection").then(module => ({ default: module.BlogSection })));
 const HeaderSection = React.lazy(() =>  import('./headerSection').then(module => ({ default: module.HeaderSection })));
 const TimelineSection = React.lazy(() =>  import('./timelineSection').then(module => ({ default: module.TimelineSection })));
@@ -35,13 +37,17 @@ const Modules = (props) => {
         return (
             <React.Suspense fallback={
             <Box sx={{
-                display: "flex", 
+                display: "flex",
+                flexDirection: "column",
                 justifyContent: "center", 
                 alignItems: "center",
                 py: 6,  
                 animation: "blinker 1s linear infinite",
                 minHeight: { xs: "100vh", sm: "100vh" },
-              }}><Typography variant="caption">Loading...</Typography></Box>}>
+              }}>
+
+<StaticImage src="../images/loading.png" alt="A chicken" />
+                <Typography variant="caption">Cracking eggs...</Typography></Box>}>
             <main data-content="main">
                 
                 {modules && modules.map((module, i) => {
@@ -55,10 +61,19 @@ const Modules = (props) => {
                             getAllPosts={getAllPosts}
                             {...module} />
                     }
-
+                  
                     if (isModule(module, 'headerSection')) {
                         return (
                             <HeaderSection
+                                previewData={previewData && previewData[i]}
+                                sanityConfig={sanityConfig}
+                                key={module._key + i}
+                                {...module} />
+                        )
+                    }
+                    if (isModule(module, 'borderSection')) {
+                        return (
+                            <BorderSection
                                 previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 key={module._key + i}

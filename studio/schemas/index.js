@@ -33,6 +33,8 @@ import accordionTileType from '../schemas/components/accordionTile'
 import imageOptionsType from '../schemas/imageOptions'
 
 //Sections
+import borderSectionType from '../schemas/sections/borderSection'
+
 import headerSectionType from '../schemas/sections/headerSection'
 import testimonialSectionType from '../schemas/sections/testimonialSection'
 import testimonialTileType from '../schemas/sections/testimonialTile'
@@ -115,6 +117,8 @@ export const schemaTypes = [
   teamMemberType,
 
   // Sections
+  borderSectionType,
+
   headerSectionType,
   teamSectionType,
   recipiesSectionType,
@@ -184,19 +188,27 @@ export const googleMaps = {
 export const brandColors = {
   // Note: These are both optional
   defaultColorFormat: 'rgba',
-  defaultColorList: [
-    { label: 'Coral', value: '#F04D5F' },
-    { label: 'Coral Light', value: '#F47C8A' },
-    { label: 'Coral Lighter', value: '#FCD9DE' },
-    { label: 'Coral Lightest', value: '#FDE3E6' },
-    { label: 'Text Grey', value: '#414042' },
-    { label: 'Mid Grey', value: '#B8B6B9' },
-    { label: 'Light Grey', value: '#F3F3F2' },
-    { label: 'Navy', value: '#002856' },
-    { label: 'Mid Navy', value: '#00397A' },
-    { label: 'Navy Uncoated', value: '#375073'},
-    { label: 'White', value: '#FFFFFF' },
-  ],
+
+  defaultColorList : [
+    { label: 'Original Primary', value: '#2661ab' },
+    { label: 'Original Medium', value: '#99cbeb' },
+    { label: 'Orignal Large', value: '#1b2e51' },
+    { label: 'Rich Yolk Primary', value: '#eb7806' },
+    { label: 'Rich Yolk Secondary', value: '#fcc501' },
+    { label: 'Super Eggs Primary', value: '#006d69' },
+    { label: 'Super Eggs Secondary', value: '#d1e0d7' },
+    { label: 'Super Eggs Secondary Dark', value: '#045b54' },
+    { label: 'Super Eggs Secondary Accent', value: '#e9551d' },
+    { label: 'Rich Yolk Opulent Hot Foil', value: '#e5ab4a' },
+    { label: 'Rich Yolk Opulent Primary', value: '#202020' },
+    { label: 'Rich Yolk Opulent Secondary', value: '#000000' },
+    { label: 'Grand Primary', value: '#848886' },
+    { label: 'White', value: '#ffffff' },
+    { label: 'Dabbling Duck Primary', value: '#27224e' },
+    { label: 'Dabbling Duck Secondary', value: '#625e9c' },
+    { label: 'Quirky Quail Primary', value: '#3b2516' },
+    { label: 'Quirky Quail Secondary', value: '#fcedde' }
+  ]
 }
 
 // palette: {

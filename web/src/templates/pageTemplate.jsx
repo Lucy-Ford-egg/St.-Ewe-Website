@@ -95,6 +95,7 @@ query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $li
           in: $recipiesIds
         }
       }
+      coverImage: {_type: {eq: "image"}}
     }
     skip: $skip 
     limit: $limit 

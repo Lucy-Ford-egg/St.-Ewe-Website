@@ -263,7 +263,12 @@ export default defineType({
     //   ],
     //   // group: 'pageContent',
     // }),
-
+    defineField({
+      name: "alergy",
+      title: "Alergies",
+      type: "boolean",
+      description: "Check this box if this people can have an alergy with this ingredient",
+    }),
     defineField({
       name: 'foodGroup',
       title: 'Food Group',

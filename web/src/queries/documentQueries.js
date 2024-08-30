@@ -156,20 +156,20 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   _id,
 }`
 
-export const ALL_CASE_STUDIES = groq`*[_type == "recipies"][0..4] {
+export const ALL_RECIPIES = groq`*[_type == "recipies" && defined(coverImage)][0..4] {
   _id,
   title,
   ...,
   service->{name},
 }`
 
-export const CASE_STUDIES_BY_ID = groq`*[_type == "recipies" && references($categoryId)] {
+export const RECIPIES_BY_ID = groq`*[_type == "recipies && defined(coverImage)" && references($categoryId)] {
   _id,
   ...,
   service->{name},
 }`
 
-export const CASE_STUDY_QUERY = groq`*[_type == "recipies" && slug.current == $slug][0] {
+export const RECIPIES_QUERY = groq`*[_type == "recipies && defined(coverImage)" && slug.current == $slug][0] {
   pageBuilder[] {
     ...,
     images[] { 

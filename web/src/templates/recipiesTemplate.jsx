@@ -15,7 +15,7 @@ import { urlFor } from "../utils/imageHelpers"
 import { RenderPortableText } from "../components/renderPortableText"
 //Preview
 import { useQuery } from "../../sanity/store"
-import { CASE_STUDY_QUERY } from "../queries/documentQueries"
+import { RECIPIES_QUERY } from "../queries/documentQueries"
 
 const RecipiesTemplate = props => {
   const { data, pageContext, initial, location } = props
@@ -24,7 +24,7 @@ const RecipiesTemplate = props => {
 
   // Preview
   const { data: previewData } = useQuery(
-    `{"recipiesQuery:" ${CASE_STUDY_QUERY}`,
+    `{"recipiesQuery:" ${RECIPIES_QUERY}`,
     { slug: data.sanityRecipies.slug.current },
     { initial },
   )
