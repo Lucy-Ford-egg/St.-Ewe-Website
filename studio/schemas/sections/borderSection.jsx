@@ -11,7 +11,7 @@ export default defineType({
         name: "borderType",
         type: "string",
         options: {
-          list: ["Type 6"],
+          list: ["Type 2", "Type 3", "Type 6"],
         },
       }),
       defineField({
@@ -21,6 +21,11 @@ export default defineType({
         options: {
           list: ["Top", "Bottom"],
         },
+      }),
+      defineField({
+        title: "Mirror",
+        name: "mirror",
+        type: "boolean",
       }),
     defineField({
         title: 'Joining Colour',
@@ -36,13 +41,13 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      borderType: 'borderType',
       backgroundColour: 'backgroundColour',
       joiningColour: 'joiningColour',
       borderDirection: 'borderDirection',
     },
     prepare(selection) {
-      const { title, joiningColour, backgroundColour,  borderDirection  } = selection
+      const { borderType, joiningColour, backgroundColour,  borderDirection  } = selection
 
       const thumb = <span style={{position: 'relative', display: 'flex',flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%'}}>
         <span style={{backgroundColor: joiningColour?.value, display: 'flex', width: '100%', flexDirection: 'column', flexBasis: '50%', height: '50%'}}></span>
@@ -50,7 +55,7 @@ export default defineType({
         <LiaWaveSquareSolid style={{backgroundColor: 'white', padding: 4, position: 'absolute', left:'50%', transform: 'translate(-50%)'}}/></span>
 
       return {
-        title: title,
+        title: borderType,
         subtitle: `Border ${borderDirection} Section `,
         media: thumb,
       }
