@@ -24,6 +24,7 @@ import durationType from './parts/duration'
 import servesType from './parts/serves'
 import ingredientsList from './parts/ingredientsList'
 import ingredientItem from './parts/ingredientItem'
+import verticalSpace from './parts/verticalSpace'
 
 import citeType from '../schemas/components/cite'
 import externalCiteType from '../schemas/components/externalCite'
@@ -96,6 +97,7 @@ export const schemaTypes = [
   servesType,
   ingredientsList,
   ingredientItem,
+  verticalSpace,
   // Atoms
 
 

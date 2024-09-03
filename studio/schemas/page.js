@@ -67,8 +67,8 @@ export default defineType({
     // defineField({name: 'seoSlug', title: 'Slug', type: 'slug', group: 'seo'}),
     // defineField({name: 'seoImage', title: 'Image', type: 'image', group: 'seo'}),
     defineField({
-      name: 'pageTitle',
-      title: 'Page Title',
+      name: 'title',
+      title: 'Title',
       type: 'string',
       description: 'Just for editor purposes. Not shown on the frontend but still necesscary',
       validation: (rule) => rule.required(),
@@ -81,7 +81,7 @@ export default defineType({
       description:
         'The slug is what your page name is called in url. Either click the generate button to format your page title into hyphenated lowercase or type your own slug. (when typing your own slug use caution not to use a duplicate slug)',
       options: {
-        source: 'pageTitle',
+        source: 'title',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
@@ -137,7 +137,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'pageTitle',
+      title: 'title',
       location: 'location.name',
       date: 'date',
       media: 'coverImage',
