@@ -15,7 +15,7 @@ export default defineType({
     defineField({
       name: 'showRecipiesArchive',
       type: 'showRecipiesArchive',
-      title: 'Show Case Study Archive',
+      title: 'Show Recipies Archive',
       validation: Rule => Rule.required(),
     }),
     defineField({

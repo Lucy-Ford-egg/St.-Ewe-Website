@@ -22,12 +22,12 @@ export default defineType({
         defineField({
           name: 'archive',
           type: 'array',
-          title: 'Show case studies by specific services',
+          title: 'Show Recipies by specific category',
           of: [
             {
               type: 'reference',
               to: [
-                { type: 'services' },
+                { type: 'recipies' },
               ]
             }
           ],

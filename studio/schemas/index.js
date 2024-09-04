@@ -29,7 +29,7 @@ import verticalSpace from './parts/verticalSpace'
 import citeType from '../schemas/components/cite'
 import externalCiteType from '../schemas/components/externalCite'
 import sevicesType from '../schemas/taxonomies/services'
-import showRecipiesArchiveType from './components/showRecipiesArchive'
+import showRecipiesArchiveType from './parts/showRecipiesArchive'
 import accordionTileType from '../schemas/components/accordionTile'
 import imageOptionsType from '../schemas/imageOptions'
 
