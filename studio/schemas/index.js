@@ -1,187 +1,175 @@
-import navigationType from '../schemas/navigation'
-import navItemType from '../schemas/navItem'
-import linkDefinedType from '../schemas/linkDefined'
-import subItemType from '../schemas/subItem'
-import linkType from '../schemas/link'
-import categoriesType from '../schemas/categories'
-import siteSettingsType, { companyDetailType, companyDetailsType, newsletterType, footerDetailsType } from '../schemas/siteSettings'
-import designSystemColorType from '../schemas/designSystemColor'
-// import faqsType from '../schemas/faqs'
-import showArchiveType from '../schemas/showArchive'
-
+import navigation from './navigation'
+import navItem from './navItem'
+import linkDefined from './linkDefined'
+import subItem from './subItem'
+import link from './link'
+import categories from './categories'
+import siteSettings, { companyDetail, companyDetails, newsletter, footerDetails } from './siteSettings'
+import designSystemColor from './designSystemColor'
+// import faqs from '../schemas/faqs'
+import showArchive from './showArchive'
 // Docs
-import authorType from '../schemas/author'
-import postType from '../schemas/post'
-import quoteType from '../schemas/quote'
-import recipiesType from './recipies'
-import pageType from '../schemas/page'
-import teamMemberType from '../schemas/teamMember'
-
+import author from './author'
+import post from './post'
+import quote from './quote'
+import recipes from './recipies'
+import page from './page'
+import teamMember from './teamMember'
 // Atoms
-import ingredientsType from './ingredients'
-import recipiesCategoryType from '../schemas/taxonomies/recipiesCategory'
-import durationType from './parts/duration'
-import servesType from './parts/serves'
+import ingredients from './ingredients'
+import recipesCategory from './taxonomies/recipesCategory'
+import duration from './parts/duration'
+import serves from './parts/serves'
 import ingredientsList from './parts/ingredientsList'
 import ingredientItem from './parts/ingredientItem'
 import verticalSpace from './parts/verticalSpace'
+import containerWidth from './parts/containerWidth'
+import hotspotItem from './parts/hotspotItem'
 
-import citeType from '../schemas/components/cite'
-import externalCiteType from '../schemas/components/externalCite'
-import sevicesType from '../schemas/taxonomies/services'
-import showRecipiesArchiveType from './parts/showRecipiesArchive'
-import accordionTileType from '../schemas/components/accordionTile'
-import imageOptionsType from '../schemas/imageOptions'
+import cite from './components/cite'
+import externalCite from './components/externalCite'
+import showRecipesArchive from './parts/showRecipesArchive'
+import accordionTile from './components/accordionTile'
+import imageOptions from './imageOptions'
 
 //Sections
-import borderSectionType from '../schemas/sections/borderSection'
-
-import headerSectionType from '../schemas/sections/headerSection'
-import testimonialSectionType from '../schemas/sections/testimonialSection'
-import testimonialTileType from '../schemas/sections/testimonialTile'
-import teamSectionType from '../schemas/sections/teamSection'
-import recipiesSectionType from './sections/recipiesSection'
-import ctaSectionType from '../schemas/sections/ctaSection'
-import featuresListSectionType from '../schemas/sections/featuresListSection'
-import featuresTileType from '../schemas/sections/featuresTile'
-import videoSectionType from '../schemas/sections/videoSection'
-import newsletterSectionType from '../schemas/sections/newsletterSection'
-import imageCarouselSectionType from './sections/imageCarouselSection'
-import stepsSectionType from '../schemas/sections/stepsSection' 
-import stepTileType from '../schemas/sections/stepTile'
-import stepDividerType from '../schemas/sections/stepDivider'
-import timelineSectionType from '../schemas/sections/timelineSection'
-import timeTileType from '../schemas/sections/timeTile'
-import contactSectionType from '../schemas/sections/contactSection'
-import locationSectionType from '../schemas/sections/locationSection'
-import loginTileType from '../schemas/sections/loginTile'
-import clientLoginSectionType from '../schemas/sections/clientLoginSection'
-
-
+import embedSection from './sections/embedSection'
+import titleSection from './sections/titleSection'
+import borderSection from './sections/borderSection'
+import hotspots from './hotspots'
+import hotspotSection from './sections/hotspotSection'
+import headerSection from './sections/headerSection'
+import testimonialSection from './sections/testimonialSection'
+import testimonialTile from './sections/testimonialTile'
+import teamSection from './sections/teamSection'
+import recipesSection from './sections/recipesSection'
+import ctaSection from './sections/ctaSection'
+import featuresListSection from './sections/featuresListSection'
+import featuresTile from './sections/featuresTile'
+import videoSection from './sections/videoSection'
+import newsletterSection from './sections/newsletterSection'
+import imageCarouselSection from './sections/imageCarouselSection'
+import stepsSection from './sections/stepsSection' 
+import stepTile from './sections/stepTile'
+import stepDivider from './sections/stepDivider'
+import timelineSection from './sections/timelineSection'
+import timeTile from './sections/timeTile'
+import contactSection from './sections/contactSection'
+import locationSection from './sections/locationSection'
+import loginTile from './sections/loginTile'
+import clientLoginSection from './sections/clientLoginSection'
 // Older schema
-import videoIdType from '../schemas/videoId'
-import iconsType from '../schemas/icons'
-import colorChoiceType from '../schemas/colorChoice'
-import overlayType from '../schemas/overlay'
-import textAlignType from '../schemas/textAlign'
-
-import servicesTileType from '../schemas/modules/servicesTile'
-import benifitsSectionType from "../schemas/modules/benifitsSection"
-
-
-
-
-// Modules
-import headerSectionAccommodationSearchType from './modules/headerSectionAccommodationSearch'
-import featureSectionType from './modules/featureSection'
+import videoId from './videoId'
+import icons from './icons'
+import colorChoice from './colorChoice'
+import overlay from './overlay'
+import textAlign from './textAlign'
+import servicesTile from './modules/servicesTile'
+import benifitsSection from "./modules/benifitsSection"
+import headerSectionAccommodationSearch from './modules/headerSectionAccommodationSearch'
+import featureSection from './modules/featureSection'
+import blogSection from './modules/blogSection'
 
 
-
-import servicesSectionType from './modules/servicesSection'
-// import faqsSectionType from './modules/faqsSection'
-import blogSectionType from './modules/blogSection'
-
-
-export const schemaTypes = [
-  // Settings
-  siteSettingsType,
-  companyDetailType,
-  companyDetailsType,
-  newsletterType,
-  designSystemColorType,
-  footerDetailsType,
-  imageOptionsType,
-
+export const schema = {
+  types: [
+    // Settings
+  siteSettings,
+  companyDetail,
+  companyDetails,
+  newsletter,
+  designSystemColor,
+  footerDetails,
+  imageOptions,
   // Parts
-  durationType,
-  servesType,
+  duration,
+  serves,
   ingredientsList,
   ingredientItem,
   verticalSpace,
+  containerWidth,
+  hotspots,
   // Atoms
-
-
-  ingredientsType,
-  recipiesCategoryType,
-  citeType,
-  externalCiteType,
-  showRecipiesArchiveType,
-  accordionTileType,
-  
+  ingredients,
+  recipesCategory,
+  cite,
+  externalCite,
+  showRecipesArchive,
+  accordionTile,
   // Taxonomies
-  sevicesType,
-
   // Docs 
-  postType,
-  pageType,
-  recipiesType,
-  quoteType,
-  teamMemberType,
-
+  post,
+  page,
+  hotspotItem,
+  recipes,
+  quote,
+  teamMember,
   // Sections
-  borderSectionType,
-
-  headerSectionType,
-  teamSectionType,
-  recipiesSectionType,
-  newsletterSectionType,
-  videoSectionType,
-  featuresListSectionType,
-  ctaSectionType,
-  featuresTileType,
-  blogSectionType,
-  testimonialTileType,
-  stepsSectionType,
-  stepTileType,
-  stepDividerType,
-  timelineSectionType,
-  timeTileType,
-  loginTileType,
-  clientLoginSectionType,
-
-  // faqsType,
-  iconsType,
-  textAlignType,
-  videoIdType,
-  overlayType,
-  colorChoiceType,
-  showArchiveType,
+  embedSection,
+  titleSection,
+  borderSection,
+  hotspotSection,
+  headerSection,
+  teamSection,
+  recipesSection,
+  newsletterSection,
+  videoSection,
+  featuresListSection,
+  ctaSection,
+  featuresTile,
+  blogSection,
+  testimonialTile,
+  stepsSection,
+  stepTile,
+  stepDivider,
+  timelineSection,
+  timeTile,
+  loginTile,
+  clientLoginSection,
+  videoId,
+  // faqs,
+  icons,
+  textAlign,
+  // videoId,
+  overlay,
+  colorChoice,
+  showArchive,
 
   //Old
 
   // Navigation
-  navigationType,
-  navItemType,
-  linkType,
-  linkDefinedType,
+  navigation,
+  navItem,
+  link,
+  linkDefined,
   //Old
 
   // Taxonomies
-  authorType,
-  categoriesType,
+  author,
+  categories,
   //Old
 
   // Modules
-  headerSectionAccommodationSearchType,
-  featureSectionType,
-
-  servicesSectionType,
-  testimonialSectionType,
-  imageCarouselSectionType,
-  locationSectionType,
-  // faqsSectionType,
-  benifitsSectionType,
-  contactSectionType,
+  headerSectionAccommodationSearch,
+  featureSection,
+  testimonialSection,
+  imageCarouselSection,
+  locationSection,
+  // faqsSection,
+  benifitsSection,
+  contactSection,
 
   // Old
 
   // Components
 
-  servicesTileType,
+  servicesTile,
 
-  subItemType,
-  // Old
-]
+  subItem,
+  // Old],
+  ]
+}
+
 
 export const googleMaps = {
   apiKey: "AIzaSyD-iPk4tHZ8FEhcbTWFWLPopgVd6yqS0lI"

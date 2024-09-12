@@ -41,7 +41,7 @@ const Details = styled('div')(({ theme }) => ({
   alignSelf: 'stretch',
 }))
 
-export const RecipiesTile = (props) => {
+export const RecipeTile = (props) => {
 
   const {
     title,
@@ -60,7 +60,7 @@ export const RecipiesTile = (props) => {
   const backgroundColor = i % 2 ? "secondary" : "primary"
   const number = i + 1
   return (
-    <Link to={`/recipies/${slug.current}`} style={{ display: "block", width: "inherit", textDecoration: "none", height: theme.breakpoints.down('sm') ? "auto" : i === 0 ? "721px" : "100%"}} state={{ backgroundColor: backgroundColor, number: number }}>
+    <Link to={`/Recipe/${slug.current}`} style={{ display: "block", width: "inherit", textDecoration: "none", height: theme.breakpoints.down('sm') ? "auto" : i === 0 ? "721px" : "100%"}} state={{ backgroundColor: backgroundColor, number: number }}>
       <Wrapper
       theme={theme}
         elevation={0}
@@ -95,7 +95,7 @@ export const RecipiesTile = (props) => {
 }
 
 export const query = graphql`
-  fragment RecipiesTileFragment on SanityRecipies {
+  fragment RecipeTileFragment on SanityRecipes {
     coverImage {
       asset {
         _id

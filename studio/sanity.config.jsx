@@ -1,7 +1,9 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
-import {schemaTypes, brandColors, googleMaps} from './schemas'
+import {codeInput} from '@sanity/code-input'
+
+import {schema, brandColors, googleMaps} from './schemas'
 
 import {Logo} from './plugins/logo/logo'
 import {googleMapsInput} from '@sanity/google-maps-input'
@@ -12,6 +14,8 @@ import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/theme'
 
 import {simplerColorInput} from 'sanity-plugin-simpler-color-input'
+import { imageHotspotArrayPlugin } from "sanity-plugin-hotspot-array";
+
 
 import {presentationTool} from 'sanity/presentation'
 import {locate} from './locate'
@@ -40,12 +44,12 @@ export default defineConfig([{
     media(),
     unsplashImageAsset(),
     colorInput(),
+    codeInput(),
     googleMapsInput(googleMaps),
     simplerColorInput(brandColors),
+    imageHotspotArrayPlugin(),
   ],
-  schema: {
-    types: schemaTypes,
-  },
+  schema: schema,
   icon: Logo("production"),
 }, 
 {
@@ -71,12 +75,11 @@ export default defineConfig([{
     media(),
     unsplashImageAsset(),
     colorInput(),
+    codeInput(),
     googleMapsInput(googleMaps),
     simplerColorInput(brandColors),
   ],
-  schema: {
-    types: schemaTypes,
-  },
+  schema: schema,
   icon: Logo("beta"),
 }
 ])

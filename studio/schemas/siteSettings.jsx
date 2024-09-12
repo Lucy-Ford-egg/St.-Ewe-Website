@@ -1,7 +1,7 @@
 import {LiaBarsSolid} from "react-icons/lia"
 import {defineField, defineType} from 'sanity'
 
-export const companyDetailType = defineType({
+export const companyDetail = defineType({
   name: 'companyDetailType',
   title: 'Company Detail',
   type: 'object',
@@ -68,7 +68,7 @@ export const companyDetailType = defineType({
   ],
 })
 
-export const companyDetailsType = defineType({
+export const companyDetails = defineType({
   name: 'companyDetails',
   type: 'array',
   title: 'Company Details',
@@ -77,7 +77,7 @@ export const companyDetailsType = defineType({
   validation: (Rule) => Rule.min(1).max(2),
 })
 
-export const footerDetailsType = defineType({
+export const footerDetails = defineType({
   name: 'footerDetails',
   type: 'object',
   title: 'Footer Details',
@@ -169,7 +169,7 @@ export const footerDetailsType = defineType({
   description: 'Shown in the footer.',
 })
 
-export const newsletterType = defineType({
+export const newsletter = defineType({
   name: 'newsletterSetup',
   type: 'object',
   title: 'Newsletter Setup',

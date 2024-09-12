@@ -26,7 +26,7 @@ const IndexPage = props => {
     sanityConfig={getSanityClient}
     previewData={pageData?.pageBuilder}
     allSanityPost={data.allSanityPost}
-    allrecipies={data.allSanityRecipies}
+    allRecipes={data.allSanityRecipes}
     pageContext={pageContext}
     modules={definedModules}
     sanitySiteSettings={siteSettings }
@@ -40,7 +40,7 @@ export const Head = ({ data, location }) => {
 }
 
 export const homeQuery = graphql`
-query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int, $limit: Int) {
+query homeTemplateQuery( $recipeIds:[String!], $postIds:[String!], $skip: Int, $limit: Int) {
   allSanityPost(
     filter: {
       category: {
@@ -136,11 +136,11 @@ query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int,
       }
     }
   }
-  allSanityRecipies(
+  allSanityRecipes(
     filter: {
       category: {
         _id: {
-          in: $recipiesIds
+          in: $recipeIds
         }
       }
     }
@@ -150,7 +150,7 @@ query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int,
     nodes {
       _key
       _id
-      ...RecipiesTileFragment
+      ...RecipeTileFragment
      
     }
   }
@@ -158,7 +158,7 @@ query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int,
       slug {
         current
       }
-      pageTitle
+      title
       navOverlay
       navColor{
         value
@@ -174,8 +174,8 @@ query homeTemplateQuery( $recipiesIds:[String!], $postIds:[String!], $skip: Int,
         ... on SanityTeamSection {
           ...TeamSectionFragment
         }
-        ...on SanityRecipiesSection {
-          ... RecipiesSectionFragment
+        ...on SanityRecipesSection {
+          ... RecipesSectionFragment
         }
         ... on SanityVideoSection {
           ...VideoSectionFragment

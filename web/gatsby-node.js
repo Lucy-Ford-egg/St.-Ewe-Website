@@ -15,18 +15,19 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
     type category implements Node {
       name: String
+      _id: Int
     }
     type ShowArchive implements Node {
       setArchive: Boolean
-      archive: [SanityCategories]
+      archive: [category]
     }
-    type showRecipiesArchive implements Node {
+    type showRecipesArchive implements Node {
       setArchive: Boolean
       archive: [category]
     }
     type SanityPage implements Node {
       showArchive: ShowArchive
-      showRecipiesArchive: showRecipiesArchive
+      showRecipesArchive: showRecipesArchive
     }
     type SanityPost implements Node {
       metaTitle: String
@@ -46,7 +47,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const { createPage } = actions
   const result = await graphql(`
   query SanityAllData {
-    allSanityPage(filter: {slug: {current: {nin: ["blog", "recipies"]}}}) {
+    allSanityPage(filter: {slug: {current: {nin: ["blog", "recipes"]}}}) {
       nodes {
         _type
         id
@@ -56,7 +57,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         navColor{
           value
         }
-        pageTitle
+        title
         pageBuilder{
           ... on SanityBlogSection {
             _key
@@ -69,12 +70,14 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityRecipiesSection {
+          ... on SanityRecipesSection {
             _key
             _type
-            showRecipiesArchive {
+            showRecipesArchive {
               archive {
-                name
+                category {
+                  name
+                }
                 _id
               }
               setArchive
@@ -93,7 +96,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         navColor{
           value
         }
-        pageTitle
+        title
         pageBuilder{
           ... on SanityBlogSection {
             _key
@@ -106,12 +109,14 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityRecipiesSection {
+          ... on SanityRecipesSection {
             _key
             _type
-            showRecipiesArchive {
+            showRecipesArchive {
               archive {
-                name
+                category {
+                  name
+                }
                 _id
               }
               setArchive
@@ -120,7 +125,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-    recipiesPage: allSanityPage(filter: {slug: {current: {in: "recipies"}}}) {
+    recipePage: allSanityPage(filter: {slug: {current: {in: "recipes"}}}) {
       nodes {
         _type
         id
@@ -130,45 +135,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         navColor{
           value
         }
-        pageTitle
-        pageBuilder{
-          ... on SanityBlogSection {
-            _key
-            _type
-            showArchive {
-              archive {
-                name
-                _id
-              }
-              setArchive
-            }
-          }
-          ... on SanityRecipiesSection {
-            _key
-            _type
-            showRecipiesArchive {
-              archive {
-                name
-                _id
-              }
-              setArchive
-            }
-          }
-        }
-      }
-    }
-    allSanityTeamMember {
-      nodes {
-        _type
-        _rawBio
         title
-        position
-        name
-        linkedIn
-        email
-        slug{
-          current
-        }
         pageBuilder{
           ... on SanityBlogSection {
             _key
@@ -181,12 +148,14 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityRecipiesSection {
+          ... on SanityRecipesSection {
             _key
             _type
-            showRecipiesArchive {
+            showRecipesArchive {
               archive {
-                name
+                category {
+                  name
+                }
                 _id
               }
               setArchive
@@ -195,7 +164,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-    allSanityRecipies(filter: {coverImage: {_type: {eq: "image"}}}) {
+    allSanityRecipes(filter: {coverImage: {_type: {eq: "image"}}}) {
       nodes {
         _key
         _id
@@ -219,12 +188,11 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityRecipiesSection {
+          ... on SanityRecipesSection {
             _key
             _type
-            showRecipiesArchive {
+            showRecipesArchive {
               archive {
-                name
                 _id
               }
               setArchive
@@ -265,12 +233,11 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               setArchive
             }
           }
-          ... on SanityRecipiesSection {
+          ... on SanityRecipesSection {
             _key
             _type
-            showRecipiesArchive {
+            showRecipesArchive {
               archive {
-                name
                 _id
               }
               setArchive
@@ -289,13 +256,12 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
   // Fetch your items (blog posts, categories, etc).
   const blogPosts = result.data?.allSanityPost?.nodes || []
-  const recipies = result.data?.allSanityRecipies.nodes || []
-  const teamMembers = result.data?.allSanityTeamMember.nodes || []
+  const recipes = result.data?.allSanityRecipes.nodes || []
 
   //const blogPages = result.data?.blogPages?.nodes || []
 
   const blogPostsCategories = blogPosts.map(({ category }) => category && category._id)
-  const recipiesCategories = recipies.map(({ category }) => category && category._id)
+  const recipeCategories = recipes.map(({ category }) => category && category._id)
 
   function getShowArchiveBlogIds(pageBuilder, type) {
     const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
@@ -320,16 +286,16 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     return ids.length === 0 ? blogPostsCategories : ids
   }
 
-  function getShowArchiverecipiesIds(pageBuilder, type) {
+  function  getShowArchiveRecipesIds(pageBuilder, type) {
     //!
     const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
 // console.log(`PageBuilder type: ${JSON.stringify(pageBuilder)}`)
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
       // console.log(`Current Item: ${JSON.stringify(currentItem)}`)
       if (type === currentItem?._type) {
-        // console.log(`recipies acc : ${JSON.stringify(currentItem) }`)
-        if (currentItem && currentItem.showRecipiesArchive && currentItem.showRecipiesArchive.archive) {
-          const archiveItems = currentItem.showRecipiesArchive.archive;
+        // console.log(`Recipe acc : ${JSON.stringify(currentItem) }`)
+        if (currentItem && currentItem.showRecipesArchive && currentItem.showRecipesArchive.archive) {
+          const archiveItems = currentItem.showRecipesArchive.archive;
           
           archiveItems.forEach(archiveItem => {
             if (archiveItem._id) {
@@ -338,13 +304,13 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           });
         }
       }
-      // console.log(`recipies acc : ${JSON.stringify(acc) }`)
+      // console.log(`Recipe acc : ${JSON.stringify(acc) }`)
       return acc;
     }, []);
-    // console.log(`recipies ids : ${JSON.stringify(ids) }`)
-    // console.log(`recipies ids.length : ${ids.length }`)
+    // console.log(`Recipe ids : ${JSON.stringify(ids) }`)
+    // console.log(`Recipe ids.length : ${ids.length }`)
 
-    return ids.length === 0 ? recipiesCategories : ids    
+    return ids.length === 0 ? recipeCategories : ids    
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
@@ -357,7 +323,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
-          recipiesIds: getShowArchiverecipiesIds(node?.pageBuilder, "recipiesSection"),
+          recipeIds:  getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
           navColor: node.navColor
         },
       })
@@ -372,7 +338,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
-          recipiesIds: getShowArchiverecipiesIds(node?.pageBuilder, "recipiesSection"),
+          recipeIds:  getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
           navColor: node.navColor
         },
       })
@@ -391,7 +357,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug: `${node.slug.current}`,
         node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
   })
@@ -439,7 +405,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         // category: node.category,
         // excerpt: node.excerpt,
         // postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        // recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
+        // recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
     paginate({
@@ -453,7 +419,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         slug: `${node.category.slug.current}`,
         node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
 
@@ -472,24 +438,24 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         slug: `${node.slug.current}`,
         node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
   })
 
-  result.data.recipiesPage.nodes.forEach(node => {
+  result.data.recipePage.nodes.forEach(node => {
     paginate({
       createPage,
-      items: recipies,
+      items: recipes,
       itemsPerPage: 4,
       pathPrefix: `/${node.slug.current}`,
-      component: require.resolve(`./src/templates/recipiesArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+      component: require.resolve(`./src/templates/recipeArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
       context: {
         id: node.id,
         slug: `${node.slug.current}`,
         node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
   })
@@ -507,15 +473,15 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         categories: node.categories,
         navColor: node.navColor,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
   })
 
-  recipies.forEach((node, index) => {
+  recipes.forEach((node, index) => {
     createPage({
-      path: `recipies/${node.slug.current}`,
-      component: require.resolve(`./src/templates/recipiesTemplate.jsx`),
+      path: `Recipe/${node.slug.current}`,
+      component: require.resolve(`./src/templates/recipesTemplate.jsx`),
       context: {
         id: node.id,
         key: index,
@@ -526,29 +492,9 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         category: node.category,
         excerpt: node.excerpt,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
   })
-
-  teamMembers.forEach(node => {
-    createPage({
-      path: `team-members/${node.slug.current}`,
-      component: require.resolve(`./src/templates/teamMemberTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.slug.current}`,
-        title: node.title,
-        coverImage: node.image,
-        date: node.date,
-        categories: node.categories,
-        excerpt: node.excerpt,
-        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipiesIds: getShowArchiverecipiesIds(node.pageBuilder, "recipiesSection")
-      },
-    })
-  })
-
-
 }
 

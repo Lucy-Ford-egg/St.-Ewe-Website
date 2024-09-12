@@ -3,15 +3,15 @@ import { graphql } from "gatsby"
 import {Container, Grid, styled} from "@mui/material/"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTheme } from "@mui/material"
-import { RecipiesTile } from "./recipiesTile"
+import { RecipeTile } from "./recipeTile"
 import { motion, useInView } from "framer-motion"
 
 
 //Preview
 import { useQuery } from "../../sanity/store"
 import {
-  RECIPIES_BY_ID,
-  ALL_RECIPIES,
+  RECIPES_BY_ID,
+  ALL_RECIPES,
 } from "../queries/documentQueries"
 
 const Wrapper = styled('div')(({ backgroundColour, paddingTop, paddingBottom}) => (
@@ -22,8 +22,8 @@ const Wrapper = styled('div')(({ backgroundColour, paddingTop, paddingBottom}) =
   }
 ));
 
-export const RecipiesSection = ({
-  allSanityRecipies,
+export const RecipeSection = ({
+  allSanityRecipes,
   topPadding,
   previewData,
   initial,
@@ -39,15 +39,15 @@ export const RecipiesSection = ({
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
   const sm = useMediaQuery(theme.breakpoints.down("sm"))
 
-  const { data: allRecipies } = useQuery(ALL_RECIPIES, {}, { initial })
+  const { data: allRecipe } = useQuery(ALL_RECIPES, {}, { initial })
 
-  const { data: recipiesData } = useQuery(
-    RECIPIES_BY_ID,
+  const { data: recipeData } = useQuery(
+    RECIPES_BY_ID,
     {
       categoryId:
         (previewData &&
-          previewData?.showRecipiesArchive?.archive &&
-          previewData?.showRecipiesArchive?.archive.map(node => node?._id)) ||
+          previewData?.showRecipesArchive?.archive &&
+          previewData?.showRecipesArchive?.archive.map(node => node?._id)) ||
         [],
     },
     { initial },
@@ -57,15 +57,15 @@ export const RecipiesSection = ({
     (previewData && _type === previewData?._type && previewData?.topPadding) ||
     topPadding
 
-  const definedallSanityRecipies =
-    (recipiesData && recipiesData?.length > 0 && recipiesData) ||
-    (previewData?.showRecipiesArchive?.setArchive === true &&
-      allRecipies &&
-      allRecipies) ||
-    allSanityRecipies?.nodes
+  const definedallSanityRecipes =
+    (recipeData && recipeData?.length > 0 && recipeData) ||
+    (previewData?.showRecipesArchive?.setArchive === true &&
+      allRecipe &&
+      allRecipe) ||
+    allSanityRecipes?.nodes
 
   useEffect(() => {
-    setFilterData(definedallSanityRecipies)
+    setFilterData(definedallSanityRecipes)
   }, [])
 
 
@@ -130,13 +130,13 @@ export const RecipiesSection = ({
             animate={isInView && "visible"}
             initial="hidden"
             variants={variants}>
-            {definedallSanityRecipies &&
-              definedallSanityRecipies.map((tile, i) => {
+            {definedallSanityRecipes &&
+              definedallSanityRecipes.map((tile, i) => {
                 return (
 
                   <MotionGridItem variants={item} key={`${tile.title}-${i}`} xs={12} sm={6} md={i === 0 ? 6 : 3}>
 
-                    <RecipiesTile {...tile} i={i} />
+                    <RecipeTile {...tile} i={i} />
 
                   </MotionGridItem>
 
@@ -154,15 +154,14 @@ export const RecipiesSection = ({
 }
 
 export const query = graphql`
-  fragment RecipiesSectionFragment on SanityRecipiesSection {
+  fragment RecipesSectionFragment on SanityRecipesSection {
     _key
     _type
-    topPadding
-    _rawTitle(resolveReferences: { maxDepth: 10 })
-    _rawLeftText(resolveReferences: { maxDepth: 10 })
-    _rawRightText(resolveReferences: { maxDepth: 10 })
-    subtitle
-    showRecipiesArchive {
+    verticalSpace {
+      topPadding
+      bottomPadding
+    }
+    showRecipesArchive {
       setArchive
     }
     backgroundColour{

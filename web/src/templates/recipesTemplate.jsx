@@ -15,29 +15,29 @@ import { urlFor } from "../utils/imageHelpers"
 import { RenderPortableText } from "../components/renderPortableText"
 //Preview
 import { useQuery } from "../../sanity/store"
-import { RECIPIES_QUERY } from "../queries/documentQueries"
+import { RECIPES_QUERY } from "../queries/documentQueries"
 
-const RecipiesTemplate = props => {
+const RecipeTemplate = props => {
   const { data, pageContext, initial, location } = props
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
   // Preview
   const { data: previewData } = useQuery(
-    `{"recipiesQuery:" ${RECIPIES_QUERY}`,
-    { slug: data.sanityRecipies.slug.current },
+    `{"RecipeQuery:" ${RECIPES_QUERY}`,
+    { slug: data.sanityRecipes.slug.current },
     { initial },
   )
 
   const definedImage =
-    (previewData && previewData?.recipiesQuery?.coverImage) || data.sanityRecipies?.coverImage
+    (previewData && previewData?.RecipeQuery?.coverImage) || data.sanityRecipes?.coverImage
 
   const definedCategory =
-    (previewData && previewData?.recipiesQuery?.category?.name) ||
-    data.sanityRecipies?.category?.name
+    (previewData && previewData?.RecipeQuery?.category?.name) ||
+    data.sanityRecipes?.category?.name
 
-  const definedRawBody = (previewData && previewData?.recipiesQuery?.instructions) || data?.sanityRecipies._rawInstructions
-  const definedModules = (previewData && previewData?.recipiesQuery?.pageBuilder)  || data?.sanityRecipies?.pageBuilder
+  const definedRawBody = (previewData && previewData?.RecipeQuery?.instructions) || data?.sanityRecipes._rawInstructions
+  const definedModules = (previewData && previewData?.RecipeQuery?.pageBuilder)  || data?.sanityRecipes?.pageBuilder
 
   return (
     <>
@@ -202,7 +202,7 @@ const RecipiesTemplate = props => {
         pageContext={pageContext}
         modules={definedModules}
         getAllPosts={data.getAllPosts}
-        allSanityRecipies={data.allSanityRecipies}
+        allSanityRecipe={data.allSanityRecipe}
       />
             
     </>
@@ -210,13 +210,13 @@ const RecipiesTemplate = props => {
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityRecipies} location={location} />
+  return <Seo seoContext={data.sanityRecipe} location={location} />
 }
 
-export const recipiesTemplateQuery = graphql`
-  query recipiesTemplateQuery($slug: String!, $recipiesIds:[String!]) {
-    sanityRecipies(slug: { current: { eq: $slug } }) {
-      ... SeoRecipiesFragment
+export const RecipeTemplateQuery = graphql`
+  query RecipeTemplateQuery($slug: String!, $recipeIds:[String!]) {
+    sanityRecipes(slug: { current: { eq: $slug } }) {
+      ... SeoRecipesFragment
       slug {
         current
       }
@@ -250,17 +250,17 @@ export const recipiesTemplateQuery = graphql`
         ...PageBuilderFragment
       }
     }
-    allSanityRecipies(filter: {
+    allSanityRecipes(filter: {
       category: {
         _id: {
-          in: $recipiesIds
+          in: $recipeIds
         }
       }
     }) {
     nodes {
       _key
       _id
-      ...RecipiesTileFragment 
+      ...RecipeTileFragment 
     }
   }
     getAllPosts: allSanityPost(sort: {date: DESC}){
@@ -307,7 +307,7 @@ export const recipiesTemplateQuery = graphql`
     }
   }
 `
-export default RecipiesTemplate
+export default RecipeTemplate
 
 // TODO:
 // ... on SanityLocationSection {

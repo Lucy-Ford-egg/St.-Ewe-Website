@@ -8,7 +8,7 @@ import { useQuery } from "../../sanity/store"
 import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
-const recipiesArchiveTemplate = props => {
+const RecipeArchiveTemplate = props => {
 
   const { data, pageContext, initial } = props
 
@@ -26,7 +26,7 @@ const recipiesArchiveTemplate = props => {
       <Modules
           previewData={previewData?.pageBuilder}
           sanityConfig={getSanityClient}
-          allSanityRecipies={data.allSanityRecipies}
+          allSanityRecipes={data.allSanityRecipes}
           pageContext={pageContext}
           modules={definedModules }
           getAllPosts={data.getAllPosts}
@@ -39,13 +39,13 @@ export const Head = ({ data, location }) => {
   return <Seo seoContext={data.sanityPage} location={location} />
 }
 
-export const recipiesArchiveTemplateQuery = graphql`
-query recipiesArchiveTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
-  allSanityRecipies(
+export const RecipeArchiveTemplateQuery = graphql`
+query RecipeArchiveTemplateQuery( $recipeIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+  allSanityRecipes(
     filter: {
       category: {
         _id: {
-          in: $recipiesIds
+          in: $recipeIds
         }
       }
     }
@@ -128,11 +128,11 @@ query recipiesArchiveTemplateQuery( $recipiesIds:[String!], $slug: String!, $ski
     slug {
       current
     }
-    pageTitle
+    title
     pageBuilder {
       ...PageBuilderFragment
     }
   }
 }
 `
-export default recipiesArchiveTemplate
+export default RecipeArchiveTemplate

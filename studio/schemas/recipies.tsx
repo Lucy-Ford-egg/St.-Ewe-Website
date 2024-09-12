@@ -2,7 +2,7 @@ import { LiaUtensilsSolid, LiaCarrotSolid,  LiaStopwatchSolid } from "react-icon
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import authorType from './author'
-import recipieCategoryType from './taxonomies/recipiesCategory'
+import recipesCategoryType from './taxonomies/recipesCategory'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
@@ -10,7 +10,7 @@ import siteMeta from './siteMeta'
 import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
-import recipiesSectionType from './sections/recipiesSection'
+import recipesSectionType from './sections/recipesSection'
 import ctaSectionType from './sections/ctaSection'
 import featuresListSectionType from './sections/featuresListSection'
 import videoSectionType from './sections/videoSection'
@@ -25,8 +25,8 @@ import clientLoginSectionType from './sections/clientLoginSection'
 
 
 export default defineType({
-  name: 'recipies',
-  title: 'Recipie',
+  name: 'recipes',
+  title: 'Recipe',
   icon:  LiaUtensilsSolid,
   type: 'document',
   groups: [
@@ -159,7 +159,7 @@ export default defineType({
         {type: headerSectionType.name},
         {type: testimonialSectionType.name},
         {type: teamSectionType.name},
-        {type: recipiesSectionType.name},
+        {type: recipesSectionType.name},
         {type: videoSectionType.name},
         {type: featuresListSectionType.name},
         {type: ctaSectionType.name},
@@ -178,9 +178,9 @@ export default defineType({
 
     defineField({
       name: 'category',
-      title: 'Recipie Category',
+      title: 'Recipe Category',
       type: 'reference',
-      to: [{ type: recipieCategoryType.name }],
+      to: [{ type: recipesCategoryType.name }],
       group: 'pageContent',
       validation: (rule) => rule.required(),
       // to: [{ type:  }],

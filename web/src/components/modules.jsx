@@ -2,6 +2,8 @@ import React from 'react'
 import {Box, styled} from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image"
 import Typography from "@mui/material/Typography"
+const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
+const TitleSection = React.lazy(() => import("./titleSection").then(module => ({ default: module.TitleSection })));
 const BorderSection = React.lazy(() => import("./borderSection").then(module => ({ default: module.BorderSection })));
 const BlogSection = React.lazy(() => import("./blogSection").then(module => ({ default: module.BlogSection })));
 const HeaderSection = React.lazy(() => import('./headerSection').then(module => ({ default: module.HeaderSection })));
@@ -14,7 +16,7 @@ const ImageCarouselSection = React.lazy(() => import('./imageCarouselSection').t
 const LocationSection = React.lazy(() => import('./locationSection').then(module => ({ default: module.LocationSection })));
 const ContactSection = React.lazy(() => import('./contactSection').then(module => ({ default: module.ContactSection })));
 const TeamSection = React.lazy(() => import('./teamSection').then(module => ({ default: module.TeamSection })));
-const RecipiesSection = React.lazy(() => import('./recipiesSection').then(module => ({ default: module.RecipiesSection })));
+const RecipesSection = React.lazy(() => import('./recipesSection').then(module => ({ default: module.RecipesSection })));
 const NewsletterSection = React.lazy(() => import('./newsletterSection').then(module => ({ default: module.NewsletterSection })));
 const StepsSection = React.lazy(() => import('./stepsSection').then(module => ({ default: module.StepsSection })));
 const ClientLoginSection = React.lazy(() => import('./clientLoginSection').then(module => ({ default: module.ClientLoginSection })));
@@ -28,7 +30,7 @@ const Main = styled('main')({
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, allSanityRecipies, sanitySiteSettings } = props
+    const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, allSanityRecipes, sanitySiteSettings } = props
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
 
@@ -73,6 +75,24 @@ const Modules = (props) => {
                         if (isModule(module, 'headerSection')) {
                             return (
                                 <HeaderSection
+                                    previewData={previewData && previewData[i]}
+                                    sanityConfig={sanityConfig}
+                                    key={module._key + i}
+                                    {...module} />
+                            )
+                        }
+                        if (isModule(module, 'titleSection')) {
+                            return (
+                                <TitleSection
+                                    previewData={previewData && previewData[i]}
+                                    sanityConfig={sanityConfig}
+                                    key={module._key + i}
+                                    {...module} />
+                            )
+                        }
+                        if (isModule(module, 'embedSection')) {
+                            return (
+                                <EmbedSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
                                     key={module._key + i}
@@ -133,13 +153,13 @@ const Modules = (props) => {
                             )
                         }
 
-                        if (isModule(module, 'recipiesSection')) {
-                            return <RecipiesSection previewData={previewData && previewData[i]}
+                        if (isModule(module, 'recipesSection')) {
+                            return <RecipesSection previewData={previewData && previewData[i]}
                                 sanityConfig={sanityConfig}
                                 pageContext={pageContext}
                                 key={module._key + i}
                                 allSanityPost={allSanityPost}
-                                allSanityRecipies={allSanityRecipies}
+                                allSanityRecipes={allSanityRecipes}
                                 {...module} />
                         }
 

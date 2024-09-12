@@ -61,7 +61,7 @@ pageBuilder[] {
     ...,
     archive[]->{...},  
   },
-  showRecipiesArchive{
+  showRecipesArchive{
     ...,
     archive[]->{
       ..., 
@@ -156,20 +156,20 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   _id,
 }`
 
-export const ALL_RECIPIES = groq`*[_type == "recipies" && defined(coverImage)][0..4] {
+export const ALL_RECIPES = groq`*[_type ==  "recipes" && defined(coverImage)][0..4] {
   _id,
   title,
   ...,
   service->{name},
 }`
 
-export const RECIPIES_BY_ID = groq`*[_type == "recipies && defined(coverImage)" && references($categoryId)] {
+export const RECIPES_BY_ID = groq`*[_type ==  "recipes && defined(coverImage)" && references($categoryId)] {
   _id,
   ...,
   service->{name},
 }`
 
-export const RECIPIES_QUERY = groq`*[_type == "recipies && defined(coverImage)" && slug.current == $slug][0] {
+export const RECIPES_QUERY = groq`*[_type ==  "recipes && defined(coverImage)" && slug.current == $slug][0] {
   pageBuilder[] {
     ...,
     images[] { 
@@ -204,7 +204,7 @@ export const RECIPIES_QUERY = groq`*[_type == "recipies && defined(coverImage)" 
       ...,
       archive[]->{...},  
     },
-    showRecipiesArchive{
+    showRecipesArchive{
       ...,
       archive[]->{
         ..., 
@@ -269,7 +269,7 @@ export const RECIPIES_QUERY = groq`*[_type == "recipies && defined(coverImage)" 
   _id,
 }`
 
-export const CATEGORIES_QUERY = groq`*[_type == "recipies" && slug.current == $slug][0] {
+export const CATEGORIES_QUERY = groq`*[_type ==  "recipes" && slug.current == $slug][0] {
   pageBuilder[] {
     ...,
     images[] { 
@@ -304,7 +304,7 @@ export const CATEGORIES_QUERY = groq`*[_type == "recipies" && slug.current == $s
       ...,
       archive[]->{...},  
     },
-    showRecipiesArchive{
+    showRecipesArchive{
       ...,
       archive[]->{
         ..., 

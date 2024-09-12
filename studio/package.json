@@ -16,6 +16,7 @@
     "sanity"
   ],
   "dependencies": {
+    "@sanity/code-input": "^4.1.4",
     "@sanity/color-input": "^3.1.1",
     "@sanity/google-maps-input": "^4.0.1",
     "@sanity/vision": "^3.56.0",
@@ -28,6 +29,7 @@
     "sanity": "^3.56.0",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "sanity-plugin-gatsby-cloud-preview": "^1.0.3",
+    "sanity-plugin-hotspot-array": "^2.0.0",
     "sanity-plugin-iframe-pane": "^3.1.6",
     "sanity-plugin-media": "^2.3.2",
     "sanity-plugin-seo-pane": "^2.0.1",

@@ -11,7 +11,7 @@ import siteMeta from './siteMeta'
 // import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
-import recipiesSectionType from './sections/recipiesSection'
+import recipesSectionType from './sections/recipesSection'
 import ctaSectionType from './sections/ctaSection'
 import featuresListSectionType from './sections/featuresListSection'
 import videoSectionType from './sections/videoSection'
@@ -199,7 +199,6 @@ export default defineType({
               {
                 title: 'Open in new tab',
                 name: 'blank',
-                default: true,
                 type: 'boolean'
               }
             ]
@@ -246,7 +245,7 @@ export default defineType({
     of: [
       { type: testimonialSectionType.name},
       { type: teamSectionType.name},
-      { type: recipiesSectionType.name},
+      { type: recipesSectionType.name},
       { type: videoSectionType.name},
       { type: featuresListSectionType.name},
       { type: ctaSectionType.name},
@@ -287,6 +286,7 @@ export default defineType({
       title: 'title',
       date: 'date',
       media: 'coverImage',
+      author: 'author',
     },
     prepare({ title, media, author, date }) {
       const subtitles = [

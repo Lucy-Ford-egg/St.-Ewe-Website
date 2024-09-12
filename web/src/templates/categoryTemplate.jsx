@@ -44,7 +44,7 @@ const CategoryTemplate = props => {
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityRecipies} location={location} />
+  return <Seo seoContext={data.sanityRecipes} location={location} />
 }
 
 export const categoryTemplateQuery = graphql`

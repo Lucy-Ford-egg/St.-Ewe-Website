@@ -92,7 +92,7 @@ export const locate: DocumentLocationResolver = (params, context) => {
     );
   }
   // Case Studies
-  if (params.type === "recipies") {
+  if (params.type === "recipe") {
     // Subscribe to the latest slug and title
     const doc$ = context.documentStore.listenQuery(
       `*[_id == $id][0]{ slug, title,  ...}`,

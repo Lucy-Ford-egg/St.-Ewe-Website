@@ -15,5 +15,5 @@ export default defineType({
   options: {
     columns: 2,
   },
-  description: 'How many does this recipies serve',
+  description: 'How many does this Recipe serve',
 });

@@ -2,25 +2,25 @@ import { LiaFilePdfSolid, LiaMaleSolid } from "react-icons/lia";
 
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
-import openGraph from '../schemas/openGraph'
-import siteMeta from '../schemas/siteMeta'
+import openGraph from './openGraph'
+import siteMeta from './siteMeta'
 
 // Sections 
 import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
-import recipiesSectionType from './sections/recipiesSection'
-import ctaSectionType from '../schemas/sections/ctaSection'
-import featuresListSectionType from '../schemas/sections/featuresListSection'
-import videoSectionType from '../schemas/sections/videoSection'
-import newsletterSectionType from '../schemas/sections/newsletterSection'
-import imageCarouselSectionType from '../schemas/sections/imageCarouselSection'
+import recipesSectionType from './sections/recipesSection'
+import ctaSectionType from './sections/ctaSection'
+import featuresListSectionType from './sections/featuresListSection'
+import videoSectionType from './sections/videoSection'
+import newsletterSectionType from './sections/newsletterSection'
+import imageCarouselSectionType from './sections/imageCarouselSection'
 import blogSectionType from './modules/blogSection'
-import stepSectionType from '../schemas/sections/stepsSection'
-import timelineSectionType from '../schemas/sections/timelineSection'
-import contactSectionType from '../schemas/sections/contactSection'
-import locationSectionType from '../schemas/sections/locationSection'
-import clientLoginSectionType from '../schemas/sections/clientLoginSection'
+import stepSectionType from './sections/stepsSection'
+import timelineSectionType from './sections/timelineSection'
+import contactSectionType from './sections/contactSection'
+import locationSectionType from './sections/locationSection'
+import clientLoginSectionType from './sections/clientLoginSection'
 
 
 /**
@@ -213,7 +213,6 @@ export default defineType({
                 {
                   title: 'Open in new tab',
                   name: 'blank',
-                  default: true,
                   type: 'boolean'
                 }
               ]
@@ -240,7 +239,7 @@ export default defineType({
         {type: headerSectionType.name},
         {type: testimonialSectionType.name},
         {type: teamSectionType.name},
-        {type: recipiesSectionType.name},
+        {type: recipesSectionType.name},
         {type: videoSectionType.name},
         {type: featuresListSectionType.name},
         {type: ctaSectionType.name},
@@ -249,16 +248,9 @@ export default defineType({
         {type: blogSectionType.name},
         {type: stepSectionType.name},
         {type: timelineSectionType.name},
-        { type: locationSectionType.name},
-        { type: contactSectionType.name},
-        { type: clientLoginSectionType.name},
-
-        // { type: servicesSectionType.name },
-        // { type: locationSectionType.name },
-        // // { type: faqsSectionType.name},
-        // { type: benifitsSectionType.name },
-        // { type: contactSectionType.name },
-        // etc...
+        {type: locationSectionType.name},
+        {type: contactSectionType.name},
+        {type: clientLoginSectionType.name},
       ],
       group: 'pageContent',
     }),
@@ -267,11 +259,10 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-
       date: 'date',
       media: 'coverImage',
     },
-    prepare({ title, media, author, date }) {
+    prepare({ title, media, date }) {
       const subtitles = [
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)

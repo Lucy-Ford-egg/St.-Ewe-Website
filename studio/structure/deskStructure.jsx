@@ -32,6 +32,18 @@ export const deskStructure = (S, context) => {
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
         S.divider(),
+        S.listItem()
+          .title('Hotspots')
+          .icon(LiaNewspaper)
+          .child(
+            S.documentTypeList('hotspots')
+              .title('Hotspots')
+              .child(
+                (id) => S.document().schemaType('hotspots').documentId(id),
+              )
+              // .defaultOrdering([{field: 'title', direction: 'asc'}]),
+          ),
+        S.divider(),
         // S.listItem()
         //   .title('Posts')
         //   .icon(LiaNewspaper)
@@ -57,13 +69,13 @@ export const deskStructure = (S, context) => {
           ),
 
         S.listItem()
-          .title('Recipies')
+          .title('Recipes')
           .icon(LiaUtensilsSolid)
           .child(
-            S.documentTypeList('recipies')
-              .title('Recipies')
+            S.documentTypeList('recipes')
+              .title('Recipe')
               .child(
-                (id) => S.document().schemaType('recipies').documentId(id),
+                (id) => S.document().schemaType('recipes').documentId(id),
                 //.views(Views(S, context))
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
@@ -133,13 +145,13 @@ export const deskStructure = (S, context) => {
         //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
         //   ),
         S.listItem()
-          .title('Recipie Categories')
+          .title('Recipes Categories')
           .icon(LiaShapesSolid)
           .child(
-            S.documentTypeList('services')
-              .title('Recipie Categories')
+            S.documentTypeList('recipesCategory')
+              .title('Recipes Categories')
               .child(
-                (id) => S.document().schemaType('services').documentId(id),
+                (id) => S.document().schemaType('recipesCategory').documentId(id),
                 //.views(Views(S, context)),
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),

@@ -13,7 +13,7 @@ const PageTemplate = props => {
   const { data, pageContext, initial } = props
 
   // Preview
-  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityRecipies
+  const definedSlug = (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page" ? props.data.sanityPage : {slug: {current: "home-page"}} ) || props.data.sanityPost || props.data.sanityTeamMember || props.data.sanityRecipes
 
   const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "page":${PAGE_QUERY}}`,
@@ -31,7 +31,7 @@ const PageTemplate = props => {
         previewData={pageData?.pageBuilder}
         allSanityPost={data.allSanityPost}
         getAllPosts={data.getAllPosts}
-        allSanityRecipies={data.allSanityRecipies}
+        allSanityRecipes={data.allSanityRecipes}
         pageContext={pageContext}
         modules={definedModules}
         sanitySiteSettings={siteSettings }
@@ -45,7 +45,7 @@ export const Head = ({ data, location }) => {
 
 export const pageTemplateQuery = graphql`
 
-query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+query pageTemplateQuery( $recipeIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
   
   getAllPosts: allSanityPost(sort: {date: DESC}, limit: 8){
     nodes {
@@ -88,11 +88,11 @@ query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $li
       }
     }
   }
-  allSanityRecipies(
+  allSanityRecipes(
     filter: {
       category: {
         _id: {
-          in: $recipiesIds
+          in: $recipeIds
         }
       }
       coverImage: {_type: {eq: "image"}}
@@ -103,7 +103,7 @@ query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $li
     nodes {
       _key
       _id
-      ...RecipiesTileFragment
+      ...RecipeTileFragment
      
     }
   }
@@ -117,7 +117,7 @@ query pageTemplateQuery( $recipiesIds:[String!], $slug: String!, $skip: Int, $li
       value
       label
     }
-    pageTitle
+    title
     pageBuilder {
       ...PageBuilderFragment
     }

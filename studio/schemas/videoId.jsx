@@ -1,12 +1,13 @@
+import { defineField, defineType } from 'sanity'
 import { VideoIdField } from "../structure/videoComponent";
 import React from "react";
 
-export default {
+export default defineType({
   type: "object",
   name: "videoId",
   title: "Video ID",
   components:{
-    input:VideoIdField,
+    input: VideoIdField,
   },
   fields: [
     {
@@ -50,4 +51,4 @@ export default {
       };
     },
   },
-};
+});

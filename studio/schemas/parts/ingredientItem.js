@@ -10,7 +10,7 @@ export default defineType({
             title: "Ingredient",
             name: "ingredient",
             type: "reference",
-            to: [{ type: "ingredients"}, {type: "recipies" }],
+            to: [{ type: "ingredients"}, {type: "recipes" }],
           }),
           defineField({
             name: "wholeNumber",

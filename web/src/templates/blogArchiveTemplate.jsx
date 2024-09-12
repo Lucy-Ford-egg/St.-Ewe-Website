@@ -96,7 +96,7 @@ export const blogArchiveTemplateQuery = graphql`
         value
         label
       }
-      pageTitle
+      title
       pageBuilder {
         ...PageBuilderFragment
       }

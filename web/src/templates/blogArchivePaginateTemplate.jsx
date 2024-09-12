@@ -129,7 +129,7 @@ query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
     slug {
       current
     }
-    pageTitle
+    title
     showArchive {
       setArchive
       archive {

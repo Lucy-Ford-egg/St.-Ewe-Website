@@ -2,8 +2,8 @@ import {LiaSortAlphaDownSolid } from "react-icons/lia";
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'recipiesCategory',
-  title: 'Recipies Category',
+  name: 'recipesCategory',
+  title: 'Recipes Category',
   icon:LiaSortAlphaDownSolid,
   type: 'document',
   fields: [

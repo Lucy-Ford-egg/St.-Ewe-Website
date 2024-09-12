@@ -59,6 +59,7 @@ export const blogArchiveTemplateQuery = graphql`
         title
         date
         category {
+          _id
           name
           slug{
             current
@@ -89,6 +90,7 @@ export const blogArchiveTemplateQuery = graphql`
       }
     }
     sanityCategories(slug: { current: { eq: $slug } }) {
+      _id
       slug {
         current
       }

@@ -11,7 +11,7 @@ export const PortableTextInlineLink = ({ value, children, color }) => {
   const isExternal = value?._type === "link"
 
   function checkStringType(str) {
-    const validStrings = ["post", "recipies", "page", "teamMembers"];
+    const validStrings = ["post", "Recipe", "page", "teamMembers"];
     return validStrings.includes(str);
   }
 
@@ -21,8 +21,8 @@ export const PortableTextInlineLink = ({ value, children, color }) => {
   if (value.reference?._type === "post") {
     definedInternal = `/blog/${value?.reference?.category?.slug?.current}/${definedInternal}`
   }
-  if (value.reference?._type === "recipies") {
-    definedInternal = `/recipies/${definedInternal}`
+  if (value.reference?._type === "Recipe") {
+    definedInternal = `/Recipe/${definedInternal}`
   }
   if (value.reference?._type === "teamMembers") {
     definedInternal = `/team-members/${definedInternal}`

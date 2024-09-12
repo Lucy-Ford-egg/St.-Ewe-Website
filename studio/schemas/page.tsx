@@ -1,26 +1,29 @@
-import {LiaBookOpenSolid} from "react-icons/lia"
-import {format, parseISO} from 'date-fns'
-import {defineField, defineType} from 'sanity'
-import openGraph from '../schemas/openGraph'
-import siteMeta from '../schemas/siteMeta'
+import { LiaBookOpenSolid } from "react-icons/lia"
+import { format, parseISO } from 'date-fns'
+import { defineField, defineType } from 'sanity'
+import openGraph from './openGraph'
+import siteMeta from './siteMeta'
 
 // Sections 
-import borderSectionType from './sections/borderSection'
-import headerSectionType from './sections/headerSection'
-import testimonialSectionType from './sections/testimonialSection'
-import teamSectionType from './sections/teamSection'
-import recipiesSectionType from './sections/recipiesSection'
-import ctaSectionType from '../schemas/sections/ctaSection'
-import featuresListSectionType from '../schemas/sections/featuresListSection'
-import videoSectionType from '../schemas/sections/videoSection'
-import newsletterSectionType from '../schemas/sections/newsletterSection'
-import imageCarouselSectionType from '../schemas/sections/imageCarouselSection'
-import blogSectionType from './modules/blogSection'
-import stepSectionType from '../schemas/sections/stepsSection'
-import timelineSectionType from '../schemas/sections/timelineSection'
-import contactSectionType from '../schemas/sections/contactSection'
-import locationSectionType from '../schemas/sections/locationSection'
-import clientLoginSectionType from '../schemas/sections/clientLoginSection'
+import embedSection from "./sections/embedSection"
+import titleSection from "./sections/titleSection"
+import borderSection from './sections/borderSection'
+import hotspotSection from './sections/hotspotSection'
+import headerSection from './sections/headerSection'
+import testimonialSection from './sections/testimonialSection'
+import teamSection from './sections/teamSection'
+import recipesSection from './sections/recipesSection'
+import ctaSection from './sections/ctaSection'
+import featuresListSection from './sections/featuresListSection'
+import videoSection from './sections/videoSection'
+import newsletterSection from './sections/newsletterSection'
+import imageCarouselSection from './sections/imageCarouselSection'
+import blogSection from './modules/blogSection'
+import stepSection from './sections/stepsSection'
+import timelineSection from './sections/timelineSection'
+import contactSection from './sections/contactSection'
+import locationSection from './sections/locationSection'
+import clientLoginSection from './sections/clientLoginSection'
 
 
 /**
@@ -114,22 +117,25 @@ export default defineType({
       description:
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [
-        { type: borderSectionType.name},
-        { type: headerSectionType.name},
-        { type: testimonialSectionType.name},
-        { type: teamSectionType.name},
-        { type: recipiesSectionType.name},
-        { type: videoSectionType.name},
-        { type: featuresListSectionType.name},
-        { type: ctaSectionType.name},
-        { type: newsletterSectionType.name},
-        { type: imageCarouselSectionType.name},
-        { type: blogSectionType.name},
-        { type: stepSectionType.name},
-        { type: timelineSectionType.name},
-        { type: locationSectionType.name},
-        { type: contactSectionType.name},
-        { type: clientLoginSectionType.name},
+        { type: embedSection.name},
+        { type: titleSection.name },
+        { type: borderSection.name },
+        { type: hotspotSection.name },
+        { type: headerSection.name },
+        { type: testimonialSection.name },
+        { type: teamSection.name },
+        { type: recipesSection.name },
+        { type: videoSection.name },
+        { type: featuresListSection.name },
+        { type: ctaSection.name },
+        { type: newsletterSection.name },
+        { type: imageCarouselSection.name },
+        { type: blogSection.name },
+        { type: stepSection.name },
+        { type: timelineSection.name },
+        { type: locationSection.name },
+        { type: contactSection.name },
+        { type: clientLoginSection.name },
         // etc...
       ],
       group: 'pageContent',
@@ -142,13 +148,13 @@ export default defineType({
       date: 'date',
       media: 'coverImage',
     },
-    prepare({title, media, location, date}) {
+    prepare({ title, media, location, date }) {
       const subtitles = [
         location && `in ${location}`,
         date && `published on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
-      return {title, media, subtitle: subtitles.join(' ')}
+      return { title, media, subtitle: subtitles.join(' ') }
     },
   },
 })

@@ -21,7 +21,7 @@ export default defineType({
     options: {
       columns: 2,
     },
-    description: 'Shows the duration for the recipie',
+    description: 'Shows the duration for the Recipe',
     group: 'pageContent',
    
     // validation: (rule) => rule.required().max(252)
