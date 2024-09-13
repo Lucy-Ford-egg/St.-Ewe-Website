@@ -73,7 +73,7 @@ let clientTheme = createTheme({
     //fontSize: clientSpacing[5],
     body1: {
       fontFamily: 'Roboto Slab',
-      fontSize: clientSpacing[5],
+      fontSize: clientSpacing[6],
       lineHeight: 1.66,
       letterSpacing: '0em',
     },
@@ -101,12 +101,12 @@ let clientTheme = createTheme({
     },
     h1: {
       fontFamily: 'Colby Narrow',
-      fontSize: clientSpacing[12],
+      fontSize: clientSpacing[13],
       fontStyle: 'normal',
       fontWeight: 700,
       lineHeight: 1,
       [defaultTheme.breakpoints.up('md')]: {
-        fontSize: clientSpacing[11],
+        fontSize: clientSpacing[12],
       },
     },
     h2: {
@@ -297,19 +297,19 @@ let clientTheme = createTheme({
 
         },
         maxWidthXl: {
-            paddingLeft: `${defaultTheme.spacing(10)} !important`,
-            paddingRight: `${defaultTheme.spacing(10)} !important`,
+            paddingLeft: `${defaultTheme.spacing(11)} !important`,
+            paddingRight: `${defaultTheme.spacing(11)} !important`,
           [defaultTheme.breakpoints.down('lg')]: {
-            paddingLeft: `${defaultTheme.spacing(10)} !important`,
-            paddingRight: `${defaultTheme.spacing(10)} !important`,
+            paddingLeft: `${defaultTheme.spacing(11)} !important`,
+            paddingRight: `${defaultTheme.spacing(11)} !important`,
           },
           [defaultTheme.breakpoints.down('md')]: {
-            paddingLeft: `${defaultTheme.spacing(7)} !important`,
-            paddingRight: `${defaultTheme.spacing(7)} !important`,
+            paddingLeft: `${defaultTheme.spacing(8)} !important`,
+            paddingRight: `${defaultTheme.spacing(8)} !important`,
           },
           [defaultTheme.breakpoints.down('sm')]: {
-            paddingLeft: `${defaultTheme.spacing(5)} !important`,
-            paddingRight: `${defaultTheme.spacing(5)} !important`,
+            paddingLeft: `${defaultTheme.spacing(6)} !important`,
+            paddingRight: `${defaultTheme.spacing(6)} !important`,
           },
         },
         maxWidthMd: {
@@ -455,20 +455,20 @@ let clientTheme = createTheme({
           justifyContent: 'center',
           width: 'max-content',
           fontWeight: 400,
-          padding: `${defaultTheme.spacing(4)} ${defaultTheme.spacing(4)}`,
-          fontSize: `${defaultTheme.spacing(4)} !important`,
+          padding: `${defaultTheme.spacing(5)} ${defaultTheme.spacing(5)}`,
+          fontSize: `${defaultTheme.spacing(5)} !important`,
           boxShadow: "none",
         },
         sizeLarge: {
           display: "flex",
-          padding: `${defaultTheme.spacing(4)} ${defaultTheme.spacing(4)}`,
+          padding: `${defaultTheme.spacing(5)} ${defaultTheme.spacing(5)}`,
           justifyContent: "center",
           alignItems: "center",
-          fontSize: defaultTheme.spacing(4)
+          fontSize: defaultTheme.spacing(5)
         },
         sizeSmall: {
           display: "flex",
-          padding: `${defaultTheme.spacing(3)} ${defaultTheme.spacing(4)}`,
+          padding: `${defaultTheme.spacing(4)} ${defaultTheme.spacing(5)}`,
           justifyContent: "center",
           alignItems: "center",
         },

@@ -1,7 +1,7 @@
 import { defineType, defineField } from 'sanity'
 
 
-const space = [{title: "Sm", value: "MS4"},{title: "Md", value: "MS6"}];
+const space = [{title: "Sm", value: "MS-6"}, {title: "Md", value: "MS6"}];
 
 export default defineType({
   name: 'verticalSpace',

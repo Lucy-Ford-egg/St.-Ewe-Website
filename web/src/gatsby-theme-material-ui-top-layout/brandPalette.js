@@ -74,6 +74,10 @@ export const brandPalette = {
 }
 
 export const brandSpacing = {
+    "MS-6": {
+      "id": 0,
+      "value": 0
+    },
     "MS-5": {
       "id": 0,
       "value": 5
