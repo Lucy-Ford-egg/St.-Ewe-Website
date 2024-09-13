@@ -59,9 +59,10 @@ export default defineType({
             title: 'Set the space required between sections',
         }),
         defineField({
-            name: 'containerWidth',
-            type: 'containerWidth',
-            title: 'Set the container width of the content',
+            name: 'alignment',
+            type: 'textAlign',
+            title: 'Alignment',
+            description: 'Aligns text to the grid. If set to left will replace the left asset. If unset defaults to center',
         }),
         defineField({
             title: 'Side Assets',

@@ -1,137 +1,137 @@
 export const brandPalette = {
   "Original Primary": {
-    "type": "color",
+    "id": "color",
     "value": "#2661ab"
   },
   "Original Medium": {
-    "type": "color",
+    "id": "color",
     "value": "#99cbeb"
   },
   "Orignal Large": {
-    "type": "color",
+    "id": "color",
     "value": "#1b2e51"
   },
   "Rich Yolk Primary": {
-    "type": "color",
+    "id": "color",
     "value": "#eb7806"
   },
   "Rich Yolk Secondary": {
-    "type": "color",
+    "id": "color",
     "value": "#fcc501"
   },
   "Super Eggs Primary": {
-    "type": "color",
+    "id": "color",
     "value": "#006d69"
   },
   "Super Eggs Secondary": {
-    "type": "color",
+    "id": "color",
     "value": "#d1e0d7"
   },
   "Super Eggs Secondary Dark": {
-    "type": "color",
+    "id": "color",
     "value": "#045b54"
   },
   "Super Eggs Secondary Accent": {
-    "type": "color",
+    "id": "color",
     "value": "#e9551d"
   },
   "Rich Yolk Opulent Hot Foil": {
-    "type": "color",
+    "id": "color",
     "value": "#e5ab4a"
   },
   "Rich Yolk Opulent Primary": {
-    "type": "color",
+    "id": "color",
     "value": "#202020"
   },
   "Rich Yolk Opulent Secondary": {
-    "type": "color",
+    "id": "color",
     "value": "#000000"
   },
   "Grand Primary": {
-    "type": "color",
+    "id": "color",
     "value": "#848886"
   },
   "White": {
-    "type": "color",
+    "id": "color",
     "value": "#ffffff"
   },
   "Dabbling Duck Primary": {
-    "type": "color",
+    "id": "color",
     "value": "#27224e"
   },
   "Dabbling Duck Secondary": {
-    "type": "color",
+    "id": "color",
     "value": "#625e9c"
   },
   "Quirky Quail Primary": {
-    "type": "color",
+    "id": "color",
     "value": "#3b2516"
   },
   "Quirky Quail Secondary": {
-    "type": "color",
+    "id": "color",
     "value": "#fcedde"
   }
 }
 
 export const brandSpacing = {
     "MS-5": {
-      "type": "number",
+      "id": 0,
       "value": 5
     },
     "MS-4": {
-      "type": "number",
+      "id": 1,
       "value": 6
     },
     "MS-3": {
-      "type": "number",
+      "id": 2,
       "value": 9
     },
     "MS-1": {
-      "type": "number",
+      "id": 3,
       "value": 10
     },
     "MS-2": {
-      "type": "number",
+      "id": 4,
       "value": 14
     },
     "MS0": {
-      "type": "number",
+      "id": 5,
       "value": 16
     },
     "MS1": {
-      "type": "number",
+      "id": 6,
       "value": 23
     },
     "MS2": {
-      "type": "number",
+      "id": 7,
       "value": 26
     },
     "MS3": {
-      "type": "number",
+      "id": 8,
       "value": 37
     },
     "MS4": {
-      "type": "number",
+      "id": 9,
       "value": 42
     },
     "MS5": {
-      "type": "number",
+      "id": 10,
       "value": 59
     },
     "MS6": {
-      "type": "number",
+      "id": 11,
       "value": 68
     },
     "MS7": {
-      "type": "number",
+      "id": 12,
       "value": 96
     },
     "MS8": {
-      "type": "number",
+      "id": 13,
       "value": 110
     },
     "MS9": {
-      "type": "number",
+      "id": 14,
       "value": 155
     }
   }

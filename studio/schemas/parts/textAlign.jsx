@@ -1,19 +1,18 @@
-export default {
-  title: 'Text Align',
+import { defineType } from 'sanity'
+
+export default defineType({
   name: 'textAlign',
-  type: 'string',
+  title: 'Text Align',
+  type: "string",
   options: {
     list: [
       { title: 'Left', type: 'string', value: 'left' },
       { title: 'Center', type: 'string', value: 'center' },
-    ], // &lt;-- predefined values
+    ],
     layout: 'radio',
     direction: 'horizontal'
   },
-  initialValue: {
-    title: 'Center', 
-  },
-  //initialValue: 'center',
+  initialValue: () => 'center',
   preview: {
     select: {
       list: 'list',
@@ -26,4 +25,4 @@ export default {
       }
     },
   },
-}
+})

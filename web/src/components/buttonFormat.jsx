@@ -4,7 +4,7 @@ import Button from "@mui/material/Button"
 import Box from "@mui/material/Box"
 
 export const ButtonFormat = props => {
-  const { node, sx, endIcon, variant, color } = props
+  const { node, sx, endIcon, variant, color, size = 'large' } = props
 
   let definedInternal = node?.link?.internal?.slug?.current
   const definedExternal = node?.link?.external
@@ -24,7 +24,7 @@ export const ButtonFormat = props => {
     <Box sx={sx}>
       {node?.link?.internal ? (
         <GatsbyButton
-          size="small"
+          size={size}
           color={color}
           variant={variant}
           to={`/${definedInternal}`} 
@@ -35,7 +35,7 @@ export const ButtonFormat = props => {
         </GatsbyButton>
       ) : definedExternal ? (
         <Button 
-        size="small"
+        size={size}
         color={color}
         variant={variant} 
         href={definedExternal} 

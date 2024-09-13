@@ -64,7 +64,7 @@ import videoId from './videoId'
 import icons from './icons'
 import colorChoice from './colorChoice'
 import overlay from './overlay'
-import textAlign from './textAlign'
+import textAlign from './parts/textAlign'
 import servicesTile from './modules/servicesTile'
 import benifitsSection from "./modules/benifitsSection"
 import headerSectionAccommodationSearch from './modules/headerSectionAccommodationSearch'
