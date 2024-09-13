@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 
 
 const Wrapper = styled('div')(({ verticalSpace, backgroundColour }) => ({
-    gridColumn: '1/49',
+    gridColumn: '1/25',
     display: 'grid',
     gridTemplateColumns: 'subgrid',
     backgroundColor: backgroundColour?.value,

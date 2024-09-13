@@ -25,7 +25,7 @@ const ClientLoginSection = React.lazy(() => import('./clientLoginSection').then(
 
 const Main = styled('main')({
     display: "grid",
-    gridTemplateColumns: 'repeat(48, 1fr)',
+    gridTemplateColumns: 'repeat(24, 1fr)',
     gridTemplateRows: 'auto-rows',
     gap: 0
   });

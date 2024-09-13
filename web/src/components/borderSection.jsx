@@ -4,7 +4,7 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 import { styled, useTheme } from '@mui/material/styles';
 
 const Wrapper = styled('span')(({ borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: '1/49',
+    gridColumn: '1/25',
     display: "inline-flex",
     outline: "none",
     border: "none",

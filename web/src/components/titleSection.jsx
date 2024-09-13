@@ -9,7 +9,21 @@ import { styled } from '@mui/material/styles';
 
 
 const Wrapper = styled('div')(({ borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: '2/48'
+    gridColumn: '2/24',
+    display: 'grid',
+    gridTemplateColumns: 'subgrid',
+}));
+
+const LeftAsset = styled('div')(({}) => ({
+    gridColumn: '2/6',
+}));
+
+const Content = styled('div')(({}) => ({
+    gridColumn: '7/17',
+}));
+
+const RightAsset = styled('div')(({}) => ({
+    gridColumn: '17/24',
 }));
 
 const Asset = styled('div')(({}) => ({
@@ -35,8 +49,7 @@ export const TitleSection = props => {
   return (
    <ModuleContainer {...props}>
     <Wrapper>
-    <Grid container>
-    <Grid item sx={0} md={2}>
+    <LeftAsset>
         {definedLeftImage && (
             
             <Asset>
@@ -61,8 +74,8 @@ export const TitleSection = props => {
             </Asset>
             
           )}
-          </Grid>
-        <Grid item xs={12} md={7} sx={{
+          </LeftAsset>
+        <Content item xs={12} md={7} sx={{
             textAlign: 'center',
             display: 'flex',
             justifyContent: 'center',
@@ -77,8 +90,8 @@ export const TitleSection = props => {
               value={definedText}
             />
           )}
-        </Grid>
-        <Grid item xs={0} md={2} sx={{
+        </Content>
+        <RightAsset item xs={0} md={2} sx={{
             display: 'flex',
             justifyContent: 'end',
         }}>
@@ -106,8 +119,7 @@ export const TitleSection = props => {
             </Asset>
             
           )}
-          </Grid>
-          </Grid>
+          </RightAsset>
           </Wrapper>
     </ModuleContainer>
   )
