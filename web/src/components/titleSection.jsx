@@ -15,29 +15,30 @@ const Wrapper = styled('div')(({ borderDirection, backgroundColour, joiningColou
     gridTemplateColumns: 'subgrid',
 }));
 
-const LeftAsset = styled('div')(({ }) => ({
-    display: 'grid',
+const LeftAsset = styled('div')(({alignment}) => ({
+    display: alignment === 'left' ? 'none' : 'grid',
     gridColumn: '2/6',
     alignItems: 'center',
     justifyContent: 'start',
+    
 }));
 
-const Content = styled('div')(({ }) => ({
-    gridColumn: '7/17',
-    textAlign: 'center',
+const Content = styled('div')(({ alignment}) => ({
+    gridColumn: alignment === 'left' ? '2/17' : '7/17',
+    textAlign: alignment === 'left' ? 'left' : 'center',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: alignment === 'left' ? 'start' : 'center',
 }));
 
-const RightAsset = styled('div')(({ }) => ({
+const RightAsset = styled('div')(({ alignment }) => ({
     display: 'grid',
     gridColumn: '17/24',
     alignItems: 'center',
     justifyContent: 'end',
     '@media only screen and (max-width: 600px)': {
         gridRow: '2/2',
-        justifyContent: 'center',
-        gridColumn: '7/17',
+        justifyContent: 'start',
+        gridColumn: alignment === 'left' ? '2/24' : '7/17',
     }
 }));
 
@@ -69,7 +70,7 @@ export const TitleSection = props => {
         <ModuleContainer {...props}>
             <Wrapper>
                 {sm && (
-                <LeftAsset>
+                <LeftAsset alignment={alignment}>
                     {definedLeftImage && (
 
                         <Asset>
@@ -96,7 +97,7 @@ export const TitleSection = props => {
                     )}
                 </LeftAsset>
                 )}
-                <Content>
+                <Content alignment={alignment}>
                     {definedText && (
                         <RenderPortableText
                             previewData={definedText}
@@ -107,7 +108,7 @@ export const TitleSection = props => {
                     )}
                 </Content>
                 
-                <RightAsset>
+                <RightAsset alignment={alignment}>
                     
                          {definedLink &&
                             <ButtonFormat
@@ -119,7 +120,7 @@ export const TitleSection = props => {
                            />    
                         }
                     
-                    {definedRightImage && !definedLink && !sm && (
+                    {definedRightImage && !definedLink && sm && (
 
                         <Asset>
                             <Image

@@ -70,7 +70,7 @@ let clientTheme = createTheme({
     },
   },
   typography: {
-    fontSize: clientSpacing[5],
+    //fontSize: clientSpacing[5],
     body1: {
       fontFamily: 'Roboto Slab',
       fontSize: clientSpacing[5],
@@ -105,10 +105,9 @@ let clientTheme = createTheme({
       fontStyle: 'normal',
       fontWeight: 700,
       lineHeight: 1,
-      [defaultTheme.breakpoints.down('sm')]: {
+      [defaultTheme.breakpoints.up('md')]: {
         fontSize: clientSpacing[11],
       },
-
     },
     h2: {
       fontSize: clientSpacing[13],
