@@ -2,6 +2,7 @@ import React from 'react'
 import {Box, styled} from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image"
 import Typography from "@mui/material/Typography"
+import { Repeat } from '@mui/icons-material';
 const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
 const TitleSection = React.lazy(() => import("./titleSection").then(module => ({ default: module.TitleSection })));
 const BorderSection = React.lazy(() => import("./borderSection").then(module => ({ default: module.BorderSection })));
@@ -23,8 +24,9 @@ const ClientLoginSection = React.lazy(() => import('./clientLoginSection').then(
 
 
 const Main = styled('main')({
-    display: "flex",
-    flexDirection: "column",
+    display: "grid",
+    gridTemplateColumns: 'repeat(48, 1fr)',
+    gridTemplateRows: 'auto-rows',
     gap: 0
   });
 

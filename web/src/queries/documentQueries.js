@@ -177,6 +177,22 @@ export const RECIPES_QUERY = groq`*[_type ==  "recipes && defined(coverImage)" &
       hotspot{...},
       crop{...}
     },
+    sideAssets{
+      leftAsset{
+        image {
+          asset->,
+          hotspot{...},
+          crop{...}
+        },
+      }
+      rightAsset{
+        image {
+          asset->,
+          hotspot{...},
+          crop{...}
+        },
+      }
+    },
     image {
       asset->,
       hotspot{...},

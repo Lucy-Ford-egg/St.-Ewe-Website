@@ -32,7 +32,7 @@ let defaultTheme = createTheme({
       main: 'rgba(93, 83, 64, 1)',
     },
     text: {
-      primary: '#414042', // Text Grey
+      primary: '#002856', // Text Grey
       mid: '#B8B6B9', // Mid Grey
     },
     background: {
@@ -60,8 +60,7 @@ let clientTheme = createTheme({
       sm: 640,
       md: 900,
       lg: 1180,
-      xl: 1300,
-      xxl: 1440
+      xl: 2880,
     }
   },
   transitions: {
@@ -101,16 +100,13 @@ let clientTheme = createTheme({
       letterSpacing: 0.3,
     },
     h1: {
-      // fontSize: clientSpacing[17],
-      // fontFamily: 'Colby Narrow',
       fontFamily: 'Colby Narrow',
-      fontSize: clientSpacing[11],
+      fontSize: clientSpacing[12],
       fontStyle: 'normal',
       fontWeight: 700,
-      lineHeight: clientSpacing[11],
-      textTransform: 'uppercase',
+      lineHeight: 1,
       [defaultTheme.breakpoints.down('sm')]: {
-        fontSize: clientSpacing[11],
+        fontSize: clientSpacing[12],
       },
 
     },
@@ -302,6 +298,8 @@ let clientTheme = createTheme({
 
         },
         maxWidthXl: {
+            paddingLeft: `${defaultTheme.spacing(10)} !important`,
+            paddingRight: `${defaultTheme.spacing(10)} !important`,
           [defaultTheme.breakpoints.down('lg')]: {
             paddingLeft: `${defaultTheme.spacing(10)} !important`,
             paddingRight: `${defaultTheme.spacing(10)} !important`,

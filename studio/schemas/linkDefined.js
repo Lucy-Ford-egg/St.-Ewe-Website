@@ -7,6 +7,7 @@ export default defineType({
   type: 'object',
   title: 'Link',
   icon: LiaLinkSolid,
+  description: 'This field is hidden if you have a right asset.',
   fields: [
     defineField({
       name: "text",

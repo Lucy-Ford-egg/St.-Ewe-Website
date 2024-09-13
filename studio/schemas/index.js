@@ -25,6 +25,7 @@ import ingredientItem from './parts/ingredientItem'
 import verticalSpace from './parts/verticalSpace'
 import containerWidth from './parts/containerWidth'
 import hotspotItem from './parts/hotspotItem'
+import supportAssets from './parts/supportingAssets'
 
 import cite from './components/cite'
 import externalCite from './components/externalCite'
@@ -49,7 +50,7 @@ import featuresTile from './sections/featuresTile'
 import videoSection from './sections/videoSection'
 import newsletterSection from './sections/newsletterSection'
 import imageCarouselSection from './sections/imageCarouselSection'
-import stepsSection from './sections/stepsSection' 
+import stepsSection from './sections/stepsSection'
 import stepTile from './sections/stepTile'
 import stepDivider from './sections/stepDivider'
 import timelineSection from './sections/timelineSection'
@@ -74,99 +75,100 @@ import blogSection from './modules/blogSection'
 export const schema = {
   types: [
     // Settings
-  siteSettings,
-  companyDetail,
-  companyDetails,
-  newsletter,
-  designSystemColor,
-  footerDetails,
-  imageOptions,
-  // Parts
-  duration,
-  serves,
-  ingredientsList,
-  ingredientItem,
-  verticalSpace,
-  containerWidth,
-  hotspots,
-  // Atoms
-  ingredients,
-  recipesCategory,
-  cite,
-  externalCite,
-  showRecipesArchive,
-  accordionTile,
-  // Taxonomies
-  // Docs 
-  post,
-  page,
-  hotspotItem,
-  recipes,
-  quote,
-  teamMember,
-  // Sections
-  embedSection,
-  titleSection,
-  borderSection,
-  hotspotSection,
-  headerSection,
-  teamSection,
-  recipesSection,
-  newsletterSection,
-  videoSection,
-  featuresListSection,
-  ctaSection,
-  featuresTile,
-  blogSection,
-  testimonialTile,
-  stepsSection,
-  stepTile,
-  stepDivider,
-  timelineSection,
-  timeTile,
-  loginTile,
-  clientLoginSection,
-  videoId,
-  // faqs,
-  icons,
-  textAlign,
-  // videoId,
-  overlay,
-  colorChoice,
-  showArchive,
+    siteSettings,
+    companyDetail,
+    companyDetails,
+    newsletter,
+    designSystemColor,
+    footerDetails,
+    imageOptions,
+    // Parts
+    duration,
+    serves,
+    ingredientsList,
+    ingredientItem,
+    verticalSpace,
+    containerWidth,
+    hotspots,
+    supportAssets,
+    // Atoms
+    ingredients,
+    recipesCategory,
+    cite,
+    externalCite,
+    showRecipesArchive,
+    accordionTile,
+    // Taxonomies
+    // Docs 
+    post,
+    page,
+    hotspotItem,
+    recipes,
+    quote,
+    teamMember,
+    // Sections
+    embedSection,
+    titleSection,
+    borderSection,
+    hotspotSection,
+    headerSection,
+    teamSection,
+    recipesSection,
+    newsletterSection,
+    videoSection,
+    featuresListSection,
+    ctaSection,
+    featuresTile,
+    blogSection,
+    testimonialTile,
+    stepsSection,
+    stepTile,
+    stepDivider,
+    timelineSection,
+    timeTile,
+    loginTile,
+    clientLoginSection,
+    videoId,
+    // faqs,
+    icons,
+    textAlign,
+    // videoId,
+    overlay,
+    colorChoice,
+    showArchive,
 
-  //Old
+    //Old
 
-  // Navigation
-  navigation,
-  navItem,
-  link,
-  linkDefined,
-  //Old
+    // Navigation
+    navigation,
+    navItem,
+    link,
+    linkDefined,
+    //Old
 
-  // Taxonomies
-  author,
-  categories,
-  //Old
+    // Taxonomies
+    author,
+    categories,
+    //Old
 
-  // Modules
-  headerSectionAccommodationSearch,
-  featureSection,
-  testimonialSection,
-  imageCarouselSection,
-  locationSection,
-  // faqsSection,
-  benifitsSection,
-  contactSection,
+    // Modules
+    headerSectionAccommodationSearch,
+    featureSection,
+    testimonialSection,
+    imageCarouselSection,
+    locationSection,
+    // faqsSection,
+    benifitsSection,
+    contactSection,
 
-  // Old
+    // Old
 
-  // Components
+    // Components
 
-  servicesTile,
+    servicesTile,
 
-  subItem,
-  // Old],
+    subItem,
+    // Old],
   ]
 }
 
@@ -179,7 +181,7 @@ export const brandColors = {
   // Note: These are both optional
   defaultColorFormat: 'rgba',
 
-  defaultColorList : [
+  defaultColorList: [
     { label: 'Original Primary', value: '#2661ab' },
     { label: 'Original Medium', value: '#99cbeb' },
     { label: 'Orignal Large', value: '#1b2e51' },
@@ -201,30 +203,20 @@ export const brandColors = {
   ]
 }
 
-// palette: {
-//   primary: {
-//     main: '#F04D5F', // Coral
-//     mid: '#F26979', // Crayola
-//     light: '#F47C8A', // Light Coral
-//     lighter: '#FCD9DE', // Lighter Coral
-//     lightest: '#FDE3E6', // Lightest Coral
-//   },
-//   secondary: {
-//     main: '#002856', // Navy
-//     mid: '#375073', // Navy Uncoated
-//     light: '#42608A', // Light Navy
-//   },
-//   tertiary: {
-//     main: 'rgba(93, 83, 64, 1)',
-//   },
-//   text: {
-//     primary: '#414042', // Text Grey
-//     mid: '#B8B6B9', // Mid Grey
-//   },
-//   background: {
-//     default: '#F3F3F2', // Light Grey
-//     main: '#002856',
-//   },
-//   white: {
-//     main: '#ffffff', // White
-//   },
+export const brandSpacing = [
+  { "MS-5": 5 },
+  { "MS-4": 6 },
+  { "MS-3": 9 },
+  { "MS-1": 10 },
+  { "MS-2": 14 },
+  { "MS0": 16 },
+  { "MS1": 23 },
+  { "MS2": 26 },
+  { "MS3": 37 },
+  { "MS4": 42 },
+  { "MS5": 59 },
+  { "MS6": 68 },
+  { "MS7": 96 },
+  { "MS8": 110 },
+  { "MS9": 155 },
+]
