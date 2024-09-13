@@ -13,32 +13,39 @@ const Wrapper = styled('div')(({ borderDirection, backgroundColour, joiningColou
     gridColumn: '2/24',
     display: 'grid',
     gridTemplateColumns: 'subgrid',
+    '@media only screen and (max-width: 600px)': {
+        gridColumn: '1/25',
+    }
 }));
 
 const LeftAsset = styled('div')(({alignment}) => ({
-    display: alignment === 'left' ? 'none' : 'grid',
-    gridColumn: '2/6',
+    display: 'grid',
+    gridColumn: '2/5',
     alignItems: 'center',
     justifyContent: 'start',
     
 }));
 
 const Content = styled('div')(({ alignment}) => ({
-    gridColumn: alignment === 'left' ? '2/17' : '7/17',
-    textAlign: alignment === 'left' ? 'left' : 'center',
+    gridColumn: '5/19',
     display: 'flex',
-    justifyContent: alignment === 'left' ? 'start' : 'center',
+    justifyContent: 'center',
+    '@media only screen and (max-width: 600px)': {
+        gridColumn: '2/24',
+    }
+    
 }));
 
-const RightAsset = styled('div')(({ alignment }) => ({
+const RightAsset = styled('div')(({  }) => ({
     display: 'grid',
-    gridColumn: '17/24',
+    gridColumn: '19/24',
     alignItems: 'center',
     justifyContent: 'end',
+    height: '100%',
     '@media only screen and (max-width: 600px)': {
         gridRow: '2/2',
-        justifyContent:  alignment === 'left' ? 'start' : 'center',
-        gridColumn: alignment === 'left' ? '2/24' : '7/17',
+        justifyContent: 'start',
+        gridColumn: '5/19',
     }
 }));
 
@@ -47,20 +54,19 @@ const Asset = styled('div')(({ }) => ({
 }));
 
 
-export const TitleSection = props => {
+export const TextSection = props => {
 
     const sm = useMediaQuery('(min-width:600px)');
 
     const {
-        _rawTitle,
+        _rawText,
         _type,
-        alignment,
         previewData,
         sideAssets,
         link,
     } = props
 
-    const definedText = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
+    const definedText = (previewData && _type === previewData?._type && previewData?.text) || _rawText
     const definedLeftImage = (previewData && _type === previewData?._type && previewData?.sideAssets?.leftAsset) || sideAssets?.leftAsset
     const definedRightImage = (previewData && _type === previewData?._type && previewData?.sideAssets?.rightAsset) || sideAssets?.rightAsset
     const definedLink = ( _type === previewData?._type && previewData && previewData?.link) || link
@@ -70,7 +76,7 @@ export const TitleSection = props => {
         <ModuleContainer {...props}>
             <Wrapper>
                 {sm && (
-                <LeftAsset alignment={alignment}>
+                <LeftAsset>
                     {definedLeftImage && (
 
                         <Asset>
@@ -97,7 +103,7 @@ export const TitleSection = props => {
                     )}
                 </LeftAsset>
                 )}
-                <Content alignment={alignment}>
+                <Content>
                     {definedText && (
                         <RenderPortableText
                             previewData={definedText}
@@ -108,7 +114,7 @@ export const TitleSection = props => {
                     )}
                 </Content>
                 
-                <RightAsset alignment={alignment}>
+                <RightAsset>
                     
                          {definedLink &&
                             <ButtonFormat
@@ -152,11 +158,10 @@ export const TitleSection = props => {
 }
 
 export const query = graphql`
-  fragment TitleSectionFragment on SanityTitleSection {
+  fragment TextSectionFragment on SanityTextSection {
     _key
     _type
-    _rawTitle(resolveReferences: { maxDepth: 10 })
-    alignment
+    _rawText(resolveReferences: { maxDepth: 10 })
     link {
         ...LinkFragment
     }

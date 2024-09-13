@@ -11,6 +11,14 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { PortableTextInlineLink } from "../utils/portableInlineLink"
 import Image from "gatsby-plugin-sanity-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
+import { styled } from '@mui/material/styles'
+
+const ColumnCount = styled('span')(({ value}) => ({
+  display: 'block',
+  '@media only screen and (min-width: 600px)': {
+    columnGap: 21, columnCount: value?.columns, columnFill: 'balance'
+  }
+  }))
 
 
 export const RenderPortableText = (props) => {
@@ -20,7 +28,7 @@ export const RenderPortableText = (props) => {
   const theme = useTheme()
 
   const block = {
-    normal: ({ children }) => <Typography sx={{ py: 2, color: 'inherit' }} variant={setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
+    normal: ({ children }) => <Typography sx={{ py: 6, color: 'inherit' }} variant={setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
     body2: ({ children }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit' }} variant='body2'>{children}</Typography>,
     caption: ({ children }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit' }} variant='caption'>{children}</Typography>,
     h1: ({ children }) => {
@@ -47,10 +55,13 @@ export const RenderPortableText = (props) => {
     },
   };
 
-  const marks = { 
+  const marks = {
     em: ({ children }) => <Typography sx={{ color: value.value, fontStyle: 'italic' }} variant="body1" component="span">{children}</Typography>,
-    strong: ({ children }) => { return (<Box component="span" sx={{ fontWeight: 900
-     }}>{children}</Box>)},
+    strong: ({ children }) => {
+      return (<Box component="span" sx={{
+        fontWeight: 900
+      }}>{children}</Box>)
+    },
 
     link: ({ children, value }) => {
 
@@ -64,9 +75,16 @@ export const RenderPortableText = (props) => {
         <PortableTextInlineLink color={value.value} value={value}>{children}</PortableTextInlineLink>
       )
     },
-    underline: ({ children }) => <Typography variant="body1" className="underline" component="span">{children}</Typography>,
+    underline: ({ children }) => <Typography variant="body1" className="underline" component="span" sx={{
+      textDecoration: 'underline',
+    }}>{children}</Typography>,
     // Color
     textColor: ({ children, value }) => <span style={{ color: value.value }}>{children}</span>,
+    textColumns: ({ children, value }) => {
+      return (
+        <ColumnCount value={value}>{children}</ColumnCount>
+      )
+    },
     highlightColor: ({ children, value }) => (
       <span style={{ background: value?.value }}>{children}</span>
     ),
@@ -158,24 +176,24 @@ export const RenderPortableText = (props) => {
       <List sx={{ listStyle: 'decimal inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ol" dense={true}>{children}</List>
     )),
     listItem: ({ value, children }) => {
-      
+
       return (
         (value.listItem === "bullet" ? (
-          <ListItem sx={{ alignItems: "flex-start",  color: 'inherit', pl: 0 }}>
+          <ListItem sx={{ alignItems: "flex-start", color: 'inherit', pl: 0, alignItems: 'center', columnGap: 16, }}>
             <ListItemIcon sx={{ mt: 2, minWidth: 16 }}>
               <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
             </ListItemIcon>
-              <Box sx={{display: 'block'
-              }}>{children}</Box>
-              
+            <Box sx={{
+              display: 'block'
+            }}>{children}</Box>
+
           </ListItem>
         ) : (
-          <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0 }}>
-            <ListItemIcon sx={{ minWidth: 16 }}>
-            </ListItemIcon>
-              <Box sx={{display: 'block'
-              }}>{children}</Box>
-              
+          <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0, alignItems: 'center', columnGap: 16, }}>
+            <Box sx={{
+              display: 'inline-flex'
+            }}>{children}</Box>
+
           </ListItem>
         ))
       )

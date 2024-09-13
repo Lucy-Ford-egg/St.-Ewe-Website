@@ -1,6 +1,6 @@
 import React from 'react';
 import { defineField, defineType } from 'sanity'
-import { LiaFile } from 'react-icons/lia'
+import { LiaFontSolid } from 'react-icons/lia'
 // Optional: import Rule from '@sanity/types' if needed
 
 export default defineType({
@@ -89,11 +89,11 @@ export default defineType({
                         backgroundColor: backgroundColour?.value,
                     }}
                 >
-                    <LiaFile style={{ color: 'white' }} />
+                    <LiaFontSolid style={{ color: 'white' }} />
                 </span>
             );
             return {
-                title: '',
+                title: `${title[0]?.children[0]?.text}`,
                 subtitle: `Title Section`,
                 media: thumb, // Check if JSX is allowed or handle icons differently
             };

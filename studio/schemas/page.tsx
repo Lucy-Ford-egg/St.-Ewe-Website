@@ -7,6 +7,7 @@ import siteMeta from './siteMeta'
 // Sections 
 import embedSection from "./sections/embedSection"
 import titleSection from "./sections/titleSection"
+import textSection from "./sections/textSection"
 import borderSection from './sections/borderSection'
 import hotspotSection from './sections/hotspotSection'
 import headerSection from './sections/headerSection'
@@ -119,6 +120,7 @@ export default defineType({
       of: [
         { type: embedSection.name},
         { type: titleSection.name },
+        { type: textSection.name },
         { type: borderSection.name },
         { type: hotspotSection.name },
         { type: headerSection.name },

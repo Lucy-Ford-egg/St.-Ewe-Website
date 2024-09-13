@@ -2,9 +2,9 @@ import React from 'react'
 import {Box, styled} from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image"
 import Typography from "@mui/material/Typography"
-import { Repeat } from '@mui/icons-material';
 const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
 const TitleSection = React.lazy(() => import("./titleSection").then(module => ({ default: module.TitleSection })));
+const TextSection = React.lazy(() => import("./textSection").then(module => ({ default: module.TextSection })));
 const BorderSection = React.lazy(() => import("./borderSection").then(module => ({ default: module.BorderSection })));
 const BlogSection = React.lazy(() => import("./blogSection").then(module => ({ default: module.BlogSection })));
 const HeaderSection = React.lazy(() => import('./headerSection').then(module => ({ default: module.HeaderSection })));
@@ -86,6 +86,15 @@ const Modules = (props) => {
                         if (isModule(module, 'titleSection')) {
                             return (
                                 <TitleSection
+                                    previewData={previewData && previewData[i]}
+                                    sanityConfig={sanityConfig}
+                                    key={module._key + i}
+                                    {...module} />
+                            )
+                        }
+                        if (isModule(module, 'textSection')) {
+                            return (
+                                <TextSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
                                     key={module._key + i}

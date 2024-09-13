@@ -26,6 +26,7 @@ import verticalSpace from './parts/verticalSpace'
 import containerWidth from './parts/containerWidth'
 import hotspotItem from './parts/hotspotItem'
 import supportAssets from './parts/supportingAssets'
+import textColumns from './parts/textColumns'
 
 import cite from './components/cite'
 import externalCite from './components/externalCite'
@@ -36,6 +37,7 @@ import imageOptions from './imageOptions'
 //Sections
 import embedSection from './sections/embedSection'
 import titleSection from './sections/titleSection'
+import textSection from './sections/textSection'
 import borderSection from './sections/borderSection'
 import hotspots from './hotspots'
 import hotspotSection from './sections/hotspotSection'
@@ -91,6 +93,7 @@ export const schema = {
     containerWidth,
     hotspots,
     supportAssets,
+    textColumns,
     // Atoms
     ingredients,
     recipesCategory,
@@ -109,6 +112,7 @@ export const schema = {
     // Sections
     embedSection,
     titleSection,
+    textSection,
     borderSection,
     hotspotSection,
     headerSection,

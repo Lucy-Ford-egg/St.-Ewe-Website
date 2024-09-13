@@ -76,6 +76,7 @@ let clientTheme = createTheme({
       fontSize: clientSpacing[6],
       lineHeight: 1.66,
       letterSpacing: '0em',
+     
     },
     body2: {
       fontFamily: 'Roboto Slab',
