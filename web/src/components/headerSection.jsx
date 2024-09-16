@@ -25,6 +25,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
   position: 'relative',
   [theme.breakpoints.up('lg')]: {
     height: '100%',
+    gridTemplateRows: '1fr',
     maskRepeat: 'no-repeat',
     maskSize: '100%',
     maskImage: `url(${mask})`,
@@ -42,7 +43,7 @@ const BackgroundImage = styled('div')(({ theme, borderDirection, backgroundColou
 }));
 
 const Overlay = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-  disoplay: 'none',
+  display: 'none',
   [theme.breakpoints.up('sm')]: {
     gridColumn: '1/25',
     display: 'grid',
