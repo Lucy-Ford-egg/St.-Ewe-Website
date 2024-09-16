@@ -17,7 +17,6 @@ export const convertHexToRGBA = (hexCode, opacity = 1) => {
   if (opacity > 1 && opacity <= 100) {
       opacity = opacity / 100;   
   }
-
   return `rgba(${r},${g},${b},${opacity})`;
   }
 };

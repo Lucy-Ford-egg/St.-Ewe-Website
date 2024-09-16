@@ -18,38 +18,15 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'array',
-      of: [
-        {
-          type: 'block',
-          lists: [],
-          styles: [
-            { title: 'Heading 1', value: 'h1' },
-            { title: 'Heading 2', value: 'h2' },
-          ],
-          marks: {
-            annotations: [
-              {
-                type: 'textColor',
-              }
-            ],
-            decorators: [],
-          }
-        }
-      ],
-      description: 'Add some textual content. Optional'
+      type: 'text',
+      description: 'Add a title'
     }),
     defineField({
-      title: 'Text Align',
-      name: 'textAlign',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Left', value: 'flex-start' },
-          { title: 'Center', value: 'center' }
-        ], // &lt;-- predefined values
-      },
-    }),
+      name: 'alignment',
+      type: 'textAlign',
+      title: 'Alignment',
+      description: 'Aligns text to the grid. If unset defaults to center',
+  }),
     defineField({
       name: 'text',
       title: 'Text',
@@ -89,24 +66,15 @@ export default defineType({
 
     defineField({
       title: 'Background Colour',
-      name: 'backgroundColor',
+      name: 'backgroundColour',
       type: 'simplerColor',
-    }),
-
-    defineField({
-      title: 'Use Animation',
-      name: 'useAnimation',
-      type: 'boolean',
-      description: 'Shows animation.'
-    }),
-
-    defineField({
-      title: 'Add Spiro',
-      name: 'spiro',
-      type: 'boolean',
-      description: 'Add spirograph graphics. Optional | Appear on the out edges.'
-    })
-
+      description: 'Add a background colour',
+  }),
+  defineField({
+      name: 'verticalSpace',
+      type: 'verticalSpace',
+      title: 'Set the space required between sections',
+  }),
   ],
   preview: {
     select: {
@@ -119,7 +87,7 @@ export default defineType({
       
       
       return {
-        title: title ? title[0]?.children[0]?.text : 'Title',
+        title: title ? title : 'Title',
         subtitle: `Header Section`,
         media: media,
         icon: LiaImage

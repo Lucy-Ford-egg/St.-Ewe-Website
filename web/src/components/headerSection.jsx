@@ -1,49 +1,74 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { graphql } from "gatsby"
-import Container from "@mui/material/Container"
-import Box from "@mui/material/Box"
-import useMediaQuery from "@mui/material/useMediaQuery"
-import Divider from "@mui/material/Divider"
-import { useTheme } from "@mui/material"
+import { useTheme, useMediaQuery, Typography } from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"
 import { motion } from "framer-motion"
-import { Spiro } from "../components/spiro"
-import { contrastColour } from "../utils/contrastColour"
-import {AdobeAnimate} from "../components/animation/adobeAnimate"
+import { ModuleContainer } from "./moduleContainer"
+import { styled } from '@mui/material/styles'
+import mask from '../../static/assets/svg-mask.svg'
+
+
+const Wrapper = styled('div')(({ borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  gridColumn: '1/25',
+  display: 'grid',
+  gridTemplateColumns: 'subgrid',
+  maskRepeat: 'no-repeat',
+  maskSize: '100%',
+  maskImage: `url(${mask})`,
+  height: '100%',
+}));
+
+const BackgroundImage = styled('div')(({ definedImage, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  gridColumn: '1/25',
+  display: 'grid',
+  gridRow: 1,
+}));
+
+const Content = styled('div')(({ alignment }) => ({
+  gridRow: 1,
+  gridColumn: alignment === 'left' ? '2/13' : '7/18',
+  textAlign: alignment === 'left' ? 'left' : 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: alignment === 'left' ? 'start' : 'center',
+  zIndex: 1,
+  "& .header-title": {
+    textTransform: 'uppercase',
+  }
+}));
+
+// const MaskImage = styled('div')(({ mask }) => ({
+//   gridColumn: '1/25',
+//   display: 'grid',
+//   gridTemplateColumns: 'subgrid',
+//   gridRow: 1,
+ 
+// }));
 
 export const HeaderSection = props => {
   const theme = useTheme()
 
   const mobile = useMediaQuery(theme.breakpoints.down("md"))
   const {
-    _rawTitle,
+    title,
     _rawText,
     textAlign,
     image,
     previewData,
     sanityConfig,
     links,
-    spiro,
-    backgroundColor,
-    useAnimation,
+    alignment,
+    backgroundColour,
     _type,
   } = props
 
-  const [addSpiro, setAddSpiro] = useState(false)
-
-  useEffect(() => {
-    setAddSpiro(
-      (previewData && _type === previewData?._type && previewData?.spiro) ||
-        spiro,
-    )
-  }, [previewData, spiro, _type])
-
   const definedTitle =
     (previewData && _type === previewData?._type && previewData?.title) ||
-    _rawTitle
+    title
   const definedText =
     (previewData && _type === previewData?._type && previewData?.text) ||
     _rawText
@@ -54,217 +79,21 @@ export const HeaderSection = props => {
   const definedBackgroundColour =
     (previewData &&
       _type === previewData?._type &&
-      previewData?.backgroundColor) ||
-    backgroundColor
+      previewData?. backgroundColour) ||
+      backgroundColour
   const definedTextAlign =
-    (previewData && _type === previewData?._type && previewData?.textAlign) ||
-    textAlign
+    (previewData && _type === previewData?._type && previewData?.alignment) ||
+    alignment
 
-  const definedAnimation =  (previewData && _type === previewData?._type && previewData?.useAnimation) ||
-  useAnimation 
 
   return (
-    <Container
-      maxWidth="fluid"
-      disableGutters
-      sx={{
-        display: "grid",
-        gridTemplateColumns: "repeat(24, 1fr)",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        minHeight: { xs: definedAnimation ? "65vh" : "78vh", sm: "min-content" },
-        //maxHeight: (!addSpiro && !definedTitle && !definedText) && { xs: "55vh", sm: "65vh" },
-        overflow: "hidden",
-        px: "0 !important",
-        position: "relative",
-        pt: addSpiro && !definedImage  ? { xs: 15, md: 17 } : 0,
-        pb: definedBackgroundColour && !definedImage && 15,
-        backgroundColor: definedBackgroundColour?.value,
-      }}
-    >
-      {addSpiro && (
-        <Box
-          sx={{
-            position: "absolute",
-            top: { xs: "5%", sm: "50%" },
-            bottom: { xs: 0, sm: "unset" },
-            mt: { xs: 6, md: 20 },
-            transform: {
-              xs: "translateX(-30px) rotate(180deg)",
-              sm: "translateX(-150px) translateY(-50%) rotate(180deg)",
-              md: "translateY(-50%)  rotate(180deg)",
-            },
-            left: 0,
-            width: { xs: "85px", sm: "auto" },
-            height: { xs: "239.91px", sm: "auto" },
-            zIndex: 0,
-            opacity: contrastColour(definedBackgroundColour).spiro.opacity,
-            svg: {
-              width: "100%",
-              height: "auto",
-              path: {
-                stroke: contrastColour(definedBackgroundColour).spiro.fill,
-              },
-            },
-          }}
-        >
-          <Spiro />
-        </Box>
-      )}
-      {!definedAnimation && (
-        <Container
-          maxWidth="xl"
-          sx={{
-            gridColumn: "1/25",
-            gridRow: "1/auto",
-            position: "relative",
-            zIndex: 2,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: definedTextAlign ? definedTextAlign : "flexstart",
-            justifyContent: "center",
-            py: !definedImage
-              ? { xs: 20, sm: 0, md: 20 }
-              : { xs: 20, sm: 20, md: 20 },
-          }}
-        >
-          <Box>
-            <Box
-              sx={{
-                maxWidth: 800,
-                margin: definedTextAlign ? "0 auto" : "unset",
-                mt: { xs: "9vh", md: "9vh" },
-              }}
-            >
-              <motion.div
-                initial={{ y: 0, opacity: 0 }}
-                animate={{ y: 0, opacity: 1, transition: {
-                  delay: 0.5,
-                } }}
-              >
-                <RenderPortableText
-                  previewData={previewData}
-                  sanityConfig={sanityConfig}
-                  variant={false}
-                  textAlign={definedTextAlign}
-                  value={definedTitle}
-                />
-              </motion.div>
-
-              {addSpiro && (
-                <Box
-                  sx={{
-                    display: "flex",
-                    width: "100%",
-                    justifyContent: definedTextAlign
-                      ? definedTextAlign
-                      : "flexstart",
-                  }}
-                >
-                  <Divider
-                    sx={{
-                      display: "flex",
-                      my: 10,
-                      width: "19.1875rem",
-                      borderColor: contrastColour(definedBackgroundColour)
-                        .divider.hex,
-                    }}
-                  />
-                </Box>
-              )}
-            </Box>
-            <Box
-              sx={{
-                maxWidth: 750,
-              }}
-            >
-              {definedText && (
-                <motion.div
-                initial={{ y: 0, opacity: 0 }}
-                animate={{ y: 0, opacity: 1, transition: {
-                  delay: 0.6,
-                } }}
-              >
-                <RenderPortableText
-                  previewData={previewData}
-                  sanityConfig={sanityConfig}
-                  variant={false}
-                  textAlign={definedTextAlign}
-                  value={definedText}
-                />
-                </motion.div>
-              )}
-            </Box>
-            {definedLinks && definedLinks.length > 0 && (
-               <motion.div
-               initial={{ y: 0, opacity: 0 }}
-               animate={{ y: 0, opacity: 1, transition: {
-                 delay: 0.7,
-               } }}
-             >
-              <Box
-                sx={{
-                  pt: 8,
-                }}
-              >
-                <Links
-                  linkOne="primary"
-                  links={definedLinks}
-                  previewData={previewData}
-                  highlighted
-                />
-              </Box>
-              </motion.div>
-            )}
-          </Box>
-        </Container>
-      )}
-
-      {definedAnimation && (
-        <Box
-          sx={{
-            gridColumn: "1/25",
-            gridRow: "1/auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(24, 1fr)",
-            height: "85vh",
-            maxHeight: "100%",
-          }}
-        >
+    <ModuleContainer {...props}>
       
-          <Box
-            sx={{
-              gridColumn: "1/25",
-            }}
-          >
-            <AdobeAnimate/>
-            
-          </Box>
+      <Wrapper backgroundColour={definedBackgroundColour} image={definedImage} mask={mask}>
 
-          
-        </Box>
-      )}
-      {definedImage && !definedAnimation && (
-        <Box
-          sx={{
-            gridColumn: "1/25",
-            gridRow: "1/auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(24, 1fr)",
-            height: "100%",
-            maxHeight: "100%",
-          }}
-        >
-          {definedImage && (
+        {definedImage && (
+          <BackgroundImage>
             <motion.div
-              style={{
-                height: "100%",
-                flexGrow: 1,
-                gridColumn: "1/25",
-                gridRow: "1/auto",
-                minHeight: { xs: "78vh", sm: "min-content" },
-              }}
               initial={{
                 opacity: 0,
               }}
@@ -278,73 +107,75 @@ export const HeaderSection = props => {
               }}
             >
               <Image
-                // pass asset, hotspot, and crop fields
-                crop={definedImage?.crop}
-                hotspot={definedImage?.hotspot}
-                //loading="eager"
-                asset={
-                  (definedImage &&
-                    definedImage &&
-                    definedImage?._ref &&
-                    urlFor(definedImage).width(1440).url()) ||
-                  definedImage.asset
+                  
+                  // pass asset, hotspot, and crop fields
+                  crop={definedImage?.crop}
+                  hotspot={definedImage?.hotspot}
+                  //loading="eager"
+                  asset={
+                    definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage.asset
+                  }
+                  width={mobile ? 600 : 1440}
+                  height={mobile ? 400 : 584}
+                  style={{
+                    objectFit: "cover",
+                    width: "100%",
+                    height: "100%",
+                    //backgroundColor: theme.palette.text.mid,
+                  }}
+                  mask="url(#texture)"
+                />
+
+            </motion.div>
+          </BackgroundImage>
+        )}
+
+        <Content alignment={alignment}>
+
+          <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography>
+          {definedText && (
+            <motion.div
+              initial={{ y: 0, opacity: 0 }}
+              animate={{
+                y: 0, opacity: 1, transition: {
+                  delay: 0.6,
                 }
-                width={mobile ? 600 : 1440}
-                height={mobile ? 400 : 708}
-                style={{
-                  objectFit: "cover",
-                  width: "100%",
-                  height: "100%",
-                  //backgroundColor: theme.palette.text.mid,
-                }}
+              }}
+            >
+              <RenderPortableText
+                previewData={previewData}
+                sanityConfig={sanityConfig}
+                variant={false}
+                textAlign={definedTextAlign}
+                value={definedText}
               />
             </motion.div>
           )}
-          <Box
-            sx={{
-              position: "relative",
-              zIndex: 1,
-              gridColumn: "1/25",
-              gridRow: "1/auto",
-              width: "100%",
-              height: "100%",
-              //backgroundColor: "rgba(0,0,0,0.3)",
-            }}
-          />
-        </Box>
-      )}
-      {addSpiro && (
-        <Box
-          sx={{
-            position: "absolute",
-            top: { xs: "5%", sm: "50%" },
-            bottom: { xs: 0, sm: "unset" },
-            transform: {
-              xs: "translateX(30px)",
-              sm: "translateX(150px) translateY(-50%)",
-              md: "translateY(-50%)",
-            },
-            right: 0,
-            mt: { xs: 6, md: 20 },
-            width: { xs: "85px", sm: "auto" },
-            height: { xs: "239.91px", sm: "auto" },
-            display: "flex",
-            alignItems: { xs: "flex-end", sm: "unset" },
-            zIndex: 0,
-            opacity: contrastColour(definedBackgroundColour).spiro.opacity,
-            svg: {
-              width: "100%",
-              height: "auto",
-              path: {
-                stroke: contrastColour(definedBackgroundColour).spiro.fill,
-              },
-            },
-          }}
-        >
-          <Spiro />
-        </Box>
-      )}
-    </Container>
+
+          {definedLinks && definedLinks.length > 0 && (
+            <motion.div
+              initial={{ y: 0, opacity: 0 }}
+              animate={{
+                y: 0, opacity: 1, transition: {
+                  delay: 0.7,
+                }
+              }}
+            >
+
+              <Links
+                linkOne="primary"
+                links={definedLinks}
+                previewData={previewData}
+                highlighted
+              />
+
+            </motion.div>
+          )}
+        </Content>
+
+      </Wrapper>
+     
+    </ModuleContainer>
   )
 }
 
@@ -352,43 +183,17 @@ export const query = graphql`
   fragment HeaderSectionFragment on SanityHeaderSection {
     _key
     _type
-    _rawTitle(resolveReferences: { maxDepth: 10 })
+    title
     _rawText(resolveReferences: { maxDepth: 10 })
-    textAlign
-    spiro
-    useAnimation
-    backgroundColor {
+    alignment
+    backgroundColour {
       value
       label
     }
     links {
-      link {
-        internal {
-          ... on SanityPage {
-            id
-            slug {
-              current
-            }
-          }
-          ... on SanityPost {
-            id
-                  slug {
-                    current
-                    _type
-                  }
-                  category {
-                    name
-                    slug{
-                      current
-                    }
-                  }
-          }
-        }
-        external
-      }
-      text
+      ...LinkFragment
     }
-    image {
+    image{
       asset {
         _id
         gatsbyImageData

@@ -102,17 +102,20 @@ let clientTheme = createTheme({
     },
     h1: {
       fontFamily: 'Colby Narrow',
-      fontSize: clientSpacing[13],
+      fontSize: clientSpacing[14],
       fontStyle: 'normal',
       fontWeight: 700,
       lineHeight: 1,
       [defaultTheme.breakpoints.up('md')]: {
-        fontSize: clientSpacing[12],
+        fontSize: clientSpacing[13],
       },
     },
     h2: {
       fontSize: clientSpacing[13],
       fontFamily: 'Colby Narrow',
+      [defaultTheme.breakpoints.up('md')]: {
+        fontSize: clientSpacing[12],
+      },
     },
     h3: {
       fontSize: clientSpacing[10],

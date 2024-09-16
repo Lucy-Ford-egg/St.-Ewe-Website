@@ -8,16 +8,18 @@ const Wrapper = styled('div')(({ verticalSpace, backgroundColour }) => ({
     display: 'grid',
     gridTemplateColumns: 'subgrid',
     backgroundColor: backgroundColour?.value,
-    paddingTop: `${brandSpacing[verticalSpace?.topPadding].value}px`,
-    paddingBottom: `${brandSpacing[verticalSpace?.bottomPadding].value}px`,
+    paddingTop: `${brandSpacing[verticalSpace?.topPadding]?.value}px`,
+    paddingBottom: `${brandSpacing[verticalSpace?.bottomPadding]?.value}px`,
+    maxHeight: 'max-content',
 }));
+
 
 export const ModuleContainer = (props) => {
 
     const { children, verticalSpace, backgroundColour } = props
-    return (
-        <Wrapper verticalSpace={verticalSpace} backgroundColour={ backgroundColour}>
+
+        return <Wrapper verticalSpace={verticalSpace} backgroundColour={backgroundColour}>
             {children}
         </Wrapper>
-    )
+    
 }
