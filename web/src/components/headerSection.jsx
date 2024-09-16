@@ -1,58 +1,87 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import { graphql } from "gatsby"
 import { useTheme, useMediaQuery, Typography } from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"
-import { motion } from "framer-motion"
+import { brandSpacing } from "../gatsby-theme-material-ui-top-layout/brandPalette"
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from '@mui/material/styles'
 import mask from '../../static/assets/svg-mask.svg'
 
 
-const Wrapper = styled('div')(({ borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
   gridColumn: '1/25',
+  gridTemplateRows: '1fr 1fr',
   display: 'grid',
   gridTemplateColumns: 'subgrid',
-  maskRepeat: 'no-repeat',
-  maskSize: '100%',
-  maskImage: `url(${mask})`,
   height: '100%',
+  position: 'relative',
+  [theme.breakpoints.up('lg')]: {
+    height: '100%',
+    maskRepeat: 'no-repeat',
+    maskSize: '100%',
+    maskImage: `url(${mask})`,
+  }
 }));
 
-const BackgroundImage = styled('div')(({ definedImage, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const BackgroundImage = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
   gridColumn: '1/25',
   display: 'grid',
-  gridRow: 1,
+  gridRow: '1/1',
+  gridTemplateRows: 'subgrid',
+  [theme.breakpoints.up('sm')]: {
+    gridRow: '1/2',
+  }
 }));
 
-const Content = styled('div')(({ alignment }) => ({
-  gridRow: 1,
-  gridColumn: alignment === 'left' ? '2/13' : '7/18',
+const Overlay = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  disoplay: 'none',
+  [theme.breakpoints.up('sm')]: {
+    gridColumn: '1/25',
+    display: 'grid',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    zIndex: 1,
+    gridRow: '1/2',
+  }
+}));
+
+const Content = styled('div')(({ alignment, theme }) => ({
+  gridRow: '2/2',
+  gridColumn: alignment === 'left' ? '2/24' : '2/24',
   textAlign: alignment === 'left' ? 'left' : 'center',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: alignment === 'left' ? 'start' : 'center',
-  zIndex: 1,
+  zIndex: 2,
+  paddingTop: brandSpacing['MS6']?.value,
+  paddingBottom: brandSpacing['MS6']?.value,
   "& .header-title": {
     textTransform: 'uppercase',
+  },
+  [theme.breakpoints.up('sm')]: {
+    gridRow: '1/2',
+    gridColumn: alignment === 'left' ? '2/16' : '7/18',
+  },
+  [theme.breakpoints.up('lg')]: {
+    gridRow: '1/2',
+    gridColumn: alignment === 'left' ? '2/13' : '7/18',
   }
-}));
 
-// const MaskImage = styled('div')(({ mask }) => ({
-//   gridColumn: '1/25',
-//   display: 'grid',
-//   gridTemplateColumns: 'subgrid',
-//   gridRow: 1,
- 
-// }));
+}));
 
 export const HeaderSection = props => {
   const theme = useTheme()
 
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
   const {
     title,
     _rawText,
@@ -79,102 +108,97 @@ export const HeaderSection = props => {
   const definedBackgroundColour =
     (previewData &&
       _type === previewData?._type &&
-      previewData?. backgroundColour) ||
-      backgroundColour
+      previewData?.backgroundColour) ||
+    backgroundColour
   const definedTextAlign =
     (previewData && _type === previewData?._type && previewData?.alignment) ||
     alignment
 
 
+  // Motion
+
+  const [imageLoaded, setImageLoaded] = useState(false); // Track image load state
+
+  const ref = useRef(null);
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, container: containerRef, offset: [mobile ? "100vh" : "30vh", mobile ? "0px" : "0vh"] });
+  const content = useTransform(scrollYProgress, [1, 0], [0, -50]);
+  const contentOpacity = useTransform(scrollYProgress, [1, 0], [1, 0]);
+
   return (
-    <ModuleContainer {...props}>
-      
-      <Wrapper backgroundColour={definedBackgroundColour} image={definedImage} mask={mask}>
+    <ModuleContainer {...props} ref={containerRef}>
+
+      <Wrapper theme={theme} backgroundColour={definedBackgroundColour} image={definedImage} mask={mask} ref={ref}>
 
         {definedImage && (
-          <BackgroundImage>
-            <motion.div
-              initial={{
-                opacity: 0,
+          <BackgroundImage theme={theme}>
+            <Image
+              crop={definedImage?.crop}
+              hotspot={definedImage?.hotspot}
+              asset={
+                definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage.asset
+              }
+              width={mobile ? 400 : tablet ? 768 : 1440}
+              height={mobile ? 400 : tablet ? 600 : 600}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
               }}
-              animate={{
-                opacity: 1,
-              }}
-              transition={{
-                type: "smooth",
-                duration: 0.5,
-                delay: 0,
-              }}
-            >
-              <Image
-                  
-                  // pass asset, hotspot, and crop fields
-                  crop={definedImage?.crop}
-                  hotspot={definedImage?.hotspot}
-                  //loading="eager"
-                  asset={
-                    definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage.asset
-                  }
-                  width={mobile ? 600 : 1440}
-                  height={mobile ? 400 : 584}
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                    //backgroundColor: theme.palette.text.mid,
-                  }}
-                  mask="url(#texture)"
-                />
+              onLoad={() => setImageLoaded(true)}
+            />
+            <Overlay />
 
-            </motion.div>
           </BackgroundImage>
         )}
 
-        <Content alignment={alignment}>
-
-          <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography>
-          {definedText && (
+        {imageLoaded && (
+          <Content alignment={alignment} theme={theme}>
             <motion.div
-              initial={{ y: 0, opacity: 0 }}
-              animate={{
-                y: 0, opacity: 1, transition: {
-                  delay: 0.6,
-                }
-              }}
+              initial={{ opacity: 0, y: 10, }}
+              animate={{ opacity: 1, y: 0, }}
+              transition={{ duration: 0.5 }}
             >
-              <RenderPortableText
-                previewData={previewData}
-                sanityConfig={sanityConfig}
-                variant={false}
-                textAlign={definedTextAlign}
-                value={definedText}
-              />
+              <motion.div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  opacity: contentOpacity,
+                  y: content,
+                  rowGap: `${brandSpacing['MS1']?.value}px`,
+                }}
+              >
+                <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography>
+                {definedText && (
+
+                  <RenderPortableText
+                    previewData={previewData}
+                    sanityConfig={sanityConfig}
+                    variant={false}
+                    textAlign={definedTextAlign}
+                    value={definedText}
+                  />
+
+                )}
+
+                {definedLinks && definedLinks.length > 0 && (
+
+                  <Links
+                    className="links"
+                    linkOne="primary"
+                    links={definedLinks}
+                    previewData={previewData}
+                    highlighted
+                  />
+                )}
+              </motion.div>
             </motion.div>
-          )}
+          </Content>
+        )}
 
-          {definedLinks && definedLinks.length > 0 && (
-            <motion.div
-              initial={{ y: 0, opacity: 0 }}
-              animate={{
-                y: 0, opacity: 1, transition: {
-                  delay: 0.7,
-                }
-              }}
-            >
-
-              <Links
-                linkOne="primary"
-                links={definedLinks}
-                previewData={previewData}
-                highlighted
-              />
-
-            </motion.div>
-          )}
-        </Content>
 
       </Wrapper>
-     
+
     </ModuleContainer>
   )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { brandSpacing } from "../gatsby-theme-material-ui-top-layout/brandPalette"
 import { styled } from '@mui/material/styles';
+import {contrastBrandPalette} from '../utils/colours'
 
 
 const Wrapper = styled('div')(({ verticalSpace, backgroundColour }) => ({
@@ -11,6 +12,7 @@ const Wrapper = styled('div')(({ verticalSpace, backgroundColour }) => ({
     paddingTop: `${brandSpacing[verticalSpace?.topPadding]?.value}px`,
     paddingBottom: `${brandSpacing[verticalSpace?.bottomPadding]?.value}px`,
     maxHeight: 'max-content',
+    color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
 }));
 
 
