@@ -4,24 +4,20 @@ import { Link } from "gatsby-theme-material-ui"
 import IconButton from "@mui/material/IconButton"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTheme } from "@mui/material"
-
 import { LiaBarsSolid, LiaTimesSolid } from "react-icons/lia";
-
-import CloseIcon from "@mui/icons-material/Close"
 import MainNavigation from "./mainNavigation"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { contrastBrandPalette } from '../utils/colours'
-
 import { styled } from '@mui/material/styles'
 
 
-const Wrapper = styled('div')(({ theme, navOpen, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const Wrapper = styled('div')(({ theme, navOpen }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(24, 1fr)',
   gridTemplateRows: 'repeat(12, 1fr)',
   position: 'fixed',
   top: 0,
-  paddingTop: 'var(--modular-scale-ms4, 16px)',
+  paddingTop: 'var(--modular-scale-ms1)',
   left: 0,
   right: 0,
   bottom: navOpen && 0,
@@ -29,44 +25,52 @@ const Wrapper = styled('div')(({ theme, navOpen, borderDirection, backgroundColo
   backgroundColor: navOpen && 'var(--original-primary)',
   transition: 'all 0.2s ease-in-out 0s',
   [theme.breakpoints.up('lg')]: {
-
+    paddingTop: 'var(--modular-scale-ms4)',
   }
 }));
 
-const Container = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const Container = styled('div')(({ theme }) => ({
   display: 'grid',
-  gridColumn: '9/17',
+  gridColumn: '2/24',
   gridRow: '1/1',
   gridTemplateColumns: 'subgrid',
   backgroundColor: contrastBrandPalette["Orignal Large"]?.value,
   borderRadius: '99px',
   border: '3px solid rgba(255, 255, 255, 0.60)',
-  padding: 'var(--Modular-Scale-MS0, 16px)',
+  padding: 'var(--modular-scale-ms0)',
   justifyContent: 'flex-end',
   alignItems: 'center',
   maxHeight: 'fit-content',
   [theme.breakpoints.up('lg')]: {
-
-}
+    gridColumn: '9/17',
+  }
 }));
 
-const Logo = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-  gridColumn: '3/7',
+const Logo = styled('div')(({ theme }) => ({
+  gridColumn: '7/16',
   display: 'grid',
   justifyContent: 'center',
   [theme.breakpoints.up('lg')]: {
-
+    gridColumn: '3/7',
   }
 }));
 
-const MenuButton = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-  gridColumn: '9/9',
+const MenuButton = styled('div')(({ theme }) => ({
+  gridColumn: '18/24',
   display: 'grid',
   [theme.breakpoints.up('lg')]: {
-
+    gridColumn: '9/9',
   }
 }));
 
+const Navigation = styled('div')(({ theme }) => ({
+  gridColumn: '7/16',
+  display: 'grid',
+  justifyContent: 'center',
+  [theme.breakpoints.up('lg')]: {
+    gridColumn: '3/7',
+  }
+}));
 
 
 const Header = props => {
@@ -223,12 +227,13 @@ const Header = props => {
           </Link>
         </Logo>
 
-        {/*               
-                <MainNavigation
-                  menu={data}
-                  // style={{ color: setColor }}
-                  handleCloseNavMenu={handleCloseNavMenu}
-                /> */}
+        <Navigation>
+        <MainNavigation
+          menu={data}
+          // style={{ color: setColor }}
+          handleCloseNavMenu={handleCloseNavMenu}
+        />
+        </Navigation>
 
         <MenuButton>
           <IconButton
