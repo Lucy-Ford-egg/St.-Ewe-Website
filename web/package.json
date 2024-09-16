@@ -1,7 +1,7 @@
 {
-  "name": "taylor-money-mui-theme",
+  "name": "st-ewe-theme",
   "private": false,
-  "description": "A simple starter to get up and developing quickly with Gatsby 5 and Bootstrap 5",
+  "description": "A simple starter to get up and developing quickly with Gatsby 5 and MUI 5",
   "version": "2.0.2",
   "author": "Richard Raduly <richard@raduly.fr>",
   "dependencies": {
@@ -52,7 +52,7 @@
     "react-adobe-animate": "^3.1.0",
     "react-dom": "^18.2.0",
     "react-html5video": "^2.5.1",
-    "react-icons": "^5.0.1",
+    "react-icons": "^5.3.0",
     "react-social-icons": "^6.4.0",
     "react-use-flexsearch": "^0.1.1",
     "sass": "1.70.0"
