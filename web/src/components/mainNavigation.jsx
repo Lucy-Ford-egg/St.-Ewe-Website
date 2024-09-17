@@ -50,8 +50,7 @@ const MenuList = styled('motion.ul')(({ theme, navOpen }) => ({
       color: 'white',
     },
     '&.active': {
-      //color: theme.palette.primary.main,
-      backgroundSize: '100% 100%',
+      color: theme.palette.primary.main,
     },
   },
 }));
@@ -114,7 +113,7 @@ const MainNavigation = (props) => {
   const list = {
     visible: {
       opacity: 1,
-      height: mobile ? "100vh" : "auto",
+      // height: mobile ? "100vh" : "auto",
       transition: {
         when: "beforeChildren",
         staggerChildren: 0.1,
@@ -122,7 +121,7 @@ const MainNavigation = (props) => {
     },
     hidden: {
       opacity: 0,
-      height: "auto",
+      // height: "auto",
       transition: {
         when: "afterChildren",
       },
