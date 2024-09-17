@@ -1,32 +1,112 @@
-import React from "react"
-import Container from "@mui/material/Container"
+import React, { useState } from "react"
 import Button from "@mui/material/Button"
-import Box from "@mui/material/Box"
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import ListItemIcon from "@mui/material/ListItemIcon"
-import ListItemText from "@mui/material/ListItemText"
-import Divider from "@mui/material/Divider"
+import Image from "gatsby-plugin-sanity-image"
+import { urlFor } from "../utils/imageHelpers"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTheme } from "@mui/material"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
-import { CiLocationOn, CiPhone, CiMail } from "react-icons/ci";
 import { motion } from "framer-motion"
+import { styled } from '@mui/material/styles'
 
-const ContainerComponent = React.forwardRef((props, ref) => (
-  <Container
-    ref={ref}
-    {...props}
-  >{props.children}</Container>
-))
 
-const MotionContainer = motion(ContainerComponent)
+const MenuList = styled('motion.ul')(({ theme, navOpen }) => ({
+  gridTemplateColumns: 'subgrid',
+  display: 'grid',
+  gridColumn: '3/23',
+  position: 'relative',
+  top: '50%',
+  left: 0,
+  transform: 'translateY(-50%)',
+  gridTemplateRows: 'auto',
+  [theme.breakpoints.up('lg')]: {
+
+  },
+  "& li": {
+    gridTemplateColumns: 'subgrid',
+    gridColumn: '1/auto',
+    display: 'grid',
+    listStyle: 'none',
+    fontFamily: 'Roboto Slab',
+    color: 'white',
+  },
+
+  "& a, button": {
+    fontFamily: 'Roboto Slab',
+    fontSize: 'var(--modular-scale-ms3) !important',
+    color: 'white',
+    display: 'grid',
+    gridColumn: '1/4',
+    backgroundSize: '0 100%',
+    transition: 'background-size .3s ease',
+    backgroundImage: `linear-gradient(transparent calc(100% - 1px),${theme.palette.primary.main} 1px)`,
+    backgroundRepeat: 'no-repeat',
+    cursor: 'pointer',
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 'var(--modular-scale-ms-1) !important',
+    paddingBottom: 'var(--modular-scale-ms-1) !important',
+    '&:hover': {
+      backgroundSize: '100% 100%',
+      color: 'white',
+    },
+    '&.active': {
+      //color: theme.palette.primary.main,
+      backgroundSize: '100% 100%',
+    },
+  },
+}));
+
+const SubMenuList = styled('motion.ul')(({ theme, navOpen }) => ({
+  gridColumn: '3/auto',
+  display: 'grid',
+  position: 'fixed',
+  top: '50%',
+  left: 0,
+  transform: 'translateY(-50%)',
+  zIndex: 3,
+  visibility: 'hidden',
+  opacity: 0,
+  paddingTop: 'var(--modular-scale-ms-4)',
+  gridAutoRows: 'auto',
+  "&.active": {
+    opacity: 1,
+    visibility: 'visible',
+  },
+  "& li": {
+
+    "& a, button": {
+      fontFamily: 'Roboto',
+      fontSize: 'var(--modular-scale-ms0) !important',
+      textTransform: 'unset',
+    },
+  },
+}));
+
+
+const MenuImage = styled('div')(({ theme, navOpen }) => ({
+  gridColumn: '10/23',
+  display: 'grid',
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  zIndex: 3,
+  transition: 'all 0.2s ease-in-out 0s',
+  borderRadius: 'var(--modular-scale-ms4)',
+  overflow: 'hidden',
+}));
 
 
 const MainNavigation = (props) => {
-  const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
+
   const { menu, definedSiteSettings, handleCloseNavMenu } = props
+
+  const [subMenu, setSubMenu] = useState(null)
+
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
+
+
 
   const childRef = React.useRef();
 
@@ -53,149 +133,105 @@ const MainNavigation = (props) => {
     hidden: { opacity: 0, y: 0, listStyle: "none", display: "flex", alignItems: "center", },
   }
 
-  return (
-    <Box>
-      <MotionContainer
-        ref={childRef}
-        initial="hidden"
-        animate="visible"
-        variants={list}
-        disableGutters={mobile ? false : true}
-        sx={{
-          backgroundColor: { xs: "background.default", md: "transparent" },
-          pt: { xs: 6, sm: 12, md: 0 },
-          pb: { xs: 11, sm: 11, md: 0 },
-          marginTop: { xs: 0, sm: 0, md: 0 },
-          width: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
-          flexBasis: { xs: '100%', sm: '100%', md: 'auto', lg: 'auto' },
-          flexGrow: 1,
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'column', md: "row" },
-          justifyContent: { xs: 'flex-start', sm: 'flex-start', md: 'flex-end', lg: 'flex-end' },
-          //maxHeight: {xs: "auto", sm: "100vh", md: "auto"}
-        }}
+  const RenderMenuItem = (props) => {
+
+    const { menuItem, i, children, setSubMenu, active } = props
+
+    return (
+      <motion.li variants={item} key={`main-menu-item-${i}`}
+        onMouseOver={() => setSubMenu && setSubMenu(i)}
       >
-        {menu?.sanityNavigation?.items && menu.sanityNavigation.items.map((menuItem, i) => {
+        {menuItem?.link?.internal ? <GatsbyButton
+         className={`${active === true ? `active` : ``}`}
+          variant="text"
+          disableElevation
+          onClick={e => handleCloseNavMenu()}
+          size="large"
+          to={`/${menuItem?.link?.internal?.slug?.current}`}
+         
+        >{menuItem?.text}</GatsbyButton> :
 
-          return (
-            <motion.li variants={item} key={`main-menu-item-${i}`}>
-              <Box
-                sx={{ my: {xs: 0, sm: 2, md: 0}, mx: { xs: 0, md: 0 }, px: { xs: 0, md: 0 }, display: 'flex', textTransform: "unset" }}
+          <Button
+          className={`${active === true ? `active` : ``}`}
+            variant="text"
+            disableElevation
+            onClick={e => handleCloseNavMenu()}
+            size="large"
+            href={menuItem?.link?.external}>{menuItem?.text}</Button>}
+           
+
+        {children}
+      </motion.li>
+    )
+  }
+  return (
+
+    <MenuList
+      ref={childRef}
+      initial="hidden"
+      animate="visible"
+      variants={list}
+    >
+      {menu?.sanityNavigation?.items &&
+        menu.sanityNavigation.items.map((menuItem, i) => {
+
+          // Check if the menuItem has childItems
+          return menuItem?.childItems ? (
+            // Map over childItems and render them
+            <>
+
+              <RenderMenuItem
+                key={i}
+                menuItem={menuItem.link}
+                i={i}
+                setSubMenu={setSubMenu}
+                active={subMenu === i}
+              />
+
+
+              <SubMenuList
+                ref={childRef}
+                initial="hidden"
+                animate="visible"
+                variants={list}
+                className={`subMenu ${subMenu === i && `active`}`}
               >
-                <Box>
-                  {menuItem?.link?.link?.internal ? <GatsbyButton
-                    variant="text"
-                    disableElevation
-                    sx={{
-                      color: "inherit",
-                      textAlign: { xs: 'left', md: 'center' },
-                      justifyContent: { xs: 'left', md: 'center' },
-                      fontWeight: 700,
-                      '&:hover': {
-                        color: theme.palette.primary.main
+                {menuItem.childItems.map((childItem, j) => (
+                  <RenderMenuItem key={j} menuItem={childItem} i={j} />
+                ))}
+              </SubMenuList>
+              {menuItem?.image && subMenu === i
+                && (
+                  <MenuImage>
+                    <Image
+                      crop={menuItem?.image?.crop}
+                      hotspot={menuItem?.image?.hotspot}
+                      asset={
+                        menuItem?.image?._ref && urlFor(menuItem?.image).width(618).url() || menuItem?.image.asset
                       }
-                    }}
-                    onClick={e => handleCloseNavMenu()}
-                    size="large"
-                    to={`/${menuItem?.link?.link.internal.slug.current}`}
-                  >{menuItem?.link.text}</GatsbyButton> :
-
-                    <Button
-                      variant="text"
-                      disableElevation
-                      onClick={e => handleCloseNavMenu()}
-                      sx={{
-                        color: "inherit",
-                        textAlign: { xs: 'left', md: 'center' },
-                        justifyContent: { xs: 'left', md: 'center' },
-                        fontWeight: 700,
-                        '&:hover': {
-                          color: theme.palette.primary.main
-                        }
+                      width={mobile ? 20 : tablet ? 400 : 618}
+                      height={mobile ? 20 : tablet ? 200 : 428}
+                      style={{
+                        objectFit: "cover",
+                        width: "100%",
+                        height: "100%",
                       }}
-                      size="large"
-                      href={menuItem?.link?.link?.link.external} >{menuItem?.link.text}</Button>}
+                    // onLoad={() => setImageLoaded(true)}
+                    />
+                  </MenuImage>
+                )}
+            </>
 
-                </Box>
-              </Box>
-            </motion.li>
+
+          ) : (
+            // Render the menuItem directly if no childItems
+
+            <RenderMenuItem key={i} menuItem={menuItem} i={i} setSubMenu={false} />
           )
         })}
-        <motion.li variants={item}>
-          <Box sx={{
-            px: 0,
-          }}>
-            <GatsbyButton
-              to="/client-login"
-              variant="contained"
-              color="primary"
-              size="small"
-              onClick={e => handleCloseNavMenu()}
-              sx={{
-                display: { xs: 'flex', sm: 'flex' },
-                textAlign: { xs: 'left', md: 'center' },
-                justifyContent: { xs: 'left', sm: 'center' },
-                fontWeight: 400,
-                mt: { xs: 6, sm: 0 },
-                // px: theme.spacing(1),
-              }}>Client Login
 
-            </GatsbyButton>
-          </Box>
-        </motion.li>
+    </MenuList>
 
-      <Divider sx={{py: 6, display: {xs: "none", sm: "none", lg: "none"}}} variant="middle" />
-
-        <Box sx={{ display: { xs: "flex", sm: "grid", lg: "none" }, gridTemplateColumns: {xs: "unset", sm: "repeat(2, 1fr)", md: "unset"}, mt: {xs: 6, sm: 6, md: 6} , flexDirection: {xs: "column", sm: "row"}}}>
-
-          {definedSiteSettings && definedSiteSettings?.companyDetails.map((location, i) => {
-
-            return (
-              <motion.li key={`main-menu-item-settings-${i}`} variants={item}>
-                <Box sx={{ display: { xs: "block", md: "none", flexDirection: {xs: "column", sm: "row"}, } }}>
-                  <List sx={{ px: 4,  py: 6, }}>
-                    {location?.title &&
-                      <ListItem disablePadding>
-                        <ListItemIcon sx={{ minWidth: 0, pr: 3 }}>
-                          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: 24, color: "primary.main" }}>
-                            <CiLocationOn style={{ width: "100%", height: "auto" }} />
-                          </Box>
-                        </ListItemIcon>
-                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={location?.title} />
-                      </ListItem>
-                    }
-                    {location?.phone &&
-                      <ListItem disablePadding>
-                        <ListItemIcon sx={{ minWidth: 0, pr: 3 }}>
-                          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: 24, color: "primary.main" }}>
-                            <CiPhone style={{ width: "100%", height: "auto" }} />
-                          </Box>
-                        </ListItemIcon>
-                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={location?.phone} />
-                      </ListItem>
-                    }
-                    {location?.email &&
-                      <ListItem disablePadding>
-                        <ListItemIcon sx={{ minWidth: 0, pr: 3 }}>
-                          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: 24, color: "primary.main" }}>
-                            <CiMail style={{ width: "100%", height: "auto" }} />
-                          </Box>
-                        </ListItemIcon>
-                        <ListItemText primaryTypographyProps={{ variant: "caption" }} primary={<a style={{color: "inherit", textDecoration: "none"}} href={`mailto:${location?.email}`}>{location?.email}</a>} />
-                      </ListItem>
-                    }
-                  </List>
-                  <Divider sx={{display: {xs: "flex", sm: "none"}}}/>
-                </Box>
-              </motion.li>
-            )
-          })}
-
-        </Box>
-
-
-      </MotionContainer>
-    </Box>
   )
 }
 

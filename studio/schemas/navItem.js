@@ -20,6 +20,14 @@ export default defineType({
           title: "Child Navigation items",
           of: [{ type: "linkDefined" }],
         }),
+        defineField({
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true,
+          },
+        }),
   ],
     preview: {
       select: {
