@@ -136,7 +136,7 @@ const MainNavigation = (props) => {
 
   const RenderMenuItem = (props) => {
 
-    const { menuItem, i, children, setSubMenu, active, setMenuImage } = props
+    const { menuItem, i, children, setSubMenu, active } = props
 
     return (
       <motion.li variants={item} key={`main-menu-item-${i}`}
@@ -191,7 +191,6 @@ const MainNavigation = (props) => {
                 menuItem={menuItem.link}
                 i={i}
                 setSubMenu={setSubMenu}
-                setMenuImage={setMenuImage}
                 active={subMenu === i}
               />
 
@@ -207,7 +206,7 @@ const MainNavigation = (props) => {
                   <RenderMenuItem key={j} menuItem={childItem} i={j} />
                 ))}
               </SubMenuList>
-              {menuItem?.image && menuImage === i
+              {menuItem?.image && subMenu === i
                 && (
                   <MenuImage>
                     <Image
@@ -233,7 +232,7 @@ const MainNavigation = (props) => {
           ) : (
             // Render the menuItem directly if no childItems
 
-            <RenderMenuItem key={i} menuItem={menuItem} i={i} setSubMenu={false} setMenuImage={false} />
+            <RenderMenuItem key={i} menuItem={menuItem} i={i} setSubMenu={false} />
           )
         })}
 
