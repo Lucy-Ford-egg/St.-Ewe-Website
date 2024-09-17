@@ -101,6 +101,7 @@ const MainNavigation = (props) => {
   const { menu, definedSiteSettings, handleCloseNavMenu } = props
 
   const [subMenu, setSubMenu] = useState(null)
+  const [menuImage, setMenuImage] = useState(0)
 
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
@@ -135,11 +136,16 @@ const MainNavigation = (props) => {
 
   const RenderMenuItem = (props) => {
 
-    const { menuItem, i, children, setSubMenu, active } = props
+    const { menuItem, i, children, setSubMenu, active, setMenuImage } = props
 
     return (
       <motion.li variants={item} key={`main-menu-item-${i}`}
-        onMouseOver={() => setSubMenu && setSubMenu(i)}
+        onMouseOver={() => {
+          
+          setSubMenu && setSubMenu(i)
+          setMenuImage && setMenuImage(i)
+          
+        }}
       >
         {menuItem?.link?.internal ? <GatsbyButton
          className={`${active === true ? `active` : ``}`}
@@ -185,6 +191,7 @@ const MainNavigation = (props) => {
                 menuItem={menuItem.link}
                 i={i}
                 setSubMenu={setSubMenu}
+                setMenuImage={setMenuImage}
                 active={subMenu === i}
               />
 
@@ -200,7 +207,7 @@ const MainNavigation = (props) => {
                   <RenderMenuItem key={j} menuItem={childItem} i={j} />
                 ))}
               </SubMenuList>
-              {menuItem?.image && subMenu === i
+              {menuItem?.image && menuImage === i
                 && (
                   <MenuImage>
                     <Image
@@ -226,7 +233,7 @@ const MainNavigation = (props) => {
           ) : (
             // Render the menuItem directly if no childItems
 
-            <RenderMenuItem key={i} menuItem={menuItem} i={i} setSubMenu={false} />
+            <RenderMenuItem key={i} menuItem={menuItem} i={i} setSubMenu={false} setMenuImage={false} />
           )
         })}
 
