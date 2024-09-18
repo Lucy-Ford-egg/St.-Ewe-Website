@@ -114,7 +114,58 @@ const MainNavigation = (props) => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
-  const handleMouseOver = (i) => {
+  // const handleMouseOver = (i) => {
+  //   // if (activeSubMenu.current !== null && activeSubMenu.current !== i) {
+  //   //   // Deactivate the previous submenu
+  //   //   const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
+  //   //   const prevMenuItem = document.querySelector(`.menuItem-${activeSubMenu.current}`);
+  //   //   const prevMenuItemImage = document.querySelector(`.menuItemImage-${activeSubMenu.current}`);
+  //   //   if (prevSubMenu) prevSubMenu.classList.remove("active");
+  //   //   if (prevMenuItem) prevMenuItem.classList.remove("active");
+  //   //   if (prevMenuItemImage) prevMenuItemImage.classList.remove("active");
+  //   // }
+
+  //   // // Update the active submenu ref
+  //   // activeSubMenu.current = i;
+
+  //   // // Activate the current submenu
+  //   // const newSubMenu = document.querySelector(`.subMenu-${i}`);
+  //   // const newMenuItem = document.querySelector(`.menuItem-${i}`);
+  //   // const parentMenuItem = document.querySelector(`.menuItem-${i}`).closest('li');
+  //   // const imageMenuItem = document.querySelector(`.menuItemImage-${i}`);
+  //   // if (newSubMenu) newSubMenu.classList.add("active");
+  //   // if (parentMenuItem)parentMenuItem.classList.add("active");
+  //   // if (newMenuItem) newMenuItem.classList.add("active");
+  //   // if (imageMenuItem) imageMenuItem.classList.add("active");
+  // };
+
+  // const handleMouseLeave = () => {
+  //   if (activeSubMenu.current !== null) {
+  //     // Remove 'active' class from the previous submenu and menu item
+  //     const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
+  //     const prevMenuItem = document.querySelector(`.menuItem-${activeSubMenu.current}`);
+  //     const prevMenuItemParent = document.querySelector(`.menuItem-${activeSubMenu.current}`).closest('li');
+  //     const prevMenuItemImage = document.querySelector(`.menuItemImage-${activeSubMenu.current}`);
+  //     if (prevSubMenu) prevSubMenu.classList.remove("active");
+  //     if (prevMenuItemParent) prevMenuItemParent.classList.remove("active");
+  //     if (prevMenuItemImage) prevMenuItemImage.classList.remove("active");
+  //     if (prevMenuItem) prevMenuItem.classList.remove("active");
+  //   }
+  //   activeSubMenu.current = null;
+  // };
+
+  // Mobile 
+ 
+  const activateSubMenu = (i) => {
+    // if (activeSubMenu.current !== null) {
+    //   const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
+    //   if (prevSubMenu) prevSubMenu.classList.remove("active");
+    // }
+
+    // const newSubMenu = document.querySelector(`.subMenu-${i}`);
+    // if (newSubMenu) newSubMenu.classList.add("active");
+
+    // activeSubMenu.current = i;
     if (activeSubMenu.current !== null && activeSubMenu.current !== i) {
       // Deactivate the previous submenu
       const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
@@ -139,7 +190,13 @@ const MainNavigation = (props) => {
     if (imageMenuItem) imageMenuItem.classList.add("active");
   };
 
-  const handleMouseLeave = () => {
+  const deactivateSubMenu = () => {
+    // if (activeSubMenu.current !== null) {
+    //   const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
+    //   if (prevSubMenu) prevSubMenu.classList.remove("active");
+    //   activeSubMenu.current = null;
+    // }
+    //!
     if (activeSubMenu.current !== null) {
       // Remove 'active' class from the previous submenu and menu item
       const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
@@ -152,14 +209,40 @@ const MainNavigation = (props) => {
       if (prevMenuItem) prevMenuItem.classList.remove("active");
     }
     activeSubMenu.current = null;
+    //!
+  };
+
+  const handleClick = (i) => {
+    if (mobile) {
+      // Mobile click behavior
+      if (activeSubMenu.current === i) {
+        deactivateSubMenu(); // Close if already active
+      } else {
+        activateSubMenu(i); // Open the submenu
+      }
+    }
+  };
+
+  const handleMouseOver = (i) => {
+    if (!mobile) {
+      // Desktop hover behavior
+      activateSubMenu(i);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!mobile) {
+      deactivateSubMenu();
+    }
   };
 
   const RenderMenuItem = ({ menuItem, i, children }) => (
     <motion.li
       className={`menuItem menuItem-${i}`}
       key={`main-menu-item-${i}`}
-      onMouseOver={() => handleMouseOver(i)}
-      onMouseLeave={handleMouseLeave()} // To deactivate the submenu when leaving
+      onMouseOver={() => handleMouseOver(i)}  // For desktop hover
+      onMouseLeave={handleMouseLeave}        // For desktop leave
+      onClick={() => handleClick(i)}         // For mobile click
     >
       {menuItem?.link?.internal ? (
         <GatsbyButton
