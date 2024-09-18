@@ -32,8 +32,6 @@ console.log(`Preview Active = ${preview}`)
           gtag('config', '${process.env.GATSBY_GTAG}', { send_page_view: false, page_path: location ? location.pathname + location.search + location.hash : undefined })`,
             }}
           />
-          <Script id="gemaParkSearch" src={`https://bookings.gemapark.co.uk/javascript/gemapark_5_0_s.js?cid=${process.env.GATSBY_GEMAPARK_CID}`}></Script>
-         
         </>
         
       : <></>}

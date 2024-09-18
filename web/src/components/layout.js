@@ -3,7 +3,6 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import { Footer } from "./footer"
 import { VisualEditing } from "./visualEditing"
-import Box from "@mui/material/Box"
 // Preview
 import { useQuery } from "../../sanity/store";
 import {NAV_QUERY, SITE_SETTINGS} from '../queries/documentQueries';
@@ -35,7 +34,7 @@ export const Layout = (props) => {
       <VisualEditing {...props}/>
      
       <Header definedSiteSettings={definedSiteSettings} definedNavColor={definedNavColor} navOverlay={definedNavOverlay}/>
-      <Box previewData={previewData}>{
+      <>{
          React.Children.map(children, child => {
           // Clone the child element and pass additional props
           if (React.isValidElement(child)) {
@@ -44,14 +43,14 @@ export const Layout = (props) => {
           } else {
             console.log("React InVaild")
             // Handle if child is not a React element (regular object)
-            return <Box sx={{
+            return <div style={{
               display: "flex",
               justifyContent: "center",
-            }}>Loading</Box>; // or any other handling logic
+            }}>Loading</div> // or any other handling logic
           }
 
         })}
-        </Box>
+        </>
       {/* <Footer definedSiteSettings={definedSiteSettings} previewData={previewData}/> */}
     </div>
   )

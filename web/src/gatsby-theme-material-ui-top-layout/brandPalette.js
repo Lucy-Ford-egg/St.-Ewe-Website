@@ -137,5 +137,9 @@ export const brandSpacing = {
     "MS9": {
       "id": 14,
       "value": 155
+    },
+    "MS10": {
+      "id": 15,
+      "value": 187
     }
   }

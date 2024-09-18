@@ -9,7 +9,9 @@ import { motion } from "framer-motion"
 import { styled } from '@mui/material/styles'
 
 
-const MenuList = styled('motion.ul')(({ theme, navOpen }) => ({
+const MenuList = styled(motion.ul)(({ theme, navOpen }) => ({
+
+// const MenuList = styled('motion.ul')(({ theme, navOpen }) => ({
   gridTemplateColumns: 'subgrid',
   display: 'grid',
   gridColumn: '3/23',
@@ -23,16 +25,19 @@ const MenuList = styled('motion.ul')(({ theme, navOpen }) => ({
   },
   "& li": {
     gridTemplateColumns: 'subgrid',
-    gridColumn: '1/auto',
+    gridColumn: '1/21',
     display: 'grid',
     listStyle: 'none',
     fontFamily: 'Roboto Slab',
     color: 'white',
+    [theme.breakpoints.up('lg')]: {
+      gridColumn: '1/auto',
+    }
   },
 
   "& a, button": {
     fontFamily: 'Roboto Slab',
-    fontSize: 'var(--modular-scale-ms3) !important',
+    fontSize: 'var(--modular-scale-ms2) !important',
     color: 'white',
     display: 'grid',
     gridColumn: '1/4',
@@ -45,6 +50,9 @@ const MenuList = styled('motion.ul')(({ theme, navOpen }) => ({
     paddingRight: 0,
     paddingTop: 'var(--modular-scale-ms-1) !important',
     paddingBottom: 'var(--modular-scale-ms-1) !important',
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 'var(--modular-scale-ms3) !important',
+    },
     '&:hover': {
       backgroundSize: '100% 100%',
       color: 'white',
@@ -55,21 +63,18 @@ const MenuList = styled('motion.ul')(({ theme, navOpen }) => ({
   },
 }));
 
-const SubMenuList = styled('motion.ul')(({ theme, navOpen }) => ({
-  gridColumn: '3/auto',
+const SubMenuList = styled(motion.ul)(({ theme, navOpen }) => ({
+  gridColumn: '1/auto',
   display: 'grid',
-  position: 'fixed',
-  top: '50%',
-  left: 0,
-  transform: 'translateY(-50%)',
-  zIndex: 3,
   visibility: 'hidden',
   opacity: 0,
   paddingTop: 'var(--modular-scale-ms-4)',
   gridAutoRows: 'auto',
+  height: 0,
   "&.active": {
     opacity: 1,
     visibility: 'visible',
+    height: 'auto',
   },
   "& li": {
 
@@ -79,10 +84,22 @@ const SubMenuList = styled('motion.ul')(({ theme, navOpen }) => ({
       textTransform: 'unset',
     },
   },
+  [theme.breakpoints.up('lg')]: {
+    gridColumn: '3/auto',
+  display: 'grid',
+  position: 'fixed',
+  top: '50%',
+  left: 0,
+  transform: 'translateY(-50%)',
+  zIndex: 3,
+  height: 'auto'
+  }
 }));
 
 
 const MenuImage = styled('div')(({ theme, navOpen }) => ({
+  display: 'none',
+  [theme.breakpoints.up('lg')]: {
   gridColumn: '10/23',
   display: 'grid',
   position: 'fixed',
@@ -92,6 +109,7 @@ const MenuImage = styled('div')(({ theme, navOpen }) => ({
   transition: 'all 0.2s ease-in-out 0s',
   borderRadius: 'var(--modular-scale-ms4)',
   overflow: 'hidden',
+},
 }));
 
 
@@ -140,6 +158,12 @@ const MainNavigation = (props) => {
     return (
       <motion.li variants={item} key={`main-menu-item-${i}`}
         onMouseOver={() => {
+          
+          setSubMenu && setSubMenu(i)
+          setMenuImage && setMenuImage(i)
+          
+        }}
+        onClick={() => {
           
           setSubMenu && setSubMenu(i)
           setMenuImage && setMenuImage(i)

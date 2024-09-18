@@ -2,6 +2,27 @@ import React from 'react'
 import {Box, styled} from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image"
 import Typography from "@mui/material/Typography"
+
+// import { EmbedSection } from "./embedSection";
+// import { TitleSection } from "./titleSection";
+// import { TextSection } from "./textSection";
+// import { BorderSection } from "./borderSection";
+// import { BlogSection } from "./blogSection";
+// import { HeaderSection } from './headerSection';
+// import { TimelineSection } from './timelineSection';
+// import { VideoSection } from './videoSection';
+// import { FeaturesListSection } from './featuresListSection';
+// import { CtaSection } from './ctaSection';
+// import { TestimonialSection } from './testimonialSection';
+// import { ImageCarouselSection } from './imageCarouselSection';
+// import { LocationSection } from './locationSection';
+// import { ContactSection } from './contactSection';
+// import { TeamSection } from './teamSection';
+// import { RecipesSection } from './recipesSection';
+// import { NewsletterSection } from './newsletterSection';
+// import { StepsSection } from './stepsSection';
+// import { ClientLoginSection } from './clientLoginSection';
+
 const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
 const TitleSection = React.lazy(() => import("./titleSection").then(module => ({ default: module.TitleSection })));
 const TextSection = React.lazy(() => import("./textSection").then(module => ({ default: module.TextSection })));

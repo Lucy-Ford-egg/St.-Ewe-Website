@@ -127,6 +127,7 @@ export const HeaderSection = props => {
   const contentOpacity = useTransform(scrollYProgress, [1, 0], [1, 0]);
 
   return (
+   
     <ModuleContainer {...props} ref={containerRef}>
 
       <Wrapper theme={theme} backgroundColour={definedBackgroundColour} image={definedImage} mask={mask} ref={ref}>
@@ -199,8 +200,9 @@ export const HeaderSection = props => {
 
 
       </Wrapper>
-
+   
     </ModuleContainer>
+    
   )
 }
 
