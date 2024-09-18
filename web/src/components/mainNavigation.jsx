@@ -92,12 +92,17 @@ const MenuImage = styled('div')(({ theme, navOpen }) => ({
   gridColumn: '10/23',
   display: 'grid',
   position: 'fixed',
-  top: 0,
+  top: "50%",
   right: 0,
   zIndex: 3,
+  transform: 'translateY(-50%)',
   transition: 'all 0.2s ease-in-out 0s',
   borderRadius: 'var(--modular-scale-ms4)',
   overflow: 'hidden',
+  opacity: 0,
+  "&.active": {
+    opacity: 1
+  },
 },
 }));
 
@@ -114,8 +119,10 @@ const MainNavigation = (props) => {
       // Deactivate the previous submenu
       const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
       const prevMenuItem = document.querySelector(`.menuItem-${activeSubMenu.current}`);
+      const prevMenuItemImage = document.querySelector(`.menuItemImage-${activeSubMenu.current}`);
       if (prevSubMenu) prevSubMenu.classList.remove("active");
       if (prevMenuItem) prevMenuItem.classList.remove("active");
+      if (prevMenuItemImage) prevMenuItemImage.classList.remove("active");
     }
 
     // Update the active submenu ref
@@ -125,9 +132,11 @@ const MainNavigation = (props) => {
     const newSubMenu = document.querySelector(`.subMenu-${i}`);
     const newMenuItem = document.querySelector(`.menuItem-${i}`);
     const parentMenuItem = document.querySelector(`.menuItem-${i}`).closest('li');
+    const imageMenuItem = document.querySelector(`.menuItemImage-${i}`);
     if (newSubMenu) newSubMenu.classList.add("active");
     if (parentMenuItem)parentMenuItem.classList.add("active");
     if (newMenuItem) newMenuItem.classList.add("active");
+    if (imageMenuItem) imageMenuItem.classList.add("active");
   };
 
   const handleMouseLeave = () => {
@@ -135,9 +144,11 @@ const MainNavigation = (props) => {
       // Remove 'active' class from the previous submenu and menu item
       const prevSubMenu = document.querySelector(`.subMenu-${activeSubMenu.current}`);
       const prevMenuItem = document.querySelector(`.menuItem-${activeSubMenu.current}`);
-      const parentMenuItem = document.querySelector(`.menuItem-${activeSubMenu.current}`).closest('li');
+      const prevMenuItemParent = document.querySelector(`.menuItem-${activeSubMenu.current}`).closest('li');
+      const prevMenuItemImage = document.querySelector(`.menuItemImage-${activeSubMenu.current}`);
       if (prevSubMenu) prevSubMenu.classList.remove("active");
-      if (parentMenuItem) parentMenuItem .classList.remove("active");
+      if (prevMenuItemParent) prevMenuItemParent.classList.remove("active");
+      if (prevMenuItemImage) prevMenuItemImage.classList.remove("active");
       if (prevMenuItem) prevMenuItem.classList.remove("active");
     }
     activeSubMenu.current = null;
@@ -178,7 +189,9 @@ const MainNavigation = (props) => {
   return (
     <MenuList initial="hidden" animate="visible">
       {menu?.sanityNavigation?.items &&
-        menu.sanityNavigation.items.map((menuItem, i) => (
+        menu.sanityNavigation.items.map((menuItem, i) => {
+        debugger
+        return(
           <React.Fragment key={i}>
             <RenderMenuItem menuItem={menuItem.link} i={i} >
             {menuItem.childItems && (
@@ -195,14 +208,15 @@ const MainNavigation = (props) => {
                
             )}
              </RenderMenuItem>
-            {/* { activeSubMenu.current === i && menuItem?.image?.asset?._id
-                && (
-                  <MenuImage>
+            { menuItem?.image?.asset?._id && (
+                  <MenuImage
+                  className={`menuItemImage menuItemImage-${i}`}
+                  >
                     <Image
                       crop={menuItem?.image?.crop}
                       hotspot={menuItem?.image?.hotspot}
                       asset={
-                        menuItem?.image?.asset?._id && urlFor(menuItem?.image?.asset).width(618).url()
+                        menuItem?.image?._id && urlFor(menuItem?.image?.asset).width(618).url() || menuItem?.image?.asset
                       }
                       width={mobile ? 20 : tablet ? 400 : 618}
                       height={mobile ? 20 : tablet ? 200 : 428}
@@ -214,9 +228,10 @@ const MainNavigation = (props) => {
                     // onLoad={() => setImageLoaded(true)}
                     />
                   </MenuImage>
-                )} */}
+                )}
           </React.Fragment>
-        ))}
+        )}
+        )}
     </MenuList>
   );
 };
