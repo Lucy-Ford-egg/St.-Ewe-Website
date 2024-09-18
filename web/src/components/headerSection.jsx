@@ -104,8 +104,12 @@ export const HeaderSection = props => {
     _rawText
   const definedLinks =
     (previewData && _type === previewData?._type && previewData?.links) || links
-  const definedImage =
-    (previewData && _type === previewData?._type && previewData?.image) || image
+
+  // const definedImage =
+  //   (previewData && _type === previewData?._type && previewData?.image) || image
+
+    const definedImage = image?.asset && image
+
   const definedBackgroundColour =
     (previewData &&
       _type === previewData?._type &&
@@ -138,7 +142,7 @@ export const HeaderSection = props => {
               crop={definedImage?.crop}
               hotspot={definedImage?.hotspot}
               asset={
-                definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage.asset
+                definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage?.asset
               }
               width={mobile ? 400 : tablet ? 768 : 1440}
               height={mobile ? 400 : tablet ? 600 : 600}
