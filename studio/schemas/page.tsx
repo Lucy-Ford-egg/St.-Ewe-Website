@@ -5,6 +5,7 @@ import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
 // Sections 
+import featureSection from "./sections/featureSection"
 import embedSection from "./sections/embedSection"
 import titleSection from "./sections/titleSection"
 import textSection from "./sections/textSection"
@@ -121,6 +122,7 @@ export default defineType({
         { type: embedSection.name},
         { type: titleSection.name },
         { type: textSection.name },
+        { type: featureSection.name },
         { type: borderSection.name },
         { type: hotspotSection.name },
         { type: headerSection.name },

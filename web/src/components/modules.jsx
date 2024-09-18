@@ -23,6 +23,7 @@ import Typography from "@mui/material/Typography"
 // import { StepsSection } from './stepsSection';
 // import { ClientLoginSection } from './clientLoginSection';
 
+const FeatureSection = React.lazy(() => import('./featureSection').then(module => ({ default: module.FeatureSection })));
 const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
 const TitleSection = React.lazy(() => import("./titleSection").then(module => ({ default: module.TitleSection })));
 const TextSection = React.lazy(() => import("./textSection").then(module => ({ default: module.TextSection })));
@@ -116,6 +117,15 @@ const Modules = (props) => {
                         if (isModule(module, 'textSection')) {
                             return (
                                 <TextSection
+                                    previewData={previewData && previewData[i]}
+                                    sanityConfig={sanityConfig}
+                                    key={module._key + i}
+                                    {...module} />
+                            )
+                        }
+                        if (isModule(module, 'featureSection')) {
+                            return (
+                                <FeatureSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
                                     key={module._key + i}

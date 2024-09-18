@@ -31,6 +31,7 @@ export const RenderPortableText = (props) => {
     normal: ({ children }) => <Typography sx={{ py: 6, color: 'inherit' }} variant={setAsHeading ? setAsHeading : 'body1'}>{children}</Typography>,
     body2: ({ children }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit' }} variant='body2'>{children}</Typography>,
     caption: ({ children }) => <Typography sx={{ textAlign: textAlign, py: 2, color: 'inherit' }} variant='caption'>{children}</Typography>,
+    overline: ({ children }) => <Typography sx={{ textAlign: textAlign, py: 1, color: 'inherit' }} variant='overline'>{children}</Typography>,
     h1: ({ children }) => {
       return <Typography sx={{ textAlign: textAlign, py: { xs: 5, md: 0 }, color: 'inherit' }} variant="h1" component="div">{children}</Typography>
     },

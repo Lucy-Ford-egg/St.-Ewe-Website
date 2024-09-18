@@ -6,91 +6,163 @@ export const contrastBrandPalette = {
       "id": "color",
       "value": brandPalette["Original Primary"].value,
       "contrastText": brandPalette["White"].value, 
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      }, 
     },
     "Original Medium": {
       "id": "color",
       "value": brandPalette["Original Medium"].value,
-      "contrastText": brandPalette["Orignal Large"].value,   
+      "contrastText": brandPalette["Orignal Large"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },    
     },
     "Orignal Large": {
       "id": "color",
       "value": brandPalette["Orignal Large"].value,
       "contrastText": brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      }, 
     },
     "Rich Yolk Primary": {
       "id": "color",
       "value": brandPalette["Rich Yolk Primary"].value,
       "contrastText": brandPalette["White"].value, 
+      "contrastButton": {
+        "contained": "secondary",
+        "outlined": "secondary",
+      }, 
     },
     "Rich Yolk Secondary": {
       "id": "color",
       "value": brandPalette["Rich Yolk Secondary"].value,
       "contrastText": brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "secondary",
+        "outlined": "secondary",
+      }, 
     },
     "Super Eggs Primary": {
       "id": "color",
       "value": brandPalette["Super Eggs Primary"].value,
-      "contrastText":  brandPalette["White"].value, 
+      "contrastText":  brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      }, 
     },
     "Super Eggs Secondary": {
       "id": "color",
       "value": brandPalette["Super Eggs Secondary"].value,
-      "contrastText": brandPalette["Super Eggs Primary"].value,  
+      "contrastText": brandPalette["Super Eggs Primary"].value, 
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },  
     },
     "Super Eggs Secondary Dark": {
       "id": "color",
       "value": brandPalette["Super Eggs Secondary Dark"].value,
-      "contrastText": brandPalette["White"].value,  
+      "contrastText": brandPalette["White"].value, 
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },  
     },
     "Super Eggs Secondary Accent": {
       "id": "color",
       "value": brandPalette["Super Eggs Secondary Accent"].value,
       "contrastText":brandPalette["White"].value, 
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      }, 
     },
     "Rich Yolk Opulent Hot Foil": {
       "id": "color",
       "value": brandPalette["Rich Yolk Opulent Hot Foil"].value,
-      "contrastText": "" 
+      "contrastText": "" ,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      }, 
     },
     "Rich Yolk Opulent Primary": {
       "id": "color",
       "value": brandPalette["Rich Yolk Opulent Primary"].value,
-      "contrastText": brandPalette["White"].value, 
+      "contrastText": brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },  
     },
     "Rich Yolk Opulent Secondary": {
       "id": "color",
       "value": brandPalette["Rich Yolk Opulent Secondary"].value,
-      "contrastText": brandPalette["White"].value,  
+      "contrastText": brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },  
     },
     "Grand Primary": {
       "id": "color",
       "value": brandPalette["Grand Primary"].value,
-      "contrastText": brandPalette["White"].value,  
+      "contrastText": brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },   
     },
     "White": {
       "id": "color",
       "value": brandPalette["White"].value,
-      "contrastText": "" 
+      "contrastText": "",
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "primary",
+      }, 
     },
     "Dabbling Duck Primary": {
       "id": "color",
       "value": brandPalette["Dabbling Duck Primary"].value,
-      "contrastText":  brandPalette["White"].value,  
+      "contrastText":  brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      }, 
     },
     "Dabbling Duck Secondary": {
       "id": "color",
       "value": brandPalette["Dabbling Duck Secondary"].value,
-      "contrastText":  brandPalette["White"].value,  
+      "contrastText":  brandPalette["White"].value, 
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },  
     },
     "Quirky Quail Primary": {
       "id": "color",
       "value": brandPalette["Quirky Quail Primary"].value,
-      "contrastText":  brandPalette["White"].value,  
+      "contrastText":  brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },  
     },
     "Quirky Quail Secondary": {
       "id": "color",
       "value": brandPalette["Quirky Quail Secondary"].value,
-      "contrastText": brandPalette["White"].value,  
+      "contrastText": brandPalette["White"].value,
+      "contrastButton": {
+        "contained": "primary",
+        "outlined": "secondary",
+      },   
     }
   }
 

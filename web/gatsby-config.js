@@ -226,6 +226,10 @@ module.exports = {
                 family: `Roboto Slab`,
                 variants: [`300`, `400`, `500`],
               },
+              {
+                family: `Roboto Condensed`,
+                variants: [`900`],
+              },
             ],
             selfHosted: [
               {
@@ -233,13 +237,6 @@ module.exports = {
                 urls: {
                   woff2: `../web/src/assets/fonts/colby-narrow/colby-nrbld-webfont.woff2`,
                   woff: `../web/src/assets/fonts/colby-narrow/colby-nrbld-webfont.woff`,
-                },
-              },
-              {
-                family: `Open Sans SemiBold`,
-                urls: {
-                  woff2: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff2`,
-                  woff: `../web/src/assets/fonts/open-sans/opensans-semibold-webfont.woff`,
                 },
               },
             ]

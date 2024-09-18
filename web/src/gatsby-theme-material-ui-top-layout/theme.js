@@ -93,9 +93,9 @@ let clientTheme = createTheme({
       letterSpacing: '0em',
     },
     overline: {
-      fontFamily: 'Roboto Slab',
-      fontSize: clientSpacing[2],
-      fontWeight: 400,
+      fontFamily: 'Colby Narrow',
+      fontSize: clientSpacing[7],
+      fontWeight: 700,
       lineHeight: 1.5,
       textTransform: 'uppercase',
       letterSpacing: 0.3,
@@ -111,7 +111,7 @@ let clientTheme = createTheme({
       },
     },
     h2: {
-      fontSize: clientSpacing[13],
+      fontSize: clientSpacing[12],
       fontFamily: 'Colby Narrow',
       [defaultTheme.breakpoints.up('md')]: {
         fontSize: clientSpacing[12],
@@ -486,7 +486,7 @@ let clientTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          fontFamily: 'Open Sans',
+          fontFamily: 'Roboto Condensed',
           borderRadius: 100,
           textTransform: 'uppercase',
           letterspacing: '2%',
@@ -512,22 +512,44 @@ let clientTheme = createTheme({
           justifyContent: "center",
           alignItems: "center",
         },
-        outlineTertiary: {
-          color: defaultTheme.palette.text.primary,
-          backgroundColor: defaultTheme.palette.background.default,
-          border: `1px solid ${defaultTheme.palette.text.primary}`,
+        containedPrimary: {
+          color: 'white',
+          //backgroundColor: defaultTheme.palette.primary.main,
+          '&:hover': {
+            cursor: 'pointer',
+          },
+        },
+        containedSecondary: {
+          backgroundColor: 'white',
+          color: defaultTheme.palette.primary.main,
+          '&:hover': {
+            cursor: 'pointer',
+          },
+        },
+        outlinePrimary: {
+          color: defaultTheme.palette.primary.main,
+          backgroundColor: 'transparent',
+          border: `1px solid ${defaultTheme.palette.primary.main}`,
           '&:hover': {
             cursor: 'pointer'
           },
         },
         outlineSecondary: {
-          color: defaultTheme.palette.background.main,
+          color: 'white',
           backgroundColor: 'transparent',
-          border: `1px solid ${defaultTheme.palette.background.main}`,
+          border: `1px solid white`,
           '&:hover': {
             cursor: 'pointer'
           },
         },
+        outlineTertiary: {
+          //color: defaultTheme.palette.text.primary,
+           backgroundColor: defaultTheme.palette.background.default,
+           border: `1px solid ${defaultTheme.palette.text.primary}`,
+           '&:hover': {
+             cursor: 'pointer'
+           },
+         },
         textPrimary: {
           color: defaultTheme.palette.primary.main,
           borderRadius: 0,
@@ -551,14 +573,7 @@ let clientTheme = createTheme({
             backgroundColor: 'transparent'
           },
         },
-        containedPrimary: {
-          color: 'white',
-          backgroundColor: defaultTheme.palette.primary.main,
-          '&:hover': {
-            cursor: 'pointer',
-
-          },
-        },
+        
       },
     },
     MuiTabs: {

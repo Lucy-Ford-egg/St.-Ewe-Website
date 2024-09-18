@@ -35,6 +35,7 @@ import accordionTile from './components/accordionTile'
 import imageOptions from './imageOptions'
 
 //Sections
+import featureSection from './sections/featureSection'
 import embedSection from './sections/embedSection'
 import titleSection from './sections/titleSection'
 import textSection from './sections/textSection'
@@ -70,7 +71,7 @@ import textAlign from './parts/textAlign'
 import servicesTile from './modules/servicesTile'
 import benifitsSection from "./modules/benifitsSection"
 import headerSectionAccommodationSearch from './modules/headerSectionAccommodationSearch'
-import featureSection from './modules/featureSection'
+
 import blogSection from './modules/blogSection'
 
 
@@ -110,6 +111,7 @@ export const schema = {
     quote,
     teamMember,
     // Sections
+    featureSection,
     embedSection,
     titleSection,
     textSection,
@@ -157,7 +159,6 @@ export const schema = {
 
     // Modules
     headerSectionAccommodationSearch,
-    featureSection,
     testimonialSection,
     imageCarouselSection,
     locationSection,

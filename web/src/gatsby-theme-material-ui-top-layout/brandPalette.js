@@ -79,67 +79,67 @@ export const brandSpacing = {
       "value": 0
     },
     "MS-5": {
-      "id": 0,
+      "id": 1,
       "value": 5
     },
     "MS-4": {
-      "id": 1,
+      "id": 2,
       "value": 6
     },
     "MS-3": {
-      "id": 2,
+      "id": 3,
       "value": 9
     },
     "MS-1": {
-      "id": 3,
+      "id": 4,
       "value": 10
     },
     "MS-2": {
-      "id": 4,
+      "id": 5,
       "value": 14
     },
     "MS0": {
-      "id": 5,
+      "id": 6,
       "value": 16
     },
     "MS1": {
-      "id": 6,
+      "id": 7,
       "value": 23
     },
     "MS2": {
-      "id": 7,
+      "id": 8,
       "value": 26
     },
     "MS3": {
-      "id": 8,
+      "id": 9,
       "value": 37
     },
     "MS4": {
-      "id": 9,
+      "id": 10,
       "value": 42
     },
     "MS5": {
-      "id": 10,
+      "id": 11,
       "value": 59
     },
     "MS6": {
-      "id": 11,
+      "id": 12,
       "value": 68
     },
     "MS7": {
-      "id": 12,
+      "id": 13,
       "value": 96
     },
     "MS8": {
-      "id": 13,
+      "id": 14,
       "value": 110
     },
     "MS9": {
-      "id": 14,
+      "id": 15,
       "value": 155
     },
     "MS10": {
-      "id": 15,
+      "id": 16,
       "value": 187
     }
   }

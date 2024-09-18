@@ -1,236 +1,316 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import { graphql } from "gatsby"
+import { useTheme, useMediaQuery, Typography } from "@mui/material"
+import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
-import {urlFor} from "../utils/imageHelpers"
-import Container from "@mui/material/Container"
-import Grid from "@mui/material/Grid"
-import Typography from "@mui/material/Typography"
-import Box from "@mui/material/Box"
-import Divider from "@mui/material/Divider"
-import { useTheme } from "@mui/material"
-import { Icons } from "../components/icons"
-import {Links} from '../components/links'
+import { urlFor } from "../utils/imageHelpers"
+import { Links } from "../components/links"
+import { brandSpacing } from "../gatsby-theme-material-ui-top-layout/brandPalette"
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { ModuleContainer } from "./moduleContainer"
+import { styled } from '@mui/material/styles'
+
+
+const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  gridColumn: '1/25',
+  display: 'grid',
+  gridTemplateColumns: 'subgrid',
+  overflow: 'hidden',
+  [theme.breakpoints.up('sm')]: {
+    gridRowGap: 'var(--modular-scale-ms4)',
+  },
+  [theme.breakpoints.up('lg')]: {
+    gridRowGap: 'unset',
+  },
+}));
+
+const FeatureImage = styled(motion.div)(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  gridColumn: '2/24',
+  display: 'grid',
+  gridRow: '2/4',
+  gridTemplateRows: 'subgrid',
+  overflow: 'hidden',
+  gridColumn: '2/24',
+  [theme.breakpoints.up('sm')]: {
+    gridColumn: '2/24',
+  },
+  [theme.breakpoints.up('lg')]: {
+    gridRow: '1/1',
+    gridColumn: mirror ? '2/12' : '12/24',
+  },
+  "& img": {
+    borderRadius: 'var(--modular-scale-ms4)',
+  }
+}));
+
+const Content = styled('div')(({ mirror, theme }) => ({
+  gridColumn: '2/24',
+  display: 'grid',
+  gridRow: '1/2',
+  gridTemplateRows: 'subgrid',
+  // paddingTop: brandSpacing['MS6']?.value,
+  // paddingBottom: brandSpacing['MS6']?.value,
+  "& .header-title": {
+    textTransform: 'uppercase',
+  },
+  [theme.breakpoints.up('sm')]: {
+    gridColumn: '2/24',
+
+  },
+  [theme.breakpoints.up('lg')]: {
+    gridColumn: mirror ? '14/24' : '3/10',
+  }
+
+}));
+
+const Asset = styled(motion.div)(({ mirror, theme }) => ({
+  display: 'grid',
+  gridTemplateRows: 'subgrid',
+  gridColumn: '1/3',
+  gridRow: '3/4',
+  position: 'relative',
+  zIndex: 1,
+  alignItems: 'start',
+  
+  "& img": {
+    transform: 'translateX(-10px) translateY(100px) ',
+    maxWidth: 110,
+    maxHeight: 110,
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: 220,
+      maxHeight: 220,
+      transform: 'translateY(100px)',
+    }
+
+  },
+  
+  [theme.breakpoints.up('sm')]: {
+    gridColumn: '21/24',
+    gridRow: '1/1',
+    alignItems: 'end',
+  },
+  [theme.breakpoints.up('lg')]: {
+    gridColumn: mirror ? '10/13' : '10/13',
+    gridRow: '1/1',
+    alignItems: 'end',
+  }
+}));
 
 export const FeatureSection = props => {
   const theme = useTheme()
+
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
   const {
     title,
-    icon,
-    text,
+    _rawText,
+    mirror,
     image,
-    linkGroup,
     previewData,
     sanityConfig,
-    mirror,
-    topPadding,
-    subtitle,
     links,
-    highlighted,
+    backgroundColour,
+    centerAsset,
     _type,
   } = props
 
-  const textColour = highlighted
-    ? theme.palette.background.default
-    : theme.palette.text.main
-  const boxPx = highlighted
-    ? { xs: theme.spacing(1), md: theme.spacing(3) }
-    : false
-  const boxPy = highlighted
-    ? { xs: theme.spacing(6), md: theme.spacing(10) }
-    : false
+  const definedTitle =
+    (previewData && _type === previewData?._type && previewData?.title) ||
+    title
+  const definedText =
+    (previewData && _type === previewData?._type && previewData?.text) ||
+    _rawText
+  const definedLinks =
+    (previewData && _type === previewData?._type && previewData?.links) || links
+
+  // const definedImage =
+  //   (previewData && _type === previewData?._type && previewData?.image) || image
+
+  const definedImage = image?.asset && image
+
+  const definedBackgroundColour =
+    (previewData &&
+      _type === previewData?._type &&
+      previewData?.backgroundColour) ||
+    backgroundColour
+  const definedMirror =
+    (previewData && _type === previewData?._type && previewData?.mirror) ||
+    mirror
+  const definedAsset = (previewData && _type === previewData?._type && previewData?.centerAsset) || centerAsset
+
+  // Motion
+
+  const [imageLoaded, setImageLoaded] = useState(false); // Track image load state
+
+  const ref = useRef(null);
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: ref, container: containerRef, offset: ["start start", "center end"] });
+
+  const content = useTransform(scrollYProgress, [1, 0], [0, -50]);
+  
+
+  const imageY = useTransform(scrollYProgress, [1, 0], [50, -50]);
+  const assetY = useTransform(scrollYProgress, [1, 0], [0, -200]);
 
   return (
-    <Container
-      maxWidth={highlighted ? "fluid" : "xl"}
-      sx={{
-        pb: {
-          xs: theme.spacing(10),
-          md: highlighted ? theme.spacing(16) : theme.spacing(10),
-        },
-        pt: topPadding
-          ? 0
-          : {
-              xs: theme.spacing(10),
-              md: highlighted ? theme.spacing(16) : theme.spacing(10),
-            },
-        mt: topPadding
-          ? 0
-          : highlighted ? theme.spacing(10) : 0,
-        backgroundColor: highlighted
-          ? theme.palette.highlight.main
-          : "transparent",
-      }}
-    >
-      <Box
-        sx={{
-          maxWidth: theme.breakpoints.values.xl,
-          mx: "auto",
-        }}
-      >
-        <Box
-          sx={{
-            py: boxPy,
-            mx: boxPx,
-            px: { xs: highlighted ? 6 : 0, md: 0 },
-            border: highlighted
-              ? `1px solid ${theme.palette.background.default}`
-              : `unset`,
-          }}
-        >
-          <Grid
-            container
-            rowSpacing={{ xs: 6, sm: 6, md: 6 }}
-            columnSpacing={{ xs: 13, sm: 13, md: 13 }}
-            direction={mirror ? "row-reverse" : "row"}
-            sx={{
-              px: { xs: 0, sm: theme.spacing(12) },
-              alignItems: "center",
-            }}
-          >
-            <Grid item xs={12} sm={12} md={6}>
-              <Box>
-              {image && (
-                  <Image
-                  // pass asset, hotspot, and crop fields
-                  crop={
-                    (previewData && previewData?.image?.crop) ||
-                    image?.crop
-                  }
-                  hotspot={
-                    (previewData && previewData?.image?.hotspot) ||
-                    image?.hotspot
-                  }
-                 
-                   asset={
-                    (previewData && previewData.image && previewData.image?._ref && urlFor(previewData.image).width(200).url()) || image.asset
-                  }
-        
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                    flexGrow: 1,
-                    minHeight: "100%",
-                    gridColumn: "1/25",
-                    gridRow: "1/auto",
-                    borderRadius: theme.spacing(2),
-                  }}
-                />
-                )}
-              </Box>
-            </Grid>
 
-            <Grid item xs={12} sm={12} md={6}>
-              <Box sx={{ pb: highlighted ? theme.spacing(10) : `unset` }}>
-                {icon && (
-                  <Icons
-                    type={
-                      previewData && previewData.icon ? previewData.icon : icon
-                    }
+    <ModuleContainer {...props} ref={containerRef}>
+
+      <Wrapper theme={theme} backgroundColour={definedBackgroundColour} image={definedImage}>
+
+        {definedImage && (
+           
+          <FeatureImage theme={theme} mirror={definedMirror} style={{
+             y: imageY,
+             
+           }}>
+           
+            <Image
+              crop={definedImage?.crop}
+              hotspot={definedImage?.hotspot}
+              asset={
+                definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage?.asset
+              }
+              width={mobile ? 400 : tablet ? 768 : 1440}
+              height={mobile ? 400 : tablet ? 600 : 600}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "100%",
+                //transform: 'scale(1.2)',
+              }}
+              onLoad={() => setImageLoaded(true)}
+            />
+
+          </FeatureImage>
+        )}
+
+        <Asset theme={theme} mirror={definedMirror} style={{
+             y: assetY,
+             
+           }}>
+            <div ref={ref}>
+          <Image
+            // pass asset, hotspot, and crop fields
+            crop={definedAsset.crop}
+            hotspot={definedAsset?.hotspot}
+            asset={
+              (definedAsset?._ref && urlFor(definedAsset).width(440).url()) ||
+              definedAsset.asset
+            }
+            width={440}
+            height={440}
+          />
+          </div>
+        </Asset>
+
+        {imageLoaded && (
+          <Content mirror={definedMirror} theme={theme}>
+            <motion.div
+              initial={{ opacity: 0, y: 10, }}
+              animate={{ opacity: 1, y: 0, }}
+              transition={{ duration: 0.5 }}
+            >
+              <motion.div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  y: content,
+                  rowGap: `${brandSpacing['MS1']?.value}px`,
+                }}
+              >
+                {definedText && (
+
+                  <RenderPortableText
+                    previewData={previewData}
+                    sanityConfig={sanityConfig}
+                    variant={false}
+                    textAlign={definedMirror}
+                    value={definedText}
+                  />
+
+                )}
+
+                {definedLinks && definedLinks.length > 0 && (
+
+                  <Links
+                    className="links"
+                    linkOne="primary"
+                    links={definedLinks}
+                    previewData={previewData}
+                    highlighted
+                    backgroundColour={backgroundColour}
                   />
                 )}
+              </motion.div>
+            </motion.div>
+          </Content>
+        )}
 
-                {subtitle && (
-                  <Typography
-                    color={textColour}
-                    sx={{ mt: { xs: 4, md: 4 } }}
-                    variant="overline"
-                    component="p"
-                  >
-                    {previewData && previewData.subtitle
-                      ? previewData.subtitle
-                      : subtitle}
-                  </Typography>
-                )}
 
-                <Typography color={textColour} variant="h2">
-                  {previewData && previewData.title ? previewData.title : title}
-                </Typography>
-                {text && (
-                  <Divider
-                    component="div"
-                    role="presentation"
-                    sx={{
-                      borderColor: highlighted
-                        ? theme.palette.background.default
-                        : theme.palette.primary.main,
-                      maxWidth: 305,
-                    }}
-                  />
-                )}
-                <Typography
-                  color={textColour}
-                  sx={{ py: { xs: 5, md: 6 } }}
-                  variant="body1"
-                >
-                  {previewData && previewData.text ? previewData.text : text}
-                </Typography>
+      </Wrapper>
 
-                <Links links={links} previewData={previewData} highlighted/>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-    </Container>
+    </ModuleContainer>
+
   )
 }
 
 export const query = graphql`
   fragment FeatureSectionFragment on SanityFeatureSection {
-    _key
-    _type
-    image {
-      asset {
-        _id
-        gatsbyImageData
+      _key
+      _type
+      backgroundColour {
+        label
+        value
       }
-      hotspot {
-        x
-        y
-        width
-        height
-      }
-      crop {
-        bottom
-        left
-        right
-        top
-      }
-    }
-    icon
-    subtitle
-    title
-    text
-    links {
-      link {
-        internal {
-          ... on SanityPage {
-            id
-            slug {
-              current
-            }
-          }
-          ... on SanityPost {
-            id
-                  slug {
-                    current
-                    _type
-                  }
-                  category {
-                    name
-                    slug{
-                      current
-                    }
-                  }
-          }
+      centerAsset{
+        asset {
+          _id
+          gatsbyImageData
         }
-        external
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
       }
-      text
-    }
-    mirror
-    topPadding
-    highlighted
+      image{
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+      mirror
+      _rawText(resolveReferences: {maxDepth: 10})
+      verticalSpace {
+        bottomPadding
+        topPadding
+      }
+  links {
+    ...LinkFragment
   }
+}
 `

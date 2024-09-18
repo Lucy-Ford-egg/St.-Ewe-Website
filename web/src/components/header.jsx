@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles'
 const Wrapper = styled('div')(({ theme, navOpen }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(24, 1fr)',
-  gridTemplateRows: 'repeat(12, 1fr)',
+  gridTemplateRows: navOpen ? 'repeat(12, 1fr)' : 'unset',
   position: 'fixed',
   top: 0,
   paddingTop: 'var(--modular-scale-ms1)',
@@ -62,9 +62,9 @@ const MenuButton = styled('div')(({ theme }) => ({
   }
 }));
 
-const Navigation = styled('div')(({ theme }) => ({
+const Navigation = styled('div')(({ theme, navOpen }) => ({
   display: 'grid',
-  gridTemplateColumns: 'repeat(24, 1fr)',
+  gridTemplateColumns: navOpen ? 'repeat(24, 1fr)' : 'unset',
   gridRow: '2/2',
   position: 'fixed',
   top: '50%',
