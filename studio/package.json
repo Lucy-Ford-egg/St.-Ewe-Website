@@ -38,10 +38,16 @@
     "vite-plugin-node-polyfills": "^0.22.0"
   },
   "devDependencies": {
+    "@sanity/block-tools": "^3.57.4",
     "@sanity/eslint-config-studio": "^4.0.0",
+    "@wordpress/block-serialization-default-parser": "^5.8.0",
     "eslint": "^9.9.1",
+    "html-entities": "^2.5.2",
+    "jsdom": "^25.0.0",
+    "p-limit": "^6.1.0",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "wp-types": "^4.66.1"
   },
   "prettier": {
     "semi": false,

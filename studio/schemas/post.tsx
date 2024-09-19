@@ -7,23 +7,7 @@ import categoriesType from './categories'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
-// Sections 
-// import headerSectionType from './sections/headerSection'
-import testimonialSectionType from './sections/testimonialSection'
-import teamSectionType from './sections/teamSection'
-import recipesSectionType from './sections/recipesSection'
-import ctaSectionType from './sections/ctaSection'
-import featuresListSectionType from './sections/featuresListSection'
-import videoSectionType from './sections/videoSection'
-import newsletterSectionType from './sections/newsletterSection'
-import imageCarouselSectionType from './sections/imageCarouselSection'
-import blogSectionType from './modules/blogSection'
-import stepSectionType from './sections/stepsSection'
-import timelineSectionType from './sections/timelineSection'
-import contactSectionType from './sections/contactSection'
-import locationSectionType from './sections/locationSection'
-import clientLoginSectionType from './sections/clientLoginSection'
-
+import { pageBuilder } from "./parts/pageBuilder"
 
 /**
  * This file is the schema definition for a post.
@@ -63,214 +47,109 @@ export default defineType({
     ...siteMeta.fields,
     ...openGraph.fields,
 
+    // !
+    defineField({name: 'title', type: 'string', group: 'pageContent'}),
     defineField({
-      title: 'Nav Colour',
-      name: 'navColor',
-      type: 'simplerColor',
+      name: 'slug', 
+      type: 'slug', 
+      // options: {
+      //   source: 'title',
+      //   maxLength: 96,
+      //   isUnique: (value, context) => { 
+     
+      //     return (
+      //     context.defaultIsUnique(value, context)
+      //   )},
+      // },
+      // validation: (rule) => rule.required(),
+      group: 'pageContent'
+    }),
+    defineField({
+      name: 'date', 
+      type: 'datetime', 
+       //initialValue: () => new Date().toISOString(),
+      group: 'pageContent',
+    }),
+    defineField({name: 'modified', type: 'datetime', group: 'pageContent'}),
+    defineField({
+      name: 'status',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Published', value: 'publish'},
+          {title: 'Future', value: 'future'},
+          {title: 'Draft', value: 'draft'},
+          {title: 'Pending', value: 'pending'},
+          {title: 'Private', value: 'private'},
+          {title: 'Trash', value: 'trash'},
+          {title: 'Auto-Draft', value: 'auto-draft'},
+          {title: 'Inherit', value: 'inherit'},
+        ],
+      },
       group: 'pageContent',
     }),
     defineField({
-      title: 'Nav Overlay',
-      name: 'navOverlay',
-      type: 'boolean',
+      name: 'pageBuilder',
+      type: 'array',
+      title: 'Page builder',
+      description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
+      of: [...pageBuilder],
       group: 'pageContent',
     }),
-  defineField({
-    name: 'image',
-    title: 'Cover Image',
-    type: 'image',
-    options: {
-      hotspot: true,
-    },
-    //validation: Rule => Rule.required(),
-    group: 'pageContent',
-    description: 'This is used on the single blog page.'
-  }),
-  defineField({
-    name: 'tileImage',
-    title: 'Tile Image',
-    type: 'image',
-    options: {
-      hotspot: true,
-    },
-    //validation: Rule => Rule.required(),
-    group: 'pageContent',
-    description: 'This is used on the tile.'
-  }),
-  defineField({
-    title: 'Tile Colour',
-    name: 'tileColor',
-    type: 'simplerColor',
-    group: 'pageContent',
-  }),
-  defineField({
-    name: 'title',
-    title: 'Title',
-    type: 'string',
-    validation: (rule) => rule.required(),
-    group: 'pageContent',
-    description: 'Slug is generated from this value.'
-  }),
-  defineField({
-    name: 'slug',
-    title: 'Slug',
-    type: 'slug',
-    options: {
-      source: 'title',
-      maxLength: 96,
-      isUnique: (value, context) => { 
-   
-        return (
-        context.defaultIsUnique(value, context)
-      )},
-    },
-    validation: (rule) => rule.required(),
-    group: 'pageContent',
-  }),
-  defineField({
-    name: 'date',
-    title: 'Date',
-    type: 'datetime',
-    initialValue: () => new Date().toISOString(),
-    group: 'pageContent',
-  }),
-  defineField({
-    name: 'author',
-    title: 'Author',
-    type: 'reference',
-    to: [{ type: authorType.name }],
-    group: 'pageContent',
-  }),
-  defineField({
-    name: 'body',
-    type: 'array',
-    title: 'Blog Content',
-    of: [{
-      type: 'block',
-      lists: [
-        { title: 'Bullet', value: 'bullet' },
-        { title: 'Numbered', value: 'number' }
-      ], // yes please, both bullet and numbered
-      styles: [
-        // { title: 'Heading 2', value: 'h2' },
-        { title: 'Small', value: 'caption' },
-        { title: 'Lead', value: 'body2' },
-        { title: 'Heading 3', value: 'h3' },
-        { title: 'Heading 4', value: 'h4' },
-        { title: 'Heading 5', value: 'h5' },
-        { title: 'Quote', value: 'blockquote' }
-      ],
-      marks: {
-        decorators: [
-          { title: 'Strong', value: 'strong' },
-          { title: 'Emphasis', value: 'em' },
-          { title: 'Underline', value: 'underline' },
-        ],
-        annotations: [
-          {
-            name: 'internalLink',
-            type: 'object',
-            title: 'Internal link',
-            fields: [
-              {
-                name: 'reference',
-                type: 'reference',
-                title: 'Reference',
-                to: [
-                  { type: 'post' }, {type: 'page'}
-                  // other types you may want to link to
-                ]
-              }
-            ]
-          },
-          {
-            name: 'link',
-            type: 'object',
-            title: 'External link',
-            fields: [
-              {
-                name: 'href',
-                type: 'url',
-                title: 'URL',
-                validation: Rule => Rule.uri({
-                  scheme: ['http', 'https', 'mailto', 'tel']
-                })
-              },
-              {
-                title: 'Open in new tab',
-                name: 'blank',
-                type: 'boolean'
-              }
-            ]
-          },
-          {type: 'file', icon: LiaFilePdfSolid},
-          {type: 'textColor',},
-          // {type: 'imageOptions'},  
-        ],
-      }
-    },
-    {
-      type: 'imageOptions',
-      validation: (rule) => rule.required(),
-    },
-    {
+    defineField({
+      name: 'content',
+      type: 'array',
+      of: [{type: 'block'}, {type: 'image'}],
+      group: 'pageContent',
+    }),
+    defineField({
+      name: 'excerpt',
+      type: 'array',
+      of: [{type: 'block'}, {type: 'image'}],
+      group: 'pageContent',
+    }),
+    defineField({
+      name: 'featuredMedia', 
       type: 'image',
+      options: {
+        hotspot: true,
+      },
+      //validation: Rule => Rule.required(),
+      group: 'pageContent',
+      description: 'This is used on the featured image.'
+    }),
+    defineField({
+      name: 'tileImage',
+      title: 'Tile Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      //validation: Rule => Rule.required(),
+      group: 'pageContent',
+      description: 'This is used on the tile.'
+    }),
+    
+    defineField({
+      name: 'author',
+      type: 'reference',
+      to: [{type: authorType.name}],
+      group: 'pageContent',
+    }),
+    defineField({
+      name: 'categories',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: categoriesType.name }]}],
+      group: 'pageContent',
       validation: (rule) => rule.required(),
-      readOnly: true,
-    }
-    // defineArrayMember({
-    //   type: 'image',
-    //   // Replace the preview of all block images
-    //   // with the edit form for that image, bypassing
-    //   // the modal step.
-    //   components: {
-    //     block: (props) => {
-    //       return props.renderDefault({
-    //         ...props,
-    //         renderPreview: () => props.children,
-    //       })
-    //     },
-    //   },
-    // }),
-  ],
-    validation: (rule) => rule.required(),
-    description: "This works slightly differently to page modules. You can add images, quotes and other textural decoration in the editor.",
-    group: 'pageContent',
-  }),
-  defineField({
-    name: 'pageBuilder',
-    type: 'array',
-    title: 'Page builder',
-    description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
-    of: [
-      { type: testimonialSectionType.name},
-      { type: teamSectionType.name},
-      { type: recipesSectionType.name},
-      { type: videoSectionType.name},
-      { type: featuresListSectionType.name},
-      { type: ctaSectionType.name},
-      { type: newsletterSectionType.name},
-      { type: imageCarouselSectionType.name},
-      { type: blogSectionType.name},
-      { type: stepSectionType.name},
-      { type: timelineSectionType.name},
-      { type: locationSectionType.name},
-      { type: contactSectionType.name},
-      { type: clientLoginSectionType.name},
+    }),
+    // defineField({
+    //   name: 'category',
+    //   title: 'Post Category',
+    //   type: 'reference',
+    //   to: [{ type: categoriesType.name }],
       
-      // etc...
-    ],
-    group: 'pageContent',
-  }),
-
-  defineField({
-    name: 'category',
-    title: 'Post Category',
-    type: 'reference',
-    to: [{ type: categoriesType.name }],
-    group: 'pageContent',
-    validation: (rule) => rule.required(),
-  }),
+    // }),
   ],
   orderings: [
     {

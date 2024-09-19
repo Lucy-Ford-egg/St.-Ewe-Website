@@ -7,12 +7,17 @@ export default defineType({
   icon: LiaSmile,
   type: 'document',
   fields: [
-    defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
-      validation: (rule) => rule.required(),
-    }),
+    // defineField({
+    //   name: 'name',
+    //   title: 'Name',
+    //   type: 'string',
+    //   validation: (rule) => rule.required(),
+    // }),
+    defineField({name: 'name', type: 'string'}),
+    defineField({name: 'slug', type: 'slug'}),
+    defineField({name: 'url', title: 'URL', type: 'url'}),
+    defineField({name: 'description', type: 'text'}),
+    defineField({name: 'avatar', type: 'image'}),
   ],
 })
 

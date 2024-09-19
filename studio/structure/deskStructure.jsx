@@ -9,6 +9,7 @@ import {
   LiaUtensilsSolid,
   LiaQuoteLeftSolid,
   LiaMaleSolid,
+  LiaCrosshairsSolid,
   LiaCarrotSolid,
 } from "react-icons/lia"
 
@@ -34,7 +35,7 @@ export const deskStructure = (S, context) => {
         S.divider(),
         S.listItem()
           .title('Hotspots')
-          .icon(LiaNewspaper)
+          .icon(LiaCrosshairsSolid)
           .child(
             S.documentTypeList('hotspots')
               .title('Hotspots')
@@ -44,17 +45,18 @@ export const deskStructure = (S, context) => {
               // .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
         S.divider(),
-        // S.listItem()
-        //   .title('Posts')
-        //   .icon(LiaNewspaper)
-        //   .child(
-        //     S.documentTypeList('post')
-        //       .title('Posts')
-        //       .child(
-        //         (id) => S.document().schemaType('post').documentId(id),
-        //       )
-        //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
-        //   ),
+
+        S.listItem()
+          .title('Posts')
+          .icon(LiaNewspaper)
+          .child(
+            S.documentTypeList('post')
+              .title('Posts')
+              .child(
+                (id) => S.document().schemaType('post').documentId(id),
+              )
+              .defaultOrdering([{field: 'title', direction: 'asc'}]),
+          ),
 
         S.listItem()
           .title('Pages')
@@ -132,18 +134,18 @@ export const deskStructure = (S, context) => {
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
         S.divider(),
-        // S.listItem()
-        //   .title('Post Categories')
-        //   .icon(LiaShapesSolid)
-        //   .child(
-        //     S.documentTypeList('categories')
-        //       .title('Post Categories')
-        //       .child(
-        //         (id) => S.document().schemaType('categories').documentId(id),
-        //         //.views(Views(S, context)),
-        //       )
-        //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
-        //   ),
+        S.listItem()
+          .title('Post Categories')
+          .icon(LiaShapesSolid)
+          .child(
+            S.documentTypeList('categories')
+              .title('Post Categories')
+              .child(
+                (id) => S.document().schemaType('categories').documentId(id),
+                //.views(Views(S, context)),
+              )
+              .defaultOrdering([{field: 'title', direction: 'asc'}]),
+          ),
         S.listItem()
           .title('Recipes Categories')
           .icon(LiaShapesSolid)
