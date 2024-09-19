@@ -64,7 +64,7 @@ const MenuButton = styled('div')(({ theme }) => ({
 
 const Navigation = styled('div')(({ theme, navOpen }) => ({
   display: 'grid',
-  gridTemplateColumns: navOpen ? 'repeat(24, 1fr)' : 'unset',
+  gridTemplateColumns: 'repeat(24, 1fr)',
   gridRow: '2/2',
   position: 'fixed',
   top: '50%',
