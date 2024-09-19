@@ -3,31 +3,7 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
-
-// Sections 
-import featureSection from "./sections/featureSection"
-import embedSection from "./sections/embedSection"
-import titleSection from "./sections/titleSection"
-import textSection from "./sections/textSection"
-import borderSection from './sections/borderSection'
-import hotspotSection from './sections/hotspotSection'
-import headerSection from './sections/headerSection'
-import testimonialSection from './sections/testimonialSection'
-import teamSection from './sections/teamSection'
-import recipesSection from './sections/recipesSection'
-import ctaSection from './sections/ctaSection'
-import featuresListSection from './sections/featuresListSection'
-import videoSection from './sections/videoSection'
-import newsletterSection from './sections/newsletterSection'
-import imageCarouselSection from './sections/imageCarouselSection'
-import blogSection from './modules/blogSection'
-import stepSection from './sections/stepsSection'
-import timelineSection from './sections/timelineSection'
-import contactSection from './sections/contactSection'
-import locationSection from './sections/locationSection'
-import clientLoginSection from './sections/clientLoginSection'
-
-
+import { pageBuilder } from "./parts/pageBuilder"
 /**
  * This file is the schema definition for a post.
  *
@@ -118,30 +94,7 @@ export default defineType({
       title: 'Page builder',
       description:
         'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
-      of: [
-        { type: embedSection.name},
-        { type: titleSection.name },
-        { type: textSection.name },
-        { type: featureSection.name },
-        { type: borderSection.name },
-        { type: hotspotSection.name },
-        { type: headerSection.name },
-        { type: testimonialSection.name },
-        { type: teamSection.name },
-        { type: recipesSection.name },
-        { type: videoSection.name },
-        { type: featuresListSection.name },
-        { type: ctaSection.name },
-        { type: newsletterSection.name },
-        { type: imageCarouselSection.name },
-        { type: blogSection.name },
-        { type: stepSection.name },
-        { type: timelineSection.name },
-        { type: locationSection.name },
-        { type: contactSection.name },
-        { type: clientLoginSection.name },
-        // etc...
-      ],
+      of: [...pageBuilder],
       group: 'pageContent',
     }),
   ],
