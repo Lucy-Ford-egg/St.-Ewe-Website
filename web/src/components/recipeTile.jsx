@@ -96,7 +96,7 @@ export const RecipeTile = (props) => {
 
 export const query = graphql`
   fragment RecipeTileFragment on SanityRecipes {
-    coverImage {
+    featuredMedia {
       asset {
         _id
         gatsbyImageData
