@@ -1,9 +1,9 @@
 import {LiaSortAlphaDownSolid } from "react-icons/lia";
 import { defineField, defineType } from 'sanity'
 
-import openGraph from './openGraph'
-import siteMeta from './siteMeta'
-import { pageBuilder } from "./parts/pageBuilder";
+import openGraph from '../openGraph'
+import siteMeta from '../siteMeta'
+import { pageBuilder } from "../parts/pageBuilder";
 
 export default defineType({
   name: 'categories',
@@ -33,39 +33,31 @@ export default defineType({
     ...siteMeta.fields,
     ...openGraph.fields,
     defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      group: 'pageContent',
+    }),
+    defineField({
       name: 'name',
       title: 'Name',
       type: 'string',
-      validation: (rule) => rule.required(),
+      group: 'pageContent',
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: {
-        source: 'name',
-        maxLength: 96,
-        isUnique: (value, context) => { 
-          return (
-          context.defaultIsUnique(value, context)
-        )},
-      },
-      validation: (rule) => rule.required(),
+      // options: {
+      //   source: 'name',
+      //   maxLength: 96,
+      //   isUnique: (value, context) => { 
+      //     return (
+      //     context.defaultIsUnique(value, context)
+      //   )},
+      // },
       group: 'pageContent',
-    }),
-    defineField({
-      title: 'Nav Colour',
-      name: 'navColor',
-      type: 'simplerColor',
-      group: 'pageContent',
-    }),
-    defineField({
-      title: 'Nav Overlay',
-      name: 'navOverlay',
-      type: 'boolean',
-      group: 'pageContent',
-    }),
-    
+    }),    
     defineField({
       name: 'pageBuilder',
       type: 'array',
@@ -77,7 +69,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'name',
+      title: 'title',
     },
     prepare({ title}) {
     

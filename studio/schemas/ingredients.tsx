@@ -3,7 +3,7 @@ import { LiaCarrotSolid, LiaFilePdfSolid } from "react-icons/lia";
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import authorType from './author'
-import categoriesType from './categories'
+import categoriesType from './taxonomies/categories'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 

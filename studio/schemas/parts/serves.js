@@ -11,6 +11,11 @@ export default defineType({
       title: "Serves",
       type: "number",
     }),
+    defineField({
+      name: "note",
+      title: "Note",
+      type: "string",
+    }),
   ],
   options: {
     columns: 2,

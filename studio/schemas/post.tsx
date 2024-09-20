@@ -2,8 +2,8 @@ import { LiaNewspaper, LiaFilePdfSolid } from "react-icons/lia";
 
 import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
-import authorType from './author'
-import categoriesType from './categories'
+import author from './author'
+import categories from './taxonomies/categories'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
@@ -111,9 +111,9 @@ export default defineType({
     defineField({
       name: 'featuredMedia', 
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      // options: {
+      //   hotspot: true,
+      // },
       //validation: Rule => Rule.required(),
       group: 'pageContent',
       description: 'This is used on the featured image.'
@@ -122,9 +122,9 @@ export default defineType({
       name: 'tileImage',
       title: 'Tile Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      // options: {
+      //   hotspot: true,
+      // },
       //validation: Rule => Rule.required(),
       group: 'pageContent',
       description: 'This is used on the tile.'
@@ -133,15 +133,15 @@ export default defineType({
     defineField({
       name: 'author',
       type: 'reference',
-      to: [{type: authorType.name}],
+      to: [{type: author.name}],
       group: 'pageContent',
     }),
     defineField({
       name: 'categories',
       type: 'array',
-      of: [{type: 'reference', to: [{type: categoriesType.name }]}],
+      of: [{type: 'reference', to: [{type: categories.name }]}],
       group: 'pageContent',
-      validation: (rule) => rule.required(),
+      //validation: (rule) => rule.required(),
     }),
     // defineField({
     //   name: 'category',
@@ -164,7 +164,7 @@ export default defineType({
     select: {
       title: 'title',
       date: 'date',
-      media: 'coverImage',
+      media: 'featuredImage',
       author: 'author',
     },
     prepare({ title, media, author, date }) {

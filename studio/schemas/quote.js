@@ -3,7 +3,7 @@ import { format, parseISO } from 'date-fns'
 import { defineField, defineType } from 'sanity'
 import openGraph from '../schemas/openGraph'
 import authorType from './author'
-import categoriesType from './categories'
+import categoriesType from './taxonomies/categories'
 
 //import {urlFor} from '../client'
 

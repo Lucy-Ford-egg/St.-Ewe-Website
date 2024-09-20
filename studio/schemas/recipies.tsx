@@ -52,7 +52,7 @@ export default defineType({
     ...siteMeta.fields,
     ...openGraph.fields,
     defineField({
-      name: 'coverImage',
+      name: 'featuredMedia',
       title: 'Cover Image',
       type: 'image',
       options: {
@@ -78,6 +78,24 @@ export default defineType({
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
+      group: 'pageContent',
+    }),
+    defineField({name: 'modified', type: 'datetime', group: 'pageContent'}),
+    defineField({
+      name: 'status',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Published', value: 'publish'},
+          {title: 'Future', value: 'future'},
+          {title: 'Draft', value: 'draft'},
+          {title: 'Pending', value: 'pending'},
+          {title: 'Private', value: 'private'},
+          {title: 'Trash', value: 'trash'},
+          {title: 'Auto-Draft', value: 'auto-draft'},
+          {title: 'Inherit', value: 'inherit'},
+        ],
+      },
       group: 'pageContent',
     }),
     defineField({

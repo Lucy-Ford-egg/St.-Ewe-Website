@@ -11,4 +11,6 @@ Now you can do the following things:
 
 # Wordpress Migrations 
 
-npx sanity@latest migration run import-wp --dataset {dataset} --project {projectId} --no-dry-run
+npx sanity@latest migration run import-wp --dataset {dataset} --project {projectId} --no-dry-
+
+ - [See tutorial](https://www.sanity.io/learn/course/migrating-content-from-wordpress-to-sanity)
