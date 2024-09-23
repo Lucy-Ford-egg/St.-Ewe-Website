@@ -111,18 +111,19 @@ export default defineType({
         title: 'Image positioned on the right',
         description: 'Select this to reverse the order to have Image on the right and text on the right.'
       }),
-    defineField({
-      title: 'Background Colour',
-      name: 'backgroundColour',
-      type: 'simplerColor',
-      description: 'Add a background colour',
-  }),
+    
   defineField({
     name: "centerAsset",
     title: "Center Asset (optional)",
     type: "image",
     
 }),
+defineField({
+      title: 'Background Colour',
+      name: 'backgroundColour',
+      type: 'simplerColor',
+      description: 'Add a background colour',
+  }),
   defineField({
       name: 'verticalSpace',
       type: 'verticalSpace',

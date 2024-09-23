@@ -2,7 +2,7 @@ import {uuid} from '@sanity/uuid'
 import {decode} from 'html-entities'
 import type {SanityClient} from 'sanity'
 import type {WP_REST_API_Post} from 'wp-types'
-
+import {htmlToBlockContent} from './htmlToBlockContent'
 import type {Post} from '../../../sanity.types'
 import {sanityIdToImageReference} from './sanityIdToImageReference'
 import {sanityUploadFromUrl} from './sanityUploadFromUrl'
@@ -27,6 +27,16 @@ export async function transformToPost(
   if (wpDoc.slug) {
     console.log(`There's a slug`)
     doc.slug = {_type: 'slug', current: decode(wpDoc.slug)}
+  }
+  if (wpDoc.content) {
+    doc.content = await htmlToBlockContent(wpDoc.content.rendered, client, existingImages)
+  }
+
+  if (wpDoc.excerpt) {
+    doc.excerpt = await htmlToBlockContent(wpDoc.excerpt.rendered, client, existingImages)
+  }
+  else{
+    doc.excerpt = await htmlToBlockContent(wpDoc.content.rendered, client, existingImages)
   }
 
   if (Array.isArray(wpDoc.categories) && wpDoc.categories.length) {

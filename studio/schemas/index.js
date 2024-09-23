@@ -35,6 +35,7 @@ import accordionTile from './components/accordionTile'
 import imageOptions from './imageOptions'
 
 //Sections
+import blogSection from './sections/blogSection'
 import featureSection from './sections/featureSection'
 import embedSection from './sections/embedSection'
 import titleSection from './sections/titleSection'
@@ -72,7 +73,7 @@ import servicesTile from './modules/servicesTile'
 import benifitsSection from "./modules/benifitsSection"
 import headerSectionAccommodationSearch from './modules/headerSectionAccommodationSearch'
 
-import blogSection from './modules/blogSection'
+
 
 
 export const schema = {

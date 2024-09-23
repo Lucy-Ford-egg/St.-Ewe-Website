@@ -88,7 +88,7 @@ let clientTheme = createTheme({
     },
     caption: {
       fontFamily: 'Roboto Slab',
-      fontSize: clientSpacing[3],
+      fontSize: clientSpacing[6],
       lineHeight: 1.5,
       letterSpacing: '0em',
     },
@@ -645,6 +645,13 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {
           //backgroundColor: 'red',
+        },
+      },
+    },
+    MuiListItemIcon:{
+      styleOverrides:{
+        root: {
+          color: 'inherit',
         },
       },
     },

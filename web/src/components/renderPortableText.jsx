@@ -180,9 +180,9 @@ export const RenderPortableText = (props) => {
 
       return (
         (value.listItem === "bullet" ? (
-          <ListItem sx={{ alignItems: "flex-start", color: 'inherit', pl: 0, alignItems: 'center', columnGap: 16, }}>
+          <ListItem sx={{ alignItems: "flex-start", color: 'inherit', pl: 0, alignItems: 'center', columnGap: 0, }}>
             <ListItemIcon sx={{ mt: 2, minWidth: 16 }}>
-              <CircleIcon color='red' sx={{ width: 4, height: 4 }} />
+              <CircleIcon color='inherit' sx={{ color: 'inherit', width: 4, height: 4 }} />
             </ListItemIcon>
             <Box sx={{
               display: 'block'
@@ -190,7 +190,7 @@ export const RenderPortableText = (props) => {
 
           </ListItem>
         ) : (
-          <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0, alignItems: 'center', columnGap: 16, }}>
+          <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0, alignItems: 'center', columnGap: 0, }}>
             <Box sx={{
               display: 'inline-flex'
             }}>{children}</Box>

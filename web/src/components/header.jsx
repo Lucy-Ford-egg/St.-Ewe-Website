@@ -130,7 +130,7 @@ const Header = props => {
                     current
                     _type
                   }
-                  category {
+                  categories {
                     name
                     slug{
                       current
@@ -157,7 +157,7 @@ const Header = props => {
                     current
                     _type
                   }
-                  category {
+                  categories {
                     name
                     slug{
                       current

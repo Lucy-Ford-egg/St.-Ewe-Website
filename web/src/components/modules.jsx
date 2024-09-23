@@ -101,6 +101,7 @@ const Modules = (props) => {
                                 <HeaderSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
+                                    pageContext={pageContext}
                                     key={module._key + i}
                                     {...module} />
                             )

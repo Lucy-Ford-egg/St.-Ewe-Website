@@ -25,6 +25,7 @@ text
 export const PAGE_BUILDER = `
 pageBuilder[] {
   ...,
+  
   images[] { 
     asset->,
     hotspot{...},
@@ -41,6 +42,7 @@ pageBuilder[] {
   subtitle,
   title[]{...},
   text[]{...},
+  excerpt[]{...},
   title,
   text,
   navColor->,
@@ -141,10 +143,17 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
   companyDetails,
   person,
   _rawPerson,
-  coverImage {
+  featuredMedia {
     asset->,
     hotspot{...},
     crop{...}
+  },
+  excerpt[]{
+    ...,
+    file{
+      ...,
+      },
+    },
   },
   body[]{
     ...,
@@ -270,7 +279,7 @@ export const RECIPES_QUERY = groq`*[_type ==  "recipes && defined(coverImage)" &
   companyDetails,
   person,
   _rawPerson,
-  coverImage {
+  featuredMedia {
     asset->,
     hotspot{...},
     crop{...}
@@ -370,7 +379,7 @@ export const CATEGORIES_QUERY = groq`*[_type ==  "recipes" && slug.current == $s
   companyDetails,
   person,
   _rawPerson,
-  coverImage {
+  featuredMedia {
     asset->,
     hotspot{...},
     crop{...}
@@ -400,7 +409,7 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
   companyDetails,
   person,
   _rawPerson,
-  coverImage {
+  featuredMedia {
     asset->,
     hotspot{...},
     crop{...}
@@ -430,11 +439,12 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
 export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] | order(date desc)[0..7] {
   _id,
   ...,
-  category->{
+  categories->{
     ...,
     slug,
   },
   author->{...},
+  
 }`
 
 export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
@@ -457,7 +467,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   slug->,
   companyDetails,
   _rawPerson,
-  coverImage {
+  featuredMedia {
     asset->,
     hotspot{...},
     crop{...}

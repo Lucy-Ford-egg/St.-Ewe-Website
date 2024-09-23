@@ -223,7 +223,7 @@ export const query = graphql`
                     current
                     _type
                   }
-                  category {
+                  categories {
                     name
                     slug{
                       current

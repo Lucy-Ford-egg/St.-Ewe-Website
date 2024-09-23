@@ -111,9 +111,9 @@ export default defineType({
     defineField({
       name: 'featuredMedia', 
       type: 'image',
-      // options: {
-      //   hotspot: true,
-      // },
+      options: {
+        hotspot: true,
+      },
       //validation: Rule => Rule.required(),
       group: 'pageContent',
       description: 'This is used on the featured image.'
@@ -122,9 +122,9 @@ export default defineType({
       name: 'tileImage',
       title: 'Tile Image',
       type: 'image',
-      // options: {
-      //   hotspot: true,
-      // },
+      options: {
+        hotspot: true,
+      },
       //validation: Rule => Rule.required(),
       group: 'pageContent',
       description: 'This is used on the tile.'

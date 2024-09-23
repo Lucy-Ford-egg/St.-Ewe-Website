@@ -9,10 +9,30 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
+      title: 'Title',
+      type: 'string',
+
+    }),
+    defineField({
+      name: 'name',
       title: 'Name',
       type: 'string',
-      validation: (rule) => rule.required(),
+
     }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      // options: {
+      //   source: 'name',
+      //   maxLength: 96,
+      //   isUnique: (value, context) => { 
+      //     return (
+      //     context.defaultIsUnique(value, context)
+      //   )},
+      // },
+
+    }),    
   ],
   preview: {
     select: {

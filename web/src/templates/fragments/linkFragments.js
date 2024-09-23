@@ -19,7 +19,7 @@ fragment LinksFragment on SanityLinkDefined {
                       current
                       _type
                     }
-                    category {
+                    categories {
                       name
                       slug{
                         current
@@ -49,7 +49,7 @@ fragment LinkFragment on SanityLinkDefined {
                   current
                   _type
                 }
-                category {
+                categories {
                   name
                   slug{
                     current

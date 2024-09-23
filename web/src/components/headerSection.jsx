@@ -93,6 +93,7 @@ export const HeaderSection = props => {
     links,
     alignment,
     backgroundColour,
+    pageContext,
     _type,
   } = props
 
@@ -108,7 +109,7 @@ export const HeaderSection = props => {
   // const definedImage =
   //   (previewData && _type === previewData?._type && previewData?.image) || image
 
-    const definedImage = image?.asset && image
+    const definedImage = (image?.asset && image) || (pageContext?.featuredMedia )
 
   const definedBackgroundColour =
     (previewData &&
@@ -119,7 +120,7 @@ export const HeaderSection = props => {
     (previewData && _type === previewData?._type && previewData?.alignment) ||
     alignment
 
-
+    debugger
   // Motion
 
   const [imageLoaded, setImageLoaded] = useState(false); // Track image load state

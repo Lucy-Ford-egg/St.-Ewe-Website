@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { ModuleContainer } from './moduleContainer'
-import { useMediaQuery } from "@mui/material"
+import { Typography, useMediaQuery } from "@mui/material"
 import { RenderPortableText } from "../components/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -27,6 +27,7 @@ const Content = styled('div')(({ alignment}) => ({
     gridColumn: alignment === 'left' ? '2/17' : '7/17',
     textAlign: alignment === 'left' ? 'left' : 'center',
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: alignment === 'left' ? 'start' : 'center',
 }));
 
@@ -64,7 +65,7 @@ export const TitleSection = props => {
     const definedLeftImage = (previewData && _type === previewData?._type && previewData?.sideAssets?.leftAsset) || sideAssets?.leftAsset
     const definedRightImage = (previewData && _type === previewData?._type && previewData?.sideAssets?.rightAsset) || sideAssets?.rightAsset
     const definedLink = ( _type === previewData?._type && previewData && previewData?.link) || link
-
+    const definedIsPost = true
 
     return (
         <ModuleContainer {...props}>
@@ -105,6 +106,11 @@ export const TitleSection = props => {
                             setAsHeading={false}
                             value={definedText}
                         />
+                    )}
+                    {definedIsPost && (
+                        <Typography variant="body" sx={{
+                            fontWeight: 900,
+                        }}>July 26th 2024</Typography>
                     )}
                 </Content>
                 

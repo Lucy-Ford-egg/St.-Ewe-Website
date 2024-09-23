@@ -100,10 +100,16 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: 'topPadding',
-      type: 'boolean',
-      title: 'Remove top padding',
-    }),  
+      title: 'Background Colour',
+      name: 'backgroundColour',
+      type: 'simplerColor',
+      description: 'Add a background colour',
+  }),
+  defineField({
+      name: 'verticalSpace',
+      type: 'verticalSpace',
+      title: 'Set the space required between sections',
+  }), 
   ],
   preview: {
     select: {

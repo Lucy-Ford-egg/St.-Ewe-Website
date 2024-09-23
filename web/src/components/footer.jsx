@@ -46,7 +46,7 @@ export const Footer = props => {
                     current
                     _type
                   }
-                  category {
+                  categories {
                     name
                     slug{
                       current
@@ -100,7 +100,7 @@ export const Footer = props => {
                     current
                     _type
                   }
-                  category {
+                  categories {
                     name
                     slug{
                       current

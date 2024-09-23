@@ -267,6 +267,10 @@ export const query = graphql`
         label
         value
       }
+      verticalSpace {
+        bottomPadding
+        topPadding
+      }
       centerAsset{
         asset {
           _id
@@ -305,12 +309,8 @@ export const query = graphql`
       }
       mirror
       _rawText(resolveReferences: {maxDepth: 10})
-      verticalSpace {
-        bottomPadding
-        topPadding
+      links {
+        ...LinkFragment
       }
-  links {
-    ...LinkFragment
-  }
 }
 `

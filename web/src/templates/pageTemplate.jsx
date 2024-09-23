@@ -24,13 +24,13 @@ const PageTemplate = props => {
   const pageData = previewData?.page
   const siteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
   const definedModules = (previewData && previewData?.page?.pageBuilder) || data?.sanityPage?.pageBuilder
-
+debugger
   return (
       <Modules
         sanityConfig={getSanityClient}
         previewData={pageData?.pageBuilder}
         allSanityPost={data.allSanityPost}
-        getAllPosts={data.getAllPosts}
+        // getAllPosts={data.getAllPosts}
         allSanityRecipes={data.allSanityRecipes}
         pageContext={pageContext}
         modules={definedModules}
@@ -45,10 +45,12 @@ export const Head = ({ data, location }) => {
 
 export const pageTemplateQuery = graphql`
 
-query pageTemplateQuery( $recipeIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+query pageTemplateQuery( $slug: String! ) {
   
-  getAllPosts: allSanityPost(sort: {date: DESC}, limit: 8){
+  allSanityPost(sort: {date: DESC}, limit: 8){
     nodes {
+      _rawExcerpt(resolveReferences: {maxDepth: 3})
+      _rawContent(resolveReferences: {maxDepth: 10})
       tileImage {
         asset {
           _id
@@ -71,7 +73,7 @@ query pageTemplateQuery( $recipeIds:[String!], $slug: String!, $skip: Int, $limi
         current
       }
       date
-      category {
+      categories {
         name
         _id
         slug{
@@ -82,40 +84,13 @@ query pageTemplateQuery( $recipeIds:[String!], $slug: String!, $skip: Int, $limi
         name
       }
       title
-      tileColor{
-        value
-        label
-      }
     }
   }
-  allSanityRecipes(
-    filter: {
-      category: {
-        _id: {
-          in: $recipeIds
-        }
-      }
-      coverImage: {_type: {eq: "image"}}
-    }
-    skip: $skip 
-    limit: $limit 
-  ) {
-    nodes {
-      _key
-      _id
-      ...RecipeTileFragment
-     
-    }
-  }
+  
   sanityPage(slug: {current: {eq: $slug}}) {
     ... SeoPageFragment
     slug {
       current
-    }
-    navOverlay
-    navColor{
-      value
-      label
     }
     title
     pageBuilder {
