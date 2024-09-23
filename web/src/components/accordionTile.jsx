@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Typography from "@mui/material/Typography"
-import Paper from "@mui/material/Paper"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import Accordion from "@mui/material/Accordion"
@@ -26,18 +25,7 @@ export const AccordionTile = props => {
     (previewData && previewData?.steps[index]?._key) || tile?._key
 
   return (
-    <Paper
-      sx={{
-        boxShadow: "none",
-        display: "flex",
-        flexDirection: "column",
-        flexBasis: "100%",
-        width: "100%",
-        height: "100%",
-        mb: 0,
-        borderRadius: 0,
-      }}
-    >
+   
       <Accordion
         square={true}
         disableGutters={true}
@@ -79,7 +67,7 @@ export const AccordionTile = props => {
           )}
         </AccordionDetails>
       </Accordion>
-    </Paper>
+
   )
 }
 

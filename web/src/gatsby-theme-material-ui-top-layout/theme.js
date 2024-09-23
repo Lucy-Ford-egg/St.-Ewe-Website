@@ -459,6 +459,7 @@ let clientTheme = createTheme({
         },
       },
     },
+
     MuiIconButton: {
       styleOverrides: {
         root: {
