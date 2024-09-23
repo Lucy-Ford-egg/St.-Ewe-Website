@@ -398,7 +398,7 @@ function filterPostsByCategory(posts) {
 const posts = result.data.allSanityPost.nodes;
 const categorizedPosts = filterPostsByCategory(posts);
 
-console.log(`Categorized Posts: ${categorizedPosts}`)
+// console.log(`Categorized Posts: ${categorizedPosts}`)
 
 // Object.keys(categorizedPosts).forEach(categoryName => {
 //   console.log(`Category: ${categoryName}`);
@@ -474,7 +474,7 @@ console.log(`Categorized Posts: ${categorizedPosts}`)
   // })
 
   blogPosts.forEach(node => {
-    console.log(`Blog - ${JSON.stringify(node)}`)
+    // console.log(`Blog - ${JSON.stringify(node)}`)
     createPage({
       path: `blog/${node.categories[0]?.slug?.current}/${node?.slug?.current}`,
       component: require.resolve(`./src/templates/postTemplate.jsx`),
