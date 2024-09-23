@@ -42,13 +42,17 @@ const BlogAllPostLink = styled('div')(({ props }) => ({
 
 
 
-const BlogGrid = styled('div')(({ props }) => ({
+const BlogGrid = styled('div')(({ theme }) => ({
   display: 'grid',
-  gridColumn: '1/25',
+  gridColumn: '2/24',
   gridGap: 21,
   gridTemplateColumns: 'subgrid',
-  paddingLeft: 'var(--modular-scale-ms4)',
-  paddingRight: 'var(--modular-scale-ms4)',
+ 
+  [theme.breakpoints.up('lg')]: {
+    gridColumn: '1/25',
+    paddingLeft: 'var(--modular-scale-ms4)',
+    paddingRight: 'var(--modular-scale-ms4)',
+  }
 }));
 
 export const BlogSection = props => {
@@ -169,7 +173,7 @@ export const BlogSection = props => {
           />
         </BlogFilter>
 
-        <BlogGrid>
+        <BlogGrid theme={theme}>
           {!props.pageContext.humanPageNumber && filtersPosts &&
             filtersPosts.slice(0, 8).map((post, i) => {
               return (

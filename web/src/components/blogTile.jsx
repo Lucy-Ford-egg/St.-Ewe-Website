@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
-import Typography from "@mui/material/Typography"
-import { Button, GatsbyLink } from "gatsby-theme-material-ui"
+import { useTheme, Typography} from "@mui/material"
+import { GatsbyLink } from "gatsby-theme-material-ui"
 import { contrastColour } from "../utils/contrastColour"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -9,17 +9,19 @@ import { formattedDate } from "../utils/formattedDate"
 import { RenderPortableText } from "./renderPortableText"
 import { styled } from '@mui/material/styles'
 
-const Wrapper = styled('div')(({ props }) => ({
+const Wrapper = styled('div')(({ theme }) => ({
   display: 'grid',
-  gridColumn: 'span 8',
+  gridColumn: '1/24',
   borderRadius: 'var(--modular-scale-ms4) var(--modular-scale-ms4) 0 0',
   overflow: 'hidden',
   "& a": {
     display: 'grid',
     gridTemplateColumns: 'subgrid',
     gridTemplateRows: '1fr',
-
   },
+  [theme.breakpoints.up('lg')]: {
+    gridColumn: 'span 8',
+  }
 }));
 
 const BlogContent = styled('div')(({ props }) => ({
@@ -84,6 +86,7 @@ const ReadMore = styled(motion.div)(({ props }) => ({
 export const BlogTile = (props) => {
 
   const [activeTile, setActiveTile] = useState(false)
+  const theme = useTheme()
 
   const { post, previewData } = props
 
@@ -101,7 +104,7 @@ export const BlogTile = (props) => {
 
   return (
 
-    <Wrapper key={_key} onMouseEnter={() => setActiveTile(true)} onMouseLeave={() => setActiveTile(false)}>
+    <Wrapper theme={theme} key={_key} onMouseEnter={() => setActiveTile(true)} onMouseLeave={() => setActiveTile(false)}>
       <GatsbyLink
         style={{
           textDecoration: "none",
