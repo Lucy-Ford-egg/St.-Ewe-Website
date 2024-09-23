@@ -191,9 +191,6 @@
 //         ...on SanityBlogSection {
 //           ... BlogSectionFragment
 //         }
-//         ... on SanityStepsSection{
-//           ... StepsSectionFragment
-//         }
 //         ... on SanityTimelineSection{
 //           ... TimelineSectionFragment
 //         }

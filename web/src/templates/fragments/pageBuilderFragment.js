@@ -47,9 +47,6 @@ export const pageBuilderQuery = graphql`
     ...on SanityBlogSection {
       ... BlogSectionFragment
     }
-    ... on SanityStepsSection{
-      ... StepsSectionFragment
-    }
     ... on SanityTimelineSection{
       ... TimelineSectionFragment
     }

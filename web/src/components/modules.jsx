@@ -20,7 +20,6 @@ import Typography from "@mui/material/Typography"
 // import { TeamSection } from './teamSection';
 // import { RecipesSection } from './recipesSection';
 // import { NewsletterSection } from './newsletterSection';
-// import { StepsSection } from './stepsSection';
 // import { ClientLoginSection } from './clientLoginSection';
 
 const FeatureSection = React.lazy(() => import('./featureSection').then(module => ({ default: module.FeatureSection })));
@@ -41,7 +40,6 @@ const ContactSection = React.lazy(() => import('./contactSection').then(module =
 const TeamSection = React.lazy(() => import('./teamSection').then(module => ({ default: module.TeamSection })));
 const RecipesSection = React.lazy(() => import('./recipesSection').then(module => ({ default: module.RecipesSection })));
 const NewsletterSection = React.lazy(() => import('./newsletterSection').then(module => ({ default: module.NewsletterSection })));
-const StepsSection = React.lazy(() => import('./stepsSection').then(module => ({ default: module.StepsSection })));
 const ClientLoginSection = React.lazy(() => import('./clientLoginSection').then(module => ({ default: module.ClientLoginSection })));
 
 
@@ -166,17 +164,6 @@ const Modules = (props) => {
 
                             return (
                                 <TestimonialSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
-
-                        if (isModule(module, 'stepsSection')) {
-
-                            return (
-                                <StepsSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
                                     key={module._key + i}
