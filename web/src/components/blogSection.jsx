@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { graphql } from "gatsby"
-import Typography from "@mui/material/Typography"
-import Box from "@mui/material/Box"
 import {BlogTile} from "./blogTile"
-import { useTheme } from "@mui/material"
+import { useTheme, Box, Typography } from "@mui/material"
 import { Button, GatsbyLink } from "gatsby-theme-material-ui"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
@@ -21,9 +19,6 @@ const Wrapper = styled('div')(({ props, theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'subgrid',
   overflow: 'hidden',
-  [theme.breakpoints.up('sm')]: {
-
-  },
   [theme.breakpoints.up('lg')]: {
 
   },
@@ -47,7 +42,9 @@ const BlogGrid = styled('div')(({ theme }) => ({
   gridColumn: '2/24',
   gridGap: 21,
   gridTemplateColumns: 'subgrid',
- 
+  [theme.breakpoints.up('sm')]: {
+    gridGap: 21,
+  },
   [theme.breakpoints.up('lg')]: {
     gridColumn: '1/25',
     paddingLeft: 'var(--modular-scale-ms4)',

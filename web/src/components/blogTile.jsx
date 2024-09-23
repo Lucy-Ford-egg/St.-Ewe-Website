@@ -19,6 +19,9 @@ const Wrapper = styled('div')(({ theme }) => ({
     gridTemplateColumns: 'subgrid',
     gridTemplateRows: '1fr',
   },
+  [theme.breakpoints.up('sm')]: {
+    gridColumn: 'span 11',
+  },
   [theme.breakpoints.up('lg')]: {
     gridColumn: 'span 8',
   }
