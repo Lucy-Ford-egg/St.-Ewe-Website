@@ -32,9 +32,6 @@ export const pageBuilderQuery = graphql`
     ... on SanityVideoSection {
       ...VideoSectionFragment
     }
-    ... on SanityFeaturesListSection {
-      ...FeaturesListSectionFragment
-    }
     ... on SanityCtaSection {
       ...CtaSectionFragment
     }

@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography"
 // import { HeaderSection } from './headerSection';
 // import { TimelineSection } from './timelineSection';
 // import { VideoSection } from './videoSection';
-// import { FeaturesListSection } from './featuresListSection';
 // import { CtaSection } from './ctaSection';
 // import { TestimonialSection } from './testimonialSection';
 // import { ImageCarouselSection } from './imageCarouselSection';
@@ -30,7 +29,6 @@ const BlogSection = React.lazy(() => import("./blogSection").then(module => ({ d
 const HeaderSection = React.lazy(() => import('./headerSection').then(module => ({ default: module.HeaderSection })));
 const TimelineSection = React.lazy(() => import('./timelineSection').then(module => ({ default: module.TimelineSection })));
 const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
-const FeaturesListSection = React.lazy(() => import('./featuresListSection').then(module => ({ default: module.FeaturesListSection })));
 const CtaSection = React.lazy(() => import('./ctaSection').then(module => ({ default: module.CtaSection })));
 const TestimonialSection = React.lazy(() => import('./testimonialSection').then(module => ({ default: module.TestimonialSection })));
 const ImageCarouselSection = React.lazy(() => import('./imageCarouselSection').then(module => ({ default: module.ImageCarouselSection })));
@@ -210,15 +208,7 @@ const Modules = (props) => {
                                     {...module} />
                             )
                         }
-                        if (isModule(module, 'featuresListSection')) {
-                            return (
-                                <FeaturesListSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
+                    
                         if (isModule(module, 'ctaSection')) {
                             return (
                                 <CtaSection

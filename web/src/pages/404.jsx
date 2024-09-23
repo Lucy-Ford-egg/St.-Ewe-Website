@@ -176,9 +176,6 @@
 //         ... on SanityVideoSection {
 //           ...VideoSectionFragment
 //         }
-//         ... on SanityFeaturesListSection {
-//           ...FeaturesListSectionFragment
-//         }
 //         ... on SanityCtaSection {
 //           ...CtaSectionFragment
 //         }
