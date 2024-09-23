@@ -20,7 +20,6 @@ import Typography from "@mui/material/Typography"
 // import { TeamSection } from './teamSection';
 // import { RecipesSection } from './recipesSection';
 // import { NewsletterSection } from './newsletterSection';
-// import { ClientLoginSection } from './clientLoginSection';
 
 const FeatureSection = React.lazy(() => import('./featureSection').then(module => ({ default: module.FeatureSection })));
 const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
@@ -40,7 +39,6 @@ const ContactSection = React.lazy(() => import('./contactSection').then(module =
 const TeamSection = React.lazy(() => import('./teamSection').then(module => ({ default: module.TeamSection })));
 const RecipesSection = React.lazy(() => import('./recipesSection').then(module => ({ default: module.RecipesSection })));
 const NewsletterSection = React.lazy(() => import('./newsletterSection').then(module => ({ default: module.NewsletterSection })));
-const ClientLoginSection = React.lazy(() => import('./clientLoginSection').then(module => ({ default: module.ClientLoginSection })));
 
 
 const Main = styled('main')({
@@ -254,15 +252,6 @@ const Modules = (props) => {
                         if (isModule(module, 'contactSection')) {
                             return (
                                 <ContactSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
-                        if (isModule(module, 'clientLoginSection')) {
-                            return (
-                                <ClientLoginSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
                                     key={module._key + i}

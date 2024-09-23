@@ -459,13 +459,6 @@ let clientTheme = createTheme({
         },
       },
     },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundColor: defaultTheme.palette.background.default,
-        },
-      },
-    },
     MuiIconButton: {
       styleOverrides: {
         root: {
