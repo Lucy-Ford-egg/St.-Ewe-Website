@@ -406,7 +406,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
   categorizedPosts[categoryName].forEach(node => {
     // console.log(`CatNode: ${JSON.stringify(node)}`);
     createPage({
-      path: `blog/category/${node.categories?.slug?.current}`,
+      path: `news/category/${node.categories?.slug?.current}`,
       component: require.resolve(`./src/templates/categoryTemplate.jsx`),
       context: {
         id: node.id,
@@ -476,7 +476,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
   blogPosts.forEach(node => {
     // console.log(`Blog - ${JSON.stringify(node)}`)
     createPage({
-      path: `blog/${node.categories[0]?.slug?.current}/${node?.slug?.current}`,
+      path: `news/${node.categories[0]?.slug?.current}/${node?.slug?.current}`,
       component: require.resolve(`./src/templates/postTemplate.jsx`),
       context: {
         id: node.id,
