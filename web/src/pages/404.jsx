@@ -56,7 +56,7 @@ query homeTemplateQuery( $recipeIds:[String!], $postIds:[String!], $skip: Int, $
     limit: $limit 
   ) {
     nodes {
-      image {
+      featuredMedia {
         asset {
           _id
           gatsbyImageData
