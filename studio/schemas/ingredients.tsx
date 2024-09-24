@@ -36,7 +36,7 @@ import clientLoginSectionType from './sections/clientLoginSection'
  */
 
 export default defineType({
-  name: 'ingredients',
+  name: 'ingredient',
   title: 'Ingredients',
   icon: LiaCarrotSolid,
   type: 'document',

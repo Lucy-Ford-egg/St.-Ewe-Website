@@ -2,7 +2,7 @@ import {uuid} from '@sanity/uuid'
 import {decode} from 'html-entities'
 import type {SanityClient} from 'sanity'
 import type {WP_REST_API_Post} from 'wp-types'
-
+import {htmlToBlockContent} from './htmlToBlockContent'
 import type {Recipes} from '../../../sanity.types'
 import {sanityIdToImageReference} from './sanityIdToImageReference'
 import {sanityUploadFromUrl} from './sanityUploadFromUrl'
@@ -29,15 +29,18 @@ export async function transformToRecipe(
     doc.slug = {_type: 'slug', current: decode(wpDoc.slug)}
   }
 
-  // if (Array.isArray(wpDoc.categories) && wpDoc.categories.length) {
-  //   console.log(`There's categories`)
-  //   doc.category = wpDoc.categories.map((catId) => ({
-  //     _key: uuid(),
-  //     _type: 'reference',
-  //     _ref: `category-${catId}`,
-  //   }))
-  // }
-
+  if (Array.isArray(wpDoc.ingredient) && wpDoc.ingredient.length) {
+    console.log(`There's categories`);
+    doc.ingredientsList = wpDoc.ingredient.map((catId) => ({
+      _key: uuid(),
+      _type: 'ingredientItem', // Assuming this is the type you're expecting
+      ingredient: {
+        _type: 'reference',
+        _ref: `ingredient-${catId}`,
+      }
+    }));
+  }
+  
   // if (wpDoc.author) {
   //   console.log(`There's an author`)
   //   doc.author = {
@@ -60,8 +63,10 @@ export async function transformToRecipe(
     console.log(`There's a status`)
     doc.status = wpDoc.status as StagedPost['status']
   }
-
-  //doc.sticky = wpDoc.sticky == true
+  // ACF fields currently not exposed to the rest api.
+  // if (wpDoc.content) {
+  //   doc.instructions = await htmlToBlockContent(wpDoc.content.rendered, client, existingImages)
+  // }
 
   if (typeof wpDoc.featured_media === 'number' && wpDoc.featured_media > 0) {
     // Image exists already in dataset

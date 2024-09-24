@@ -77,18 +77,6 @@ export default defineType({
       group: 'pageContent',
     }),
     defineField({
-      title: 'Nav Colour',
-      name: 'navColor',
-      type: 'simplerColor',
-      group: 'pageContent',
-    }),
-    defineField({
-      title: 'Nav Overlay',
-      name: 'navOverlay',
-      type: 'boolean',
-      group: 'pageContent',
-    }),
-    defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',

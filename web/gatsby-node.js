@@ -463,22 +463,22 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     }
   })
 
-  // result.data.recipePage.nodes.forEach(node => {
-  //   paginate({
-  //     createPage,
-  //     items: recipes,
-  //     itemsPerPage: 4,
-  //     pathPrefix: `/${node.slug.current}`,
-  //     component: require.resolve(`./src/templates/recipeArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-  //     context: {
-  //       id: node.id,
-  //       slug: `${node.slug.current}`,
-  //       node: node,
-  //       postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-  //       recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
-  //     },
-  //   })
-  // })
+  result.data.recipePage.nodes.forEach(node => {
+    paginate({
+      createPage,
+      items: recipes,
+      itemsPerPage: 4,
+      pathPrefix: `/${node.slug.current}`,
+      component: require.resolve(`./src/templates/recipesArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug.current}`,
+        node: node,
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+      },
+    })
+  })
 
   blogPosts.forEach(node => {
     // console.log(`Blog - ${JSON.stringify(node)}`)
@@ -499,23 +499,23 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     })
   })
 
-  // recipes.forEach((node, index) => {
-  //   createPage({
-  //     path: `Recipe/${node.slug.current}`,
-  //     component: require.resolve(`./src/templates/recipesTemplate.jsx`),
-  //     context: {
-  //       id: node.id,
-  //       key: index,
-  //       slug: `${node.slug.current}`,
-  //       title: node.title,
-  //       coverImage: node.coverImage,
-  //       date: node.date,
-  //       category: node.category,
-  //       excerpt: node.excerpt,
-  //       postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-  //       recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
-  //     },
-  //   })
-  // })
+  recipes.forEach((node, index) => {
+    createPage({
+      path: `Recipe/${node.slug.current}`,
+      component: require.resolve(`./src/templates/recipesTemplate.jsx`),
+      context: {
+        id: node.id,
+        key: index,
+        slug: `${node.slug.current}`,
+        title: node.title,
+        coverImage: node.coverImage,
+        date: node.date,
+        category: node.category,
+        excerpt: node.excerpt,
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+      },
+    })
+  })
 }
 

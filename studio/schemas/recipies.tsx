@@ -65,7 +65,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (rule) => rule.required(),
+      //validation: (rule) => rule.required(),
       group: 'pageContent',
     }),
     defineField({
@@ -77,7 +77,7 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      // validation: (rule) => rule.required(),
       group: 'pageContent',
     }),
     defineField({name: 'modified', type: 'datetime', group: 'pageContent'}),
@@ -162,9 +162,9 @@ export default defineType({
         }
       }, {
         type: 'image',
-        validation: (rule) => rule.required(),
+        // validation: (rule) => rule.required(),
       }],
-      validation: (rule) => rule.required(),
+      // validation: (rule) => rule.required(),
       description: "This works slightly differently to page modules. You can add images, quotes and other textural decoration in the editor.",
       group: 'pageContent',
     }),
@@ -200,7 +200,7 @@ export default defineType({
       type: 'reference',
       to: [{ type: recipesCategoryType.name }],
       group: 'pageContent',
-      validation: (rule) => rule.required(),
+      //validation: (rule) => rule.required(),
       // to: [{ type:  }],
     }),
   ],

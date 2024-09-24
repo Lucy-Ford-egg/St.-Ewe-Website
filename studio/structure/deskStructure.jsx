@@ -86,10 +86,10 @@ export const deskStructure = (S, context) => {
           .title('Ingredients')
           .icon(LiaCarrotSolid)
           .child(
-            S.documentTypeList('ingredients')
+            S.documentTypeList('ingredient')
               .title('Ingredients')
               .child(
-                (id) => S.document().schemaType('ingredients').documentId(id),
+                (id) => S.document().schemaType('ingredient').documentId(id),
                 //.views(Views(S, context))
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),

@@ -6,6 +6,7 @@ export const PER_PAGE = 100
   
 export const WP_TYPE_TO_SANITY_SCHEMA_TYPE: Record<WordPressDataType, SanitySchemaType> = {
   categories: 'categories',
+  ingredient: 'ingredient',
   posts: 'post',
   pages: 'page',
   recipe: 'recipes',

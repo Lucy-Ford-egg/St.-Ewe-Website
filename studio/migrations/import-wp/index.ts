@@ -8,6 +8,7 @@ import { sanityFetchImages } from './lib/sanityFetchImages';
 import { transformToPost } from './lib/transformToPost';
 import { transformToRecipe } from './lib/transformToRecipe';
 import {transformToCategories} from './lib/transformToCategories';
+import {transformToIngredients} from './lib/transformToIngredients';
 import { wpDataTypeFetch } from './lib/wpDataTypeFetch';
 
 const limit = pLimit(5);
@@ -51,7 +52,12 @@ export default defineMigration({
                 wpDoc = wpDoc as WP_REST_API_Term;
                 // Add a transformer function here if necessary
                 doc = await transformToCategories(wpDoc);
-              } else {
+              } else if (wpType === 'ingredient') {
+                wpDoc = wpDoc as WP_REST_API_Term;
+                // Add a transformer function here if necessary
+                doc = await transformToIngredients(wpDoc);
+              } 
+              else {
                 hasMore = false;
                 throw new Error(`Unhandled WordPress type: ${wpType}`);
               }

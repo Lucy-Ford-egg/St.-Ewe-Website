@@ -16,7 +16,7 @@ import recipes from './recipies'
 import page from './page'
 import teamMember from './teamMember'
 // Atoms
-import ingredients from './ingredients'
+import ingredient from './ingredients'
 import recipesCategory from './taxonomies/recipesCategory'
 import duration from './parts/duration'
 import serves from './parts/serves'
@@ -97,7 +97,7 @@ export const schema = {
     supportAssets,
     textColumns,
     // Atoms
-    ingredients,
+    ingredient,
     recipesCategory,
     cite,
     externalCite,
