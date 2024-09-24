@@ -17,12 +17,12 @@ import mask from '../../static/assets/svg-mask.svg'
 
 
 const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-  gridColumn: '1/25',
-  gridTemplateRows: '1fr 1fr',
   display: 'grid',
-  gridTemplateColumns: 'subgrid',
-  height: '100%',
+  gridTemplateColumns: 'repeat(24, 1fr)',
+  gridColumn: '1/25',
+  gridTemplateRows: '400px 1fr',
   position: 'relative',
+  maskImage: 'unset',
   [theme.breakpoints.up('lg')]: {
     height: '100%',
     gridTemplateRows: '1fr',
@@ -34,11 +34,10 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
 
 const BackgroundImage = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
   gridColumn: '1/25',
-  display: 'grid',
   gridRow: '1/1',
-  gridTemplateRows: 'subgrid',
   [theme.breakpoints.up('sm')]: {
     gridRow: '1/2',
+    maxHeight: 'unset',
   }
 }));
 
@@ -55,10 +54,9 @@ const Overlay = styled('div')(({ theme, borderDirection, backgroundColour, joini
 
 const Content = styled('div')(({ alignment, theme }) => ({
   gridRow: '2/2',
-  gridColumn: alignment === 'left' ? '2/24' : '2/24',
+  gridColumn: alignment === 'left' ? '3/22' : '3/22',
   textAlign: alignment === 'left' ? 'left' : 'center',
-  display: 'flex',
-  flexDirection: 'column',
+  display: 'grid',
   justifyContent: 'center',
   alignItems: alignment === 'left' ? 'start' : 'center',
   zIndex: 2,
@@ -119,7 +117,7 @@ export const HeaderSection = props => {
   const definedTextAlign =
     (previewData && _type === previewData?._type && previewData?.alignment) ||
     alignment
-    
+
   // Motion
 
   const [imageLoaded, setImageLoaded] = useState(false); // Track image load state
@@ -134,7 +132,7 @@ export const HeaderSection = props => {
    
     <ModuleContainer {...props} ref={containerRef}>
 
-      <Wrapper theme={theme} backgroundColour={definedBackgroundColour} image={definedImage} mask={mask} ref={ref}>
+      <Wrapper className="maskLayer" theme={theme} backgroundColour={definedBackgroundColour} image={definedImage} mask={mask} ref={ref}>
 
         {definedImage && (
           <BackgroundImage theme={theme}>
@@ -142,10 +140,10 @@ export const HeaderSection = props => {
               crop={definedImage?.crop}
               hotspot={definedImage?.hotspot}
               asset={
-                definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage?.asset
+                definedImage?._ref && urlFor(definedImage).url() || definedImage?.asset
               }
               width={mobile ? 400 : tablet ? 768 : 1440}
-              height={mobile ? 400 : tablet ? 600 : 600}
+              height={mobile ? 400 : tablet ? 600 : 700}
               style={{
                 objectFit: "cover",
                 width: "100%",

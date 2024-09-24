@@ -18,7 +18,7 @@ const BlogArchiveTemplate = props => {
   )
 
   const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
-  debugger
+  
   return (
     <>
       <Modules

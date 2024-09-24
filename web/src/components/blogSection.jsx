@@ -168,7 +168,7 @@ export const BlogSection = props => {
   useEffect(() => {
     setFilterData(definedAllSanityPost)
   }, [definedAllSanityPost, setFilterData])
-debugger
+
   return (
     <ModuleContainer {...props}>
 
