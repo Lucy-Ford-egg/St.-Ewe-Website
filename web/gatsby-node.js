@@ -299,17 +299,17 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     return ids.length === 0 ? [] : ids
   }
 
-  function  getShowArchiveRecipesIds(pageBuilder, type) {
+  function getShowArchiveRecipesIds(pageBuilder, type) {
     //!
     const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
-// console.log(`PageBuilder type: ${JSON.stringify(pageBuilder)}`)
+    // console.log(`PageBuilder type: ${JSON.stringify(pageBuilder)}`)
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
       // console.log(`Current Item: ${JSON.stringify(currentItem)}`)
       if (type === currentItem?._type) {
         // console.log(`Recipe acc : ${JSON.stringify(currentItem) }`)
         if (currentItem && currentItem.showRecipesArchive && currentItem.showRecipesArchive.archive) {
           const archiveItems = currentItem.showRecipesArchive.archive;
-          
+
           archiveItems.forEach(archiveItem => {
             if (archiveItem._id) {
               acc.push(archiveItem._id);
@@ -323,7 +323,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     // console.log(`Recipe ids : ${JSON.stringify(ids) }`)
     // console.log(`Recipe ids.length : ${ids.length }`)
 
-    return ids.length === 0 ? recipeCategories : ids    
+    return ids.length === 0 ? recipeCategories : ids
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
@@ -336,7 +336,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
-          recipeIds:  getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
+          recipeIds: getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
           navColor: node.navColor
         },
       })
@@ -351,7 +351,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
-          recipeIds:  getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
+          recipeIds: getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
           navColor: node.navColor
         },
       })
@@ -359,6 +359,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   })
 
   result.data.blogPage.nodes.forEach(node => {
+    if(node.slug.current){
     paginate({
       createPage,
       items: blogPosts,
@@ -370,90 +371,96 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug: `${node.slug.current}`,
         node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
+  }
   })
 
   // Paginate Categories
 
   // Function to filter posts by category
-function filterPostsByCategory(posts) {
-  const categories = {};
+  function filterPostsByCategory(posts) {
+    const categories = {};
 
-  posts.forEach(post => {
-    const categorySlug = post?.categories?.slug?.current;
+    posts.forEach(post => {
+      const categorySlug = post?.categories?.slug?.current;
 
-    if (!categories[categorySlug]) {
-      categories[categorySlug] = [];
-    }
+      if (!categories[categorySlug]) {
+        categories[categorySlug] = [];
+      }
 
-    categories[categorySlug].push(post);
+      categories[categorySlug].push(post);
+    });
+
+    return categories;
+  }
+
+  // Usage
+  const posts = result.data.allSanityPost.nodes;
+  const categorizedPosts = filterPostsByCategory(posts);
+
+  // console.log(`Categorized Posts: ${categorizedPosts}`)
+
+  Object.keys(categorizedPosts).forEach(categoryName => {
+    //console.log(`Category: ${categoryName}`);
+
+    categorizedPosts[categoryName].forEach(node => {
+      // console.log(`CatNode: ${JSON.stringify(node)}`);
+      if (node.categories?.slug?.current) {
+        createPage({
+          path: `news/category/${node.categories?.slug?.current}`,
+          component: require.resolve(`./src/templates/categoryTemplate.jsx`),
+          context: {
+            id: node.id,
+            key: node.categories?.slug?.current,
+            slug: `${node.categories?.slug?.current}`,
+            // title: node.title,
+            // coverImage: node.coverImage,
+            // date: node.date,
+            // category: node.category,
+            // excerpt: node.excerpt,
+            // postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+            // recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+          },
+        })
+
+        paginate({
+          createPage,
+          items: categorizedPosts[categoryName],
+          itemsPerPage: 12,
+          pathPrefix: `/news/category/${node?.categories?.slug?.current}`,
+          component: require.resolve(`./src/templates/categoryArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+          context: {
+            id: node.id,
+            slug: `${node.categories?.slug?.current}`,
+            node: node,
+            postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+            recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+          },
+        })
+      }
+
+    });
   });
-
-  return categories;
-}
-
-// Usage
-const posts = result.data.allSanityPost.nodes;
-const categorizedPosts = filterPostsByCategory(posts);
-
-// console.log(`Categorized Posts: ${categorizedPosts}`)
-
-Object.keys(categorizedPosts).forEach(categoryName => {
-  //console.log(`Category: ${categoryName}`);
-
-  categorizedPosts[categoryName].forEach(node => {
-    // console.log(`CatNode: ${JSON.stringify(node)}`);
-    createPage({
-      path: `news/category/${node.categories?.slug?.current}`,
-      component: require.resolve(`./src/templates/categoryTemplate.jsx`),
-      context: {
-        id: node.id,
-        key: node.categories?.slug?.current,
-        slug: `${node.categories?.slug?.current}`,
-        // title: node.title,
-        // coverImage: node.coverImage,
-        // date: node.date,
-        // category: node.category,
-        // excerpt: node.excerpt,
-        // postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        // recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
-      },
-    })
-    paginate({
-      createPage,
-      items: categorizedPosts[categoryName],
-      itemsPerPage: 12,
-      pathPrefix: `/news/category/${node?.categories?.slug?.current}`,
-      component: require.resolve(`./src/templates/categoryArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.categories?.slug?.current}`,
-        node: node,
-        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
-      },
-    })
-
-  });
-});
 
   result.data.blogPage.nodes.forEach(node => {
-    paginate({
-      createPage,
-      items: blogPosts,
-      itemsPerPage: 12,
-      pathPrefix: `/${node.slug.current}`,
-      component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.slug.current}`,
-        node: node,
-        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
-      },
-    })
+    if (node.slug.current) {
+      paginate({
+        createPage,
+        items: blogPosts,
+        itemsPerPage: 12,
+        pathPrefix: `/${node.slug.current}`,
+        component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+          postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+          recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+        },
+      })
+    }
   })
 
   // result.data.recipePage.nodes.forEach(node => {
@@ -487,7 +494,7 @@ Object.keys(categorizedPosts).forEach(categoryName => {
         categories: node.categories,
         navColor: node.navColor,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
     })
   })
