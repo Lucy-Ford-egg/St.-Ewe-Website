@@ -53,7 +53,8 @@ const BlogGrid = styled('div')(({ theme }) => ({
 }));
 
 const PageNavigation = styled('div')(({ theme }) => ({
-  display: "flex",
+  display: 'grid',
+  gridColumn: '2/24',
   justifyContent: "center",
   alignItems: "center",
   columnGap: 6,

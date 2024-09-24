@@ -80,7 +80,7 @@ const Overlay = styled(motion.div)(({ props }) => ({
 const ReadMore = styled(motion.div)(({ props }) => ({
   gridRow: '1/1',
   zIndex: 2,
-  display: 'flex',
+  display: 'grid',
   fontSize: 'var(--modular-scale-ms3)',
   paddingTop: 'var(--modular-scale-ms6)',
   justifyContent: 'center',

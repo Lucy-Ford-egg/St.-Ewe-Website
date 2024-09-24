@@ -15,18 +15,21 @@ const Wrapper = styled('div')(({ borderDirection, backgroundColour, joiningColou
     gridTemplateColumns: 'subgrid',
 }));
 
-const LeftAsset = styled('div')(({alignment}) => ({
+const LeftAsset = styled('div')(({alignment, theme}) => ({
+    display: 'none',
+    [theme.breakpoints.up('lg')]: {
     display: alignment === 'left' ? 'none' : 'grid',
     gridColumn: '2/6',
     alignItems: 'center',
     justifyContent: 'start',
+    }
     
 }));
 
 const Content = styled('div')(({ alignment}) => ({
     gridColumn: alignment === 'left' ? '2/17' : '7/17',
     textAlign: alignment === 'left' ? 'left' : 'center',
-    display: 'flex',
+    display: 'grid',
     flexDirection: 'column',
     justifyContent: alignment === 'left' ? 'start' : 'center',
 }));
@@ -72,7 +75,7 @@ export const TitleSection = props => {
         <ModuleContainer {...props}>
             <Wrapper>
                 {sm && (
-                <LeftAsset alignment={alignment}>
+                <LeftAsset alignment={alignment} theme={theme}>
                     {definedLeftImage && (
 
                         <Asset>
@@ -115,7 +118,7 @@ export const TitleSection = props => {
                     )}
                 </Content>
                 
-                <RightAsset alignment={alignment}>
+                <RightAsset alignment={alignment} theme={theme}>
                     
                          {definedLink &&
                             <ButtonFormat
