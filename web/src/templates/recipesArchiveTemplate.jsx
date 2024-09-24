@@ -15,7 +15,7 @@ const RecipeArchiveTemplate = props => {
   // Preview
   const { data: previewData } = useQuery(
     PAGE_QUERY,
-    { slug: data.sanityPage.slug.current },
+    { slug: data?.sanityPage?.slug?.current },
     { initial },
   )
 
@@ -26,10 +26,10 @@ const RecipeArchiveTemplate = props => {
       <Modules
           previewData={previewData?.pageBuilder}
           sanityConfig={getSanityClient}
-          allSanityRecipes={data.allSanityRecipes}
+          allSanityRecipes={data?.allSanityRecipes}
           pageContext={pageContext}
           modules={definedModules }
-          getAllPosts={data.getAllPosts}
+          getAllPosts={data?.getAllPosts}
         />
     </>
   )

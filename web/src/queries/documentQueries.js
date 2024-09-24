@@ -45,8 +45,6 @@ pageBuilder[] {
   excerpt[]{...},
   title,
   text,
-  navColor->,
-  overlay,
   topPadding,
   asCarousel,
   disableSummary,
@@ -115,8 +113,7 @@ export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
 }`
 
 export const NAV_QUERY = groq`*[slug.current == $slug][0] {
-  navColor{...},
-  navOverlay,
+
 }`
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
@@ -131,7 +128,7 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
     hotspot{...},
     crop{...}
   },
-  navColor{...},
+
   mobileImage {
     asset->,
     hotspot{...},
@@ -214,8 +211,6 @@ export const RECIPES_QUERY = groq`*[_type ==  "recipes && defined(coverImage)" &
     text[]{...},
     title,
     text,
-    navColor->,
-    backgroundColor{navColor->, ...},
     overlay,
     topPadding,
     leftAlign, 
@@ -268,7 +263,6 @@ export const RECIPES_QUERY = groq`*[_type ==  "recipes && defined(coverImage)" &
     hotspot{...},
     crop{...}
   },
-  navColor{navColor->, ...},
   mobileImage {
     asset->,
     hotspot{...},
@@ -314,8 +308,6 @@ export const CATEGORIES_QUERY = groq`*[_type ==  "recipes" && slug.current == $s
     text[]{...},
     title,
     text,
-    navColor->,
-    backgroundColor{navColor->, ...},
     overlay,
     topPadding,
     leftAlign, 
@@ -368,7 +360,7 @@ export const CATEGORIES_QUERY = groq`*[_type ==  "recipes" && slug.current == $s
     hotspot{...},
     crop{...}
   },
-  navColor{navColor->, ...},
+
   mobileImage {
     asset->,
     hotspot{...},
@@ -398,7 +390,7 @@ export const TEAM_MEMBER_PAGE_QUERY = groq`*[_type == "teamMember" && slug.curre
     hotspot{...},
     crop{...}
   },
-  navColor{navColor->, ...},
+
   mobileImage {
     asset->,
     hotspot{...},
@@ -455,9 +447,7 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
     asset->,
     hotspot{...},
     crop{...}
-  },
-  navColor{navColor->, ...},
-  
+  },  
   mobileImage {
     asset->,
     hotspot{...},

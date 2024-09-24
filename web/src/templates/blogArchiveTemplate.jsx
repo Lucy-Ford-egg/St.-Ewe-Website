@@ -88,12 +88,7 @@ export const blogArchiveTemplateQuery = graphql`
     sanityPage(slug: { current: { eq: $slug } }) {
       slug {
         current
-      }
-      navOverlay
-      navColor {
-        value
-        label
-      }
+      }      
       title
       pageBuilder {
         ...PageBuilderFragment

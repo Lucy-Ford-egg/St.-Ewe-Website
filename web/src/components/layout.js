@@ -21,19 +21,12 @@ export const Layout = (props) => {
   
   const definedSiteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
-  const navColor = data?.sanityPage?.navColor || data?.sanityPost?.navColor
-  const navOverlay = data?.sanityPage?.navOverlay || data?.sanityPost?.navOverlay 
-  
-  const definedNavColor = (previewData && previewData?.nav?.navColor) || navColor
-  const definedNavOverlay = (previewData && previewData?.nav?.navOverlay) || navOverlay 
-
-
 
     return (
     <div>
       <VisualEditing {...props}/>
      
-      <Header definedSiteSettings={definedSiteSettings} definedNavColor={definedNavColor} navOverlay={definedNavOverlay}/>
+      <Header definedSiteSettings={definedSiteSettings}/>
       <>{
          React.Children.map(children, child => {
           // Clone the child element and pass additional props

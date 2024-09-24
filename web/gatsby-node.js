@@ -54,9 +54,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug {
           current
         }
-        navColor{
-          value
-        }
         title
         pageBuilder{
           ... on SanityBlogSection {
@@ -93,9 +90,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug {
           current
         }
-        navColor{
-          value
-        }
         title
         pageBuilder{
           ... on SanityBlogSection {
@@ -131,9 +125,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         id
         slug {
           current
-        }
-        navColor{
-          value
         }
         title
         pageBuilder{
@@ -337,7 +328,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
           recipeIds: getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
-          navColor: node.navColor
         },
       })
     }
@@ -352,7 +342,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
           recipeIds: getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
-          navColor: node.navColor
         },
       })
     }
@@ -492,7 +481,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         featuredMedia: node.featuredMedia,
         date: node.date,
         categories: node.categories,
-        navColor: node.navColor,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
         recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },
@@ -501,7 +489,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
 
   recipes.forEach((node, index) => {
     createPage({
-      path: `Recipe/${node.slug.current}`,
+      path: `recipe/${node.slug.current}`,
       component: require.resolve(`./src/templates/recipesTemplate.jsx`),
       context: {
         id: node.id,
