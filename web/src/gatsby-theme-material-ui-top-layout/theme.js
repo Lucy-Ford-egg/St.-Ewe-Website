@@ -36,8 +36,8 @@ let defaultTheme = createTheme({
       mid: '#B8B6B9', // Mid Grey
     },
     background: {
-      default: '#F3F3F2', // Light Grey
-      main: '#F3F3F2', // Light Grey // OLD VALUE HERE ->'#002856',
+      default: '#ffffff', // White
+      main: '#ffffff', // White
     },
     white: {
       main: '#ffffff', // White
@@ -192,7 +192,7 @@ let clientTheme = createTheme({
           box-sizing: border-box;
         }
 ::-webkit-scrollbar {
-  width: ${defaultTheme.spacing(1)};
+  width: var(--modular-scale-ms-5);
 }
 
 /* Track */
@@ -202,12 +202,12 @@ let clientTheme = createTheme({
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: ${defaultTheme.palette.primary.main};
+  background: var( --rich-yolk-primary);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: ${defaultTheme.palette.primary.light};
+  background: var(--rich-yolk-secondary);
 }
         @keyframes backToTopAnimation {
           0%,

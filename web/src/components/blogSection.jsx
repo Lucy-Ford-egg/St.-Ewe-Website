@@ -27,7 +27,7 @@ const Wrapper = styled('div')(({ props, theme }) => ({
 
 const BlogFilter = styled('div')(({ props }) => ({
   display: 'grid',
-  gridColumn: '2/24',
+  gridColumn: '2/25',
 }));
 
 const BlogAllPostLink = styled('div')(({ props }) => ({
@@ -51,6 +51,22 @@ const BlogGrid = styled('div')(({ theme }) => ({
     paddingRight: 'var(--modular-scale-ms4)',
   }
 }));
+
+const PageNavigation = styled('div')(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  columnGap: 6,
+  paddingTop: 'var(--modular-scale-ms4)',
+  paddingBottom: 'var(--modular-scale-ms4)',
+  [theme.breakpoints.up('lg')]: {
+    gridColumn: '1/25',
+    paddingLeft: 'var(--modular-scale-ms4)',
+    paddingRight: 'var(--modular-scale-ms4)',
+  }
+}));
+
+
 
 export const BlogSection = props => {
   const {
@@ -152,7 +168,7 @@ export const BlogSection = props => {
   useEffect(() => {
     setFilterData(definedAllSanityPost)
   }, [definedAllSanityPost, setFilterData])
-
+debugger
   return (
     <ModuleContainer {...props}>
 
@@ -171,7 +187,7 @@ export const BlogSection = props => {
         </BlogFilter>
 
         <BlogGrid theme={theme}>
-          {!props.pageContext.humanPageNumber && filtersPosts &&
+          {filtersPosts &&
             filtersPosts.slice(0, 8).map((post, i) => {
               return (
                 <BlogTile post={post}  previewData={previewData}/>
@@ -187,19 +203,7 @@ export const BlogSection = props => {
         )}
 
         {props.pageContext.humanPageNumber && (
-          <Box
-            sx={{
-              pt: 12,
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                columnGap: 6,
-              }}
-            >
+          <PageNavigation theme={theme}>
               {/* previousPageLink and nextPageLink were added by the plugin */}
 
               <Button
@@ -243,7 +247,7 @@ export const BlogSection = props => {
                 >
                   <GatsbyLink sx={{
                     color: "inherit"
-                  }} to={`/blog/`}>{1}</GatsbyLink>
+                  }} to={`/news/`}>{1}</GatsbyLink>
                 </Typography>
                 {chunkIndex > 0 && '...'}
                 {pagination && pagination[chunkIndex] && pagination[chunkIndex].map(node => {
@@ -263,7 +267,7 @@ export const BlogSection = props => {
                     >
                       <GatsbyLink sx={{
                         color: "inherit"
-                      }} to={`/blog/${node === 1 ? "" : node}`}>{node}</GatsbyLink>
+                      }} to={`/news/${node === 1 ? "" : node}`}>{node}</GatsbyLink>
                     </Typography>
                   )
                 })}
@@ -282,7 +286,7 @@ export const BlogSection = props => {
                 >
                   <GatsbyLink sx={{
                     color: "inherit"
-                  }} to={`/blog/${props.pageContext?.numberOfPages}`}>{props.pageContext?.numberOfPages}</GatsbyLink>
+                  }} to={`/news/${props.pageContext?.numberOfPages}`}>{props.pageContext?.numberOfPages}</GatsbyLink>
                 </Typography>
               </Box>
 
@@ -310,8 +314,7 @@ export const BlogSection = props => {
               >
                 Next
               </Button>
-            </Box>
-          </Box>
+            </PageNavigation>
         )}
       </Wrapper>
     </ModuleContainer>

@@ -273,7 +273,7 @@ const MainNavigation = (props) => {
     <MenuList initial="hidden" animate="visible">
       {menu?.sanityNavigation?.items &&
         menu.sanityNavigation.items.map((menuItem, i) => {
-        debugger
+
         return(
           <React.Fragment key={i}>
             <RenderMenuItem menuItem={menuItem.link} i={i} >

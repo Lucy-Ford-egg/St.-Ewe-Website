@@ -46,6 +46,10 @@ const Content = styled('div')(({ props }) => ({
   backgroundColor: 'white',
   transition: `all 0.2s ease-in-out 0s`,
   padding: 'var(--modular-scale-ms2)',
+  '& .blogPostTitle':{
+    wordBreak: 'break-word',
+    color: 'var(--orignal-large)',
+  }
 }));
 
 const Category = styled('div')(({ props }) => ({
@@ -113,7 +117,7 @@ export const BlogTile = (props) => {
           textDecoration: "none",
           color: "inherit",
         }}
-        to={`/blog/${post?.categories[0]?.slug?.current}/${slug?.current}`}>
+        to={`/news/${post?.categories[0]?.slug?.current}/${slug?.current}`}>
         {activeTile && (<ReadMore
           initial={{
             opacity: 0,
@@ -138,10 +142,8 @@ export const BlogTile = (props) => {
           <Content>
             {title && (
               <Typography
+              className="blogPostTitle"
                 variant="h4"
-                sx={{
-                  wordBreak: "break-word",
-                }}
               >
                 {title}
               </Typography>
@@ -153,7 +155,7 @@ export const BlogTile = (props) => {
                 <Typography
                   variant="caption"
                   component="p"
-                  color={contrastColour(tileColor).textColour}
+                  //color={contrastColour(tileColor).textColour}
                 >
                   {formattedDate(date)}
                 </Typography>
@@ -164,7 +166,7 @@ export const BlogTile = (props) => {
               <Typography
                 variant="h6"
                 component="span"
-                color={contrastColour(tileColor).textColour}
+                //color={contrastColour(tileColor).textColour}
                 sx={{
 
                 }}

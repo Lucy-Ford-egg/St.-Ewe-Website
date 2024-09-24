@@ -130,7 +130,7 @@ export default defineType({
                     <LiaParagraphSolid style={{ color: 'white' }} />
                 </span>
             );
-            debugger;
+   
             return {
                 title: `${title[0]?.children[0]?.text}`,
                 subtitle: `Text Section`,

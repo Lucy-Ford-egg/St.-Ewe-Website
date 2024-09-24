@@ -55,7 +55,7 @@ export const Filter = ({ type, allData, setFilterData, pageContext }) => {
                 
                 variant="text"
                 key={node?.name}
-                to={`/blog/category/${node?.slug?.current}/`}
+                to={`/news/category/${node?.slug?.current}/`}
                 sx={{
                   flex: "0 0 auto",
                   color: pageContext?.slug === node?.slug?.current ? "primary.main" : "tertiary.main",

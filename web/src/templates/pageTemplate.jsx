@@ -24,7 +24,7 @@ const PageTemplate = props => {
   const pageData = previewData?.page
   const siteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
   const definedModules = (previewData && previewData?.page?.pageBuilder) || data?.sanityPage?.pageBuilder
-debugger
+
   return (
       <Modules
         sanityConfig={getSanityClient}

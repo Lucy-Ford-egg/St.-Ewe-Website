@@ -11,7 +11,7 @@ import { contrastColour } from "../utils/contrastColour"
 export const PostTile = ({ categories, title, tileImage, date, to }) => {
 
   return (
-    <Link to={`/blog/${to}`} style={{ textDecoration: 'none', display: "flex !important" }}>
+    <Link to={`/news/${to}`} style={{ textDecoration: 'none', display: "flex !important" }}>
       <Card elevation={0} sx={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', maxHeight: { xs: 'auto', md: 578 }, flexBasis: "100%", height: "100%" }} square>
       <Box  
         sx={{

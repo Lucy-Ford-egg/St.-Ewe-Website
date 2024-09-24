@@ -170,7 +170,7 @@ export const TeamSection = props => {
           >
             {definedTeamTiles &&
               definedTeamTiles?.map((member, i) => {
-                debugger
+     
                 return (
                  
                   <TeamTile

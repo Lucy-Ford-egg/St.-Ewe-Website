@@ -119,8 +119,7 @@ export const HeaderSection = props => {
   const definedTextAlign =
     (previewData && _type === previewData?._type && previewData?.alignment) ||
     alignment
-
-    debugger
+    
   // Motion
 
   const [imageLoaded, setImageLoaded] = useState(false); // Track image load state

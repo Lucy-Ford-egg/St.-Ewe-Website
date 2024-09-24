@@ -18,7 +18,7 @@ export const getUrl = ({previewUrl, displayed, context, validation}) => {
   }
   const routes = {
     page: checkHome(slug),
-    post: `${basePreviewUrl}/blog/${slug}`,
+    post: `${basePreviewUrl}/news/${slug}`,
     feature: `${basePreviewUrl}/features-gallery/${slug}`,
     place: `${basePreviewUrl}/places/${slug}`,
 
@@ -57,7 +57,7 @@ const assembleProjectUrl = ({ displayed, context, previewUrl, validation, isNewU
   }
   const routes = {
     page: checkHome(slug),
-    post: `${basePreviewUrl}/blog/${slug}`,
+    post: `${basePreviewUrl}/news/${slug}`,
     feature: `${basePreviewUrl}/features-gallery/${slug}`,
     place: `${basePreviewUrl}/places/${slug}`,
 
