@@ -155,13 +155,17 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
     }
-    allSanityRecipes(filter: {featuredMedia: {_type: {eq: "image"}}}) {
+    allSanityRecipes {
       nodes {
         _key
         _id
         title
         slug {
           current
+        }
+        duration {
+          hours
+          minutes
         }
         category {
           name
@@ -314,7 +318,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     // console.log(`Recipe ids : ${JSON.stringify(ids) }`)
     // console.log(`Recipe ids.length : ${ids.length }`)
 
-    return ids.length === 0 ? recipeCategories : ids
+    return ids.length === 0 ? [] : ids
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
@@ -456,7 +460,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     paginate({
       createPage,
       items: recipes,
-      itemsPerPage: 4,
+      itemsPerPage: 13,
       pathPrefix: `/${node.slug.current}`,
       component: require.resolve(`./src/templates/recipesArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
       context: {

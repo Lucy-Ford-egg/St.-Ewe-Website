@@ -32,6 +32,7 @@ const Content = styled('div')(({ alignment}) => ({
     display: 'grid',
     flexDirection: 'column',
     justifyContent: alignment === 'left' ? 'start' : 'center',
+    color: 'white',
 }));
 
 const RightAsset = styled('div')(({ alignment, theme }) => ({
@@ -63,13 +64,14 @@ export const TitleSection = props => {
         previewData,
         sideAssets,
         link,
+        isPost,
     } = props
 
     const definedText = (previewData && _type === previewData?._type && previewData?.title) || _rawTitle
     const definedLeftImage = (previewData && _type === previewData?._type && previewData?.sideAssets?.leftAsset) || sideAssets?.leftAsset
     const definedRightImage = (previewData && _type === previewData?._type && previewData?.sideAssets?.rightAsset) || sideAssets?.rightAsset
     const definedLink = ( _type === previewData?._type && previewData && previewData?.link) || link
-    const definedIsPost = true
+    const definedIsPost = isPost
 
     return (
         <ModuleContainer {...props}>
@@ -167,6 +169,7 @@ export const query = graphql`
     _type
     _rawTitle(resolveReferences: { maxDepth: 10 })
     alignment
+    isPost
     link {
         ...LinkFragment
     }

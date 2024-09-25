@@ -12,7 +12,7 @@ const Wrapper = styled('div')(({ verticalSpace, backgroundColour }) => ({
     paddingTop: `${brandSpacing[verticalSpace?.topPadding]?.value}px`,
     paddingBottom: `${brandSpacing[verticalSpace?.bottomPadding]?.value}px`,
     maxHeight: 'max-content',
-    color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
+    //color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
 }));
 
 

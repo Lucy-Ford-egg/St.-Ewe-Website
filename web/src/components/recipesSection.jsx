@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { graphql } from "gatsby"
-import {Container, Grid, styled} from "@mui/material/"
+import { Container, Grid, styled } from "@mui/material/"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTheme } from "@mui/material"
 import { RecipeTile } from "./recipeTile"
@@ -14,15 +14,68 @@ import {
   ALL_RECIPES,
 } from "../queries/documentQueries"
 
-const Wrapper = styled('div')(({ backgroundColour, paddingTop, paddingBottom}) => (
-  { backgroundColor: backgroundColour?.value,
-    paddingTop: paddingTop,
-    paddingBottom: paddingBottom,
-    overflowX: 'hidden',
-  }
+const Wrapper = styled('div')(({ backgroundColour, paddingTop, paddingBottom }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(24, 1fr)',
+  gridColumn: '1/25',
+  backgroundColor: backgroundColour?.value,
+  paddingTop: paddingTop,
+  paddingBottom: paddingBottom,
+  overflowX: 'hidden',
+}
 ));
 
-export const RecipeSection = ({
+const GridContainer = styled('div')(({ theme }) => ({
+  display: 'grid',
+  gridColumn: '3/23',
+  gridTemplateRows: '1fr 1fr',
+  gridGap: 21,
+  gridTemplateColumns: 'subgrid',
+  "& .gridItem":{
+    gridColumn: '1/25',
+    [theme.breakpoints.up('lg')]: {
+      "&:first-of-type": {
+        gridArea: '1 / 11 / 2 / 16' ,
+        height: '100%',
+      },
+      "&:nth-child(2)": {
+        gridArea: '1 / 16 / 2 / 25',
+        height: '100%', 
+      },
+      "&:nth-child(3)": {
+        gridArea: '2 / 11 / 3 / 16',
+        height: '100%', 
+      },
+      "&:nth-child(4)": {
+        gridArea: '2 / 16 / 3 / 25' ,
+        height: '100%',
+      }
+    },
+    [theme.breakpoints.up('lg')]: {
+      gridColumn: 'span 5',
+    },
+  },
+  "& .featuredItem":{
+    gridArea: '1 / 1 /  1 / 25',
+    height: '100%',
+    [theme.breakpoints.up('lg')]: {
+      gridArea: '1 / 1 / 3 / 11',
+    }
+  }
+}
+));
+
+const FeaturedItem = styled('div')(({ backgroundColour, paddingTop, paddingBottom }) => ({
+  display: 'grid',
+}
+));
+
+const GridItem = styled('div')(({ backgroundColour, paddingTop, paddingBottom }) => ({
+  display: 'grid',
+}
+));
+
+export const RecipesSection = ({
   allSanityRecipes,
   topPadding,
   previewData,
@@ -58,11 +111,12 @@ export const RecipeSection = ({
     topPadding
 
   const definedallSanityRecipes =
-    (recipeData && recipeData?.length > 0 && recipeData) ||
-    (previewData?.showRecipesArchive?.setArchive === true &&
-      allRecipe &&
-      allRecipe) ||
+    // (recipeData && recipeData?.length > 0 && recipeData) ||
+    // (previewData?.showRecipesArchive?.setArchive === true &&
+    //   allRecipe &&
+    //   allRecipe) ||
     allSanityRecipes?.nodes
+
 
   useEffect(() => {
     setFilterData(definedallSanityRecipes)
@@ -70,7 +124,7 @@ export const RecipeSection = ({
 
 
   const isInViewRef = useRef(null)
-  const isInView = useInView(isInViewRef, { once: true});
+  const isInView = useInView(isInViewRef, { once: true });
 
   console.log(`Is In View - ${isInView}`)
   const variants = {
@@ -96,58 +150,38 @@ export const RecipeSection = ({
     hidden: { opacity: 0, y: 5, },
   }
 
-  const GridComponent = React.forwardRef((props, ref,) => (
-    <Grid ref={ref} {...props} container spacing={6} >{props.children}</Grid>
-  ))
-  const MotionGridContainer = motion(GridComponent)
-
-  const GridItem = React.forwardRef((props, ref,) => (
-    <Grid ref={ref} {...props} item>{props.children}</Grid>
-  ))
-  const MotionGridItem = motion(GridItem)
-
   return (
     <Wrapper ref={isInViewRef} backgroundColour={backgroundColour} paddingTop={theme.spacing(paddingTop)} paddingBottom={theme.spacing(paddingBottom)}>
-      <Container
-        className="component-postsGrid"
-        sx={{
-          pb: {
-            xs: theme.spacing(16),
-            md: theme.spacing(16),
-          },
-          pt: definedTopPadding
-            ? {
-              xs: theme.spacing(16),
-              md: theme.spacing(0),
+
+      {/* <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/> */}
+
+      {filtersPosts && (<GridContainer
+      theme={theme}
+        animate={isInView && "visible"}
+        initial="hidden"
+        variants={variants}>
+
+        {definedallSanityRecipes &&
+          definedallSanityRecipes.map((tile, i) => {
+            if (i === 0) {
+              return <FeaturedItem className="featuredItem" variants={item} key={`${tile.title}-${i}`}>
+                <RecipeTile variant="h3" {...tile} i={i} showMeta={true} />
+              </FeaturedItem>
             }
-            : { xs: theme.spacing(16), md: theme.spacing(16) },
-        }}
-        maxWidth="xl"
-      >
-        {/* <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/> */}
+            else {
+              return (
+                <GridItem className="gridItem" variants={item} key={`${tile.title}-${i}`}>
+                  <RecipeTile variant="h4" {...tile} i={i}  showMeta={false} />
+                </GridItem>
 
-        {filtersPosts && ( <MotionGridContainer
-            animate={isInView && "visible"}
-            initial="hidden"
-            variants={variants}>
-            {definedallSanityRecipes &&
-              definedallSanityRecipes.map((tile, i) => {
-                return (
+              )
+            }
+          })}
+      </GridContainer>
 
-                  <MotionGridItem variants={item} key={`${tile.title}-${i}`} xs={12} sm={6} md={i === 0 ? 6 : 3}>
+      )}
 
-                    <RecipeTile {...tile} i={i} />
-
-                  </MotionGridItem>
-
-                )
-              })}
-          </MotionGridContainer>
-          
-        )}
-
-        {/* <Pagination pageContext={pageContext}/> */}
-      </Container>
+      {/* <Pagination pageContext={pageContext}/> */}
 
     </Wrapper>
   )

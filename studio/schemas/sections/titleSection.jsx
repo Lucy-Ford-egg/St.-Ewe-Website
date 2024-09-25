@@ -42,6 +42,12 @@ export default defineType({
             description: "You can highlight the text and use the formatting to change the title size and colour.",
         }),
         defineField({
+            title: 'Insert Post Date',
+            name: 'isPost',
+            type: 'boolean',
+            description: 'Check this if you wish for the date of the post to be pulled in as a subtitle to the title on a post single page.'
+        }),
+        defineField({
             title: 'Background Colour',
             name: 'backgroundColour',
             type: 'simplerColor',

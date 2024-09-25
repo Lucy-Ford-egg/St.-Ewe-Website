@@ -54,6 +54,7 @@ const Content = styled('div')(({ mirror, theme }) => ({
   gridTemplateRows: 'subgrid',
   // paddingTop: brandSpacing['MS6']?.value,
   // paddingBottom: brandSpacing['MS6']?.value,
+  color: 'white',
   "& .header-title": {
     textTransform: 'uppercase',
   },

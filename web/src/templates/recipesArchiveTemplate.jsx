@@ -20,7 +20,7 @@ const RecipeArchiveTemplate = props => {
   )
 
   const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
-
+debugger
   return (
     <>
       <Modules
@@ -40,15 +40,9 @@ export const Head = ({ data, location }) => {
 }
 
 export const RecipeArchiveTemplateQuery = graphql`
-query RecipeArchiveTemplateQuery( $recipeIds:[String!], $slug: String!, $skip: Int, $limit: Int) {
+query RecipeArchiveTemplateQuery( $slug: String!, $skip: Int, $limit: Int) {
   allSanityRecipes(
-    filter: {
-      category: {
-        _id: {
-          in: $recipeIds
-        }
-      }
-    }
+    sort: {date: DESC}
     skip: $skip 
     limit: $limit 
   ) {
@@ -60,6 +54,10 @@ query RecipeArchiveTemplateQuery( $recipeIds:[String!], $slug: String!, $skip: I
       date(formatString: "Do MMMM YYYY")
       category {
         name
+      }
+      duration {
+        hours
+        minutes
       }
       featuredMedia {
         asset {

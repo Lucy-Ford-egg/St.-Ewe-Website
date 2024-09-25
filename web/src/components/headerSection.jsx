@@ -6,6 +6,8 @@ import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"
 import { brandSpacing } from "../gatsby-theme-material-ui-top-layout/brandPalette"
+import {contrastBrandPalette} from '../utils/colours'
+
 import {
   motion,
   useScroll,
@@ -27,7 +29,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
     height: '100%',
     gridTemplateRows: '1fr',
     maskRepeat: 'no-repeat',
-    maskSize: '100%',
+    maskSize: 'cover',
     maskImage: `url(${mask})`,
   }
 }));
@@ -58,23 +60,32 @@ const Content = styled('div')(({ alignment, theme }) => ({
   textAlign: alignment === 'left' ? 'left' : 'center',
   display: 'grid',
   justifyContent: 'center',
-  alignItems: alignment === 'left' ? 'start' : 'center',
+  alignItems: alignment === 'left' ? 'center' : 'center',
   zIndex: 2,
-  paddingTop: brandSpacing['MS6']?.value,
-  paddingBottom: brandSpacing['MS6']?.value,
+  paddingTop:  'var(--modular-scale-ms6)',
+  paddingBottom:  'var(--modular-scale-ms6)',
   "& .header-title": {
     textTransform: 'uppercase',
   },
   [theme.breakpoints.up('sm')]: {
     gridRow: '1/2',
-    gridColumn: alignment === 'left' ? '2/16' : '7/18',
+    gridColumn: alignment === 'left' ? '2/16' : '7/19',
   },
   [theme.breakpoints.up('lg')]: {
     gridRow: '1/2',
-    gridColumn: alignment === 'left' ? '2/13' : '7/18',
+    gridColumn: alignment === 'left' ? '2/13' : '7/19',
   }
 
 }));
+
+const Title = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
+  [theme.breakpoints.up('lg')]: {
+    color: 'white',
+  }
+}));
+
+
 
 export const HeaderSection = props => {
   const theme = useTheme()
@@ -95,9 +106,6 @@ export const HeaderSection = props => {
     _type,
   } = props
 
-  const definedTitle =
-    (previewData && _type === previewData?._type && previewData?.title) ||
-    title
   const definedText =
     (previewData && _type === previewData?._type && previewData?.text) ||
     _rawText
@@ -156,7 +164,7 @@ export const HeaderSection = props => {
           </BackgroundImage>
         )}
 
-        {imageLoaded && definedTitle && (
+        {imageLoaded && definedText && (
           <Content alignment={alignment} theme={theme}>
             <motion.div
               initial={{ opacity: 0, y: 10, }}
@@ -172,9 +180,9 @@ export const HeaderSection = props => {
                   rowGap: `${brandSpacing['MS1']?.value}px`,
                 }}
               >
-                <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography>
+                {/* <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography> */}
                 {definedText && (
-
+                  <Title>
                   <RenderPortableText
                     previewData={previewData}
                     sanityConfig={sanityConfig}
@@ -182,6 +190,7 @@ export const HeaderSection = props => {
                     textAlign={definedTextAlign}
                     value={definedText}
                   />
+                  </Title>
 
                 )}
 

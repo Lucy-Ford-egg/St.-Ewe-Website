@@ -19,7 +19,8 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'text',
-      description: 'Add a title'
+      description: 'Add a title',
+      readOnly: true,
     }),
     defineField({
       name: 'alignment',
@@ -31,25 +32,37 @@ export default defineType({
       name: 'text',
       title: 'Text',
       type: 'array',
-      of: [
-        {
-          type: 'block',
-          styles: [
-            { title: 'Lead', value: 'body2' },
+      of: [{
+        type: 'block',
+        lists: [
+          { title: 'Bullet', value: 'bullet' },
+          { title: 'Numbered', value: 'number' }
+        ], // yes please, both bullet and numbered
+        styles: [
+          { title: 'Heading 1', value: 'h1' },
+          { title: 'Heading 2', value: 'h2' },
+          { title: 'Heading 3', value: 'h3' },
+          { title: 'Heading 4', value: 'h4' },
+          { title: 'Heading 5', value: 'h5' },
+          { title: 'Lead', value: 'body2' },
+          { title: 'Quote', value: 'blockquote' }
+        ],
+        marks: {
+          decorators: [
+            { title: 'Strong', value: 'strong' },
+            { title: 'Emphasis', value: 'em' },
+            { title: 'Underline', value: 'underline' },
           ],
-          lists: [],
-          marks: {
-            annotations: [
-              {
-                type: 'textColor',
-              }
-            ],
-            decorators: [
-              { title: 'Strong', value: 'strong' },
-            ],
-          }
+          annotations: [
+            {
+              type: 'textColor',
+            }
+          ],
         }
-      ],
+      }, {
+        type: 'image',
+        // validation: (rule) => rule.required(),
+      }],
       description: 'Add some textual content. Optional'
     }),
 
