@@ -131,7 +131,7 @@ export const deskStructure = (S, context) => {
                 (id) => S.document().schemaType('author').documentId(id),
                 //.views(Views(S, context)),
               )
-              .defaultOrdering([{field: 'title', direction: 'asc'}]),
+              .defaultOrdering([{field: 'name', direction: 'asc'}]),
           ),
         S.divider(),
         S.listItem()
