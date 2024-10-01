@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography"
 // import { TeamSection } from './teamSection';
 // import { RecipesSection } from './recipesSection';
 // import { NewsletterSection } from './newsletterSection';
-
+const HeroHeaderSection = React.lazy(() => import('./heroHeaderSection').then(module => ({ default: module.HeroHeaderSection })));
 const FeatureSection = React.lazy(() => import('./featureSection').then(module => ({ default: module.FeatureSection })));
 const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
 const TitleSection = React.lazy(() => import("./titleSection").then(module => ({ default: module.TitleSection })));
@@ -89,7 +89,16 @@ const Modules = (props) => {
                                 getAllPosts={getAllPosts}
                                 {...module} />
                         }
-
+                        if (isModule(module, 'heroHeaderSection')) {
+                            return (
+                                <HeroHeaderSection 
+                                    previewData={previewData && previewData[i]}
+                                    sanityConfig={sanityConfig}
+                                    pageContext={pageContext}
+                                    key={module._key + i}
+                                    {...module} />
+                            )
+                        }
                         if (isModule(module, 'headerSection')) {
                             return (
                                 <HeaderSection

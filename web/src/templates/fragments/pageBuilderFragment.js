@@ -1,9 +1,12 @@
 import { graphql } from "gatsby"
 
 export const pageBuilderQuery = graphql`
-  fragment PageBuilderFragment on SanityBlogSectionOrBorderSectionOrClientLoginSectionOrContactSectionOrCtaSectionOrEmbedSectionOrFeatureSectionOrFeaturesListSectionOrHeaderSectionOrHotspotSectionOrImageCarouselSectionOrLocationSectionOrNewsletterSectionOrRecipesSectionOrStepsSectionOrTeamSectionOrTestimonialSectionOrTextSectionOrTimelineSectionOrTitleSectionOrVideoSection {
+  fragment PageBuilderFragment on SanityBlogSectionOrBorderSectionOrClientLoginSectionOrContactSectionOrCtaSectionOrEmbedSectionOrFeatureSectionOrFeaturesListSectionOrHeaderSectionOrHeroHeaderSectionOrHotspotSectionOrImageCarouselSectionOrLocationSectionOrNewsletterSectionOrRecipesSectionOrStepsSectionOrTeamSectionOrTestimonialSectionOrTextSectionOrTimelineSectionOrTitleSectionOrVideoSection {
     ... on SanityHeaderSection {
       ...HeaderSectionFragment
+    }
+    ... on SanityHeroHeaderSection{
+      ...HeroHeaderSectionFragment
     }
     ... on SanityBorderSection{
       ...BorderSectionFragment

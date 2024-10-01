@@ -1,5 +1,6 @@
 
 // Sections 
+import heroHeaderSection from '../sections/heroHeaderSection'
 import featureSection from '../sections/featureSection'
 import embedSection from '../sections/embedSection'
 import titleSection from '../sections/titleSection'
@@ -24,6 +25,7 @@ import clientLoginSection from '../sections/clientLoginSection'
 
 
 export const pageBuilder = [
+    {type: heroHeaderSection.name },
     { type: embedSection.name},
     { type: titleSection.name },
     { type: textSection.name },

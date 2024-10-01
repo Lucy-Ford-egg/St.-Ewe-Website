@@ -326,9 +326,6 @@ export const query = graphql`
   fragment BlogSectionFragment on SanityBlogSection {
     _key
     _type
-    _rawTitle(resolveReferences: { maxDepth: 10 })
-    _rawRightText(resolveReferences: { maxDepth: 10 })
-    subtitle
     showArchive {
       setArchive
       archive {

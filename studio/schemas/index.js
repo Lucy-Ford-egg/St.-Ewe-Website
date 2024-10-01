@@ -36,6 +36,7 @@ import accordionTile from './components/accordionTile'
 import imageOptions from './imageOptions'
 
 //Sections
+import heroHeaderSection from './sections/heroHeaderSection'
 import blogSection from './sections/blogSection'
 import featureSection from './sections/featureSection'
 import embedSection from './sections/embedSection'
@@ -116,6 +117,7 @@ export const schema = {
     quote,
     teamMember,
     // Sections
+    heroHeaderSection,
     featureSection,
     embedSection,
     titleSection,
@@ -209,7 +211,8 @@ export const brandColors = {
     { label: 'Dabbling Duck Primary', value: '#27224e' },
     { label: 'Dabbling Duck Secondary', value: '#625e9c' },
     { label: 'Quirky Quail Primary', value: '#3b2516' },
-    { label: 'Quirky Quail Secondary', value: '#fcedde' }
+    { label: 'Quirky Quail Secondary', value: '#fcedde' },
+    { label: 'Transparent', value: 'transparent' }
   ]
 }
 
