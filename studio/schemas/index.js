@@ -1,10 +1,11 @@
 import navigation from './navigation'
 import navItem from './navItem'
-import linkDefined from './linkDefined'
+import linkDefined from './parts/linkDefined'
 import subItem from './subItem'
-import link from './link'
+import link from './parts/link'
 import categories from './taxonomies/categories'
-import siteSettings, { companyDetail, companyDetails, newsletter, footerDetails } from './siteSettings'
+import siteSettings, { companyDetail, companyDetails, newsletter } from './siteSettings'
+import footerContent, { footerMenu, accreditations, accreditation } from './footerContent'
 import designSystemColor from './designSystemColor'
 // import faqs from '../schemas/faqs'
 import showArchive from './showArchive'
@@ -73,18 +74,21 @@ import servicesTile from './modules/servicesTile'
 import benifitsSection from "./modules/benifitsSection"
 import headerSectionAccommodationSearch from './modules/headerSectionAccommodationSearch'
 
-
-
-
 export const schema = {
   types: [
     // Settings
+    footerContent,
+    footerMenu,
+    accreditations,
+    accreditation,
+    
+
     siteSettings,
     companyDetail,
     companyDetails,
     newsletter,
     designSystemColor,
-    footerDetails,
+
     imageOptions,
     // Parts
     duration,

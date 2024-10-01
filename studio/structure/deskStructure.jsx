@@ -32,6 +32,14 @@ export const deskStructure = (S, context) => {
               )
               .defaultOrdering([{field: 'title', direction: 'asc'}]),
           ),
+          S.listItem()
+          .title('Footer Content')
+          .schemaType('footerContent')
+          .icon(LiaBarsSolid)
+          .child(documentId =>
+            S.document().title('Footer Content').documentId(documentId).schemaType("footerContent"), 
+            ...S.documentTypeListItems().filter(listItem => !['footerContent'].includes(listItem.getId()))
+          ),
         S.divider(),
         S.listItem()
           .title('Hotspots')

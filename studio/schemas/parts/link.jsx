@@ -10,7 +10,10 @@ export default defineType({
       name: 'external',
       type: 'url',
       title: 'URL',
-      hidden: ({ parent, value }) => !value && parent?.internal
+      hidden: ({ parent, value }) => !value && parent?.internal,
+      validation: Rule => Rule.uri({
+        scheme: ['http', 'https', 'mailto', 'tel']
+      })
     },
     {
       name: 'internal',

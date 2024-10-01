@@ -216,10 +216,6 @@ export default defineType({
       name: 'companyDetails',
       title: 'Company Details',
     },
-    {
-      name: 'footerDetails',
-      title: 'Footer Details',
-    },
   ],
   icon: LiaBarsSolid,
   fields: [
@@ -240,12 +236,6 @@ export default defineType({
       type: 'companyDetails',
       title: 'Company Details',
       group: 'companyDetails',
-    }),
-    defineField({
-      name: 'footerDetails',
-      type: 'footerDetails',
-      title: 'Footer Details',
-      group: 'footerDetails',
     }),
   ],
 })

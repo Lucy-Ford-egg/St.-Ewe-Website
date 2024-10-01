@@ -131,7 +131,7 @@ let clientTheme = createTheme({
       letterSpacing: '0em',
     },
     h5: {
-      fontSize: clientSpacing[5],
+      fontSize: clientSpacing[6],
       fontFamily: 'Colby Narrow',
     },
     h6: {
@@ -178,6 +178,8 @@ let clientTheme = createTheme({
     --super-eggs-secondary-accent: rgb(233, 85, 29);
     --super-eggs-secondary-dark: rgb(4, 91, 84);
     --white: rgb(255, 255, 255);
+    --font-primary: 'Colby Narrow';
+    --font-secondary: 'Roboto Slab';
 }
 
         // *{

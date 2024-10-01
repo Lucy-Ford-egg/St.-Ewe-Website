@@ -20,5 +20,11 @@ export default defineType({
       type: 'link',
       title: 'Link',
     }),
+    defineField({
+      name: 'inline',
+      type: 'boolean',
+      title: 'Inline',
+      description: 'Setting this makes the link display inline. Social menu is an example of this.'
+    })
   ],
 });

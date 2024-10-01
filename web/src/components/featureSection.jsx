@@ -76,7 +76,7 @@ const Asset = styled(motion.div)(({ mirror, theme }) => ({
   position: 'relative',
   zIndex: 1,
   alignItems: 'start',
-  
+
   "& img": {
     transform: 'translateX(-10px) translateY(100px) ',
     maxWidth: 110,
@@ -88,7 +88,7 @@ const Asset = styled(motion.div)(({ mirror, theme }) => ({
     }
 
   },
-  
+
   [theme.breakpoints.up('sm')]: {
     gridColumn: '21/24',
     gridRow: '1/1',
@@ -152,7 +152,7 @@ export const FeatureSection = props => {
   const { scrollYProgress } = useScroll({ target: ref, container: containerRef, offset: ["start start", "center end"] });
 
   const content = useTransform(scrollYProgress, [1, 0], [0, -50]);
-  
+
 
   const imageY = useTransform(scrollYProgress, [1, 0], [50, -50]);
   const assetY = useTransform(scrollYProgress, [1, 0], [0, -200]);
@@ -164,12 +164,12 @@ export const FeatureSection = props => {
       <Wrapper theme={theme} backgroundColour={definedBackgroundColour} image={definedImage}>
 
         {definedImage && (
-           
+
           <FeatureImage theme={theme} mirror={definedMirror} style={{
-             y: imageY,
-             
-           }}>
-           
+            y: imageY,
+
+          }}>
+
             <Image
               crop={definedImage?.crop}
               hotspot={definedImage?.hotspot}
@@ -189,26 +189,26 @@ export const FeatureSection = props => {
 
           </FeatureImage>
         )}
+        {definedAsset && (
+          <Asset theme={theme} mirror={definedMirror} style={{
+            y: assetY,
 
-        <Asset theme={theme} mirror={definedMirror} style={{
-             y: assetY,
-             
-           }}>
+          }}>
             <div ref={ref}>
-          <Image
-            // pass asset, hotspot, and crop fields
-            crop={definedAsset.crop}
-            hotspot={definedAsset?.hotspot}
-            asset={
-              (definedAsset?._ref && urlFor(definedAsset).width(440).url()) ||
-              definedAsset.asset
-            }
-            width={440}
-            height={440}
-          />
-          </div>
-        </Asset>
-
+              <Image
+                // pass asset, hotspot, and crop fields
+                crop={definedAsset?.crop}
+                hotspot={definedAsset?.hotspot}
+                asset={
+                  (definedAsset?._ref && urlFor(definedAsset).width(440).url()) ||
+                  definedAsset?.asset
+                }
+                width={440}
+                height={440}
+              />
+            </div>
+          </Asset>
+        )}
         {imageLoaded && (
           <Content mirror={definedMirror} theme={theme}>
             <motion.div
