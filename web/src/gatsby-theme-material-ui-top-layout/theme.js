@@ -148,21 +148,21 @@ let clientTheme = createTheme({
     --dabbling-duck-primary: rgb(39, 34, 78);
     --dabbling-duck-secondary: rgb(98, 94, 156);
     --grand-primary: rgb(132, 136, 134);
-    --modular-scale-ms-1: 0.625rem;
-    --modular-scale-ms-2: 0.875rem;
-    --modular-scale-ms-3: 0.5625rem;
-    --modular-scale-ms-4: 0.375rem;
-    --modular-scale-ms-5: 0.3125rem;
-    --modular-scale-ms0: 1rem;
-    --modular-scale-ms1: 1.4375rem;
-    --modular-scale-ms2: 1.625rem;
-    --modular-scale-ms3: 2.3125rem;
-    --modular-scale-ms4: 2.625rem;
-    --modular-scale-ms5: 3.6875rem;
-    --modular-scale-ms6: 4.25rem;
-    --modular-scale-ms7: 6rem;
-    --modular-scale-ms8: 6.875rem;
-    --modular-scale-ms9: 9.6875rem;
+    --ms-1: 0.625rem;
+    --ms-2: 0.875rem;
+    --ms-3: 0.5625rem;
+    --ms-4: 0.375rem;
+    --ms-5: 0.3125rem;
+    --ms0: 1rem;
+    --ms1: 1.4375rem;
+    --ms2: 1.625rem;
+    --ms3: 2.3125rem;
+    --ms4: 2.625rem;
+    --ms5: 3.6875rem;
+    --ms6: 4.25rem;
+    --ms7: 6rem;
+    --ms8: 6.875rem;
+    --ms9: 9.6875rem;
     --original-medium: rgb(153, 203, 235);
     --original-primary: rgb(38, 97, 171);
     --orignal-large: rgb(27, 46, 81);
@@ -192,7 +192,7 @@ let clientTheme = createTheme({
           box-sizing: border-box;
         }
 ::-webkit-scrollbar {
-  width: var(--modular-scale-ms-5);
+  width: var(--ms-5);
 }
 
 /* Track */

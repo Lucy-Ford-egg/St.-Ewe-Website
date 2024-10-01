@@ -56,7 +56,7 @@ const Meta = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     "& svg": {
       width: 24,
-      marginRight:  'var(--modular-scale-ms-1)',
+      marginRight:  'var(--ms-1)',
     }
 
   }

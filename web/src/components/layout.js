@@ -44,7 +44,7 @@ export const Layout = (props) => {
 
         })}
         </>
-      {/* <Footer definedSiteSettings={definedSiteSettings} previewData={previewData}/> */}
+      <Footer definedSiteSettings={definedSiteSettings} previewData={previewData}/>
     </div>
   )
 }

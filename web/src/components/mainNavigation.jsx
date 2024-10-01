@@ -36,7 +36,7 @@ const MenuList = styled(motion.ul)(({ theme }) => ({
   },
   "& a, button": {
     fontFamily: "Roboto Slab",
-    fontSize: "var(--modular-scale-ms2) !important",
+    fontSize: "var(--ms2) !important",
     color: "white",
     display: "grid",
     gridColumn: "1/4",
@@ -45,7 +45,7 @@ const MenuList = styled(motion.ul)(({ theme }) => ({
     backgroundImage: `linear-gradient(transparent calc(100% - 1px),${theme.palette.primary.main} 1px)`,
     backgroundRepeat: "no-repeat",
     cursor: "pointer",
-    padding: "var(--modular-scale-ms-1) 0",
+    padding: "var(--ms-1) 0",
     "&:hover": {
       backgroundSize: "100% 100%",
     },
@@ -58,7 +58,7 @@ const SubMenuList = styled(motion.ul)(({ theme }) => ({
   display: "grid",
   visibility: "hidden",
   opacity: 0,
-  paddingTop: "var(--modular-scale-ms-4)",
+  paddingTop: "var(--ms-4)",
   gridAutoRows: "auto",
   height: 0,
   transition: "all 0.2s ease-in-out",
@@ -70,7 +70,7 @@ const SubMenuList = styled(motion.ul)(({ theme }) => ({
   "& li": {
     "& a, button": {
       fontFamily: "Roboto",
-      fontSize: "var(--modular-scale-ms0) !important",
+      fontSize: "var(--ms0) !important",
       "&:hover": {
         color: theme.palette.primary.main,
       },
@@ -97,7 +97,7 @@ const MenuImage = styled('div')(({ theme, navOpen }) => ({
   zIndex: 3,
   transform: 'translateY(-50%)',
   transition: 'all 0.2s ease-in-out 0s',
-  borderRadius: 'var(--modular-scale-ms4)',
+  borderRadius: 'var(--ms4)',
   overflow: 'hidden',
   opacity: 0,
   "&.active": {

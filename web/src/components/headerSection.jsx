@@ -62,8 +62,8 @@ const Content = styled('div')(({ alignment, theme }) => ({
   justifyContent: 'center',
   alignItems: alignment === 'left' ? 'center' : 'center',
   zIndex: 2,
-  paddingTop:  'var(--modular-scale-ms6)',
-  paddingBottom:  'var(--modular-scale-ms6)',
+  paddingTop:  'var(--ms6)',
+  paddingBottom:  'var(--ms6)',
   "& .header-title": {
     textTransform: 'uppercase',
   },

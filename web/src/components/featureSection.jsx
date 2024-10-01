@@ -21,7 +21,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
   gridTemplateColumns: 'subgrid',
   overflow: 'hidden',
   [theme.breakpoints.up('sm')]: {
-    gridRowGap: 'var(--modular-scale-ms4)',
+    gridRowGap: 'var(--ms4)',
   },
   [theme.breakpoints.up('lg')]: {
     gridRowGap: 'unset',
@@ -43,7 +43,7 @@ const FeatureImage = styled(motion.div)(({ theme, borderDirection, backgroundCol
     gridColumn: mirror ? '2/12' : '12/24',
   },
   "& img": {
-    borderRadius: 'var(--modular-scale-ms4)',
+    borderRadius: 'var(--ms4)',
   }
 }));
 

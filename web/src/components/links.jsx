@@ -9,7 +9,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
   justifyContent: "flex-end",
   flexDirection: "row",
   flexBasis: "100%",
-  columnGap: 'var(--modular-scale-ms2)',
+  columnGap: 'var(--ms2)',
 }));
 
 export const Links = (props) => {

@@ -14,7 +14,7 @@ const Wrapper = styled('div')(({ theme, navOpen }) => ({
   gridTemplateRows: navOpen ? 'repeat(12, 1fr)' : 'unset',
   position: 'fixed',
   top: 0,
-  paddingTop: 'var(--modular-scale-ms1)',
+  paddingTop: 'var(--ms1)',
   left: 0,
   right: 0,
   bottom: navOpen && 0,
@@ -22,7 +22,7 @@ const Wrapper = styled('div')(({ theme, navOpen }) => ({
   backgroundColor: navOpen && 'var(--original-primary)',
   transition: 'all 0.2s ease-in-out 0s',
   [theme.breakpoints.up('lg')]: {
-    paddingTop: 'var(--modular-scale-ms4)',
+    paddingTop: 'var(--ms4)',
   }
 }));
 
@@ -34,7 +34,7 @@ const Container = styled('div')(({ theme }) => ({
   backgroundColor: contrastBrandPalette["Orignal Large"]?.value,
   borderRadius: '99px',
   border: '3px solid rgba(255, 255, 255, 0.60)',
-  padding: 'var(--modular-scale-ms0)',
+  padding: 'var(--ms0)',
   justifyContent: 'flex-end',
   alignItems: 'center',
   maxHeight: 'fit-content',

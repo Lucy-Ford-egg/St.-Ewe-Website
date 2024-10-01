@@ -47,8 +47,8 @@ const BlogGrid = styled('div')(({ theme }) => ({
   },
   [theme.breakpoints.up('lg')]: {
     gridColumn: '1/25',
-    paddingLeft: 'var(--modular-scale-ms4)',
-    paddingRight: 'var(--modular-scale-ms4)',
+    paddingLeft: 'var(--ms4)',
+    paddingRight: 'var(--ms4)',
   }
 }));
 
@@ -58,12 +58,12 @@ const PageNavigation = styled('div')(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   columnGap: 6,
-  paddingTop: 'var(--modular-scale-ms4)',
-  paddingBottom: 'var(--modular-scale-ms4)',
+  paddingTop: 'var(--ms4)',
+  paddingBottom: 'var(--ms4)',
   [theme.breakpoints.up('lg')]: {
     gridColumn: '1/25',
-    paddingLeft: 'var(--modular-scale-ms4)',
-    paddingRight: 'var(--modular-scale-ms4)',
+    paddingLeft: 'var(--ms4)',
+    paddingRight: 'var(--ms4)',
   }
 }));
 

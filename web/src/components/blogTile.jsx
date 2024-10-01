@@ -12,7 +12,7 @@ import { styled } from '@mui/material/styles'
 const Wrapper = styled('div')(({ theme }) => ({
   display: 'grid',
   gridColumn: '1/24',
-  borderRadius: 'var(--modular-scale-ms4) var(--modular-scale-ms4) 0 0',
+  borderRadius: 'var(--ms4) var(--ms4) 0 0',
   overflow: 'hidden',
   "& a": {
     display: 'grid',
@@ -45,7 +45,7 @@ const BlogImage = styled('div')(({ props }) => ({
 const Content = styled('div')(({ props }) => ({
   backgroundColor: 'white',
   transition: `all 0.2s ease-in-out 0s`,
-  padding: 'var(--modular-scale-ms2)',
+  padding: 'var(--ms2)',
   '& .blogPostTitle':{
     wordBreak: 'break-word',
     color: 'var(--orignal-large)',
@@ -54,14 +54,14 @@ const Content = styled('div')(({ props }) => ({
 
 const Category = styled('div')(({ props }) => ({
   backgroundColor: 'var(--rich-yolk-primary)',
-  padding: 'var(--modular-scale-ms-1)',
+  padding: 'var(--ms-1)',
   maxWidth: 'max-content',
   color: 'white'
 }));
 
 const Date = styled('div')(({ props }) => ({
   color: 'var(--grand-primary)',
-  paddingTop: 'var(--modular-scale-ms-1)',
+  paddingTop: 'var(--ms-1)',
 }));
 
 const Excerpt = styled(motion.div)(({ props }) => ({
@@ -81,8 +81,8 @@ const ReadMore = styled(motion.div)(({ props }) => ({
   gridRow: '1/1',
   zIndex: 2,
   display: 'grid',
-  fontSize: 'var(--modular-scale-ms3)',
-  paddingTop: 'var(--modular-scale-ms6)',
+  fontSize: 'var(--ms3)',
+  paddingTop: 'var(--ms6)',
   justifyContent: 'center',
   alignItems: 'start',
   textTransform: 'uppercase',
