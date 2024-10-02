@@ -5,6 +5,7 @@ import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from '@mui/material/styles';
+import { useMediaQuery, useTheme } from "@mui/material"
 
 const Wrapper = styled('div')(({ theme, navColour, menu, backgroundColour, verticalSpace }) => ({
   // Base styles
@@ -29,7 +30,7 @@ const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons  
   alignItems: 'center',
   gridTemplateColumns: 'repeat(24, 1fr)',
   gridTemplateRows: '1fr',
-  gap: 'var(--ms7)',
+  gap: 'var(--ms3)',
   flexWrap: 'nowrap',
   display: !sideAssets ? 'grid' : 'grid',
   //maxHeight: images?.length === 0 ? 'auto' : sideAssets ? '517px' : 'var(--ms6)',
@@ -42,6 +43,9 @@ const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons  
     maxWidth: !sideAssets ? '100%' : '100%',
     objectFit: !sideAssets ? "contain" : "cover",
     height: !sideAssets ? "auto" : "auto",
+  },
+  [theme.breakpoints.up('md')]: {
+    gap: 'var(--ms7)',
   }
 }));
 
@@ -132,12 +136,14 @@ const Asset = styled('div')(({ }) => ({
 export const ImageSection = (props) => {
   const { images, text, textAlign = "center", backgroundColour, verticalSpace , sideAssets, icons = null} = props
 
+  const theme = useTheme()
+  const sm = useMediaQuery(theme.breakpoints.down('sm'))
    // Motion
    const ref = useRef(null)
-   const { scrollYProgress } = useScroll({  offset: ["start start", "end start"] })
+   const { scrollYProgress } = useScroll()
    const transforms = {
-        icons: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]),
-        gallery: useTransform(scrollYProgress, [0, 1], ["0%", "-150%"]),
+        icons: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-950%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
+        gallery: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-350%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
         product: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
    }
    //! 
@@ -196,7 +202,7 @@ export const ImageSection = (props) => {
               icons={icons}
             >
               {duplicatedImages.map((image, index) => (
-                <motion.div className="imageWrapper" style={{ x:  transforms[sideAssets ? 'gallery' : 'icons']}} >
+                <motion.div className="imageWrapper" style={{ x:  transforms[sideAssets ? 'gallery' : 'icons'][sm ? 'xs' : 'md']}} >
                 <Image
                  
                   crop={image?.crop}
