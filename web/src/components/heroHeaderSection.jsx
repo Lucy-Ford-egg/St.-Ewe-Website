@@ -15,9 +15,9 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
     gridTemplateRows: '1fr 1fr 1fr 1fr',
     overflow: 'hidden',
     alignItems: 'center',
-    height: '50vh',
+    height: '60vh',
     position: 'relative',
-    marginTop: 'var(--ms8)',
+    marginTop: 'var(--ms9)',
     [theme.breakpoints.up('lg')]: {
         marginTop: 'unset',
         height: '110vh',
@@ -53,7 +53,9 @@ const Layer = styled(motion.div)(({ theme }) => ({
     right: 0,
     bottom: 0,
     height: '130vh',
+    paddingTop: 'var(--ms5)',
     [theme.breakpoints.up('lg')]: {
+        paddingTop: 'unset',
         height: '110vh',
     },
     'img': {
