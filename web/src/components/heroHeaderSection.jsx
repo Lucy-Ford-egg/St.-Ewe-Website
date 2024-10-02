@@ -16,12 +16,14 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
     overflow: 'hidden',
     alignItems: 'center',
     height: '130vh',
+    position: 'relative',
+
     [theme.breakpoints.up('lg')]: {}
 }));
 
 const Title = styled(motion.div)(({ theme }) => ({
     gridColumn: '4/22',
-    gridRow: '1/3',
+    gridRow: '1/4',
     alignSelf: 'center',
     zIndex: 0,
     [theme.breakpoints.up('lg')]: {
@@ -42,6 +44,11 @@ const Layer = styled(motion.div)(({ theme }) => ({
     gridRow: '1/4',
     height: '130vh',
     [theme.breakpoints.up('lg')]: {},
+    position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
     'img': {
         "&:last-of-type":{
         borderBottom: '100px solid var(--super-eggs-primary)',
@@ -58,7 +65,7 @@ const Base = styled(motion.div)(({ theme }) => ({
 
 // Helper function to render layers
 const renderLayer = (layer, index, transform, mobile, tablet) => (
-    <Layer key={index} style={{ y: transform}}>
+    <Layer key={index} style={{ y: transform, zIndex: index,}}>
         <Image
             crop={layer?.crop}
             hotspot={layer?.hotspot}
@@ -67,9 +74,9 @@ const renderLayer = (layer, index, transform, mobile, tablet) => (
             asset={layer?._id ? urlFor(layer).url() : layer?.asset}
             style={{
                 objectFit: "cover",
-           
-                width: "100%",
-                height: "100%",
+                maxWidth: "100%",
+                height: "auto",
+                
             }}
         />
         <Base className="baseLayer" />
