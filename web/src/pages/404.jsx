@@ -178,8 +178,8 @@ query homeTemplateQuery( $recipeIds:[String!], $postIds:[String!], $skip: Int, $
         ... on SanityNewsletterSection{
           ... NewsletterSectionFragment
         }      
-        ... on SanityImageCarouselSection {
-          ...ImageCarouselSectionFragment
+        ... on SanityImageSection {
+          ...ImageSectionFragment
         }
         ...on SanityBlogSection {
           ... BlogSectionFragment

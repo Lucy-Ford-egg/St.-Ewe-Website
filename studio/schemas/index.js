@@ -36,6 +36,7 @@ import accordionTile from './components/accordionTile'
 import imageOptions from './imageOptions'
 
 //Sections
+import imageSection from './sections/imageSection'
 import heroHeaderSection from './sections/heroHeaderSection'
 import blogSection from './sections/blogSection'
 import featureSection from './sections/featureSection'
@@ -55,7 +56,6 @@ import featuresListSection from './sections/featuresListSection'
 import featuresTile from './sections/featuresTile'
 import videoSection from './sections/videoSection'
 import newsletterSection from './sections/newsletterSection'
-import imageCarouselSection from './sections/imageCarouselSection'
 import stepsSection from './sections/stepsSection'
 import stepTile from './sections/stepTile'
 import stepDivider from './sections/stepDivider'
@@ -117,6 +117,7 @@ export const schema = {
     quote,
     teamMember,
     // Sections
+    imageSection,
     heroHeaderSection,
     featureSection,
     embedSection,
@@ -167,7 +168,6 @@ export const schema = {
     // Modules
     headerSectionAccommodationSearch,
     testimonialSection,
-    imageCarouselSection,
     locationSection,
     // faqsSection,
     benifitsSection,

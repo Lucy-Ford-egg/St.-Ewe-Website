@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography"
 // import { VideoSection } from './videoSection';
 // import { CtaSection } from './ctaSection';
 // import { TestimonialSection } from './testimonialSection';
-// import { ImageCarouselSection } from './imageCarouselSection';
+// import { ImageSection } from './imageSection';
 // import { LocationSection } from './locationSection';
 // import { ContactSection } from './contactSection';
 // import { TeamSection } from './teamSection';
@@ -31,7 +31,7 @@ const TimelineSection = React.lazy(() => import('./timelineSection').then(module
 const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
 const CtaSection = React.lazy(() => import('./ctaSection').then(module => ({ default: module.CtaSection })));
 const TestimonialSection = React.lazy(() => import('./testimonialSection').then(module => ({ default: module.TestimonialSection })));
-const ImageCarouselSection = React.lazy(() => import('./imageCarouselSection').then(module => ({ default: module.ImageCarouselSection })));
+const ImageSection = React.lazy(() => import('./imageSection').then(module => ({ default: module.ImageSection })));
 const LocationSection = React.lazy(() => import('./locationSection').then(module => ({ default: module.LocationSection })));
 const ContactSection = React.lazy(() => import('./contactSection').then(module => ({ default: module.ContactSection })));
 const TeamSection = React.lazy(() => import('./teamSection').then(module => ({ default: module.TeamSection })));
@@ -228,9 +228,9 @@ const Modules = (props) => {
                             )
                         }
 
-                        if (isModule(module, 'imageCarouselSection')) {
+                        if (isModule(module, 'imageSection')) {
                             return (
-                                <ImageCarouselSection
+                                <ImageSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
                                     key={module._key + i}

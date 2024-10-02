@@ -2,9 +2,9 @@ import { defineField, defineType } from 'sanity'
 import { LiaGripHorizontalSolid } from "react-icons/lia"
 
 export default defineType({
-  name: "imageCarouselSection",
+  name: "imageSection",
   type: "object",
-  title: "Image Carousel Section",
+  title: "Image Section",
   fields: [
     defineField({
       name: 'topPadding',
@@ -20,7 +20,18 @@ export default defineType({
           hotspot: true,
         },
       }]
-    })
+    }),
+    defineField({
+      title: 'Background Colour',
+      name: 'backgroundColour',
+      type: 'simplerColor',
+      description: 'Add a background colour',
+  }),
+  defineField({
+      name: 'verticalSpace',
+      type: 'verticalSpace',
+      title: 'Set the space required between sections',
+  }),
 
   ],
   preview: {
@@ -34,7 +45,7 @@ export default defineType({
       const { title, media, showSearch, textAlign } = selection
       return {
         title: title,
-        subtitle: `Image Carousel Section`,
+        subtitle: `Image Section`,
         media: media[0],
         icon: LiaGripHorizontalSolid
       }

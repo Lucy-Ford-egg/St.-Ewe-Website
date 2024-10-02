@@ -15,7 +15,7 @@ import ctaSectionType from './sections/ctaSection'
 import featuresListSectionType from './sections/featuresListSection'
 import videoSectionType from './sections/videoSection'
 import newsletterSectionType from './sections/newsletterSection'
-import imageCarouselSectionType from './sections/imageCarouselSection'
+import imageSectionType from './sections/imageSection'
 import blogSectionType from './sections/blogSection'
 import stepSectionType from './sections/stepsSection'
 import timelineSectionType from './sections/timelineSection'
@@ -182,7 +182,7 @@ export default defineType({
         {type: featuresListSectionType.name},
         {type: ctaSectionType.name},
         {type: newsletterSectionType.name},
-        {type: imageCarouselSectionType.name},
+        {type: imageSectionType.name},
         {type: blogSectionType.name},
         {type: stepSectionType.name},
         {type: timelineSectionType.name},

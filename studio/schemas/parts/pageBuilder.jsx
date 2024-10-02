@@ -15,7 +15,7 @@ import ctaSection from '../sections/ctaSection'
 import featuresListSection from '../sections/featuresListSection'
 import videoSection from '../sections/videoSection'
 import newsletterSection from '../sections/newsletterSection'
-import imageCarouselSection from '../sections/imageCarouselSection'
+import imageSection from '../sections/imageSection'
 import blogSection from '../sections/blogSection'
 import stepSection from '../sections/stepsSection'
 import timelineSection from '../sections/timelineSection'
@@ -40,7 +40,7 @@ export const pageBuilder = [
     { type: featuresListSection.name },
     { type: ctaSection.name },
     { type: newsletterSection.name },
-    { type: imageCarouselSection.name },
+    { type: imageSection.name },
     { type: blogSection.name },
     { type: stepSection.name },
     { type: timelineSection.name },
