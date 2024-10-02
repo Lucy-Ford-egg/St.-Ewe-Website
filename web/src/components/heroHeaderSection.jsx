@@ -15,15 +15,15 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
     gridTemplateRows: '1fr 1fr 1fr 1fr',
     overflow: 'hidden',
     alignItems: 'center',
-    height: '100vh',
+    height: '120vh',
     [theme.breakpoints.up('lg')]: {}
 }));
 
 const Title = styled(motion.div)(({ theme }) => ({
     gridColumn: '1/25',
-    gridRow: '2/2',
+    gridRow: '1/3',
     alignSelf: 'center',
-    zIndex: 2,
+    zIndex: 0,
     [theme.breakpoints.up('lg')]: {
         color: 'var(--original-large)',
 
@@ -40,15 +40,20 @@ const Title = styled(motion.div)(({ theme }) => ({
 const Layer = styled(motion.div)(({ theme }) => ({
     gridColumn: '1/25',
     gridRow: '1/4',
-
-    [theme.breakpoints.up('lg')]: {}
+    height: '130vh',
+    [theme.breakpoints.up('lg')]: {},
+    'img': {
+        "&:last-of-type":{
+        borderBottom: '100px solid var(--super-eggs-primary)',
+    }
+    }
 }));
 
 const Base = styled(motion.div)(({ theme }) => ({
-    //   width: '100%',
-    //   height: 100,
-    //   backgroundColor: 'var(--super-eggs-primary)',
-    //   [theme.breakpoints.up('lg')]: {}
+      width: '100%',
+      height: 100,
+      backgroundColor: 'var(--super-eggs-primary)',
+      [theme.breakpoints.up('lg')]: {}
 }));
 
 // Helper function to render layers
@@ -57,15 +62,17 @@ const renderLayer = (layer, index, transform, mobile, tablet) => (
         <Image
             crop={layer?.crop}
             hotspot={layer?.hotspot}
+            width={2880}
+            height={2210}
             asset={layer?._id ? urlFor(layer).url() : layer?.asset}
             style={{
                 objectFit: "cover",
-                objectPosition: "top center",
+           
                 width: "100%",
                 height: "100%",
             }}
         />
-        <Base />
+        {/* <Base className="baseLayer" /> */}
     </Layer>
 );
 
@@ -81,7 +88,7 @@ export const HeroHeaderSection = props => {
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
     const transforms = [
-        useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]),
+        useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]),
         useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]),
         useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]),
         useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]),
@@ -90,12 +97,16 @@ export const HeroHeaderSection = props => {
         useTransform(scrollYProgress, [0, 1], ["0%", "-100%"])
     ]
 
+    const titleAnimation = useTransform(scrollYProgress, [1, 0], ["0%", "100%"]);
+
     return (
         <ModuleContainer {...props} ref={ref} elevation="1">
             {layers.length > 0 && (
                 <Wrapper>
                     {layers.map((layer, index) => renderLayer(layer, index, transforms[index], mobile, tablet))}
-                    <Title>{title}</Title>
+                    <Title style={{
+                        opacity: titleAnimation,
+                    }}>{title}</Title>
                 </Wrapper>
             )}
         </ModuleContainer>
