@@ -21,7 +21,7 @@ export const PortableTextInlineLink = ({ value, children, color }) => {
   if (value.reference?._type === "post") {
     definedInternal = `/news/${value?.reference?.categories?.slug?.current}/${definedInternal}`
   }
-  if (value.reference?._type === "Recipe") {
+  if (value.reference?._type === "recipe") {
     definedInternal = `/Recipe/${definedInternal}`
   }
   if (value.reference?._type === "teamMembers") {

@@ -120,7 +120,7 @@ module.exports = {
 
           const caseStudiesNodeMap = allCaseStudies.reduce((acc, node) => {
             const { slug } = node
-            acc[`/Recipe/${slug?.current}`] = node
+            acc[`/recipe/${slug?.current}`] = node
 
             return acc
           }, {})

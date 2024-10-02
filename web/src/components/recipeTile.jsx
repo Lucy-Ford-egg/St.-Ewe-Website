@@ -85,7 +85,7 @@ export const RecipeTile = (props) => {
   const number = i + 1
 
   return (
-    <Link onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)} to={`/Recipe/${slug.current}`} style={{ display: "flex", width: "inherit", textDecoration: "none", height: theme.breakpoints.down('sm') ? "100%" : i === 0 ? "721px" : "100%" }} state={{ backgroundColor: backgroundColor, number: number }}>
+    <Link onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)} to={`/recipe/${slug.current}`} style={{ display: "flex", width: "inherit", textDecoration: "none", height: theme.breakpoints.down('sm') ? "100%" : i === 0 ? "721px" : "100%" }} state={{ backgroundColor: backgroundColor, number: number }}>
       <Wrapper
         theme={theme}
       >

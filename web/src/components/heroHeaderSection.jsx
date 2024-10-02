@@ -12,7 +12,7 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
     display: 'grid',
     gridColumn: '1/25',
     gridTemplateColumns: 'repeat(24, 1fr)',
-    gridTemplateRows: '1fr 1fr',
+    gridTemplateRows: '1fr 1fr 1fr 1fr',
     overflow: 'hidden',
     alignItems: 'center',
     height: '100vh',
@@ -21,7 +21,7 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
 
 const Title = styled(motion.div)(({ theme }) => ({
     gridColumn: '1/25',
-    gridRow: '1/2',
+    gridRow: '2/2',
     alignSelf: 'center',
     zIndex: 2,
     [theme.breakpoints.up('lg')]: {
@@ -39,7 +39,7 @@ const Title = styled(motion.div)(({ theme }) => ({
 
 const Layer = styled(motion.div)(({ theme }) => ({
     gridColumn: '1/25',
-    gridRow: '1/2',
+    gridRow: '1/4',
 
     [theme.breakpoints.up('lg')]: {}
 }));
