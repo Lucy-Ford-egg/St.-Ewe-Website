@@ -15,12 +15,12 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
     gridTemplateRows: '1fr 1fr 1fr 1fr',
     overflow: 'hidden',
     alignItems: 'center',
-    height: '120vh',
+    height: '130vh',
     [theme.breakpoints.up('lg')]: {}
 }));
 
 const Title = styled(motion.div)(({ theme }) => ({
-    gridColumn: '1/25',
+    gridColumn: '4/22',
     gridRow: '1/3',
     alignSelf: 'center',
     zIndex: 0,
@@ -51,14 +51,14 @@ const Layer = styled(motion.div)(({ theme }) => ({
 
 const Base = styled(motion.div)(({ theme }) => ({
       width: '100%',
-      height: 100,
+      height: '100vh',
       backgroundColor: 'var(--super-eggs-primary)',
       [theme.breakpoints.up('lg')]: {}
 }));
 
 // Helper function to render layers
 const renderLayer = (layer, index, transform, mobile, tablet) => (
-    <Layer key={index} style={{ y: transform }}>
+    <Layer key={index} style={{ y: transform}}>
         <Image
             crop={layer?.crop}
             hotspot={layer?.hotspot}
@@ -72,7 +72,7 @@ const renderLayer = (layer, index, transform, mobile, tablet) => (
                 height: "100%",
             }}
         />
-        {/* <Base className="baseLayer" /> */}
+        <Base className="baseLayer" />
     </Layer>
 );
 
@@ -88,16 +88,18 @@ export const HeroHeaderSection = props => {
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
     const transforms = [
-        useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]),
-        useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]),
-        useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]),
+        useTransform(scrollYProgress, [0, 1], ["0%", "0%"]),
+        useTransform(scrollYProgress, [0, 1], ["0%", "80%"]),
+        useTransform(scrollYProgress, [0, 1], ["0%", "10%"]),
+        useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]),
         useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]),
         useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]),
         useTransform(scrollYProgress, [0, 1], ["0%", "-90%"]),
-        useTransform(scrollYProgress, [0, 1], ["0%", "-100%"])
+        useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
     ]
 
-    const titleAnimation = useTransform(scrollYProgress, [1, 0], ["0%", "100%"]);
+    const titleOpacity = useTransform(scrollYProgress, [1, 0], ["0%", "100%"]);
+    const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
 
     return (
         <ModuleContainer {...props} ref={ref} elevation="1">
@@ -105,7 +107,8 @@ export const HeroHeaderSection = props => {
                 <Wrapper>
                     {layers.map((layer, index) => renderLayer(layer, index, transforms[index], mobile, tablet))}
                     <Title style={{
-                        opacity: titleAnimation,
+                        opacity: titleOpacity,
+                        y: titleY,
                     }}>{title}</Title>
                 </Wrapper>
             )}
