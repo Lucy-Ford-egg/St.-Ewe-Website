@@ -156,8 +156,9 @@ export const Footer = props => {
           }
           accreditations {
             image{
-              ...ImageFragment
+              ...ImageFragment  
             }
+            _key
             url
           }
         }
@@ -332,9 +333,9 @@ export const Footer = props => {
           )}
           <Accreditations>
             {data?.allSanityFooterContent?.nodes[0]?.accreditations?.map((node) => {
-              debugger
+    
               return (
-                <LogoWrapper href={node?.url}>
+                <LogoWrapper href={node?.url} key={node?._key}>
                   <Image
                     crop={node?.image?.crop}
                     hotspot={node?.image?.hotspot}
