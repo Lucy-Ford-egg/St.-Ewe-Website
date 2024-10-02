@@ -15,40 +15,47 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
     gridTemplateRows: '1fr 1fr 1fr 1fr',
     overflow: 'hidden',
     alignItems: 'center',
-    height: '130vh',
+    height: '50vh',
     position: 'relative',
-
-    [theme.breakpoints.up('lg')]: {}
+    marginTop: 'var(--ms8)',
+    [theme.breakpoints.up('lg')]: {
+        marginTop: 'unset',
+        height: '110vh',
+    }
 }));
 
 const Title = styled(motion.div)(({ theme }) => ({
     gridColumn: '4/22',
-    gridRow: '1/4',
+    gridRow: '1/2',
     alignSelf: 'center',
     zIndex: 0,
+    color: 'var(--original-large)',
+    textAlign: 'center',
+    fontFamily: 'Colby Narrow',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    fontSize: 'var(--ms5)',
+    lineHeight: 'var(--ms5)',
     [theme.breakpoints.up('lg')]: {
-        color: 'var(--original-large)',
-
-        textAlign: 'center',
-        fontFamily: 'Colby Narrow',
+        gridRow: '1/4',
         fontSize: 'var(--ms9)',
-        fontStyle: 'normal',
-        fontWeight: '700',
         lineHeight: 'var(--ms9)',
-        textTransform: 'uppercase',
     }
 }));
 
 const Layer = styled(motion.div)(({ theme }) => ({
     gridColumn: '1/25',
     gridRow: '1/4',
-    height: '130vh',
-    [theme.breakpoints.up('lg')]: {},
     position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: '130vh',
+    [theme.breakpoints.up('lg')]: {
+        height: '110vh',
+    },
     'img': {
         "&:last-of-type":{
         borderBottom: '100px solid var(--super-eggs-primary)',
@@ -57,10 +64,12 @@ const Layer = styled(motion.div)(({ theme }) => ({
 }));
 
 const Base = styled(motion.div)(({ theme }) => ({
-      width: '100%',
+      display: 'none',
+      [theme.breakpoints.up('lg')]: {
+        width: '100%',
       height: '100vh',
       backgroundColor: 'var(--super-eggs-primary)',
-      [theme.breakpoints.up('lg')]: {}
+      }
 }));
 
 // Helper function to render layers

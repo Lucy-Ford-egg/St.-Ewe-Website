@@ -212,7 +212,8 @@ export const brandColors = {
     { label: 'Dabbling Duck Secondary', value: '#625e9c' },
     { label: 'Quirky Quail Primary', value: '#3b2516' },
     { label: 'Quirky Quail Secondary', value: '#fcedde' },
-    { label: 'Transparent', value: 'transparent' }
+    { label: 'Transparent', value: 'transparent' },
+    { label: 'Off White', value: '#F7F7F7'},
   ]
 }
 
