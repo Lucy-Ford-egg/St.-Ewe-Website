@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { graphql } from "gatsby"
-import { motion, MotionConfig } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { ModuleContainer } from "./moduleContainer"
@@ -24,14 +24,24 @@ const Images = styled('div')(({ theme, images }) => ({
   overflowX: 'hidden',
 }));
 
-const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets  }) => ({
+const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons  }) => ({
   justifyContent: 'space-between',
   alignItems: 'center',
+  gridTemplateColumns: 'repeat(24, 1fr)',
+  gridTemplateRows: '1fr',
   gap: 'var(--ms7)',
-  display: 'flex',
-  height: images?.length === 0 ? 'auto' : sideAssets ? '517px' : 'var(--ms6)',
+  flexWrap: 'nowrap',
+  display: !sideAssets ? 'grid' : 'grid',
+  //maxHeight: images?.length === 0 ? 'auto' : sideAssets ? '517px' : 'var(--ms6)',
+  "& .imageWrapper": {
+    gridColumn: !sideAssets ? 'span 2' : 'span 6',
+    gridRow: '1/1',
+  },
   "& img": {
     borderRadius: 'var(--ms2)',
+    maxWidth: !sideAssets ? '100%' : '100%',
+    objectFit: !sideAssets ? "contain" : "cover",
+    height: !sideAssets ? "auto" : "auto",
   }
 }));
 
@@ -93,7 +103,7 @@ const LeftAsset = styled('div')(({ alignment, theme }) => ({
     alignItems: 'start',
     justifyContent: 'start',
     zIndex: 2,
-marginTop: '-155px',
+    marginTop: '-155px',
   }
 
 }));
@@ -120,33 +130,27 @@ const Asset = styled('div')(({ }) => ({
 
 
 export const ImageSection = (props) => {
-  const { images, text, textAlign = "center", backgroundColour, verticalSpace , sideAssets} = props
-  debugger
+  const { images, text, textAlign = "center", backgroundColour, verticalSpace , sideAssets, icons = null} = props
 
-  // Keyframing for the continuous scroll
-  const scrollVariant = {
-    animate: {
-      x: [0, -1000], // Adjust based on how far the images should move
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: 'loop',
-          duration: 10, // Adjust the speed of scrolling
-          ease: "linear",
-        },
-      },
-    },
-  };
+   // Motion
+   const ref = useRef(null)
+   const { scrollYProgress } = useScroll({  offset: ["start start", "end start"] })
+   const transforms = {
+        icons: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]),
+        gallery: useTransform(scrollYProgress, [0, 1], ["0%", "-150%"]),
+        product: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
+   }
+   //! 
 
   // Duplicate images array for infinite effect
-  const duplicatedImages = [...images, ...images, ...images, ...images];
+  const duplicatedImages = [...images, ...images,];
 
   const vs = images.length > 1 ? `vs${verticalSpace?.topPadding}-top vs${verticalSpace?.bottomPadding}-bottom` : ``
   return (
 
     <ModuleContainer {...props}>
 
-      <Wrapper className={vs} {...props}>
+      <Wrapper className={vs} {...props} ref={ref}>
         {sideAssets?.leftAsset && <LeftAsset><Asset>
           <Image
             crop={sideAssets?.leftAsset?.crop}
@@ -156,7 +160,6 @@ export const ImageSection = (props) => {
             }
             alt={sideAssets?.leftAsset?.asset?.altText}
             width={600}
-
             style={{
               objectFit: "contain",
               maxWidth: "100%",
@@ -189,13 +192,13 @@ export const ImageSection = (props) => {
 
           <Images images={images}>
             <ImagesContainer
-              style={{ display: 'flex' }}
-              variants={scrollVariant}
-              animate="animate"
               sideAssets={sideAssets}
+              icons={icons}
             >
               {duplicatedImages.map((image, index) => (
+                <motion.div className="imageWrapper" style={{ x:  transforms[sideAssets ? 'gallery' : 'icons']}} >
                 <Image
+                 
                   crop={image?.crop}
                   hotspot={image?.hotspot}
                   asset={
@@ -203,12 +206,8 @@ export const ImageSection = (props) => {
                   }
                   alt={image?.asset?.altText}
                   width={1200}
-
-                  style={{
-                    objectFit: "contain",
-                    height: "100%",
-                  }}
                 />
+                </motion.div>
 
               ))}
             </ImagesContainer >
