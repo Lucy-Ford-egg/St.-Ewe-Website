@@ -4,7 +4,7 @@ import Link from "@mui/material/Button"
 
 export const LinkType = props => {
   const { node } = props
-debugger
+
   let definedInternal = node?.link?.internal?.slug?.current
   const definedExternal = node?.link?.external
 

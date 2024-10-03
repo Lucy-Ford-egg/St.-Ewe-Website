@@ -65,6 +65,11 @@ const ImageContainer = styled('div')(({ theme, images }) => ({
   },
   "& .linkTypeWrapper": {
     gridColumn: '1/25',
+    display: 'flex',
+    maxHeight: 269,
+    [theme.breakpoints.up('md')]: {
+      maxHeight: 790,
+    }
   },
   "& img": {
 
@@ -72,11 +77,10 @@ const ImageContainer = styled('div')(({ theme, images }) => ({
     objectFit: 'cover',
     width: '100%',
     height: '100%',
-    maxHeight: 269,
     zIndex: 0,
     [theme.breakpoints.up('md')]: {
       borderRadius: 'var(--ms2)',
-      maxHeight: 790,
+     
     },
   },
 }));
@@ -151,6 +155,7 @@ const ProductImages = styled('div')(({ theme, sideAssets }) => ({
   "& .linkTypeWrapper": {
     gridColumn: !sideAssets ? 'span 2' : 'span 2',
     gridRow: '1/1',
+    display: 'flex',
   },
   "& img": {
     borderRadius: 'var(--ms2)',
@@ -180,7 +185,7 @@ export const ImageSection = (props) => {
 
   // Duplicate images array for infinite effect
   const duplicatedImages = [...images, ...images,];
-
+  debugger
   const vs = images.length > 1 ? `vs${verticalSpace?.topPadding}-top vs${verticalSpace?.bottomPadding}-bottom` : ``
   return (
 
@@ -233,7 +238,7 @@ export const ImageSection = (props) => {
             >
               {duplicatedImages.map((image, index) => {
                 const setImageNode = image
-                debugger
+                
                 return (
 
                   <motion.div key={image?.key} className="imageWrapper" style={{ x: transforms[type === 'mood' ? 'mood' : 'icons'][sm ? 'xs' : 'md'] }} >
@@ -261,15 +266,15 @@ export const ImageSection = (props) => {
 
         ) :
           <ImageContainer>
-            {images[0]?.image?.asset && (
-              <LinkType to={images[0]?.image?.link}>
+            {images[0]?.asset && (
+              <LinkType to={images[0]?.link}>
                 <Image
-                  crop={images[0]?.image?.crop}
-                  hotspot={images[0]?.image?.hotspot}
+                  crop={images[0]?.crop}
+                  hotspot={images[0]?.hotspot}
                   asset={
-                    (images[0]?.image._id && urlFor(images[0]).width(1440).url()) || images[0]?.image?.asset
+                    (images[0]?._id && urlFor(images[0]).width(1440).url()) || images[0]?.asset
                   }
-                  alt={images[0]?.image?.asset?.altText}
+                  alt={images[0]?.asset?.altText}
                   width={1440}
                   height={790}
                   style={{
@@ -277,11 +282,10 @@ export const ImageSection = (props) => {
                     width: "100%",
                     height: "100%",
                   }}
-
                 />
               </LinkType>
             )}
-            {images[0]?.image?.asset?.description && <Description><span>{images[0]?.image?.asset?.description}</span></Description>}
+            {images[0]?.asset?.description && <Description><span>{images[0]?.asset?.description}</span></Description>}
 
           </ImageContainer >
         }
