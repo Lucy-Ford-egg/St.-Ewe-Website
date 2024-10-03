@@ -4,7 +4,7 @@ import { LiaImage, LiaBorderStyleSolid } from "react-icons/lia"
 export default defineType({
     name: "heroHeaderSection",
     type: "object",
-    title: "Header Section",
+    title: "Hero Header Section",
     fields: [
         defineField({
             name: 'title',
@@ -48,9 +48,6 @@ export default defineType({
         },
         prepare(selection) {
             const { title, media } = selection
-
-
-
             return {
                 title: title ? title : 'Title',
                 subtitle: `Hero Header Section`,

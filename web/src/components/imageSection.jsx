@@ -36,13 +36,16 @@ const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons }
   display: !sideAssets ? 'grid' : 'grid',
   //maxHeight: images?.length === 0 ? 'auto' : sideAssets ? '517px' : 'var(--ms6)',
   "& .imageWrapper": {
-    gridColumn: !sideAssets ? 'span 2' : 'span 6',
+    gridColumn: 'span 9',
     gridRow: '1/1',
+    [theme.breakpoints.up('md')]: {
+      gridColumn: !sideAssets ? 'span 2' : 'span 6',
+    }
   },
   "& .linkTypeWrapper": {
-      gridRow: '1/1',
-      width: '100%',
-      height: '100%',
+    gridRow: '1/1',
+    width: '100%',
+    height: '100%',
   },
   "& img": {
     borderRadius: 'var(--ms2)',
@@ -82,7 +85,7 @@ const ImageContainer = styled('div')(({ theme, images }) => ({
     zIndex: 0,
     [theme.breakpoints.up('md')]: {
       borderRadius: 'var(--ms2)',
-     
+
     },
   },
 }));
@@ -130,7 +133,7 @@ const RightAsset = styled('div')(({ alignment, theme }) => ({
   gridColumn: '15/24',
   alignItems: 'end',
   justifyContent: 'end',
-  gridRow: '1/5',
+  gridRow: '5/5',
   height: '100%',
   marginBottom: '-155px',
   [theme.breakpoints.up('lg')]: {
@@ -146,28 +149,66 @@ const Asset = styled('div')(() => ({
 }));
 
 const ProductImages = styled('div')(({ theme, sideAssets }) => ({
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  gridTemplateColumns: 'repeat(24, 1fr)',
-  grdiColumn: '1/25',
-  gridTemplateRows: '1fr',
-  gap: 'var(--ms3)',
+    display: 'grid',
+    gridColumn: '1 / 25',
+    gridRow: '1/5',
+    //gridTemplateColumns: 'repeat(24, 1fr)'
+}));
+
+const XScroll = styled('div')(({theme}) => ({
+  display: 'flex',
+  width: '100%',
   flexWrap: 'nowrap',
+  gridColumnGap: 21,
   overflowX: 'scroll',
+  gridAutoFlow: 'column',
+  scrollSnapType: 'x mandatory',
+  scrollbarWidth: 'none',  /* Firefox */
+  scrollSnapAlign: 'start',
+  scrollPadding: '0 var(--ms-1)',
+  '&::-webkit-scrollbar': {
+      display: 'none',  /* Safari and Chrome */
+  },
+  [theme.breakpoints.up('md')]: {
+    gridColumnGap: 21,
+  },
   "& .linkTypeWrapper": {
-    gridColumn: 'span 2',
-    gridRow: '1/1',
     display: 'flex',
+    flexBasis: '65%',
+    width: '65%',
+    minWidth: '65%',
+    scrollSnapAlign: 'start',
+    [theme.breakpoints.up('md')]: {
+      flexBasis: '28%',
+      width: '28%',
+      minWidth: '28%',
+      "&:first-of-type": {
+        marginLeft: 'unset',
+      },
+      "&:last-of-type": {
+          marginRight: 'unset',
+      },
+    },
+    "&:first-of-type": {
+        marginLeft: 'var(--ms-1)',
+    },
+    "&:last-of-type": {
+        marginRight: 'var(--ms-1)',
+    },
+
+    "&:nth-child(even)": {
+      paddingBottom: 'var(--ms5)'
+    },
+    "&:nth-child(odd)": {
+      paddingTop: 'var(--ms5)'
+    },
   },
   "& img": {
     borderRadius: 'var(--ms2)',
     maxWidth: '100%',
-    objectFit: "cover",
+    objectFit: "contain",
     height: "auto",
   },
-  [theme.breakpoints.up('md')]: {
-    gap: 'var(--ms7)',
-  }
 }));
 
 
@@ -182,12 +223,12 @@ export const ImageSection = (props) => {
   const transforms = {
     icons: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-950%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
     mood: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-350%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
-    product: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
+    //product: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
   }
 
   // Duplicate images array for infinite effect
   const duplicatedImages = [...images, ...images,];
-  debugger
+
   const vs = images.length > 1 ? `vs${verticalSpace?.topPadding}-top vs${verticalSpace?.bottomPadding}-bottom` : ``
   return (
 
@@ -231,7 +272,8 @@ export const ImageSection = (props) => {
           </Asset>
         </RightAsset>
         }
-        {images.length > 1 && (type === 'mood' || type === 'icons') ? (
+
+        {(images.length > 1) && (type === 'mood' || type === 'icons') && (
 
           <Images images={images}>
             <ImagesContainer
@@ -240,23 +282,23 @@ export const ImageSection = (props) => {
             >
               {duplicatedImages.map((node, index) => {
                 let setImageNode = node?.image
-    
+
                 return (
 
                   <motion.div key={node?.key} className="imageWrapper" style={{ x: transforms[type === 'mood' ? 'mood' : 'icons'][sm ? 'xs' : 'md'] }} >
-                   
-                      <LinkType to={node?.link}>
-                        <Image
-                          crop={setImageNode?.crop}
-                          hotspot={setImageNode?.hotspot}
-                          asset={
-                            ((setImageNode?._id && urlFor(setImageNode).width(1200).url()) || setImageNode?.asset)
-                          }
-                          alt={setImageNode?.asset?.altText}
-                          width={1200}
-                        />
-                      </LinkType>
-                    
+
+                    <LinkType node={node?.link}>
+                      <Image
+                        crop={setImageNode?.crop}
+                        hotspot={setImageNode?.hotspot}
+                        asset={
+                          ((setImageNode?._id && urlFor(setImageNode).width(1200).url()) || setImageNode?.asset)
+                        }
+                        alt={setImageNode?.asset?.altText}
+                        width={1200}
+                      />
+                    </LinkType>
+
                   </motion.div>
 
                 )
@@ -266,54 +308,57 @@ export const ImageSection = (props) => {
 
           </Images>
 
-        ) :
-          <ImageContainer>
-            {images[0]?.image?.asset && (
-              <LinkType to={images[0]?.image?.link}>
-                <Image
-                  crop={images[0]?.image?.crop}
-                  hotspot={images[0]?.image?.hotspot}
-                  asset={
-                    (images[0]?.image?._id && urlFor(images[0]?.image).width(1440).url()) || images[0]?.image?.asset
-                  }
-                  alt={images[0]?.image?.asset?.altText}
-                  width={1440}
-                  height={790}
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                />
-              </LinkType>
-            )}
-            {images[0]?.asset?.description && <Description><span>{images[0]?.asset?.description}</span></Description>}
+        )}
 
-          </ImageContainer >
-        }
+        {images.length === 1 && (<ImageContainer>
+          {images[0]?.image?.asset && (
+            <LinkType node={images[0]?.link}>
+              <Image
+                crop={images[0]?.image?.crop}
+                hotspot={images[0]?.image?.hotspot}
+                asset={
+                  (images[0]?.image?._id && urlFor(images[0]?.image).width(1440).url()) || images[0]?.image?.asset
+                }
+                alt={images[0]?.image?.asset?.altText}
+                width={1440}
+                height={790}
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
+                }}
+              />
+            </LinkType>
+          )}
+          {images[0]?.asset?.description && <Description><span>{images[0]?.asset?.description}</span></Description>}
+
+        </ImageContainer >
+        )}
 
         {type === 'product' && images.length > 1 && (
           <ProductImages sideAssets={sideAssets}>
+            <XScroll>
             {images.map((node, index) => {
-              
+
               let setImageNode = node?.image
               return (
-                <LinkType to={node?.link} key={node?.key}>
+                <LinkType node={node?.link} key={node?.key}>
                   {setImageNode && (
-                  <Image
-                    crop={setImageNode?.crop}
-                    hotspot={setImageNode?.hotspot}
-                    asset={
-                      (setImageNode?._id && urlFor(setImageNode).width(1200).url()) || setImageNode?.asset
-                    }
-                    alt={setImageNode?.asset?.altText}
-                    width={1200}
-                    height={1200}
-                  />
-                )}
+                    <Image
+                      crop={setImageNode?.crop}
+                      hotspot={setImageNode?.hotspot}
+                      asset={
+                        (setImageNode?._id && urlFor(setImageNode).width(400).url()) || setImageNode?.asset
+                      }
+                      alt={setImageNode?.asset?.altText}
+                      width={400}
+                      height={400}
+                    />
+                  )}
                 </LinkType>
               )
             })}
+            </XScroll>
           </ProductImages>
         )}
 

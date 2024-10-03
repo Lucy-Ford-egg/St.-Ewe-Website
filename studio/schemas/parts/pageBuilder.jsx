@@ -26,13 +26,13 @@ import clientLoginSection from '../sections/clientLoginSection'
 
 export const pageBuilder = [
     {type: heroHeaderSection.name },
+    { type: headerSection.name },
     { type: embedSection.name},
     { type: titleSection.name },
     { type: textSection.name },
     { type: featureSection.name },
     { type: borderSection.name },
     { type: hotspotSection.name },
-    { type: headerSection.name },
     { type: testimonialSection.name },
     { type: teamSection.name },
     { type: recipesSection.name },

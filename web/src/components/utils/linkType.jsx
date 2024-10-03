@@ -5,23 +5,23 @@ import Link from "@mui/material/Button"
 export const LinkType = props => {
   const { node } = props
 
-  let definedInternal = node?.link?.internal?.slug?.current
-  const definedExternal = node?.link?.external
+  let definedInternal = node?.internal?.slug?.current
+  const definedExternal = node?.external
 
-  if (node?.link?.internal?._type === "post") {
+  if (node?.internal?._type === "post") {
 
-    definedInternal = `blog/${node?.link?.internal?.category?.slug?.current}/${definedInternal}`
+    definedInternal = `blog/${node?.internal?.category?.slug?.current}/${definedInternal}`
   }
-  if (node?.link?.internal?._type === "Recipe") {
+  if (node?.internal?._type === "Recipe") {
     definedInternal = `/recipe/${definedInternal}`
   }
-  if (node?.link?.internal?._type === "teamMembers") {
+  if (node?.internal?._type === "teamMembers") {
     definedInternal = `/team-members/${definedInternal}`
   }
-  
+  debugger
   return (
     <div className="linkTypeWrapper">
-      {node?.link?.internal ? (
+      {node?.internal ? (
         <GatsbyLink
           to={`/${definedInternal}`}
         >
