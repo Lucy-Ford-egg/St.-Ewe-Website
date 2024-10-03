@@ -40,7 +40,9 @@ const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons }
     gridRow: '1/1',
   },
   "& .linkTypeWrapper": {
-    //gridColumn: '1/25',
+      gridRow: '1/1',
+      width: '100%',
+      height: '100%',
   },
   "& img": {
     borderRadius: 'var(--ms2)',
@@ -153,15 +155,15 @@ const ProductImages = styled('div')(({ theme, sideAssets }) => ({
   flexWrap: 'nowrap',
   overflowX: 'scroll',
   "& .linkTypeWrapper": {
-    gridColumn: !sideAssets ? 'span 2' : 'span 2',
+    gridColumn: 'span 2',
     gridRow: '1/1',
     display: 'flex',
   },
   "& img": {
     borderRadius: 'var(--ms2)',
-    maxWidth: !sideAssets ? '100%' : '100%',
-    objectFit: !sideAssets ? "contain" : "cover",
-    height: !sideAssets ? "auto" : "auto",
+    maxWidth: '100%',
+    objectFit: "cover",
+    height: "auto",
   },
   [theme.breakpoints.up('md')]: {
     gap: 'var(--ms7)',
@@ -189,7 +191,7 @@ export const ImageSection = (props) => {
   const vs = images.length > 1 ? `vs${verticalSpace?.topPadding}-top vs${verticalSpace?.bottomPadding}-bottom` : ``
   return (
 
-    <ModuleContainer {...props}>
+    <ModuleContainer {...props} className={`section-${props._type}`}>
 
       <Wrapper className={vs} {...props} ref={ref}>
         {sideAssets?.leftAsset && <LeftAsset><Asset>
@@ -236,14 +238,14 @@ export const ImageSection = (props) => {
               sideAssets={sideAssets}
               icons={icons}
             >
-              {duplicatedImages.map((image, index) => {
-                const setImageNode = image
-                
+              {duplicatedImages.map((node, index) => {
+                let setImageNode = node?.image
+    
                 return (
 
-                  <motion.div key={image?.key} className="imageWrapper" style={{ x: transforms[type === 'mood' ? 'mood' : 'icons'][sm ? 'xs' : 'md'] }} >
-                    {setImageNode?.asset && (
-                      <LinkType to={image?.link}>
+                  <motion.div key={node?.key} className="imageWrapper" style={{ x: transforms[type === 'mood' ? 'mood' : 'icons'][sm ? 'xs' : 'md'] }} >
+                   
+                      <LinkType to={node?.link}>
                         <Image
                           crop={setImageNode?.crop}
                           hotspot={setImageNode?.hotspot}
@@ -254,7 +256,7 @@ export const ImageSection = (props) => {
                           width={1200}
                         />
                       </LinkType>
-                    )}
+                    
                   </motion.div>
 
                 )
@@ -266,15 +268,15 @@ export const ImageSection = (props) => {
 
         ) :
           <ImageContainer>
-            {images[0]?.asset && (
-              <LinkType to={images[0]?.link}>
+            {images[0]?.image?.asset && (
+              <LinkType to={images[0]?.image?.link}>
                 <Image
-                  crop={images[0]?.crop}
-                  hotspot={images[0]?.hotspot}
+                  crop={images[0]?.image?.crop}
+                  hotspot={images[0]?.image?.hotspot}
                   asset={
-                    (images[0]?._id && urlFor(images[0]).width(1440).url()) || images[0]?.asset
+                    (images[0]?.image?._id && urlFor(images[0]?.image).width(1440).url()) || images[0]?.image?.asset
                   }
-                  alt={images[0]?.asset?.altText}
+                  alt={images[0]?.image?.asset?.altText}
                   width={1440}
                   height={790}
                   style={{
@@ -292,11 +294,12 @@ export const ImageSection = (props) => {
 
         {type === 'product' && images.length > 1 && (
           <ProductImages sideAssets={sideAssets}>
-            {images.map((image, index) => {
-              const setImageNode = image
+            {images.map((node, index) => {
+              
+              let setImageNode = node?.image
               return (
-                <LinkType to={image?.link} key={image?.key}>
-                  {setImageNode?.asset && (
+                <LinkType to={node?.link} key={node?.key}>
+                  {setImageNode && (
                   <Image
                     crop={setImageNode?.crop}
                     hotspot={setImageNode?.hotspot}
@@ -323,21 +326,98 @@ export const query = graphql`
   fragment ImageSectionFragment on SanityImageSection {
     _key
     _type
-    type
     images {
+      _key
+      _type
       image {
-          ...ImageFragment
+        asset {
+          _id
+          gatsbyImageData
         }
-        link{
-          ...JustLinkFragment
+        hotspot {
+          x
+          y
+          width
+          height
         }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+      link {
+        external
+        internal {
+          ... on SanityPage {
+            id
+            _type
+            slug {
+              current
+            }
+          }
+          ... on SanityPost {
+            id
+            slug {
+              current
+              _type
+            }
+            categories {
+              name
+              slug {
+                current
+              }
+            }
+          }
+        }
+      }
+    }
+    type
+    backgroundColour {
+      label
+      value
+    }
+    verticalSpace {
+      bottomPadding
+      topPadding
     }
     sideAssets {
       leftAsset {
-          ...ImageFragment
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
       }
       rightAsset {
-          ...ImageFragment
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
       }
     }
   }

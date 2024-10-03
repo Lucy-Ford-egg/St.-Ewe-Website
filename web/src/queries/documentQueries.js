@@ -30,11 +30,26 @@ pageBuilder[] {
     asset->,
     hotspot{...},
     crop{...}
+    image {
+      asset->,
+      hotspot{...},
+      crop{...}
+    },
   },
   image {
     asset->,
     hotspot{...},
     crop{...}
+  },
+  images[] { 
+    image {
+      asset->,
+      hotspot{...},
+      crop{...}
+    },
+    link {
+      ${LINK},
+    },
   },
   links[]{
     ${LINK},

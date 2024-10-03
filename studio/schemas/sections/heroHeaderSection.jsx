@@ -53,7 +53,7 @@ export default defineType({
 
             return {
                 title: title ? title : 'Title',
-                subtitle: `Header Section`,
+                subtitle: `Hero Header Section`,
                 media: media,
                 icon: LiaImage
             }
