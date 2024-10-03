@@ -7,7 +7,7 @@ export const brandPalette = {
     "id": "color",
     "value": "#99cbeb"
   },
-  "Orignal Large": {
+  "Original Large": {
     "id": "color",
     "value": "#1b2e51"
   },

@@ -48,7 +48,7 @@ const Content = styled('div')(({ props }) => ({
   padding: 'var(--ms2)',
   '& .blogPostTitle':{
     wordBreak: 'break-word',
-    color: 'var(--orignal-large)',
+    color: 'var(--original-large)',
   }
 }));
 

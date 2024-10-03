@@ -165,7 +165,7 @@ let clientTheme = createTheme({
     --ms9: 9.6875rem;
     --original-medium: rgb(153, 203, 235);
     --original-primary: rgb(38, 97, 171);
-    --orignal-large: rgb(27, 46, 81);
+    --original-large: rgb(27, 46, 81);
     --quirky-quail-primary: rgb(59, 37, 22);
     --quirky-quail-secondary: rgb(252, 237, 222);
     --rich-yolk-opulent-hot-foil: rgb(229, 171, 74);

@@ -110,7 +110,7 @@ export const RecipesSection = ({
     (previewData && _type === previewData?._type && previewData?.topPadding) ||
     topPadding
 
-  const definedallSanityRecipes =
+  const definedAllSanityRecipes =
     // (recipeData && recipeData?.length > 0 && recipeData) ||
     // (previewData?.showRecipesArchive?.setArchive === true &&
     //   allRecipe &&
@@ -119,7 +119,7 @@ export const RecipesSection = ({
 
 
   useEffect(() => {
-    setFilterData(definedallSanityRecipes)
+    setFilterData(definedAllSanityRecipes)
   }, [])
 
 
@@ -149,7 +149,7 @@ export const RecipesSection = ({
     visible: { opacity: 1, y: 0, },
     hidden: { opacity: 0, y: 5, },
   }
-
+debugger
   return (
     <Wrapper ref={isInViewRef} backgroundColour={backgroundColour} paddingTop={theme.spacing(paddingTop)} paddingBottom={theme.spacing(paddingBottom)}>
 
@@ -161,17 +161,19 @@ export const RecipesSection = ({
         initial="hidden"
         variants={variants}>
 
-        {definedallSanityRecipes &&
-          definedallSanityRecipes.map((tile, i) => {
+        {filtersPosts &&
+          filtersPosts?.map((tile, i) => {
             if (i === 0) {
-              return <FeaturedItem className="featuredItem" variants={item} key={`${tile.title}-${i}`}>
-                <RecipeTile variant="h3" {...tile} i={i} showMeta={true} />
+              return (
+              <FeaturedItem className="featuredItem" variants={item} key={`${tile.title}-${i}`}>
+                <RecipeTile backgroundColour={backgroundColour} variant="h3" {...tile} i={i} showMeta={true} />
               </FeaturedItem>
+              )
             }
             else {
               return (
                 <GridItem className="gridItem" variants={item} key={`${tile.title}-${i}`}>
-                  <RecipeTile variant="h4" {...tile} i={i}  showMeta={false} />
+                  <RecipeTile backgroundColour={backgroundColour} variant="h4" {...tile} i={i}  showMeta={false} />
                 </GridItem>
 
               )

@@ -193,8 +193,7 @@ const Modules = (props) => {
                                 sanityConfig={sanityConfig}
                                 pageContext={pageContext}
                                 key={module._key + i}
-                                allSanityPost={allSanityPost}
-                                allSanityRecipes={allSanityRecipes}
+                                {...props}
                                 {...module} />
                         }
 

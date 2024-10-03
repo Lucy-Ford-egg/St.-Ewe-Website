@@ -18,7 +18,6 @@ export const LinkType = props => {
   if (node?.internal?._type === "teamMembers") {
     definedInternal = `/team-members/${definedInternal}`
   }
-  debugger
   return (
     <div className="linkTypeWrapper">
       {node?.internal ? (

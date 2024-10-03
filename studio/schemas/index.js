@@ -198,7 +198,7 @@ export const brandColors = {
   defaultColorList: [
     { label: 'Original Primary', value: '#2661ab' },
     { label: 'Original Medium', value: '#99cbeb' },
-    { label: 'Orignal Large', value: '#1b2e51' },
+    { label: 'Original Large', value: '#1b2e51' },
     { label: 'Rich Yolk Primary', value: '#eb7806' },
     { label: 'Rich Yolk Secondary', value: '#fcc501' },
     { label: 'Super Eggs Primary', value: '#006d69' },

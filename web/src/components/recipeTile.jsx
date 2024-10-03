@@ -5,12 +5,12 @@ import { urlFor } from "../utils/imageHelpers"
 import { motion } from "framer-motion"
 import Typography from "@mui/material/Typography"
 import { styled, useTheme } from '@mui/material/styles';
-import { brandPalette } from "../gatsby-theme-material-ui-top-layout/brandPalette"
+import { contrastBrandPalette } from "../utils/colours"
 import { LuClock5 } from "react-icons/lu";
 
 
-const Wrapper = styled('div')(({ theme }) => ({
-  backgroundColor: brandPalette["Original Primary"].value,
+const Wrapper = styled('div')(({ theme, backgroundColour }) => ({
+  backgroundColor: contrastBrandPalette[backgroundColour?.label]?.contrastBase,
   borderRadius: theme.spacing(7),
   cursor: "pointer",
   overflow: 'hidden',
@@ -35,12 +35,13 @@ const ImageWrapper = styled('div')(({ i, theme }) => ({
   }
 }
 ))
-const Details = styled('div')(({ theme }) => ({
+const Details = styled('div')(({ theme, backgroundColour }) => ({
   display: 'flex',
   padding: theme.spacing(7),
   flexDirection: 'column',
   zIndex: 1,
   position: 'relative',
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up('md')]: {
     flex: '1 0 0',
     alignSelf: 'stretch',
@@ -49,10 +50,10 @@ const Details = styled('div')(({ theme }) => ({
   }
 }))
 
-const Meta = styled('div')(({ theme }) => ({
+const Meta = styled('div')(({ theme, backgroundColour }) => ({
   display: 'flex',
   alignItems: 'center',
-  color: 'white',
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up('md')]: {
     "& svg": {
       width: 24,
@@ -75,19 +76,15 @@ export const RecipeTile = (props) => {
     variant,
     _rawInstructions,
     showMeta,
+    backgroundColour,
   } = props
-
+debugger
   const theme = useTheme()
 
-  const definedcategory = (category && category.name) || (category) && category.name
-
-  const backgroundColor = i % 2 ? "secondary" : "primary"
-  const number = i + 1
-
   return (
-    <Link onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)} to={`/recipe/${slug.current}`} style={{ display: "flex", width: "inherit", textDecoration: "none", height: theme.breakpoints.down('sm') ? "100%" : i === 0 ? "721px" : "100%" }} state={{ backgroundColor: backgroundColor, number: number }}>
+    <Link onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)} to={`/recipe/${slug.current}`} style={{ display: "flex", width: "inherit", textDecoration: "none", height: theme.breakpoints.down('sm') ? "100%" : i === 0 ? "721px" : "100%" }}>
       <Wrapper
-        theme={theme}
+        backgroundColour={backgroundColour}
       >
         {featuredMedia && (
           <ImageWrapper>
@@ -132,13 +129,13 @@ export const RecipeTile = (props) => {
             </motion.div>
           </ImageWrapper>
         )}
-        <Details>
+        <Details backgroundColour={backgroundColour}>
 
           <Typography variant={variant} component="h3" color="white.main">
             {title}
           </Typography>
           {showMeta && (
-            <Meta><LuClock5 /><Typography variant="body1" component="span" color="white.main">
+            <Meta backgroundColour={backgroundColour}><LuClock5 /><Typography variant="body1" component="span" color="white.main">
               {`${duration && (duration?.hours + ' hours')} ${duration && duration?.minutes + ' mins'}`}
             </Typography></Meta>
           )}

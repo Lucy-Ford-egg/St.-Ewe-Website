@@ -45,7 +45,46 @@ export const Head = ({ data, location }) => {
 
 export const pageTemplateQuery = graphql`
 
-query pageTemplateQuery( $slug: String! ) {
+query pageTemplateQuery( $slug: String!, $recipeIds: [String] ) {
+
+  allSanityRecipes(
+    sort: {date: DESC}
+    filter: {_id: {in: $recipeIds}}
+  ) {
+    nodes {
+      slug {
+        current
+      }
+      title
+      date(formatString: "Do MMMM YYYY")
+      category {
+        name
+      }
+      duration {
+        hours
+        minutes
+      }
+      featuredMedia {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+      _rawInstructions(resolveReferences: { maxDepth: 10 })
+    }
+  }
   
   allSanityPost(sort: {date: DESC}, limit: 8){
     nodes {

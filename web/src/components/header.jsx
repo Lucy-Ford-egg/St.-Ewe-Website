@@ -31,7 +31,7 @@ const Container = styled('div')(({ theme }) => ({
   gridColumn: '2/24',
   gridRow: '1/1',
   gridTemplateColumns: 'subgrid',
-  backgroundColor: contrastBrandPalette["Orignal Large"]?.value,
+  backgroundColor: contrastBrandPalette["Original Large"]?.value,
   borderRadius: '99px',
   border: '3px solid rgba(255, 255, 255, 0.60)',
   padding: 'var(--ms0)',

@@ -15,7 +15,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
   display: 'grid',
   gridTemplateColumns: 'repeat(24, 1fr)',
   gridColumn: '1/25',
-  backgroundColor: 'var(--orignal-large)',
+  backgroundColor: 'var(--original-large)',
   paddingTop: 'var(--ms5)',
   paddingBottom: 'var(--ms4)',
   [theme.breakpoints.up('lg')]: {

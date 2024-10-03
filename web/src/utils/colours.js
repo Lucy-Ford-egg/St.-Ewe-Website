@@ -4,8 +4,9 @@ import { brandPalette } from '../gatsby-theme-material-ui-top-layout/brandPalett
 export const contrastBrandPalette = {
     "Original Primary": {
       "id": "color",
-      "value": brandPalette["Original Primary"].value,
-      "contrastText": brandPalette["White"].value, 
+      "value": brandPalette["Original Primary"]?.value,
+      "contrastText": brandPalette["White"]?.value, 
+      "contrastBase": brandPalette["Original Large"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -13,17 +14,19 @@ export const contrastBrandPalette = {
     },
     "Original Medium": {
       "id": "color",
-      "value": brandPalette["Original Medium"].value,
-      "contrastText": brandPalette["Orignal Large"].value,
+      "value": brandPalette["Original Medium"]?.value,
+      "contrastText": brandPalette["Original Large"]?.value,
+      "contrastBase": brandPalette["Original Large"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
       },    
     },
-    "Orignal Large": {
+    "Original Large": {
       "id": "color",
-      "value": brandPalette["Orignal Large"].value,
-      "contrastText": brandPalette["White"].value,
+      "value": brandPalette["Original Large"]?.value,
+      "contrastText": brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Original Primary"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -31,8 +34,9 @@ export const contrastBrandPalette = {
     },
     "Rich Yolk Primary": {
       "id": "color",
-      "value": brandPalette["Rich Yolk Primary"].value,
-      "contrastText": brandPalette["White"].value, 
+      "value": brandPalette["Rich Yolk Primary"]?.value,
+      "contrastText": brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Rich Yolk Secondary"]?.value, 
       "contrastButton": {
         "contained": "secondary",
         "outlined": "secondary",
@@ -40,8 +44,9 @@ export const contrastBrandPalette = {
     },
     "Rich Yolk Secondary": {
       "id": "color",
-      "value": brandPalette["Rich Yolk Secondary"].value,
-      "contrastText": brandPalette["White"].value,
+      "value": brandPalette["Rich Yolk Secondary"]?.value,
+      "contrastText": brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Rich Yolk Primary"]?.value,
       "contrastButton": {
         "contained": "secondary",
         "outlined": "secondary",
@@ -49,8 +54,9 @@ export const contrastBrandPalette = {
     },
     "Super Eggs Primary": {
       "id": "color",
-      "value": brandPalette["Super Eggs Primary"].value,
-      "contrastText":  brandPalette["White"].value,
+      "value": brandPalette["Super Eggs Primary"]?.value,
+      "contrastText":  brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Super Eggs Secondary"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -58,8 +64,9 @@ export const contrastBrandPalette = {
     },
     "Super Eggs Secondary": {
       "id": "color",
-      "value": brandPalette["Super Eggs Secondary"].value,
-      "contrastText": brandPalette["Super Eggs Primary"].value, 
+      "value": brandPalette["Super Eggs Secondary"]?.value,
+      "contrastText": brandPalette["White"]?.value, 
+      "contrastBase": brandPalette["Super Eggs Primary"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -67,8 +74,9 @@ export const contrastBrandPalette = {
     },
     "Super Eggs Secondary Dark": {
       "id": "color",
-      "value": brandPalette["Super Eggs Secondary Dark"].value,
-      "contrastText": brandPalette["White"].value, 
+      "value": brandPalette["Super Eggs Secondary Dark"]?.value,
+      "contrastText": brandPalette["White"]?.value, 
+      "contrastBase": brandPalette["Super Eggs Secondary Accent"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -76,8 +84,9 @@ export const contrastBrandPalette = {
     },
     "Super Eggs Secondary Accent": {
       "id": "color",
-      "value": brandPalette["Super Eggs Secondary Accent"].value,
-      "contrastText":brandPalette["White"].value, 
+      "value": brandPalette["Super Eggs Secondary Accent"]?.value,
+      "contrastText":brandPalette["White"]?.value, 
+      "contrastBase": brandPalette["Super Eggs Secondary Dark"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -85,8 +94,9 @@ export const contrastBrandPalette = {
     },
     "Rich Yolk Opulent Hot Foil": {
       "id": "color",
-      "value": brandPalette["Rich Yolk Opulent Hot Foil"].value,
+      "value": brandPalette["Rich Yolk Opulent Hot Foil"]?.value,
       "contrastText": "" ,
+      "contrastBase": brandPalette["Rich Yolk Opulent Primary"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -94,8 +104,9 @@ export const contrastBrandPalette = {
     },
     "Rich Yolk Opulent Primary": {
       "id": "color",
-      "value": brandPalette["Rich Yolk Opulent Primary"].value,
-      "contrastText": brandPalette["White"].value,
+      "value": brandPalette["Rich Yolk Opulent Primary"]?.value,
+      "contrastText": brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Rich Yolk Opulent Hot Foil"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -103,8 +114,9 @@ export const contrastBrandPalette = {
     },
     "Rich Yolk Opulent Secondary": {
       "id": "color",
-      "value": brandPalette["Rich Yolk Opulent Secondary"].value,
-      "contrastText": brandPalette["White"].value,
+      "value": brandPalette["Rich Yolk Opulent Secondary"]?.value,
+      "contrastText": brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Rich Yolk Opulent Hot Foil"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -112,8 +124,9 @@ export const contrastBrandPalette = {
     },
     "Grand Primary": {
       "id": "color",
-      "value": brandPalette["Grand Primary"].value,
-      "contrastText": brandPalette["White"].value,
+      "value": brandPalette["Grand Primary"]?.value,
+      "contrastText": brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Rich Yolk Opulent Secondary"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -121,8 +134,9 @@ export const contrastBrandPalette = {
     },
     "White": {
       "id": "color",
-      "value": brandPalette["White"].value,
-      "contrastText": "",
+      "value": brandPalette["White"]?.value,
+      "contrastText": brandPalette["Original Large"]?.value,
+      "contrastBase": brandPalette["Original Medium"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "primary",
@@ -130,8 +144,9 @@ export const contrastBrandPalette = {
     },
     "Dabbling Duck Primary": {
       "id": "color",
-      "value": brandPalette["Dabbling Duck Primary"].value,
-      "contrastText":  brandPalette["White"].value,
+      "value": brandPalette["Dabbling Duck Primary"]?.value,
+      "contrastText":  brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Dabbling Duck Secondary"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -139,8 +154,9 @@ export const contrastBrandPalette = {
     },
     "Dabbling Duck Secondary": {
       "id": "color",
-      "value": brandPalette["Dabbling Duck Secondary"].value,
-      "contrastText":  brandPalette["White"].value, 
+      "value": brandPalette["Dabbling Duck Secondary"]?.value,
+      "contrastText":  brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Dabbling Duck Primary"]?.value, 
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -148,8 +164,9 @@ export const contrastBrandPalette = {
     },
     "Quirky Quail Primary": {
       "id": "color",
-      "value": brandPalette["Quirky Quail Primary"].value,
-      "contrastText":  brandPalette["White"].value,
+      "value": brandPalette["Quirky Quail Primary"]?.value,
+      "contrastText":  brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Quirky Quail Secondary"]?.value, 
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",
@@ -157,8 +174,9 @@ export const contrastBrandPalette = {
     },
     "Quirky Quail Secondary": {
       "id": "color",
-      "value": brandPalette["Quirky Quail Secondary"].value,
-      "contrastText": brandPalette["White"].value,
+      "value": brandPalette["Quirky Quail Secondary"]?.value,
+      "contrastText": brandPalette["White"]?.value,
+      "contrastBase": brandPalette["Quirky Quail Primary"]?.value, 
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",

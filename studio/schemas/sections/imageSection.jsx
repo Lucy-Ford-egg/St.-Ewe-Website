@@ -62,7 +62,7 @@ export default defineType({
     },
     prepare(selection) {
       const { title, media, showSearch, type  } = selection
-      debugger
+
       return {
         title: title,
         subtitle: `Image Section (${type})`,
