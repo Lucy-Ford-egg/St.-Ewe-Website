@@ -95,6 +95,30 @@ fragment LinkFragment on SanityLinkDefined {
         }
     }
     text
-
+}
+fragment JustLinkFragment on SanityLink {
+  external
+  internal {
+    ... on SanityPage {
+      id
+      _type
+      slug {
+        current
+      } 
+    }
+    ... on SanityPost {
+        id
+        slug {
+          current
+          _type
+        }
+        categories {
+          name
+          slug{
+            current
+          }
+        }
+    }
+  }          
 }
 `

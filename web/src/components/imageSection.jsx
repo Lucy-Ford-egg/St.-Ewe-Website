@@ -6,6 +6,7 @@ import { urlFor } from "../utils/imageHelpers"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from '@mui/material/styles';
 import { useMediaQuery, useTheme } from "@mui/material"
+import { LinkType } from "./utils/linkType"
 
 const Wrapper = styled('div')(({ theme, navColour, menu, backgroundColour, verticalSpace }) => ({
   // Base styles
@@ -25,7 +26,7 @@ const Images = styled('div')(({ theme, images }) => ({
   overflowX: 'hidden',
 }));
 
-const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons  }) => ({
+const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons }) => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   gridTemplateColumns: 'repeat(24, 1fr)',
@@ -132,21 +133,46 @@ const Asset = styled('div')(({ }) => ({
   maxWidth: 200,
 }));
 
+const ProductImages = styled('div')(({ theme, sideAssets}) => ({
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  gridTemplateColumns: 'repeat(24, 1fr)',
+  gridTemplateRows: '1fr',
+  gap: 'var(--ms3)',
+  flexWrap: 'nowrap',
+  overflowX: 'scroll',
+  "a":{
+    gridColumn: !sideAssets ? 'span 2' : 'span 2',
+    gridRow: '1/1',
+  },
+  "& img": {
+    borderRadius: 'var(--ms2)',
+    maxWidth: !sideAssets ? '100%' : '100%',
+    objectFit: !sideAssets ? "contain" : "cover",
+    height: !sideAssets ? "auto" : "auto",
+  },
+  [theme.breakpoints.up('md')]: {
+    gap: 'var(--ms7)',
+  }
+}));
+
 
 export const ImageSection = (props) => {
-  const { images, text, textAlign = "center", backgroundColour, verticalSpace , sideAssets, icons = null} = props
+  const { type, images, text, textAlign = "center", backgroundColour, verticalSpace, sideAssets, icons = null } = props
 
   const theme = useTheme()
   const sm = useMediaQuery(theme.breakpoints.down('sm'))
-   // Motion
-   const ref = useRef(null)
-   const { scrollYProgress } = useScroll()
-   const transforms = {
-        icons: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-950%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
-        gallery: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-350%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
-        product: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
-   }
-   //! 
+  // Motion
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll()
+  const transforms = {
+    icons: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-950%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
+    mood: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-350%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
+    product: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
+  }
+  //! 
+
+  debugger
 
   // Duplicate images array for infinite effect
   const duplicatedImages = [...images, ...images,];
@@ -172,29 +198,29 @@ export const ImageSection = (props) => {
               height: "auto",
             }}
           />
-          </Asset>
+        </Asset>
         </LeftAsset>}
         {sideAssets?.rightAsset && <RightAsset>
           <Asset>
-          <Image
-            crop={sideAssets?.rightAsset?.crop}
-            hotspot={sideAssets?.rightAsset?.hotspot}
-            asset={
-              sideAssets?.rightAsset?._id && urlFor(sideAssets?.rightAsset).width(1200).url() || sideAssets?.rightAsset?.asset
-            }
-            alt={sideAssets?.rightAsset?.asset?.altText}
-            width={1200}
+            <Image
+              crop={sideAssets?.rightAsset?.crop}
+              hotspot={sideAssets?.rightAsset?.hotspot}
+              asset={
+                sideAssets?.rightAsset?._id && urlFor(sideAssets?.rightAsset).width(1200).url() || sideAssets?.rightAsset?.asset
+              }
+              alt={sideAssets?.rightAsset?.asset?.altText}
+              width={1200}
 
-            style={{
-              objectFit: "contain",
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
+              style={{
+                objectFit: "contain",
+                maxWidth: "100%",
+                height: "auto",
+              }}
+            />
           </Asset>
         </RightAsset>
         }
-        {images.length > 1 ? (
+        {images.length > 1 && type === 'mood' || type === 'icons' ? (
 
           <Images images={images}>
             <ImagesContainer
@@ -202,17 +228,17 @@ export const ImageSection = (props) => {
               icons={icons}
             >
               {duplicatedImages.map((image, index) => (
-                <motion.div className="imageWrapper" style={{ x:  transforms[sideAssets ? 'gallery' : 'icons'][sm ? 'xs' : 'md']}} >
-                <Image
-                 
-                  crop={image?.crop}
-                  hotspot={image?.hotspot}
-                  asset={
-                    image?._id && urlFor(image).width(1200).url() || image?.asset
-                  }
-                  alt={image?.asset?.altText}
-                  width={1200}
-                />
+                <motion.div className="imageWrapper" style={{ x: transforms[type === 'mood' ? 'mood' : 'icons'][sm ? 'xs' : 'md'] }} >
+                  <Image
+
+                    crop={image?.crop}
+                    hotspot={image?.hotspot}
+                    asset={
+                      image?._id && urlFor(image).width(1200).url() || image?.asset
+                    }
+                    alt={image?.asset?.altText}
+                    width={1200}
+                  />
                 </motion.div>
 
               ))}
@@ -237,9 +263,37 @@ export const ImageSection = (props) => {
                 height: "100%",
               }}
             />
-            <Description><span>{images[0]?.asset?.description}</span></Description>
+            {images[0]?.asset?.descriptio && <Description><span>{images[0]?.asset?.description}</span></Description>}
           </ImageContainer >
         }
+
+        {type === 'product' && images.length > 1 && (
+          <ProductImages sideAssets={sideAssets}>
+            {images.map((image, index) => {
+
+              const setImageNode = image?.hasOwnProperty('image') ? image?.image : image;
+              debugger;
+              return (
+                <>
+                { setImageNode?.asset && (
+                  <LinkType to={images?.link}>
+                  <Image
+                    crop={setImageNode?.crop}
+                    hotspot={setImageNode?.hotspot}
+                    asset={
+                      setImageNode?._id && urlFor(setImageNode).width(1200).url() || setImageNode?.asset
+                    }
+                    alt={setImageNode?.asset?.altText}
+                    width={1200}
+                    height={1200}
+                  />
+                  </LinkType>
+                )}
+                </>
+            )
+            })}
+          </ProductImages>
+        )}
 
       </Wrapper>
     </ModuleContainer>
@@ -250,22 +304,20 @@ export const query = graphql`
   fragment ImageSectionFragment on SanityImageSection {
     _key
     _type
+    type
     images {
-      asset {
-        _id
-        gatsbyImageData
-      }
-      hotspot {
-        x
-        y
-        width
-        height
-      }
-      crop {
-        bottom
-        left
-        right
-        top
+      ...ImageFragment
+      ... on SanityImageLink {
+        _key
+        _type
+        image {
+          asset {
+            _id
+          }
+        }
+        link{
+          ...JustLinkFragment
+        }
       }
     }
     sideAssets {

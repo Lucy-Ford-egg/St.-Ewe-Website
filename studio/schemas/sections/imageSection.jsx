@@ -14,8 +14,24 @@ export default defineType({
         type: 'image', options: {
           hotspot: true,
         },
-      }]
+      },
+      {type: 'imageLink'},]
     }),
+    defineField({
+      title: 'Type',
+      name: 'type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Product', value: 'product'},
+          {title: 'Mood', value: 'mood'},
+          {title: 'Icons', value: 'icons'},
+        ],
+        layout: 'radio',
+      },
+      intialValue: 'mood',
+      description: 'Select product to show square images which can be user scrolled and clicked. Select Mood for a scroll activated gallery.'
+  }),
     defineField({
       title: 'Side Assets',
       name: 'sideAssets',
@@ -43,6 +59,7 @@ export default defineType({
     },
     prepare(selection) {
       const { title, media, showSearch, textAlign } = selection
+      debugger
       return {
         title: title,
         subtitle: `Image Section`,

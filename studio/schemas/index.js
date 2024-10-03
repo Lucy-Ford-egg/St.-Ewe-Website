@@ -28,6 +28,7 @@ import containerWidth from './parts/containerWidth'
 import hotspotItem from './parts/hotspotItem'
 import supportAssets from './parts/supportingAssets'
 import textColumns from './parts/textColumns'
+import imageLink from './parts/imageLink'
 
 import cite from './components/cite'
 import externalCite from './components/externalCite'
@@ -101,6 +102,7 @@ export const schema = {
     hotspots,
     supportAssets,
     textColumns,
+    imageLink,
     // Atoms
     ingredient,
     recipesCategory,
