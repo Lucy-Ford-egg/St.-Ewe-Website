@@ -144,43 +144,45 @@ let clientTheme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: `
-:root {
-    --dabbling-duck-primary: rgb(39, 34, 78);
-    --dabbling-duck-secondary: rgb(98, 94, 156);
-    --grand-primary: rgb(132, 136, 134);
-    --ms-1: 0.625rem;
-    --ms-2: 0.875rem;
-    --ms-3: 0.5625rem;
-    --ms-4: 0.375rem;
-    --ms-5: 0.3125rem;
-    --ms0: 1rem;
-    --ms1: 1.4375rem;
-    --ms2: 1.625rem;
-    --ms3: 2.3125rem;
-    --ms4: 2.625rem;
-    --ms5: 3.6875rem;
-    --ms6: 4.25rem;
-    --ms7: 6rem;
-    --ms8: 6.875rem;
-    --ms9: 9.6875rem;
-    --original-medium: rgb(153, 203, 235);
-    --original-primary: rgb(38, 97, 171);
-    --original-large: rgb(27, 46, 81);
-    --quirky-quail-primary: rgb(59, 37, 22);
-    --quirky-quail-secondary: rgb(252, 237, 222);
-    --rich-yolk-opulent-hot-foil: rgb(229, 171, 74);
-    --rich-yolk-opulent-primary: rgb(32, 32, 32);
-    --rich-yolk-opulent-secondary: rgb(0, 0, 0);
-    --rich-yolk-primary: rgb(235, 120, 6);
-    --rich-yolk-secondary: rgb(252, 197, 1);
-    --super-eggs-primary: rgb(0, 109, 105);
-    --super-eggs-secondary: rgb(209, 224, 215);
-    --super-eggs-secondary-accent: rgb(233, 85, 29);
-    --super-eggs-secondary-dark: rgb(4, 91, 84);
-    --white: rgb(255, 255, 255);
-    --font-primary: 'Colby Narrow';
-    --font-secondary: 'Roboto Slab';
-}
+        :root {
+            --dabbling-duck-primary: rgb(39, 34, 78);
+            --dabbling-duck-secondary: rgb(98, 94, 156);
+            --grand-primary: rgb(132, 136, 134);
+            --ms-1: 0.625rem;
+            --ms-2: 0.875rem;
+            --ms-3: 0.5625rem;
+            --ms-4: 0.375rem;
+            --ms-5: 0.3125rem;
+            --ms-6: 0rem;
+            --ms0: 1rem;
+            --ms1: 1.4375rem;
+            --ms2: 1.625rem;
+            --ms3: 2.3125rem;
+            --ms4: 2.625rem;
+            --ms5: 3.6875rem;
+            --ms6: 4.25rem;
+            --ms7: 6rem;
+            --ms8: 6.875rem;
+            --ms9: 9.6875rem;
+            --original-medium: rgb(153, 203, 235);
+            --original-primary: rgb(38, 97, 171);
+            --original-large: rgb(27, 46, 81);
+            --quirky-quail-primary: rgb(59, 37, 22);
+            --quirky-quail-secondary: rgb(252, 237, 222);
+            --rich-yolk-opulent-hot-foil: rgb(229, 171, 74);
+            --rich-yolk-opulent-primary: rgb(32, 32, 32);
+            --rich-yolk-opulent-secondary: rgb(0, 0, 0);
+            --rich-yolk-primary: rgb(235, 120, 6);
+            --rich-yolk-secondary: rgb(252, 197, 1);
+            --super-eggs-primary: rgb(0, 109, 105);
+            --super-eggs-secondary: rgb(209, 224, 215);
+            --super-eggs-secondary-accent: rgb(233, 85, 29);
+            --super-eggs-secondary-dark: rgb(4, 91, 84);
+            --white: rgb(255, 255, 255);
+            --font-primary: 'Colby Narrow';
+            --font-secondary: 'Roboto Slab';
+        }
+        
 
         // *{
         //   border: 1px solid tomato;

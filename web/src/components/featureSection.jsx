@@ -19,7 +19,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
   gridColumn: '1/25',
   display: 'grid',
   gridTemplateColumns: 'subgrid',
-  overflow: 'hidden',
+  //overflowX: 'hidden',
   [theme.breakpoints.up('sm')]: {
     gridRowGap: 'var(--ms4)',
   },

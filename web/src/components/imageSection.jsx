@@ -232,18 +232,16 @@ export const ImageSection = (props) => {
   const transforms = {
     icons: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-950%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
     mood: { xs: useTransform(scrollYProgress, [0, 1], ["0%", "-350%"]), md: useTransform(scrollYProgress, [0, 1], ["0%", "-450%"]) },
-    //product: useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
   }
 
   // Duplicate images array for infinite effect
   const duplicatedImages = [...images, ...images, ...images,];
 
-  const vs = images.length > 1 ? `vs${verticalSpace?.topPadding}-top vs${verticalSpace?.bottomPadding}-bottom` : ``
   return (
 
     <ModuleContainer {...props} className={`section-${props._type}`}>
 
-      <Wrapper className={vs} {...props} ref={ref}>
+      <Wrapper  {...props} ref={ref}>
         {sideAssets?.leftAsset && <LeftAsset><Asset>
           <Image
             crop={sideAssets?.leftAsset?.crop}

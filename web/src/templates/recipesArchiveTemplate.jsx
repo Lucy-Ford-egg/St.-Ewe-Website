@@ -20,7 +20,7 @@ const RecipeArchiveTemplate = props => {
   )
 
   const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
-  
+
   return (
     <>
       <Modules
@@ -46,38 +46,10 @@ query RecipeArchiveTemplateQuery( $slug: String!, $skip: Int, $limit: Int) {
     skip: $skip 
     limit: $limit 
   ) {
-    nodes {
-      slug {
-        current
-      }
-      title
-      date(formatString: "Do MMMM YYYY")
-      category {
-        name
-      }
-      duration {
-        hours
-        minutes
-      }
-      featuredMedia {
-        asset {
-          _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
-      }
-      _rawInstructions(resolveReferences: { maxDepth: 10 })
+     nodes {
+      _key
+      _id
+      ...RecipeTileFragment 
     }
   }
   getAllPosts: allSanityPost(sort: {date: DESC}){

@@ -51,38 +51,10 @@ query pageTemplateQuery( $slug: String!, $recipeIds: [String] ) {
     sort: {date: DESC}
     filter: {_id: {in: $recipeIds}}
   ) {
-    nodes {
-      slug {
-        current
-      }
-      title
-      date(formatString: "Do MMMM YYYY")
-      category {
-        name
-      }
-      duration {
-        hours
-        minutes
-      }
-      featuredMedia {
-        asset {
-          _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
-      }
-      _rawInstructions(resolveReferences: { maxDepth: 10 })
+     nodes {
+      _key
+      _id
+      ...RecipeTileFragment 
     }
   }
   

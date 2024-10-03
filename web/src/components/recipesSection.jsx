@@ -150,7 +150,7 @@ export const RecipesSection = ({
     visible: { opacity: 1, y: 0, },
     hidden: { opacity: 0, y: 5, },
   }
-debugger
+
   return (
     <Wrapper ref={isInViewRef} backgroundColour={backgroundColour} paddingTop={theme.spacing(paddingTop)} paddingBottom={theme.spacing(paddingBottom)}>
 
