@@ -26,20 +26,20 @@ const Images = styled('div')(({ theme, images }) => ({
   overflowX: 'hidden',
 }));
 
-const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons }) => ({
+const ImagesContainer = styled(motion.div)(({ theme, type }) => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   gridTemplateColumns: 'repeat(24, 1fr)',
   gridTemplateRows: '1fr',
   gap: 'var(--ms3)',
   flexWrap: 'nowrap',
-  display: !sideAssets ? 'grid' : 'grid',
+  display: 'grid',
   //maxHeight: images?.length === 0 ? 'auto' : sideAssets ? '517px' : 'var(--ms6)',
   "& .imageWrapper": {
-    gridColumn: 'span 9',
+    gridColumn: type === 'icons' ? 'span 2' : 'span 9',
     gridRow: '1/1',
     [theme.breakpoints.up('md')]: {
-      gridColumn: !sideAssets ? 'span 2' : 'span 6',
+      gridColumn: type === 'icons' ? 'span 2' : 'span 6',
     }
   },
   "& .linkTypeWrapper": {
@@ -48,10 +48,10 @@ const ImagesContainer = styled(motion.div)(({ theme, images, sideAssets, icons }
     height: '100%',
   },
   "& img": {
-    borderRadius: 'var(--ms2)',
-    maxWidth: !sideAssets ? '100%' : '100%',
-    objectFit: !sideAssets ? "contain" : "cover",
-    height: !sideAssets ? "auto" : "auto",
+    borderRadius: type === 'icons' ? 0 : 'var(--ms2)',
+    maxWidth: '100%',
+    objectFit: type === 'icons' ? "contain" : "cover",
+    height: "auto",
   },
   [theme.breakpoints.up('md')]: {
     gap: 'var(--ms7)',
@@ -77,7 +77,6 @@ const ImageContainer = styled('div')(({ theme, images }) => ({
     }
   },
   "& img": {
-
     borderRadius: 'var(--ms2)',
     objectFit: 'cover',
     width: '100%',
@@ -124,6 +123,7 @@ const LeftAsset = styled('div')(({ alignment, theme }) => ({
     justifyContent: 'start',
     zIndex: 2,
     marginTop: '-155px',
+    pointerEvents: 'none',
   }
 
 }));
@@ -133,13 +133,15 @@ const RightAsset = styled('div')(({ alignment, theme }) => ({
   gridColumn: '15/24',
   alignItems: 'end',
   justifyContent: 'end',
-  gridRow: '5/5',
+  gridRow: '3/5',
   height: '100%',
-  marginBottom: '-155px',
+  pointerEvents: 'none',
+  zIndex: 2,
   [theme.breakpoints.up('lg')]: {
     gridRow: '1/5',
     justifyContent: 'center',
     gridColumn: '15/24',
+    marginBottom: '-155px',
     zIndex: 2
   }
 }));
@@ -178,6 +180,8 @@ const XScroll = styled('div')(({theme}) => ({
     width: '65%',
     minWidth: '65%',
     scrollSnapAlign: 'start',
+    borderRadius: 'var(--ms2)',
+    overflow: 'hidden',
     [theme.breakpoints.up('md')]: {
       flexBasis: '28%',
       width: '28%',
@@ -195,19 +199,24 @@ const XScroll = styled('div')(({theme}) => ({
     "&:last-of-type": {
         marginRight: 'var(--ms-1)',
     },
-
     "&:nth-child(even)": {
-      paddingBottom: 'var(--ms5)'
+      marginBottom: 'var(--ms5)'
     },
     "&:nth-child(odd)": {
-      paddingTop: 'var(--ms5)'
+      marginTop: 'var(--ms5)'
+    },
+    "&:hover":{
+      "& img": {
+        transform :'scale(1.1)',
+      },
     },
   },
   "& img": {
-    borderRadius: 'var(--ms2)',
+    transition: 'all 0.2s ease-in-out 0s',
     maxWidth: '100%',
-    objectFit: "contain",
-    height: "auto",
+    objectFit: "cover",
+    height: "100%",
+   
   },
 }));
 
@@ -227,7 +236,7 @@ export const ImageSection = (props) => {
   }
 
   // Duplicate images array for infinite effect
-  const duplicatedImages = [...images, ...images,];
+  const duplicatedImages = [...images, ...images, ...images,];
 
   const vs = images.length > 1 ? `vs${verticalSpace?.topPadding}-top vs${verticalSpace?.bottomPadding}-bottom` : ``
   return (
@@ -277,7 +286,7 @@ export const ImageSection = (props) => {
 
           <Images images={images}>
             <ImagesContainer
-              sideAssets={sideAssets}
+              type={type}
               icons={icons}
             >
               {duplicatedImages.map((node, index) => {
