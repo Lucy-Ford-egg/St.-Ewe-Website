@@ -29,7 +29,8 @@ const GridContainer = styled('div')(({ theme }) => ({
   display: 'grid',
   gridColumn: '3/23',
   gridTemplateRows: '1fr 1fr',
-  gridGap: 21,
+  gridColumnGap: 21,
+  gridRowGap: 21,
   gridTemplateColumns: 'subgrid',
   "& .gridItem":{
     gridColumn: '1/25',

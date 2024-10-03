@@ -15,9 +15,10 @@ const Wrapper = styled('div')(({ theme, backgroundColour }) => ({
   cursor: "pointer",
   overflow: 'hidden',
   width: '100%',
-  height: 'max-content',
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-evenly',
+
   [theme.breakpoints.up('md')]: {
     height: '100%',
   }
@@ -42,6 +43,9 @@ const Details = styled('div')(({ theme, backgroundColour }) => ({
   zIndex: 1,
   position: 'relative',
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  flex: '1 0 0',
+  alignSelf: 'stretch',
+    alignItems: 'flex-start',
   [theme.breakpoints.up('md')]: {
     flex: '1 0 0',
     alignSelf: 'stretch',
@@ -78,7 +82,7 @@ export const RecipeTile = (props) => {
     showMeta,
     backgroundColour,
   } = props
-debugger
+
   const theme = useTheme()
 
   return (
