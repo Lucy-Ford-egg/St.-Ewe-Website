@@ -10,12 +10,14 @@ export default defineType({
       title: 'Images',
       name: 'images',
       type: 'array',
-      of: [{
-        type: 'image', options: {
-          hotspot: true,
-        },
-      },
-      {type: 'imageLink'},]
+      of: [
+        // {
+        //   type: 'image', 
+        //   options: {
+        //     hotspot: true,
+        //   },
+        // },
+        {type: 'imageLink'},]
     }),
     defineField({
       title: 'Type',
@@ -54,16 +56,17 @@ export default defineType({
     select: {
       title: 'title',
       textAlign: 'textAlign',
-      media: 'images'
+      media: 'images',
+      type: 'type'
 
     },
     prepare(selection) {
-      const { title, media, showSearch, textAlign } = selection
+      const { title, media, showSearch, type  } = selection
       debugger
       return {
         title: title,
-        subtitle: `Image Section`,
-        media: media[0],
+        subtitle: `Image Section (${type})`,
+        media: media[0]?.image,
         icon: LiaGripHorizontalSolid
       }
     }

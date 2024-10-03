@@ -16,5 +16,17 @@ export default defineType({
       type: 'link',
       name: 'link', 
     })
-  ]
+  ],
+  preview: {
+    select: {
+        media: 'image'
+    },
+    prepare({ title, media }) {
+        return {
+            title: `Link`,
+            subtitle: ``,
+            media: media,
+        }
+    },
+},
 })

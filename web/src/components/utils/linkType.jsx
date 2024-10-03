@@ -3,8 +3,8 @@ import { Link as GatsbyLink } from "gatsby-theme-material-ui"
 import Link from "@mui/material/Button"
 
 export const LinkType = props => {
-  const { node, children } = props
-
+  const { node } = props
+debugger
   let definedInternal = node?.link?.internal?.slug?.current
   const definedExternal = node?.link?.external
 
@@ -20,21 +20,21 @@ export const LinkType = props => {
   }
   
   return (
-    <div>
+    <div className="linkTypeWrapper">
       {node?.link?.internal ? (
         <GatsbyLink
           to={`/${definedInternal}`}
         >
-          {children}
+          {props.children}
         </GatsbyLink>
       ) : definedExternal ? (
         <Link
           href={definedExternal}
           rel="noopener"
           target="_blank">
-          {children}
+          {props.children}
         </Link>
-      ) : null}
+      ) : props.children}
     </div>
   )
 }
