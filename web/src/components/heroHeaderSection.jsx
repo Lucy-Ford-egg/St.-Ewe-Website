@@ -78,6 +78,7 @@ const Base = styled(motion.div)(({ theme }) => ({
 const renderLayer = (layer, index, transform, mobile, tablet, contentOpacity ) => (
     <Layer key={index} style={{ opacity: (index < 3) ? contentOpacity : 1, y: transform, zIndex: index,}}>
         <Image
+            fetchpriority="high"
             crop={layer?.crop}
             hotspot={layer?.hotspot}
             width={mobile ? 390 : 2880}
