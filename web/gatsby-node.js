@@ -47,215 +47,232 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const { createPage } = actions
   const result = await graphql(`
   query SanityAllData {
-    allSanityPage(filter: {slug: {current: {nin: ["news", "recipes"]}}}) {
-      nodes {
-        _type
-        id
-        slug {
-          current
-        }
-        title
-        pageBuilder{
-          ... on SanityBlogSection {
-            _key
-            _type
-            showArchive {
-              archive {
-                name
-                _id
-              }
-              setArchive
-            }
-          }
-          ... on SanityRecipesSection {
-            _key
-            _type
-            showRecipesArchive {
-              archive {
-                category {
-                  name
-                }
-                _id
-              }
-              setArchive
-            }
-          }
-        }
+  allSanityPage(filter: {slug: {current: {nin: ["news", "recipes"]}}}) {
+    nodes {
+      _type
+      id
+      slug {
+        current
       }
-    }
-    blogPage: allSanityPage(filter: {slug: {current: {in: "news"}}}) {
-      nodes {
-        _type
-        id
-        slug {
-          current
+      title
+      pageBuilder {
+        ... on SanityBlogSection {
+          _key
+          _type
+          showArchive {
+            archive {
+              name
+              _id
+            }
+            setArchive
+          }
         }
-        title
-        pageBuilder{
-          ... on SanityBlogSection {
-            _key
-            _type
-            showArchive {
-              archive {
+        ... on SanityRecipesSection {
+          _key
+          _type
+          showRecipesArchive {
+            archive {
+              category {
                 name
-                _id
               }
-              setArchive
+              _id
             }
-          }
-          ... on SanityRecipesSection {
-            _key
-            _type
-            showRecipesArchive {
-              archive {
-                category {
-                  name
-                }
-                _id
-              }
-              setArchive
-            }
-          }
-        }
-      }
-    }
-    recipePage: allSanityPage(filter: {slug: {current: {in: "recipes"}}}) {
-      nodes {
-        _type
-        id
-        slug {
-          current
-        }
-        title
-        pageBuilder{
-          ... on SanityBlogSection {
-            _key
-            _type
-            showArchive {
-              archive {
-                name
-                _id
-              }
-              setArchive
-            }
-          }
-          ... on SanityRecipesSection {
-            _key
-            _type
-            showRecipesArchive {
-              archive {
-                category {
-                  name
-                }
-                _id
-              }
-              setArchive
-            }
-          }
-        }
-      }
-    }
-    allSanityRecipes {
-      nodes {
-        _key
-        _id
-        title
-        slug {
-          current
-        }
-        duration {
-          hours
-          minutes
-        }
-        category {
-          name
-          _id
-        }
-          pageBuilder{
-          ... on SanityBlogSection {
-            _key
-            _type
-            showArchive {
-              archive {
-                name
-                _id
-              }
-              setArchive
-            }
-          }
-          ... on SanityRecipesSection {
-            _key
-            _type
-            showRecipesArchive {
-              archive {
-                _id
-              }
-              setArchive
-            }
-          }
-        }
-      }
-    }
-    allSanityPost(sort: {date: DESC}) {
-      nodes {
-        _rawExcerpt(resolveReferences: {maxDepth: 10})
-        _rawContent(resolveReferences: {maxDepth: 10})
-        title
-        slug {
-          current
-        }
-        featuredMedia {
-          asset {
-            _id
-            gatsbyImageData
-          }
-          hotspot {
-            x
-            y
-            width
-            height
-          }
-          crop {
-            bottom
-            left
-            right
-            top
-          }
-        }
-        categories {
-          name
-          _id
-          slug {
-            current
-          }
-        }
-        pageBuilder{
-          ... on SanityBlogSection {
-            _key
-            _type
-            showArchive {
-              archive {
-                name
-                _id
-              }
-              setArchive
-            }
-          }
-          ... on SanityRecipesSection {
-            _key
-            _type
-            showRecipesArchive {
-              archive {
-                _id
-              }
-              setArchive
-            }
+            setArchive
           }
         }
       }
     }
   }
-  `)
+  blogPage: allSanityPage(filter: {slug: {current: {in: "news"}}}) {
+    nodes {
+      _type
+      id
+      slug {
+        current
+      }
+      title
+      pageBuilder {
+        ... on SanityBlogSection {
+          _key
+          _type
+          showArchive {
+            archive {
+              name
+              _id
+            }
+            setArchive
+          }
+        }
+        ... on SanityRecipesSection {
+          _key
+          _type
+          showRecipesArchive {
+            archive {
+              category {
+                name
+              }
+              _id
+            }
+            setArchive
+          }
+        }
+      }
+    }
+  }
+  recipePage: allSanityPage(filter: {slug: {current: {in: "recipes"}}}) {
+    nodes {
+      _type
+      id
+      slug {
+        current
+      }
+      title
+      pageBuilder {
+        ... on SanityBlogSection {
+          _key
+          _type
+          showArchive {
+            archive {
+              name
+              _id
+            }
+            setArchive
+          }
+        }
+        ... on SanityRecipesSection {
+          _key
+          _type
+          showRecipesArchive {
+            archive {
+              category {
+                name
+              }
+              _id
+            }
+            setArchive
+          }
+        }
+      }
+    }
+  }
+  allSanityRecipes {
+    nodes {
+      _key
+      _id
+      title
+      slug {
+        current
+      }
+      duration {
+        hours
+        minutes
+      }
+      category {
+        name
+        _id
+      }
+      featuredMedia {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+      pageBuilder {
+        ... on SanityBlogSection {
+          _key
+          _type
+          showArchive {
+            archive {
+              name
+              _id
+            }
+            setArchive
+          }
+        }
+        ... on SanityRecipesSection {
+          _key
+          _type
+          showRecipesArchive {
+            archive {
+              _id
+            }
+            setArchive
+          }
+        }
+      }
+    }
+  }
+  allSanityPost(sort: {date: DESC}) {
+    nodes {
+      _rawExcerpt(resolveReferences: {maxDepth: 10})
+      _rawContent(resolveReferences: {maxDepth: 10})
+      title
+      slug {
+        current
+      }
+      featuredMedia {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+      categories {
+        name
+        _id
+        slug {
+          current
+        }
+      }
+      pageBuilder {
+        ... on SanityBlogSection {
+          _key
+          _type
+          showArchive {
+            archive {
+              name
+              _id
+            }
+            setArchive
+          }
+        }
+        ... on SanityRecipesSection {
+          _key
+          _type
+          showRecipesArchive {
+            archive {
+              _id
+            }
+            setArchive
+          }
+        }
+      }
+    }
+  }
+}`)
 
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
@@ -499,11 +516,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         id: node.id,
         key: index,
         slug: `${node.slug.current}`,
-        title: node.title,
-        coverImage: node.coverImage,
-        date: node.date,
-        category: node.category,
-        excerpt: node.excerpt,
+        node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
         recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
       },

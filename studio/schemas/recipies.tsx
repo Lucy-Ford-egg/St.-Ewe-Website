@@ -6,6 +6,8 @@ import recipesCategoryType from './taxonomies/recipesCategory'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 import { pageBuilder } from "./parts/pageBuilder"
+// Imported only on the recipe page
+import recipeBodySection from "./sections/recipeBodySection"
 
 export default defineType({
   name: 'recipes',
@@ -156,7 +158,7 @@ export default defineType({
       type: 'array',
       title: 'Page builder',
       description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
-      of: [...pageBuilder],
+      of: [...pageBuilder, { type: recipeBodySection.name}],
       group: 'pageContent',
     }),
 

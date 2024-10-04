@@ -108,9 +108,11 @@ query pageTemplateQuery( $slug: String!, $recipeIds: [String] ) {
       ...PageBuilderFragment
     }
   }
-  sanitySiteSettings {
-   ... CompanyDetailsFragment
-  }
 }
 `
 export default PageTemplate
+
+
+// sanitySiteSettings {
+//   ... CompanyDetailsFragment
+//  }

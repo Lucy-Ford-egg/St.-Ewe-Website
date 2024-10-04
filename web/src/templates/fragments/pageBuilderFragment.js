@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 
 export const pageBuilderQuery = graphql`
-  fragment PageBuilderFragment on SanityBlogSectionOrBorderSectionOrClientLoginSectionOrContactSectionOrCtaSectionOrEmbedSectionOrFeatureSectionOrFeaturesListSectionOrHeaderSectionOrHeroHeaderSectionOrHotspotSectionOrImageSectionOrLocationSectionOrNewsletterSectionOrRecipesSectionOrStepsSectionOrTeamSectionOrTestimonialSectionOrTextSectionOrTimelineSectionOrTitleSectionOrVideoSection {
+  fragment PageBuilderFragment on SanityBlogSectionOrBorderSectionOrFeatureSectionOrHeaderSectionOrHeroHeaderSectionOrImageSectionOrRecipesSectionOrTextSectionOrTitleSection {
     ... on SanityHeaderSection {
       ...HeaderSectionFragment
     }
@@ -14,47 +14,47 @@ export const pageBuilderQuery = graphql`
     ... on SanityFeatureSection{
       ...FeatureSectionFragment 
     }
-    ... on SanityTestimonialSection {
-      ...TestimonialSectionFragment
-    }
-    ... on SanityTeamSection {
-      ...TeamSectionFragment
-    }
     ... on SanityTitleSection {
       ... TitleSectionFragment
     }
     ... on SanityTextSection {
       ... TextSectionFragment
     }
-    ... on SanityEmbedSection {
-      ... EmbedSectionFragment
-    }
     ...on SanityRecipesSection {
       ... RecipesSectionFragment
-    }
-    ... on SanityVideoSection {
-      ...VideoSectionFragment
-    }
-    ... on SanityCtaSection {
-      ...CtaSectionFragment
-    }
-    ... on SanityNewsletterSection{
-      ... NewsletterSectionFragment
-    }      
+    }    
     ... on SanityImageSection {
       ...ImageSectionFragment
     }
     ...on SanityBlogSection {
       ... BlogSectionFragment
     }
-    ... on SanityTimelineSection{
-      ... TimelineSectionFragment
-    }
-    ... on SanityContactSection {
-      ... ContactSectionFragment
-    }
-    ... on SanityLocationSection {
-      ... LocationSectionFragment
-    }
   }
 `
+// ... on SanityNewsletterSection{
+//   ... NewsletterSectionFragment
+// }  
+// ... on SanityEmbedSection {
+//   ... EmbedSectionFragment
+// }
+// ... on SanityVideoSection {
+//   ...VideoSectionFragment
+// }
+// ... on SanityCtaSection {
+//   ...CtaSectionFragment
+// }
+// ... on SanityTimelineSection{
+//   ... TimelineSectionFragment
+// }
+// ... on SanityContactSection {
+//   ... ContactSectionFragment
+// }
+// ... on SanityLocationSection {
+//   ... LocationSectionFragment
+// }
+// ... on SanityTestimonialSection {
+//   ...TestimonialSectionFragment
+// }
+// ... on SanityTeamSection {
+//   ...TeamSectionFragment
+// }

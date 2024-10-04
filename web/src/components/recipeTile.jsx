@@ -140,7 +140,7 @@ export const RecipeTile = (props) => {
           </Typography>
           {showMeta && duration && (
             <Meta backgroundColour={backgroundColour}><LuClock5 /><Typography variant="body1" component="span" color="white.main">
-              {`${duration && (duration?.hours + ' hours')} ${duration && duration?.minutes + ' mins'}`}
+              {`${duration?.hours ? (duration.hours + ' hours') : ''} ${duration?.minutes ? duration.minutes + ' mins' : ''}`}
             </Typography></Meta>
           )}
         </Details>

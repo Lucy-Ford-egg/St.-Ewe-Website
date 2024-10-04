@@ -37,6 +37,7 @@ import accordionTile from './components/accordionTile'
 import imageOptions from './imageOptions'
 
 //Sections
+import recipeBodySection from './sections/recipeBodySection'
 import imageSection from './sections/imageSection'
 import heroHeaderSection from './sections/heroHeaderSection'
 import blogSection from './sections/blogSection'
@@ -119,6 +120,7 @@ export const schema = {
     quote,
     teamMember,
     // Sections
+    recipeBodySection,
     imageSection,
     heroHeaderSection,
     featureSection,

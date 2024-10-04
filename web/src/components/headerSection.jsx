@@ -114,8 +114,8 @@ export const HeaderSection = props => {
 
   // const definedImage =
   //   (previewData && _type === previewData?._type && previewData?.image) || image
-
-    const definedImage = (image?.asset && image) || (pageContext?.featuredMedia )
+debugger
+    const definedImage = (image?.asset && image) || (pageContext?.node?.featuredMedia )
 
   const definedBackgroundColour =
     (previewData &&

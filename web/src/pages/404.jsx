@@ -160,32 +160,14 @@ query homeTemplateQuery( $recipeIds:[String!], $postIds:[String!], $skip: Int, $
         ... on SanityHeaderSection {
           ...HeaderSectionFragment
         }
-        ... on SanityTestimonialSection {
-          ...TestimonialSectionFragment
-        }
-        ... on SanityTeamSection {
-          ...TeamSectionFragment
-        }
         ...on SanityRecipesSection {
           ... RecipesSectionFragment
-        }
-        ... on SanityVideoSection {
-          ...VideoSectionFragment
-        }
-        ... on SanityCtaSection {
-          ...CtaSectionFragment
-        }
-        ... on SanityNewsletterSection{
-          ... NewsletterSectionFragment
-        }      
+        }     
         ... on SanityImageSection {
           ...ImageSectionFragment
         }
         ...on SanityBlogSection {
           ... BlogSectionFragment
-        }
-        ... on SanityTimelineSection{
-          ... TimelineSectionFragment
         }
       }
     }

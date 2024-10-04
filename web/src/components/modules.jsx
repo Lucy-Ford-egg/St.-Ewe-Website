@@ -21,22 +21,23 @@ import Typography from "@mui/material/Typography"
 // import { NewsletterSection } from './newsletterSection';
 const HeroHeaderSection = React.lazy(() => import('./heroHeaderSection').then(module => ({ default: module.HeroHeaderSection })));
 const FeatureSection = React.lazy(() => import('./featureSection').then(module => ({ default: module.FeatureSection })));
-const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
+// const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
 const TitleSection = React.lazy(() => import("./titleSection").then(module => ({ default: module.TitleSection })));
 const TextSection = React.lazy(() => import("./textSection").then(module => ({ default: module.TextSection })));
 const BorderSection = React.lazy(() => import("./borderSection").then(module => ({ default: module.BorderSection })));
 const BlogSection = React.lazy(() => import("./blogSection").then(module => ({ default: module.BlogSection })));
 const HeaderSection = React.lazy(() => import('./headerSection').then(module => ({ default: module.HeaderSection })));
-const TimelineSection = React.lazy(() => import('./timelineSection').then(module => ({ default: module.TimelineSection })));
-const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
-const CtaSection = React.lazy(() => import('./ctaSection').then(module => ({ default: module.CtaSection })));
-const TestimonialSection = React.lazy(() => import('./testimonialSection').then(module => ({ default: module.TestimonialSection })));
+// const TimelineSection = React.lazy(() => import('./timelineSection').then(module => ({ default: module.TimelineSection })));
+// const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
+// const CtaSection = React.lazy(() => import('./ctaSection').then(module => ({ default: module.CtaSection })));
+// const TestimonialSection = React.lazy(() => import('./testimonialSection').then(module => ({ default: module.TestimonialSection })));
 const ImageSection = React.lazy(() => import('./imageSection').then(module => ({ default: module.ImageSection })));
-const LocationSection = React.lazy(() => import('./locationSection').then(module => ({ default: module.LocationSection })));
-const ContactSection = React.lazy(() => import('./contactSection').then(module => ({ default: module.ContactSection })));
-const TeamSection = React.lazy(() => import('./teamSection').then(module => ({ default: module.TeamSection })));
+// const LocationSection = React.lazy(() => import('./locationSection').then(module => ({ default: module.LocationSection })));
+// const ContactSection = React.lazy(() => import('./contactSection').then(module => ({ default: module.ContactSection })));
+// const TeamSection = React.lazy(() => import('./teamSection').then(module => ({ default: module.TeamSection })));
 const RecipesSection = React.lazy(() => import('./recipesSection').then(module => ({ default: module.RecipesSection })));
-const NewsletterSection = React.lazy(() => import('./newsletterSection').then(module => ({ default: module.NewsletterSection })));
+// const NewsletterSection = React.lazy(() => import('./newsletterSection').then(module => ({ default: module.NewsletterSection })));
+const RecipeBodySection = React.lazy(() => import('./recipeBodySection').then(module => ({ default: module.RecipeBodySection })));
 
 
 const Main = styled('main')({
@@ -136,15 +137,15 @@ const Modules = (props) => {
                                     {...module} />
                             )
                         }
-                        if (isModule(module, 'embedSection')) {
-                            return (
-                                <EmbedSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
+                        // if (isModule(module, 'embedSection')) {
+                        //     return (
+                        //         <EmbedSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             {...module} />
+                        //     )
+                        // }
                         if (isModule(module, 'borderSection')) {
                             return (
                                 <BorderSection
@@ -155,38 +156,38 @@ const Modules = (props) => {
                             )
                         }
 
-                        if (isModule(module, 'newsletterSection')) {
-                            return (
-                                <NewsletterSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
+                        // if (isModule(module, 'newsletterSection')) {
+                        //     return (
+                        //         <NewsletterSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             {...module} />
+                        //     )
+                        // }
 
-                        if (isModule(module, 'testimonialSection')) {
+                        // if (isModule(module, 'testimonialSection')) {
 
-                            return (
-                                <TestimonialSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
+                        //     return (
+                        //         <TestimonialSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             {...module} />
+                        //     )
+                        // }
 
-                        if (isModule(module, 'teamSection')) {
+                        // if (isModule(module, 'teamSection')) {
 
-                            return (
-                                <TeamSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
+                        //     return (
+                        //         <TeamSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
 
-                                    {...module} />
-                            )
-                        }
+                        //             {...module} />
+                        //     )
+                        // }
 
                         if (isModule(module, 'recipesSection')) {
                             return <RecipesSection previewData={previewData && previewData[i]}
@@ -197,35 +198,45 @@ const Modules = (props) => {
                                 {...module} />
                         }
 
-                        if (isModule(module, 'timelineSection')) {
-                            return (
-                                <TimelineSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
+                        if (isModule(module, 'recipeBodySection')) {
+                            return <RecipeBodySection previewData={previewData && previewData[i]}
+                                sanityConfig={sanityConfig}
+                                pageContext={pageContext}
+                                key={module._key + i}
+                                {...props}
+                                {...module} />
                         }
-                        if (isModule(module, 'videoSection')) {
 
-                            return (
-                                <VideoSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
+                        // if (isModule(module, 'timelineSection')) {
+                        //     return (
+                        //         <TimelineSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             {...module} />
+                        //     )
+                        // }
+
+                        // if (isModule(module, 'videoSection')) {
+
+                        //     return (
+                        //         <VideoSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             {...module} />
+                        //     )
+                        // }
                     
-                        if (isModule(module, 'ctaSection')) {
-                            return (
-                                <CtaSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
+                        // if (isModule(module, 'ctaSection')) {
+                        //     return (
+                        //         <CtaSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             {...module} />
+                        //     )
+                        // }
 
                         if (isModule(module, 'imageSection')) {
                             return (
@@ -236,26 +247,27 @@ const Modules = (props) => {
                                     {...module} />
                             )
                         }
-                        if (isModule(module, 'locationSection')) {
-                            return (
-                                <LocationSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    sanitySiteSettings={sanitySiteSettings}
-                                    {...module} />
-                            )
-                        }
 
-                        if (isModule(module, 'contactSection')) {
-                            return (
-                                <ContactSection
-                                    previewData={previewData && previewData[i]}
-                                    sanityConfig={sanityConfig}
-                                    key={module._key + i}
-                                    {...module} />
-                            )
-                        }
+                        // if (isModule(module, 'locationSection')) {
+                        //     return (
+                        //         <LocationSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             sanitySiteSettings={sanitySiteSettings}
+                        //             {...module} />
+                        //     )
+                        // }
+
+                        // if (isModule(module, 'contactSection')) {
+                        //     return (
+                        //         <ContactSection
+                        //             previewData={previewData && previewData[i]}
+                        //             sanityConfig={sanityConfig}
+                        //             key={module._key + i}
+                        //             {...module} />
+                        //     )
+                        // }
 
                         return null
 

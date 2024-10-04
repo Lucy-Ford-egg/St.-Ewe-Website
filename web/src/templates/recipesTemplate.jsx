@@ -46,6 +46,7 @@ const RecipeTemplate = props => {
         modules={definedModules}
         getAllPosts={data.getAllPosts}
         allSanityRecipe={data.allSanityRecipe}
+        data={data}
       />
             
     </>
@@ -71,7 +72,6 @@ export const RecipeTemplateQuery = graphql`
       featuredMedia {
         asset {
           _id
-
           gatsbyImageData
         }
         hotspot {
@@ -87,10 +87,57 @@ export const RecipeTemplateQuery = graphql`
           top
         }
       }
+      ingredientsList {
+        wholeNumber
+        unit
+        preparation
+        optional
+        ingredient {
+          ... on SanityIngredient {
+            id
+            _key
+            title
+          }
+          ... on SanityRecipes {
+            id
+          }
+        }
+        fraction
+        _type
+        _key
+      }
       _rawInstructions(resolveReferences: { maxDepth: 10 })
-      #...SeoPageFragment
       pageBuilder {
-        ...PageBuilderFragment
+        ... on SanityHeaderSection {
+          ...HeaderSectionFragment
+        }
+        ... on SanityHeroHeaderSection{
+          ...HeroHeaderSectionFragment
+        }
+        ... on SanityBorderSection{
+          ...BorderSectionFragment
+        }
+        ... on SanityFeatureSection{
+          ...FeatureSectionFragment 
+        }
+        ... on SanityTitleSection {
+          ... TitleSectionFragment
+        }
+        ... on SanityTextSection {
+          ... TextSectionFragment
+        }
+        ...on SanityRecipesSection {
+          ... RecipesSectionFragment
+        }    
+        ... on SanityImageSection {
+          ...ImageSectionFragment
+        }
+        ...on SanityBlogSection {
+          ... BlogSectionFragment
+        }
+        ... on SanityRecipeBodySection {
+            ... RecipeBodySectionFragment
+        }
       }
     }
     allSanityRecipes(filter: {
@@ -148,14 +195,3 @@ export const RecipeTemplateQuery = graphql`
   }
 `
 export default RecipeTemplate
-
-// TODO:
-// ... on SanityLocationSection {
-//   ...LocationSectionFragment
-// }
-// ... on SanityBenifitsSection {
-//   ... BenifitsSectionFragment
-// }
-// ... on SanityContactSection {
-//   ... ContactSectionFragment
-// }
