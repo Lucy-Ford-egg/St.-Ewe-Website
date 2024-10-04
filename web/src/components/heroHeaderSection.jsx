@@ -15,7 +15,7 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
     gridTemplateRows: '1fr 1fr 1fr 1fr',
     overflow: 'hidden',
     alignItems: 'center',
-    height: '60vh',
+    height: '48vh',
     position: 'relative',
     marginTop: 'var(--ms9)',
     [theme.breakpoints.up('lg')]: {
@@ -80,14 +80,13 @@ const renderLayer = (layer, index, transform, mobile, tablet, contentOpacity ) =
         <Image
             crop={layer?.crop}
             hotspot={layer?.hotspot}
-            width={2880}
-            height={2210}
+            width={mobile ? 390 : 2880}
+            height={mobile ? 300 : 2210}
             asset={layer?._id ? urlFor(layer).url() : layer?.asset}
             style={{
                 objectFit: "cover",
                 maxWidth: "100%",
                 height: "auto",
-                
             }}
         />
         <Base className="baseLayer" />
