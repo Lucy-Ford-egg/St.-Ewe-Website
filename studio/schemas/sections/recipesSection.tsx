@@ -18,7 +18,6 @@ export default defineType({
       name: 'showRecipesArchive',
       type: 'showRecipesArchive',
       title: 'Show Recipe Archive',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'verticalSpace',

@@ -86,6 +86,7 @@ export const RecipesSection = ({
   paddingTop = 11,
   paddingBottom = 11,
   featuredTile,
+  showRecipesArchive,
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
@@ -116,7 +117,7 @@ export const RecipesSection = ({
     // (previewData?.showRecipesArchive?.setArchive === true &&
     //   allRecipe &&
     //   allRecipe) ||
-    allSanityRecipes?.nodes
+   (showRecipesArchive?.archive) ||  allSanityRecipes?.nodes
 
 
   useEffect(() => {
@@ -200,6 +201,24 @@ export const query = graphql`
     }
     showRecipesArchive {
       setArchive
+      archive {
+        title
+        duration{
+          hours
+          minutes
+        }
+        featuredMedia{
+          asset{
+            _id
+          }
+          hotspot{
+            x
+          }
+        }
+        slug{
+          current
+        }
+      }
     }
     backgroundColour{
       label

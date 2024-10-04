@@ -36,7 +36,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
 
 const BackgroundImage = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
   gridColumn: '1/25',
-  gridRow: '1/1',
+  gridRow: '1/3',
   [theme.breakpoints.up('sm')]: {
     gridRow: '1/2',
     maxHeight: 'unset',
@@ -114,7 +114,7 @@ export const HeaderSection = props => {
 
   // const definedImage =
   //   (previewData && _type === previewData?._type && previewData?.image) || image
-debugger
+
     const definedImage = (image?.asset && image) || (pageContext?.node?.featuredMedia )
 
   const definedBackgroundColour =

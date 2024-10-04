@@ -49,7 +49,7 @@ const Main = styled('main')({
 
 const Modules = (props) => {
 
-    const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, allSanityRecipes, sanitySiteSettings } = props
+    const { sanityConfig, previewData, modules, pageContext, getAllPosts, allSanityPost, data, sanitySiteSettings } = props
     function isModule(moduletype, testname) {
         console.log(`Modules - ${moduletype} | ${testname}`)
 
@@ -115,6 +115,8 @@ const Modules = (props) => {
                                 <TitleSection
                                     previewData={previewData && previewData[i]}
                                     sanityConfig={sanityConfig}
+                                    pageContext={pageContext}
+                                    pageData={data}
                                     key={module._key + i}
                                     {...module} />
                             )

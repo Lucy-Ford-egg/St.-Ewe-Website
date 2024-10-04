@@ -187,6 +187,12 @@ let clientTheme = createTheme({
         // *{
         //   border: 1px solid tomato;
         // }
+
+        // * Step Markers *//
+
+        .step-marker{
+          display: none;
+        }
         /* width */
         ::-moz-scrollbar-button, ::-webkit-scrollbar-button {
           width: 0px;

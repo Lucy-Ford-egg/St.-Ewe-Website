@@ -175,8 +175,8 @@ export const contrastBrandPalette = {
     "Quirky Quail Secondary": {
       "id": "color",
       "value": brandPalette["Quirky Quail Secondary"]?.value,
-      "contrastText": brandPalette["White"]?.value,
-      "contrastBase": brandPalette["Quirky Quail Primary"]?.value, 
+      "contrastText": brandPalette["Original Large"]?.value,
+      "contrastBase": brandPalette["Original Primary"]?.value,
       "contrastButton": {
         "contained": "primary",
         "outlined": "secondary",

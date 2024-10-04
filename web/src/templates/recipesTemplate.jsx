@@ -106,6 +106,10 @@ export const RecipeTemplateQuery = graphql`
         _type
         _key
       }
+      serves {
+        note
+        serves
+      }
       _rawInstructions(resolveReferences: { maxDepth: 10 })
       pageBuilder {
         ... on SanityHeaderSection {

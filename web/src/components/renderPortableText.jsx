@@ -176,7 +176,7 @@ export const RenderPortableText = (props) => {
     ) : (
       <List sx={{ listStyle: 'decimal inside', pt: { xs: 0 }, mt: { xs: '-4px' } }} component="ol" dense={true}>{children}</List>
     )),
-    listItem: ({ value, children }) => {
+    listItem: ({ value, children, index }) => {
 
       return (
         (value.listItem === "bullet" ? (
@@ -193,7 +193,7 @@ export const RenderPortableText = (props) => {
           <ListItem sx={{ color: 'inherit', display: 'list-item', px: 0, alignItems: 'center', columnGap: 0, }}>
             <Box sx={{
               display: 'inline-flex'
-            }}>{children}</Box>
+            }}><span className="step-marker">{`- Step ${index + 1}`}</span>{children}</Box>
 
           </ListItem>
         ))

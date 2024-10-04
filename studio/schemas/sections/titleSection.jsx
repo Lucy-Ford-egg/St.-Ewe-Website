@@ -38,8 +38,13 @@ export default defineType({
                 }
             },
             ],
-            validation: (rule) => rule.required(),
             description: "You can highlight the text and use the formatting to change the title size and colour.",
+        }),
+        defineField({
+            title: 'Use as Recipe title',
+            name: 'isRecipe',
+            type: 'boolean',
+            description: 'Check this if you wish for the title of the recipe to be pulled in.'
         }),
         defineField({
             title: 'Insert Post Date',
@@ -81,9 +86,10 @@ export default defineType({
             title: 'title',
             subtitle: 'caseStudies',
             backgroundColour: 'backgroundColour',
+            isRecipe: 'isRecipe'
         },
         prepare(selection) {
-            const { title, subtitle, backgroundColour } = selection;
+            const { title, subtitle, backgroundColour, isRecipe } = selection;
             const thumb = (
                 <span
                     style={{
@@ -99,7 +105,7 @@ export default defineType({
                 </span>
             );
             return {
-                title: `${title[0]?.children[0]?.text}`,
+                title: `${isRecipe ? 'Using Recipe Title' : title[0]?.children[0]?.text}`,
                 subtitle: `Title Section`,
                 media: thumb, // Check if JSX is allowed or handle icons differently
             };

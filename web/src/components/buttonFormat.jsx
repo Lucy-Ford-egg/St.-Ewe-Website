@@ -23,7 +23,7 @@ export const ButtonFormat = props => {
   console.log(`What Colour? -- ${contrastBrandPalette[backgroundColour?.label]?.contrastButton[variant]}`)
   
   return (
-    <Box sx={sx}>
+    <Box className="button" sx={sx}>
       {node?.link?.internal ? (
         <GatsbyButton
           size={size}
