@@ -36,18 +36,34 @@ const Content = styled('div')(({ alignment}) => ({
     
 }));
 
-const RightAsset = styled('div')(({  }) => ({
+const RightAsset = styled('div')(({ theme }) => ({
     display: 'grid',
     gridColumn: '19/24',
     alignItems: 'center',
     justifyContent: 'end',
     height: '100%',
-    '@media only screen and (max-width: 600px)': {
+    [theme.breakpoints.up('lg')]: {
         gridRow: '2/2',
         justifyContent: 'start',
         gridColumn: '5/19',
     }
 }));
+
+const Actions = styled('div')(({ theme, alignment }) => ({
+    display: 'flex',
+    alignItems: 'start',
+    justifyContent: 'start',
+    width: '100%',
+    gridColumn: '2/24',
+    paddingTop: 'var(--ms0)',
+    [theme.breakpoints.up('lg')]: {
+      justifyContent: 'start',
+      gridColumn: '21/24',
+      alignItems: 'center',
+      gridRow: '1/2',
+      paddingTop: 'unset',
+    }
+  }));
 
 const Asset = styled('div')(({ }) => ({
     maxWidth: 200,
@@ -113,18 +129,20 @@ export const TextSection = props => {
                         />
                     )}
                 </Content>
+
+                {definedLink &&
+                  <Actions>
+                    <ButtonFormat
+                    key={definedLink._key}
+                    variant="outlined"
+                    color="primary"
+                    node={ definedLink }
+                    size='large'
+                   />
+                   </Actions>    
+                }
                 
                 <RightAsset>
-                    
-                         {definedLink &&
-                            <ButtonFormat
-                            key={definedLink._key}
-                            variant="outlined"
-                            color="primary"
-                            node={ definedLink }
-                            size='large'
-                           />    
-                        }
                     
                     {definedRightImage && !definedLink && sm && (
 
