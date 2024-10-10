@@ -48,10 +48,10 @@ export default defineType({
         </span>
       );
       return {
-        title: title?.[0]?.children?.[0]?.text || 'Empty Title',
-        subtitle: `${
+        title: `${
           subtitle && subtitle?.length > 0 ? 'Curated Recipe' : 'All Recipes'
-        } | Recipes Section`,
+        }`,
+        subtitle: `Recipes Section`,
         media: thumb, // Check if JSX is allowed or handle icons differently
       };
     },

@@ -130,7 +130,13 @@ export default defineType({
                     <LiaParagraphSolid style={{ color: 'white' }} />
                 </span>
             );
-   
+            
+            // for (let index = 0; index < title.length; index++) {
+            //     debugger
+            //     const hasColumns = title[index]?.markDefs.find(([key]) => key === 'columns'); 
+            //     return hasColumns;  
+            // }
+               
             return {
                 title: `${title[0]?.children[0]?.text}`,
                 subtitle: `Text Section`,

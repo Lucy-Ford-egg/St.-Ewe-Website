@@ -23,7 +23,7 @@ export default defineType({
         },
       }),
       defineField({
-        title: "Mirror",
+        title: "Flip Horizontally",
         name: "mirror",
         type: "boolean",
       }),

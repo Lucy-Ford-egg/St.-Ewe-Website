@@ -16,13 +16,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'text',
-      description: 'Add a title',
-      readOnly: true,
-    }),
-    defineField({
       name: 'alignment',
       type: 'textAlign',
       title: 'Alignment',
@@ -91,16 +84,13 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'text',
       media: 'image',
     },
     prepare(selection) {
       const { title, media } = selection
-
-      
-      
       return {
-        title: title ? title : 'Title',
+        title: title ? title[0]?.children[0]?.text : 'Title',
         subtitle: `Header Section`,
         media: media,
         icon: LiaImage

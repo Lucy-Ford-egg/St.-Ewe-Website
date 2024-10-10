@@ -33,7 +33,7 @@ export default defineType({
     options: {
       columns: 2,
     },
-    description: 'Shows the duration for the Recipe',
+    description: 'Adjust this settings if the section look too close or too spaced out',
     group: 'pageContent',
     // validation: (rule) => rule.required().max(252)
 });
