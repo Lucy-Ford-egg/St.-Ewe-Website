@@ -176,8 +176,8 @@ export const FeatureSection = props => {
               asset={
                 definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage?.asset
               }
-              width={mobile ? 400 : tablet ? 768 : 1440}
-              height={mobile ? 400 : tablet ? 600 : 600}
+              width={mobile ? 362 : tablet ? 732 : 732}
+              height={mobile ? 241 : tablet ? 438 : 438}
               style={{
                 objectFit: "cover",
                 width: "100%",
