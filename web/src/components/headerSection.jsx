@@ -6,7 +6,7 @@ import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"
 import { brandSpacing } from "../gatsby-theme-material-ui-top-layout/brandPalette"
-import {contrastBrandPalette} from '../utils/colours'
+import { contrastBrandPalette } from '../utils/colours'
 
 import {
   motion,
@@ -36,7 +36,7 @@ const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joini
 
 const BackgroundImage = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
   gridColumn: '1/25',
-  gridRow: '1/3',
+  gridRow: '1/1',
   [theme.breakpoints.up('sm')]: {
     gridRow: '1/2',
     maxHeight: 'unset',
@@ -62,8 +62,8 @@ const Content = styled('div')(({ alignment, theme }) => ({
   justifyContent: 'center',
   alignItems: alignment === 'left' ? 'center' : 'center',
   zIndex: 2,
-  paddingTop:  'var(--ms6)',
-  paddingBottom:  'var(--ms6)',
+  paddingTop: 'var(--ms6)',
+  paddingBottom: 'var(--ms6)',
   "& .header-title": {
     textTransform: 'uppercase',
   },
@@ -77,6 +77,18 @@ const Content = styled('div')(({ alignment, theme }) => ({
   }
 
 }));
+
+const Actions = styled('div')(({ theme, alignment }) => ({
+  display: 'flex',
+  alignItems: alignment === 'left' ? 'start' : 'center',
+  justifyContent: alignment === 'left' ? 'start' : 'center',
+  width: '100%',
+  [theme.breakpoints.up('lg')]: {
+    justifyContent: alignment === 'left' ? 'start' : 'center',
+  }
+}));
+
+
 
 const Title = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
   color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
@@ -115,7 +127,7 @@ export const HeaderSection = props => {
   // const definedImage =
   //   (previewData && _type === previewData?._type && previewData?.image) || image
 
-    const definedImage = (image?.asset && image) || (pageContext?.node?.featuredMedia )
+  const definedImage = (image?.asset && image) || (pageContext?.node?.featuredMedia)
 
   const definedBackgroundColour =
     (previewData &&
@@ -137,7 +149,7 @@ export const HeaderSection = props => {
   const contentOpacity = useTransform(scrollYProgress, [1, 0], [1, 0]);
 
   return (
-   
+
     <ModuleContainer {...props} ref={containerRef}>
 
       <Wrapper className="maskLayer" theme={theme} backgroundColour={definedBackgroundColour} image={definedImage} mask={mask} ref={ref}>
@@ -183,26 +195,28 @@ export const HeaderSection = props => {
                 {/* <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography> */}
                 {definedText && (
                   <Title>
-                  <RenderPortableText
-                    previewData={previewData}
-                    sanityConfig={sanityConfig}
-                    variant={false}
-                    textAlign={definedTextAlign}
-                    value={definedText}
-                  />
+                    <RenderPortableText
+                      previewData={previewData}
+                      sanityConfig={sanityConfig}
+                      variant={false}
+                      textAlign={definedTextAlign}
+                      value={definedText}
+                    />
                   </Title>
 
                 )}
 
                 {definedLinks && definedLinks.length > 0 && (
-
-                  <Links
-                    className="links"
-                    linkOne="primary"
-                    links={definedLinks}
-                    previewData={previewData}
-                    highlighted
-                  />
+                  <Actions alignment={alignment}>
+                    <Links
+                      alignment={alignment === 'left' ? 'start' : false}
+                      className="links"
+                      linkOne="primary"
+                      links={definedLinks}
+                      previewData={previewData}
+                      highlighted
+                    />
+                  </Actions>
                 )}
               </motion.div>
             </motion.div>
@@ -211,9 +225,9 @@ export const HeaderSection = props => {
 
 
       </Wrapper>
-   
+
     </ModuleContainer>
-    
+
   )
 }
 

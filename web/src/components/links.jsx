@@ -3,21 +3,21 @@ import { ButtonFormat } from "./buttonFormat"
 import { styled } from '@mui/material/styles'
 
 
-const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const Wrapper = styled('div')(({ alignment }) => ({
   width: "fit-content",
   display: "flex",
-  justifyContent: "flex-end",
+  // justifyContent: alignment ? alignment : "flex-end",
   flexDirection: "row",
-  flexBasis: "100%",
+  // flexBasis: "100%",
   columnGap: 'var(--ms2)',
 }));
 
 export const Links = (props) => {
-const {links, previewData, linkOne = 'primary', backgroundColour} = props
+const {links, previewData, linkOne = 'primary', backgroundColour, alignment} = props
 
 const definedLinks = (previewData && previewData.links && previewData?.links) || links 
   return (
-    <Wrapper>
+    <Wrapper alignment={alignment}>
     {definedLinks &&
       definedLinks.map((node, i) => {
         return (
