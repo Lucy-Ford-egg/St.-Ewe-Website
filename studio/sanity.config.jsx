@@ -51,6 +51,9 @@ export default defineConfig([{
   ],
   schema: schema,
   icon: Logo("production"),
+  scheduledPublishing: {
+    enabled: false,
+  },
 }, 
 {
   name: 'beta',
@@ -81,5 +84,8 @@ export default defineConfig([{
   ],
   schema: schema,
   icon: Logo("beta"),
+  scheduledPublishing: {
+    enabled: false,
+  },
 }
 ])
