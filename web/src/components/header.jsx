@@ -19,6 +19,7 @@ const Wrapper = styled('div')(({ theme, navOpen }) => ({
   right: 0,
   bottom: navOpen && 0,
   zIndex: 3,
+  width: '100%',
   backgroundColor: navOpen && 'var(--original-primary)',
   transition: 'all 0.2s ease-in-out 0s',
   [theme.breakpoints.up('lg')]: {
@@ -68,6 +69,8 @@ const Navigation = styled('div')(({ theme, navOpen }) => ({
   gridRow: '2/2',
   position: 'fixed',
   top: '50%',
+  left: 0,
+  right: 0,
   transform: 'translateY(-50%)',
   zIndex: 3,
   justifyContent: 'center',
@@ -259,7 +262,7 @@ const Header = props => {
       {navOpen && 
       <Navigation>
         <MainNavigation
-          menu={data}
+          data={data?.sanityNavigation?.items}
           // style={{ color: setColor }}
           handleCloseNavMenu={handleCloseNavMenu}
         />

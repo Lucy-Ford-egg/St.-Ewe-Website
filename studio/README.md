@@ -16,3 +16,7 @@ npx sanity@latest migration run import-wp --dataset {dataset} --project {project
  - [See tutorial](https://www.sanity.io/learn/course/migrating-content-from-wordpress-to-sanity)
 
  Example CLI Command: npx sanity@latest migration run import-wp --no-dry-run --type=recipe --dataset production --project vmhe5utz
+
+ # Bulk deleting docs
+
+ sanity documents delete --dataset={dataset} "id" "id" ...
