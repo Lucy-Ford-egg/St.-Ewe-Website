@@ -30,7 +30,7 @@ export default defineType({
             title: "Unit",
             type: "string",
             options: {
-              list: ["grams", "cup", "Tbsp.", "tsp.", "bunch", "handful", "pinch", "glug"],
+              list: ["grams", "gram", "cup", "Tbsp.", "tsp.", "ml", "ltr", "pint", "bunch", "handful", "pinch", "glug"],
             },
           }),
           defineField({
