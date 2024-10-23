@@ -56,7 +56,7 @@ const Content = styled("div")(({ mirror, theme }) => ({
     gridColumn: "2/24",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: mirror ? "14/24" : "2/15",
+    gridColumn: mirror ? "11/24" : "2/15",
   },
 }))
 
