@@ -55,7 +55,7 @@ const Overlay = styled("div")(
   }),
 )
 
-const Content = styled("div")(({ alignment, theme }) => ({
+const Content = styled("div")(({ alignment, theme, backgroundColour }) => ({
   gridRow: "2/2",
   gridColumn: alignment === "left" ? "3/22" : "3/22",
   textAlign: alignment === "left" ? "left" : "center",
@@ -201,7 +201,7 @@ export const HeaderSection = props => {
               >
                 {/* <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography> */}
                 {definedText && (
-                  <Title>
+                  <Title backgroundColour={backgroundColour}>
                     <RenderPortableText
                       previewData={previewData}
                       sanityConfig={sanityConfig}
