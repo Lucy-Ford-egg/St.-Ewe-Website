@@ -42,7 +42,6 @@ const Content = styled("div")(({ mirror, theme }) => ({
   display: "grid",
   gridRow: "1/1",
   gridTemplateRows: "subgrid",
-  color: "white",
   backgroundColor: "rgba(255,255,255,0.8)",
   borderRadius: "var(--ms1)",
   padding: "var(--ms4)",
@@ -82,6 +81,7 @@ export const CtaSection = props => {
     asset,
     previewData,
     overlay,
+    mirror,
     _type,
     _rawText,
     backgroundColour,
@@ -101,6 +101,10 @@ export const CtaSection = props => {
 
   const definedImage = image?.asset && image
   const definedAsset = asset?.asset && asset
+
+  const definedMirror =
+    (previewData && _type === previewData?._type && previewData?.mirror) ||
+    mirror
 
   const definedLinks =
     (previewData && _type === previewData?._type && previewData?.links) || links
@@ -160,7 +164,7 @@ export const CtaSection = props => {
         )}
 
         {definedText && (
-          <Content>
+          <Content mirror={definedMirror}>
             <RenderPortableText
               previewData={previewData}
               sanityConfig={sanityConfig}
@@ -214,6 +218,7 @@ export const query = graphql`
       label
       value
     }
+    mirror
     verticalSpace {
       bottomPadding
       topPadding

@@ -101,9 +101,8 @@ export default defineType({
     defineField({
       name: 'mirror',
       type: 'boolean',
-      title: 'Image positioned on the left',
-      description:
-        'Select this to reverse the order to have Image on the right and text on the left.',
+      title: 'Shift content to the right',
+      description: 'Shift the content to left or right',
     }),
     defineField({
       name: 'links',
