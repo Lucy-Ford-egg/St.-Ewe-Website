@@ -1,48 +1,49 @@
 import { graphql } from "gatsby"
 
 export const pageBuilderQuery = graphql`
-  fragment PageBuilderFragment on SanityBlogSectionOrBorderSectionOrFeatureSectionOrHeaderSectionOrHeroHeaderSectionOrImageSectionOrRecipesSectionOrTextSectionOrTitleSection {
+  fragment PageBuilderFragment on SanityBlogSectionOrBorderSectionOrCtaSectionOrFeatureSectionOrHeaderSectionOrHeroHeaderSectionOrImageSectionOrRecipesSectionOrTextSectionOrTitleSection {
     ... on SanityHeaderSection {
       ...HeaderSectionFragment
     }
-    ... on SanityHeroHeaderSection{
+    ... on SanityHeroHeaderSection {
       ...HeroHeaderSectionFragment
     }
-    ... on SanityBorderSection{
+    ... on SanityBorderSection {
       ...BorderSectionFragment
     }
-    ... on SanityFeatureSection{
-      ...FeatureSectionFragment 
+    ... on SanityFeatureSection {
+      ...FeatureSectionFragment
     }
     ... on SanityTitleSection {
-      ... TitleSectionFragment
+      ...TitleSectionFragment
     }
     ... on SanityTextSection {
-      ... TextSectionFragment
+      ...TextSectionFragment
     }
-    ...on SanityRecipesSection {
-      ... RecipesSectionFragment
-    }    
+    ... on SanityRecipesSection {
+      ...RecipesSectionFragment
+    }
     ... on SanityImageSection {
       ...ImageSectionFragment
     }
-    ...on SanityBlogSection {
-      ... BlogSectionFragment
+    ... on SanityBlogSection {
+      ...BlogSectionFragment
+    }
+    ... on SanityCtaSection {
+      ...CtaSectionFragment
     }
   }
 `
 // ... on SanityNewsletterSection{
 //   ... NewsletterSectionFragment
-// }  
+// }
 // ... on SanityEmbedSection {
 //   ... EmbedSectionFragment
 // }
 // ... on SanityVideoSection {
 //   ...VideoSectionFragment
 // }
-// ... on SanityCtaSection {
-//   ...CtaSectionFragment
-// }
+
 // ... on SanityTimelineSection{
 //   ... TimelineSectionFragment
 // }
