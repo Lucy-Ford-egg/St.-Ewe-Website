@@ -28,8 +28,10 @@ const BackgroundImage = styled("div")(
     gridColumn: "1/25",
     display: "grid",
     gridRow: "1/1",
+    height: "100%",
     [theme.breakpoints.up("sm")]: {
       gridRowGap: "var(--ms4)",
+      height: "unset",
     },
     [theme.breakpoints.up("lg")]: {
       gridRowGap: "unset",
@@ -44,7 +46,7 @@ const Content = styled("div")(({ mirror, theme }) => ({
   gridTemplateRows: "subgrid",
   backgroundColor: "rgba(255,255,255,0.8)",
   borderRadius: "var(--ms1)",
-  padding: "var(--ms4)",
+  padding: "var(--ms3) var(--ms0)",
   marginTop: "var(--ms5)",
   marginBottom: "var(--ms5)",
   display: "flex",
@@ -57,6 +59,7 @@ const Content = styled("div")(({ mirror, theme }) => ({
   },
   [theme.breakpoints.up("lg")]: {
     gridColumn: mirror ? "11/24" : "2/15",
+    padding: "var(--ms4)",
   },
 }))
 
