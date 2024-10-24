@@ -1,13 +1,13 @@
-import { LiaCarrotSolid, LiaFilePdfSolid } from "react-icons/lia";
+import {LiaCarrotSolid, LiaFilePdfSolid} from 'react-icons/lia'
 
-import { format, parseISO } from 'date-fns'
-import { defineField, defineType } from 'sanity'
+import {format, parseISO} from 'date-fns'
+import {defineField, defineType} from 'sanity'
 import authorType from './author'
 import categoriesType from './taxonomies/categories'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
-// Sections 
+// Sections
 // import headerSectionType from './sections/headerSection'
 import testimonialSectionType from './sections/testimonialSection'
 import teamSectionType from './sections/teamSection'
@@ -23,7 +23,6 @@ import timelineSectionType from './sections/timelineSection'
 import contactSectionType from './sections/contactSection'
 import locationSectionType from './sections/locationSection'
 import clientLoginSectionType from './sections/clientLoginSection'
-
 
 /**
  * This file is the schema definition for a post.
@@ -118,7 +117,7 @@ export default defineType({
     //   options: {
     //     source: 'title',
     //     maxLength: 96,
-    //     isUnique: (value, context) => { 
+    //     isUnique: (value, context) => {
 
     //       return (
     //       context.defaultIsUnique(value, context)
@@ -206,7 +205,7 @@ export default defineType({
     //         },
     //         {type: 'file', icon: LiaFilePdfSolid},
     //         {type: 'textColor',},
-    //         // {type: 'imageOptions'},  
+    //         // {type: 'imageOptions'},
     //       ],
     //     }
     //   },
@@ -264,29 +263,28 @@ export default defineType({
     //   // group: 'pageContent',
     // }),
     defineField({
-      name: "alergy",
-      title: "Alergies",
-      type: "boolean",
-      description: "Check this box if this people can have an alergy with this ingredient",
+      name: 'alergy',
+      title: 'Alergies',
+      type: 'boolean',
+      description: 'Check this box if this people can have an alergy with this ingredient',
     }),
     defineField({
       name: 'foodGroup',
       title: 'Food Group',
       type: 'array',
-      of: [{ type: 'string' }],
+      of: [{type: 'string'}],
       options: {
         sortable: false,
         list: [
-          { title: 'Protein', value: 'protein' },
-          { title: 'Fruits & Vegetables', value: 'fruits-vegetables' },
-          { title: 'Dairy', value: 'dairy' },
-          { title: 'Carbohydrates', value: 'carbohydrates' },
-          { title: 'Fats & Oils', value: 'fats-oils' },
-          { title: 'Grains', value: 'grains' },
-          { title: 'Seasoning', value: 'seasoning' },
-          { title: 'Herbs', value: 'herbs'},
-          { title: 'Spices', value: 'spices'}
-        ]
+          {title: 'Protein', value: 'protein'},
+          {title: 'Fruits & Vegetables', value: 'fruits-vegetables'},
+          {title: 'Dairy', value: 'dairy'},
+          {title: 'Carbohydrates', value: 'carbohydrates'},
+          {title: 'Fats & Oils', value: 'fats-oils'},
+          {title: 'Grains', value: 'grains'},
+          {title: 'Seasoning', value: 'seasoning'},
+          {title: 'Sauces & Other Liquids', value: 'sauces-liquids'},
+        ],
       },
       validation: (rule) => rule.required(),
     }),
@@ -295,9 +293,7 @@ export default defineType({
     {
       title: 'Published Date',
       name: 'publishedDateDesc',
-      by: [
-        { field: 'date', direction: 'desc' }
-      ]
+      by: [{field: 'date', direction: 'desc'}],
     },
   ],
   preview: {
@@ -307,13 +303,13 @@ export default defineType({
       media: 'coverImage',
       author: 'author',
     },
-    prepare({ title, media, author, date }) {
+    prepare({title, media, author, date}) {
       const subtitles = [
         author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
-      return { title: title && title, media, subtitle: subtitles.join(' ,') }
+      return {title: title && title, media, subtitle: subtitles.join(' ,')}
     },
   },
 })
