@@ -9,7 +9,6 @@ import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const RecipeArchiveTemplate = props => {
-
   const { data, pageContext, initial } = props
 
   // Preview
@@ -19,18 +18,19 @@ const RecipeArchiveTemplate = props => {
     { initial },
   )
 
-  const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
+  const definedModules =
+    (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
 
   return (
     <>
       <Modules
-          previewData={previewData?.pageBuilder}
-          sanityConfig={getSanityClient}
-          allSanityRecipes={data?.allSanityRecipes}
-          pageContext={pageContext}
-          modules={definedModules }
-          getAllPosts={data?.getAllPosts}
-        />
+        previewData={previewData?.pageBuilder}
+        sanityConfig={getSanityClient}
+        allSanityRecipes={data?.allSanityRecipes}
+        pageContext={pageContext}
+        modules={definedModules}
+        getAllPosts={data?.getAllPosts}
+      />
     </>
   )
 }
@@ -40,66 +40,61 @@ export const Head = ({ data, location }) => {
 }
 
 export const RecipeArchiveTemplateQuery = graphql`
-query RecipeArchiveTemplateQuery( $slug: String!, $skip: Int, $limit: Int) {
-  allSanityRecipes(
-    sort: {date: DESC}
-    skip: $skip 
-    limit: $limit 
-  ) {
-     nodes {
-      _key
-      _id
-      ...RecipeTileFragment 
-    }
-  }
-  getAllPosts: allSanityPost(sort: {date: DESC}){
-    nodes {
-      tileImage {
-        asset {
-          _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
+  query RecipeArchiveTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
+    allSanityRecipes(sort: { date: DESC }, skip: $skip, limit: $limit) {
+      nodes {
+        _key
+        _id
+        ...RecipeTileFragment
       }
-   
+    }
+    getAllPosts: allSanityPost(sort: { date: DESC }) {
+      nodes {
+        tileImage {
+          asset {
+            _id
+            gatsbyImageData
+          }
+          hotspot {
+            x
+            y
+            width
+            height
+          }
+          crop {
+            bottom
+            left
+            right
+            top
+          }
+        }
+
+        slug {
+          current
+        }
+        date
+        categories {
+          name
+          _id
+          slug {
+            current
+          }
+        }
+        author {
+          name
+        }
+        title
+      }
+    }
+    sanityPage(slug: { current: { eq: $slug } }) {
       slug {
         current
       }
-      date
-      categories {
-        name
-        _id
-        slug{
-          current
-        }
-      }
-      author {
-        name
-      }
       title
-     
+      pageBuilder {
+        ...PageBuilderFragment
+      }
     }
   }
-  sanityPage(slug: {current: {eq: $slug}}) {
-    slug {
-      current
-    }
-    title
-    pageBuilder {
-      ...PageBuilderFragment
-    }
-  }
-}
 `
 export default RecipeArchiveTemplate

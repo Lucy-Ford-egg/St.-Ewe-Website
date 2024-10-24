@@ -352,7 +352,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   }
 
   function getShowArchiveRecipesIds(pageBuilder, type) {
-    //!
     const pageBuilderArray = pageBuilder || [] // Extract pageBuilder array
     // console.log(`PageBuilder type: ${JSON.stringify(pageBuilder)}`)
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
@@ -376,7 +375,9 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       return acc
     }, [])
 
-    return ids.length === 0 ? [] : ids
+    const idArray = ids.length === 0 ? recipes.filter(post => post?.id) : ids
+    //console.table(`Blog IDs: ${idArray}`)
+    return idArray
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
@@ -435,28 +436,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     }
   })
 
-  result.data.blogPage.nodes.forEach(node => {
-    if (node.slug.current) {
-      paginate({
-        createPage,
-        items: blogPosts,
-        itemsPerPage: 12,
-        pathPrefix: `/${node.slug.current}`,
-        component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-        context: {
-          id: node.id,
-          slug: `${node.slug.current}`,
-          node: node,
-          postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-          recipeIds: getShowArchiveRecipesIds(
-            node.pageBuilder,
-            "recipesSection",
-          ),
-        },
-      })
-    }
-  })
-
   result.data?.allSanityCategories?.nodes.forEach(node => {
     if (node.slug.current) {
       paginate({
@@ -481,14 +460,16 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     }
   })
 
-  result.data.blogPage.nodes.forEach(node => {
+  result.data.recipePage.nodes.forEach(node => {
     if (node.slug.current) {
       paginate({
         createPage,
-        items: blogPosts,
+        items: recipes,
         itemsPerPage: 12,
         pathPrefix: `/${node.slug.current}`,
-        component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+        component: require.resolve(
+          `./src/templates/recipesArchiveTemplate.jsx`,
+        ),
         context: {
           id: node.id,
           slug: `${node.slug.current}`,
@@ -501,23 +482,6 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         },
       })
     }
-  })
-
-  result.data.recipePage.nodes.forEach(node => {
-    paginate({
-      createPage,
-      items: recipes,
-      itemsPerPage: 13,
-      pathPrefix: `/${node.slug.current}`,
-      component: require.resolve(`./src/templates/recipesArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.slug.current}`,
-        node: node,
-        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),
-      },
-    })
   })
 
   blogPosts.forEach(node => {
