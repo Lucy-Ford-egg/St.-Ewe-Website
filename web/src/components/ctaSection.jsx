@@ -9,6 +9,7 @@ import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
 import { MailChimp } from "./mailChimp"
 import { Texture } from "../components/texture"
+import { transform } from "framer-motion"
 
 const Wrapper = styled("div")(
   ({ theme, borderDirection, backgroundColour, joiningColour, alignment }) => ({
@@ -45,6 +46,7 @@ const Content = styled("div")(({ alignment, theme, showForm }) => ({
   gridColumn: "2/24",
   display: "grid",
   gridRow: "1/1",
+  zIndex: 2,
   gridTemplateRows: "subgrid",
   backgroundColor: !showForm ? "rgba(255,255,255,0.8)" : "unset",
   borderRadius: "var(--ms1)",
@@ -108,8 +110,11 @@ const ShowTexture = styled("div")(({ alignment, theme }) => ({
   gridColumn: "1/25",
   display: "grid",
   gridRow: "1/1",
+  zIndex: 1,
   height: "100%",
   pointerEvents: "none",
+  mixBlendMode: "multiply",
+  opacity: 0.2,
   [theme.breakpoints.up("sm")]: {
     gridRowGap: "var(--ms4)",
     height: "unset",
@@ -118,10 +123,25 @@ const ShowTexture = styled("div")(({ alignment, theme }) => ({
     gridRowGap: "unset",
   },
   "& svg": {
-    width: "100%",
+    width: "unset",
     height: "100%",
-    mixBlendMode: "multiply",
-    opacity: 0.2,
+    [theme.breakpoints.up("sm")]: {
+      width: "100%",
+    },
+    "& g": {
+      "&:first-of-type": {
+        transform: "scale(0.7) translateX(17%)",
+        [theme.breakpoints.up("sm")]: {
+          transform: "unset",
+        },
+      },
+      "&:last-of-type": {
+        display: "none",
+        [theme.breakpoints.up("sm")]: {
+          display: "block",
+        },
+      },
+    },
   },
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {},
