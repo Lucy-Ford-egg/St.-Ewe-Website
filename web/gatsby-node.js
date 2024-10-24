@@ -6,7 +6,6 @@
 
 const { paginate, createPagePerItem } = require("gatsby-awesome-pagination")
 
-
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   const typeDefs = `
@@ -46,233 +45,271 @@ exports.createSchemaCustomization = ({ actions }) => {
 exports.createPages = async function ({ graphql, actions, reporter }) {
   const { createPage } = actions
   const result = await graphql(`
-  query SanityAllData {
-  allSanityPage(filter: {slug: {current: {nin: ["news", "recipes"]}}}) {
-    nodes {
-      _type
-      id
-      slug {
-        current
-      }
-      title
-      pageBuilder {
-        ... on SanityBlogSection {
-          _key
+    query SanityAllData {
+      allSanityPage(
+        filter: { slug: { current: { nin: ["news", "recipes"] } } }
+      ) {
+        nodes {
           _type
-          showArchive {
-            archive {
-              name
-              _id
-            }
-            setArchive
+          id
+          slug {
+            current
           }
-        }
-        ... on SanityRecipesSection {
-          _key
-          _type
-          showRecipesArchive {
-            archive {
-              category {
-                name
+          title
+          pageBuilder {
+            ... on SanityBlogSection {
+              _key
+              _type
+              showArchive {
+                archive {
+                  name
+                  _id
+                }
+                setArchive
               }
-              _id
             }
-            setArchive
-          }
-        }
-      }
-    }
-  }
-  blogPage: allSanityPage(filter: {slug: {current: {in: "news"}}}) {
-    nodes {
-      _type
-      id
-      slug {
-        current
-      }
-      title
-      pageBuilder {
-        ... on SanityBlogSection {
-          _key
-          _type
-          showArchive {
-            archive {
-              name
-              _id
-            }
-            setArchive
-          }
-        }
-        ... on SanityRecipesSection {
-          _key
-          _type
-          showRecipesArchive {
-            archive {
-              category {
-                name
+            ... on SanityRecipesSection {
+              _key
+              _type
+              showRecipesArchive {
+                archive {
+                  category {
+                    name
+                  }
+                  _id
+                }
+                setArchive
               }
-              _id
             }
-            setArchive
           }
         }
       }
-    }
-  }
-  recipePage: allSanityPage(filter: {slug: {current: {in: "recipes"}}}) {
-    nodes {
-      _type
-      id
-      slug {
-        current
-      }
-      title
-      pageBuilder {
-        ... on SanityBlogSection {
-          _key
+      blogPage: allSanityPage(filter: { slug: { current: { in: "news" } } }) {
+        nodes {
           _type
-          showArchive {
-            archive {
-              name
-              _id
-            }
-            setArchive
+          id
+          slug {
+            current
           }
-        }
-        ... on SanityRecipesSection {
-          _key
-          _type
-          showRecipesArchive {
-            archive {
-              category {
-                name
+          title
+          pageBuilder {
+            ... on SanityBlogSection {
+              _key
+              _type
+              showArchive {
+                archive {
+                  name
+                  _id
+                }
+                setArchive
               }
-              _id
             }
-            setArchive
+            ... on SanityRecipesSection {
+              _key
+              _type
+              showRecipesArchive {
+                archive {
+                  category {
+                    name
+                  }
+                  _id
+                }
+                setArchive
+              }
+            }
           }
         }
       }
-    }
-  }
-  allSanityRecipes {
-    nodes {
-      _key
-      _id
-      title
-      slug {
-        current
+      recipePage: allSanityPage(
+        filter: { slug: { current: { in: "recipes" } } }
+      ) {
+        nodes {
+          _type
+          id
+          slug {
+            current
+          }
+          title
+          pageBuilder {
+            ... on SanityBlogSection {
+              _key
+              _type
+              showArchive {
+                archive {
+                  name
+                  _id
+                }
+                setArchive
+              }
+            }
+            ... on SanityRecipesSection {
+              _key
+              _type
+              showRecipesArchive {
+                archive {
+                  category {
+                    name
+                  }
+                  _id
+                }
+                setArchive
+              }
+            }
+          }
+        }
       }
-      duration {
-        hours
-        minutes
-      }
-      category {
-        name
-        _id
-      }
-      featuredMedia {
-        asset {
+      allSanityRecipes {
+        nodes {
+          _key
           _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
-      }
-      pageBuilder {
-        ... on SanityBlogSection {
-          _key
-          _type
-          showArchive {
-            archive {
-              name
+          title
+          slug {
+            current
+          }
+          duration {
+            hours
+            minutes
+          }
+          category {
+            name
+            _id
+          }
+          featuredMedia {
+            asset {
               _id
+              gatsbyImageData
             }
-            setArchive
+            hotspot {
+              x
+              y
+              width
+              height
+            }
+            crop {
+              bottom
+              left
+              right
+              top
+            }
+          }
+          pageBuilder {
+            ... on SanityBlogSection {
+              _key
+              _type
+              showArchive {
+                archive {
+                  name
+                  _id
+                }
+                setArchive
+              }
+            }
+            ... on SanityRecipesSection {
+              _key
+              _type
+              showRecipesArchive {
+                archive {
+                  _id
+                }
+                setArchive
+              }
+            }
           }
         }
-        ... on SanityRecipesSection {
-          _key
-          _type
-          showRecipesArchive {
-            archive {
-              _id
-            }
-            setArchive
+      }
+      allSanityCategories(filter: { _id: { regex: "/^(?!.*drafts.).*/" } }) {
+        nodes {
+          title
+          slug {
+            current
           }
-        }
-      }
-    }
-  }
-  allSanityPost(sort: {date: DESC}) {
-    nodes {
-      _rawExcerpt(resolveReferences: {maxDepth: 10})
-      _rawContent(resolveReferences: {maxDepth: 10})
-      title
-      slug {
-        current
-      }
-      featuredMedia {
-        asset {
+          _key
           _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
-      }
-      categories {
-        name
-        _id
-        slug {
-          current
-        }
-      }
-      pageBuilder {
-        ... on SanityBlogSection {
-          _key
-          _type
-          showArchive {
-            archive {
-              name
-              _id
+          pageBuilder {
+            ... on SanityBlogSection {
+              _key
+              _type
+              showArchive {
+                archive {
+                  name
+                  _id
+                }
+                setArchive
+              }
             }
-            setArchive
+            ... on SanityRecipesSection {
+              _key
+              _type
+              showRecipesArchive {
+                archive {
+                  _id
+                }
+                setArchive
+              }
+            }
           }
         }
-        ... on SanityRecipesSection {
-          _key
-          _type
-          showRecipesArchive {
-            archive {
+      }
+      allSanityPost(sort: { date: DESC }) {
+        nodes {
+          _rawExcerpt(resolveReferences: { maxDepth: 10 })
+          _rawContent(resolveReferences: { maxDepth: 10 })
+          title
+          slug {
+            current
+          }
+          featuredMedia {
+            asset {
               _id
+              gatsbyImageData
             }
-            setArchive
+            hotspot {
+              x
+              y
+              width
+              height
+            }
+            crop {
+              bottom
+              left
+              right
+              top
+            }
+          }
+          categories {
+            name
+            _id
+            slug {
+              current
+            }
+          }
+          pageBuilder {
+            ... on SanityBlogSection {
+              _key
+              _type
+              showArchive {
+                archive {
+                  name
+                  _id
+                }
+                setArchive
+              }
+            }
+            ... on SanityRecipesSection {
+              _key
+              _type
+              showRecipesArchive {
+                archive {
+                  _id
+                }
+                setArchive
+              }
+            }
           }
         }
       }
     }
-  }
-}`)
+  `)
 
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
@@ -280,60 +317,64 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   }
 
   // Fetch your items (blog posts, categories, etc).
+  // What needs paginating or looping
   const blogPosts = result.data?.allSanityPost?.nodes || []
-  const recipes = result.data?.allSanityRecipes.nodes || []
-
-  //const blogPages = result.data?.blogPages?.nodes || []
-
-  const blogPostsCategories = blogPosts.map(({ categories }) => categories)
-  const recipeCategories = recipes.map(({ category }) => category && category._id)
+  const recipes = result.data?.allSanityRecipes?.nodes || []
+  const blogPostsCategories = result.data?.allSanityCategories?.nodes || []
 
   function getShowArchiveBlogIds(pageBuilder, type) {
-    const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
+    const pageBuilderArray = pageBuilder || [] // Extract pageBuilder array
 
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
-
+      console.log(`CurrentItem = ${JSON.stringify(currentItem)}`)
       if (type === currentItem?._type) {
-        if (currentItem && currentItem.showArchive && currentItem.showArchive.archive) {
-          const archiveItems = currentItem.showArchive.archive;
+        if (
+          currentItem &&
+          currentItem.showArchive &&
+          currentItem.showArchive.archive
+        ) {
+          const archiveItems = currentItem.showArchive.archive
 
           archiveItems.forEach(archiveItem => {
             if (archiveItem._id) {
-              acc.push(archiveItem._id);
+              console.log(`archiveItem._id = ${archiveItem._id}`)
+              acc.push(archiveItem._id)
             }
-          });
+          })
         }
       }
-      return acc;
-    }, []);
+      return acc
+    }, [])
 
-    //console.table(`Blog IDs: ${blogPostsCategories} - ids: ${ids}`)
-    return ids.length === 0 ? [] : ids
+    const idArray = ids.length === 0 ? blogPosts.filter(post => post?.id) : ids
+    //console.table(`Blog IDs: ${idArray}`)
+    return idArray
   }
 
   function getShowArchiveRecipesIds(pageBuilder, type) {
     //!
-    const pageBuilderArray = pageBuilder || []; // Extract pageBuilder array
+    const pageBuilderArray = pageBuilder || [] // Extract pageBuilder array
     // console.log(`PageBuilder type: ${JSON.stringify(pageBuilder)}`)
     const ids = pageBuilderArray.reduce((acc, currentItem) => {
       // console.log(`Current Item: ${JSON.stringify(currentItem)}`)
       if (type === currentItem?._type) {
         // console.log(`Recipe acc : ${JSON.stringify(currentItem) }`)
-        if (currentItem && currentItem.showRecipesArchive && currentItem.showRecipesArchive.archive) {
-          const archiveItems = currentItem.showRecipesArchive.archive;
+        if (
+          currentItem &&
+          currentItem.showRecipesArchive &&
+          currentItem.showRecipesArchive.archive
+        ) {
+          const archiveItems = currentItem.showRecipesArchive.archive
 
           archiveItems.forEach(archiveItem => {
             if (archiveItem._id) {
-              acc.push(archiveItem._id);
+              acc.push(archiveItem._id)
             }
-          });
+          })
         }
       }
-      // console.log(`Recipe acc : ${JSON.stringify(acc) }`)
-      return acc;
-    }, []);
-    // console.log(`Recipe ids : ${JSON.stringify(ids) }`)
-    // console.log(`Recipe ids.length : ${ids.length }`)
+      return acc
+    }, [])
 
     return ids.length === 0 ? [] : ids
   }
@@ -348,12 +389,13 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
-          recipeIds: getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
+          recipeIds: getShowArchiveRecipesIds(
+            node?.pageBuilder,
+            "recipesSection",
+          ),
         },
       })
-    }
-    else {
-
+    } else {
       createPage({
         path: node.slug.current,
         component: require.resolve(`./src/templates/pageTemplate.jsx`),
@@ -362,7 +404,10 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node?.pageBuilder, "blogSection"),
-          recipeIds: getShowArchiveRecipesIds(node?.pageBuilder, "recipesSection"),
+          recipeIds: getShowArchiveRecipesIds(
+            node?.pageBuilder,
+            "recipesSection",
+          ),
         },
       })
     }
@@ -381,78 +426,14 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-          recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+          recipeIds: getShowArchiveRecipesIds(
+            node.pageBuilder,
+            "recipesSection",
+          ),
         },
       })
     }
   })
-
-  // Paginate Categories
-
-  // Function to filter posts by category
-  function filterPostsByCategory(posts) {
-    const categories = {};
-
-    posts.forEach(post => {
-      const categorySlug = post?.categories?.slug?.current;
-
-      if (!categories[categorySlug]) {
-        categories[categorySlug] = [];
-      }
-
-      categories[categorySlug].push(post);
-    });
-
-    return categories;
-  }
-
-  // Usage
-  const posts = result.data.allSanityPost.nodes;
-  const categorizedPosts = filterPostsByCategory(posts);
-
-  // console.log(`Categorized Posts: ${categorizedPosts}`)
-
-  Object.keys(categorizedPosts).forEach(categoryName => {
-    //console.log(`Category: ${categoryName}`);
-
-    categorizedPosts[categoryName].forEach(node => {
-      // console.log(`CatNode: ${JSON.stringify(node)}`);
-      if (node.categories?.slug?.current) {
-        createPage({
-          path: `news/category/${node.categories?.slug?.current}`,
-          component: require.resolve(`./src/templates/categoryTemplate.jsx`),
-          context: {
-            id: node.id,
-            key: node.categories?.slug?.current,
-            slug: `${node.categories?.slug?.current}`,
-            // title: node.title,
-            // coverImage: node.coverImage,
-            // date: node.date,
-            // category: node.category,
-            // excerpt: node.excerpt,
-            // postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-            // recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
-          },
-        })
-
-        paginate({
-          createPage,
-          items: categorizedPosts[categoryName],
-          itemsPerPage: 12,
-          pathPrefix: `/news/category/${node?.categories?.slug?.current}`,
-          component: require.resolve(`./src/templates/categoryArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
-          context: {
-            id: node.id,
-            slug: `${node.categories?.slug?.current}`,
-            node: node,
-            postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-            recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
-          },
-        })
-      }
-
-    });
-  });
 
   result.data.blogPage.nodes.forEach(node => {
     if (node.slug.current) {
@@ -467,7 +448,56 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug: `${node.slug.current}`,
           node: node,
           postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-          recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+          recipeIds: getShowArchiveRecipesIds(
+            node.pageBuilder,
+            "recipesSection",
+          ),
+        },
+      })
+    }
+  })
+
+  result.data?.allSanityCategories?.nodes.forEach(node => {
+    if (node.slug.current) {
+      paginate({
+        createPage,
+        items: blogPostsCategories,
+        itemsPerPage: 12,
+        pathPrefix: `/news/category/${node?.slug?.current}`,
+        component: require.resolve(
+          `./src/templates/categoryArchiveTemplate.jsx`,
+        ),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+          postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+          recipeIds: getShowArchiveRecipesIds(
+            node.pageBuilder,
+            "recipesSection",
+          ),
+        },
+      })
+    }
+  })
+
+  result.data.blogPage.nodes.forEach(node => {
+    if (node.slug.current) {
+      paginate({
+        createPage,
+        items: blogPosts,
+        itemsPerPage: 12,
+        pathPrefix: `/${node.slug.current}`,
+        component: require.resolve(`./src/templates/blogArchiveTemplate.jsx`), // component: require.resolve(`./src/templates/blogArchivePaginateTemplate.jsx`),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+          postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+          recipeIds: getShowArchiveRecipesIds(
+            node.pageBuilder,
+            "recipesSection",
+          ),
         },
       })
     }
@@ -485,7 +515,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug: `${node.slug.current}`,
         node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),
       },
     })
   })
@@ -503,7 +533,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         date: node.date,
         categories: node.categories,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),
       },
     })
   })
@@ -518,9 +548,8 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug: `${node.slug.current}`,
         node: node,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds:  getShowArchiveRecipesIds(node.pageBuilder, "recipesSection")
+        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),
       },
     })
   })
 }
-

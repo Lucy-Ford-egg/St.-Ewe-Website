@@ -1,4 +1,4 @@
-// import React, {useEffect, useState} from "react"
+// import React, { useEffect, useState } from "react"
 // import { graphql } from "gatsby"
 // import { Seo } from "../components/seo"
 // import Modules from "../components/modules"
@@ -8,30 +8,27 @@
 //   const [posts, setPosts] = useState(null)
 //   const [modules, setModules] = useState(null)
 
-  
-
 //   useEffect(() => {
 //     setPosts(data.allSanityPost)
-//     setModules(data?.sanityPage?.pageBuilder)   
+//     setModules(data?.sanityPage?.pageBuilder)
 //   }, [data, modules])
 
 //   const blogModule = {
 //     _key: "",
 //     _type: "blogSection",
-//     posts:  data.allSanityPost,    
-//    }   
-//    modules && modules.splice(1, 0, blogModule) 
-
+//     posts: data.allSanityPost,
+//   }
+//   modules && modules.splice(1, 0, blogModule)
 
 //   return (
 //     <>
-//       {posts && modules && 
-//       <Modules
-//         pageContext={pageContext}
-//         modules={modules}
-//         getAllPosts={data.getAllPosts}
-//       />
-// }
+//       {posts && modules && (
+//         <Modules
+//           pageContext={pageContext}
+//           modules={modules}
+//           getAllPosts={data.getAllPosts}
+//         />
+//       )}
 //     </>
 //   )
 // }
@@ -41,103 +38,96 @@
 // }
 
 // export const blogArchiveTemplateQuery = graphql`
-// query blogArchiveTemplateQuery($slug: String!, $postIds:[String!]) {
-//   allSanityPost(
-//     filter: {
-//       category: {
-//         _id: {
-//           in: $postIds
+//   query blogArchiveTemplateQuery($slug: String!, $postIds: [String!]) {
+//     allSanityPost(
+//       filter: { category: { _id: { in: $postIds } } }
+//       sort: { date: DESC }
+//     ) #skip: $skip
+//     #limit: $limit
+//     {
+//       nodes {
+//         tileImage {
+//           asset {
+//             _id
+//             gatsbyImageData
+//           }
+//           hotspot {
+//             x
+//             y
+//             width
+//             height
+//           }
+//           crop {
+//             bottom
+//             left
+//             right
+//             top
+//           }
 //         }
-//       }
-//     }
-//     sort: {date: DESC}
-//     #skip: $skip 
-//     #limit: $limit 
-//   ) {
-//     nodes {
-//       tileImage {
-//         asset {
-//           _id
-//           gatsbyImageData
-//         }
-//         hotspot {
-//           x
-//           y
-//           width
-//           height
-//         }
-//         crop {
-//           bottom
-//           left
-//           right
-//           top
-//         }
-//       }
-  
-//       slug {
-//         current
-//       }
-//       category {
-//         name
-//         _id
-//       }
-//     }
-//   }
-//   getAllPosts: allSanityPost(sort: {date: DESC}){
-//     nodes {
-//       tileImage {
-//         asset {
-//           _id
-//           gatsbyImageData
-//         }
-//         hotspot {
-//           x
-//           y
-//           width
-//           height
-//         }
-//         crop {
-//           bottom
-//           left
-//           right
-//           top
-//         }
-//       }
-   
-//       slug {
-//         current
-//       }
-//       date
-//       category {
-//         name
-//         _id
-//         slug{
+
+//         slug {
 //           current
 //         }
+//         category {
+//           name
+//           _id
+//         }
 //       }
-//       author {
-//         name
+//     }
+//     getAllPosts: allSanityPost(sort: { date: DESC }) {
+//       nodes {
+//         tileImage {
+//           asset {
+//             _id
+//             gatsbyImageData
+//           }
+//           hotspot {
+//             x
+//             y
+//             width
+//             height
+//           }
+//           crop {
+//             bottom
+//             left
+//             right
+//             top
+//           }
+//         }
+
+//         slug {
+//           current
+//         }
+//         date
+//         category {
+//           name
+//           _id
+//           slug {
+//             current
+//           }
+//         }
+//         author {
+//           name
+//         }
+//         title
+//       }
+//     }
+//     sanityPage(slug: { current: { eq: $slug } }) {
+//       slug {
+//         current
 //       }
 //       title
-     
-//     }
-//   }
-//   sanityPage(slug: {current: {eq: $slug}}) {
-//     slug {
-//       current
-//     }
-//     title
-//     showArchive {
-//       setArchive
-//       archive {
-//         _id
-//         name
+//       showArchive {
+//         setArchive
+//         archive {
+//           _id
+//           name
+//         }
+//       }
+//       pageBuilder {
+//         ...PageBuilderFragment
 //       }
 //     }
-//     pageBuilder {
-//       ...PageBuilderFragment
-//     }
 //   }
-// }
 // `
 // export default BlogArchiveTemplate

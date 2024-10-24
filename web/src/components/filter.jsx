@@ -1,9 +1,8 @@
 import React from "react"
 import Box from "@mui/material/Box"
-import {Button} from "gatsby-theme-material-ui"
+import { Button } from "gatsby-theme-material-ui"
 import Typography from "@mui/material/Typography"
 import { graphql, useStaticQuery } from "gatsby"
-
 
 export const Filter = ({ type, allData, setFilterData, pageContext }) => {
   const data = useStaticQuery(graphql`
@@ -41,29 +40,36 @@ export const Filter = ({ type, allData, setFilterData, pageContext }) => {
           width: "100%",
         }}
       >
-        <Button variant="text" key="all" to={`/blog`}
-        sx={{
-          flex: "0 0 auto", 
-          color: pageContext?.slug === "blog" ? "primary.main" : "tertiary.main"}}>
+        <Button
+          variant="text"
+          key="all"
+          to={`/news`}
+          sx={{
+            flex: "0 0 auto",
+            color:
+              pageContext?.slug === "news" ? "primary.main" : "tertiary.main",
+          }}
+        >
           All
         </Button>
         {data.allSanityCategories?.nodes &&
           data.allSanityCategories?.nodes.map(node => {
-       
             return (
               <Button
-                
                 variant="text"
                 key={node?.name}
                 to={`/news/category/${node?.slug?.current}/`}
                 sx={{
                   flex: "0 0 auto",
-                  color: pageContext?.slug === node?.slug?.current ? "primary.main" : "tertiary.main",
+                  color:
+                    pageContext?.slug === node?.slug?.current
+                      ? "primary.main"
+                      : "tertiary.main",
                   "&:hover": {
                     cursor: "pointer",
-                    color: "primary.main"
-                }
-              }}
+                    color: "primary.main",
+                  },
+                }}
               >
                 {node?.name}
               </Button>

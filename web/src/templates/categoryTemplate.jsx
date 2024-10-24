@@ -2,25 +2,12 @@
 // import { graphql } from "gatsby"
 // import { Seo } from "../components/seo"
 // import Modules from "../components/modules"
-// import {
-//   Container,
-//   Grid,
-//   useTheme,
-//   Box,
-//   Typography,
-//   useMediaQuery,
-// } from "@mui/material"
-// import Image from "gatsby-plugin-sanity-image"
-// import { urlFor } from "../utils/imageHelpers"
-// import { RenderPortableText } from "../components/renderPortableText"
 // //Preview
 // import { useQuery } from "../../sanity/store"
 // import { CATEGORIES_QUERY } from "../queries/documentQueries"
 
 // const CategoryTemplate = props => {
 //   const { data, pageContext, initial, location } = props
-//   const theme = useTheme()
-//   const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
 //   // Preview
 //   const { data: previewData } = useQuery(
@@ -29,16 +16,17 @@
 //     { initial },
 //   )
 
-//   const definedModules = (previewData && previewData?.pageBuilder)  || data?.sanityCategories?.pageBuilder
-   
+//   const definedModules =
+//     (previewData && previewData?.pageBuilder) ||
+//     data?.sanityCategories?.pageBuilder
+//   debugger
 //   return (
 //     <>
 //       <Modules
 //         pageContext={pageContext}
 //         modules={definedModules}
-//         getAllPosts={data.getAllPosts}
+//         allSanityPost={data.allSanityPosts}
 //       />
-            
 //     </>
 //   )
 // }
@@ -48,9 +36,9 @@
 // }
 
 // export const categoryTemplateQuery = graphql`
-//   query categoryTemplateQuery($slug: String!) {
+//   query categoryTemplateQuery($slug: String!, $postIds: [String]) {
 //     sanityCategories(slug: { current: { eq: $slug } }) {
-//       ... SeoCategoryFragment
+//       ...SeoCategoryFragment
 //       slug {
 //         current
 //       }
@@ -58,43 +46,10 @@
 //         ...PageBuilderFragment
 //       }
 //     }
-//     getAllPosts: allSanityPost(sort: {date: DESC}){
+//     allSanityPost(sort: { date: DESC }, filter: { _id: { in: $postIds } }) {
 //       nodes {
-//         tileImage {
-//           asset {
-//             _id
-//             gatsbyImageData
-//           }
-//           hotspot {
-//             x
-//             y
-//             width
-//             height
-//           }
-//           crop {
-//             bottom
-//             left
-//             right
-//             top
-//           }
-//         }
-     
-//         slug {
-//           current
-//         }
-//         date
-//         category {
-//           name
-//           _id
-//           slug{
-//             current
-//           }
-//         }
-//         author {
-//           name
-//         }
-//         title
-        
+//         _key
+//         _id
 //       }
 //     }
 //   }

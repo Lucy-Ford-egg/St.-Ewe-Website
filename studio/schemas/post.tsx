@@ -1,13 +1,11 @@
-import { LiaNewspaper, LiaFilePdfSolid } from "react-icons/lia";
+import {LiaNewspaper, LiaFilePdfSolid} from 'react-icons/lia'
 
-import { format, parseISO } from 'date-fns'
-import { defineField, defineType } from 'sanity'
-import author from './author'
-import categories from './taxonomies/categories'
+import {format, parseISO} from 'date-fns'
+import {defineField, defineType} from 'sanity'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
 
-import { pageBuilder } from "./parts/pageBuilder"
+import {pageBuilder} from './parts/pageBuilder'
 
 /**
  * This file is the schema definition for a post.
@@ -50,24 +48,24 @@ export default defineType({
     // !
     defineField({name: 'title', type: 'string', group: 'pageContent'}),
     defineField({
-      name: 'slug', 
-      type: 'slug', 
+      name: 'slug',
+      type: 'slug',
       // options: {
       //   source: 'title',
       //   maxLength: 96,
-      //   isUnique: (value, context) => { 
-     
+      //   isUnique: (value, context) => {
+
       //     return (
       //     context.defaultIsUnique(value, context)
       //   )},
       // },
       // validation: (rule) => rule.required(),
-      group: 'pageContent'
+      group: 'pageContent',
     }),
     defineField({
-      name: 'date', 
-      type: 'datetime', 
-       //initialValue: () => new Date().toISOString(),
+      name: 'date',
+      type: 'datetime',
+      //initialValue: () => new Date().toISOString(),
       group: 'pageContent',
     }),
     defineField({name: 'modified', type: 'datetime', group: 'pageContent'}),
@@ -92,7 +90,8 @@ export default defineType({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
-      description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
+      description:
+        'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [...pageBuilder],
       group: 'pageContent',
     }),
@@ -109,14 +108,14 @@ export default defineType({
       group: 'pageContent',
     }),
     defineField({
-      name: 'featuredMedia', 
+      name: 'featuredMedia',
       type: 'image',
       options: {
         hotspot: true,
       },
       //validation: Rule => Rule.required(),
       group: 'pageContent',
-      description: 'This is used on the featured image.'
+      description: 'This is used on the featured image.',
     }),
     defineField({
       name: 'tileImage',
@@ -127,37 +126,35 @@ export default defineType({
       },
       //validation: Rule => Rule.required(),
       group: 'pageContent',
-      description: 'This is used on the tile.'
+      description: 'This is used on the tile.',
     }),
-    
+
     defineField({
       name: 'author',
       type: 'reference',
-      to: [{type: author.name}],
+      to: [{type: 'author'}],
       group: 'pageContent',
     }),
     defineField({
       name: 'categories',
       type: 'array',
-      of: [{type: 'reference', to: [{type: categories.name }]}],
+      of: [{type: 'reference', to: [{type: 'categories'}]}],
       group: 'pageContent',
-      //validation: (rule) => rule.required(),
+      validation: (rule) => rule.max(1),
     }),
     // defineField({
     //   name: 'category',
     //   title: 'Post Category',
     //   type: 'reference',
     //   to: [{ type: categoriesType.name }],
-      
+
     // }),
   ],
   orderings: [
     {
       title: 'Published Date',
       name: 'publishedDateDesc',
-      by: [
-        {field: 'date', direction: 'asc'}
-      ]
+      by: [{field: 'date', direction: 'asc'}],
     },
   ],
   preview: {
@@ -165,15 +162,24 @@ export default defineType({
       title: 'title',
       date: 'date',
       media: 'featuredImage',
-      author: 'author',
+      author: 'author.name',
+      categories: 'categories', // Get all categories as references
     },
-    prepare({ title, media, author, date }) {
+    prepare({title, media, author, date, categories}) {
+      debugger
       const subtitles = [
+        categories &&
+          categories.length > 0 &&
+          `${categories.map((cat: any) => cat?.name).join(', ')}`, // Safely map to get titles
         author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
-      return { title: title && title, media, subtitle: subtitles.join(' ,') }
+      return {
+        title: title || 'Untitled',
+        media,
+        subtitle: subtitles.join(', '),
+      }
     },
   },
 })
