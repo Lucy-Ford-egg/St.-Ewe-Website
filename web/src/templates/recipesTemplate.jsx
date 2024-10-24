@@ -29,15 +29,9 @@ const RecipeTemplate = props => {
     { initial },
   )
 
-  const definedImage =
-    (previewData && previewData?.RecipeQuery?.coverImage) || data.sanityRecipes?.coverImage
-
-  const definedCategory =
-    (previewData && previewData?.RecipeQuery?.category?.name) ||
-    data.sanityRecipes?.category?.name
-
-  const definedRawBody = (previewData && previewData?.RecipeQuery?.instructions) || data?.sanityRecipes._rawInstructions
-  const definedModules = (previewData && previewData?.RecipeQuery?.pageBuilder)  || data?.sanityRecipes?.pageBuilder
+  const definedModules =
+    (previewData && previewData?.RecipeQuery?.pageBuilder) ||
+    data?.sanityRecipes?.pageBuilder
 
   return (
     <>
@@ -45,10 +39,9 @@ const RecipeTemplate = props => {
         pageContext={pageContext}
         modules={definedModules}
         getAllPosts={data.getAllPosts}
-        allSanityRecipe={data.allSanityRecipe}
+        allSanityRecipes={data.allSanityRecipes}
         data={data}
       />
-            
     </>
   )
 }
@@ -58,9 +51,9 @@ export const Head = ({ data, location }) => {
 }
 
 export const RecipeTemplateQuery = graphql`
-  query RecipeTemplateQuery($slug: String!, $recipeIds:[String!]) {
+  query RecipeTemplateQuery($slug: String!, $recipeIds: [String]) {
     sanityRecipes(slug: { current: { eq: $slug } }) {
-      ... SeoRecipesFragment
+      ...SeoRecipesFragment
       slug {
         current
       }
@@ -115,49 +108,46 @@ export const RecipeTemplateQuery = graphql`
         ... on SanityHeaderSection {
           ...HeaderSectionFragment
         }
-        ... on SanityHeroHeaderSection{
+        ... on SanityHeroHeaderSection {
           ...HeroHeaderSectionFragment
         }
-        ... on SanityBorderSection{
+        ... on SanityBorderSection {
           ...BorderSectionFragment
         }
-        ... on SanityFeatureSection{
-          ...FeatureSectionFragment 
+        ... on SanityFeatureSection {
+          ...FeatureSectionFragment
         }
         ... on SanityTitleSection {
-          ... TitleSectionFragment
+          ...TitleSectionFragment
         }
         ... on SanityTextSection {
-          ... TextSectionFragment
+          ...TextSectionFragment
         }
-        ...on SanityRecipesSection {
-          ... RecipesSectionFragment
-        }    
+        ... on SanityRecipesSection {
+          ...RecipesSectionFragment
+        }
         ... on SanityImageSection {
           ...ImageSectionFragment
         }
-        ...on SanityBlogSection {
-          ... BlogSectionFragment
+        ... on SanityBlogSection {
+          ...BlogSectionFragment
         }
         ... on SanityRecipeBodySection {
-            ... RecipeBodySectionFragment
+          ...RecipeBodySectionFragment
         }
       }
     }
-    allSanityRecipes(filter: {
-      category: {
-        _id: {
-          in: $recipeIds
-        }
+    allSanityRecipes(
+      sort: { date: DESC }
+      filter: { _id: { in: $recipeIds }, slug: { current: { ne: $slug } } }
+    ) {
+      nodes {
+        _key
+        _id
+        ...RecipeTileFragment
       }
-    }) {
-    nodes {
-      _key
-      _id
-      ...RecipeTileFragment 
     }
-  }
-    getAllPosts: allSanityPost(sort: {date: DESC}){
+    getAllPosts: allSanityPost(sort: { date: DESC }) {
       nodes {
         tileImage {
           asset {
@@ -177,7 +167,7 @@ export const RecipeTemplateQuery = graphql`
             top
           }
         }
-     
+
         slug {
           current
         }
@@ -185,7 +175,7 @@ export const RecipeTemplateQuery = graphql`
         categories {
           title
           _id
-          slug{
+          slug {
             current
           }
         }
@@ -193,7 +183,6 @@ export const RecipeTemplateQuery = graphql`
           name
         }
         title
-        
       }
     }
   }
