@@ -10,7 +10,6 @@ export default defineType({
       name: 'image',
       type: 'image',
       title: 'Image',
-      validation: (Rule) => Rule.required(),
       options: {
         hotspot: true,
       },
@@ -99,10 +98,16 @@ export default defineType({
       type: 'image',
     }),
     defineField({
-      name: 'mirror',
+      name: 'showForm',
       type: 'boolean',
-      title: 'Shift content to the right',
-      description: 'Shift the content to left or right',
+      title: 'Show newsletter form',
+      // description: 'Shift the content to left or right',
+    }),
+    defineField({
+      name: 'alignment',
+      type: 'alignment',
+      title: 'Alignment',
+      description: 'Aligns text to the grid. If unset defaults to center',
     }),
     defineField({
       name: 'links',

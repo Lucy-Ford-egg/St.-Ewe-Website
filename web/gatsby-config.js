@@ -1,11 +1,12 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV || "upgrade"}`,
-});
+})
 
-const netlifyAdapter = require("gatsby-adapter-netlify").default;
+const netlifyAdapter = require("gatsby-adapter-netlify").default
 
 const isProd = process.env.NODE_ENV === "production"
-const previewEnabled = (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() === "true"
+const previewEnabled =
+  (process.env.GATSBY_IS_PREVIEW || "false").toLowerCase() === "true"
 
 const siteUrl = process.env.GATSBY_FRONTEND || `https://steweeggs.com/`
 
@@ -36,9 +37,9 @@ module.exports = {
         {
           key: `Content-Security-Policy: frame-src`,
           value: `https://fresnel.vimeocdn.com`,
-        }
-      ]
-    }
+        },
+      ],
+    },
   ],
   siteMetadata: {
     title: `St Ewe Eggs`,
@@ -47,13 +48,13 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-gatsby-cloud`
+      resolve: `gatsby-plugin-gatsby-cloud`,
     },
     {
       resolve: `gatsby-plugin-brotli`,
       options: {
-        extensions: ['css', 'html', 'js', 'svg']
-      }
+        extensions: ["css", "html", "js", "svg"],
+      },
     },
     {
       resolve: `gatsby-plugin-sitemap`,
@@ -110,7 +111,6 @@ module.exports = {
           allSanityTeamMember: { nodes: allTeams },
           allSanityRecipes: { nodes: allCaseStudies },
         }) => {
-
           const teamsNodeMap = allTeams.reduce((acc, node) => {
             const { slug } = node
             acc[`/team-members/${slug?.current}`] = node
@@ -128,13 +128,15 @@ module.exports = {
 
           const postsNodeMap = allPosts.reduce((acc, node) => {
             const { slug } = node
-            acc[`/news/${node?.reference?.category?.slug?.current}/${slug?.current}`] = node
+            acc[
+              `/news/${node?.reference?.category?.slug?.current}/${slug?.current}`
+            ] = node
 
             return acc
           }, {})
           // console.log(`postsNodeMap - ${JSON.stringify(postsNodeMap)}`)
 
-         const combined = [ teamsNodeMap, caseStudiesNodeMap, postsNodeMap ]
+          const combined = [teamsNodeMap, caseStudiesNodeMap, postsNodeMap]
 
           return allPages.map(page => {
             return { ...page, ...combined[page.path] }
@@ -154,7 +156,11 @@ module.exports = {
         // Sanity project info (required)
         projectId: process.env.GATSBY_SANITY_PROJECT_ID,
         dataset: process.env.GATSBY_SANITY_DATASET,
-        customImageTypes: ['SanityImageCaption', 'SanityCoverImage', 'SanityImageAlt'],
+        customImageTypes: [
+          "SanityImageCaption",
+          "SanityCoverImage",
+          "SanityImageAlt",
+        ],
       },
     },
     {
@@ -168,7 +174,7 @@ module.exports = {
 
         // If the Sanity GraphQL API was deployed using `--tag <name>`,
         // use `graphqlTag` to specify the tag name. Defaults to `default`.
-        graphqlTag: 'default',
+        graphqlTag: "default",
         watchMode: !isProd, // watchMode only in dev mode
         overlayDrafts: !isProd || previewEnabled, // drafts in dev & Gatsby Cloud Preview
       },
@@ -203,13 +209,13 @@ module.exports = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-mailchimp`,
-    //   options: {
-    //       endpoint: process.env.MAILCHIMP_LIST_ENDPOINT, // string; add your MC list endpoint here; see instructions below
-    //       timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
-    //   }
-    // },
+    {
+      resolve: `gatsby-plugin-mailchimp`,
+      options: {
+        endpoint: process.env.MAILCHIMP_LIST_ENDPOINT, // string; add your MC list endpoint here; see instructions below
+        timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+      },
+    },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
@@ -239,7 +245,7 @@ module.exports = {
                   woff: `../web/src/assets/fonts/colby-narrow/colby-nrbld-webfont.woff`,
                 },
               },
-            ]
+            ],
           },
         },
       },
@@ -249,36 +255,38 @@ module.exports = {
       options: {
         googleAnalytics: {
           trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID, // leave empty if you want to disable the tracker
-          cookieName: 'gatsby-gdpr-google-analytics', // default
+          cookieName: "gatsby-gdpr-google-analytics", // default
           anonymize: true, // default
-          allowAdFeatures: false // default
+          allowAdFeatures: false, // default
         },
         googleTagManager: {
           trackingId: process.env.GOOGLE_TAG_MANAGER_TRACKING_ID, // leave empty if you want to disable the tracker
-          cookieName: 'gatsby-gdpr-google-tagmanager', // default
-          dataLayerName: 'dataLayer', // default
+          cookieName: "gatsby-gdpr-google-tagmanager", // default
+          dataLayerName: "dataLayer", // default
         },
         facebookPixel: {
-          pixelId: 'YOUR_FACEBOOK_PIXEL_ID', // leave empty if you want to disable the tracker
-          cookieName: 'gatsby-gdpr-facebook-pixel', // default
+          pixelId: "YOUR_FACEBOOK_PIXEL_ID", // leave empty if you want to disable the tracker
+          cookieName: "gatsby-gdpr-facebook-pixel", // default
         },
         tikTokPixel: {
-          pixelId: 'YOUR_TIKTOK_PIXEL_ID', // leave empty if you want to disable the tracker
-          cookieName: 'gatsby-gdpr-tiktok-pixel', // default
+          pixelId: "YOUR_TIKTOK_PIXEL_ID", // leave empty if you want to disable the tracker
+          cookieName: "gatsby-gdpr-tiktok-pixel", // default
         },
         hotjar: {
-          hjid: 'YOUR_HOTJAR_ID',
-          hjsv: 'YOUR_HOTJAR_SNIPPET_VERSION',
-          cookieName: 'gatsby-gdpr-hotjar', // default
+          hjid: "YOUR_HOTJAR_ID",
+          hjsv: "YOUR_HOTJAR_SNIPPET_VERSION",
+          cookieName: "gatsby-gdpr-hotjar", // default
         },
         linkedin: {
-          trackingId: 'YOUR_LINKEDIN_TRACKING_ID', // leave empty if you want to disable the tracker
-          cookieName: 'gatsby-gdpr-linked-in', // default
+          trackingId: "YOUR_LINKEDIN_TRACKING_ID", // leave empty if you want to disable the tracker
+          cookieName: "gatsby-gdpr-linked-in", // default
         },
         // defines the environments where the tracking should be available  - default is ["production"]
-        environments: ['production', 'development']
+        environments: ["production", "development"],
       },
     },
   ],
-  partytownProxiedURLs: [`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_TAG_MANAGER_TRACKING_ID}`]
+  partytownProxiedURLs: [
+    `https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_TAG_MANAGER_TRACKING_ID}`,
+  ],
 }

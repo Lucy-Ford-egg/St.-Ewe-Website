@@ -7,9 +7,11 @@ import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
+import { MailChimp } from "./mailChimp"
+import { Texture } from "../components/texture"
 
 const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  ({ theme, borderDirection, backgroundColour, joiningColour, alignment }) => ({
     gridColumn: "1/25",
     display: "grid",
     gridTemplateColumns: "subgrid",
@@ -24,7 +26,7 @@ const Wrapper = styled("div")(
 )
 
 const BackgroundImage = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+  ({ theme, borderDirection, backgroundColour, joiningColour, alignment }) => ({
     gridColumn: "1/25",
     display: "grid",
     gridRow: "1/1",
@@ -39,18 +41,26 @@ const BackgroundImage = styled("div")(
   }),
 )
 
-const Content = styled("div")(({ mirror, theme }) => ({
+const Content = styled("div")(({ alignment, theme, showForm }) => ({
   gridColumn: "2/24",
   display: "grid",
   gridRow: "1/1",
   gridTemplateRows: "subgrid",
-  backgroundColor: "rgba(255,255,255,0.8)",
+  backgroundColor: !showForm ? "rgba(255,255,255,0.8)" : "unset",
   borderRadius: "var(--ms1)",
-  padding: "var(--ms3) var(--ms0)",
+  padding: !showForm ? "var(--ms3) var(--ms0)" : "var(--ms3) 0",
   marginTop: "var(--ms5)",
   marginBottom: "var(--ms5)",
   display: "flex",
   flexDirection: "column",
+  textAlign:
+    alignment === "right" ? "left" : alignment === "center" ? "center" : "left",
+  alignItems:
+    alignment === "unset"
+      ? "start"
+      : alignment === "center"
+        ? "center"
+        : "unset",
   "& .header-title": {
     textTransform: "uppercase",
   },
@@ -58,12 +68,17 @@ const Content = styled("div")(({ mirror, theme }) => ({
     gridColumn: "2/24",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: mirror ? "11/24" : "2/15",
+    gridColumn:
+      alignment === "right"
+        ? "11/24"
+        : alignment === "center"
+          ? "7/19"
+          : "2/15",
     padding: "var(--ms4)",
   },
 }))
 
-const Actions = styled("div")(({ mirror, theme }) => ({
+const Actions = styled("div")(({ alignment, theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -72,8 +87,42 @@ const Actions = styled("div")(({ mirror, theme }) => ({
   [theme.breakpoints.up("lg")]: {},
 }))
 
-const ImageAsset = styled("div")(({ mirror, theme }) => ({
+const ImageAsset = styled("div")(({ alignment, theme }) => ({
   width: 122,
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+const ShowForm = styled("div")(({ alignment, theme }) => ({
+  backgroundColor: "var(--original-large)",
+  padding: "var(--ms2) var(--ms4)",
+
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    borderRadius: "9999px",
+  },
+}))
+
+const ShowTexture = styled("div")(({ alignment, theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridRow: "1/1",
+  height: "100%",
+  pointerEvents: "none",
+  [theme.breakpoints.up("sm")]: {
+    gridRowGap: "var(--ms4)",
+    height: "unset",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+  },
+  "& svg": {
+    width: "100%",
+    height: "100%",
+    mixBlendMode: "multiply",
+    opacity: 0.2,
+  },
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {},
 }))
@@ -84,7 +133,8 @@ export const CtaSection = props => {
     asset,
     previewData,
     overlay,
-    mirror,
+    alignment,
+    showForm,
     _type,
     _rawText,
     backgroundColour,
@@ -105,9 +155,9 @@ export const CtaSection = props => {
   const definedImage = image?.asset && image
   const definedAsset = asset?.asset && asset
 
-  const definedMirror =
-    (previewData && _type === previewData?._type && previewData?.mirror) ||
-    mirror
+  const definedAlignment =
+    (previewData && _type === previewData?._type && previewData?.alignment) ||
+    alignment
 
   const definedLinks =
     (previewData && _type === previewData?._type && previewData?.links) || links
@@ -125,6 +175,11 @@ export const CtaSection = props => {
         backgroundColour={definedBackgroundColour}
         image={definedImage}
       >
+        {!definedImage && (
+          <ShowTexture>
+            <Texture backgroundColour={definedBackgroundColour} />
+          </ShowTexture>
+        )}
         {definedImage && (
           <BackgroundImage>
             <Image
@@ -167,7 +222,28 @@ export const CtaSection = props => {
         )}
 
         {definedText && (
-          <Content mirror={definedMirror}>
+          <Content alignment={definedAlignment} showForm={showForm}>
+            {definedAsset && showForm && (
+              <ImageAsset alignment={alignment}>
+                <Image
+                  // pass asset, hotspot, and crop fields
+                  crop={definedAsset?.crop}
+                  hotspot={definedAsset?.hotspot}
+                  asset={
+                    (definedAsset?._ref &&
+                      urlFor(definedAsset).width(122).url()) ||
+                    definedAsset.asset
+                  }
+                  width={122}
+                  style={{
+                    objectFit: "cover",
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              </ImageAsset>
+            )}
+
             <RenderPortableText
               previewData={previewData}
               sanityConfig={sanityConfig}
@@ -185,8 +261,8 @@ export const CtaSection = props => {
                   backgroundColour={backgroundColour}
                 />
               )}
-              {definedAsset && (
-                <ImageAsset>
+              {definedAsset && !showForm && (
+                <ImageAsset alignment={alignment}>
                   <Image
                     // pass asset, hotspot, and crop fields
                     crop={definedAsset?.crop}
@@ -206,6 +282,11 @@ export const CtaSection = props => {
                 </ImageAsset>
               )}
             </Actions>
+            {showForm && (
+              <ShowForm>
+                <MailChimp />
+              </ShowForm>
+            )}
           </Content>
         )}
       </Wrapper>
@@ -221,7 +302,8 @@ export const query = graphql`
       label
       value
     }
-    mirror
+    alignment
+    showForm
     verticalSpace {
       bottomPadding
       topPadding
