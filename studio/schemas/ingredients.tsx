@@ -283,7 +283,7 @@ export default defineType({
           {title: 'Fats & Oils', value: 'fats-oils'},
           {title: 'Grains', value: 'grains'},
           {title: 'Seasoning', value: 'seasoning'},
-          {title: 'Sauces & Other Liquids', value: 'sauces-liquids'},
+          {title: 'Sauces, spreads & other liquids', value: 'sauces-spreads-liquids'},
         ],
       },
       validation: (rule) => rule.required(),
