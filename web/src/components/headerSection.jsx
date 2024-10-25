@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import { graphql } from "gatsby"
 import { useTheme, useMediaQuery, Typography } from "@mui/material"
-import { RenderPortableText } from "../components/renderPortableText"
+import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"

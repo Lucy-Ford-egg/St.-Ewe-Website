@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { ModuleContainer } from "./moduleContainer"
-import { Typography, useTheme, useMediaQuery } from "@mui/material"
-import { RenderPortableText } from "../components/renderPortableText"
+import { Typography, useTheme } from "@mui/material"
+import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { styled } from "@mui/material/styles"
@@ -55,7 +55,6 @@ const RightAsset = styled("div")(({ alignment, theme }) => ({
 
   [theme.breakpoints.up("lg")]: {
     display: "grid",
-    gridColumn: "17/24",
     alignItems: "center",
     gridRow: "1/1",
     justifyContent: alignment === "left" ? "end" : "end",
@@ -67,13 +66,12 @@ const RightAsset = styled("div")(({ alignment, theme }) => ({
   },
 }))
 
-const Asset = styled("div")(({}) => ({
+const Asset = styled("div")({
   maxWidth: 200,
-}))
+})
 
 export const TitleSection = props => {
   const theme = useTheme()
-  const sm = useMediaQuery(theme.breakpoints.down("sm"))
 
   const {
     _rawTitle,

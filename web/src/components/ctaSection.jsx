@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { RenderPortableText } from "../components/renderPortableText"
+import { RenderPortableText } from "../components/utils/renderPortableText"
 import { useTheme } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"

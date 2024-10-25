@@ -6,7 +6,7 @@ import { contrastColour } from "../utils/contrastColour"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { formattedDate } from "../utils/formattedDate"
-import { RenderPortableText } from "./renderPortableText"
+import { RenderPortableText } from "../components/utils/renderPortableText"
 import { styled } from "@mui/material/styles"
 
 const Wrapper = styled("div")(({ theme }) => ({
