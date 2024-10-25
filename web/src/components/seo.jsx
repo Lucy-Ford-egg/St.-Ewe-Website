@@ -2,10 +2,16 @@ import React from "react"
 import { graphql } from "gatsby"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
-export const Seo = ({ location, children, data, seoContext }) => {
- 
+export const Seo = props => {
+  const { location, children, data, seoContext } = props
   const { metaDescription, metaTitle, ogDescription, ogTitle, ogImage } =
-  seoContext && seoContext || {metaDescription: null, metaTitle: null, ogDescription: null, ogTitle: null, ogImage: null}
+    (seoContext && seoContext) || {
+      metaDescription: null,
+      metaTitle: null,
+      ogDescription: null,
+      ogTitle: null,
+      ogImage: null,
+    }
 
   const { title: defaultTitle, description: defaultDescription } =
     useSiteMetadata()
@@ -67,17 +73,17 @@ export const query = graphql`
       }
     }
   }
-  fragment SeoCategoryFragment on SanityCategories{
+  fragment SeoCategoryFragment on SanityCategories {
     metaDescription
-      metaTitle
-      ogDescription
-      ogTitle
-      ogImage {
-        asset {
-          url
-        }
+    metaTitle
+    ogDescription
+    ogTitle
+    ogImage {
+      asset {
+        url
       }
     }
+  }
   fragment SeoRecipesFragment on SanityRecipes {
     metaDescription
     metaTitle

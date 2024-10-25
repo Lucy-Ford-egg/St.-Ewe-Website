@@ -47,7 +47,7 @@ const RecipeTemplate = props => {
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityRecipe} location={location} />
+  return <Seo seoContext={data.sanityRecipes} location={location} />
 }
 
 export const RecipeTemplateQuery = graphql`
