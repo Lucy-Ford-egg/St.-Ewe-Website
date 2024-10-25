@@ -54,6 +54,7 @@ const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
   gridTemplateRows: "subgrid",
   // paddingTop: brandSpacing['MS6']?.value,
   // paddingBottom: brandSpacing['MS6']?.value,
+  alignItems: "center",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   "& .header-title": {
     textTransform: "uppercase",
@@ -153,9 +154,9 @@ export const FeatureSection = props => {
     offset: ["start start", "center end"],
   })
 
-  const content = useTransform(scrollYProgress, [1, 0], [0, -50])
+  const content = useTransform(scrollYProgress, [1, 0], [-20, 0])
 
-  const imageY = useTransform(scrollYProgress, [1, 0], [50, -50])
+  const imageY = useTransform(scrollYProgress, [1, 0], [20, 0])
   const assetY = useTransform(scrollYProgress, [1, 0], [0, -200])
 
   return (
@@ -170,7 +171,7 @@ export const FeatureSection = props => {
             theme={theme}
             mirror={definedMirror}
             style={{
-              y: imageY,
+              x: imageY,
             }}
           >
             <Image
@@ -224,39 +225,33 @@ export const FeatureSection = props => {
             backgroundColour={backgroundColour}
           >
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                x: content,
+                rowGap: `${brandSpacing["MS1"]?.value}px`,
+              }}
             >
-              <motion.div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  y: content,
-                  rowGap: `${brandSpacing["MS1"]?.value}px`,
-                }}
-              >
-                {definedText && (
-                  <RenderPortableText
-                    previewData={previewData}
-                    sanityConfig={sanityConfig}
-                    variant={false}
-                    textAlign={definedMirror}
-                    value={definedText}
-                  />
-                )}
+              {definedText && (
+                <RenderPortableText
+                  previewData={previewData}
+                  sanityConfig={sanityConfig}
+                  variant={false}
+                  textAlign={definedMirror}
+                  value={definedText}
+                />
+              )}
 
-                {definedLinks && definedLinks.length > 0 && (
-                  <Links
-                    className="links"
-                    linkOne="primary"
-                    links={definedLinks}
-                    previewData={previewData}
-                    highlighted
-                    backgroundColour={backgroundColour}
-                  />
-                )}
-              </motion.div>
+              {definedLinks && definedLinks.length > 0 && (
+                <Links
+                  className="links"
+                  linkOne="primary"
+                  links={definedLinks}
+                  previewData={previewData}
+                  highlighted
+                  backgroundColour={backgroundColour}
+                />
+              )}
             </motion.div>
           </Content>
         )}
