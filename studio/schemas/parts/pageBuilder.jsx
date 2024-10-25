@@ -2,6 +2,7 @@
 import heroHeaderSection from '../sections/heroHeaderSection'
 import featureSection from '../sections/featureSection'
 // import embedSection from '../sections/embedSection'
+import accordionSection from '../sections/accordionSection'
 import titleSection from '../sections/titleSection'
 import textSection from '../sections/textSection'
 import borderSection from '../sections/borderSection'
@@ -33,6 +34,7 @@ export const pageBuilder = [
   {type: imageSection.name},
   {type: blogSection.name},
   {type: ctaSection.name},
+  {type: accordionSection.name},
 
   // { type: hotspotSection.name },
   // { type: testimonialSection.name },

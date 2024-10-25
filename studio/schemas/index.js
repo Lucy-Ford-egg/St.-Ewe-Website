@@ -16,6 +16,8 @@ import quote from './quote'
 import recipes from './recipies'
 import page from './page'
 import teamMember from './teamMember'
+import careers from './careers'
+import faqs from './faqs'
 // Atoms
 import ingredient from './ingredients'
 import recipesCategory from './taxonomies/recipesCategory'
@@ -69,6 +71,7 @@ import contactSection from './sections/contactSection'
 import locationSection from './sections/locationSection'
 import loginTile from './sections/loginTile'
 import clientLoginSection from './sections/clientLoginSection'
+import accordionSection from './sections/accordionSection'
 // Older schema
 import videoId from './videoId'
 import icons from './icons'
@@ -122,7 +125,10 @@ export const schema = {
     recipes,
     quote,
     teamMember,
+    careers,
+    faqs,
     // Sections
+    accordionSection,
     recipeBodySection,
     imageSection,
     heroHeaderSection,
