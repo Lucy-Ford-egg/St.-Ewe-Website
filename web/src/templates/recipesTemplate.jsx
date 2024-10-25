@@ -2,25 +2,12 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import Modules from "../components/modules"
-import {
-  Container,
-  Grid,
-  useTheme,
-  Box,
-  Typography,
-  useMediaQuery,
-} from "@mui/material"
-import Image from "gatsby-plugin-sanity-image"
-import { urlFor } from "../utils/imageHelpers"
-import { RenderPortableText } from "../components/renderPortableText"
 //Preview
 import { useQuery } from "../../sanity/store"
 import { RECIPES_QUERY } from "../queries/documentQueries"
 
 const RecipeTemplate = props => {
-  const { data, pageContext, initial, location } = props
-  const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
+  const { data, pageContext, initial } = props
 
   // Preview
   const { data: previewData } = useQuery(

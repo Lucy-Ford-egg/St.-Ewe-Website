@@ -99,7 +99,7 @@ export const AccordionSection = props => {
   }
 
   const { _key, accordion, verticalSpace, backgroundColour } = props
-
+  debugger
   return (
     <Wrapper
       className={`vs${verticalSpace?.topPadding}-top vs${verticalSpace?.bottomPadding}-bottom`}
@@ -150,7 +150,7 @@ export const AccordionSection = props => {
                     color: "var(--secondary-red)",
                   }}
                 >
-                  {item?.title}
+                  {item?.title || item?.question}
                 </h4>
                 <p
                   className="body--medium "

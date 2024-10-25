@@ -2,20 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import Modules from "../components/modules"
-import { contrastColour } from "../utils/contrastColour"
-import {RenderPortableText} from '../components/renderPortableText'
-import {formattedDate } from "../utils/formattedDate"
-import {
-  Container,
-  Grid,
-  useTheme,
-  Box,
-  Typography,
-  Divider,
-  useMediaQuery
-} from "@mui/material"
-import Image from "gatsby-plugin-sanity-image"
-import { urlFor } from "../utils/imageHelpers"
+import { useTheme, useMediaQuery } from "@mui/material"
 //Preview
 import { useQuery } from "../../sanity/store"
 import { POST_QUERY } from "../queries/documentQueries"
@@ -23,7 +10,7 @@ import { POST_QUERY } from "../queries/documentQueries"
 const PostTemplate = props => {
   const { data, pageContext, initial } = props
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down('md'))
+  const mobile = useMediaQuery(theme.breakpoints.down("md"))
 
   // const { featuredMedia, tileColor } = data?.sanityPost
 
@@ -35,16 +22,17 @@ const PostTemplate = props => {
   )
 
   // const definedRawBody = (previewData && previewData?.body) || data?.sanityPost._rawBody
-  const definedModules = (previewData && previewData?.pageBuilder)  || data?.sanityPost?.pageBuilder
+  const definedModules =
+    (previewData && previewData?.pageBuilder) || data?.sanityPost?.pageBuilder
   // const definedTileColor = (previewData && previewData?.tileColor) || tileColor
   // const definedCategory = (previewData && previewData?.categories) || data.sanityPost?.categories
   // const definedTitle = (previewData && previewData?.title) || data?.sanityPost?.title
   // const definedDate = (previewData && previewData?.date) || data.sanityPost?.date
-  // const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author 
+  // const definedAuthor = (previewData && previewData?.author) || data.sanityPost?.author
   // const definedImage = (previewData && previewData?.image) || image
 
   return (
-   <>
+    <>
       <Modules
         pageContext={pageContext}
         modules={definedModules}
@@ -62,7 +50,7 @@ export const Head = ({ data, location }) => {
 export const pageTemplateQuery = graphql`
   query postTemplateQuery($slug: String!) {
     sanityPost(slug: { current: { eq: $slug } }) {
-      ... SeoPostFragment
+      ...SeoPostFragment
       author {
         name
       }
@@ -73,10 +61,10 @@ export const pageTemplateQuery = graphql`
       date
       categories {
         name
-        slug{
-            current
-          }
-      }    
+        slug {
+          current
+        }
+      }
       #...SeoPageFragment
       pageBuilder {
         ...PageBuilderFragment
