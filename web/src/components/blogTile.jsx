@@ -1,97 +1,94 @@
 import React, { useState } from "react"
 import { motion } from "framer-motion"
-import { useTheme, Typography} from "@mui/material"
+import { useTheme, Typography } from "@mui/material"
 import { GatsbyLink } from "gatsby-theme-material-ui"
 import { contrastColour } from "../utils/contrastColour"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { formattedDate } from "../utils/formattedDate"
 import { RenderPortableText } from "./renderPortableText"
-import { styled } from '@mui/material/styles'
+import { styled } from "@mui/material/styles"
 
-const Wrapper = styled('div')(({ theme }) => ({
-  display: 'grid',
-  gridColumn: '1/24',
-  borderRadius: 'var(--ms4) var(--ms4) 0 0',
-  overflow: 'hidden',
+const Wrapper = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridColumn: "1/24",
+  borderRadius: "var(--ms4) var(--ms4) 0 0",
+  overflow: "hidden",
   "& a": {
-    display: 'grid',
-    gridTemplateColumns: 'subgrid',
-    gridTemplateRows: '1fr',
+    display: "grid",
+    gridTemplateColumns: "subgrid",
+    gridTemplateRows: "1fr",
   },
-  [theme.breakpoints.up('sm')]: {
-    gridColumn: 'span 11',
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "span 11",
   },
-  [theme.breakpoints.up('lg')]: {
-    gridColumn: 'span 8',
-  }
-}));
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "span 8",
+  },
+}))
 
-const BlogContent = styled('div')(({ props }) => ({
-  display: 'flex',
+const BlogContent = styled("div")(({ props }) => ({
+  display: "flex",
   zIndex: 2,
-  gridRow: '1/1',
+  gridRow: "1/1",
   transition: `all 0.2s ease-in-out 0s`,
-  flexDirection: 'column',
-  justifyContent: 'flex-end',
-}));
+  flexDirection: "column",
+  justifyContent: "flex-end",
+}))
 
-const BlogImage = styled('div')(({ props }) => ({
-  display: 'grid',
-  gridRow: '1/1',
+const BlogImage = styled("div")(({ props }) => ({
+  display: "grid",
+  gridRow: "1/1",
   zIndex: 0,
-}));
+}))
 
-const Content = styled('div')(({ props }) => ({
-  backgroundColor: 'white',
+const Content = styled("div")(({ props }) => ({
+  backgroundColor: "white",
   transition: `all 0.2s ease-in-out 0s`,
-  padding: 'var(--ms2)',
-  '& .blogPostTitle':{
-    wordBreak: 'break-word',
-    color: 'var(--original-large)',
-  }
-}));
+  padding: "var(--ms2)",
+  "& .blogPostTitle": {
+    wordBreak: "break-word",
+    color: "var(--original-large)",
+  },
+}))
 
-const Category = styled('div')(({ props }) => ({
-  backgroundColor: 'var(--rich-yolk-primary)',
-  padding: 'var(--ms-1)',
-  maxWidth: 'max-content',
-  color: 'white'
-}));
+const Category = styled("div")(({ props }) => ({
+  backgroundColor: "var(--rich-yolk-primary)",
+  padding: "var(--ms-1)",
+  maxWidth: "max-content",
+  color: "white",
+}))
 
-const Date = styled('div')(({ props }) => ({
-  color: 'var(--grand-primary)',
-  paddingTop: 'var(--ms-1)',
-}));
+const Date = styled("div")(({ props }) => ({
+  color: "var(--grand-primary)",
+  paddingTop: "var(--ms-1)",
+}))
 
-const Excerpt = styled(motion.div)(({ props }) => ({
-
-}));
+const Excerpt = styled(motion.div)(({ props }) => ({}))
 
 const Overlay = styled(motion.div)(({ props }) => ({
-  backgroundColor: 'rgba(235, 120, 6, 0.6)',
-  gridRow: '1/5',
+  backgroundColor: "rgba(235, 120, 6, 0.6)",
+  gridRow: "1/5",
   zIndex: 1,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}))
 
 const ReadMore = styled(motion.div)(({ props }) => ({
-  gridRow: '1/1',
+  gridRow: "1/1",
   zIndex: 2,
-  display: 'grid',
-  fontSize: 'var(--ms3)',
-  paddingTop: 'var(--ms6)',
-  justifyContent: 'center',
-  alignItems: 'start',
-  textTransform: 'uppercase',
-  color: 'white',
-  fontFamily: 'Colby Narrow',
-}));
+  display: "grid",
+  fontSize: "var(--ms3)",
+  paddingTop: "var(--ms6)",
+  justifyContent: "center",
+  alignItems: "start",
+  textTransform: "uppercase",
+  color: "white",
+  fontFamily: "Colby Narrow",
+}))
 
-export const BlogTile = (props) => {
-
+export const BlogTile = props => {
   const [activeTile, setActiveTile] = useState(false)
   const theme = useTheme()
 
@@ -106,49 +103,50 @@ export const BlogTile = (props) => {
     date,
     slug,
     _rawExcerpt,
-    _key
+    _key,
   } = post
 
   return (
-
-    <Wrapper theme={theme} key={_key} onMouseEnter={() => setActiveTile(true)} onMouseLeave={() => setActiveTile(false)}>
+    <Wrapper
+      theme={theme}
+      key={_key}
+      onMouseEnter={() => setActiveTile(true)}
+      onMouseLeave={() => setActiveTile(false)}
+    >
       <GatsbyLink
         style={{
           textDecoration: "none",
           color: "inherit",
         }}
-        to={`/news/${post?.categories[0]?.slug?.current}/${slug?.current}`}>
-        {activeTile && (<ReadMore
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{ type: "linear" }}
-        >Read More</ReadMore>
+        to={`/news/${post?.categories[0]?.slug?.current}/${slug?.current}`}
+      >
+        {activeTile && (
+          <ReadMore
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{ type: "linear" }}
+          >
+            Read More
+          </ReadMore>
         )}
         <BlogContent className="blogContent">
           {categories && (
             <Category>
-              <Typography
-                variant="body1"
-                component="h3"
-              >
+              <Typography variant="body1" component="h3">
                 {categories[0]?.name}
               </Typography>
             </Category>
           )}
           <Content>
             {title && (
-              <Typography
-              className="blogPostTitle"
-                variant="h4"
-              >
+              <Typography className="blogPostTitle" variant="h4">
                 {title}
               </Typography>
             )}
-
 
             {date && (
               <Date>
@@ -162,32 +160,19 @@ export const BlogTile = (props) => {
               </Date>
             )}
 
-            {author && (
-              <Typography
-                variant="h6"
-                component="span"
-                //color={contrastColour(tileColor).textColour}
-                sx={{
-
-                }}
-              >
-
-                {author.name}
-              </Typography>
-            )}
-
             {_rawExcerpt && activeTile && (
               <Excerpt
                 initial={{
                   opacity: 0,
-                  display: 'none',
+                  display: "none",
                   y: 10,
                 }}
                 animate={{
                   opacity: 1,
-                  display: 'block',
+                  display: "block",
                   y: 0,
-                }}>
+                }}
+              >
                 <RenderPortableText
                   previewData={previewData}
                   //sanityConfig={sanityConfig}
@@ -197,10 +182,7 @@ export const BlogTile = (props) => {
                 />
               </Excerpt>
             )}
-
           </Content>
-
-
         </BlogContent>
         <BlogImage>
           {tileImage && (
@@ -219,13 +201,11 @@ export const BlogTile = (props) => {
               style={{
                 objectFit: "cover",
                 width: "100%",
-
               }}
             />
           )}
         </BlogImage>
         {activeTile && (
-
           <Overlay
             initial={{
               opacity: 0,
@@ -235,10 +215,7 @@ export const BlogTile = (props) => {
             }}
             transition={{ type: "linear" }}
           />
-
-
         )}
-
       </GatsbyLink>
     </Wrapper>
   )
