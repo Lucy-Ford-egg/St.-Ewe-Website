@@ -17,9 +17,8 @@ const Wrapper = styled("div")(
     display: "grid",
     gridTemplateColumns: "subgrid",
     //overflowX: 'hidden',
-    [theme.breakpoints.up("sm")]: {
-      gridRowGap: "var(--ms4)",
-    },
+    gridRowGap: "var(--ms4)",
+    [theme.breakpoints.up("sm")]: {},
     [theme.breakpoints.up("lg")]: {
       gridRowGap: "unset",
     },
@@ -171,7 +170,7 @@ export const FeatureSection = props => {
             theme={theme}
             mirror={definedMirror}
             style={{
-              x: imageY,
+              x: !mobile && imageY,
             }}
           >
             <Image
@@ -228,7 +227,7 @@ export const FeatureSection = props => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                x: content,
+                x: !mobile && content,
                 rowGap: `${brandSpacing["MS1"]?.value}px`,
               }}
             >
