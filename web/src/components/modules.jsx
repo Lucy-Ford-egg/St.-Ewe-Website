@@ -45,6 +45,11 @@ const BlogSection = React.lazy(() =>
 const HeaderSection = React.lazy(() =>
   import("./headerSection").then(module => ({ default: module.HeaderSection })),
 )
+const AccordionSection = React.lazy(() =>
+  import("./accordionSection").then(module => ({
+    default: module.AccordionSection,
+  })),
+)
 // const TimelineSection = React.lazy(() => import('./timelineSection').then(module => ({ default: module.TimelineSection })));
 // const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
 const CtaSection = React.lazy(() =>
@@ -309,16 +314,17 @@ const Modules = props => {
                 )
               }
 
-              // if (isModule(module, 'locationSection')) {
-              //     return (
-              //         <LocationSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-              //             sanitySiteSettings={sanitySiteSettings}
-              //             {...module} />
-              //     )
-              // }
+              if (isModule(module, "accordionSection")) {
+                return (
+                  <AccordionSection
+                    previewData={previewData && previewData[i]}
+                    sanityConfig={sanityConfig}
+                    key={module._key + i}
+                    sanitySiteSettings={sanitySiteSettings}
+                    {...module}
+                  />
+                )
+              }
 
               // if (isModule(module, 'contactSection')) {
               //     return (
