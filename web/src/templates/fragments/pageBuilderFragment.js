@@ -32,6 +32,9 @@ export const pageBuilderQuery = graphql`
     ... on SanityCtaSection {
       ...CtaSectionFragment
     }
+    ... on SanityAccordionSection {
+      ...AccordionSectionFragment
+    }
   }
 `
 // ... on SanityNewsletterSection{

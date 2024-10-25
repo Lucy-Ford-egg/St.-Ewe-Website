@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { LiaAngleDownSolid } from "react-icons/lia"
-
+import { graphql } from "gatsby"
 import {
   useTheme,
   AccordionDetails,
@@ -187,3 +187,39 @@ export const AccordionSection = props => {
     </Wrapper>
   )
 }
+
+export const query = graphql`
+  fragment AccordionSectionFragment on SanityAccordionSection {
+    _key
+    _type
+    accordion {
+      ... on SanityCareers {
+        id
+        title
+        subtitle
+        link {
+          external
+        }
+        answer {
+          _rawChildren(resolveReferences: { maxDepth: 10 })
+          _key
+        }
+        _key
+        _id
+      }
+      ... on SanityFaqs {
+        id
+        _rawAnswer(resolveReferences: { maxDepth: 10 })
+        question
+      }
+    }
+    backgroundColour {
+      label
+      value
+    }
+    verticalSpace {
+      bottomPadding
+      topPadding
+    }
+  }
+`
