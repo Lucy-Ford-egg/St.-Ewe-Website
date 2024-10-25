@@ -6,100 +6,97 @@ import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { Links } from "../components/links"
 import { brandSpacing } from "../gatsby-theme-material-ui-top-layout/brandPalette"
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { contrastBrandPalette } from "../utils/colours"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ModuleContainer } from "./moduleContainer"
-import { styled } from '@mui/material/styles'
+import { styled } from "@mui/material/styles"
 
+const Wrapper = styled("div")(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    gridColumn: "1/25",
+    display: "grid",
+    gridTemplateColumns: "subgrid",
+    //overflowX: 'hidden',
+    [theme.breakpoints.up("sm")]: {
+      gridRowGap: "var(--ms4)",
+    },
+    [theme.breakpoints.up("lg")]: {
+      gridRowGap: "unset",
+    },
+  }),
+)
 
-const Wrapper = styled('div')(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-  gridColumn: '1/25',
-  display: 'grid',
-  gridTemplateColumns: 'subgrid',
-  //overflowX: 'hidden',
-  [theme.breakpoints.up('sm')]: {
-    gridRowGap: 'var(--ms4)',
-  },
-  [theme.breakpoints.up('lg')]: {
-    gridRowGap: 'unset',
-  },
-}));
+const FeatureImage = styled(motion.div)(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    gridColumn: "2/24",
+    display: "grid",
+    gridRow: "2/4",
+    gridTemplateRows: "subgrid",
+    overflow: "hidden",
+    gridColumn: "2/24",
+    [theme.breakpoints.up("sm")]: {
+      gridColumn: "2/24",
+    },
+    [theme.breakpoints.up("lg")]: {
+      gridRow: "1/1",
+      gridColumn: mirror ? "2/12" : "12/24",
+    },
+    "& img": {
+      borderRadius: "var(--ms4)",
+    },
+  }),
+)
 
-const FeatureImage = styled(motion.div)(({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-  gridColumn: '2/24',
-  display: 'grid',
-  gridRow: '2/4',
-  gridTemplateRows: 'subgrid',
-  overflow: 'hidden',
-  gridColumn: '2/24',
-  [theme.breakpoints.up('sm')]: {
-    gridColumn: '2/24',
-  },
-  [theme.breakpoints.up('lg')]: {
-    gridRow: '1/1',
-    gridColumn: mirror ? '2/12' : '12/24',
-  },
-  "& img": {
-    borderRadius: 'var(--ms4)',
-  }
-}));
-
-const Content = styled('div')(({ mirror, theme }) => ({
-  gridColumn: '2/24',
-  display: 'grid',
-  gridRow: '1/2',
-  gridTemplateRows: 'subgrid',
+const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
+  gridColumn: "2/24",
+  display: "grid",
+  gridRow: "1/2",
+  gridTemplateRows: "subgrid",
   // paddingTop: brandSpacing['MS6']?.value,
   // paddingBottom: brandSpacing['MS6']?.value,
-  color: 'white',
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   "& .header-title": {
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
-  [theme.breakpoints.up('sm')]: {
-    gridColumn: '2/24',
-
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "2/24",
   },
-  [theme.breakpoints.up('lg')]: {
-    gridColumn: mirror ? '14/24' : '3/10',
-  }
-
-}));
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: mirror ? "14/24" : "3/10",
+  },
+}))
 
 const Asset = styled(motion.div)(({ mirror, theme }) => ({
-  display: 'grid',
-  gridTemplateRows: 'subgrid',
-  gridColumn: '1/3',
-  gridRow: '3/4',
-  position: 'relative',
+  display: "grid",
+  gridTemplateRows: "subgrid",
+  gridColumn: "1/3",
+  gridRow: "3/4",
+  position: "relative",
   zIndex: 1,
-  alignItems: 'start',
+  alignItems: "start",
 
   "& img": {
-    transform: 'translateX(-10px) translateY(100px) ',
+    transform: "translateX(-10px) translateY(100px) ",
     maxWidth: 110,
     maxHeight: 110,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       maxWidth: 220,
       maxHeight: 220,
-      transform: 'translateY(100px)',
-    }
-
+      transform: "translateY(100px)",
+    },
   },
 
-  [theme.breakpoints.up('sm')]: {
-    gridColumn: '21/24',
-    gridRow: '1/1',
-    alignItems: 'end',
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "21/24",
+    gridRow: "1/1",
+    alignItems: "end",
   },
-  [theme.breakpoints.up('lg')]: {
-    gridColumn: mirror ? '10/13' : '10/13',
-    gridRow: '1/1',
-    alignItems: 'end',
-  }
-}));
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: mirror ? "10/13" : "10/13",
+    gridRow: "1/1",
+    alignItems: "end",
+  },
+}))
 
 export const FeatureSection = props => {
   const theme = useTheme()
@@ -120,8 +117,7 @@ export const FeatureSection = props => {
   } = props
 
   const definedTitle =
-    (previewData && _type === previewData?._type && previewData?.title) ||
-    title
+    (previewData && _type === previewData?._type && previewData?.title) || title
   const definedText =
     (previewData && _type === previewData?._type && previewData?.text) ||
     _rawText
@@ -141,40 +137,49 @@ export const FeatureSection = props => {
   const definedMirror =
     (previewData && _type === previewData?._type && previewData?.mirror) ||
     mirror
-  const definedAsset = (previewData && _type === previewData?._type && previewData?.centerAsset) || centerAsset
+  const definedAsset =
+    (previewData && _type === previewData?._type && previewData?.centerAsset) ||
+    centerAsset
 
   // Motion
 
-  const [imageLoaded, setImageLoaded] = useState(false); // Track image load state
+  const [imageLoaded, setImageLoaded] = useState(false) // Track image load state
 
-  const ref = useRef(null);
+  const ref = useRef(null)
   const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, container: containerRef, offset: ["start start", "center end"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    container: containerRef,
+    offset: ["start start", "center end"],
+  })
 
-  const content = useTransform(scrollYProgress, [1, 0], [0, -50]);
+  const content = useTransform(scrollYProgress, [1, 0], [0, -50])
 
-
-  const imageY = useTransform(scrollYProgress, [1, 0], [50, -50]);
-  const assetY = useTransform(scrollYProgress, [1, 0], [0, -200]);
+  const imageY = useTransform(scrollYProgress, [1, 0], [50, -50])
+  const assetY = useTransform(scrollYProgress, [1, 0], [0, -200])
 
   return (
-
     <ModuleContainer {...props} ref={containerRef}>
-
-      <Wrapper theme={theme} backgroundColour={definedBackgroundColour} image={definedImage}>
-
+      <Wrapper
+        theme={theme}
+        backgroundColour={definedBackgroundColour}
+        image={definedImage}
+      >
         {definedImage && (
-
-          <FeatureImage theme={theme} mirror={definedMirror} style={{
-            y: imageY,
-
-          }}>
-
+          <FeatureImage
+            theme={theme}
+            mirror={definedMirror}
+            style={{
+              y: imageY,
+            }}
+          >
             <Image
               crop={definedImage?.crop}
               hotspot={definedImage?.hotspot}
               asset={
-                definedImage?._ref && urlFor(definedImage).width(1440).url() || definedImage?.asset
+                (definedImage?._ref &&
+                  urlFor(definedImage).width(1440).url()) ||
+                definedImage?.asset
               }
               width={mobile ? 362 : tablet ? 732 : 732}
               height={mobile ? 241 : tablet ? 438 : 438}
@@ -186,21 +191,24 @@ export const FeatureSection = props => {
               }}
               onLoad={() => setImageLoaded(true)}
             />
-
           </FeatureImage>
         )}
         {definedAsset && (
-          <Asset theme={theme} mirror={definedMirror} style={{
-            y: assetY,
-
-          }}>
+          <Asset
+            theme={theme}
+            mirror={definedMirror}
+            style={{
+              y: assetY,
+            }}
+          >
             <div ref={ref}>
               <Image
                 // pass asset, hotspot, and crop fields
                 crop={definedAsset?.crop}
                 hotspot={definedAsset?.hotspot}
                 asset={
-                  (definedAsset?._ref && urlFor(definedAsset).width(440).url()) ||
+                  (definedAsset?._ref &&
+                    urlFor(definedAsset).width(440).url()) ||
                   definedAsset?.asset
                 }
                 width={440}
@@ -210,22 +218,25 @@ export const FeatureSection = props => {
           </Asset>
         )}
         {imageLoaded && (
-          <Content mirror={definedMirror} theme={theme}>
+          <Content
+            mirror={definedMirror}
+            theme={theme}
+            backgroundColour={backgroundColour}
+          >
             <motion.div
-              initial={{ opacity: 0, y: 10, }}
-              animate={{ opacity: 1, y: 0, }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <motion.div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
+                  display: "flex",
+                  flexDirection: "column",
                   y: content,
-                  rowGap: `${brandSpacing['MS1']?.value}px`,
+                  rowGap: `${brandSpacing["MS1"]?.value}px`,
                 }}
               >
                 {definedText && (
-
                   <RenderPortableText
                     previewData={previewData}
                     sanityConfig={sanityConfig}
@@ -233,11 +244,9 @@ export const FeatureSection = props => {
                     textAlign={definedMirror}
                     value={definedText}
                   />
-
                 )}
 
                 {definedLinks && definedLinks.length > 0 && (
-
                   <Links
                     className="links"
                     linkOne="primary"
@@ -251,67 +260,63 @@ export const FeatureSection = props => {
             </motion.div>
           </Content>
         )}
-
-
       </Wrapper>
-
     </ModuleContainer>
-
   )
 }
 
 export const query = graphql`
   fragment FeatureSectionFragment on SanityFeatureSection {
-      _key
-      _type
-      backgroundColour {
-        label
-        value
+    _key
+    _type
+    backgroundColour {
+      label
+      value
+    }
+    verticalSpace {
+      bottomPadding
+      topPadding
+    }
+    centerAsset {
+      asset {
+        _id
+        gatsbyImageData
       }
-      verticalSpace {
-        bottomPadding
-        topPadding
+      hotspot {
+        x
+        y
+        width
+        height
       }
-      centerAsset{
-        asset {
-          _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
+      crop {
+        bottom
+        left
+        right
+        top
       }
-      image{
-        asset {
-          _id
-          gatsbyImageData
-        }
-        hotspot {
-          x
-          y
-          width
-          height
-        }
-        crop {
-          bottom
-          left
-          right
-          top
-        }
+    }
+    image {
+      asset {
+        _id
+        gatsbyImageData
       }
-      mirror
-      _rawText(resolveReferences: {maxDepth: 10})
-      links {
-        ...LinkFragment
+      hotspot {
+        x
+        y
+        width
+        height
       }
-}
+      crop {
+        bottom
+        left
+        right
+        top
+      }
+    }
+    mirror
+    _rawText(resolveReferences: { maxDepth: 10 })
+    links {
+      ...LinkFragment
+    }
+  }
 `
