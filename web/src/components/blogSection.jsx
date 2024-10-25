@@ -7,6 +7,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import { Filter } from "./filter"
 import { ModuleContainer } from "./moduleContainer"
+import { contrastBrandPalette } from "../utils/colours"
 //Preview
 import { useQuery } from "../../sanity/store"
 import { POSTS_BY_ID } from "../queries/documentQueries"
@@ -46,19 +47,43 @@ const BlogGrid = styled("div")(({ theme }) => ({
   },
 }))
 
-const PageNavigation = styled("div")(({ theme }) => ({
-  display: "grid",
+const PageNavigation = styled("div")(({ theme, backgroundColour }) => ({
+  display: "flex",
   gridColumn: "2/24",
   justifyContent: "center",
   alignItems: "center",
-  columnGap: 6,
+  columnGap: "var(--ms2)",
   paddingTop: "var(--ms4)",
   paddingBottom: "var(--ms4)",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up("lg")]: {
     gridColumn: "1/25",
     paddingLeft: "var(--ms4)",
     paddingRight: "var(--ms4)",
   },
+}))
+
+const PaginationArrows = styled(Button)(({ theme, backgroundColour }) => ({
+  "&.MuiButtonBase-root": {
+    fontSize: "var(--ms0) !important",
+    fontFamily: "var(--font-primary) !important",
+    padding: "0 !important",
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  },
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+const Numbers = styled("div")(({ theme, backgroundColour }) => ({
+  fontSize: "var(--ms0)",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+const Number = styled("div")(({ theme, backgroundColour }) => ({
+  fontSize: "var(--ms0)",
+  fontFamily: "var(--font-primary)",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  [theme.breakpoints.up("lg")]: {},
 }))
 
 export const BlogSection = props => {
@@ -164,6 +189,7 @@ export const BlogSection = props => {
       <Wrapper theme={theme} backgroundColour={definedBackgroundColour}>
         <BlogFilter>
           <Filter
+            backgroundColour={definedBackgroundColour}
             className="component-filter"
             type="posts"
             // allData={getAllPosts.nodes}
@@ -189,15 +215,15 @@ export const BlogSection = props => {
         )}
 
         {props.pageContext.humanPageNumber && (
-          <PageNavigation theme={theme}>
-            {/* previousPageLink and nextPageLink were added by the plugin */}
-
-            <Button
+          <PageNavigation theme={theme} backgroundColour={backgroundColour}>
+            <PaginationArrows
+              backgroundColour={backgroundColour}
               variant="text"
-              color="tertiary"
               startIcon={
                 <ChevronLeftIcon
-                  color="primary"
+                  color={
+                    contrastBrandPalette[backgroundColour?.label]?.contrastText
+                  }
                   sx={{
                     opacity: props.pageContext.humanPageNumber === 1 && 0.2,
                   }}
@@ -205,22 +231,14 @@ export const BlogSection = props => {
               }
               to={props.pageContext.previousPagePath}
               disabled={props.pageContext.humanPageNumber === 1 && true}
-              sx={{
-                fontSize: "1rem !important",
-              }}
             >
               Previous
-            </Button>
+            </PaginationArrows>
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                columnGap: 3,
-              }}
-            >
-              <Typography
-                sx={{
+            <Numbers backgroundColour={backgroundColour}>
+              <Number
+                backgroundColour={backgroundColour}
+                style={{
                   color:
                     1 === props.pageContext.humanPageNumber
                       ? "primary.main"
@@ -239,16 +257,18 @@ export const BlogSection = props => {
                 >
                   {1}
                 </GatsbyLink>
-              </Typography>
+              </Number>
               {chunkIndex > 0 && "..."}
               {pagination &&
                 pagination[chunkIndex] &&
                 pagination[chunkIndex].map(node => {
                   return (
-                    <Typography
-                      sx={{
+                    <Number
+                      backgroundColour={backgroundColour}
+                      style={{
                         color:
-                          node === props.pageContext.humanPageNumber
+                          props.pageContext.numberOfPages ===
+                          props.pageContext.humanPageNumber
                             ? "primary.main"
                             : "inherit",
                         "&:hover": {
@@ -265,43 +285,19 @@ export const BlogSection = props => {
                       >
                         {node}
                       </GatsbyLink>
-                    </Typography>
+                    </Number>
                   )
                 })}
-              {pagination && pagination.length > 0 && "..."}
-              <Typography
-                sx={{
-                  color:
-                    props.pageContext.numberOfPages ===
-                    props.pageContext.humanPageNumber
-                      ? "primary.main"
-                      : "inherit",
-                  "&:hover": {
-                    cursor: "pointer",
-                    color: theme.palette.primary.main,
-                  },
-                }}
-              >
-                <GatsbyLink
-                  sx={{
-                    color: "inherit",
-                  }}
-                  to={`/news/${props.pageContext?.numberOfPages}`}
-                >
-                  {props.pageContext?.numberOfPages}
-                </GatsbyLink>
-              </Typography>
-            </Box>
+            </Numbers>
 
-            <Button
+            <PaginationArrows
+              backgroundColour={backgroundColour}
               variant="text"
-              color="tertiary"
-              sx={{
-                fontSize: "1rem !important",
-              }}
               endIcon={
                 <ChevronRightIcon
-                  color="primary"
+                  color={
+                    contrastBrandPalette[backgroundColour?.label]?.contrastText
+                  }
                   sx={{
                     opacity:
                       props.pageContext.humanPageNumber ===
@@ -316,7 +312,7 @@ export const BlogSection = props => {
               }
             >
               Next
-            </Button>
+            </PaginationArrows>
           </PageNavigation>
         )}
       </Wrapper>

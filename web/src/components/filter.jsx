@@ -3,8 +3,15 @@ import Box from "@mui/material/Box"
 import { Button } from "gatsby-theme-material-ui"
 import Typography from "@mui/material/Typography"
 import { graphql, useStaticQuery } from "gatsby"
+import { contrastBrandPalette } from "../utils/colours"
 
-export const Filter = ({ type, allData, setFilterData, pageContext }) => {
+export const Filter = ({
+  type,
+  allData,
+  setFilterData,
+  pageContext,
+  backgroundColour,
+}) => {
   const data = useStaticQuery(graphql`
     query CategoriesQuery {
       allSanityCategories {
@@ -47,7 +54,9 @@ export const Filter = ({ type, allData, setFilterData, pageContext }) => {
           sx={{
             flex: "0 0 auto",
             color:
-              pageContext?.slug === "news" ? "primary.main" : "tertiary.main",
+              pageContext?.slug === "news"
+                ? "primary.main"
+                : contrastBrandPalette[backgroundColour?.label]?.contrastText,
           }}
         >
           All
@@ -64,7 +73,8 @@ export const Filter = ({ type, allData, setFilterData, pageContext }) => {
                   color:
                     pageContext?.slug === node?.slug?.current
                       ? "primary.main"
-                      : "tertiary.main",
+                      : contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastText,
                   "&:hover": {
                     cursor: "pointer",
                     color: "primary.main",
