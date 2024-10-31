@@ -20,8 +20,8 @@ export default defineType({
     }),
     defineField({
       name: 'link',
+      type: 'linkLabelBasic',
       title: 'Link',
-      type: 'link',
     }),
     defineField({
       name: 'answer',

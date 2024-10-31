@@ -113,6 +113,7 @@ export const AccordionSection = props => {
         verticalSpace={verticalSpace}
       >
         {accordion?.map((item, i) => {
+          debugger
           return (
             <AccordionWrapper
               key={`${_key}-${item?.title}`}
@@ -172,7 +173,7 @@ export const AccordionSection = props => {
                   <LinkType
                     className={`button outlined outlined--primary button--primary`}
                     link={item?.link}
-                  />
+                  ></LinkType>
                 )}
               </AccordionSummary>
 
@@ -208,7 +209,16 @@ export const query = graphql`
         title
         subtitle
         link {
-          external
+          link {
+            external
+            internal {
+              ... on SanityPage {
+                id
+                _id
+              }
+            }
+          }
+          text
         }
         _rawAnswer(resolveReferences: { maxDepth: 10 })
         _key
@@ -218,6 +228,18 @@ export const query = graphql`
         id
         _rawAnswer(resolveReferences: { maxDepth: 10 })
         question
+        link {
+          link {
+            external
+            internal {
+              ... on SanityPage {
+                id
+                _id
+              }
+            }
+          }
+          text
+        }
       }
     }
     backgroundColour {

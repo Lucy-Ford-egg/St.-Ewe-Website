@@ -1,6 +1,7 @@
 import navigation from './navigation'
 import navItem from './navItem'
 import linkDefined from './parts/linkDefined'
+import linkLabelBasic from './parts/linkLabelBasic'
 import subItem from './subItem'
 import link from './parts/link'
 import categories from './taxonomies/categories'
@@ -110,6 +111,7 @@ export const schema = {
     imageLink,
     alignment,
     textAlign,
+    linkLabelBasic,
     // Atoms
     ingredient,
     recipesCategory,
