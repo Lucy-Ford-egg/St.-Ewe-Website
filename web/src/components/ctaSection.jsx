@@ -9,7 +9,6 @@ import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
 import { MailChimp } from "./mailChimp"
 import { Texture } from "../components/texture"
-import { transform } from "framer-motion"
 
 const Wrapper = styled("div")(
   ({ theme, borderDirection, backgroundColour, joiningColour, alignment }) => ({
@@ -44,7 +43,6 @@ const BackgroundImage = styled("div")(
 
 const Content = styled("div")(({ alignment, theme, showForm }) => ({
   gridColumn: "2/24",
-  display: "grid",
   gridRow: "1/1",
   zIndex: 2,
   gridTemplateRows: "subgrid",
@@ -155,8 +153,7 @@ export const CtaSection = props => {
     overlay,
     alignment,
     showForm,
-    _type,
-    _rawText,
+    text,
     backgroundColour,
     sanityConfig,
     links,
@@ -164,51 +161,22 @@ export const CtaSection = props => {
 
   const theme = useTheme()
 
-  const definedOverlay =
-    (_type === previewData?._type && previewData && previewData?.overlay) ||
-    overlay
-
-  const definedText =
-    (_type === previewData?._type && previewData && previewData?.text) ||
-    _rawText
-
-  const definedImage = image?.asset && image
-  const definedAsset = asset?.asset && asset
-
-  const definedAlignment =
-    (previewData && _type === previewData?._type && previewData?.alignment) ||
-    alignment
-
-  const definedLinks =
-    (previewData && _type === previewData?._type && previewData?.links) || links
-
-  const definedBackgroundColour =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.backgroundColour) ||
-    backgroundColour
-
   return (
     <ModuleContainer {...props}>
-      <Wrapper
-        theme={theme}
-        backgroundColour={definedBackgroundColour}
-        image={definedImage}
-      >
-        {!definedImage && (
+      <Wrapper theme={theme} backgroundColour={backgroundColour} image={image}>
+        {!image && (
           <ShowTexture>
-            <Texture backgroundColour={definedBackgroundColour} />
+            <Texture backgroundColour={backgroundColour} />
           </ShowTexture>
         )}
-        {definedImage && (
+        {image && (
           <BackgroundImage>
             <Image
               // pass asset, hotspot, and crop fields
-              crop={definedImage?.crop}
-              hotspot={definedImage?.hotspot}
+              crop={image?.crop}
+              hotspot={image?.hotspot}
               asset={
-                (definedImage?._ref && urlFor(definedImage).width(200).url()) ||
-                definedImage.asset
+                (image?._ref && urlFor(image).width(200).url()) || image.asset
               }
               width={1330}
               height={515}
@@ -225,7 +193,7 @@ export const CtaSection = props => {
           </BackgroundImage>
         )}
 
-        {definedOverlay && (
+        {overlay && (
           <div
             className="overlay"
             sx={{
@@ -236,23 +204,22 @@ export const CtaSection = props => {
               gridRow: "1/auto",
               position: "relative",
               zIndex: 1,
-              backgroundColor: `rgba(0,40,86, ${definedOverlay})`,
+              backgroundColor: `rgba(0,40,86, ${overlay})`,
             }}
           />
         )}
 
-        {definedText && (
-          <Content alignment={definedAlignment} showForm={showForm}>
-            {definedAsset && showForm && (
+        {text && (
+          <Content alignment={alignment} showForm={showForm}>
+            {asset && showForm && (
               <ImageAsset alignment={alignment}>
                 <Image
                   // pass asset, hotspot, and crop fields
-                  crop={definedAsset?.crop}
-                  hotspot={definedAsset?.hotspot}
+                  crop={asset?.crop}
+                  hotspot={asset?.hotspot}
                   asset={
-                    (definedAsset?._ref &&
-                      urlFor(definedAsset).width(122).url()) ||
-                    definedAsset.asset
+                    (asset?._ref && urlFor(asset).width(122).url()) ||
+                    asset.asset
                   }
                   width={122}
                   style={{
@@ -268,29 +235,28 @@ export const CtaSection = props => {
               previewData={previewData}
               sanityConfig={sanityConfig}
               variant={false}
-              value={definedText}
+              value={text}
             />
             <Actions>
-              {definedLinks && definedLinks.length > 0 && (
+              {links && links.length > 0 && (
                 <Links
                   className="links"
                   linkOne="primary"
-                  links={definedLinks}
+                  links={links}
                   previewData={previewData}
                   highlighted
                   backgroundColour={backgroundColour}
                 />
               )}
-              {definedAsset && !showForm && (
+              {asset && !showForm && (
                 <ImageAsset alignment={alignment}>
                   <Image
                     // pass asset, hotspot, and crop fields
-                    crop={definedAsset?.crop}
-                    hotspot={definedAsset?.hotspot}
+                    crop={asset?.crop}
+                    hotspot={asset?.hotspot}
                     asset={
-                      (definedAsset?._ref &&
-                        urlFor(definedAsset).width(122).url()) ||
-                      definedAsset.asset
+                      (asset?._ref && urlFor(asset).width(122).url()) ||
+                      asset.asset
                     }
                     width={122}
                     style={{
@@ -346,7 +312,7 @@ export const query = graphql`
         top
       }
     }
-    _rawText(resolveReferences: { maxDepth: 10 })
+    text: _rawText(resolveReferences: { maxDepth: 10 })
     image {
       asset {
         _id

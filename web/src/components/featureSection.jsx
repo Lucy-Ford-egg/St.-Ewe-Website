@@ -32,7 +32,6 @@ const FeatureImage = styled(motion.div)(
     gridRow: "2/4",
     gridTemplateRows: "subgrid",
     overflow: "hidden",
-    gridColumn: "2/24",
     [theme.breakpoints.up("sm")]: {
       gridColumn: "2/24",
     },

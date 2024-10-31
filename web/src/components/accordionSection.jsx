@@ -88,7 +88,6 @@ const Details = styled(AccordionDetails)(({ theme, backgroundColour }) => ({
 
 export const AccordionSection = props => {
   const [expanded, setExpanded] = useState(false)
-  const theme = useTheme()
   const handleChange = panel => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false)
   }
