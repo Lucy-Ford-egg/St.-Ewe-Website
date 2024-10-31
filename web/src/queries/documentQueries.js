@@ -1,4 +1,4 @@
-import groq from 'groq'
+import groq from "groq"
 
 // * Helpful - https://www.sanity.io/docs/query-cheat-sheet
 
@@ -25,96 +25,7 @@ text
 export const PAGE_BUILDER = `
 pageBuilder[] {
   ...,
-  
-  images[] { 
-    asset->,
-    hotspot{...},
-    crop{...}
-    image {
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-  },
-  image {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  images[] { 
-    image {
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    link {
-      ${LINK},
-    },
-  },
-  links[]{
-    ${LINK},
-  },
-  subtitle,
-  title[]{...},
-  text[]{...},
-  excerpt[]{...},
-  title,
-  text,
-  topPadding,
-  asCarousel,
-  disableSummary,
-  leftAlign, 
-  
-  steps[]{
-    ...,
-    title,
-    description,
-    involves,
-    _type, 
-  },
-  showArchive{
-    ...,
-    archive[]->{...},  
-  },
-  showRecipesArchive{
-    ...,
-    archive[]->{
-      ..., 
-    },
-  },
-  author->{...},
-  featuresTile[]{
-    ...,
-    link{
-      ${LINK},
-    },
-  },
-  teamTiles[]->{...},
-
-  testimonialTiles[]->{
-    ...,
-    "_rawQuoteText": quoteText,
-    cite{
-      teamMemberCite->{
-        name,
-        position,
-        image {
-          asset->,
-          hotspot{...},
-          crop{...}
-        },
-      },
-      externalCite{
-        citeName,
-        citeLocation,
-        image {
-          asset->,
-          hotspot{...},
-          crop{...}
-        },
-      },
-    },
-  },
+  'rawTitle': title,
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
@@ -455,28 +366,6 @@ export const POSTS_BY_ID = groq`*[_type == "post" && references($categoryId)] | 
 }`
 
 export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
+  ...,
   ${PAGE_BUILDER},
-  title,
-  text,
-  image {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },  
-  mobileImage {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  textAlign,
-  slug->,
-  companyDetails,
-  _rawPerson,
-  featuredMedia {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  _id,
-  
 }`
