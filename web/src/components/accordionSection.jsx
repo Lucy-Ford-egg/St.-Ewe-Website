@@ -103,7 +103,6 @@ export const AccordionSection = props => {
         verticalSpace={verticalSpace}
       >
         {accordion?.map((item, i) => {
-          debugger
           return (
             <AccordionWrapper
               key={`${_key}-${item?.title}`}
