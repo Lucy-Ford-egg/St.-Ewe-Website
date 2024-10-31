@@ -11,7 +11,7 @@ import {
 import { RenderPortableText } from "./utils/renderPortableText"
 import { LinkType } from "./utils/linkType"
 import { ModuleContainer } from "./moduleContainer"
-
+import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
 
 const Wrapper = styled("div")(
@@ -36,25 +36,21 @@ const Wrapper = styled("div")(
   }),
 )
 
-const AccordionWrapper = styled(Accordion)(
-  ({
-    theme,
-    verticalSpace,
-    borderDirection,
-    backgroundColour,
-    joiningColour,
-    mirror,
-  }) => ({
-    padding: "0 !important",
+const AccordionWrapper = styled(Accordion)(({ theme, backgroundColour }) => ({
+  padding: "0 !important",
+  gridColumn: "1/25",
+  backgroundColor: "unset",
+  py: "var(--ms0)",
+  [theme.breakpoints.up("sm")]: {
     gridColumn: "1/25",
-    [theme.breakpoints.up("sm")]: {
-      gridColumn: "1/25",
-    },
-    [theme.breakpoints.up("lg")]: {
-      gridColumn: "2/24",
-    },
-  }),
-)
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "2/24",
+  },
+  "&:before": {
+    backgroundColor: contrastBrandPalette[backgroundColour?.label]?.contrastSvg,
+  },
+}))
 
 const Summary = styled("div")(
   ({
@@ -87,6 +83,10 @@ const Details = styled(AccordionDetails)(
     display: "grid",
     gridTemplateColumns: "repeat(24, 1fr)",
     paddingTop: 0,
+    color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText} !important`,
+    a: {
+      textDecorationColor: "var(--rich-yolk-primary)",
+    },
     "&>div": {
       gridColumn: "2/24",
     },
@@ -122,7 +122,7 @@ export const AccordionSection = props => {
               elevation={0}
               expanded={expanded === `${_key}-panel${i}`}
               onChange={handleChange(`${_key}-panel${i}`)}
-              sx={{ backgroundColor: "unset", py: 1 }}
+              backgroundColour={backgroundColour}
             >
               <AccordionSummary
                 aria-controls={`${_key}-panel${i}-content`}
@@ -130,7 +130,9 @@ export const AccordionSection = props => {
                 expandIcon={
                   <LiaAngleDownSolid
                     style={{
-                      color: "var(--primary-navy)",
+                      color:
+                        contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastSvg,
                     }}
                   />
                 }
@@ -157,14 +159,20 @@ export const AccordionSection = props => {
                     component="h4"
                     className="title"
                     style={{
-                      color: "var(--secondary-red)",
+                      color:
+                        contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastText,
                     }}
                   >
                     {item?.title || item?.question}
                   </Typography>
                   <span
                     className="body--medium "
-                    style={{ color: "var(--primary-red)" }}
+                    style={{
+                      color:
+                        contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastText,
+                    }}
                   >
                     {item?.subtitle}
                   </span>
@@ -172,24 +180,20 @@ export const AccordionSection = props => {
                 {item?.link && (
                   <LinkType
                     className={`button outlined outlined--primary button--primary`}
-                    link={item?.link}
-                  ></LinkType>
+                    variant="outlined"
+                    color={
+                      contrastBrandPalette[backgroundColour?.label]
+                        ?.contrastButtonColour
+                    }
+                    node={item?.link?.link}
+                  >
+                    {item?.link?.text}
+                  </LinkType>
                 )}
               </AccordionSummary>
 
-              <Details
-                sx={{
-                  a: {
-                    //color: "background.main",
-                    textDecorationColor: theme.palette.background.main,
-                  },
-                }}
-              >
-                <RenderPortableText
-                  color="background.main"
-                  variant={false}
-                  value={item?._rawAnswer}
-                />
+              <Details backgroundColour={backgroundColour}>
+                <RenderPortableText variant={false} value={item?._rawAnswer} />
               </Details>
             </AccordionWrapper>
           )
@@ -209,16 +213,7 @@ export const query = graphql`
         title
         subtitle
         link {
-          link {
-            external
-            internal {
-              ... on SanityPage {
-                id
-                _id
-              }
-            }
-          }
-          text
+          ...LinkLabelFragment
         }
         _rawAnswer(resolveReferences: { maxDepth: 10 })
         _key
@@ -229,16 +224,7 @@ export const query = graphql`
         _rawAnswer(resolveReferences: { maxDepth: 10 })
         question
         link {
-          link {
-            external
-            internal {
-              ... on SanityPage {
-                id
-                _id
-              }
-            }
-          }
-          text
+          ...LinkLabelFragment
         }
       }
     }

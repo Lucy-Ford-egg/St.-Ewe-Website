@@ -1,15 +1,14 @@
 import React from "react"
-import { Link as GatsbyLink } from "gatsby-theme-material-ui"
+import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import Link from "@mui/material/Button"
 
 export const LinkType = props => {
-  const { node } = props
+  const { node, variant, color = "primary" } = props
 
   let definedInternal = node?.internal?.slug?.current
   const definedExternal = node?.external
 
   if (node?.internal?._type === "post") {
-
     definedInternal = `blog/${node?.internal?.category?.slug?.current}/${definedInternal}`
   }
   if (node?.internal?._type === "Recipe") {
@@ -18,22 +17,30 @@ export const LinkType = props => {
   if (node?.internal?._type === "teamMembers") {
     definedInternal = `/team-members/${definedInternal}`
   }
+
   return (
     <div className="linkTypeWrapper">
       {node?.internal ? (
-        <GatsbyLink
+        <GatsbyButton
+          color={color}
+          variant={variant}
           to={`/${definedInternal}`}
         >
           {props.children}
-        </GatsbyLink>
+        </GatsbyButton>
       ) : definedExternal ? (
         <Link
+          color={color}
+          variant={variant}
           href={definedExternal}
           rel="noopener"
-          target="_blank">
+          target="_blank"
+        >
           {props.children}
         </Link>
-      ) : props.children}
+      ) : (
+        props.children
+      )}
     </div>
   )
 }

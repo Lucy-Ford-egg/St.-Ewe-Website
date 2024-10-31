@@ -17,38 +17,38 @@ let defaultTheme = createTheme({
   palette: {
     primary: {
       main: brandPalette["Rich Yolk Primary"].value, // Coral
-      mid: '#F26979', // Crayola
-      light: '#F47C8A', // Light Coral
-      lighter: '#FCD9DE', // Lighter Coral
-      lightest: '#FDE3E6', // Lightest Coral
+      mid: "#F26979", // Crayola
+      light: "#F47C8A", // Light Coral
+      lighter: "#FCD9DE", // Lighter Coral
+      lightest: "#FDE3E6", // Lightest Coral
     },
     secondary: {
-      main: '#002856', // Navy
-      bright: '#00397A', // Bright Navy
-      mid: '#375073', // Navy Uncoated
-      light: '#42608A', // Light Navy 
+      main: "#002856", // Navy
+      bright: "#00397A", // Bright Navy
+      mid: "#375073", // Navy Uncoated
+      light: "#42608A", // Light Navy
     },
     tertiary: {
-      main: 'rgba(93, 83, 64, 1)',
+      main: "rgba(93, 83, 64, 1)",
     },
     text: {
-      primary: '#002856', // Text Grey
-      mid: '#B8B6B9', // Mid Grey
+      primary: "#002856", // Text Grey
+      mid: "#B8B6B9", // Mid Grey
     },
     background: {
-      default: '#ffffff', // White
-      main: '#ffffff', // White
+      default: "#ffffff", // White
+      main: "#ffffff", // White
     },
     white: {
-      main: '#ffffff', // White
+      main: "#ffffff", // White
     },
     highlight: {
-      main: '#698f68',
+      main: "#698f68",
     },
     yellow: {
-      main: '#F6C305',
-      light: 'rgba(93, 83, 64, 0.4)'
-    }
+      main: "#F6C305",
+      light: "rgba(93, 83, 64, 0.4)",
+    },
   },
 })
 
@@ -61,7 +61,7 @@ let clientTheme = createTheme({
       md: 900,
       lg: 1180,
       xl: 2880,
-    }
+    },
   },
   transitions: {
     easing: {
@@ -72,72 +72,71 @@ let clientTheme = createTheme({
   typography: {
     //fontSize: clientSpacing[5],
     body1: {
-      fontFamily: 'Roboto Slab',
+      fontFamily: "Roboto Slab",
       fontSize: clientSpacing[6],
       lineHeight: 1.66,
-      letterSpacing: '0em',
-     
+      letterSpacing: "0em",
     },
     body2: {
-      fontFamily: 'Roboto Slab',
+      fontFamily: "Roboto Slab",
       fontSize: clientSpacing[7],
-      letterSpacing: '0em',
+      letterSpacing: "0em",
     },
     button: {
       lineHeight: 1.43,
     },
     caption: {
-      fontFamily: 'Roboto Slab',
+      fontFamily: "Roboto Slab",
       fontSize: clientSpacing[6],
       lineHeight: 1.5,
-      letterSpacing: '0em',
+      letterSpacing: "0em",
     },
     overline: {
-      fontFamily: 'Colby Narrow',
+      fontFamily: "Colby Narrow",
       fontSize: clientSpacing[7],
       fontWeight: 700,
       lineHeight: 1.5,
-      textTransform: 'uppercase',
+      textTransform: "uppercase",
       letterSpacing: 0.3,
     },
     h1: {
-      fontFamily: 'Colby Narrow',
+      fontFamily: "Colby Narrow",
       fontSize: clientSpacing[14],
-      fontStyle: 'normal',
+      fontStyle: "normal",
       fontWeight: 700,
       lineHeight: 1,
-      [defaultTheme.breakpoints.up('md')]: {
+      [defaultTheme.breakpoints.up("md")]: {
         fontSize: clientSpacing[13],
       },
     },
     h2: {
       fontSize: clientSpacing[12],
-      fontFamily: 'Colby Narrow',
-      [defaultTheme.breakpoints.up('md')]: {
+      fontFamily: "Colby Narrow",
+      [defaultTheme.breakpoints.up("md")]: {
         fontSize: clientSpacing[12],
       },
     },
     h3: {
       fontSize: clientSpacing[10],
-      fontFamily: 'Colby Narrow',
+      fontFamily: "Colby Narrow",
       lineHeight: 1.35,
-      [defaultTheme.breakpoints.down('sm')]: {
+      [defaultTheme.breakpoints.down("sm")]: {
         fontSize: clientSpacing[8],
       },
     },
     h4: {
       fontSize: clientSpacing[7],
-      fontFamily: 'Colby Narrow',
-      letterSpacing: '0em',
+      fontFamily: "Colby Narrow",
+      letterSpacing: "0em",
     },
     h5: {
       fontSize: clientSpacing[6],
-      fontFamily: 'Colby Narrow',
+      fontFamily: "Colby Narrow",
     },
     h6: {
       fontSize: clientSpacing[6],
       lineHeight: 1,
-      fontFamily: 'Colby Narrow',
+      fontFamily: "Colby Narrow",
     },
   },
   palette: defaultTheme.palette,
@@ -258,7 +257,7 @@ let clientTheme = createTheme({
           column-gap: ${defaultTheme.spacing(6)};
           row-gap: ${defaultTheme.spacing(6)};
         }
-        ${[defaultTheme.breakpoints.down('md')]}{
+        ${[defaultTheme.breakpoints.down("md")]}{
           .cookie-notice{
             flex-direction: column;
             align-items: flex-start;
@@ -269,7 +268,7 @@ let clientTheme = createTheme({
           display: flex;
           column-gap: ${defaultTheme.spacing(12)};
         }
-        ${[defaultTheme.breakpoints.down('sm')]}{
+        ${[defaultTheme.breakpoints.down("sm")]}{
           .backgroundClasses{
             flex-direction: column;
           }
@@ -339,33 +338,31 @@ let clientTheme = createTheme({
             column-gap: 6;
           }
         }
-      `
+      `,
     },
     MuiContainer: {
       styleOverrides: {
-        root: {
-
-        },
+        root: {},
         maxWidthXl: {
-            paddingLeft: `${defaultTheme.spacing(11)} !important`,
-            paddingRight: `${defaultTheme.spacing(11)} !important`,
-          [defaultTheme.breakpoints.down('lg')]: {
+          paddingLeft: `${defaultTheme.spacing(11)} !important`,
+          paddingRight: `${defaultTheme.spacing(11)} !important`,
+          [defaultTheme.breakpoints.down("lg")]: {
             paddingLeft: `${defaultTheme.spacing(11)} !important`,
             paddingRight: `${defaultTheme.spacing(11)} !important`,
           },
-          [defaultTheme.breakpoints.down('md')]: {
+          [defaultTheme.breakpoints.down("md")]: {
             paddingLeft: `${defaultTheme.spacing(8)} !important`,
             paddingRight: `${defaultTheme.spacing(8)} !important`,
           },
-          [defaultTheme.breakpoints.down('sm')]: {
+          [defaultTheme.breakpoints.down("sm")]: {
             paddingLeft: `${defaultTheme.spacing(6)} !important`,
             paddingRight: `${defaultTheme.spacing(6)} !important`,
           },
         },
         maxWidthMd: {
-          [defaultTheme.breakpoints.down('xl')]: {
+          [defaultTheme.breakpoints.down("xl")]: {
             maxWidth: 864,
-          }
+          },
         },
       },
     },
@@ -375,9 +372,8 @@ let clientTheme = createTheme({
           paddingBottom: 4,
           "&:before": {
             backgroundColor: defaultTheme.palette.background.default,
-            opacity: '1 !important',
+            opacity: "1 !important",
           },
-
         },
       },
     },
@@ -389,29 +385,28 @@ let clientTheme = createTheme({
           paddingRight: defaultTheme.spacing(13),
           paddingTop: defaultTheme.spacing(6),
           paddingBottom: defaultTheme.spacing(6),
-          [defaultTheme.breakpoints.down('sm')]: {
+          [defaultTheme.breakpoints.down("sm")]: {
             paddingLeft: defaultTheme.spacing(10),
             paddingRight: defaultTheme.spacing(10),
-          }
+          },
         },
       },
     },
     MuiAccordionDetails: {
       styleOverrides: {
         root: {
-
           paddingLeft: defaultTheme.spacing(13),
           paddingRight: defaultTheme.spacing(13),
           paddingTop: defaultTheme.spacing(11),
           paddingBottom: defaultTheme.spacing(11),
-          [defaultTheme.breakpoints.down('sm')]: {
+          [defaultTheme.breakpoints.down("sm")]: {
             paddingLeft: defaultTheme.spacing(10),
             paddingRight: defaultTheme.spacing(10),
             paddingTop: defaultTheme.spacing(10),
             paddingBottom: defaultTheme.spacing(10),
-          }
-        }
-      }
+          },
+        },
+      },
     },
     MuiDivider: {
       styleOverrides: {
@@ -423,7 +418,7 @@ let clientTheme = createTheme({
         },
         accent: {
           borderColor: defaultTheme.palette.primary.main,
-        }
+        },
       },
     },
     MuiFilledInput: {
@@ -445,12 +440,12 @@ let clientTheme = createTheme({
     MuiTextFeild: {
       styleOverrides: {
         root: {
-          '& fieldset': {
+          "& fieldset": {
             borderRadius: 0,
           },
-          borderRadius: 0
-        }
-      }
+          borderRadius: 0,
+        },
+      },
     },
     MuiFormControl: {
       styleOverrides: {
@@ -462,25 +457,23 @@ let clientTheme = createTheme({
     MuiFormLabel: {
       styleOverrides: {
         root: {
-          fontFamily: 'Open Sans',
+          fontFamily: "Open Sans",
           fontSize: `${defaultTheme.spacing(2)} !important`,
           lineHeight: 1.5,
-          letterSpacing: '0em',
+          letterSpacing: "0em",
         },
       },
     },
 
     MuiIconButton: {
       styleOverrides: {
-        root: {
-
-        },
+        root: {},
         colorPrimary: {
           backgroundColor: defaultTheme.palette.background.default,
-          '&:disabled': {
+          "&:disabled": {
             opacity: 0.3,
             backgroundColor: defaultTheme.palette.background.default,
-          }
+          },
         },
       },
     },
@@ -490,14 +483,14 @@ let clientTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          fontFamily: 'Roboto Condensed',
+          fontFamily: "Roboto Condensed",
           borderRadius: 100,
-          textTransform: 'uppercase',
-          letterspacing: '2%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: 'max-content',
+          textTransform: "uppercase",
+          letterspacing: "2%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "max-content",
           fontWeight: 400,
           padding: `${defaultTheme.spacing(5)} ${defaultTheme.spacing(5)}`,
           fontSize: `${defaultTheme.spacing(5)} !important`,
@@ -508,7 +501,7 @@ let clientTheme = createTheme({
           padding: `${defaultTheme.spacing(5)} ${defaultTheme.spacing(5)}`,
           justifyContent: "center",
           alignItems: "center",
-          fontSize: defaultTheme.spacing(5)
+          fontSize: defaultTheme.spacing(5),
         },
         sizeSmall: {
           display: "flex",
@@ -517,51 +510,51 @@ let clientTheme = createTheme({
           alignItems: "center",
         },
         containedPrimary: {
-          color: 'white',
+          color: "white",
           //backgroundColor: defaultTheme.palette.primary.main,
-          '&:hover': {
-            cursor: 'pointer',
+          "&:hover": {
+            cursor: "pointer",
           },
         },
         containedSecondary: {
-          backgroundColor: 'white',
+          backgroundColor: "white",
           color: defaultTheme.palette.primary.main,
-          '&:hover': {
-            cursor: 'pointer',
+          "&:hover": {
+            cursor: "pointer",
           },
         },
         outlinePrimary: {
-          color: defaultTheme.palette.primary.main,
-          backgroundColor: 'transparent',
-          border: `1px solid ${defaultTheme.palette.primary.main}`,
-          '&:hover': {
-            cursor: 'pointer'
+          color: "var(--rich-yolk-primary)",
+          backgroundColor: "transparent",
+          border: `1px solid var(--rich-yolk-primary)`,
+          "&:hover": {
+            cursor: "pointer",
           },
         },
         outlineSecondary: {
-          color: 'white',
-          backgroundColor: 'transparent',
-          border: `1px solid white`,
-          '&:hover': {
-            cursor: 'pointer'
+          color: "var(--white)",
+          backgroundColor: "transparent",
+          border: `1px solid var(--white)`,
+          "&:hover": {
+            cursor: "pointer",
           },
         },
         outlineTertiary: {
           //color: defaultTheme.palette.text.primary,
-           backgroundColor: defaultTheme.palette.background.default,
-           border: `1px solid ${defaultTheme.palette.text.primary}`,
-           '&:hover': {
-             cursor: 'pointer'
-           },
-         },
+          backgroundColor: "var(--original-large)",
+          border: `1px solid var(--original-large)`,
+          "&:hover": {
+            cursor: "pointer",
+          },
+        },
         textPrimary: {
           color: defaultTheme.palette.primary.main,
           borderRadius: 0,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(1)}`,
-          '&:hover': {
+          "&:hover": {
             color: defaultTheme.palette.tertiary.main,
-            backgroundColor: 'transparent',
-            '& .MuiSvgIcon-root': {
+            backgroundColor: "transparent",
+            "& .MuiSvgIcon-root": {
               color: defaultTheme.palette.tertiary.main,
               // animation: 'arrowAnimation 2s ease 0s infinite normal forwards',
               // transition: 'all 0.2s ease-in-out 0s',
@@ -572,18 +565,17 @@ let clientTheme = createTheme({
           color: defaultTheme.palette.tertiary.main,
           borderRadius: 0,
           padding: `${defaultTheme.spacing(1)} ${defaultTheme.spacing(1)}`,
-          '&:hover': {
+          "&:hover": {
             color: defaultTheme.palette.primary.main,
-            backgroundColor: 'transparent'
+            backgroundColor: "transparent",
           },
         },
-        
       },
     },
     MuiTabs: {
       indicator: {
         //backgroundColor: orange[700]
-      }
+      },
     },
     // MuiTab: {
     //   styleOverrides: {
@@ -601,13 +593,13 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {},
         h2: {
-          [defaultTheme.breakpoints.up('xs')]: {
+          [defaultTheme.breakpoints.up("xs")]: {
             paddingTop: `${defaultTheme.spacing(6)} !important`,
             paddingBottom: `${defaultTheme.spacing(6)} !important`,
             marginTop: 0,
             marginBottom: 0,
           },
-          [defaultTheme.breakpoints.up('md')]: {
+          [defaultTheme.breakpoints.up("md")]: {
             paddingTop: `${defaultTheme.spacing(6)} !important`,
             paddingBottom: `${defaultTheme.spacing(6)} !important`,
             marginTop: 0,
@@ -652,16 +644,16 @@ let clientTheme = createTheme({
         },
       },
     },
-    MuiListItemIcon:{
-      styleOverrides:{
+    MuiListItemIcon: {
+      styleOverrides: {
         root: {
-          color: 'inherit',
+          color: "inherit",
         },
       },
     },
   },
-});
+})
 
-clientTheme = responsiveFontSizes(clientTheme);
+clientTheme = responsiveFontSizes(clientTheme)
 
 export default clientTheme
