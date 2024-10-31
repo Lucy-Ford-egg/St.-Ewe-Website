@@ -21,6 +21,9 @@ const Wrapper = styled("div")(
     gridTemplateRows: "400px 1fr",
     position: "relative",
     maskImage: "unset",
+    [theme.breakpoints.up("sm")]: {
+      gridTemplateRows: "700px 1fr",
+    },
     [theme.breakpoints.up("lg")]: {
       height: "100%",
       gridTemplateRows: "1fr",
@@ -142,7 +145,7 @@ export const HeaderSection = props => {
               hotspot={image?.hotspot}
               asset={(image?._ref && urlFor(image).url()) || image?.asset}
               width={mobile ? 400 : tablet ? 768 : 1440}
-              height={mobile ? 400 : tablet ? 600 : 700}
+              height={mobile ? 400 : tablet ? 700 : 700}
               style={{
                 objectFit: "cover",
                 width: "100%",

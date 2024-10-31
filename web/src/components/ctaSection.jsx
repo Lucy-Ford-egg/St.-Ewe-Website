@@ -96,7 +96,6 @@ const ImageAsset = styled("div")(({ alignment, theme }) => ({
 const ShowForm = styled("div")(({ alignment, theme }) => ({
   backgroundColor: "var(--original-large)",
   padding: "var(--ms2) var(--ms4)",
-
   width: "100%",
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {
@@ -115,7 +114,6 @@ const ShowTexture = styled("div")(({ alignment, theme }) => ({
   opacity: 0.2,
   [theme.breakpoints.up("sm")]: {
     gridRowGap: "var(--ms4)",
-    height: "unset",
   },
   [theme.breakpoints.up("lg")]: {
     gridRowGap: "unset",

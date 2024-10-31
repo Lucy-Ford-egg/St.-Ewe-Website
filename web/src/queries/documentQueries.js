@@ -22,10 +22,17 @@ _key,
 text
 `
 
+const ACCORDION = `
+  accordion[]->{
+    ...,
+  }
+`
+
 export const PAGE_BUILDER = `
 pageBuilder[] {
   ...,
   'rawTitle': title,
+  ${ACCORDION},
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {

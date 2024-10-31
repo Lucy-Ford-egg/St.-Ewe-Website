@@ -49,6 +49,9 @@ const GridContainer = styled("div")(({ theme }) => ({
         height: "100%",
       },
     },
+    [theme.breakpoints.up("sm")]: {
+      gridColumn: "span 10",
+    },
     [theme.breakpoints.up("lg")]: {
       gridColumn: "span 5",
     },

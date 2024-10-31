@@ -16,7 +16,7 @@ const Wrapper = styled("div")(
     gridColumn: "1/25",
     display: "grid",
     gridTemplateColumns: "subgrid",
-    //overflowX: 'hidden',
+    overflowX: "hidden",
     gridRowGap: "var(--ms4)",
     [theme.breakpoints.up("sm")]: {},
     [theme.breakpoints.up("lg")]: {

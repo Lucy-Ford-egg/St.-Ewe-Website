@@ -60,6 +60,7 @@ export const Filter = ({ pageContext, backgroundColour }) => {
           to={`/news`}
           sx={{
             flex: "0 0 auto",
+            minWidth: "fit-content",
             color:
               pageContext?.slug === "news"
                 ? "primary.main"

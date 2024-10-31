@@ -13,7 +13,7 @@ const Wrapper = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
   display: "grid",
   gridTemplateColumns: "subgrid",
-  [theme.breakpoints.up("lg")]: {
+  [theme.breakpoints.up("sm")]: {
     gridColumn: "2/24",
   },
 }))
@@ -31,6 +31,9 @@ const Content = styled("div")(({ theme, alignment, backgroundColour }) => ({
   justifyContent: "center",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up("sm")]: {
+    gridColumn: "1/25",
+  },
+  [theme.breakpoints.up("lg")]: {
     gridColumn: "5/19",
     color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   },
@@ -42,10 +45,13 @@ const RightAsset = styled("div")(({ theme }) => ({
   gridRow: "2/2",
   justifyContent: "start",
   [theme.breakpoints.up("sm")]: {
+    gridRow: "1/1",
+    gridColumn: "19/24",
+  },
+  [theme.breakpoints.up("lg")]: {
     alignItems: "center",
     justifyContent: "end",
     height: "100%",
-
     gridColumn: "19/24",
   },
 }))
