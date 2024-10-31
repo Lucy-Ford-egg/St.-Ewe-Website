@@ -1,23 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { ModuleContainer } from "./moduleContainer"
-import { useMediaQuery } from "@mui/material"
+import { useMediaQuery, useTheme } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { styled } from "@mui/material/styles"
 import { ButtonFormat } from "./buttonFormat"
+import { contrastBrandPalette } from "../utils/colours"
 
-const Wrapper = styled("div")(
-  ({ borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const Wrapper = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "subgrid",
+  [theme.breakpoints.up("lg")]: {
     gridColumn: "2/24",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    "@media only screen and (max-width: 600px)": {
-      gridColumn: "1/25",
-    },
-  }),
-)
+  },
+}))
 
 const LeftAsset = styled("div")(({ alignment }) => ({
   display: "grid",
@@ -26,41 +25,44 @@ const LeftAsset = styled("div")(({ alignment }) => ({
   justifyContent: "start",
 }))
 
-const Content = styled("div")(({ alignment }) => ({
-  gridColumn: "5/19",
+const Content = styled("div")(({ theme, alignment, backgroundColour }) => ({
+  gridColumn: "2/24",
   display: "flex",
   justifyContent: "center",
-  "@media only screen and (max-width: 600px)": {
-    gridColumn: "2/24",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "5/19",
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   },
 }))
 
 const RightAsset = styled("div")(({ theme }) => ({
   display: "grid",
-  gridColumn: "19/24",
-  alignItems: "center",
-  justifyContent: "end",
-  height: "100%",
-  [theme.breakpoints.up("lg")]: {
-    gridRow: "2/2",
-    justifyContent: "start",
-    gridColumn: "5/19",
+  gridColumn: "5/19",
+  gridRow: "2/2",
+  justifyContent: "start",
+  [theme.breakpoints.up("sm")]: {
+    alignItems: "center",
+    justifyContent: "end",
+    height: "100%",
+
+    gridColumn: "19/24",
   },
 }))
 
 const Actions = styled("div")(({ theme, alignment }) => ({
-  display: "flex",
-  alignItems: "start",
   justifyContent: "start",
-  width: "100%",
-  gridColumn: "2/24",
-  paddingTop: "var(--ms0)",
-  [theme.breakpoints.up("lg")]: {
+  gridColumn: "21/24",
+  alignItems: "center",
+  gridRow: "1/2",
+  paddingTop: "unset",
+  [theme.breakpoints.up("sm")]: {
+    display: "flex",
+    alignItems: "start",
     justifyContent: "start",
-    gridColumn: "21/24",
-    alignItems: "center",
-    gridRow: "1/2",
-    paddingTop: "unset",
+    width: "100%",
+    gridColumn: "2/24",
+    paddingTop: "var(--ms0)",
   },
 }))
 
@@ -69,41 +71,26 @@ const Asset = styled("div")(({}) => ({
 }))
 
 export const TextSection = props => {
-  const sm = useMediaQuery("(min-width:600px)")
+  const theme = useTheme()
+  const sm = useMediaQuery(theme.breakpoints.up("sm"))
 
-  const { _rawText, _type, previewData, sideAssets, link } = props
-
-  const definedText =
-    (previewData && _type === previewData?._type && previewData?.text) ||
-    _rawText
-  const definedLeftImage =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.sideAssets?.leftAsset) ||
-    sideAssets?.leftAsset
-  const definedRightImage =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.sideAssets?.rightAsset) ||
-    sideAssets?.rightAsset
-  const definedLink =
-    (_type === previewData?._type && previewData && previewData?.link) || link
+  const { text, sideAssets, link, backgroundColour } = props
 
   return (
     <ModuleContainer {...props}>
       <Wrapper>
         {sm && (
           <LeftAsset>
-            {definedLeftImage && (
+            {sideAssets?.leftAsset && (
               <Asset>
                 <Image
                   // pass asset, hotspot, and crop fields
-                  crop={definedLeftImage.crop}
-                  hotspot={definedLeftImage?.hotspot}
+                  crop={sideAssets?.leftAsset.crop}
+                  hotspot={sideAssets?.leftAsset?.hotspot}
                   asset={
-                    (definedLeftImage?._ref &&
-                      urlFor(definedLeftImage).width(206).url()) ||
-                    definedLeftImage.asset
+                    (sideAssets?.leftAsset?._ref &&
+                      urlFor(sideAssets?.leftAsset).width(206).url()) ||
+                    sideAssets?.leftAsset.asset
                   }
                   width={206}
                   height={206}
@@ -119,40 +106,40 @@ export const TextSection = props => {
             )}
           </LeftAsset>
         )}
-        <Content>
-          {definedText && (
+        <Content backgroundColour={backgroundColour}>
+          {text && (
             <RenderPortableText
-              previewData={definedText}
+              previewData={text}
               //   sanityConfig={sanityConfig}
               setAsHeading={false}
-              value={definedText}
+              value={text}
             />
           )}
         </Content>
 
-        {definedLink && (
+        {link && (
           <Actions>
             <ButtonFormat
-              key={definedLink._key}
+              key={link._key}
               variant="outlined"
               color="primary"
-              node={definedLink}
+              node={link}
               size="large"
             />
           </Actions>
         )}
 
         <RightAsset>
-          {definedRightImage && !definedLink && sm && (
+          {sideAssets?.rightAsset && !link && sm && (
             <Asset>
               <Image
                 // pass asset, hotspot, and crop fields
-                crop={definedRightImage.crop}
-                hotspot={definedRightImage?.hotspot}
+                crop={sideAssets?.rightAsset.crop}
+                hotspot={sideAssets?.rightAsset?.hotspot}
                 asset={
-                  (definedRightImage?._ref &&
-                    urlFor(definedRightImage).width(206).url()) ||
-                  definedRightImage.asset
+                  (sideAssets?.rightAsset?._ref &&
+                    urlFor(sideAssets?.rightAsset).width(206).url()) ||
+                  sideAssets?.rightAsset.asset
                 }
                 width={206}
                 height={206}
@@ -176,7 +163,7 @@ export const query = graphql`
   fragment TextSectionFragment on SanityTextSection {
     _key
     _type
-    _rawText(resolveReferences: { maxDepth: 10 })
+    text: _rawText(resolveReferences: { maxDepth: 10 })
     link {
       ...LinkFragment
     }
