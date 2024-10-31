@@ -66,9 +66,9 @@ const Actions = styled("div")(({ theme, alignment }) => ({
   },
 }))
 
-const Asset = styled("div")(({}) => ({
+const Asset = styled("div")({
   maxWidth: 200,
-}))
+})
 
 export const TextSection = props => {
   const theme = useTheme()

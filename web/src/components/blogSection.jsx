@@ -1,17 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { graphql } from "gatsby"
 import { BlogTile } from "./blogTile"
-import { useTheme, Box, Typography } from "@mui/material"
+import { useTheme } from "@mui/material"
 import { Button, GatsbyLink } from "gatsby-theme-material-ui"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import { Filter } from "./filter"
 import { ModuleContainer } from "./moduleContainer"
 import { contrastBrandPalette } from "../utils/colours"
-//Preview
-import { useQuery } from "../../sanity/store"
-import { POSTS_BY_ID } from "../queries/documentQueries"
-
 import { styled } from "@mui/material/styles"
 
 const Wrapper = styled("div")(({ props, theme }) => ({
@@ -30,6 +26,8 @@ const BlogFilter = styled("div")(({ props }) => ({
 const BlogAllPostLink = styled("div")(({ props }) => ({
   display: "grid",
   gridColumn: "2/24",
+  justifyContent: "center",
+  paddingTop: "var(--ms6)",
 }))
 
 const BlogGrid = styled("div")(({ theme }) => ({
@@ -87,14 +85,7 @@ const Number = styled("div")(({ theme, backgroundColour }) => ({
 }))
 
 export const BlogSection = props => {
-  const {
-    allSanityPost,
-    previewData,
-    backgroundColour,
-    pageContext,
-    initial,
-    _type,
-  } = props
+  const { allSanityPost, previewData, backgroundColour, pageContext } = props
 
   const theme = useTheme()
 
@@ -152,44 +143,28 @@ export const BlogSection = props => {
     }
   }, [pagination, humanPageNumber])
 
-  const { data: postData } = useQuery(
-    POSTS_BY_ID,
-    {
-      categoryId:
-        (previewData &&
-          previewData?.showArchive?.archive &&
-          previewData?.showArchive?.archive.map(node => node?._id)) ||
-        [],
-    },
-    { initial },
-  )
-
-  const definedBackgroundColour =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.backgroundColour) ||
-    backgroundColour
-
-  // const definedAllSanityPost =
-  //   (postData && postData?.length > 0 && postData) ||
-  //   (previewData?.showArchive?.setArchive === true &&
-  //     getAllPosts?.nodes
-  //   ) || allSanityPost?.nodes
-
-  const definedAllSanityPost =
-    //(postData && postData?.length > 0 && postData) ||
-    allSanityPost?.nodes
+  // const { data: postData } = useQuery(
+  //   POSTS_BY_ID,
+  //   {
+  //     categoryId:
+  //       (previewData &&
+  //         previewData?.showArchive?.archive &&
+  //         previewData?.showArchive?.archive.map(node => node?._id)) ||
+  //       [],
+  //   },
+  //   { initial },
+  // )
 
   useEffect(() => {
-    setFilterData(definedAllSanityPost)
-  }, [definedAllSanityPost, setFilterData])
+    setFilterData(allSanityPost?.nodes)
+  }, [allSanityPost?.nodes, setFilterData])
 
   return (
     <ModuleContainer {...props}>
-      <Wrapper theme={theme} backgroundColour={definedBackgroundColour}>
+      <Wrapper theme={theme} backgroundColour={backgroundColour}>
         <BlogFilter>
           <Filter
-            backgroundColour={definedBackgroundColour}
+            backgroundColour={backgroundColour}
             className="component-filter"
             type="posts"
             // allData={getAllPosts.nodes}

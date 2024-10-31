@@ -1,17 +1,35 @@
 import React from "react"
-import Box from "@mui/material/Box"
 import { Button } from "gatsby-theme-material-ui"
 import Typography from "@mui/material/Typography"
 import { graphql, useStaticQuery } from "gatsby"
 import { contrastBrandPalette } from "../utils/colours"
+import { styled } from "@mui/material/styles"
 
-export const Filter = ({
-  type,
-  allData,
-  setFilterData,
-  pageContext,
-  backgroundColour,
-}) => {
+const Wrapper = styled("div")(({ props, theme }) => ({
+  paddingBottom: "var(--ms4)",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  overflowX: "hidden",
+  [theme.breakpoints.up("lg")]: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+}))
+
+const ScrollFilter = styled("div")(({ props, theme }) => ({
+  overflowScrolling: "touch",
+  display: "flex",
+  flexWrap: "nowrap",
+  overflowX: "auto",
+  width: "100%",
+  "&::-webkit-scrollbar": {
+    width: "var(--ms-4)",
+  },
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+export const Filter = ({ pageContext, backgroundColour }) => {
   const data = useStaticQuery(graphql`
     query CategoriesQuery {
       allSanityCategories {
@@ -26,27 +44,16 @@ export const Filter = ({
   `)
 
   return (
-    <Box
-      sx={{
-        py: 8,
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        alignItems: { xs: "flex-start", md: "center" },
-        overflowX: "hidden",
-      }}
-    >
-      <Typography variant="h4" component="h6" sx={{ mr: 4 }}>
+    <Wrapper>
+      <Typography
+        variant="h4"
+        component="h6"
+        color={contrastBrandPalette[backgroundColour?.label]?.contrastText}
+        sx={{ mr: 4 }}
+      >
         Filter Posts:
       </Typography>
-      <Box
-        sx={{
-          overflowScrolling: "touch",
-          display: "flex",
-          flexWrap: "nowrap",
-          overflowX: "auto",
-          width: "100%",
-        }}
-      >
+      <ScrollFilter>
         <Button
           variant="text"
           key="all"
@@ -85,7 +92,7 @@ export const Filter = ({
               </Button>
             )
           })}
-      </Box>
-    </Box>
+      </ScrollFilter>
+    </Wrapper>
   )
 }
