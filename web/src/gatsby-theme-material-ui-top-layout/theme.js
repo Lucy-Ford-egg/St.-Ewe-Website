@@ -389,14 +389,8 @@ let clientTheme = createTheme({
     MuiAccordionDetails: {
       styleOverrides: {
         root: {
-          // paddingLeft: defaultTheme.spacing(13),
-          // paddingRight: defaultTheme.spacing(13),
-          // paddingTop: defaultTheme.spacing(11),
           paddingBottom: defaultTheme.spacing(11),
           [defaultTheme.breakpoints.down("sm")]: {
-            // paddingLeft: defaultTheme.spacing(10),
-            // paddingRight: defaultTheme.spacing(10),
-            // paddingTop: defaultTheme.spacing(10),
             paddingBottom: defaultTheme.spacing(10),
           },
         },
