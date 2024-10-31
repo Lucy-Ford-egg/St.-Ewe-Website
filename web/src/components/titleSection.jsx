@@ -44,6 +44,7 @@ const Content = styled("div")(({ alignment, theme, backgroundColour }) => ({
   flexDirection: "column",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up("lg")]: {
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
     gridColumn: alignment === "left" ? "2/17" : "7/17",
     textAlign: alignment === "left" ? "left" : "center",
     justifyContent: alignment === "left" ? "start" : "center",
@@ -74,10 +75,8 @@ export const TitleSection = props => {
   const theme = useTheme()
 
   const {
-    _rawTitle,
-    _type,
+    rawTitle,
     alignment,
-    previewData,
     sideAssets,
     link,
     isPost,
@@ -86,38 +85,21 @@ export const TitleSection = props => {
     backgroundColour,
   } = props
 
-  const definedText =
-    (previewData && _type === previewData?._type && previewData?.title) ||
-    _rawTitle
-  const definedLeftImage =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.sideAssets?.leftAsset) ||
-    sideAssets?.leftAsset
-  const definedRightImage =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.sideAssets?.rightAsset) ||
-    sideAssets?.rightAsset
-  const definedLink =
-    (_type === previewData?._type && previewData && previewData?.link) || link
-  const definedIsPost = isPost
-
   return (
     <ModuleContainer {...props}>
       <Wrapper backgroundColour={backgroundColour}>
         <Container>
           <LeftAsset alignment={alignment} theme={theme}>
-            {definedLeftImage && (
+            {sideAssets?.leftAsset && (
               <Asset>
                 <Image
                   // pass asset, hotspot, and crop fields
-                  crop={definedLeftImage.crop}
-                  hotspot={definedLeftImage?.hotspot}
+                  crop={sideAssets?.leftAsset.crop}
+                  hotspot={sideAssets?.leftAsset?.hotspot}
                   asset={
-                    (definedLeftImage?._ref &&
-                      urlFor(definedLeftImage).width(206).url()) ||
-                    definedLeftImage.asset
+                    (sideAssets?.leftAsset?._ref &&
+                      urlFor(sideAssets?.leftAsset).width(206).url()) ||
+                    sideAssets?.leftAsset.asset
                   }
                   width={206}
                   height={206}
@@ -134,12 +116,12 @@ export const TitleSection = props => {
           </LeftAsset>
 
           <Content alignment={alignment} backgroundColour={backgroundColour}>
-            {definedText && (
+            {rawTitle && (
               <RenderPortableText
-                previewData={definedText}
+                previewData={rawTitle}
                 //   sanityConfig={sanityConfig}
                 setAsHeading={false}
-                value={definedText}
+                value={rawTitle}
               />
             )}
             {isRecipe && (
@@ -153,7 +135,7 @@ export const TitleSection = props => {
                 {pageData?.sanityRecipes?.title}
               </Typography>
             )}
-            {definedIsPost && (
+            {isPost && (
               <Typography
                 variant="body"
                 sx={{
@@ -177,26 +159,26 @@ export const TitleSection = props => {
           </Content>
 
           <RightAsset alignment={alignment} theme={theme}>
-            {definedLink && (
+            {link && (
               <ButtonFormat
-                key={definedLink._key}
+                key={link._key}
                 variant="outlined"
                 color="primary"
-                node={definedLink}
+                node={link}
                 size="large"
               />
             )}
 
-            {definedRightImage && !definedLink && (
+            {sideAssets?.rightAsset && !link && (
               <Asset>
                 <Image
                   // pass asset, hotspot, and crop fields
-                  crop={definedRightImage.crop}
-                  hotspot={definedRightImage?.hotspot}
+                  crop={sideAssets?.rightAsset.crop}
+                  hotspot={sideAssets?.rightAsset?.hotspot}
                   asset={
-                    (definedRightImage?._ref &&
-                      urlFor(definedRightImage).width(206).url()) ||
-                    definedRightImage.asset
+                    (sideAssets?.rightAsset?._ref &&
+                      urlFor(sideAssets?.rightAsset).width(206).url()) ||
+                    sideAssets?.rightAsset.asset
                   }
                   width={206}
                   height={206}
@@ -221,7 +203,7 @@ export const query = graphql`
   fragment TitleSectionFragment on SanityTitleSection {
     _key
     _type
-    _rawTitle(resolveReferences: { maxDepth: 10 })
+    rawTitle: _rawTitle(resolveReferences: { maxDepth: 10 })
     alignment
     isPost
     isRecipe
