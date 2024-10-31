@@ -392,9 +392,9 @@ export const RenderPortableText = props => {
   }
 
   return (
-    <Box className={``}>
+    <div>
       <PortableText value={value || []} components={standardPortableText} />
-    </Box>
+    </div>
   )
 }
 
