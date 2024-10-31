@@ -38,11 +38,11 @@ const Wrapper = styled("div")(
 
 const AccordionWrapper = styled(Accordion)(({ theme, backgroundColour }) => ({
   padding: "0 !important",
-  gridColumn: "1/25",
+  gridColumn: "2/24",
   backgroundColor: "unset",
   py: "var(--ms0)",
   [theme.breakpoints.up("sm")]: {
-    gridColumn: "1/25",
+    gridColumn: "2/24",
   },
   [theme.breakpoints.up("lg")]: {
     gridColumn: "2/24",
@@ -88,7 +88,10 @@ const Details = styled(AccordionDetails)(
       textDecorationColor: "var(--rich-yolk-primary)",
     },
     "&>div": {
-      gridColumn: "2/24",
+      gridColumn: "1/25",
+      [theme.breakpoints.up("lg")]: {
+        gridColumn: "2/24",
+      },
     },
 
     [theme.breakpoints.up("sm")]: {},
