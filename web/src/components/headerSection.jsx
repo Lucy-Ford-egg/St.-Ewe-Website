@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react"
 import { graphql } from "gatsby"
-import { useTheme, useMediaQuery, Typography } from "@mui/material"
+import { useTheme, useMediaQuery } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -102,39 +102,14 @@ export const HeaderSection = props => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
   const {
-    title,
-    _rawText,
-    textAlign,
+    text,
     image,
     previewData,
     sanityConfig,
     links,
     alignment,
     backgroundColour,
-    pageContext,
-    _type,
   } = props
-
-  const definedText =
-    (previewData && _type === previewData?._type && previewData?.text) ||
-    _rawText
-  const definedLinks =
-    (previewData && _type === previewData?._type && previewData?.links) || links
-
-  // const definedImage =
-  //   (previewData && _type === previewData?._type && previewData?.image) || image
-
-  const definedImage =
-    (image?.asset && image) || pageContext?.node?.featuredMedia
-
-  const definedBackgroundColour =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.backgroundColour) ||
-    backgroundColour
-  const definedTextAlign =
-    (previewData && _type === previewData?._type && previewData?.alignment) ||
-    alignment
 
   // Motion
 
@@ -155,20 +130,17 @@ export const HeaderSection = props => {
       <Wrapper
         className="maskLayer"
         theme={theme}
-        backgroundColour={definedBackgroundColour}
-        image={definedImage}
+        backgroundColour={backgroundColour}
+        image={image}
         mask={mask}
         ref={ref}
       >
-        {definedImage && (
+        {image && (
           <BackgroundImage theme={theme}>
             <Image
-              crop={definedImage?.crop}
-              hotspot={definedImage?.hotspot}
-              asset={
-                (definedImage?._ref && urlFor(definedImage).url()) ||
-                definedImage?.asset
-              }
+              crop={image?.crop}
+              hotspot={image?.hotspot}
+              asset={(image?._ref && urlFor(image).url()) || image?.asset}
               width={mobile ? 400 : tablet ? 768 : 1440}
               height={mobile ? 400 : tablet ? 600 : 700}
               style={{
@@ -182,7 +154,7 @@ export const HeaderSection = props => {
           </BackgroundImage>
         )}
 
-        {imageLoaded && definedText && (
+        {imageLoaded && text && (
           <Content alignment={alignment} theme={theme}>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -198,26 +170,25 @@ export const HeaderSection = props => {
                   rowGap: `${brandSpacing["MS1"]?.value}px`,
                 }}
               >
-                {/* <Typography className="header-title" variant="h1" textAlign={definedTextAlign}>{definedTitle}</Typography> */}
-                {definedText && (
+                {text && (
                   <Title backgroundColour={backgroundColour}>
                     <RenderPortableText
                       previewData={previewData}
                       sanityConfig={sanityConfig}
                       variant={false}
-                      textAlign={definedTextAlign}
-                      value={definedText}
+                      textAlign={alignment}
+                      value={text}
                     />
                   </Title>
                 )}
 
-                {definedLinks && definedLinks.length > 0 && (
+                {links && links.length > 0 && (
                   <Actions alignment={alignment}>
                     <Links
                       alignment={alignment === "left" ? "start" : false}
                       className="links"
                       linkOne="primary"
-                      links={definedLinks}
+                      links={links}
                       previewData={previewData}
                       highlighted
                     />
@@ -236,7 +207,7 @@ export const query = graphql`
   fragment HeaderSectionFragment on SanityHeaderSection {
     _key
     _type
-    _rawText(resolveReferences: { maxDepth: 10 })
+    text: _rawText(resolveReferences: { maxDepth: 10 })
     alignment
     backgroundColour {
       value
