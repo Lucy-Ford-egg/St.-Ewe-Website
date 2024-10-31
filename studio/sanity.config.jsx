@@ -14,32 +14,24 @@ import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
 import {theme} from './structure/theme'
 
 import {simplerColorInput} from 'sanity-plugin-simpler-color-input'
-import { imageHotspotArrayPlugin } from "sanity-plugin-hotspot-array";
-
+import {imageHotspotArrayPlugin} from 'sanity-plugin-hotspot-array'
 
 import {presentationTool} from 'sanity/presentation'
-import {locate} from './locate'
+// import {locate} from './locate'
 
-
-export default defineConfig([{
-  name: 'default',
-  title: 'St Ewe Eggs',
+// Config shared between datasets
+const sharedConfig = {
   projectId: 'vmhe5utz',
-  dataset: 'production',
-  basePath: '/production',
+  schema: schema,
+  scheduledPublishing: {
+    enabled: false,
+  },
   apiVersion: '2023-08-01',
   theme,
   plugins: [
     structureTool({
       structure: deskStructure,
     }),
-    // presentationTool({
-    //   previewUrl: async () => {
-    //     const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
-    //     return url
-    //   },
-    //   locate: locate,
-    // }),
     visionTool(),
     media(),
     unsplashImageAsset(),
@@ -48,44 +40,31 @@ export default defineConfig([{
     googleMapsInput(googleMaps),
     simplerColorInput(brandColors),
     imageHotspotArrayPlugin(),
-  ],
-  schema: schema,
-  icon: Logo("production"),
-  scheduledPublishing: {
-    enabled: false,
-  },
-}, 
-{
-  name: 'beta',
-  title: 'Beta St Ewe',
-  projectId: 'vmhe5utz',
-  dataset: 'beta',
-  basePath: '/beta',
-  apiVersion: '2023-08-01',
-  theme,
-  plugins: [
-    structureTool({
-      structure: deskStructure,
+    presentationTool({
+      previewUrl: async () => {
+        const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
+        return url
+      },
+      //locate: locate,
     }),
-    // presentationTool({
-    //   previewUrl: async () => {
-    //     const url = process.env.SANITY_STUDIO_PRODUCTION_PREVIEW_URL || 'http://localhost:8000'
-    //     return url
-    //   },
-    //   locate: locate,
-    // }),
-    visionTool(),
-    media(),
-    unsplashImageAsset(),
-    colorInput(),
-    codeInput(),
-    googleMapsInput(googleMaps),
-    simplerColorInput(brandColors),
   ],
-  schema: schema,
-  icon: Logo("beta"),
-  scheduledPublishing: {
-    enabled: false,
-  },
 }
+
+export default defineConfig([
+  {
+    name: 'default',
+    title: 'St Ewe Eggs',
+    dataset: 'production',
+    basePath: '/production',
+    ...sharedConfig,
+    icon: Logo('production'),
+  },
+  {
+    name: 'beta',
+    title: 'Beta St Ewe',
+    dataset: 'beta',
+    basePath: '/beta',
+    ...sharedConfig,
+    icon: Logo('beta'),
+  },
 ])
