@@ -38,7 +38,7 @@ const FeatureImage = styled(motion.div)(
     },
     [theme.breakpoints.up("lg")]: {
       gridRow: "1/1",
-      gridColumn: mirror ? "2/12" : "12/24",
+      gridColumn: mirror ? "2/12" : "14/24",
     },
     "& img": {
       borderRadius: "var(--ms4)",
@@ -51,8 +51,6 @@ const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
   display: "grid",
   gridRow: "1/2",
   gridTemplateRows: "subgrid",
-  // paddingTop: brandSpacing['MS6']?.value,
-  // paddingBottom: brandSpacing['MS6']?.value,
   alignItems: "center",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   "& .header-title": {
@@ -62,7 +60,7 @@ const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
     gridColumn: "2/24",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: mirror ? "14/24" : "3/10",
+    gridColumn: mirror ? "14/24" : "2/14",
   },
 }))
 
@@ -104,8 +102,7 @@ export const FeatureSection = props => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
   const {
-    title,
-    _rawText,
+    text,
     mirror,
     image,
     previewData,
@@ -113,33 +110,7 @@ export const FeatureSection = props => {
     links,
     backgroundColour,
     centerAsset,
-    _type,
   } = props
-
-  const definedTitle =
-    (previewData && _type === previewData?._type && previewData?.title) || title
-  const definedText =
-    (previewData && _type === previewData?._type && previewData?.text) ||
-    _rawText
-  const definedLinks =
-    (previewData && _type === previewData?._type && previewData?.links) || links
-
-  // const definedImage =
-  //   (previewData && _type === previewData?._type && previewData?.image) || image
-
-  const definedImage = image?.asset && image
-
-  const definedBackgroundColour =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.backgroundColour) ||
-    backgroundColour
-  const definedMirror =
-    (previewData && _type === previewData?._type && previewData?.mirror) ||
-    mirror
-  const definedAsset =
-    (previewData && _type === previewData?._type && previewData?.centerAsset) ||
-    centerAsset
 
   // Motion
 
@@ -160,26 +131,20 @@ export const FeatureSection = props => {
 
   return (
     <ModuleContainer {...props} ref={containerRef}>
-      <Wrapper
-        theme={theme}
-        backgroundColour={definedBackgroundColour}
-        image={definedImage}
-      >
-        {definedImage && (
+      <Wrapper theme={theme} backgroundColour={backgroundColour} image={image}>
+        {image && (
           <FeatureImage
             theme={theme}
-            mirror={definedMirror}
+            mirror={mirror}
             style={{
               x: !mobile && imageY,
             }}
           >
             <Image
-              crop={definedImage?.crop}
-              hotspot={definedImage?.hotspot}
+              crop={image?.crop}
+              hotspot={image?.hotspot}
               asset={
-                (definedImage?._ref &&
-                  urlFor(definedImage).width(1440).url()) ||
-                definedImage?.asset
+                (image?._ref && urlFor(image).width(1440).url()) || image?.asset
               }
               width={mobile ? 362 : tablet ? 732 : 732}
               height={mobile ? 241 : tablet ? 438 : 438}
@@ -187,16 +152,15 @@ export const FeatureSection = props => {
                 objectFit: "cover",
                 width: "100%",
                 height: "100%",
-                //transform: 'scale(1.2)',
               }}
               onLoad={() => setImageLoaded(true)}
             />
           </FeatureImage>
         )}
-        {definedAsset && (
+        {centerAsset && (
           <Asset
             theme={theme}
-            mirror={definedMirror}
+            mirror={mirror}
             style={{
               y: assetY,
             }}
@@ -204,12 +168,11 @@ export const FeatureSection = props => {
             <div ref={ref}>
               <Image
                 // pass asset, hotspot, and crop fields
-                crop={definedAsset?.crop}
-                hotspot={definedAsset?.hotspot}
+                crop={centerAsset?.crop}
+                hotspot={centerAsset?.hotspot}
                 asset={
-                  (definedAsset?._ref &&
-                    urlFor(definedAsset).width(440).url()) ||
-                  definedAsset?.asset
+                  (centerAsset?._ref && urlFor(centerAsset).width(440).url()) ||
+                  centerAsset?.asset
                 }
                 width={440}
                 height={440}
@@ -219,7 +182,7 @@ export const FeatureSection = props => {
         )}
         {imageLoaded && (
           <Content
-            mirror={definedMirror}
+            mirror={mirror}
             theme={theme}
             backgroundColour={backgroundColour}
           >
@@ -231,21 +194,21 @@ export const FeatureSection = props => {
                 rowGap: `${brandSpacing["MS1"]?.value}px`,
               }}
             >
-              {definedText && (
+              {text && (
                 <RenderPortableText
                   previewData={previewData}
                   sanityConfig={sanityConfig}
                   variant={false}
-                  textAlign={definedMirror}
-                  value={definedText}
+                  textAlign={mirror}
+                  value={text}
                 />
               )}
 
-              {definedLinks && definedLinks.length > 0 && (
+              {links && links.length > 0 && (
                 <Links
                   className="links"
                   linkOne="primary"
-                  links={definedLinks}
+                  links={links}
                   previewData={previewData}
                   highlighted
                   backgroundColour={backgroundColour}
@@ -308,7 +271,7 @@ export const query = graphql`
       }
     }
     mirror
-    _rawText(resolveReferences: { maxDepth: 10 })
+    text: _rawText(resolveReferences: { maxDepth: 10 })
     links {
       ...LinkFragment
     }
