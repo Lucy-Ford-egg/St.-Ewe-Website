@@ -14,27 +14,18 @@ import { ModuleContainer } from "./moduleContainer"
 import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
 
-const Wrapper = styled("div")(
-  ({
-    theme,
-    verticalSpace,
-    borderDirection,
-    backgroundColour,
-    joiningColour,
-    mirror,
-  }) => ({
-    // Base styles
-    backgroundColor: backgroundColour?.value,
-    //
-    gridColumn: "1/25",
-    display: "grid",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    overflow: "hidden",
-    color: "var(--primary-navy)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Wrapper = styled("div")(({ theme, backgroundColour }) => ({
+  // Base styles
+  backgroundColor: backgroundColour?.value,
+  //
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  overflow: "hidden",
+  color: "var(--primary-navy)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
 
 const AccordionWrapper = styled(Accordion)(({ theme, backgroundColour }) => ({
   padding: "0 !important",
@@ -52,52 +43,48 @@ const AccordionWrapper = styled(Accordion)(({ theme, backgroundColour }) => ({
   },
 }))
 
-const Summary = styled("div")(
-  ({
-    theme,
-    verticalSpace,
-    borderDirection,
-    backgroundColour,
-    joiningColour,
-    mirror,
-  }) => ({
-    display: "flex",
-    flexDirection: "column",
-    "& .title": {
-      marginBottom: 0,
+const AccordSummary = styled(AccordionSummary)(
+  ({ theme, backgroundColour }) => ({
+    flexDirection: "column-reverse",
+    alignItems: "start",
+    columnGap: "var(--ms3)",
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row-reverse",
+      alignItems: "center",
+      justifyContent: "center",
     },
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
+    "& .MuiAccordionSummary-content": {
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      flexBasis: "100%",
+    },
   }),
 )
 
-const Details = styled(AccordionDetails)(
-  ({
-    theme,
-    verticalSpace,
-    borderDirection,
-    backgroundColour,
-    joiningColour,
-    mirror,
-  }) => ({
-    display: "grid",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    paddingTop: 0,
-    color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText} !important`,
-    a: {
-      textDecorationColor: "var(--rich-yolk-primary)",
-    },
-    "&>div": {
-      gridColumn: "1/25",
-      [theme.breakpoints.up("lg")]: {
-        gridColumn: "2/24",
-      },
-    },
+const Summary = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  "& .title": {
+    marginBottom: 0,
+  },
+})
 
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Details = styled(AccordionDetails)(({ theme, backgroundColour }) => ({
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  paddingTop: 0,
+  color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText} !important`,
+  a: {
+    textDecorationColor: "var(--rich-yolk-primary)",
+  },
+  "&>div": {
+    gridColumn: "1/25",
+    [theme.breakpoints.up("lg")]: {
+      gridColumn: "2/24",
+    },
+  },
+}))
 
 export const AccordionSection = props => {
   const [expanded, setExpanded] = useState(false)
@@ -127,7 +114,7 @@ export const AccordionSection = props => {
               onChange={handleChange(`${_key}-panel${i}`)}
               backgroundColour={backgroundColour}
             >
-              <AccordionSummary
+              <AccordSummary
                 aria-controls={`${_key}-panel${i}-content`}
                 id={`${_key}-panel${i}-header`}
                 expandIcon={
@@ -139,22 +126,7 @@ export const AccordionSection = props => {
                     }}
                   />
                 }
-                sx={{
-                  flexDirection: "column-reverse",
-                  alignItems: "start",
-                  [theme.breakpoints.up("md")]: {
-                    flexDirection: "row-reverse",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  },
-                  columnGap: "var(--ms3)",
-                  "& .MuiAccordionSummary-content": {
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    width: "100%",
-                    flexBasis: "100%",
-                  },
-                }}
+                sx={{}}
               >
                 <Summary>
                   <Typography
@@ -193,7 +165,7 @@ export const AccordionSection = props => {
                     {item?.link?.text}
                   </LinkType>
                 )}
-              </AccordionSummary>
+              </AccordSummary>
 
               <Details backgroundColour={backgroundColour}>
                 <RenderPortableText variant={false} value={item?._rawAnswer} />
