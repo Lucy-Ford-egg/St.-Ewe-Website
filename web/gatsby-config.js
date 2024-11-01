@@ -88,9 +88,6 @@ module.exports = {
             nodes {
               _updatedAt
               _id
-              slug {
-                current
-              }
             }
           }
           allSanityRecipes {
@@ -111,13 +108,6 @@ module.exports = {
           allSanityTeamMember: { nodes: allTeams },
           allSanityRecipes: { nodes: allCaseStudies },
         }) => {
-          const teamsNodeMap = allTeams.reduce((acc, node) => {
-            const { slug } = node
-            acc[`/team-members/${slug?.current}`] = node
-
-            return acc
-          }, {})
-
           const caseStudiesNodeMap = allCaseStudies.reduce((acc, node) => {
             const { slug } = node
             acc[`/recipe/${slug?.current}`] = node
@@ -136,7 +126,7 @@ module.exports = {
           }, {})
           // console.log(`postsNodeMap - ${JSON.stringify(postsNodeMap)}`)
 
-          const combined = [teamsNodeMap, caseStudiesNodeMap, postsNodeMap]
+          const combined = [caseStudiesNodeMap, postsNodeMap]
 
           return allPages.map(page => {
             return { ...page, ...combined[page.path] }

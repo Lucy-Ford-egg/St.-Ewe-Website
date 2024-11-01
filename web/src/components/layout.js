@@ -4,47 +4,58 @@ import Header from "./header"
 import { Footer } from "./footer"
 import { VisualEditing } from "./visualEditing"
 // Preview
-import { useQuery } from "../../sanity/store";
-import {NAV_QUERY, SITE_SETTINGS} from '../queries/documentQueries';
+import { useQuery } from "../../sanity/store"
+import { NAV_QUERY, SITE_SETTINGS } from "../queries/documentQueries"
 
-export const Layout = (props) => {
-
-  const {children, data, initial} = props
+export const Layout = props => {
+  const { children, data, initial } = props
   // Preview
-  const definedSlug = (data?.sanityPost || data?.sanityTeamMember || data?.sanityRecipes || data?.sanityPage || data?.sanityCategories )
-  
+  const definedSlug =
+    data?.sanityPost ||
+    data?.sanityRecipes ||
+    data?.sanityPage ||
+    data?.sanityCategories
+
   const { data: previewData } = useQuery(
     `{ "siteSettings": ${SITE_SETTINGS}, "nav":${NAV_QUERY}}`,
-    {slug: definedSlug?.slug?.current},
-    { initial }
-  );
-  
-  const definedSiteSettings = (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
+    { slug: definedSlug?.slug?.current },
+    { initial },
+  )
 
+  const definedSiteSettings =
+    (previewData && previewData?.siteSettings[0]) || data?.sanitySiteSettings
 
-    return (
+  return (
     <div>
-      <VisualEditing {...props}/>
-     
-      <Header definedSiteSettings={definedSiteSettings}/>
-      <>{
-         React.Children.map(children, child => {
+      <VisualEditing {...props} />
+
+      <Header definedSiteSettings={definedSiteSettings} />
+      <>
+        {React.Children.map(children, child => {
           // Clone the child element and pass additional props
           if (React.isValidElement(child)) {
             console.log("React Vaild")
-            return React.cloneElement(child, { previewData: data });
+            return React.cloneElement(child, { previewData: data })
           } else {
             console.log("React InVaild")
             // Handle if child is not a React element (regular object)
-            return <div style={{
-              display: "flex",
-              justifyContent: "center",
-            }}>Loading</div> // or any other handling logic
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Loading
+              </div>
+            ) // or any other handling logic
           }
-
         })}
-        </>
-      <Footer definedSiteSettings={definedSiteSettings} previewData={previewData}/>
+      </>
+      <Footer
+        definedSiteSettings={definedSiteSettings}
+        previewData={previewData}
+      />
     </div>
   )
 }
@@ -52,4 +63,3 @@ export const Layout = (props) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
-
