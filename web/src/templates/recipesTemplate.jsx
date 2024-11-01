@@ -11,13 +11,13 @@ const RecipeTemplate = props => {
 
   // Preview
   const { data: previewData } = useQuery(
-    `{"RecipeQuery:" ${RECIPES_QUERY}`,
+    RECIPES_QUERY,
     { slug: data.sanityRecipes.slug.current },
     { initial },
   )
 
   const definedModules =
-    (previewData && previewData?.RecipeQuery?.pageBuilder) ||
+    (previewData && previewData?.pageBuilder) ||
     data?.sanityRecipes?.pageBuilder
 
   return (

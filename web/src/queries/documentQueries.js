@@ -34,11 +34,11 @@ const TEAM = `
 `
 
 export const PAGE_BUILDER = `
-pageBuilder[] {
-  ...,
-  'rawTitle': title,
-  ${ACCORDION},
-  ${TEAM},
+  pageBuilder[] {
+    ...,
+    'rawTitle': title,
+    ${ACCORDION},
+    ${TEAM}
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
@@ -73,117 +73,9 @@ export const RECIPES_BY_ID = groq`*[_type ==  "recipes && defined(coverImage)" &
   service->{name},
 }`
 
-export const RECIPES_QUERY = groq`*[_type ==  "recipes && defined(coverImage)" && slug.current == $slug][0] {
-  pageBuilder[] {
-    ...,
-    images[] { 
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    sideAssets{
-      leftAsset{
-        image {
-          asset->,
-          hotspot{...},
-          crop{...}
-        },
-      }
-      rightAsset{
-        image {
-          asset->,
-          hotspot{...},
-          crop{...}
-        },
-      }
-    },
-    image {
-      asset->,
-      hotspot{...},
-      crop{...}
-    },
-    links[]{
-      ${LINK},
-    },
-    title[]{...},
-    text[]{...},
-    title,
-    text,
-    overlay,
-    topPadding,
-    leftAlign, 
-    steps[]{
-      title,
-      description,
-      involves,
-      _type, 
-    },
-    showArchive{
-      ...,
-      archive[]->{...},  
-    },
-    showRecipesArchive{
-      ...,
-      archive[]->{
-        ..., 
-      },
-    },
-    teamTiles[]->{...},
-    tileColor->{...},
-    testimonialTiles[]->{
-      cite{
-        teamMemberCite->{
-          name,
-          position,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-        externalCite{
-          citeName,
-          citeLocation,
-          image {
-            asset->,
-            hotspot{...},
-            crop{...}
-          },
-        },
-      },
-      "_rawQuoteText": quoteText,
-    },
-  },
-  title,
-  text,
-  image {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  mobileImage {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  textAlign,
-  slug,
-  companyDetails,
-  person,
-  _rawPerson,
-  featuredMedia {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  body[]{
-    ...,
-    file{
-      ...,
-      },
-    },
-  },
-  _id,
+export const RECIPES_QUERY = groq`*[_type == "recipes" && slug.current == $slug][0] {
+   ...,
+  ${PAGE_BUILDER},
 }`
 
 export const CATEGORIES_QUERY = groq`*[_type ==  "recipes" && slug.current == $slug][0] {
