@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import { useTheme } from "@mui/material"
 import { TeamTile } from "../components/teamTile"
 import { ModuleContainer } from "./moduleContainer"
-import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
