@@ -13,12 +13,12 @@ import showArchive from './showArchive'
 // Docs
 import author from './author'
 import post from './post'
-import quote from './quote'
 import recipes from './recipies'
 import page from './page'
 import teamMember from './teamMember'
 import careers from './careers'
 import faqs from './faqs'
+import quote from './quote'
 // Atoms
 import ingredient from './ingredients'
 import recipesCategory from './taxonomies/recipesCategory'

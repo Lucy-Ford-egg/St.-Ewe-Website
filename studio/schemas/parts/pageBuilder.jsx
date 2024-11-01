@@ -11,6 +11,7 @@ import recipesSection from '../sections/recipesSection'
 import ctaSection from '../sections/ctaSection'
 import imageSection from '../sections/imageSection'
 import blogSection from '../sections/blogSection'
+import testimonialSection from '../sections/testimonialSection'
 
 export const pageBuilder = [
   {type: heroHeaderSection.name},
@@ -25,4 +26,5 @@ export const pageBuilder = [
   {type: ctaSection.name},
   {type: accordionSection.name},
   {type: teamSection.name},
+  {type: testimonialSection.name},
 ]

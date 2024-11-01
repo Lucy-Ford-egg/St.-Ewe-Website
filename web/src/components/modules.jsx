@@ -55,7 +55,11 @@ const AccordionSection = React.lazy(() =>
 const CtaSection = React.lazy(() =>
   import("./ctaSection").then(module => ({ default: module.CtaSection })),
 )
-// const TestimonialSection = React.lazy(() => import('./testimonialSection').then(module => ({ default: module.TestimonialSection })));
+const TestimonialSection = React.lazy(() =>
+  import("./testimonialSection").then(module => ({
+    default: module.TestimonialSection,
+  })),
+)
 const ImageSection = React.lazy(() =>
   import("./imageSection").then(module => ({ default: module.ImageSection })),
 )
@@ -224,16 +228,16 @@ const Modules = props => {
               //     )
               // }
 
-              // if (isModule(module, 'testimonialSection')) {
-
-              //     return (
-              //         <TestimonialSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-              //             {...module} />
-              //     )
-              // }
+              if (isModule(module, "testimonialSection")) {
+                return (
+                  <TestimonialSection
+                    previewData={previewData && previewData[i]}
+                    sanityConfig={sanityConfig}
+                    key={module._key + i}
+                    {...module}
+                  />
+                )
+              }
 
               if (isModule(module, "teamSection")) {
                 return (

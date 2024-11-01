@@ -35,6 +35,9 @@ export const pageBuilderQuery = graphql`
     ... on SanityAccordionSection {
       ...AccordionSectionFragment
     }
+    ... on SanityTestimonialSection {
+      ...TestimonialSectionFragment
+    }
   }
 `
 // ... on SanityNewsletterSection{
@@ -56,9 +59,7 @@ export const pageBuilderQuery = graphql`
 // ... on SanityLocationSection {
 //   ... LocationSectionFragment
 // }
-// ... on SanityTestimonialSection {
-//   ...TestimonialSectionFragment
-// }
+
 // ... on SanityTeamSection {
 //   ...TeamSectionFragment
 // }

@@ -1,17 +1,11 @@
-import { defineField, defineType } from 'sanity'
-import { LiaLinkSolid } from "react-icons/lia";
+import {defineField, defineType} from 'sanity'
+import {LiaLinkSolid} from 'react-icons/lia'
 
 export default defineType({
   name: 'cite',
   type: 'object',
   title: 'External Citation',
   fields: [
-    defineField({
-      name: 'teamMemberCite',
-      type: 'reference',
-      title: 'Internal Cite',
-      to: [{ type: 'teamMember', title: 'Team Member' }],
-    }),
     defineField({
       name: 'externalCite',
       title: 'Person',
@@ -25,13 +19,12 @@ export default defineType({
     },
     prepare(selection) {
       const {internal, external} = selection
-      
 
       return {
-        title: internal ? "Internal Link" : "External Link",
+        title: internal ? 'Internal Link' : 'External Link',
         //subtitle: `${children && children.length} Child Items`,
         icon: LiaLinkSolid,
       }
-    }
+    },
   },
 })
