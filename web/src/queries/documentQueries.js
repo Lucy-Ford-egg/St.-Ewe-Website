@@ -56,49 +56,8 @@ export const NAV_QUERY = groq`*[slug.current == $slug][0] {
 }`
 
 export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0] {
-  ...,
+   ...,
   ${PAGE_BUILDER},
-  title,
-  text,
-  date,
-  author->{...},
-  image {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-
-  mobileImage {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  backgroundColor->,
-  textAlign,
-  slug,
-  companyDetails,
-  person,
-  _rawPerson,
-  featuredMedia {
-    asset->,
-    hotspot{...},
-    crop{...}
-  },
-  excerpt[]{
-    ...,
-    file{
-      ...,
-      },
-    },
-  },
-  body[]{
-    ...,
-    file{
-      ...,
-      },
-    },
-  },
-  _id,
 }`
 
 export const ALL_RECIPES = groq`*[_type ==  "recipes" && defined(coverImage)][0..4] {
