@@ -31,7 +31,7 @@ const ListWrapper = styled("div")(
     gridRow: "1/auto",
     [theme.breakpoints.up("md")]: {
       gridColumn: "15/23",
-      display: "grid",
+      display: "flex",
       gridTemplateColumns: "repeat(24, 1fr)",
       gridTemplateRows: "51px auto 51px",
       gridRow: "unset",
