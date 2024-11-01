@@ -20,7 +20,7 @@ const Grid = styled("div")(({ props, theme }) => ({
     gridGap: 21,
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "1/25",
+    gridColumn: "2/24",
   },
 }))
 
