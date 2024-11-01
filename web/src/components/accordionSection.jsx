@@ -166,7 +166,7 @@ export const AccordionSection = props => {
               </AccordSummary>
 
               <Details backgroundColour={backgroundColour}>
-                <RenderPortableText variant={false} value={item?._rawAnswer} />
+                <RenderPortableText variant={false} value={item?.answer} />
               </Details>
             </AccordionWrapper>
           )
@@ -188,13 +188,13 @@ export const query = graphql`
         link {
           ...LinkLabelFragment
         }
-        _rawAnswer(resolveReferences: { maxDepth: 10 })
+        answer: _rawAnswer(resolveReferences: { maxDepth: 10 })
         _key
         _id
       }
       ... on SanityFaqs {
         id
-        _rawAnswer(resolveReferences: { maxDepth: 10 })
+        answer: _rawAnswer(resolveReferences: { maxDepth: 10 })
         question
         link {
           ...LinkLabelFragment
