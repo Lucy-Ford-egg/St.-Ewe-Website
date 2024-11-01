@@ -5,6 +5,7 @@ import { TeamTile } from "../components/teamTile"
 import { ModuleContainer } from "./moduleContainer"
 import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 const Wrapper = styled("div")(({ props, theme }) => ({
   gridColumn: "1/25",
@@ -14,18 +15,12 @@ const Wrapper = styled("div")(({ props, theme }) => ({
 }))
 
 const Grid = styled("div")(({ props, theme }) => ({
-  display: "grid",
   gridColumn: "2/24",
-  gridGap: 21,
-  gridTemplateColumns: "subgrid",
-  gridTemplateRows: "masonry",
   [theme.breakpoints.up("sm")]: {
     gridGap: 21,
   },
   [theme.breakpoints.up("lg")]: {
     gridColumn: "1/25",
-    paddingLeft: "var(--ms4)",
-    paddingRight: "var(--ms4)",
   },
 }))
 
@@ -38,17 +33,23 @@ export const TeamSection = props => {
       <Wrapper theme={theme} backgroundColour={backgroundColour}>
         {teamTiles && (
           <Grid>
-            {teamTiles &&
-              teamTiles?.map((member, i) => {
-                return (
-                  <TeamTile
-                    key={member?._id}
-                    member={member}
-                    backgroundColour={backgroundColour}
-                    tileColour={tileColour}
-                  />
-                )
-              })}
+            <ResponsiveMasonry
+              columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
+            >
+              <Masonry gutter="21px">
+                {teamTiles &&
+                  teamTiles?.map((member, i) => {
+                    return (
+                      <TeamTile
+                        key={member?._id}
+                        member={member}
+                        backgroundColour={backgroundColour}
+                        tileColour={tileColour}
+                      />
+                    )
+                  })}
+              </Masonry>
+            </ResponsiveMasonry>
           </Grid>
         )}
       </Wrapper>

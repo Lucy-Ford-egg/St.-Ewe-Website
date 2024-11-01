@@ -63,7 +63,10 @@ const Name = styled("h2")(({ props, theme }) => ({
   textTransform: "uppercase",
   marginTop: 0,
   marginBottom: 0,
-  [theme.breakpoints.up("lg")]: {},
+  fontSize: "var(--ms0)",
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "var(--ms2)",
+  },
 }))
 
 const Position = styled("p")(({ props, theme }) => ({
