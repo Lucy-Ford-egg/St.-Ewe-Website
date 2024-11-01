@@ -18,6 +18,7 @@ const Grid = styled("div")(({ props, theme }) => ({
   gridColumn: "2/24",
   gridGap: 21,
   gridTemplateColumns: "subgrid",
+  gridTemplateRows: "masonry",
   [theme.breakpoints.up("sm")]: {
     gridGap: 21,
   },

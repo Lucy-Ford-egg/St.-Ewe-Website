@@ -6,7 +6,7 @@ export const contrastBrandPalette = {
     id: "color",
     value: brandPalette["Original Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
-    contrastBase: brandPalette["Original Large"]?.value,
+    contrastBase: brandPalette["Quirky Quail Secondary"]?.value,
     contrastSvg: brandPalette["White"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
