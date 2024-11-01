@@ -7,7 +7,7 @@ import {
   LiaBookOpenSolid,
   LiaSmile,
   LiaUtensilsSolid,
-  LiaQuoteLeftSolid,
+  LiaMaleSolid,
   LiaBriefcaseSolid,
   LiaQuestionCircle,
   LiaCrosshairsSolid,
@@ -130,18 +130,18 @@ export const deskStructure = (S, context) => {
       //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
       //   ),
 
-      // S.listItem()
-      //   .title('Team Members')
-      //   .icon(LiaMaleSolid)
-      //   .child(
-      //     S.documentTypeList('teamMember')
-      //       .title('Team Members')
-      //       .child(
-      //         (id) => S.document().schemaType('teamMember').documentId(id),
-      //         //.views(Views(S, context))
-      //       )
-      //       .defaultOrdering([{field: 'title', direction: 'asc'}]),
-      //   ),
+      S.listItem()
+        .title('Team Members')
+        .icon(LiaMaleSolid)
+        .child(
+          S.documentTypeList('teamMember')
+            .title('Team Members')
+            .child(
+              (id) => S.document().schemaType('teamMember').documentId(id),
+              //.views(Views(S, context))
+            )
+            .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        ),
       S.divider(),
 
       S.listItem()

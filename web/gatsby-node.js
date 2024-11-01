@@ -73,7 +73,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               _type
               showRecipesArchive {
                 archive {
-                  category {
+                  categories {
                     name
                   }
                   _id
@@ -109,7 +109,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               _type
               showRecipesArchive {
                 archive {
-                  category {
+                  categories {
                     name
                   }
                   _id
@@ -147,7 +147,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
               _type
               showRecipesArchive {
                 archive {
-                  category {
+                  categories {
                     name
                   }
                   _id
@@ -170,9 +170,12 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
             hours
             minutes
           }
-          category {
+          categories {
             name
             _id
+            slug {
+              current
+            }
           }
           featuredMedia {
             asset {
@@ -218,6 +221,41 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         }
       }
       allSanityCategories(filter: { _id: { regex: "/^(?!.*drafts.).*/" } }) {
+        nodes {
+          title
+          slug {
+            current
+          }
+          _key
+          _id
+          pageBuilder {
+            ... on SanityBlogSection {
+              _key
+              _type
+              showArchive {
+                archive {
+                  name
+                  _id
+                }
+                setArchive
+              }
+            }
+            ... on SanityRecipesSection {
+              _key
+              _type
+              showRecipesArchive {
+                archive {
+                  _id
+                }
+                setArchive
+              }
+            }
+          }
+        }
+      }
+      allSanityRecipesCategory(
+        filter: { _id: { regex: "/^(?!.*drafts.).*/" } }
+      ) {
         nodes {
           title
           slug {
@@ -321,6 +359,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const blogPosts = result.data?.allSanityPost?.nodes || []
   const recipes = result.data?.allSanityRecipes?.nodes || []
   const blogPostsCategories = result.data?.allSanityCategories?.nodes || []
+  const recipesCategories = result.data?.allSanityRecipesCategory?.nodes || []
 
   function getShowArchiveBlogIds(pageBuilder, type) {
     const pageBuilderArray = pageBuilder || [] // Extract pageBuilder array
@@ -452,6 +491,32 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),
       },
     })
+  })
+
+  // * Create a recipe category pages
+
+  result.data?.allSanityRecipesCategory?.nodes.forEach(node => {
+    if (node.slug.current) {
+      paginate({
+        createPage,
+        items: recipesCategories,
+        itemsPerPage: 12,
+        pathPrefix: `/recipe/category/${node?.slug?.current}`,
+        component: require.resolve(
+          `./src/templates/recipesCategoryArchiveTemplate.jsx`,
+        ),
+        context: {
+          id: node.id,
+          slug: `${node.slug.current}`,
+          node: node,
+          postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+          recipeIds: getShowArchiveRecipesIds(
+            node.pageBuilder,
+            "recipesSection",
+          ),
+        },
+      })
+    }
   })
 
   result.data.blogPage.nodes.forEach(node => {

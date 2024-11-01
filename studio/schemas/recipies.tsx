@@ -1,18 +1,18 @@
-import { LiaUtensilsSolid, LiaCarrotSolid,  LiaStopwatchSolid } from "react-icons/lia"
-import { format, parseISO } from 'date-fns'
-import { defineField, defineType } from 'sanity'
+import {LiaUtensilsSolid, LiaCarrotSolid, LiaStopwatchSolid} from 'react-icons/lia'
+import {format, parseISO} from 'date-fns'
+import {defineField, defineType} from 'sanity'
 import authorType from './author'
 import recipesCategoryType from './taxonomies/recipesCategory'
 import openGraph from './openGraph'
 import siteMeta from './siteMeta'
-import { pageBuilder } from "./parts/pageBuilder"
+import {pageBuilder} from './parts/pageBuilder'
 // Imported only on the recipe page
-import recipeBodySection from "./sections/recipeBodySection"
+import recipeBodySection from './sections/recipeBodySection'
 
 export default defineType({
   name: 'recipes',
   title: 'Recipe',
-  icon:  LiaUtensilsSolid,
+  icon: LiaUtensilsSolid,
   type: 'document',
   groups: [
     {
@@ -112,65 +112,82 @@ export default defineType({
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: [{ type: authorType.name }],
+      to: [{type: authorType.name}],
       group: 'pageContent',
     }),
     defineField({
       name: 'instructions',
       type: 'array',
       title: 'Instructions',
-      of: [{
-        type: 'block',
-        lists: [
-          { title: 'Bullet', value: 'bullet' },
-          { title: 'Numbered', value: 'number' }
-        ], // yes please, both bullet and numbered
-        styles: [
-          // { title: 'Heading 2', value: 'h2' },
-          { title: 'Lead', value: 'body2' },
-          { title: 'Heading 3', value: 'h3' },
-          { title: 'Heading 4', value: 'h4' },
-          { title: 'Heading 5', value: 'h5' },
-          { title: 'Quote', value: 'blockquote' }
-        ],
-        marks: {
-          decorators: [
-            { title: 'Strong', value: 'strong' },
-            { title: 'Emphasis', value: 'em' },
-            { title: 'Underline', value: 'underline' },
+      of: [
+        {
+          type: 'block',
+          lists: [
+            {title: 'Bullet', value: 'bullet'},
+            {title: 'Numbered', value: 'number'},
+          ], // yes please, both bullet and numbered
+          styles: [
+            // { title: 'Heading 2', value: 'h2' },
+            {title: 'Lead', value: 'body2'},
+            {title: 'Heading 3', value: 'h3'},
+            {title: 'Heading 4', value: 'h4'},
+            {title: 'Heading 5', value: 'h5'},
+            {title: 'Quote', value: 'blockquote'},
           ],
-          annotations: [
-            {
-              type: 'textColor',
-            }
-          ],
-        }
-      }, {
-        type: 'image',
-        // validation: (rule) => rule.required(),
-      }],
+          marks: {
+            decorators: [
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'},
+              {title: 'Underline', value: 'underline'},
+            ],
+            annotations: [
+              {
+                type: 'textColor',
+              },
+            ],
+          },
+        },
+        {
+          type: 'image',
+          // validation: (rule) => rule.required(),
+        },
+      ],
       // validation: (rule) => rule.required(),
-      description: "This works slightly differently to page modules. You can add images, quotes and other textural decoration in the editor.",
+      description:
+        'This works slightly differently to page modules. You can add images, quotes and other textural decoration in the editor.',
       group: 'pageContent',
     }),
     defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
-      description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
-      of: [...pageBuilder, { type: recipeBodySection.name}],
+      description:
+        'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
+      of: [...pageBuilder, {type: recipeBodySection.name}],
+      group: 'pageContent',
+    }),
+    defineField({
+      name: 'categories',
+      title: 'Recipe Category',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: recipesCategoryType.name}],
+        },
+      ],
       group: 'pageContent',
     }),
 
-    defineField({
-      name: 'category',
-      title: 'Recipe Category',
-      type: 'reference',
-      to: [{ type: recipesCategoryType.name }],
-      group: 'pageContent',
-      //validation: (rule) => rule.required(),
-      // to: [{ type:  }],
-    }),
+    // defineField({
+    //   name: 'category',
+    //   title: 'Recipe Category',
+    //   type: 'reference',
+    //   to: [{ type: recipesCategoryType.name }],
+    //   group: 'pageContent',
+    //   //validation: (rule) => rule.required(),
+    //   // to: [{ type:  }],
+    // }),
   ],
   preview: {
     select: {
@@ -179,15 +196,13 @@ export default defineType({
       date: 'date',
       media: 'coverImage',
     },
-    prepare({ title, media, author, date }) {
+    prepare({title, media, author, date}) {
       const subtitles = [
         author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)
 
-      return { title, media, subtitle: subtitles.join(' ') }
+      return {title, media, subtitle: subtitles.join(' ')}
     },
   },
 })
-
-

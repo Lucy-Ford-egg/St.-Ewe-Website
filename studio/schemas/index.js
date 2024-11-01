@@ -56,7 +56,6 @@ import hotspotSection from './sections/hotspotSection'
 import headerSection from './sections/headerSection'
 import testimonialSection from './sections/testimonialSection'
 import testimonialTile from './sections/testimonialTile'
-import teamSection from './sections/teamSection'
 import recipesSection from './sections/recipesSection'
 import ctaSection from './sections/ctaSection'
 import featuresListSection from './sections/featuresListSection'
@@ -73,6 +72,7 @@ import locationSection from './sections/locationSection'
 import loginTile from './sections/loginTile'
 import clientLoginSection from './sections/clientLoginSection'
 import accordionSection from './sections/accordionSection'
+import teamSection from './sections/teamSection'
 // Older schema
 import videoId from './videoId'
 import icons from './icons'
@@ -130,6 +130,7 @@ export const schema = {
     careers,
     faqs,
     // Sections
+    teamSection,
     accordionSection,
     recipeBodySection,
     imageSection,
@@ -141,7 +142,6 @@ export const schema = {
     borderSection,
     hotspotSection,
     headerSection,
-    teamSection,
     recipesSection,
     newsletterSection,
     videoSection,

@@ -61,7 +61,9 @@ const ImageSection = React.lazy(() =>
 )
 // const LocationSection = React.lazy(() => import('./locationSection').then(module => ({ default: module.LocationSection })));
 // const ContactSection = React.lazy(() => import('./contactSection').then(module => ({ default: module.ContactSection })));
-// const TeamSection = React.lazy(() => import('./teamSection').then(module => ({ default: module.TeamSection })));
+const TeamSection = React.lazy(() =>
+  import("./teamSection").then(module => ({ default: module.TeamSection })),
+)
 const RecipesSection = React.lazy(() =>
   import("./recipesSection").then(module => ({
     default: module.RecipesSection,
@@ -233,17 +235,16 @@ const Modules = props => {
               //     )
               // }
 
-              // if (isModule(module, 'teamSection')) {
-
-              //     return (
-              //         <TeamSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-
-              //             {...module} />
-              //     )
-              // }
+              if (isModule(module, "teamSection")) {
+                return (
+                  <TeamSection
+                    previewData={previewData && previewData[i]}
+                    sanityConfig={sanityConfig}
+                    key={module._key + i}
+                    {...module}
+                  />
+                )
+              }
 
               if (isModule(module, "recipesSection")) {
                 return (

@@ -31,7 +31,7 @@ const GridContainer = styled("div")(({ theme }) => ({
   gridTemplateColumns: "subgrid",
   "& .gridItem": {
     gridColumn: "1/25",
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("md")]: {
       "&:first-of-type": {
         gridArea: "1 / 11 / 2 / 16",
         height: "100%",
@@ -49,18 +49,19 @@ const GridContainer = styled("div")(({ theme }) => ({
         height: "100%",
       },
     },
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.between("sm", "md")]: {
       gridColumn: "span 10",
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("md")]: {
       gridColumn: "span 5",
     },
   },
   "& .featuredItem": {
     gridArea: "1 / 1 /  1 / 25",
     height: "100%",
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("md")]: {
       gridArea: "1 / 1 / 3 / 11",
+      height: "auto",
     },
   },
 }))

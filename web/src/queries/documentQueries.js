@@ -27,12 +27,18 @@ const ACCORDION = `
     ...,
   }
 `
+const TEAM = `
+  teamTiles[]->{
+    ...,
+  }
+`
 
 export const PAGE_BUILDER = `
 pageBuilder[] {
   ...,
   'rawTitle': title,
   ${ACCORDION},
+  ${TEAM},
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {

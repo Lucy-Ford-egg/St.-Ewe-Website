@@ -1,267 +1,99 @@
-// import React from "react"
-// import { graphql } from "gatsby"
-// import Container from "@mui/material/Container"
-// import Grid from "@mui/material/Grid"
-// import Typography from "@mui/material/Typography"
-// import Divider from "@mui/material/Divider"
-// import { useTheme } from "@mui/material"
-// import { RenderPortableText } from "./renderPortableText"
-// import { TeamTile } from "../components/teamTile"
-// import { ButtonFormat } from "./buttonFormat"
+import React from "react"
+import { graphql } from "gatsby"
+import { useTheme } from "@mui/material"
+import { TeamTile } from "../components/teamTile"
+import { ModuleContainer } from "./moduleContainer"
+import { contrastBrandPalette } from "../utils/colours"
+import { styled } from "@mui/material/styles"
 
-// export const TeamSection = props => {
-//   const theme = useTheme()
-//   const {
-//     teamTiles,
-//     subtitle,
-//     title,
-//     _rawTitle,
-//     _rawLeftText,
-//     _rawRightText,
-//     leftText,
-//     rightText,
-//     previewData,
-//     sanityConfig,
-//     topPadding,
-//     tileColor,
-//     _type,
-//     links,
-//   } = props
+const Wrapper = styled("div")(({ props, theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "subgrid",
+  overflow: "hidden",
+}))
 
-//   const definedTopPadding =
-//     (previewData && _type === previewData?._type && previewData?.topPadding) ||
-//     topPadding
-//   const definedSubtitle =
-//     (previewData && _type === previewData?._type && previewData?.subtitle) ||
-//     subtitle
-//   const definedTitle =
-//     (previewData && _type === previewData?._type && previewData?.title) ||
-//     title ||
-//     _rawTitle
+const Grid = styled("div")(({ props, theme }) => ({
+  display: "grid",
+  gridColumn: "2/24",
+  gridGap: 21,
+  gridTemplateColumns: "subgrid",
+  [theme.breakpoints.up("sm")]: {
+    gridGap: 21,
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "1/25",
+    paddingLeft: "var(--ms4)",
+    paddingRight: "var(--ms4)",
+  },
+}))
 
-//   const definedLeftText =
-//     (_type === previewData?._type && previewData && previewData?.leftText) ||
-//     leftText ||
-//     _rawLeftText
-//   const definedRightText =
-//     (_type === previewData?._type && previewData && previewData?.rightText) ||
-//     rightText ||
-//     _rawRightText
-//   const definedTeamTiles =
-//     (_type === previewData?._type && previewData && previewData?.teamTiles) ||
-//     teamTiles
-//   const definedTileColor =
-//     (_type === previewData?._type && previewData && previewData?.tileColor) ||
-//     tileColor
-//   const definedLinks =
-//     (_type === previewData?._type && previewData && previewData?.links) || links
+export const TeamSection = props => {
+  const theme = useTheme()
+  const { teamTiles, backgroundColour, tileColour } = props
 
-//   return (
-//     <>
-//       <Container
-//         maxWidth="xl"
-//         sx={{
-//           pt: definedTopPadding
-//             ? 0
-//             : {
-//                 xs: theme.spacing(15),
-//                 md: theme.spacing(15),
-//               },
-//           mt: topPadding ? 0 : 0,
-//         }}
-//       >
-//         <Grid container sx={{ pb: 15 }} rowSpacing={6} columnSpacing={16}>
-//           <Grid item xs={12} md={7}>
-//             {definedSubtitle && (
-//               <Typography color="primary" variant="overline">
-//                 {definedSubtitle}
-//               </Typography>
-//             )}
+  return (
+    <ModuleContainer {...props}>
+      <Wrapper theme={theme} backgroundColour={backgroundColour}>
+        {teamTiles && (
+          <Grid>
+            {teamTiles &&
+              teamTiles?.map((member, i) => {
+                return (
+                  <TeamTile
+                    key={member?._id}
+                    member={member}
+                    backgroundColour={backgroundColour}
+                    tileColour={tileColour}
+                  />
+                )
+              })}
+          </Grid>
+        )}
+      </Wrapper>
+    </ModuleContainer>
+  )
+}
 
-//             {definedTitle && (
-//               <RenderPortableText
-//                 previewData={definedTitle}
-//                 sanityConfig={sanityConfig}
-//                 setAsHeading={false}
-//                 value={definedTitle}
-//               />
-//             )}
-//             <Divider
-//               sx={{
-//                 borderColor: "primary.main",
-//                 mb: 5,
-//                 maxWidth: 307,
-//               }}
-//             />
-//             {definedLeftText && (
-//               <RenderPortableText
-//                 previewData={definedLeftText}
-//                 sanityConfig={sanityConfig}
-//                 variant={false}
-//                 value={definedLeftText}
-//               />
-//             )}
-//           </Grid>
-//           <Grid item xs={12} md={5} sx={{ alignSelf: "flex-end" }}>
-//             {definedRightText && (
-//               <RenderPortableText
-//                 previewData={definedRightText}
-//                 sanityConfig={sanityConfig}
-//                 variant={false}
-//                 value={definedRightText}
-//               />
-//             )}
-//           </Grid>
-//           <Grid item xs={12}>
-//             {definedLinks &&
-//               definedLinks.map((node, i) => {
-//                 return (
-//                   <ButtonFormat
-//                     key={node?._key}
-//                     variant={i === 0 ? "contained" : "outlined"}
-//                     color={i === 0 ? "primary" : "secondary"}
-//                     node={node}
-            
-//                   />
-//                 )
-//               })}
-//           </Grid>
-//         </Grid>
-//       </Container>
-//       {definedTeamTiles && (
-//         <Container
-//           maxWidth="xl"
-//           sx={{
-//             pb: {
-//               xs: theme.spacing(15),
-//               md: theme.spacing(15),
-//             },
-//             // paddingRight: {
-//             //   xs: "0 !important",
-//             //   overflowX: "hidden",
-//             //   maxWidth: "100vw",
-//             // },
-            
-//           }}
-//         >
-//           <Grid
-//             container
-//             columnSpacing={0}
-//             rowSpacing={6}
-//             alignItems="stretch"
-//             sx={{
-//               flexDirection: { xs: "row", sm: "row", md: "row", lg: "row" },
-//               flexWrap: "nowrap",
-//               overflowX: {
-//                 xs: "scroll",
-//                 sm: "scroll",
-//                 md: "scroll",
-//                 lg: "scroll",
-//               },
-//               scrollSnapType: {
-//                 xs: "x mandatory",
-//                 sm: "x mandatory",
-//                 md: "x mandatory",
-//                 lg: "x mandatory",
-//               },
-//               scrollSnapAlign: "center",
-              
-//             }}
-//           >
-//             {definedTeamTiles &&
-//               definedTeamTiles?.map((member, i) => {
-     
-//                 return (
-                 
-//                   <TeamTile
-//                     key={member?._id}
-//                     definedTileColor={definedTileColor}
-//                     member={member}
-
-//                   />
-                  
-//                 )
-//               })}
-//           </Grid>
-//         </Container>
-//       )}
-//     </>
-//   )
-// }
-
-// export const query = graphql`
-//   fragment TeamSectionFragment on SanityTeamSection {
-//     _key
-//     _type
-//     _rawTitle(resolveReferences: { maxDepth: 10 })
-//     _rawLeftText(resolveReferences: { maxDepth: 10 })
-//     _rawRightText(resolveReferences: { maxDepth: 10 })
-//     subtitle
-//     tileColor {
-//       label
-//       value
-//     }
-//     links {
-//       _key
-//       link {
-//         external
-//         internal {
-//           ... on SanityPage {
-//             id
-//             _type
-//             slug {
-//               current
-//             }
-//           }
-//           ... on SanityPost {
-//             id
-//                   slug {
-//                     current
-//                     _type
-//                   }
-//                   categories {
-//                     name
-//                     slug{
-//                       current
-//                     }
-//                   }
-//           }
-//         }
-//       }
-//       text
-//     }
-//     teamTiles {
-//       _id
-//       email
-//       tileImage {
-//         asset {
-//           _id
-//           gatsbyImageData
-//         }
-//         hotspot {
-//           x
-//           y
-//           width
-//           height
-//         }
-//         crop {
-//           bottom
-//           left
-//           right
-//           top
-//         }
-//       }
-//       excerpt
-//       bio {
-//         _rawChildren
-//       }
-//       name
-//       position
-//       linkedIn
-//       slug{
-//         current
-//       }
-//     }
-//     topPadding
-//   }
-// `
+export const query = graphql`
+  fragment TeamSectionFragment on SanityTeamSection {
+    _key
+    _type
+    teamTiles {
+      _id
+      tileImage {
+        asset {
+          _id
+          gatsbyImageData
+        }
+        hotspot {
+          x
+          y
+          width
+          height
+        }
+        crop {
+          bottom
+          left
+          right
+          top
+        }
+      }
+      favouriteEggs
+      name
+      position
+    }
+    tileColour {
+      label
+      value
+    }
+    backgroundColour {
+      label
+      value
+    }
+    verticalSpace {
+      bottomPadding
+      topPadding
+    }
+  }
+`

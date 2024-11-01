@@ -46,9 +46,7 @@ export const RecipeTemplateQuery = graphql`
       }
       title
       date(formatString: "Do MMMM YYYY")
-      category {
-        title
-      }
+
       featuredMedia {
         asset {
           _id

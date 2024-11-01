@@ -2,6 +2,7 @@ import React from "react"
 
 export const Texture = props => {
   const { backgroundColour } = props
+  debugger
   return (
     <svg
       width="1440"
