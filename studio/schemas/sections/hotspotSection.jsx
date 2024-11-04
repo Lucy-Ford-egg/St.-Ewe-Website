@@ -1,19 +1,16 @@
-import { defineField, defineType } from 'sanity'
-import { LiaImage, LiaBorderStyleSolid } from "react-icons/lia"
-
+import {defineField, defineType} from 'sanity'
+import {LiaImage} from 'react-icons/lia'
 
 export default defineType({
-  name: "hotspotSection",
-  type: "object",
-  title: "Hotspot Section",
+  name: 'hotspotSection',
+  type: 'object',
+  title: 'Hotspot Section',
   fields: [
-    defineField({ name: 'title', type: 'string' }), 
-    defineField({ name: 'image', type: 'image' }), 
+    defineField({name: 'title', type: 'string'}),
     defineField({
-        name: 'hotspots',
-        type: 'array',
-        of: [{type: 'hotspotItem'}],
-       
+      name: 'hotspotData',
+      type: 'reference',
+      to: [{type: 'hotspots', title: 'Add your hotspot collection'}],
     }),
   ],
   preview: {
@@ -22,13 +19,13 @@ export default defineType({
       media: 'image',
     },
     prepare(selection) {
-      const { title, media } = selection
+      const {title, media} = selection
       return {
-        title: title ? title[0]?.children[0]?.text : 'Title',
+        title: title ? title : 'Title',
         subtitle: `Hotspot Section`,
         media: media,
-        icon: LiaImage
+        icon: LiaImage,
       }
-    }
+    },
   },
 })
