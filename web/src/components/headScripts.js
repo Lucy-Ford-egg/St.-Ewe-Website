@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react"
 import { Script } from "gatsby"
 
-export const HeadScripts = (props) => {
-  const {activePreview} = props
+export const HeadScripts = props => {
+  const { activePreview } = props
 
   const [preview, setPreview] = useState(activePreview || null)
 
   useEffect(() => {
-    setPreview( activePreview)
-
+    setPreview(activePreview)
   }, [activePreview])
 
-
-console.log(`Preview Active = ${preview}`)
+  console.log(`Preview Active = ${preview}`)
   return (
     <>
-      {!preview ? 
+      {!preview ? (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GATSBY_GTAG}`}
@@ -23,8 +21,17 @@ console.log(`Preview Active = ${preview}`)
             forward={[`gtag`]}
           />
           <Script
+            id="hs-script-loader"
+            async
+            defer
+            src={process.env.GATSBY_HUBSPOT_SCRIPT}
+            strategy="off-main-thread"
+            // forward={[`gtag`]}
+          />
+          <Script
             id="gtag-config"
-            strat egy="off-main-thread"
+            strat
+            egy="off-main-thread"
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
           window.gtag = function gtag(){ window.dataLayer.push(arguments);}
@@ -33,8 +40,9 @@ console.log(`Preview Active = ${preview}`)
             }}
           />
         </>
-        
-      : <></>}
+      ) : (
+        <></>
+      )}
     </>
   )
 }
