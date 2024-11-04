@@ -1,17 +1,11 @@
-import {LiaUtensilsSolid, LiaCarrotSolid, LiaStopwatchSolid} from 'react-icons/lia'
+import {LiaFileImage} from 'react-icons/lia'
 import {format, parseISO} from 'date-fns'
 import {defineField, defineType} from 'sanity'
-import authorType from './author'
-import recipesCategoryType from './taxonomies/recipesCategory'
-
-import {pageBuilder} from './parts/pageBuilder'
-// Imported only on the recipe page
-import recipeBodySection from './sections/recipeBodySection'
 
 export default defineType({
   name: 'seasonalIllustrations',
   title: 'Seasonal Illustrations',
-  icon: LiaUtensilsSolid,
+  icon: LiaFileImage,
   type: 'document',
   fields: [
     defineField({

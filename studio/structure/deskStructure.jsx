@@ -6,6 +6,7 @@ import {
   LiaNewspaper,
   LiaBookOpenSolid,
   LiaSmile,
+  LiaFileImage,
   LiaUtensilsSolid,
   LiaQuoteLeftSolid,
   LiaMaleSolid,
@@ -46,7 +47,7 @@ export const deskStructure = (S, context) => {
 
       S.listItem()
         .title('Seasonal Illustrations')
-        .icon(LiaSmile)
+        .icon(LiaFileImage)
         .child(
           S.documentTypeList('seasonalIllustrations')
             .title('Seasonal Illustrations')

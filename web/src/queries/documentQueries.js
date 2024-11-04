@@ -27,6 +27,12 @@ const TESTIMONIAL = `
   }
 `
 
+const ILLUSTRATIONS = `
+  layers->{
+    ...,
+  }
+`
+
 const ACCORDION = `
   accordion[]->{
     ...,
@@ -45,6 +51,7 @@ export const PAGE_BUILDER = `
     ${ACCORDION},
     ${TEAM},
     ${TESTIMONIAL},
+    ${ILLUSTRATIONS},
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
