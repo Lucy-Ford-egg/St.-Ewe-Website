@@ -177,7 +177,13 @@ export const BlogSection = props => {
         <BlogGrid theme={theme}>
           {filtersPosts &&
             filtersPosts.slice(0, 8).map((post, i) => {
-              return <BlogTile post={post} previewData={previewData} />
+              return (
+                <BlogTile
+                  key={post?._key}
+                  post={post}
+                  previewData={previewData}
+                />
+              )
             })}
         </BlogGrid>
 
@@ -236,9 +242,10 @@ export const BlogSection = props => {
               {chunkIndex > 0 && "..."}
               {pagination &&
                 pagination[chunkIndex] &&
-                pagination[chunkIndex].map(node => {
+                pagination[chunkIndex].map((node, i) => {
                   return (
                     <Number
+                      key={`pagination-${i}`}
                       backgroundColour={backgroundColour}
                       style={{
                         color:
