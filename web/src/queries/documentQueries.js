@@ -43,7 +43,16 @@ const TEAM = `
     ...,
   }
 `
-
+const HOTSPOT = `
+  hotspotData->{
+    ...,
+    featureImage{
+      asset->{
+        ...,
+      }
+    }
+  }
+`
 export const PAGE_BUILDER = `
   pageBuilder[] {
     ...,
@@ -52,6 +61,7 @@ export const PAGE_BUILDER = `
     ${TEAM},
     ${TESTIMONIAL},
     ${ILLUSTRATIONS},
+    ${HOTSPOT},
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {

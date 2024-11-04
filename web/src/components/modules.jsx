@@ -50,6 +50,11 @@ const AccordionSection = React.lazy(() =>
     default: module.AccordionSection,
   })),
 )
+const HotspotSection = React.lazy(() =>
+  import("./hotspotSection").then(module => ({
+    default: module.HotspotSection,
+  })),
+)
 // const TimelineSection = React.lazy(() => import('./timelineSection').then(module => ({ default: module.TimelineSection })));
 // const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
 const CtaSection = React.lazy(() =>
@@ -158,6 +163,17 @@ const Modules = props => {
               if (isModule(module, "headerSection")) {
                 return (
                   <HeaderSection
+                    previewData={previewData && previewData[i]}
+                    sanityConfig={sanityConfig}
+                    pageContext={pageContext}
+                    key={module._key + i}
+                    {...module}
+                  />
+                )
+              }
+              if (isModule(module, "hotspotSection")) {
+                return (
+                  <HotspotSection
                     previewData={previewData && previewData[i]}
                     sanityConfig={sanityConfig}
                     pageContext={pageContext}

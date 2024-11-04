@@ -28,7 +28,7 @@ const Title = styled(motion.div)(({ theme }) => ({
   gridColumn: "4/22",
   gridRow: "1/2",
   alignSelf: "center",
-  zIndex: 0,
+  zIndex: 1,
   color: "var(--original-large)",
   textAlign: "center",
   fontFamily: "Colby Narrow",
