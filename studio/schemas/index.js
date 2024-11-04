@@ -19,6 +19,7 @@ import teamMember from './teamMember'
 import careers from './careers'
 import faqs from './faqs'
 import quote from './quote'
+import seasonalIllustration from './seasonalIllustration'
 // Atoms
 import ingredient from './ingredients'
 import recipesCategory from './taxonomies/recipesCategory'
@@ -129,6 +130,7 @@ export const schema = {
     teamMember,
     careers,
     faqs,
+    seasonalIllustration,
     // Sections
     teamSection,
     accordionSection,

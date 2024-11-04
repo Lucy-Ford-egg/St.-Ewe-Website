@@ -17,6 +17,12 @@ export default defineType({
       type: 'image',
     }),
     defineField({
+      title: 'Testimonial Colour',
+      name: 'testimonialColour',
+      type: 'simplerColor',
+      description: 'Add a background colour',
+    }),
+    defineField({
       title: 'Background Colour',
       name: 'backgroundColour',
       type: 'simplerColor',

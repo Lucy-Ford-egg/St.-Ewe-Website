@@ -43,6 +43,20 @@ export const deskStructure = (S, context) => {
           ),
         ),
       S.divider(),
+
+      S.listItem()
+        .title('Seasonal Illustrations')
+        .icon(LiaSmile)
+        .child(
+          S.documentTypeList('seasonalIllustrations')
+            .title('Seasonal Illustrations')
+            .child(
+              (id) => S.document().schemaType('seasonalIllustrations').documentId(id),
+              //.views(Views(S, context)),
+            )
+            .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        ),
+      S.divider(),
       S.listItem()
         .title('Hotspots')
         .icon(LiaCrosshairsSolid)

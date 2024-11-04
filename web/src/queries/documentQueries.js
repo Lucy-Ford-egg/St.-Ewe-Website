@@ -21,6 +21,11 @@ link{
 _key,
 text
 `
+const TESTIMONIAL = `
+  testimonialTile->{
+    ...,
+  }
+`
 
 const ACCORDION = `
   accordion[]->{
@@ -38,7 +43,8 @@ export const PAGE_BUILDER = `
     ...,
     'rawTitle': title,
     ${ACCORDION},
-    ${TEAM}
+    ${TEAM},
+    ${TESTIMONIAL},
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
