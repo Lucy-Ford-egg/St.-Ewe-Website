@@ -104,7 +104,7 @@ export const AccordionSection = props => {
         {accordion?.map((item, i) => {
           return (
             <AccordionWrapper
-              key={`${_key}-${item?.title}`}
+              key={`${_key}-${item?.title}-${i}`}
               square={true}
               disableGutters={true}
               elevation={0}
