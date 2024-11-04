@@ -291,23 +291,25 @@ export const TestimonialSection = props => {
   return (
     <ModuleContainer {...props}>
       <Wrapper>
-        <LeftAsset>
-          <Image
-            // pass asset, hotspot, and crop fields
-            crop={leftAsset?.crop}
-            hotspot={leftAsset?.hotspot}
-            asset={
-              (leftAsset?._ref && urlFor(leftAsset).width(250).url()) ||
-              leftAsset?.asset
-            }
-            width={250}
-            height={250}
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
-        </LeftAsset>
+        {leftAsset && (
+          <LeftAsset>
+            <Image
+              // pass asset, hotspot, and crop fields
+              crop={leftAsset?.crop}
+              hotspot={leftAsset?.hotspot}
+              asset={
+                (leftAsset?._ref && urlFor(leftAsset).width(250).url()) ||
+                leftAsset?.asset
+              }
+              width={250}
+              height={250}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+              }}
+            />
+          </LeftAsset>
+        )}
         <Tile testimonialColour={testimonialColour}>
           <TextureLayer>
             <svg
@@ -384,23 +386,25 @@ export const TestimonialSection = props => {
             </Quote>
           )}
         </Tile>
-        <RightAsset>
-          <Image
-            // pass asset, hotspot, and crop fields
-            crop={rightAsset?.crop}
-            hotspot={rightAsset?.hotspot}
-            asset={
-              (rightAsset?._ref && urlFor(rightAsset).width(250).url()) ||
-              rightAsset?.asset
-            }
-            width={250}
-            height={250}
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
-        </RightAsset>
+        {rightAsset && (
+          <RightAsset>
+            <Image
+              // pass asset, hotspot, and crop fields
+              crop={rightAsset?.crop}
+              hotspot={rightAsset?.hotspot}
+              asset={
+                (rightAsset?._ref && urlFor(rightAsset).width(250).url()) ||
+                rightAsset?.asset
+              }
+              width={250}
+              height={250}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+              }}
+            />
+          </RightAsset>
+        )}
       </Wrapper>
     </ModuleContainer>
   )
