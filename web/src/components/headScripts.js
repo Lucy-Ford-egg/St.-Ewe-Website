@@ -24,14 +24,13 @@ export const HeadScripts = props => {
             id="hs-script-loader"
             async
             defer
-            src={process.env.GATSBY_HUBSPOT_SCRIPT}
+            src={`https://js-eu1.hs-scripts.com/${process.env.GATSBY_HUBSPOT_ID}.js`}
             strategy="off-main-thread"
             // forward={[`gtag`]}
           />
           <Script
             id="gtag-config"
-            strat
-            egy="off-main-thread"
+            strategy="off-main-thread"
             dangerouslySetInnerHTML={{
               __html: `window.dataLayer = window.dataLayer || [];
           window.gtag = function gtag(){ window.dataLayer.push(arguments);}
