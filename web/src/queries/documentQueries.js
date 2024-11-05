@@ -38,6 +38,11 @@ const ACCORDION = `
     ...,
   }
 `
+const TIMELINE = `
+  times[]->{
+    ...,
+  }
+`
 const TEAM = `
   teamTiles[]->{
     ...,
@@ -65,6 +70,7 @@ export const PAGE_BUILDER = `
     ${TESTIMONIAL},
     ${ILLUSTRATIONS},
     ${HOTSPOT},
+    ${TIMELINE},
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {

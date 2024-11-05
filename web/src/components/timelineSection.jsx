@@ -1,390 +1,175 @@
-// import React, { useRef, useState, useEffect } from "react"
-// import { graphql } from "gatsby"
+import React from "react"
+import { graphql } from "gatsby"
+import { useTheme, Typography } from "@mui/material"
+import { RenderPortableText } from "../components/utils/renderPortableText"
+import Image from "gatsby-plugin-sanity-image"
+import { urlFor } from "../utils/imageHelpers"
+import { contrastBrandPalette } from "../utils/colours"
+import { ModuleContainer } from "./moduleContainer"
+import { styled } from "@mui/material/styles"
 
-// import Container from "@mui/material/Container"
-// import Grid from "@mui/material/Grid"
-// import Typography from "@mui/material/Typography"
-// import Divider from "@mui/material/Divider"
-// import useMediaQuery from "@mui/material/useMediaQuery"
-// import Box from "@mui/material/Box"
-// import { useTheme } from "@mui/material"
+const Wrapper = styled("div")(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    gridColumn: "1/25",
+    display: "grid",
+    gridTemplateColumns: "subgrid",
+    overflowX: "hidden",
+    gridRowGap: "var(--ms4)",
+    [theme.breakpoints.up("sm")]: {},
+    [theme.breakpoints.up("lg")]: {
+      gridRowGap: "unset",
+    },
+  }),
+)
 
-// // import { TimeTile } from "./timeTile"
-// import { RenderPortableText } from "../components/renderPortableText"
-// import { motion, useScroll, useSpring } from "framer-motion"
+const TimeLine = styled("div")(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    gridColumn: "2/25",
+    display: "grid",
+    gridTemplateColumns: "subgrid",
 
-// export const TimelineSection = props => {
-//   const theme = useTheme()
-//   const smallMobile = useMediaQuery("@media screen and (max-width: 320px)")
+    gridRow: "1/1",
+    [theme.breakpoints.up("sm")]: {},
+    [theme.breakpoints.up("lg")]: {
+      gridColumnGap: 90,
+    },
+  }),
+)
 
-//   // Scroll animation
-//   const lineRef = useRef(null)
-//   const targetRef = useRef(null)
-//   const referenceRef = useRef(null)
-//   const lastElement = useRef(null)
+const TimeLineEntry = styled("div")(({ theme, isAsset }) => ({
+  "& img": {
+    maxWidth: isAsset ? 221 : "100%",
+    borderRadius: isAsset ? "0px" : "var(--ms2)",
+    height: "auto",
+    objectFit: "contain",
+  },
+  display: "flex",
+  flexDirection: "column",
+  "&:nth-of-type(even)": {
+    flexDirection: "column-reverse",
+    alignSelf: "start",
+  },
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "span 8",
+  },
+}))
 
-//   const { scrollYProgress } = useScroll({
-//     target: targetRef,
-//     offset: ["-50vh start", "end end"],
-//   })
+const Date = styled(Typography)(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+    [theme.breakpoints.up("sm")]: {},
+    [theme.breakpoints.up("lg")]: {},
+  }),
+)
 
-//   const scaleY = useSpring(scrollYProgress, {
-//     stiffness: 100,
-//     damping: 30,
-//     restDelta: 0.001,
-//   })
+const Text = styled("div")(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+    [theme.breakpoints.up("sm")]: {},
+    [theme.breakpoints.up("lg")]: {},
+  }),
+)
 
-//   const [height, setHeight] = useState(0)
+const Line = styled("div")(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    gridColumn: "1/25",
+    gridRow: "1/1",
+    display: "flex",
+    alignItems: "center",
+    [theme.breakpoints.up("sm")]: {},
+    [theme.breakpoints.up("lg")]: {},
+  }),
+)
 
-//   const {
-//     _rawTitle,
-//     _rawLeftText,
-//     _rawRightText,
-//     textAlign,
-//     subtitle,
-//     topPadding,
-//     steps,
-//     timelineColor,
-//     previewData,
-//     sanityConfig,
-//     _type,
-//   } = props
+export const TimelineSection = props => {
+  const theme = useTheme()
 
-//   const definedSubtitle =
-//     (previewData && _type === previewData?._type && previewData?.subtitle) ||
-//     subtitle
-//   const definedTitle =
-//     (previewData && _type === previewData?._type && previewData?.title) ||
-//     _rawTitle
-//   const definedLeftText =
-//     (previewData && _type === previewData?._type && previewData?.leftText) ||
-//     _rawLeftText
-//   const definedRightText =
-//     (previewData && _type === previewData?._type && previewData?.rightText) ||
-//     _rawRightText
-//   const definedSteps =
-//     (previewData && _type === previewData?._type && previewData?.steps) || steps
-//   const defineTimelineColor =
-//     (previewData &&
-//       _type === previewData?._type &&
-//       previewData?.timelineColor) ||
-//     timelineColor
+  const { times, _type, backgroundColour } = props
 
-//   useEffect(() => {
-//     if (referenceRef.current && targetRef.current) {
-//       const referenceHeight =
-//         referenceRef.current.clientHeight - lastElement.current.clientHeight
-//       setHeight(referenceHeight)
-//     }
-//   }, [referenceRef, targetRef, lastElement])
+  return (
+    <ModuleContainer {...props}>
+      <Wrapper theme={theme} backgroundColour={backgroundColour}>
+        <Line>
+          <svg
+            width="1440"
+            height="153"
+            viewBox="0 0 1440 153"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 34.8634C1124.5 -108.637 1757.5 345.863 2871 34.8637"
+              stroke="#EB7806"
+              stroke-width="12"
+              stroke-linecap="round"
+              stroke-dasharray="1 30"
+            />
+          </svg>
+        </Line>
+        <TimeLine>
+          {times?.map(node => {
+            debugger
+            return (
+              <TimeLineEntry isAsset={node?.isAsset}>
+                {node?.image && (
+                  <Image
+                    // pass asset, hotspot, and crop fields
+                    crop={node?.image?.crop}
+                    hotspot={node?.image?.hotspot}
+                    asset={
+                      (node?.image?._ref &&
+                        urlFor(node?.image).width(440).url()) ||
+                      node?.image?.asset
+                    }
+                    width={node?.isAsset ? 221 : 440}
+                    height={node?.isAsset ? 221 : 440}
+                  />
+                )}
+                {node?.title && (
+                  <Date
+                    variant="h2"
+                    component="h4"
+                    backgroundColour={backgroundColour}
+                  >
+                    {node?.title}
+                  </Date>
+                )}
+                {node?.text && (
+                  <Text backgroundColour={backgroundColour}>
+                    <RenderPortableText variant={false} value={node?.text} />
+                  </Text>
+                )}
+              </TimeLineEntry>
+            )
+          })}
+        </TimeLine>
+      </Wrapper>
+    </ModuleContainer>
+  )
+}
 
-//   const GridComponent = React.forwardRef((props, ref) => (
-//     <Grid {...props} ref={ref} />
-//   ))
-
-//   GridComponent.displayName = "GridComponent"
-
-//   const GridMotion = motion(GridComponent)
-
-//   return (
-//     <Container
-//       maxWidth="xl"
-//       sx={{
-//         pb: { xs: theme.spacing(0), md: theme.spacing(15) },
-//         pt: topPadding ? 0 : { xs: theme.spacing(15), md: theme.spacing(15) },
-//         position: "relative",
-//         justifyContent: "center",
-//         display: "flex",
-//         flexDirection: "column",
-//       }}
-//     >
-//       <Grid
-//         container
-//         columnSpacing={{ xs: 0, md: 16 }}
-//         rowSpacing={6}
-//         justifyContent={textAlign}
-//         sx={{
-//           pb: { xs: 10, md: 15 },
-//         }}
-//       >
-//         <Grid item xs={12} sm={12} md={7}>
-//           {definedSubtitle && (
-//             <Typography
-//               variant="overline"
-//               color="primary.main"
-//               sx={{
-//                 textAlign: textAlign === "flex-start" ? "left" : textAlign,
-//               }}
-//             >
-//               {definedSubtitle}
-//             </Typography>
-//           )}
-//           {definedTitle && (
-//             <RenderPortableText
-//               previewData={previewData}
-//               sanityConfig={sanityConfig}
-//               variant={false}
-//               textAlign={textAlign}
-//               value={definedTitle}
-//             />
-//           )}
-
-//           {definedLeftText && (
-//             <Divider
-//               sx={{
-//                 display: "flex",
-//                 my: 10,
-//                 width: "19.1875rem",
-//                 borderColor: "primary.main",
-//               }}
-//             />
-//           )}
-//           {definedLeftText && (
-//             <RenderPortableText
-//               previewData={previewData}
-//               sanityConfig={sanityConfig}
-//               variant={false}
-//               textAlign={textAlign}
-//               value={definedLeftText}
-//             />
-//           )}
-//         </Grid>
-//         {definedRightText && (
-//           <Grid
-//             item
-//             xs={12}
-//             md={4}
-//             sx={{
-//               display: "flex",
-//               flexBasis: "100%",
-//               flexDirection: "column",
-//               justifyContent: "flex-end",
-//             }}
-//           >
-//             <RenderPortableText
-//               previewData={previewData}
-//               sanityConfig={sanityConfig}
-//               variant={false}
-//               textAlign={textAlign}
-//               value={definedRightText}
-//             />
-//           </Grid>
-//         )}
-//       </Grid>
-//       <Container maxWidth="sm">
-//         <Grid
-//           ref={referenceRef}
-//           sx={{
-//             position: "relative",
-//           }}
-//           container
-//         >
-//           <Grid item xs={1} md={1} sx={{}}>
-//             <Box
-//               ref={targetRef}
-//               sx={{
-//                 mt: 24,
-//                 height: "100%",
-//                 mx: "unset",
-//                 display: "flex",
-//                 justifyContent: "flex-start",
-//               }}
-//               component="figure"
-//             >
-//               <Box
-//                 component="span"
-//                 sx={{
-//                   position: "relative",
-//                   flexBasis: "100%",
-//                   display: "flex",
-//                   flexDirection: "column",
-//                   justifyContent: "flex-start",
-//                   alignItems: "center",
-//                   minHeight: height,
-//                   maxHeight: height,
-//                 }}
-//               >
-//                 <motion.div
-//                   key={lineRef.current}
-//                   className="line"
-//                   style={{
-//                     position: "relative",
-//                     width: 8,
-//                     backgroundColor: defineTimelineColor.value,
-//                     transformOrigin: "0% 0%",
-//                     scaleY: scaleY,
-//                     height: "100%",
-//                   }}
-//                 ></motion.div>
-//               </Box>
-//             </Box>
-//           </Grid>
-//           <GridMotion
-//             item
-//             xs={11}
-//             md={11}
-//             sx={{
-//               pl: { md: 6 },
-//             }}
-//           >
-//             {definedSteps &&
-//               definedSteps.map((step, index) => {
-//                 const definedTitle =
-//                   (previewData && definedSteps && definedSteps[index]?.title) ||
-//                   step._rawTitle
-
-//                 const definedDescription =
-//                   (definedSteps && definedSteps[index]?.description) ||
-//                   step._rawDescription
-
-
-//                 return (
-//                   <Box
-//                     sx={{
-//                       py: { xs: 6, md: 16 },
-//                       "&:first-of-type": {
-//                         pt: 0,
-//                       },
-//                       "&:last-of-type": {
-//                         pb: 0,
-//                       },
-//                     }}
-//                   >
-//                     <motion.div
-//                       ref={lastElement}
-//                       key={`event-${index}`}
-//                       initial={{
-//                         opacity: 0.3,
-//                       }}
-//                       whileInView={{
-//                         opacity: 1,
-//                       }}
-//                       //exit={{ opacity: 0.1 }}
-//                       viewport={{
-//                         amount: smallMobile ? "some" : "all",
-//                         //margin: "25%",
-//                         once: false,
-//                       }}
-//                     >
-//                       <Box
-//                         // ref={eventRef}
-//                         sx={{
-//                           display: { xs: "flex", md: "flex" },
-//                           flexDirection: { xs: "column", md: "row" },
-//                         }}
-//                       >
-//                         {definedTitle && (
-//                           <Box
-//                             sx={{
-//                               display: "flex",
-//                               flexDirection: "row",
-//                               justifyContent: {
-//                                 xs: "flex-start",
-//                                 md: "flex-end",
-//                               },
-//                               textAlign: { xs: "left", md: "right" },
-//                               alignItems: { xs: "center", md: "flex-start" },
-//                             }}
-//                           >
-//                             <Box
-//                               sx={{
-//                                 pl: { xs: 3, md: "unset" },
-//                                 pr: { xs: 0, md: 17 },
-//                                 order: { xs: 1, md: 0 },
-//                                 position: { md: "absolute" },
-//                                 pt: {
-//                                   md: 0,
-//                                 },
-//                                 h3: {
-//                                   pb: 0,
-//                                   pt: { md: 0 },
-//                                 },
-//                                 h2: {
-//                                   pb: 0,
-//                                   pt: { md: "0 !important" },
-//                                 },
-//                                 maxWidth: { sm: "250px", lg: "unset" },
-//                               }}
-//                             >
-//                               {definedTitle && (
-//                                 <RenderPortableText
-//                                   previewData={
-//                                     previewData &&
-//                                     previewData?.steps &&
-//                                     previewData?.steps[index] &&
-//                                     previewData?.steps[index]
-//                                   }
-//                                   sanityConfig={sanityConfig}
-//                                   setAsHeading="h2"
-//                                   value={definedTitle}
-//                                 />
-//                               )}
-//                             </Box>
-//                             <Box
-//                               sx={{
-//                                 order: { xs: 0, md: 1 },
-//                                 opacity: "1 !important",
-//                                 display: "flex",
-//                                 width: "20px",
-//                                 height: "20px",
-//                                 borderRadius: "1000px",
-//                                 backgroundColor: timelineColor.value,
-//                                 position: "absolute",
-//                                 left: "4.1%",
-//                                 // mt: 1,
-//                                 transform: "translateX(-50%)",
-//                               }}
-//                             />
-//                           </Box>
-//                         )}
-//                         {definedDescription && (
-//                           <Box
-//                             sx={{
-//                               pl: { xs: 3, md: "unset" },
-//                               display: "flex",
-//                               alignItems: "center",
-//                             }}
-//                           >
-//                             <RenderPortableText
-//                               previewData={definedSteps[index]}
-//                               sanityConfig={sanityConfig}
-//                               setAsHeading={false}
-//                               value={definedDescription}
-//                             />
-//                           </Box>
-//                         )}
-//                       </Box>
-//                     </motion.div>
-//                   </Box>
-//                 )
-//               })}
-//           </GridMotion>
-//         </Grid>
-//       </Container>
-//     </Container>
-//   )
-// }
-
-// export const query = graphql`
-//   fragment TimelineSectionFragment on SanityTimelineSection {
-//     _key
-//     _type
-//     subtitle
-//     _rawTitle(resolveReferences: { maxDepth: 10 })
-//     topPadding
-//     timelineColor {
-//       value
-//       label
-//     }
-//     _rawLeftText(resolveReferences: { maxDepth: 10 })
-//     _rawRightText(resolveReferences: { maxDepth: 10 })
-//     steps {
-//       ... on SanityTimeTile {
-//         _key
-//         _type
-//         _rawTitle(resolveReferences: { maxDepth: 10 })
-//         _rawDescription(resolveReferences: { maxDepth: 10 })
-//       }
-//     }
-//   }
-// `
+export const query = graphql`
+  fragment TimelineSectionFragment on SanityTimelineSection {
+    _key
+    _type
+    backgroundColour {
+      label
+      value
+    }
+    verticalSpace {
+      bottomPadding
+      topPadding
+    }
+    times {
+      title
+      text {
+        _rawChildren(resolveReferences: { maxDepth: 10 })
+      }
+      image {
+        ...ImageFragment
+      }
+      isAsset
+    }
+  }
+`

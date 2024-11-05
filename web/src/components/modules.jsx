@@ -55,7 +55,11 @@ const HotspotSection = React.lazy(() =>
     default: module.HotspotSection,
   })),
 )
-// const TimelineSection = React.lazy(() => import('./timelineSection').then(module => ({ default: module.TimelineSection })));
+const TimelineSection = React.lazy(() =>
+  import("./timelineSection").then(module => ({
+    default: module.TimelineSection,
+  })),
+)
 // const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
 const CtaSection = React.lazy(() =>
   import("./ctaSection").then(module => ({ default: module.CtaSection })),
@@ -182,6 +186,17 @@ const Modules = props => {
                   />
                 )
               }
+              if (isModule(module, "timelineSection")) {
+                return (
+                  <TimelineSection
+                    previewData={previewData && previewData[i]}
+                    sanityConfig={sanityConfig}
+                    pageContext={pageContext}
+                    key={module._key + i}
+                    {...module}
+                  />
+                )
+              }
               if (isModule(module, "titleSection")) {
                 return (
                   <TitleSection
@@ -214,15 +229,6 @@ const Modules = props => {
                   />
                 )
               }
-              // if (isModule(module, 'embedSection')) {
-              //     return (
-              //         <EmbedSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-              //             {...module} />
-              //     )
-              // }
               if (isModule(module, "borderSection")) {
                 return (
                   <BorderSection
@@ -233,17 +239,6 @@ const Modules = props => {
                   />
                 )
               }
-
-              // if (isModule(module, 'newsletterSection')) {
-              //     return (
-              //         <NewsletterSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-              //             {...module} />
-              //     )
-              // }
-
               if (isModule(module, "testimonialSection")) {
                 return (
                   <TestimonialSection
@@ -254,7 +249,6 @@ const Modules = props => {
                   />
                 )
               }
-
               if (isModule(module, "teamSection")) {
                 return (
                   <TeamSection
@@ -265,7 +259,6 @@ const Modules = props => {
                   />
                 )
               }
-
               if (isModule(module, "recipesSection")) {
                 return (
                   <RecipesSection
@@ -278,7 +271,6 @@ const Modules = props => {
                   />
                 )
               }
-
               if (isModule(module, "recipeBodySection")) {
                 return (
                   <RecipeBodySection
@@ -291,28 +283,6 @@ const Modules = props => {
                   />
                 )
               }
-
-              // if (isModule(module, 'timelineSection')) {
-              //     return (
-              //         <TimelineSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-              //             {...module} />
-              //     )
-              // }
-
-              // if (isModule(module, 'videoSection')) {
-
-              //     return (
-              //         <VideoSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-              //             {...module} />
-              //     )
-              // }
-
               if (isModule(module, "ctaSection")) {
                 return (
                   <CtaSection

@@ -22,6 +22,13 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'isAsset',
+      type: 'boolean',
+      title: 'Is the image an illustrated asset?',
+      description:
+        'Check this if the image you wish to use is an illustrated asset, otherwise it will probably not display correctly',
+    }),
+    defineField({
       name: 'text',
       title: 'Text',
       type: 'array',
