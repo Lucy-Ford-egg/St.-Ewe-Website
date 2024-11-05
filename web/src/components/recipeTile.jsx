@@ -40,7 +40,7 @@ const Details = styled("div")(({ theme, backgroundColour }) => ({
   flexDirection: "column",
   zIndex: 1,
   position: "relative",
-  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastBaseText,
   flex: "1 0 0",
   alignSelf: "stretch",
   alignItems: "flex-start",
@@ -54,11 +54,14 @@ const Details = styled("div")(({ theme, backgroundColour }) => ({
 const Meta = styled("div")(({ theme, backgroundColour }) => ({
   display: "flex",
   alignItems: "center",
-  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  paddingTop: "var(--ms2)",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastBaseText,
   [theme.breakpoints.up("md")]: {
     "& svg": {
       width: 24,
+      height: 24,
       marginRight: "var(--ms-1)",
+      stroke: contrastBrandPalette[backgroundColour?.label]?.contrastBaseText,
     },
   },
 }))
@@ -140,13 +143,13 @@ export const RecipeTile = props => {
           </ImageWrapper>
         )}
         <Details backgroundColour={backgroundColour}>
-          <Typography variant={variant} component="h3" color="white.main">
+          <Typography variant={variant} component="h3" color="inherit">
             {title}
           </Typography>
           {showMeta && duration && (
             <Meta backgroundColour={backgroundColour}>
               <LuClock5 />
-              <Typography variant="body1" component="span" color="white.main">
+              <Typography variant="body1" component="span" color="inherit">
                 {`${duration?.hours ? duration.hours + " hours" : ""} ${duration?.minutes ? duration.minutes + " mins" : ""}`}
               </Typography>
             </Meta>

@@ -7,6 +7,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Original Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Quirky Quail Secondary"]?.value,
+    contrastBaseText: brandPalette["Original Primary"]?.value,
     contrastSvg: brandPalette["White"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -19,6 +20,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Original Medium"]?.value,
     contrastText: brandPalette["Original Large"]?.value,
     contrastBase: brandPalette["Original Large"]?.value,
+    contrastBaseText: brandPalette["Original Medium"]?.value,
     contrastSvg: brandPalette["Original Large"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -31,6 +33,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Original Large"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Original Primary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Rich Yolk Primary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -43,6 +46,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Rich Yolk Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Rich Yolk Secondary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["White"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -55,6 +59,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Rich Yolk Secondary"]?.value,
     contrastText: brandPalette["Original Large"]?.value,
     contrastBase: brandPalette["Rich Yolk Primary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["White"]?.value,
     contrastButtonColour: "tertiary",
     contrastButton: {
@@ -67,6 +72,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Super Eggs Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Super Eggs Secondary"]?.value,
+    contrastBaseText: brandPalette["Super Eggs Primary"]?.value,
     contrastSvg: brandPalette["Rich Yolk Secondary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -79,6 +85,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Super Eggs Secondary"]?.value,
     contrastText: brandPalette["Original Large"]?.value,
     contrastBase: brandPalette["Super Eggs Primary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Super Eggs Primary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -91,6 +98,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Super Eggs Secondary Dark"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Super Eggs Secondary Accent"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Super Eggs Primary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -103,6 +111,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Super Eggs Secondary Accent"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Super Eggs Secondary Dark"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Rich Yolk Secondary"]?.value,
     contrastButtonColour: "white",
     contrastButton: {
@@ -115,6 +124,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Rich Yolk Opulent Hot Foil"]?.value,
     contrastText: brandPalette["Original Large"]?.value,
     contrastBase: brandPalette["Rich Yolk Opulent Primary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Super Eggs Secondary Dark"]?.value,
     contrastButtonColour: "secondary",
     contrastButton: {
@@ -127,6 +137,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Rich Yolk Opulent Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Rich Yolk Opulent Hot Foil"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["White"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -139,6 +150,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Rich Yolk Opulent Secondary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Rich Yolk Opulent Hot Foil"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["White"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -151,6 +163,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Grand Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Rich Yolk Opulent Secondary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Rich Yolk Opulent Secondary"]?.value,
     contrastButtonColour: "white",
     contrastButton: {
@@ -163,6 +176,7 @@ export const contrastBrandPalette = {
     value: brandPalette["White"]?.value,
     contrastText: brandPalette["Original Large"]?.value,
     contrastBase: brandPalette["Original Medium"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Rich Yolk Primary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -175,6 +189,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Dabbling Duck Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Dabbling Duck Secondary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Dabbling Duck Secondary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -187,6 +202,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Dabbling Duck Secondary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Dabbling Duck Primary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Dabbling Duck Primary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -199,6 +215,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Quirky Quail Primary"]?.value,
     contrastText: brandPalette["White"]?.value,
     contrastBase: brandPalette["Quirky Quail Secondary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Dabbling Duck Primary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
@@ -211,6 +228,7 @@ export const contrastBrandPalette = {
     value: brandPalette["Quirky Quail Secondary"]?.value,
     contrastText: brandPalette["Original Large"]?.value,
     contrastBase: brandPalette["Original Primary"]?.value,
+    contrastBaseText: brandPalette["White"]?.value,
     contrastSvg: brandPalette["Dabbling Duck Primary"]?.value,
     contrastButtonColour: "primary",
     contrastButton: {
