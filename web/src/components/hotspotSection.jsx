@@ -1,14 +1,14 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import { useTheme, useMediaQuery, Typography } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { contrastBrandPalette } from "../utils/colours"
 import { Links } from "../components/links"
 import { motion } from "framer-motion"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
+import { LiaTimesCircle } from "react-icons/lia"
 
 const Wrapper = styled("div")(
   ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
@@ -16,7 +16,6 @@ const Wrapper = styled("div")(
     display: "grid",
     gridTemplateColumns: "subgrid",
     overflowX: "hidden",
-    gridRowGap: "var(--ms4)",
     alignItems: "center",
     [theme.breakpoints.up("sm")]: {},
     [theme.breakpoints.up("lg")]: {
@@ -46,11 +45,6 @@ const Hotspot = styled("div")(({ mirror, x, y, theme, backgroundColour }) => ({
   top: `${y}%`,
   position: "absolute",
   zIndex: 1,
-  // backgroundColor: "var(--rich-yolk-primary)",
-  // border: "2px solid var(--quirky-quail-secondary)",
-  // width: 32,
-  // height: 32,
-  //borderRadius: "99999px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -64,14 +58,16 @@ const Hotspot = styled("div")(({ mirror, x, y, theme, backgroundColour }) => ({
 
 const HotspotDetail = styled(motion.div)(
   ({ mirror, x, y, theme, backgroundColour }) => ({
-    zIndex: 1,
-    gridColumn: "20/25",
-    gridRow: "1/1",
+    gridColumn: "1/25",
     maxHeight: "fit-content",
     backgroundColor: " var(--quirky-quail-secondary)",
     padding: "var(--ms2) var(--ms1)",
     [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
+    [theme.breakpoints.up("lg")]: {
+      zIndex: 1,
+      gridColumn: "20/25",
+      gridRow: "1/1",
+    },
   }),
 )
 
@@ -102,6 +98,20 @@ const Title = styled(Typography)(
   }),
 )
 
+const Close = styled(LiaTimesCircle)(
+  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+    position: "absolute",
+    top: "var(--ms0)",
+    right: "var(--ms0)",
+    zIndex: 2,
+    fill: "var(--white)",
+    width: 24,
+    height: 24,
+    [theme.breakpoints.up("sm")]: {},
+    [theme.breakpoints.up("lg")]: {},
+  }),
+)
+
 export const HotspotSection = props => {
   const theme = useTheme()
 
@@ -111,6 +121,11 @@ export const HotspotSection = props => {
 
   const [spotSelected, setSpotSelected] = useState(null)
   const [imageLoaded, setImageLoaded] = useState(false) // Track image load state
+
+  useEffect(() => {
+    setSpotSelected(hotspotData?.hotspots[0])
+  }, [hotspotData, setSpotSelected])
+
   return (
     <ModuleContainer {...props}>
       <Wrapper theme={theme} backgroundColour={backgroundColour}>
@@ -126,8 +141,8 @@ export const HotspotSection = props => {
                     urlFor(hotspotData?.featureImage).width(1440).url()) ||
                   hotspotData?.featureImage?.asset
                 }
-                width={mobile ? 362 : tablet ? 732 : 732}
-                height={mobile ? 241 : tablet ? 438 : 438}
+                width={mobile ? 390 : tablet ? 732 : 732}
+                height={mobile ? 245 : tablet ? 438 : 438}
                 style={{
                   objectFit: "cover",
                   width: "100%",
@@ -137,6 +152,7 @@ export const HotspotSection = props => {
               />
             )}
             {hotspotData?.hotspots?.map((node, i) => {
+              const rotation = i * 1.168 * 100
               return (
                 <Hotspot
                   onClick={() => setSpotSelected(node)}
@@ -145,19 +161,24 @@ export const HotspotSection = props => {
                   y={node?.y}
                 >
                   <svg
-                    width="66"
+                    width="74"
                     height="74"
-                    viewBox="0 0 66 74"
+                    viewBox="0 0 74 74"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      transform: `rotate(${rotation}deg)`,
+                    }}
                   >
                     {spotSelected && spotSelected?._key === node?._key && (
                       <motion.path
                         intitial={{
                           opacity: 0,
+                          scale: 0.4,
                         }}
                         animate={{
                           opacity: 1,
+                          scale: 0.98,
                         }}
                         fillRule="evenodd"
                         clipRule="evenodd"
@@ -191,6 +212,7 @@ export const HotspotSection = props => {
           >
             {spotSelected?.image && (
               <DetailImage>
+                <Close onClick={() => setSpotSelected(null)} />
                 <Image
                   crop={spotSelected?.image?.crop}
                   hotspot={spotSelected?.image?.hotspot}
