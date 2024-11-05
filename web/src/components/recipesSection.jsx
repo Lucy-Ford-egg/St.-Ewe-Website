@@ -89,12 +89,11 @@ export const RecipesSection = ({
   paddingBottom = 11,
   featuredTile,
   showRecipesArchive,
+  pageContext,
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
   const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("md"))
-  const sm = useMediaQuery(theme.breakpoints.down("sm"))
 
   const { data: allRecipe } = useQuery(ALL_RECIPES, {}, { initial })
 
@@ -109,10 +108,6 @@ export const RecipesSection = ({
     },
     { initial },
   )
-
-  const definedTopPadding =
-    (previewData && _type === previewData?._type && previewData?.topPadding) ||
-    topPadding
 
   const definedAllSanityRecipes = allSanityRecipes?.nodes
 

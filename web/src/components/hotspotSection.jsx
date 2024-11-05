@@ -117,10 +117,9 @@ export const HotspotSection = props => {
 
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
-  const { hotspotData, previewData, sanityConfig, backgroundColour } = props
+  const { hotspotData, previewData, backgroundColour } = props
 
   const [spotSelected, setSpotSelected] = useState(null)
-  const [imageLoaded, setImageLoaded] = useState(false) // Track image load state
 
   useEffect(() => {
     setSpotSelected(hotspotData?.hotspots[0])
@@ -148,7 +147,6 @@ export const HotspotSection = props => {
                   width: "100%",
                   height: "100%",
                 }}
-                onLoad={() => setImageLoaded(true)}
               />
             )}
             {hotspotData?.hotspots?.map((node, i) => {
@@ -204,10 +202,10 @@ export const HotspotSection = props => {
         {spotSelected && (
           <HotspotDetail
             initial={{
-              x: "100%",
+              y: "var(--ms0)",
             }}
             animate={{
-              x: 0,
+              y: 0,
             }}
           >
             {spotSelected?.image && (

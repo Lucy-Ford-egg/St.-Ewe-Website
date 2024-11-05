@@ -54,7 +54,7 @@ export const pageTemplateQuery = graphql`
   query pageTemplateQuery($slug: String!, $recipeIds: [String]) {
     allSanityRecipes(
       sort: { date: DESC }
-      filter: { categories: { elemMatch: { _id: { in: $recipeIds } } } }
+      filter: { _id: { in: $recipeIds } }
     ) {
       nodes {
         _key
