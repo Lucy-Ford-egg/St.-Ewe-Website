@@ -25,7 +25,7 @@ const Wrapper = styled("div")(
 const GridContainer = styled("div")(({ theme }) => ({
   display: "grid",
   gridColumn: "3/23",
-  gridTemplateRows: "1fr 1fr",
+  gridTemplateRows: "1fr",
   gridColumnGap: 21,
   gridRowGap: 21,
   gridTemplateColumns: "subgrid",
@@ -50,9 +50,11 @@ const GridContainer = styled("div")(({ theme }) => ({
       },
     },
     [theme.breakpoints.between("sm", "md")]: {
+      gridTemplateRows: "unset",
       gridColumn: "span 10",
     },
     [theme.breakpoints.up("md")]: {
+      gridTemplateRows: "unset",
       gridColumn: "span 5",
     },
   },
