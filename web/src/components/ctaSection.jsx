@@ -112,6 +112,7 @@ const ShowTexture = styled("div")(({ alignment, theme }) => ({
   pointerEvents: "none",
   mixBlendMode: "multiply",
   opacity: 0.2,
+  overflowX: "hidden",
   [theme.breakpoints.up("sm")]: {
     gridRowGap: "var(--ms4)",
   },
