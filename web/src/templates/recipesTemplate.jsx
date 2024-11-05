@@ -7,7 +7,7 @@ import { useQuery } from "../../sanity/store"
 import { RECIPES_QUERY } from "../queries/documentQueries"
 
 const RecipeTemplate = props => {
-  const { data, pageContext, initial } = props
+  const { data, pageContext, initial, location } = props
 
   // Preview
   const { data: previewData } = useQuery(
@@ -28,6 +28,7 @@ const RecipeTemplate = props => {
         getAllPosts={data.getAllPosts}
         allSanityRecipes={data.allSanityRecipes}
         data={data}
+        location={location}
       />
     </>
   )
@@ -87,6 +88,10 @@ export const RecipeTemplateQuery = graphql`
       serves {
         note
         serves
+      }
+      duration {
+        hours
+        minutes
       }
       _rawInstructions(resolveReferences: { maxDepth: 10 })
       pageBuilder {

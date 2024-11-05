@@ -106,6 +106,7 @@ const Modules = props => {
     allSanityPost,
     data,
     sanitySiteSettings,
+    location,
   } = props
   function isModule(moduletype, testname) {
     console.log(`Modules - ${moduletype} | ${testname}`)
@@ -170,6 +171,7 @@ const Modules = props => {
                     previewData={previewData && previewData[i]}
                     sanityConfig={sanityConfig}
                     pageContext={pageContext}
+                    location={location}
                     key={module._key + i}
                     {...module}
                   />

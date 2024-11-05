@@ -222,7 +222,7 @@ export const RecipeBodySection = props => {
               {data?.sanityRecipes?.ingredientsList?.map(item => {
                 return (
                   <li key={item?._key}>
-                    {`${item?.wholeNumber ? item.wholeNumber : ""} ${item?.ingredient?.title || ""} ${item?.preparation || ""}`}
+                    {`${item?.wholeNumber ? item.wholeNumber : ""} ${item?.fraction ? item?.fraction : ""} ${item?.unit ? item?.unit : ""} ${item?.ingredient?.title || ""} ${item?.preparation || ""}`}
                   </li>
                 )
               })}

@@ -8,7 +8,7 @@ import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const BlogArchiveTemplate = props => {
-  const { data, pageContext, initial } = props
+  const { data, pageContext, initial, location } = props
 
   // Preview
   const { data: previewData } = useQuery(
@@ -17,18 +17,19 @@ const BlogArchiveTemplate = props => {
     { initial },
   )
 
-  const definedModules = (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
-  
+  const definedModules =
+    (previewData && previewData?.pageBuilder) || data?.sanityPage?.pageBuilder
+
   return (
     <>
       <Modules
-          previewData={previewData?.pageBuilder}
-          sanityConfig={getSanityClient}
-          allSanityPost={data.allSanityPost}
-          pageContext={pageContext}
-          modules={definedModules}
-          //getAllPosts={data.allSanityPost}
-        />
+        previewData={previewData?.pageBuilder}
+        sanityConfig={getSanityClient}
+        allSanityPost={data.allSanityPost}
+        pageContext={pageContext}
+        modules={definedModules}
+        location={location}
+      />
     </>
   )
 }
@@ -38,18 +39,8 @@ export const Head = ({ data, location }) => {
 }
 
 export const blogArchiveTemplateQuery = graphql`
-  query blogArchiveTemplateQuery(
-    $slug: String!
-    $skip: Int
-    $limit: Int
-
-  ) {
-    allSanityPost(
-      
-      skip: $skip
-      limit: $limit
-      sort: {date: DESC}
-    ) {
+  query blogArchiveTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
+    allSanityPost(skip: $skip, limit: $limit, sort: { date: DESC }) {
       nodes {
         author {
           name
@@ -61,7 +52,7 @@ export const blogArchiveTemplateQuery = graphql`
         date
         categories {
           name
-          slug{
+          slug {
             current
           }
         }
@@ -88,7 +79,7 @@ export const blogArchiveTemplateQuery = graphql`
     sanityPage(slug: { current: { eq: $slug } }) {
       slug {
         current
-      }      
+      }
       title
       pageBuilder {
         ...PageBuilderFragment

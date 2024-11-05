@@ -58,6 +58,7 @@ const Logo = styled("div")(({ theme }) => ({
 const MenuButton = styled("div")(({ theme }) => ({
   gridColumn: "18/24",
   display: "grid",
+  pointerEvents: "visible",
   [theme.breakpoints.up("lg")]: {
     gridColumn: "9/9",
   },

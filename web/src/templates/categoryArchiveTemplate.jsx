@@ -8,7 +8,7 @@ import { PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const CategoryArchiveTemplate = props => {
-  const { data, pageContext, initial } = props
+  const { data, pageContext, initial, location } = props
 
   // Preview
   const { data: previewData } = useQuery(
@@ -30,6 +30,7 @@ const CategoryArchiveTemplate = props => {
         pageContext={pageContext}
         modules={definedModules}
         getAllPosts={data.allSanityPost}
+        location={location}
       />
     </>
   )

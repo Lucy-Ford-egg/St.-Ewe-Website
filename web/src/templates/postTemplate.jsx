@@ -8,7 +8,7 @@ import { useQuery } from "../../sanity/store"
 import { POST_QUERY } from "../queries/documentQueries"
 
 const PostTemplate = props => {
-  const { data, pageContext, initial } = props
+  const { data, pageContext, initial, location } = props
   const theme = useTheme()
 
   // Preview
@@ -27,6 +27,7 @@ const PostTemplate = props => {
         modules={definedModules}
         allSanityPost={data.allSanityPost}
         getAllPosts={data.getAllPosts}
+        location={location}
       />
     </>
   )

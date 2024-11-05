@@ -9,7 +9,7 @@ import { PAGE_QUERY, SITE_SETTINGS } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const PageTemplate = props => {
-  const { data, pageContext, initial } = props
+  const { data, pageContext, initial, location } = props
 
   // Preview
   const definedSlug =
@@ -42,6 +42,7 @@ const PageTemplate = props => {
       pageContext={pageContext}
       modules={definedModules}
       sanitySiteSettings={siteSettings}
+      location={location}
     />
   )
 }
