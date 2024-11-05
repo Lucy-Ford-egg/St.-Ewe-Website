@@ -50,7 +50,10 @@ const HOTSPOT = `
       asset->{
         ...,
       }
-    }
+    },
+    links[]{
+      ${LINK},
+    },
   }
 `
 export const PAGE_BUILDER = `
