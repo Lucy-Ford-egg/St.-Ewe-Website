@@ -116,7 +116,7 @@ const Modules = props => {
       return false
     }
   }
-  debugger
+
   if (modules != null) {
     return (
       <React.Suspense

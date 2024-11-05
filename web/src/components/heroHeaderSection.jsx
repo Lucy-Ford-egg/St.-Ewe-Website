@@ -138,7 +138,7 @@ export const HeroHeaderSection = props => {
   //const titleOpacity = useTransform(scrollYProgress, [1, 0], ["0%", "100%"]);
   const content = useTransform(scrollYProgress, [0, 1], [0, 20])
   //const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
-  debugger
+
   return (
     <ModuleContainer
       {...props}
