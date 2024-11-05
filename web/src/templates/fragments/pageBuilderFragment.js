@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 
 export const pageBuilderQuery = graphql`
-  fragment PageBuilderFragment on SanityAccordionSectionOrBlogSectionOrBorderSectionOrCtaSectionOrFeatureSectionOrHeaderSectionOrHeroHeaderSectionOrHotspotSectionOrImageSectionOrRecipesSectionOrTeamSectionOrTestimonialSectionOrTextSectionOrTitleSection {
+  fragment PageBuilderFragment on SanityAccordionSectionOrBlogSectionOrBorderSectionOrCtaSectionOrFeatureSectionOrHeaderSectionOrHeroHeaderSectionOrHotspotSectionOrImageSectionOrRecipesSectionOrTeamSectionOrTestimonialSectionOrTextSectionOrTimelineSectionOrTitleSection {
     ... on SanityHeaderSection {
       ...HeaderSectionFragment
     }

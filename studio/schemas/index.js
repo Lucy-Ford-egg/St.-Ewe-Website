@@ -20,6 +20,7 @@ import careers from './careers'
 import faqs from './faqs'
 import quote from './quote'
 import seasonalIllustration from './seasonalIllustration'
+import timeline from './timeline'
 // Atoms
 import ingredient from './ingredients'
 import recipesCategory from './taxonomies/recipesCategory'
@@ -131,6 +132,7 @@ export const schema = {
     careers,
     faqs,
     seasonalIllustration,
+    timeline,
     // Sections
     teamSection,
     accordionSection,

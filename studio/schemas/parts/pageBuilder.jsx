@@ -13,6 +13,7 @@ import imageSection from '../sections/imageSection'
 import blogSection from '../sections/blogSection'
 import testimonialSection from '../sections/testimonialSection'
 import hotspotSection from '../sections/hotspotSection'
+import timelineSection from '../sections/timelineSection'
 
 export const pageBuilder = [
   {type: heroHeaderSection.name},
@@ -29,4 +30,5 @@ export const pageBuilder = [
   {type: teamSection.name},
   {type: testimonialSection.name},
   {type: hotspotSection.name},
+  {type: timelineSection.name},
 ]

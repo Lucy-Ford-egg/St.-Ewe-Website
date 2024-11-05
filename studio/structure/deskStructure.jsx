@@ -11,6 +11,7 @@ import {
   LiaQuoteLeftSolid,
   LiaMaleSolid,
   LiaBriefcaseSolid,
+  LiaCalendarDaySolid,
   LiaQuestionCircle,
   LiaCrosshairsSolid,
   LiaCarrotSolid,
@@ -65,6 +66,16 @@ export const deskStructure = (S, context) => {
           S.documentTypeList('hotspots')
             .title('Hotspots')
             .child((id) => S.document().schemaType('hotspots').documentId(id)),
+          // .defaultOrdering([{field: 'title', direction: 'asc'}]),
+        ),
+
+      S.listItem()
+        .title('Timeline Entries')
+        .icon(LiaCalendarDaySolid)
+        .child(
+          S.documentTypeList('timeline')
+            .title('Timeline Entries')
+            .child((id) => S.document().schemaType('timeline').documentId(id)),
           // .defaultOrdering([{field: 'title', direction: 'asc'}]),
         ),
       S.divider(),
