@@ -24,7 +24,7 @@ const Wrapper = styled("div")(
 
 const GridContainer = styled("div")(({ theme }) => ({
   display: "grid",
-  gridColumn: "2/24",
+  gridColumn: "3/23",
   gridTemplateRows: "1fr",
   gridColumnGap: 21,
   gridRowGap: 21,
@@ -54,7 +54,7 @@ const GridContainer = styled("div")(({ theme }) => ({
       gridColumn: "span 10",
     },
     [theme.breakpoints.up("md")]: {
-      gridTemplateRows: "1fr 1fr",
+      //gridTemplateRows: "1fr 1fr",
       gridColumn: "span 5",
     },
   },
@@ -62,7 +62,7 @@ const GridContainer = styled("div")(({ theme }) => ({
     gridArea: "1 / 1 /  1 / 25",
     height: "100%",
     [theme.breakpoints.up("md")]: {
-      gridArea: "1 / 1 / 3 / 13",
+      gridArea: "1 / 1 / 3 / 11",
       height: "auto",
     },
   },
@@ -81,7 +81,7 @@ const GridItem = styled("div")(
 )
 const RecipeFilter = styled("div")(({ props }) => ({
   display: "grid",
-  gridColumn: "2/24",
+  gridColumn: "3/23",
 }))
 
 export const RecipesSection = ({
