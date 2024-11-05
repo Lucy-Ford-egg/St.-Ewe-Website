@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react"
 import { graphql } from "gatsby"
-import { Container, Grid, styled } from "@mui/material/"
-import useMediaQuery from "@mui/material/useMediaQuery"
+import { styled } from "@mui/material/"
+import { Filter } from "./filter"
 import { useTheme } from "@mui/material"
 import { RecipeTile } from "./recipeTile"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
 
 //Preview
 import { useQuery } from "../../sanity/store"
@@ -24,7 +24,7 @@ const Wrapper = styled("div")(
 
 const GridContainer = styled("div")(({ theme }) => ({
   display: "grid",
-  gridColumn: "3/23",
+  gridColumn: "2/24",
   gridTemplateRows: "1fr",
   gridColumnGap: 21,
   gridRowGap: 21,
@@ -54,7 +54,7 @@ const GridContainer = styled("div")(({ theme }) => ({
       gridColumn: "span 10",
     },
     [theme.breakpoints.up("md")]: {
-      gridTemplateRows: "unset",
+      gridTemplateRows: "1fr 1fr",
       gridColumn: "span 5",
     },
   },
@@ -62,7 +62,7 @@ const GridContainer = styled("div")(({ theme }) => ({
     gridArea: "1 / 1 /  1 / 25",
     height: "100%",
     [theme.breakpoints.up("md")]: {
-      gridArea: "1 / 1 / 3 / 11",
+      gridArea: "1 / 1 / 3 / 13",
       height: "auto",
     },
   },
@@ -79,6 +79,10 @@ const GridItem = styled("div")(
     display: "grid",
   }),
 )
+const RecipeFilter = styled("div")(({ props }) => ({
+  display: "grid",
+  gridColumn: "2/24",
+}))
 
 export const RecipesSection = ({
   allSanityRecipes,
@@ -152,7 +156,17 @@ export const RecipesSection = ({
       paddingTop={theme.spacing(paddingTop)}
       paddingBottom={theme.spacing(paddingBottom)}
     >
-      {/* <Filter className="component-filter" type="posts" allData={allPost} filtersData={filtersPosts} setFilterData={setFilterData}/> */}
+      <RecipeFilter>
+        <Filter
+          backgroundColour={backgroundColour}
+          className="component-filter"
+          type="recipes"
+          // allData={getAllPosts.nodes}
+          filtersData={filtersPosts}
+          setFilterData={setFilterData}
+          pageContext={pageContext}
+        />
+      </RecipeFilter>
 
       {filtersPosts && (
         <GridContainer

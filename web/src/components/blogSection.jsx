@@ -20,7 +20,7 @@ const Wrapper = styled("div")(({ props, theme }) => ({
 
 const BlogFilter = styled("div")(({ props }) => ({
   display: "grid",
-  gridColumn: "2/25",
+  gridColumn: "2/24",
 }))
 
 const BlogAllPostLink = styled("div")(({ props }) => ({

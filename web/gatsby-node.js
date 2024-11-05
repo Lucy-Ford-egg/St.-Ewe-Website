@@ -501,7 +501,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         createPage,
         items: recipesCategories,
         itemsPerPage: 12,
-        pathPrefix: `/recipe/category/${node?.slug?.current}`,
+        pathPrefix: `/recipes/category/${node?.slug?.current}`,
         component: require.resolve(
           `./src/templates/recipesCategoryArchiveTemplate.jsx`,
         ),

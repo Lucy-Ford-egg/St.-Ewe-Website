@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Button } from "gatsby-theme-material-ui"
 import Typography from "@mui/material/Typography"
 import { graphql, useStaticQuery } from "gatsby"
@@ -6,14 +6,14 @@ import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
 
 const Wrapper = styled("div")(({ props, theme }) => ({
-  paddingBottom: "var(--ms4)",
+  paddingBottom: "var(--ms0)",
   display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
+  flexDirection: "row",
+  alignItems: "center",
   overflowX: "hidden",
+  justifyContent: "space-between",
   [theme.breakpoints.up("lg")]: {
-    flexDirection: "row",
-    alignItems: "center",
+    paddingBottom: "var(--ms4)",
   },
 }))
 
@@ -22,14 +22,23 @@ const ScrollFilter = styled("div")(({ props, theme }) => ({
   display: "flex",
   flexWrap: "nowrap",
   overflowX: "auto",
-  width: "100%",
+
   "&::-webkit-scrollbar": {
     width: "var(--ms-4)",
   },
   [theme.breakpoints.up("lg")]: {},
 }))
 
-export const Filter = ({ pageContext, backgroundColour }) => {
+const FilterButton = styled(Button)(({ props, theme }) => ({
+  fontFamily: "Roboto Serif",
+  fontSize: 12,
+  letterSpaceing: 1.2,
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+export const Filter = ({ type, pageContext, backgroundColour }) => {
+  const [whichFilter, setWhichFilter] = useState("all")
+
   const data = useStaticQuery(graphql`
     query CategoriesQuery {
       allSanityCategories {
@@ -40,9 +49,21 @@ export const Filter = ({ pageContext, backgroundColour }) => {
           name
         }
       }
+      allSanityRecipesCategory {
+        nodes {
+          slug {
+            current
+          }
+          name
+        }
+      }
     }
   `)
 
+  const cats =
+    type === "recipes"
+      ? data?.allSanityRecipesCategory
+      : data.allSanityCategories
   return (
     <Wrapper>
       <Typography
@@ -54,28 +75,29 @@ export const Filter = ({ pageContext, backgroundColour }) => {
         Filter Posts:
       </Typography>
       <ScrollFilter>
-        <Button
+        <FilterButton
           variant="text"
           key="all"
-          to={`/news`}
+          to={`/${type}`}
           sx={{
             flex: "0 0 auto",
             minWidth: "fit-content",
             color:
-              pageContext?.slug === "news"
+              pageContext?.slug === "news" || pageContext?.slug === "recipies"
                 ? "primary.main"
                 : contrastBrandPalette[backgroundColour?.label]?.contrastText,
           }}
         >
           All
-        </Button>
-        {data.allSanityCategories?.nodes &&
-          data.allSanityCategories?.nodes.map(node => {
+        </FilterButton>
+        {cats?.nodes &&
+          cats?.nodes.map(node => {
             return (
-              <Button
+              <FilterButton
                 variant="text"
                 key={node?.name}
-                to={`/news/category/${node?.slug?.current}/`}
+                to={`/${type}/category/${node?.slug?.current}/`}
+                onClick={() => setWhichFilter(node?.slug?.current)}
                 sx={{
                   flex: "0 0 auto",
                   color:
@@ -90,7 +112,7 @@ export const Filter = ({ pageContext, backgroundColour }) => {
                 }}
               >
                 {node?.name}
-              </Button>
+              </FilterButton>
             )
           })}
       </ScrollFilter>

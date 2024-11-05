@@ -21,6 +21,7 @@ const Wrapper = styled("div")(({ theme, navOpen }) => ({
   width: "100vw",
   backgroundColor: navOpen && "var(--original-primary)",
   transition: "all 0.2s ease-in-out 0s",
+  pointerEvents: "none",
   [theme.breakpoints.up("lg")]: {
     paddingTop: "var(--ms4)",
   },

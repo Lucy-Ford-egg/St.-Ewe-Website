@@ -13,13 +13,13 @@ const RecipesCategoryArchiveTemplate = props => {
   // Preview
   const { data: previewData } = useQuery(
     PAGE_QUERY,
-    { slug: data?.sanityCategories?.slug?.current },
+    { slug: data?.sanityRecipesCategory?.slug?.current },
     { initial },
   )
 
   const definedModules =
     (previewData && previewData?.pageBuilder) ||
-    data?.sanityCategories?.pageBuilder
+    data?.sanityRecipesCategory?.pageBuilder
 
   return (
     <>
@@ -27,6 +27,7 @@ const RecipesCategoryArchiveTemplate = props => {
         previewData={previewData?.pageBuilder}
         sanityConfig={getSanityClient}
         allSanityPost={data.allSanityPost}
+        allSanityRecipes={data?.allSanityRecipes}
         pageContext={pageContext}
         modules={definedModules}
         getAllPosts={data.allSanityPost}
@@ -44,51 +45,22 @@ export const recipieCategoryArchiveTemplateQuery = graphql`
     $slug: String!
     $skip: Int
     $limit: Int
-    $postIds: [String]
   ) {
-    allSanityPost(
+    allSanityRecipes(
       skip: $skip
       limit: $limit
       sort: { date: DESC }
-      filter: { categories: { elemMatch: { _id: { in: $postIds } } } }
+      filter: {
+        categories: { elemMatch: { slug: { current: { eq: $slug } } } }
+      }
     ) {
       nodes {
-        author {
-          name
-        }
-        slug {
-          current
-        }
-        title
-        date
-        categories {
-          _id
-          name
-          slug {
-            current
-          }
-        }
-        tileImage {
-          asset {
-            _id
-            gatsbyImageData
-          }
-          hotspot {
-            x
-            y
-            width
-            height
-          }
-          crop {
-            bottom
-            left
-            right
-            top
-          }
-        }
+        _key
+        _id
+        ...RecipeTileFragment
       }
     }
-    sanityCategories(slug: { current: { eq: $slug } }) {
+    sanityRecipesCategory(slug: { current: { eq: $slug } }) {
       _id
       slug {
         current

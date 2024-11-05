@@ -12,7 +12,7 @@ import { styled } from "@mui/material/styles"
 const Wrapper = styled("div")(({ theme }) => ({
   display: "grid",
   gridColumn: "1/24",
-  borderRadius: "var(--ms4) var(--ms4) 0 0",
+  borderRadius: "var(--ms4)",
   overflow: "hidden",
   "& a": {
     display: "grid",
