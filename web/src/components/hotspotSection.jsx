@@ -46,11 +46,11 @@ const Hotspot = styled("div")(({ mirror, x, y, theme, backgroundColour }) => ({
   top: `${y}%`,
   position: "absolute",
   zIndex: 1,
-  backgroundColor: "var(--rich-yolk-primary)",
-  border: "2px solid var(--quirky-quail-secondary)",
-  width: 32,
-  height: 32,
-  borderRadius: "99999px",
+  // backgroundColor: "var(--rich-yolk-primary)",
+  // border: "2px solid var(--quirky-quail-secondary)",
+  // width: 32,
+  // height: 32,
+  //borderRadius: "99999px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -145,17 +145,33 @@ export const HotspotSection = props => {
                   y={node?.y}
                 >
                   <svg
-                    width="67"
+                    width="66"
                     height="74"
-                    viewBox="0 0 67 74"
+                    viewBox="0 0 66 74"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M25.1086 0.703554C31.9868 2.52596 33.1011 12.3754 39.2063 16.0303C46.4126 20.3444 57.6834 16.4891 62.7128 23.2158C67.725 29.9194 66.7425 40.2785 62.8935 47.7112C59.2203 54.8043 49.988 56.0959 43.3696 60.5684C37.0761 64.8213 32.6224 74.3571 25.1086 73.2448C17.3652 72.0985 15.434 61.6762 10.3941 55.6869C6.89651 51.5304 1.15914 48.8849 0.122908 43.5524C-0.883836 38.3718 4.60735 34.21 5.20151 28.9659C6.05572 21.4266 -0.0799881 12.9822 4.28936 6.77896C8.55676 0.72047 17.9452 -1.1944 25.1086 0.703554Z"
-                      fill="white"
+                    {spotSelected && spotSelected?._key === node?._key && (
+                      <motion.path
+                        intitial={{
+                          opacity: 0,
+                        }}
+                        animate={{
+                          opacity: 1,
+                        }}
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M25.0581 0.70214C31.9225 2.52089 33.0346 12.3505 39.1275 15.9981C46.3193 20.3035 57.5675 16.456 62.5868 23.1691C67.5889 29.8593 66.6084 40.1976 62.7671 47.6153C59.1013 54.6942 49.8876 55.9832 43.2825 60.4467C37.0016 64.691 32.5569 74.2077 25.0581 73.0976C17.3304 71.9536 15.403 61.5523 10.3732 55.575C6.88265 51.4269 1.15682 48.7867 0.122661 43.4649C-0.88206 38.2947 4.5981 34.1412 5.19106 28.9077C6.04355 21.3835 -0.0798274 12.9561 4.28075 6.76534C8.53956 0.719022 17.9091 -1.192 25.0581 0.70214Z"
+                        fill="white"
+                      />
+                    )}
+                    <circle
+                      cx="30.348"
+                      cy="36.6312"
+                      r="11.6175"
+                      fill="#EB7806"
+                      strokeWidth="2px"
+                      stroke="var(--white)"
                     />
                   </svg>
                 </Hotspot>
