@@ -24,14 +24,25 @@ const Wrapper = styled("div")(
 
 const TimeLine = styled("div")(
   ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "2/25",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-
+    gridColumn: "1/25",
     gridRow: "1/1",
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "nowrap",
+    columnGap: 60,
+    overflowX: "scroll",
+    gridAutoFlow: "column",
+    scrollSnapType: "x mandatory",
+    scrollbarWidth: "none" /* Firefox */,
+    scrollSnapAlign: "start",
+    scrollPadding: "0 var(--ms-1)",
+    "&::-webkit-scrollbar": {
+      display: "none" /* Safari and Chrome */,
+    },
     [theme.breakpoints.up("sm")]: {},
     [theme.breakpoints.up("lg")]: {
-      gridColumnGap: 90,
+      columnGap: 90,
     },
   }),
 )
@@ -44,28 +55,68 @@ const TimeLineEntry = styled("div")(({ theme, isAsset }) => ({
     objectFit: "contain",
   },
   display: "flex",
+  flexBasis: "70%",
+  width: "70%",
+  minWidth: "70%",
+  rowGap: "var(--ms2)",
+  scrollSnapAlign: "start",
   flexDirection: "column",
+
+  alignSelf: isAsset ? "end" : "start",
+  "&:first-of-type": {
+    paddingLeft: "var(--ms-1)",
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: "var(--ms7)",
+    },
+  },
+  "&:last-of-type": {
+    paddingRight: "var(--m-1)",
+    [theme.breakpoints.up("lg")]: {
+      paddingRight: "var(--ms7)",
+    },
+  },
   "&:nth-of-type(even)": {
-    flexDirection: "column-reverse",
-    alignSelf: "start",
+    display: "flex",
+    alignSelf: isAsset ? "start" : "end",
+    "& .date": {
+      order: 0,
+    },
+    "& .text": {
+      order: 1,
+    },
+    "& .image": {
+      order: 2,
+    },
   },
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "span 8",
+    flexBasis: "30%",
+    width: "30%",
+    minWidth: "30%",
+    rowGap: "var(--ms2)",
   },
 }))
 
-const Date = styled(Typography)(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Date = styled("h4")(({ theme, backgroundColour }) => ({
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  backgroundColor: backgroundColour?.value,
+  margin: "0!important",
+  padding: "0!important",
+  fontSize: "var(--ms5)",
+  lineHeight: "var(--ms5)",
+  fontFamily: "var(--font-primary)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
 
 const Text = styled("div")(
   ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
     color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+    backgroundColor: backgroundColour?.value,
+    "& p": {
+      margin: "0!important",
+      padding: "0!important",
+    },
     [theme.breakpoints.up("sm")]: {},
     [theme.breakpoints.up("lg")]: {},
   }),
@@ -77,8 +128,16 @@ const Line = styled("div")(
     gridRow: "1/1",
     display: "flex",
     alignItems: "center",
+    "& svg": {
+      maxWidth: "100vw",
+      path: {
+        strokeWidth: "6",
+        [theme.breakpoints.up("lg")]: {
+          strokeWidth: "12",
+        },
+      },
+    },
     [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
   }),
 )
 
@@ -92,28 +151,28 @@ export const TimelineSection = props => {
       <Wrapper theme={theme} backgroundColour={backgroundColour}>
         <Line>
           <svg
-            width="1440"
-            height="153"
-            viewBox="0 0 1440 153"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
           >
             <path
               d="M3 34.8634C1124.5 -108.637 1757.5 345.863 2871 34.8637"
               stroke="#EB7806"
-              stroke-width="12"
-              stroke-linecap="round"
-              stroke-dasharray="1 30"
+              strokeLinecap="round"
+              strokeDasharray="1 30"
             />
           </svg>
         </Line>
         <TimeLine>
           {times?.map(node => {
-            debugger
             return (
               <TimeLineEntry isAsset={node?.isAsset}>
                 {node?.image && (
                   <Image
+                    className="image"
                     // pass asset, hotspot, and crop fields
                     crop={node?.image?.crop}
                     hotspot={node?.image?.hotspot}
@@ -127,16 +186,12 @@ export const TimelineSection = props => {
                   />
                 )}
                 {node?.title && (
-                  <Date
-                    variant="h2"
-                    component="h4"
-                    backgroundColour={backgroundColour}
-                  >
+                  <Date className="date" backgroundColour={backgroundColour}>
                     {node?.title}
                   </Date>
                 )}
                 {node?.text && (
-                  <Text backgroundColour={backgroundColour}>
+                  <Text className="text" backgroundColour={backgroundColour}>
                     <RenderPortableText variant={false} value={node?.text} />
                   </Text>
                 )}
