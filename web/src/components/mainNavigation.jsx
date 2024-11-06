@@ -218,12 +218,9 @@ const MainNavigation = props => {
 
   const handleClick = (i, e) => {
     if (mobile) {
-      // Mobile click behavior
-
       e.preventDefault()
-
       setActiveMenu(i) // Open the submenu
-      debugger
+
       if (activeMenu === i) {
         setActiveMenu(null) // Close if already active
         navigate(e?.currentTarget?.pathname)
