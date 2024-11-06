@@ -219,6 +219,10 @@ module.exports = {
           fonts: {
             google: [
               {
+                family: `Roboto`,
+                variants: [`400`],
+              },
+              {
                 family: `Roboto Serif`,
                 variants: [`400`],
               },
