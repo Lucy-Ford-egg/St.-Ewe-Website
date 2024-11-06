@@ -479,7 +479,7 @@ let clientTheme = createTheme({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "max-content",
+          width: "fit-content",
           fontWeight: 400,
           padding: `${defaultTheme.spacing(5)} ${defaultTheme.spacing(5)}`,
           fontSize: `${defaultTheme.spacing(5)} !important`,
