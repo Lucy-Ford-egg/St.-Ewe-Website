@@ -32,7 +32,6 @@ const ILLUSTRATIONS = `
     ...,
   }
 `
-
 const ACCORDION = `
   accordion[]->{
     ...,
@@ -61,6 +60,10 @@ const HOTSPOT = `
     },
   }
 `
+
+const RECIPE_SECTION = `
+  instructions[]{...}
+`
 export const PAGE_BUILDER = `
   pageBuilder[] {
     ...,
@@ -71,6 +74,7 @@ export const PAGE_BUILDER = `
     ${ILLUSTRATIONS},
     ${HOTSPOT},
     ${TIMELINE},
+    ${RECIPE_SECTION},
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {

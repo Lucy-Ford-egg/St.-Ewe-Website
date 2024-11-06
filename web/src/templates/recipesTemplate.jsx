@@ -93,7 +93,7 @@ export const RecipeTemplateQuery = graphql`
         hours
         minutes
       }
-      _rawInstructions(resolveReferences: { maxDepth: 10 })
+      instructions: _rawInstructions(resolveReferences: { maxDepth: 10 })
       pageBuilder {
         ... on SanityHeaderSection {
           ...HeaderSectionFragment

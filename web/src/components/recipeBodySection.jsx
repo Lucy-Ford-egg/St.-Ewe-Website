@@ -1,113 +1,100 @@
-import React, { useRef, useState } from "react"
+import React from "react"
 import { graphql } from "gatsby"
-import { useTheme, useMediaQuery, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import { contrastBrandPalette } from "../utils/colours"
-import { BorderSection } from "./borderSection"
-
-import { motion, useScroll, useTransform } from "framer-motion"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
-import mask from "../../static/assets/svg-mask.svg"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    display: "grid",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    gridColumn: "1/25",
-    flexDirection: "column-reverse",
-    [theme.breakpoints.up("lg")]: {
-      flexDirection: "row",
-    },
-  }),
-)
+const Wrapper = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  gridColumn: "1/25",
+  flexDirection: "column-reverse",
+  [theme.breakpoints.up("lg")]: {
+    flexDirection: "row",
+  },
+}))
 
-const ListWrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "2/24",
+const ListWrapper = styled("div")(({ theme }) => ({
+  gridColumn: "2/24",
+  display: "flex",
+  flexDirection: "column",
+  height: "fit-content",
+  gridRow: "1/auto",
+  [theme.breakpoints.up("md")]: {
+    gridColumn: "15/23",
     display: "flex",
-    flexDirection: "column",
-    height: "fit-content",
-    gridRow: "1/auto",
-    [theme.breakpoints.up("md")]: {
-      gridColumn: "15/23",
-      display: "flex",
-      gridTemplateColumns: "repeat(24, 1fr)",
-      gridTemplateRows: "51px auto 51px",
-      gridRow: "unset",
-    },
-  }),
-)
+    gridTemplateColumns: "repeat(24, 1fr)",
+    gridTemplateRows: "51px auto 51px",
+    gridRow: "unset",
+  },
+}))
 
-const List = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    gridRow: "2/auto",
-    height: "fit-content",
-    "& .title": {
-      textTransform: "uppercase",
+const List = styled("div")(({ theme, backgroundColour }) => ({
+  gridColumn: "1/25",
+  gridRow: "2/auto",
+  height: "fit-content",
+  "& .title": {
+    textTransform: "uppercase",
+  },
+  backgroundColor: contrastBrandPalette[backgroundColour?.label]?.contrastBase,
+  padding: "0 var(--ms2)",
+  [theme.breakpoints.up("lg")]: {
+    adding: "0 var(--ms3)",
+  },
+  "& ul": {
+    listStyle: "none",
+    margin: 0,
+    padding: 0,
+    textTransform: "capitalize",
+    listStyle: "none",
+  },
+  "& li": {
+    paddingTop: "var(--ms-3)",
+    paddingBottom: "var(--ms-3)",
+    borderBottom: "1px solid var(--original-large)",
+  },
+}))
+
+const Border = styled("div")(({ backgroundColour }) => ({
+  gridColumn: "1/25",
+  alignItems: "end",
+  display: "flex",
+  height: "fit-content",
+  svg: {
+    width: "100%",
+    height: "auto",
+    outline: "none",
+    border: "none",
+    path: {
+      fill: contrastBrandPalette[backgroundColour?.label]?.contrastBase,
     },
+  },
+  position: "relative",
+  "&:before": {
+    position: "absolute",
+    content: "''",
+    width: "100%",
+    height: "10px",
     backgroundColor:
       contrastBrandPalette[backgroundColour?.label]?.contrastBase,
-    padding: "0 var(--ms2)",
-    [theme.breakpoints.up("lg")]: {
-      adding: "0 var(--ms3)",
-    },
-    "& ul": {
-      listStyle: "none",
-      margin: 0,
-      padding: 0,
-      textTransform: "capitalize",
-      listStyle: "none",
-    },
-    "& li": {
-      paddingTop: "var(--ms-3)",
-      paddingBottom: "var(--ms-3)",
-      borderBottom: "1px solid var(--original-large)",
-    },
-  }),
-)
-
-const Border = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    alignItems: "end",
-    display: "flex",
-    height: "fit-content",
-    svg: {
-      width: "100%",
-      height: "auto",
-      outline: "none",
-      border: "none",
-      path: {
-        fill: contrastBrandPalette[backgroundColour?.label]?.contrastBase,
-      },
-    },
-    position: "relative",
-    "&:before": {
-      position: "absolute",
-      content: "''",
-      width: "100%",
-      height: "10px",
-      backgroundColor:
-        contrastBrandPalette[backgroundColour?.label]?.contrastBase,
-      inset: 0,
-      bottom: "-6px",
-      top: "unset",
-    },
-    "&:after": {
-      position: "absolute",
-      content: "''",
-      width: "100%",
-      height: "10px",
-      backgroundColor:
-        contrastBrandPalette[backgroundColour?.label]?.contrastBase,
-      inset: 0,
-      top: "unset",
-      bottom: "-6px",
-    },
-  }),
-)
+    inset: 0,
+    bottom: "-6px",
+    top: "unset",
+  },
+  "&:after": {
+    position: "absolute",
+    content: "''",
+    width: "100%",
+    height: "10px",
+    backgroundColor:
+      contrastBrandPalette[backgroundColour?.label]?.contrastBase,
+    inset: 0,
+    top: "unset",
+    bottom: "-6px",
+  },
+}))
 
 const Content = styled("div")(({ mirror, theme }) => ({
   gridColumn: "2/24",
@@ -134,9 +121,6 @@ const Content = styled("div")(({ mirror, theme }) => ({
         display: "block",
         fontWeight: 700,
       },
-      // "&::marker":{
-      //   content: '"- Step"',
-      // },
     },
   },
   [theme.breakpoints.up("sm")]: {
@@ -149,42 +133,7 @@ const Content = styled("div")(({ mirror, theme }) => ({
 }))
 
 export const RecipeBodySection = props => {
-  const theme = useTheme()
-
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
-  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
-  const {
-    title,
-    _rawText,
-    textAlign,
-    image,
-    previewData,
-    sanityConfig,
-    links,
-    mirror,
-    backgroundColour,
-    pageContext,
-    _type,
-    data,
-  } = props
-
-  const definedText =
-    (previewData && _type === previewData?._type && previewData?.text) ||
-    _rawText
-  const definedLinks =
-    (previewData && _type === previewData?._type && previewData?.links) || links
-
-  // const definedImage =
-  //   (previewData && _type === previewData?._type && previewData?.image) || image
-
-  const definedImage =
-    (image?.asset && image) || pageContext?.node?.featuredMedia
-
-  const definedBackgroundColour =
-    (previewData &&
-      _type === previewData?._type &&
-      previewData?.backgroundColour) ||
-    backgroundColour
+  const { mirror, backgroundColour, data } = props
 
   return (
     <ModuleContainer {...props}>
@@ -193,7 +142,7 @@ export const RecipeBodySection = props => {
           <Typography variant="h4" className="title">
             Instructions
           </Typography>
-          <RenderPortableText value={data?.sanityRecipes?._rawInstructions} />
+          <RenderPortableText value={data?.sanityRecipes?.instructions} />
         </Content>
 
         <ListWrapper mirror={mirror} backgroundColour={backgroundColour}>
