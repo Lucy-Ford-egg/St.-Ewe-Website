@@ -52,7 +52,11 @@ export const Head = ({ data, location }) => {
 }
 
 export const pageTemplateQuery = graphql`
-  query pageTemplateQuery($slug: String!, $recipeIds: [String]) {
+  query pageTemplateQuery(
+    $slug: String!
+    $recipeIds: [String]
+    $postIds: [String]
+  ) {
     allSanityRecipes(
       sort: { date: DESC }
       filter: { _id: { in: $recipeIds } }
@@ -64,7 +68,12 @@ export const pageTemplateQuery = graphql`
       }
     }
 
-    allSanityPost(sort: { date: DESC }, limit: 8) {
+    allSanityPost(
+      filter: {
+        categories: { elemMatch: { slug: { current: { in: $postIds } } } }
+      }
+      sort: { date: DESC }
+    ) {
       nodes {
         _rawExcerpt(resolveReferences: { maxDepth: 3 })
         _rawContent(resolveReferences: { maxDepth: 10 })

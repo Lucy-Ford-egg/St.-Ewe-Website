@@ -1,14 +1,14 @@
-import {LiaSortAlphaDownSolid } from "react-icons/lia";
-import { defineField, defineType } from 'sanity'
+import {LiaSortAlphaDownSolid} from 'react-icons/lia'
+import {defineField, defineType} from 'sanity'
 
 import openGraph from '../openGraph'
 import siteMeta from '../siteMeta'
-import { pageBuilder } from "../parts/pageBuilder";
+import {pageBuilder} from '../parts/pageBuilder'
 
 export default defineType({
   name: 'categories',
   title: 'Post Categories',
-  icon:LiaSortAlphaDownSolid,
+  icon: LiaSortAlphaDownSolid,
   type: 'document',
   groups: [
     {
@@ -48,21 +48,21 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      // options: {
-      //   source: 'name',
-      //   maxLength: 96,
-      //   isUnique: (value, context) => { 
-      //     return (
-      //     context.defaultIsUnique(value, context)
-      //   )},
-      // },
+      options: {
+        source: 'name',
+        maxLength: 96,
+        isUnique: (value, context) => {
+          return context.defaultIsUnique(value, context)
+        },
+      },
       group: 'pageContent',
-    }),    
+    }),
     defineField({
       name: 'pageBuilder',
       type: 'array',
       title: 'Page builder',
-      description: 'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
+      description:
+        'Build out the structure of the page sections by clicking add item and selecting the module which best suits the type of content you wish to add.',
       of: [...pageBuilder],
       group: 'pageContent',
     }),
@@ -71,10 +71,8 @@ export default defineType({
     select: {
       title: 'title',
     },
-    prepare({ title}) {
-    
-
-      return { title }
+    prepare({title}) {
+      return {title: title}
     },
   },
 })

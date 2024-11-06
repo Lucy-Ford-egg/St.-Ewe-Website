@@ -59,7 +59,8 @@ export const Filter = ({ type, pageContext, backgroundColour }) => {
       }
     }
   `)
-
+  const whichType =
+    type === "posts" ? "news" : type === "recipes" ? "recipes" : ""
   const cats =
     type === "recipes"
       ? data?.allSanityRecipesCategory
@@ -78,7 +79,7 @@ export const Filter = ({ type, pageContext, backgroundColour }) => {
         <FilterButton
           variant="text"
           key="all"
-          to={`/${type}`}
+          to={`/${whichType}`}
           sx={{
             flex: "0 0 auto",
             minWidth: "fit-content",
@@ -96,7 +97,7 @@ export const Filter = ({ type, pageContext, backgroundColour }) => {
               <FilterButton
                 variant="text"
                 key={node?.name}
-                to={`/${type}/category/${node?.slug?.current}/`}
+                to={`/${whichType}/category/${node?.slug?.current}/`}
                 onClick={() => setWhichFilter(node?.slug?.current)}
                 sx={{
                   flex: "0 0 auto",

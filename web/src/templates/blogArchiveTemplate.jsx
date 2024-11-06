@@ -39,8 +39,20 @@ export const Head = ({ data, location }) => {
 }
 
 export const blogArchiveTemplateQuery = graphql`
-  query blogArchiveTemplateQuery($slug: String!, $skip: Int, $limit: Int) {
-    allSanityPost(skip: $skip, limit: $limit, sort: { date: DESC }) {
+  query blogArchiveTemplateQuery(
+    $slug: String!
+    $skip: Int
+    $limit: Int
+    $postIds: [String]
+  ) {
+    allSanityPost(
+      skip: $skip
+      limit: $limit
+      sort: { date: DESC }
+      filter: {
+        categories: { elemMatch: { slug: { current: { in: $postIds } } } }
+      }
+    ) {
       nodes {
         author {
           name

@@ -38,7 +38,7 @@ export const Head = ({ data, location }) => {
 }
 
 export const pageTemplateQuery = graphql`
-  query postTemplateQuery($slug: String!) {
+  query postTemplateQuery($slug: String!, $postIds: [String]) {
     sanityPost(slug: { current: { eq: $slug } }) {
       ...SeoPostFragment
       author {
@@ -58,6 +58,47 @@ export const pageTemplateQuery = graphql`
       #...SeoPageFragment
       pageBuilder {
         ...PageBuilderFragment
+      }
+    }
+    allSanityPost(
+      filter: {
+        categories: { elemMatch: { slug: { current: { in: $postIds } } } }
+      }
+    ) {
+      nodes {
+        author {
+          name
+        }
+        slug {
+          current
+        }
+        title
+        date
+        categories {
+          _id
+          name
+          slug {
+            current
+          }
+        }
+        tileImage {
+          asset {
+            _id
+            gatsbyImageData
+          }
+          hotspot {
+            x
+            y
+            width
+            height
+          }
+          crop {
+            bottom
+            left
+            right
+            top
+          }
+        }
       }
     }
   }

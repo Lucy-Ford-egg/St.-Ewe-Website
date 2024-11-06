@@ -163,14 +163,12 @@ export default defineType({
       date: 'date',
       media: 'featuredImage',
       author: 'author.name',
-      categories: 'categories', // Get all categories as references
+      categories: 'categories', // Use `->` to dereference the category and get its `name`
     },
     prepare({title, media, author, date, categories}) {
       debugger
       const subtitles = [
-        categories &&
-          categories.length > 0 &&
-          `${categories.map((cat: any) => cat?.name).join(', ')}`, // Safely map to get titles
+        categories && `Referenced to ${categories.length} categories`, // Join category names
         author && `by ${author}`,
         date && `on ${format(parseISO(date), 'LLL d, yyyy')}`,
       ].filter(Boolean)

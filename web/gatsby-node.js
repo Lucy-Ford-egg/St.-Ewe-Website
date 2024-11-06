@@ -360,6 +360,9 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   const recipes = result.data?.allSanityRecipes?.nodes || []
   const blogPostsCategories = result.data?.allSanityCategories?.nodes || []
   const recipesCategories = result.data?.allSanityRecipesCategory?.nodes || []
+  const getCategories = result.data?.allSanityCategories?.nodes
+    .map(node => node?.slug?.current)
+    .filter(Boolean) // This removes any undefined or null values
 
   function getShowArchiveBlogIds(pageBuilder, type) {
     const pageBuilderArray = pageBuilder || [] // Extract pageBuilder array
@@ -383,10 +386,11 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       return acc
     }, [])
 
+    // blogPosts.filter(post => post?.categories?.slug?.current)
+    console.warn(`Blog Categories = ${JSON.stringify(getCategories)}`)
+
     const idArray =
-      ids.length === 0 && Array.isArray(blogPosts)
-        ? blogPosts.filter(post => post?.id)
-        : ids
+      ids.length === 0 && Array.isArray(blogPosts) ? getCategories : ids
     console.warn(`Blog IDs: ${JSON.stringify(idArray)}`)
     return idArray
   }
@@ -416,7 +420,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         ? recipes.map(node => node._id)
         : ids
 
-    console.warn(`Recipe IDs: ${JSON.stringify(idArray)}`)
+    //console.warn(`Recipe IDs: ${JSON.stringify(idArray)}`)
     return idArray
   }
 
@@ -518,7 +522,26 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       })
     }
   })
+  //* Blog Posts
 
+  blogPosts.forEach(node => {
+    // console.log(`Blog - ${JSON.stringify(node)}`)
+    createPage({
+      path: `news/${node.categories[0]?.slug?.current}/${node?.slug?.current}`,
+      component: require.resolve(`./src/templates/postTemplate.jsx`),
+      context: {
+        id: node.id,
+        slug: `${node.slug?.current}`,
+        title: node.title,
+        featuredMedia: node.featuredMedia,
+        date: node.date,
+        categories: node.categories,
+        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
+        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),
+      },
+    })
+  })
+  //* Paginate Blog Posts //* Blog Page
   result.data.blogPage.nodes.forEach(node => {
     if (node.slug.current) {
       paginate({
@@ -531,6 +554,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           id: node.id,
           slug: `${node.slug.current}`,
           node: node,
+          limit: 9,
           postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
           recipeIds: getShowArchiveRecipesIds(
             node.pageBuilder,
@@ -563,23 +587,5 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         },
       })
     }
-  })
-
-  blogPosts.forEach(node => {
-    // console.log(`Blog - ${JSON.stringify(node)}`)
-    createPage({
-      path: `news/${node.categories[0]?.slug?.current}/${node?.slug?.current}`,
-      component: require.resolve(`./src/templates/postTemplate.jsx`),
-      context: {
-        id: node.id,
-        slug: `${node.slug?.current}`,
-        title: node.title,
-        featuredMedia: node.featuredMedia,
-        date: node.date,
-        categories: node.categories,
-        postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
-        recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),
-      },
-    })
   })
 }

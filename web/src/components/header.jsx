@@ -31,7 +31,7 @@ const Container = styled("div")(({ theme }) => ({
   display: "grid",
   gridColumn: "2/24",
   gridRow: "1/1",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(11, 1fr)",
   backgroundColor: contrastBrandPalette["Original Large"]?.value,
   borderRadius: "99px",
   border: "3px solid rgba(255, 255, 255, 0.60)",
@@ -47,11 +47,12 @@ const Container = styled("div")(({ theme }) => ({
 }))
 
 const Logo = styled("div")(({ theme }) => ({
-  gridColumn: "7/16",
+  gridColumn: "3/16",
   display: "grid",
   justifyContent: "center",
+  pointerEvents: "visible",
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "3/7",
+    gridColumn: "5/8",
   },
 }))
 
@@ -60,7 +61,7 @@ const MenuButton = styled("div")(({ theme }) => ({
   display: "grid",
   pointerEvents: "visible",
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "9/9",
+    gridColumn: "11/11",
   },
 }))
 
