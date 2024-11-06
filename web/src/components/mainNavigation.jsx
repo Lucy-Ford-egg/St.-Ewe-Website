@@ -31,7 +31,6 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
   color: "var(--white)",
   fontSize: "var(--ms2)",
   fontStyle: "normal",
-  fontWeight: 600,
   lineHeight: "var(--ms2)",
   letterSpacing: 1.4,
   textTransform: "uppercase",
