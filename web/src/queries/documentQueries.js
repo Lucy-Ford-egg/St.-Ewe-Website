@@ -64,6 +64,18 @@ const HOTSPOT = `
 const RECIPE_SECTION = `
   instructions[]{...}
 `
+
+const TEXT_SECTION = `
+  text[]{
+    ...,
+    markDefs[]{
+      ...,
+      reference->{
+        ...,
+      },
+    },
+  }
+`
 export const PAGE_BUILDER = `
   pageBuilder[] {
     ...,
@@ -77,7 +89,8 @@ export const PAGE_BUILDER = `
     ${RECIPE_SECTION},
     excerpt[]->{
       ...,
-    }
+    },
+    ${TEXT_SECTION}
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
