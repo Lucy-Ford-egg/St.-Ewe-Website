@@ -26,9 +26,9 @@ const GridContainer = styled("div")(({ theme }) => ({
   display: "grid",
   gridColumn: "3/23",
   gridTemplateRows: "1fr",
-  gridColumnGap: 21,
+
   gridRowGap: 21,
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(24, 1fr)",
   "& .gridItem": {
     gridColumn: "1/25",
     [theme.breakpoints.up("md")]: {
@@ -52,10 +52,12 @@ const GridContainer = styled("div")(({ theme }) => ({
     [theme.breakpoints.between("sm", "md")]: {
       gridTemplateRows: "unset",
       gridColumn: "span 10",
+      gridColumnGap: 21,
     },
     [theme.breakpoints.up("md")]: {
       //gridTemplateRows: "1fr 1fr",
       gridColumn: "span 5",
+      gridColumnGap: 21,
     },
   },
   "& .featuredItem": {
