@@ -54,6 +54,7 @@ export const blogArchiveTemplateQuery = graphql`
       filter: { categories: { elemMatch: { _id: { in: $postIds } } } }
     ) {
       nodes {
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
         author {
           name
         }

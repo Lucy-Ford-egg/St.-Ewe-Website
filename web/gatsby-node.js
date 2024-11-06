@@ -290,7 +290,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
       }
       allSanityPost(sort: { date: DESC }) {
         nodes {
-          _rawExcerpt(resolveReferences: { maxDepth: 10 })
+          excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
           _rawContent(resolveReferences: { maxDepth: 10 })
           title
           slug {
@@ -387,11 +387,11 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     }, [])
 
     // blogPosts.filter(post => post?.categories?.slug?.current)
-    console.warn(`Blog Categories = ${JSON.stringify(getCategories)}`)
+    reporter.info(`Blog Categories = ${JSON.stringify(getCategories)}`)
 
     const idArray =
       ids.length === 0 && Array.isArray(blogPosts) ? getCategories : ids
-    console.warn(`Blog IDs: ${JSON.stringify(idArray)}`)
+    reporter.info(`Blog IDs: ${JSON.stringify(idArray)}`)
     return idArray
   }
 

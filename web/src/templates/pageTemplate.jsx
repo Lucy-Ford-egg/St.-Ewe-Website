@@ -75,7 +75,7 @@ export const pageTemplateQuery = graphql`
       sort: { date: DESC }
     ) {
       nodes {
-        _rawExcerpt(resolveReferences: { maxDepth: 3 })
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
         _rawContent(resolveReferences: { maxDepth: 10 })
         tileImage {
           asset {

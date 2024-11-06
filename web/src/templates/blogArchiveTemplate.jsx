@@ -54,6 +54,7 @@ export const blogArchiveTemplateQuery = graphql`
       }
     ) {
       nodes {
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
         author {
           name
         }

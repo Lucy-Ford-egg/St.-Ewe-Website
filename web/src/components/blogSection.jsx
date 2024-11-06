@@ -13,7 +13,7 @@ import { styled } from "@mui/material/styles"
 const Wrapper = styled("div")(({ props, theme }) => ({
   gridColumn: "1/25",
   display: "grid",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(24, 1fr)",
   overflow: "hidden",
   [theme.breakpoints.up("lg")]: {},
 }))
@@ -33,15 +33,14 @@ const BlogAllPostLink = styled("div")(({ props }) => ({
 const BlogGrid = styled("div")(({ theme }) => ({
   display: "grid",
   gridColumn: "2/24",
-  gridGap: 21,
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(18, 1fr)",
   [theme.breakpoints.up("sm")]: {
     gridGap: 21,
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "1/25",
-    paddingLeft: "var(--ms4)",
-    paddingRight: "var(--ms4)",
+    gridColumn: "2/24",
+    //paddingLeft: "var(--ms4)",
+    //paddingRight: "var(--ms4)",
   },
 }))
 

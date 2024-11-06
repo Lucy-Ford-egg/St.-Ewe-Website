@@ -16,20 +16,21 @@ const Wrapper = styled("div")(({ theme }) => ({
   overflow: "hidden",
   "& a": {
     display: "grid",
-    gridTemplateColumns: "subgrid",
-    gridTemplateRows: "1fr",
+    gridTemplateColumns: "repeat(1, 1fr)",
+    gridTemplateRows: "auto 1fr",
   },
   [theme.breakpoints.up("sm")]: {
-    gridColumn: "span 11",
+    gridColumn: "span 6",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "span 8",
+    gridColumn: "span 6",
   },
 }))
 
 const BlogContent = styled("div")(({ props }) => ({
   display: "flex",
   zIndex: 2,
+  gridColumn: "1/1",
   gridRow: "1/1",
   transition: `all 0.2s ease-in-out 0s`,
   flexDirection: "column",
@@ -38,6 +39,7 @@ const BlogContent = styled("div")(({ props }) => ({
 
 const BlogImage = styled("div")(({ props }) => ({
   display: "grid",
+  gridColumn: "1/1",
   gridRow: "1/1",
   zIndex: 0,
 }))
@@ -68,6 +70,7 @@ const Excerpt = styled(motion.div)(({ props }) => ({}))
 
 const Overlay = styled(motion.div)(({ props }) => ({
   backgroundColor: "rgba(235, 120, 6, 0.6)",
+  gridColumn: "1/1",
   gridRow: "1/5",
   zIndex: 1,
   display: "flex",
@@ -76,13 +79,16 @@ const Overlay = styled(motion.div)(({ props }) => ({
 }))
 
 const ReadMore = styled(motion.div)(({ props }) => ({
+  gridColumn: "1/1",
   gridRow: "1/1",
+  flexShrink: 1,
+  flexGrow: 1,
   zIndex: 2,
   display: "grid",
   fontSize: "var(--ms3)",
-  paddingTop: "var(--ms6)",
   justifyContent: "center",
-  alignItems: "start",
+  alignItems: "center",
+  marginTop: "var(--ms4)",
   textTransform: "uppercase",
   color: "white",
   fontFamily: "Colby Narrow",
@@ -94,18 +100,8 @@ export const BlogTile = props => {
 
   const { post, previewData } = props
 
-  const {
-    tileImage,
-    categories,
-    author,
-    title,
-    tileColor,
-    date,
-    slug,
-    _rawExcerpt,
-    _key,
-  } = post
-
+  const { tileImage, categories, title, date, slug, excerpt, _key } = post
+  debugger
   return (
     <Wrapper
       theme={theme}
@@ -120,20 +116,20 @@ export const BlogTile = props => {
         }}
         to={`/news/${post?.categories[0]?.slug?.current}/${slug?.current}`}
       >
-        {activeTile && (
-          <ReadMore
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{ type: "linear" }}
-          >
-            Read More
-          </ReadMore>
-        )}
         <BlogContent className="blogContent">
+          {activeTile && (
+            <ReadMore
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{ type: "linear" }}
+            >
+              Read More
+            </ReadMore>
+          )}
           {categories && (
             <Category>
               <Typography variant="body1" component="h3">
@@ -160,12 +156,12 @@ export const BlogTile = props => {
               </Date>
             )}
 
-            {_rawExcerpt && activeTile && (
+            {excerpt && activeTile && (
               <Excerpt
                 initial={{
-                  opacity: 0,
-                  display: "none",
-                  y: 10,
+                  opacity: 1,
+                  display: "block",
+                  y: 0,
                 }}
                 animate={{
                   opacity: 1,
@@ -178,7 +174,7 @@ export const BlogTile = props => {
                   //sanityConfig={sanityConfig}
                   variant={false}
                   //textAlign={definedMirror}
-                  value={_rawExcerpt}
+                  value={excerpt}
                 />
               </Excerpt>
             )}

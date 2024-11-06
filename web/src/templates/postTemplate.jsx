@@ -66,6 +66,7 @@ export const pageTemplateQuery = graphql`
       }
     ) {
       nodes {
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
         author {
           name
         }

@@ -139,6 +139,7 @@ export const RecipeTemplateQuery = graphql`
     }
     getAllPosts: allSanityPost(sort: { date: DESC }) {
       nodes {
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
         tileImage {
           asset {
             _id

@@ -73,6 +73,7 @@ export const RecipeArchiveTemplateQuery = graphql`
         slug {
           current
         }
+        excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
         date
         categories {
           name

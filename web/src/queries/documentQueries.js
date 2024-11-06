@@ -75,6 +75,9 @@ export const PAGE_BUILDER = `
     ${HOTSPOT},
     ${TIMELINE},
     ${RECIPE_SECTION},
+    excerpt[]->{
+      ...,
+    }
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
