@@ -56,13 +56,14 @@ const Meta = styled("div")(({ theme, backgroundColour }) => ({
   alignItems: "center",
   paddingTop: "var(--ms2)",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastBaseText,
-  [theme.breakpoints.up("md")]: {
-    "& svg": {
-      width: 24,
-      height: 24,
-      marginRight: "var(--ms-1)",
-      stroke: contrastBrandPalette[backgroundColour?.label]?.contrastBaseText,
-    },
+  "& svg": {
+    width: 24,
+    height: 24,
+    stroke: contrastBrandPalette[backgroundColour?.label]?.contrastBaseText,
+    marginRight: "var(--ms-1)",
+    // [theme.breakpoints.up("md")]: {
+
+    // },
   },
 }))
 
