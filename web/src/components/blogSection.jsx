@@ -34,6 +34,7 @@ const BlogGrid = styled("div")(({ theme }) => ({
   display: "grid",
   gridColumn: "2/24",
   gridTemplateColumns: "repeat(18, 1fr)",
+  rowGap: 21,
   [theme.breakpoints.up("sm")]: {
     gridGap: 21,
   },
