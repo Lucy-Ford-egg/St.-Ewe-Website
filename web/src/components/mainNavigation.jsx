@@ -15,13 +15,16 @@ const Navigation = styled(motion.ul)(({ theme, menu, headerColour }) => ({
   flexDirection: "column",
   gridColumn: "3/23",
   position: "relative",
-  top: "50%",
+  top: "0%",
   left: 0,
   width: "100%",
-  transform: "translateY(-50%)",
   gridTemplateRows: "auto",
   margin: 0,
   padding: 0,
+  [theme.breakpoints.up("lg")]: {
+    top: "50%",
+    transform: "translateY(-50%)",
+  },
 }))
 
 const ParentItem = styled(motion.li)(({ theme }) => ({
@@ -34,7 +37,6 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
   textTransform: "uppercase",
   display: "inline-flex",
   flexDirection: "column",
-
   gridTemplateColumns: "subgrid",
   gridColumn: "1/21",
   listStyle: "none",

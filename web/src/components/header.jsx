@@ -69,14 +69,18 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
   gridTemplateColumns: "repeat(24, 1fr)",
   gridRow: "2/2",
   position: "fixed",
-  top: "50%",
   left: 0,
   right: 0,
-  transform: "translateY(-50%)",
+  top: "0%",
   zIndex: 3,
   justifyContent: "center",
   alignItems: "center",
-  [theme.breakpoints.up("lg")]: {},
+  marginTop: "var(--ms9)",
+  [theme.breakpoints.up("lg")]: {
+    marginTop: 0,
+    top: "50%",
+    transform: "translateY(-50%)",
+  },
 }))
 
 const Header = props => {
