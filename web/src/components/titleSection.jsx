@@ -84,7 +84,7 @@ export const TitleSection = props => {
     pageData,
     backgroundColour,
   } = props
-
+  debugger
   return (
     <ModuleContainer {...props}>
       <Wrapper backgroundColour={backgroundColour}>
@@ -124,7 +124,7 @@ export const TitleSection = props => {
                 value={rawTitle}
               />
             )}
-            {isRecipe && (
+            {!isRecipe && (
               <Typography
                 color={
                   contrastBrandPalette[backgroundColour?.label]?.contrastText
@@ -154,7 +154,7 @@ export const TitleSection = props => {
                 sx={{
                   fontWeight: 900,
                 }}
-              >{`${pageData?.sanityRecipes?.serves?.serves ? "Serves " + pageData?.sanityRecipes?.serves?.serves : ""} ${pageData?.sanityRecipes?.serves?.note ? pageData?.sanityRecipes?.serves?.note : ""}`}</Typography>
+              >{`${pageData?.sanityRecipes?.serves?.serves ? "Serves: " + pageData?.sanityRecipes?.serves?.serves : ""} ${pageData?.sanityRecipes?.serves?.note ? pageData?.sanityRecipes?.serves?.note : ""}`}</Typography>
             )}
           </Content>
 
