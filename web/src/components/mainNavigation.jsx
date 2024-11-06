@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState } from "react"
 import Button from "@mui/material/Button"
 import { navigate } from "gatsby"
 import useMediaQuery from "@mui/material/useMediaQuery"
@@ -9,45 +9,6 @@ import { styled } from "@mui/material/styles"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 
-// Styling for the main menu list
-const MenuList = styled(motion.ul)(({ theme }) => ({}))
-
-// Styling for the submenu list
-// const SubMenuList = styled(motion.ul)(({ theme }) => ({
-//   gridColumn: "1/auto",
-//   display: "grid",
-//   visibility: "hidden",
-//   opacity: 0,
-//   height: 0,
-//   paddingTop: "var(--ms-4)",
-//   gridAutoRows: "auto",
-
-//   transition: "all 0.2s ease-in-out",
-//   "&.active": {
-//     opacity: 1,
-//     visibility: "visible",
-//     height: "auto",
-//   },
-//   "& li": {
-//     "& a, button": {
-//       fontFamily: "Roboto",
-//       fontSize: "var(--ms0) !important",
-//       "&:hover": {
-//         color: theme.palette.primary.main,
-//       },
-//     },
-//   },
-//   [theme.breakpoints.up("lg")]: {
-//     gridColumn: "5/auto",
-//     position: "fixed",
-//     top: "50%",
-//     left: 0,
-//     transform: "translateY(-50%)",
-//     zIndex: 3,
-//   },
-// }));
-
-// ! Refactor
 const Navigation = styled(motion.ul)(({ theme, menu, headerColour }) => ({
   gridTemplateColumns: "subgrid",
   display: "grid",
@@ -185,36 +146,20 @@ const MenuImage = styled("div")(({ theme, navOpen }) => ({
     transition: "all 0.2s ease-in-out 0s",
     borderRadius: "var(--ms4)",
     overflow: "hidden",
-    //opacity: 0,
     "&.active": {
       opacity: 1,
     },
   },
 }))
 
-//!
-
 const MainNavigation = props => {
   const { data, handleCloseNavMenu } = props
 
-  const activeSubMenu = useRef(null) // Track the active submenu
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
 
   const [activeMenu, setActiveMenu] = useState(null)
-
-  // Mobile
-
-  const followLink = (e, i) => {
-    handleCloseNavMenu()
-    //setMenu(false)
-    navigate(e?.currentTarget?.pathname)
-  }
-
-  // const deactivateSubMenu = () => {
-  //   setActiveMenu(null)
-  // }
 
   const handleClick = (i, e) => {
     if (mobile) {
@@ -239,16 +184,6 @@ const MainNavigation = props => {
       setActiveMenu(i)
     }
   }
-
-  const handleMouseLeave = () => {
-    if (!mobile) {
-      setActiveMenu(null)
-    }
-  }
-
-  //! Refactor
-
-  // const [menu, setMenu] = useState(false)
 
   const LinkType = props => {
     const { link, children, index, disableSubMenu } = props
@@ -298,17 +233,12 @@ const MainNavigation = props => {
     //! Refactor
     <Navigation
       menu={activeMenu}
-      // animate={menu ? 'hover' : 'hidden'}
       initial={"hover"}
       variants={navigationVariants}
     >
       {data?.map((menuItem, index) => {
         return (
-          <ParentItem
-            key={menuItem._id || menuItem._key}
-            whileHover="hover"
-            //variants={parentVariants}
-          >
+          <ParentItem key={menuItem._id || menuItem._key} whileHover="hover">
             <LinkWrapper>
               <LinkType
                 index={index}
@@ -318,19 +248,12 @@ const MainNavigation = props => {
               >
                 {menuItem.childItems && menuItem.childItems.length > 0 && (
                   <motion.ul
-                    initial={
-                      {
-                        //display: 'none',
-                      }
-                    }
                     style={{
                       opacity: activeMenu === index ? 1 : 0,
                       height: activeMenu === index ? "100%" : 0,
                       paddingTop: activeMenu === index ? "var(--ms0)" : 0,
                       paddingBottom: activeMenu === index ? "var(--ms0)" : 0,
-                      //pointerEvents: activeMenu === index ? 'auto' : 'none',
                     }}
-                    //variants={subMenuVariants}
                   >
                     {menuItem.childItems.map(child => {
                       return (
@@ -366,7 +289,6 @@ const MainNavigation = props => {
                     width: "100%",
                     height: "100%",
                   }}
-                  // onLoad={() => setImageLoaded(true)}
                 />
               </MenuImage>
             )}
@@ -374,32 +296,6 @@ const MainNavigation = props => {
         )
       })}
     </Navigation>
-    //!
-    // <MenuList initial="hidden" animate="visible">
-    //   {menu?.sanityNavigation?.items &&
-    //     menu.sanityNavigation.items.map((menuItem, i) => {
-
-    //     return(
-    //       <React.Fragment key={i}>
-    //         <RenderMenuItem menuItem={menuItem.link} i={i} >
-    //         {menuItem.childItems && (
-    //           <SubMenuList
-    //             className={`subMenu subMenu-${i}`}
-    //             onMouseOver={() => handleMouseOver(i)} // Keep submenu active when hovered
-    //             onMouseLeave={handleMouseLeave} // Deactivate when the mouse leaves the submenu
-    //           >
-    //             {menuItem.childItems.map((childItem, j) => (
-    //               <RenderMenuItem key={j} menuItem={childItem} i={j} />
-    //             ))}
-    //           </SubMenuList>
-
-    //         )}
-    //          </RenderMenuItem>
-    //
-    //       </React.Fragment>
-    //     )}
-    //     )}
-    // </MenuList>
   )
 }
 
