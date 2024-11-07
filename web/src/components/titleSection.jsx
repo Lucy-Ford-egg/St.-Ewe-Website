@@ -9,22 +9,18 @@ import { styled } from "@mui/material/styles"
 import { ButtonFormat } from "./buttonFormat"
 import { contrastBrandPalette } from "../utils/colours"
 
-const Wrapper = styled("div")(
-  ({ borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    backgroundColor: backgroundColour?.value,
-  }),
-)
+const Wrapper = styled("div")(({ backgroundColour }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  backgroundColor: backgroundColour?.value,
+}))
 
-const Container = styled("div")(
-  ({ borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "2/24",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-  }),
-)
+const Container = styled("div")({
+  gridColumn: "2/24",
+  display: "grid",
+  gridTemplateColumns: "repeat(20, 1fr)",
+})
 
 const LeftAsset = styled("div")(({ alignment, theme }) => ({
   display: "none",

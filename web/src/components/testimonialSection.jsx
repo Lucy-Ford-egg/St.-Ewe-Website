@@ -11,7 +11,7 @@ import { Typography } from "@mui/material"
 const Wrapper = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
   display: "grid",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(24, 1fr)",
   alignItems: "center",
   [theme.breakpoints.up("sm")]: {
     gridRowGap: "var(--ms4)",
@@ -24,7 +24,7 @@ const Wrapper = styled("div")(({ theme }) => ({
 const Tile = styled("div")(({ theme, testimonialColour }) => ({
   gridColumn: "2/24",
   display: "grid",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(22, 1fr)",
   gridRow: "1/4",
   alignItems: "center",
   borderRadius: "var(--ms3)",
@@ -34,6 +34,7 @@ const Tile = styled("div")(({ theme, testimonialColour }) => ({
     gridRowGap: "var(--ms4)",
   },
   [theme.breakpoints.up("lg")]: {
+    gridTemplateColumns: "repeat(20, 1fr)",
     gridRowGap: "unset",
     gridColumn: "3/23",
   },
@@ -41,8 +42,8 @@ const Tile = styled("div")(({ theme, testimonialColour }) => ({
 
 const Quote = styled("blockquote")(({ theme, testimonialColour }) => ({
   display: "grid",
-  gridTemplateColumns: "subgrid",
-  gridColumn: "2/24",
+  gridTemplateColumns: "repeat(19, 1fr)",
+  gridColumn: "2/22",
   gridRow: "1/4",
   zIndex: 1,
   color: contrastBrandPalette[testimonialColour?.label]?.contrastText,
@@ -78,6 +79,7 @@ const Quote = styled("blockquote")(({ theme, testimonialColour }) => ({
     gridColumn: "2/22",
   },
   [theme.breakpoints.up("lg")]: {
+    gridTemplateColumns: "repeat(16, 1fr)",
     gridColumn: "3/19",
   },
 }))

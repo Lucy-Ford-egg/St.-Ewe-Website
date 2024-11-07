@@ -12,7 +12,7 @@ import { contrastBrandPalette } from "../utils/colours"
 const Wrapper = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
   display: "grid",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(24, 1fr)",
   [theme.breakpoints.up("sm")]: {
     gridColumn: "2/24",
   },

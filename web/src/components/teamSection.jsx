@@ -9,7 +9,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 const Wrapper = styled("div")(({ props, theme }) => ({
   gridColumn: "1/25",
   display: "grid",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(24, 1fr)",
   overflow: "hidden",
 }))
 

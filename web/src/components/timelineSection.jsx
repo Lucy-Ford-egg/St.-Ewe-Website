@@ -11,7 +11,7 @@ import { styled } from "@mui/material/styles"
 const Wrapper = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
   display: "grid",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(24, 1fr)",
   overflowX: "hidden",
   gridRowGap: "var(--ms4)",
   [theme.breakpoints.up("sm")]: {},
@@ -33,13 +33,18 @@ const TimeLine = styled("div")(({ theme }) => ({
   scrollSnapType: "x mandatory",
   scrollbarWidth: "none" /* Firefox */,
   scrollSnapAlign: "start",
-  scrollPadding: "0 var(--ms-1)",
+  scrollPadding: "0 var(--ms1)",
+  paddingRight: "var(--ms1)",
+  paddingLeft: "var(--ms1)",
   "&::-webkit-scrollbar": {
     display: "none" /* Safari and Chrome */,
   },
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {
     columnGap: 90,
+    paddingRight: "var(--ms7)",
+    paddingLeft: "var(--ms7)",
+    scrollPadding: "0 var(--ms7)",
   },
 }))
 
@@ -59,18 +64,6 @@ const TimeLineEntry = styled("div")(({ theme, isAsset }) => ({
   flexDirection: "column",
 
   alignSelf: isAsset ? "end" : "start",
-  "&:first-of-type": {
-    paddingLeft: "var(--ms-1)",
-    [theme.breakpoints.up("lg")]: {
-      paddingLeft: "var(--ms7)",
-    },
-  },
-  "&:last-of-type": {
-    paddingRight: "var(--m-1)",
-    [theme.breakpoints.up("lg")]: {
-      paddingRight: "var(--ms7)",
-    },
-  },
   "&:nth-of-type(even)": {
     display: "flex",
     alignSelf: isAsset ? "start" : "end",
