@@ -10,37 +10,33 @@ import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
 import { LiaTimesCircle } from "react-icons/lia"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    overflowX: "hidden",
-    alignItems: "center",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      gridRowGap: "unset",
-    },
-  }),
-)
+const Wrapper = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "repeat(22, 1fr)",
+  overflowX: "hidden",
+  alignItems: "center",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+  },
+}))
 
-const FeatureImage = styled(motion.div)(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    display: "grid",
+const FeatureImage = styled(motion.div)(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridRow: "1/1",
+  //gridTemplateColumns: "repeat(22, 1fr)",
+  overflow: "hidden",
+  position: "relative",
+  zIndex: 0,
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
     gridRow: "1/1",
-    gridTemplateRows: "subgrid",
-    overflow: "hidden",
-    position: "relative",
-    zIndex: 0,
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      gridRow: "1/1",
-    },
-  }),
-)
+  },
+}))
 
-const Hotspot = styled("div")(({ mirror, x, y, theme, backgroundColour }) => ({
+const Hotspot = styled("div")(({ x, y, theme }) => ({
   left: `${x}%`,
   top: `${y}%`,
   position: "absolute",
@@ -56,61 +52,53 @@ const Hotspot = styled("div")(({ mirror, x, y, theme, backgroundColour }) => ({
   [theme.breakpoints.up("lg")]: {},
 }))
 
-const HotspotDetail = styled(motion.div)(
-  ({ mirror, x, y, theme, backgroundColour }) => ({
-    gridColumn: "1/25",
-    maxHeight: "fit-content",
-    backgroundColor: " var(--quirky-quail-secondary)",
-    padding: "var(--ms2) var(--ms1)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      zIndex: 1,
-      gridColumn: "20/25",
-      gridRow: "1/1",
-    },
-  }),
-)
-
-const DetailImage = styled(motion.div)(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    display: "grid",
+const HotspotDetail = styled(motion.div)(({ theme }) => ({
+  gridColumn: "1/25",
+  maxHeight: "fit-content",
+  backgroundColor: " var(--quirky-quail-secondary)",
+  gridTemplateColumns: "repeat(8, 1fr)",
+  padding: "var(--ms2) var(--ms1)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    zIndex: 1,
+    gridColumn: "18/25",
     gridRow: "1/1",
-    gridTemplateRows: "subgrid",
-    overflow: "hidden",
-    position: "relative",
-    zIndex: 0,
-    paddingBottom: "var(--ms-3)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      gridRow: "1/1",
-    },
-  }),
-)
+  },
+}))
 
-const Title = styled(Typography)(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    paddingTop: "var(--ms0)",
-    paddingBottom: "var(--ms0)",
-    borderBottom: "1px solid var(--rich-yolk-primary)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const DetailImage = styled(motion.div)(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridRow: "1/1",
+  overflow: "hidden",
+  position: "relative",
+  zIndex: 0,
+  paddingBottom: "var(--ms-3)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    gridRow: "1/1",
+  },
+}))
 
-const Close = styled(LiaTimesCircle)(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    position: "absolute",
-    top: "var(--ms0)",
-    right: "var(--ms0)",
-    zIndex: 2,
-    fill: "var(--white)",
-    width: 24,
-    height: 24,
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Title = styled(Typography)(({ theme }) => ({
+  paddingTop: "var(--ms0)",
+  paddingBottom: "var(--ms0)",
+  borderBottom: "1px solid var(--rich-yolk-primary)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+const Close = styled(LiaTimesCircle)(({ theme }) => ({
+  position: "absolute",
+  top: "var(--ms0)",
+  right: "var(--ms0)",
+  zIndex: 2,
+  fill: "var(--white)",
+  width: 24,
+  height: 24,
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
 
 export const HotspotSection = props => {
   const theme = useTheme()
