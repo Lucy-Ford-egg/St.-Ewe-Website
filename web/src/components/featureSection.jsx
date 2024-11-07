@@ -11,45 +11,41 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    display: "grid",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    overflowX: "hidden",
-    gridRowGap: "var(--ms4)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      gridRowGap: "unset",
-    },
-  }),
-)
+const Wrapper = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  overflow: "hidden",
+  gridRowGap: "var(--ms4)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+  },
+}))
 
-const FeatureImage = styled(motion.div)(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const FeatureImage = styled(motion.div)(({ theme, mirror }) => ({
+  gridColumn: "2/24",
+  display: "grid",
+  gridRow: "2/4",
+  // gridTemplateColumns: "repeat(22, 1fr)",
+  overflow: "hidden",
+  [theme.breakpoints.up("sm")]: {
     gridColumn: "2/24",
-    display: "grid",
-    gridRow: "2/4",
-    gridTemplateRows: "subgrid",
-    overflow: "hidden",
-    [theme.breakpoints.up("sm")]: {
-      gridColumn: "2/24",
-    },
-    [theme.breakpoints.up("lg")]: {
-      gridRow: "1/1",
-      gridColumn: mirror ? "2/12" : "14/24",
-    },
-    "& img": {
-      borderRadius: "var(--ms4)",
-    },
-  }),
-)
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridRow: "1/1",
+    gridColumn: mirror ? "2/12" : "14/24",
+  },
+  "& img": {
+    borderRadius: "var(--ms4)",
+  },
+}))
 
 const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
   gridColumn: "2/24",
   display: "grid",
   gridRow: "1/2",
-  gridTemplateRows: "subgrid",
+  //gridTemplateColumns: "repeat(22, 1fr)",
   alignItems: "center",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   "& .header-title": {
@@ -65,7 +61,7 @@ const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
 
 const Asset = styled(motion.div)(({ mirror, theme }) => ({
   display: "grid",
-  gridTemplateRows: "subgrid",
+  gridTemplateColumns: "repeat(22, 1fr)",
   gridColumn: "1/3",
   gridRow: "3/4",
   position: "relative",
