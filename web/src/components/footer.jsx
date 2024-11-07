@@ -155,6 +155,8 @@ export const Footer = () => {
           footerMenuFour {
             ...FooterMenuFragment
           }
+          incorparated
+          companyName
           accreditations {
             image {
               ...ImageFragment
@@ -411,7 +413,7 @@ export const Footer = () => {
       </Container>
       <Credit>
         <Typography color="white.main" variant="caption">
-          {`St Ewe Free Range Eggs Ltd, incorporated and registered in England and Wales with Ltd number 11384483. Copyright © ${new Date().getFullYear()} St Ewe Free Range Eggs`}
+          {`${data?.allSanityFooterContent?.nodes[0]?.incorparated}. Copyright © ${new Date().getFullYear()} ${data?.allSanityFooterContent?.nodes[0]?.companyName}`}
         </Typography>
         <Typography
           color="white.main"
