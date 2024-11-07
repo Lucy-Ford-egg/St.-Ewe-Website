@@ -10,7 +10,7 @@ import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 
 const Navigation = styled(motion.ul)(({ theme }) => ({
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(24, 1fr)",
   display: "grid",
   flexDirection: "column",
   gridColumn: "3/23",
@@ -36,7 +36,7 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
   textTransform: "uppercase",
   display: "inline-flex",
   flexDirection: "column",
-  gridTemplateColumns: "subgrid",
+  gridTemplateColumns: "repeat(23, 1fr)",
   gridColumn: "1/21",
   listStyle: "none",
   fontFamily: "Roboto Slab",
@@ -140,9 +140,9 @@ const MenuImage = styled("div")(({ theme }) => ({
     display: "grid",
     position: "absolute",
     top: "50%",
-    transform: "translateX(-50%) translateY(-50%)",
+    transform: "translateY(-50%)",
     gap: "var(--ms-3)",
-    left: "50%",
+    // left: "50%",
     right: 0,
     zIndex: 3,
     transition: "all 0.2s ease-in-out 0s",

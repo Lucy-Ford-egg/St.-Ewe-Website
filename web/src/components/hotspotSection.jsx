@@ -128,8 +128,8 @@ export const HotspotSection = props => {
                     urlFor(hotspotData?.featureImage).width(1440).url()) ||
                   hotspotData?.featureImage?.asset
                 }
-                width={mobile ? 390 : tablet ? 732 : 732}
-                height={mobile ? 245 : tablet ? 438 : 438}
+                // width={mobile ? 390 : tablet ? 732 : 732}
+                // height={mobile ? 245 : tablet ? 438 : 438}
                 style={{
                   objectFit: "contain",
                   width: "100%",
@@ -207,8 +207,8 @@ export const HotspotSection = props => {
                       urlFor(spotSelected?.image).width(1440).url()) ||
                     spotSelected?.image?.asset
                   }
-                  width={mobile ? 362 : tablet ? 732 : 732}
-                  height={mobile ? 241 : tablet ? 438 : 438}
+                  // width={mobile ? 362 : tablet ? 732 : 732}
+                  // height={mobile ? 241 : tablet ? 438 : 438}
                   style={{
                     objectFit: "cover",
                     width: "100%",
