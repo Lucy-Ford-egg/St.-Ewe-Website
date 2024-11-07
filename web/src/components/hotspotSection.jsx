@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
-import { useTheme, useMediaQuery, Typography } from "@mui/material"
+import { useTheme, Typography } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -102,9 +102,6 @@ const Close = styled(LiaTimesCircle)(({ theme }) => ({
 
 export const HotspotSection = props => {
   const theme = useTheme()
-
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
-  const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
   const { hotspotData, previewData, backgroundColour } = props
 
   const [spotSelected, setSpotSelected] = useState(null)
