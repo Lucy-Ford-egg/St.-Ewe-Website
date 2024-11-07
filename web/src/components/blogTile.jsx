@@ -193,6 +193,7 @@ export const BlogTile = props => {
               }
               width={310}
               height={310}
+              alt={tileImage?.asset?.altText}
               style={{
                 objectFit: "cover",
                 width: "100%",

@@ -138,6 +138,7 @@ export const FeatureSection = props => {
             <Image
               crop={image?.crop}
               hotspot={image?.hotspot}
+              alt={image?.asset?.altText}
               asset={
                 (image?._ref && urlFor(image).width(1440).url()) || image?.asset
               }
@@ -165,6 +166,7 @@ export const FeatureSection = props => {
                 // pass asset, hotspot, and crop fields
                 crop={centerAsset?.crop}
                 hotspot={centerAsset?.hotspot}
+                alt={image?.asset?.altText}
                 asset={
                   (centerAsset?._ref && urlFor(centerAsset).width(440).url()) ||
                   centerAsset?.asset

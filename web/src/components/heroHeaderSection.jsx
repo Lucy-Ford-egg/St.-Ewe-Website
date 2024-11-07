@@ -88,6 +88,7 @@ const renderLayer = (layer, index, transform, mobile, contentOpacity) => (
       fetchpriority="high"
       crop={layer?.crop}
       hotspot={layer?.hotspot}
+      alt={layer?.altText}
       width={mobile ? 390 : 2880}
       height={mobile ? 300 : 2210}
       asset={layer?._id ? urlFor(layer).url() : layer?.asset}

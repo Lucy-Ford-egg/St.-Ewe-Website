@@ -120,6 +120,7 @@ export const HotspotSection = props => {
                 onClick={() => setSpotSelected(null)}
                 crop={hotspotData?.featureImage?.crop}
                 hotspot={hotspotData?.featureImage?.hotspot}
+                alt={hotspotData?.featureImage?.asset?.altText}
                 asset={
                   (hotspotData?.featureImage?._ref &&
                     urlFor(hotspotData?.featureImage).width(1440).url()) ||
@@ -199,6 +200,7 @@ export const HotspotSection = props => {
                 <Image
                   crop={spotSelected?.image?.crop}
                   hotspot={spotSelected?.image?.hotspot}
+                  alt={spotSelected?.asset?.altText}
                   asset={
                     (spotSelected?.image?._ref &&
                       urlFor(spotSelected?.image).width(1440).url()) ||

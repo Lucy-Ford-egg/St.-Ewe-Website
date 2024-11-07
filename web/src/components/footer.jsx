@@ -393,6 +393,7 @@ export const Footer = () => {
                     <Image
                       crop={node?.image?.crop}
                       hotspot={node?.image?.hotspot}
+                      alt={node?.asset?.altText}
                       asset={
                         (node?.image?._ref &&
                           urlFor(node?.image).width().url()) ||

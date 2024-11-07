@@ -93,6 +93,7 @@ export const TitleSection = props => {
                   // pass asset, hotspot, and crop fields
                   crop={sideAssets?.leftAsset.crop}
                   hotspot={sideAssets?.leftAsset?.hotspot}
+                  alt={sideAssets?.leftAsset?.asset?.altText}
                   asset={
                     (sideAssets?.leftAsset?._ref &&
                       urlFor(sideAssets?.leftAsset).width(206).url()) ||
@@ -172,6 +173,7 @@ export const TitleSection = props => {
                   // pass asset, hotspot, and crop fields
                   crop={sideAssets?.rightAsset.crop}
                   hotspot={sideAssets?.rightAsset?.hotspot}
+                  alt={sideAssets?.rightAsset?.asset?.altText}
                   asset={
                     (sideAssets?.rightAsset?._ref &&
                       urlFor(sideAssets?.rightAsset).width(206).url()) ||

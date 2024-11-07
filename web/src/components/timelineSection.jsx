@@ -161,6 +161,7 @@ export const TimelineSection = props => {
                     // pass asset, hotspot, and crop fields
                     crop={node?.image?.crop}
                     hotspot={node?.image?.hotspot}
+                    alt={node?.image?.asset?.altText}
                     asset={
                       (node?.image?._ref &&
                         urlFor(node?.image).width(440).url()) ||

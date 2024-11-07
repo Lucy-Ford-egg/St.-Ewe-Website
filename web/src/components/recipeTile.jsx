@@ -121,6 +121,7 @@ export const RecipeTile = props => {
                 // pass asset, hotspot, and crop fields
                 crop={featuredMedia?.crop}
                 hotspot={featuredMedia?.hotspot}
+                alt={featuredMedia?.asset?.altText}
                 asset={
                   (featuredMedia?._ref &&
                     urlFor(featuredMedia).width(600).height(600).url()) ||

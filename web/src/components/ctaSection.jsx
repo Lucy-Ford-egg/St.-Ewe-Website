@@ -170,6 +170,7 @@ export const CtaSection = props => {
               // pass asset, hotspot, and crop fields
               crop={image?.crop}
               hotspot={image?.hotspot}
+              alt={image?.asset?.altText}
               asset={
                 (image?._ref && urlFor(image).width(200).url()) || image.asset
               }
@@ -212,6 +213,7 @@ export const CtaSection = props => {
                   // pass asset, hotspot, and crop fields
                   crop={asset?.crop}
                   hotspot={asset?.hotspot}
+                  alt={image?.asset?.altText}
                   asset={
                     (asset?._ref && urlFor(asset).width(122).url()) ||
                     asset.asset
@@ -249,6 +251,7 @@ export const CtaSection = props => {
                     // pass asset, hotspot, and crop fields
                     crop={asset?.crop}
                     hotspot={asset?.hotspot}
+                    alt={image?.asset?.altText}
                     asset={
                       (asset?._ref && urlFor(asset).width(122).url()) ||
                       asset.asset

@@ -209,6 +209,7 @@ export const TestimonialSection = props => {
               // pass asset, hotspot, and crop fields
               crop={leftAsset?.crop}
               hotspot={leftAsset?.hotspot}
+              alt={leftAsset?.asset?.altText}
               asset={
                 (leftAsset?._ref && urlFor(leftAsset).width(250).url()) ||
                 leftAsset?.asset
@@ -273,6 +274,7 @@ export const TestimonialSection = props => {
                           .url()) ||
                       testimonialTile?.cite?.image?.asset
                     }
+                    alt={testimonialTile?.cite?.image?.asset?.altText}
                     width={112}
                     height={112}
                     style={{
@@ -304,6 +306,7 @@ export const TestimonialSection = props => {
               // pass asset, hotspot, and crop fields
               crop={rightAsset?.crop}
               hotspot={rightAsset?.hotspot}
+              alt={rightAsset?.asset?.altText}
               asset={
                 (rightAsset?._ref && urlFor(rightAsset).width(250).url()) ||
                 rightAsset?.asset

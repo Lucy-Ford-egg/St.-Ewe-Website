@@ -257,12 +257,12 @@ export const ImageSection = props => {
               <Image
                 crop={sideAssets?.leftAsset?.crop}
                 hotspot={sideAssets?.leftAsset?.hotspot}
+                alt={sideAssets?.leftAsset?.asset?.altText}
                 asset={
                   (sideAssets?.leftAsset?._id &&
                     urlFor(sideAssets?.leftAsset).width(600).url()) ||
                   sideAssets?.leftAsset?.asset
                 }
-                alt={sideAssets?.leftAsset?.asset?.altText}
                 width={600}
                 style={{
                   objectFit: "contain",
@@ -315,7 +315,7 @@ export const ImageSection = props => {
                     <LinkType className="link" node={node?.link}>
                       <Image
                         crop={setImageNode?.crop}
-                        hotspot={setImageNode?.hotspot}
+                        hotspot={setImageNode?.asset?.hotspot}
                         asset={
                           (setImageNode?._id && urlFor(setImageNode).url()) ||
                           setImageNode?.asset

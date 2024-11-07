@@ -5,6 +5,7 @@ export const pageBuilderQuery = graphql`
     asset {
       _id
       gatsbyImageData
+      altText
     }
     hotspot {
       x
@@ -25,6 +26,7 @@ export const pageBuilderQuery = graphql`
       asset {
         _id
         gatsbyImageData
+        altText
       }
       hotspot {
         x

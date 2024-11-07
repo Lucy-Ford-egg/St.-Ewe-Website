@@ -148,6 +148,7 @@ export const TeamTile = props => {
           <Image
             crop={image?.crop}
             hotspot={image?.hotspot}
+            alt={image?.asset?.altText}
             asset={
               (image?._ref && urlFor(image).width(1440).url()) || image?.asset
             }

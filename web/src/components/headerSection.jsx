@@ -193,6 +193,7 @@ export const HeaderSection = props => {
             <Image
               crop={image?.crop}
               hotspot={image?.hotspot}
+              alt={image?.asset?.altText}
               asset={(image?._ref && urlFor(image).url()) || image?.asset}
               width={mobile ? 400 : tablet ? 768 : 1440}
               height={mobile ? 400 : tablet ? 700 : 700}

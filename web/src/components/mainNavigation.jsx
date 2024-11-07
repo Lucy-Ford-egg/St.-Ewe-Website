@@ -279,6 +279,7 @@ const MainNavigation = props => {
                 <Image
                   crop={menuItem?.image?.crop}
                   hotspot={menuItem?.image?.hotspot}
+                  alt={menuItem?.image?.asset?.altText}
                   asset={
                     (menuItem?.image?._id &&
                       urlFor(menuItem?.image?.asset).width(618).url()) ||
