@@ -142,7 +142,7 @@ const MenuImage = styled("div")(({ theme }) => ({
     top: "50%",
     transform: "translateY(-50%)",
     gap: "var(--ms-3)",
-    // left: "50%",
+    maxWidth: 618,
     right: 0,
     zIndex: 3,
     transition: "all 0.2s ease-in-out 0s",
