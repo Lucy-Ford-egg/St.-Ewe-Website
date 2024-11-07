@@ -10,42 +10,38 @@ import { styled } from "@mui/material/styles"
 import { MailChimp } from "./mailChimp"
 import { Texture } from "../components/texture"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, alignment }) => ({
-    gridColumn: "1/25",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    alignItems: "center",
-    [theme.breakpoints.up("sm")]: {
-      gridRowGap: "var(--ms4)",
-    },
-    [theme.breakpoints.up("lg")]: {
-      gridRowGap: "unset",
-    },
-  }),
-)
+const Wrapper = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  alignItems: "center",
+  [theme.breakpoints.up("sm")]: {
+    gridRowGap: "var(--ms4)",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+  },
+}))
 
-const BackgroundImage = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, alignment }) => ({
-    gridColumn: "1/25",
-    display: "grid",
-    gridRow: "1/1",
-    height: "100%",
-    [theme.breakpoints.up("sm")]: {
-      gridRowGap: "var(--ms4)",
-      height: "unset",
-    },
-    [theme.breakpoints.up("lg")]: {
-      gridRowGap: "unset",
-    },
-  }),
-)
+const BackgroundImage = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridRow: "1/1",
+  height: "100%",
+  [theme.breakpoints.up("sm")]: {
+    gridRowGap: "var(--ms4)",
+    height: "unset",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+  },
+}))
 
 const Content = styled("div")(({ alignment, theme, showForm }) => ({
   gridColumn: "2/24",
   gridRow: "1/1",
   zIndex: 2,
-  gridTemplateRows: "subgrid",
+  gridTemplateColumns: "repeat(22, 1fr)",
   backgroundColor: !showForm ? "rgba(255,255,255,0.8)" : "unset",
   borderRadius: "var(--ms1)",
   padding: !showForm ? "var(--ms3) var(--ms0)" : "var(--ms3) 0",
@@ -78,7 +74,7 @@ const Content = styled("div")(({ alignment, theme, showForm }) => ({
   },
 }))
 
-const Actions = styled("div")(({ alignment, theme }) => ({
+const Actions = styled("div")(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -87,13 +83,13 @@ const Actions = styled("div")(({ alignment, theme }) => ({
   [theme.breakpoints.up("lg")]: {},
 }))
 
-const ImageAsset = styled("div")(({ alignment, theme }) => ({
+const ImageAsset = styled("div")(({ theme }) => ({
   width: 122,
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {},
 }))
 
-const ShowForm = styled("div")(({ alignment, theme }) => ({
+const ShowForm = styled("div")(({ theme }) => ({
   backgroundColor: "var(--original-large)",
   padding: "var(--ms2) var(--ms4)",
   width: "100%",
@@ -103,7 +99,7 @@ const ShowForm = styled("div")(({ alignment, theme }) => ({
   },
 }))
 
-const ShowTexture = styled("div")(({ alignment, theme }) => ({
+const ShowTexture = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
   display: "grid",
   gridRow: "1/1",
