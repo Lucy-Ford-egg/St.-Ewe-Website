@@ -227,7 +227,7 @@ const XScroll = styled("div")(({ theme }) => ({
 }))
 
 export const ImageSection = props => {
-  const { type, images, verticalSpace, sideAssets, icons = null } = props
+  const { type, images, sideAssets, icons = null } = props
 
   const theme = useTheme()
   const sm = useMediaQuery(theme.breakpoints.down("sm"))

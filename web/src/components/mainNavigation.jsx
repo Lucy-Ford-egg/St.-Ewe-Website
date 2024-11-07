@@ -9,7 +9,7 @@ import { styled } from "@mui/material/styles"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 
-const Navigation = styled(motion.ul)(({ theme, menu, headerColour }) => ({
+const Navigation = styled(motion.ul)(({ theme }) => ({
   gridTemplateColumns: "subgrid",
   display: "grid",
   flexDirection: "column",
@@ -40,9 +40,7 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
   gridColumn: "1/21",
   listStyle: "none",
   fontFamily: "Roboto Slab",
-  color: "white",
   fontWeight: 500,
-  // fontWeight: "uppercase",
   "& a, button": {
     fontFamily: "inherit",
     fontWeight: "inherit",
@@ -103,7 +101,7 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
   },
 }))
 
-const LinkWrapper = styled("span")(({ theme, menu, headerColour }) => ({
+const LinkWrapper = styled("span")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "start",
@@ -124,20 +122,18 @@ const ChildItem = styled("li")(({ theme, menu, headerColour }) => ({
   fontWeight: 400,
   lineHeight: "var(--ms2)",
   letterSpacing: 1.4,
-  textTransform: "uppercase",
   whiteSpace: "nowrap",
   paddingLeft: 0,
   textTransform: "capitalize",
   [theme.breakpoints.up("lg")]: {
     color: headerColour === "light" ? "white" : "var(--primary-navy)",
     fontSize: "var(--ms0) !important",
-    textTransform: "unset",
     paddingLeft: "var(--ms0)",
     textTransform: "capitalize",
   },
 }))
 
-const MenuImage = styled("div")(({ theme, navOpen }) => ({
+const MenuImage = styled("div")(({ theme }) => ({
   display: "none",
   [theme.breakpoints.up("lg")]: {
     gridColumn: "10/23",
@@ -149,7 +145,6 @@ const MenuImage = styled("div")(({ theme, navOpen }) => ({
     left: "50%",
     right: 0,
     zIndex: 3,
-    transform: "translateY(-50%)",
     transition: "all 0.2s ease-in-out 0s",
     borderRadius: "var(--ms4)",
     overflow: "hidden",

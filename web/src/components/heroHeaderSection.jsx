@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 import { graphql } from "gatsby"
 import { useTheme, useMediaQuery } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
@@ -75,14 +75,7 @@ const Base = styled(motion.div)(({ theme }) => ({
 }))
 
 // Helper function to render layers
-const renderLayer = (
-  layer,
-  index,
-  transform,
-  mobile,
-  tablet,
-  contentOpacity,
-) => (
+const renderLayer = (layer, index, transform, mobile, contentOpacity) => (
   <Layer
     key={index}
     style={{
@@ -112,7 +105,7 @@ export const HeroHeaderSection = props => {
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
-  const { title, layers = [], previewData } = props
+  const { title, layers = [] } = props
 
   // Motion
   const ref = useRef(null)

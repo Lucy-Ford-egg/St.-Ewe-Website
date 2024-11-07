@@ -26,7 +26,7 @@ const Wrapper = styled("div")(
 )
 
 export const ModuleContainer = props => {
-  const { children, verticalSpace, backgroundColour, elevation } = props
+  const { children } = props
 
   return <Wrapper {...props}>{children}</Wrapper>
 }

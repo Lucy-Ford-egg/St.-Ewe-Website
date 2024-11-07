@@ -48,7 +48,6 @@ const List = styled("div")(({ theme, backgroundColour }) => ({
     margin: 0,
     padding: 0,
     textTransform: "capitalize",
-    listStyle: "none",
   },
   "& li": {
     paddingTop: "var(--ms-3)",

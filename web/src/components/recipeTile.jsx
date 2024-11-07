@@ -23,8 +23,7 @@ const Wrapper = styled("div")(({ theme, backgroundColour }) => ({
   },
 }))
 
-const ImageWrapper = styled("div")(({ i, theme }) => ({
-  overflow: "hidden",
+const ImageWrapper = styled("div")(({ theme }) => ({
   width: "100%",
   display: "flex",
   flexDirection: "column",
@@ -51,7 +50,7 @@ const Details = styled("div")(({ theme, backgroundColour }) => ({
   },
 }))
 
-const Meta = styled("div")(({ theme, backgroundColour }) => ({
+const Meta = styled("div")(({ backgroundColour }) => ({
   display: "flex",
   alignItems: "center",
   paddingTop: "var(--ms2)",
@@ -61,9 +60,6 @@ const Meta = styled("div")(({ theme, backgroundColour }) => ({
     height: 24,
     stroke: contrastBrandPalette[backgroundColour?.label]?.contrastBaseText,
     marginRight: "var(--ms-1)",
-    // [theme.breakpoints.up("md")]: {
-
-    // },
   },
 }))
 

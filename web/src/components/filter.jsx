@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Button } from "gatsby-theme-material-ui"
 import Typography from "@mui/material/Typography"
 import { graphql, useStaticQuery } from "gatsby"
@@ -37,8 +37,6 @@ const FilterButton = styled(Button)(({ props, theme }) => ({
 }))
 
 export const Filter = ({ type, pageContext, backgroundColour }) => {
-  const [whichFilter, setWhichFilter] = useState("all")
-
   const data = useStaticQuery(graphql`
     query CategoriesQuery {
       allSanityCategories {
@@ -98,7 +96,6 @@ export const Filter = ({ type, pageContext, backgroundColour }) => {
                 variant="text"
                 key={node?.name}
                 to={`/${whichType}/category/${node?.slug?.current}/`}
-                onClick={() => setWhichFilter(node?.slug?.current)}
                 sx={{
                   flex: "0 0 auto",
                   color:

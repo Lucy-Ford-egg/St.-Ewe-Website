@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { LiaAngleDownSolid } from "react-icons/lia"
 import { graphql } from "gatsby"
 import {
-  useTheme,
   AccordionDetails,
   AccordionSummary,
   Accordion,

@@ -6,10 +6,6 @@ import { useTheme } from "@mui/material"
 import { RecipeTile } from "./recipeTile"
 import { useInView } from "framer-motion"
 
-//Preview
-import { useQuery } from "../../sanity/store"
-import { RECIPES_BY_ID, ALL_RECIPES } from "../queries/documentQueries"
-
 const Wrapper = styled("div")(
   ({ backgroundColour, paddingTop, paddingBottom }) => ({
     display: "grid",
@@ -70,58 +66,34 @@ const GridContainer = styled("div")(({ theme }) => ({
   },
 }))
 
-const FeaturedItem = styled("div")(
-  ({ backgroundColour, paddingTop, paddingBottom }) => ({
-    display: "grid",
-  }),
-)
+const FeaturedItem = styled("div")({
+  display: "grid",
+})
 
-const GridItem = styled("div")(
-  ({ backgroundColour, paddingTop, paddingBottom }) => ({
-    display: "grid",
-  }),
-)
-const RecipeFilter = styled("div")(({ props }) => ({
+const GridItem = styled("div")({
+  display: "grid",
+})
+const RecipeFilter = styled("div")({
   display: "grid",
   gridColumn: "3/23",
-}))
+})
 
 export const RecipesSection = ({
   allSanityRecipes,
-  topPadding,
-  previewData,
-  initial,
-  _type,
   backgroundColour,
   paddingTop = 11,
   paddingBottom = 11,
-  featuredTile,
-  showRecipesArchive,
   pageContext,
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
   const theme = useTheme()
 
-  const { data: allRecipe } = useQuery(ALL_RECIPES, {}, { initial })
-
-  const { data: recipeData } = useQuery(
-    RECIPES_BY_ID,
-    {
-      categoryId:
-        (previewData &&
-          previewData?.showRecipesArchive?.archive &&
-          previewData?.showRecipesArchive?.archive.map(node => node?._id)) ||
-        [],
-    },
-    { initial },
-  )
-
   const definedAllSanityRecipes = allSanityRecipes?.nodes
 
   useEffect(() => {
     setFilterData(definedAllSanityRecipes)
-  }, [])
+  }, [definedAllSanityRecipes, setFilterData])
 
   const isInViewRef = useRef(null)
   const isInView = useInView(isInViewRef, { once: true })

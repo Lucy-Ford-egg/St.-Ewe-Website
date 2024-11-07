@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 export const Seo = props => {
-  const { location, children, data, seoContext } = props
+  const { location, children, seoContext } = props
   const { metaDescription, metaTitle, ogDescription, ogTitle, ogImage } =
     (seoContext && seoContext) || {
       metaDescription: null,

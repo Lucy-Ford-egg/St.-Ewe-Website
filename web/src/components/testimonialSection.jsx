@@ -164,70 +164,39 @@ const RightAsset = styled("div")(({ theme }) => ({
   },
 }))
 
-const Footer = styled("div")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    columnGap: "var(--ms1)",
-    paddingTop: "var(--ms2)",
-    gridColumn: "1/21",
-    paddingBottom: "var(--ms4)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      gridColumn: "6/12",
-    },
-  }),
-)
+const Footer = styled("div")(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  columnGap: "var(--ms1)",
+  paddingTop: "var(--ms2)",
+  gridColumn: "1/21",
+  paddingBottom: "var(--ms4)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "6/12",
+  },
+}))
 
-const Avatar = styled("div")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    display: "flex",
-    alignItems: "center",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Avatar = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
 
-const Details = styled("div")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "start",
-    textAlign: "left",
-    justifyContent: "start",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Details = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "start",
+  textAlign: "left",
+  justifyContent: "start",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
 
 export const TestimonialSection = props => {
-  const {
-    testimonialTile,
-    backgroundColour,
-    testimonialColour,
-    _type,
-    leftAsset,
-    rightAsset,
-  } = props
+  const { testimonialTile, testimonialColour, leftAsset, rightAsset } = props
 
   return (
     <ModuleContainer {...props}>
