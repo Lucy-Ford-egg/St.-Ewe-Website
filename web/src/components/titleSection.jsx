@@ -19,7 +19,7 @@ const Wrapper = styled("div")(({ backgroundColour }) => ({
 const Container = styled("div")({
   gridColumn: "2/24",
   display: "grid",
-  gridTemplateColumns: "repeat(20, 1fr)",
+  gridTemplateColumns: "repeat(22, 1fr)",
 })
 
 const LeftAsset = styled("div")(({ alignment, theme }) => ({
@@ -81,7 +81,7 @@ export const TitleSection = props => {
     backgroundColour,
     pageContext,
   } = props
-  debugger
+
   return (
     <ModuleContainer {...props}>
       <Wrapper backgroundColour={backgroundColour}>

@@ -99,7 +99,7 @@ export const BlogTile = props => {
   const { post, previewData } = props
 
   const { tileImage, categories, title, date, slug, excerpt, _key } = post
-  debugger
+
   return (
     <Wrapper
       theme={theme}
