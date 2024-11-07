@@ -162,7 +162,7 @@ export const RecipeTemplateQuery = graphql`
         slug {
           current
         }
-        date
+        date(formatString: "MMMM do YYYY")
         categories {
           title
           _id

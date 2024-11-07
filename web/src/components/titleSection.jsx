@@ -142,7 +142,8 @@ export const TitleSection = props => {
                   fontWeight: 900,
                 }}
               >
-                July 26th 2024
+                {/* {pageContext?.post?.date} */}
+                date here
               </Typography>
             )}
             {isRecipe && (

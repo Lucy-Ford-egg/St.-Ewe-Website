@@ -48,7 +48,7 @@ export const pageTemplateQuery = graphql`
         current
       }
       title
-      date
+      date(formatString: "MMMM do YYYY")
       categories {
         name
         slug {
@@ -74,7 +74,7 @@ export const pageTemplateQuery = graphql`
           current
         }
         title
-        date
+        date(formatString: "MMMM do YYYY")
         categories {
           _id
           name
