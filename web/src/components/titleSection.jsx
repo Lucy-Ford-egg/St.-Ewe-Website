@@ -117,7 +117,7 @@ export const TitleSection = props => {
           </LeftAsset>
 
           <Content alignment={alignment} backgroundColour={backgroundColour}>
-            {rawTitle && (
+            {rawTitle && !isRecipe && (
               <RenderPortableText
                 previewData={rawTitle}
                 //   sanityConfig={sanityConfig}
@@ -125,7 +125,7 @@ export const TitleSection = props => {
                 value={rawTitle}
               />
             )}
-            {!isRecipe && (
+            {isRecipe && (
               <Typography
                 color={
                   contrastBrandPalette[backgroundColour?.label]?.contrastText
