@@ -83,6 +83,7 @@ export const TitleSection = props => {
     isRecipe,
     pageData,
     backgroundColour,
+    pageContext,
   } = props
   debugger
   return (
@@ -142,8 +143,7 @@ export const TitleSection = props => {
                   fontWeight: 900,
                 }}
               >
-                {/* {pageContext?.post?.date} */}
-                date here
+                {pageContext?.date}
               </Typography>
             )}
             {isRecipe && (

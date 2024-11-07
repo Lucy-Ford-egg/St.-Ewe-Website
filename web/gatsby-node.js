@@ -296,6 +296,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug {
             current
           }
+          date(formatString: "MMMM do YYYY")
           featuredMedia {
             asset {
               _id
@@ -534,7 +535,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
         slug: `${node.slug?.current}`,
         title: node.title,
         featuredMedia: node.featuredMedia,
-        date: node.date,
+        date: node?.date,
         categories: node.categories,
         postIds: getShowArchiveBlogIds(node.pageBuilder, "blogSection"),
         recipeIds: getShowArchiveRecipesIds(node.pageBuilder, "recipesSection"),

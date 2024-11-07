@@ -151,7 +151,8 @@ export const BlogTile = props => {
                   component="p"
                   //color={contrastColour(tileColor).textColour}
                 >
-                  {formattedDate(date)}
+                  {date}
+                  {/* formattedDate(date) */}
                 </Typography>
               </Date>
             )}

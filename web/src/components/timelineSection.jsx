@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { useTheme, Typography } from "@mui/material"
+import { useTheme } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
@@ -8,44 +8,40 @@ import { contrastBrandPalette } from "../utils/colours"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    overflowX: "hidden",
-    gridRowGap: "var(--ms4)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      gridRowGap: "unset",
-    },
-  }),
-)
+const Wrapper = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "subgrid",
+  overflowX: "hidden",
+  gridRowGap: "var(--ms4)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+  },
+}))
 
-const TimeLine = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    gridRow: "1/1",
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "nowrap",
-    columnGap: 60,
-    overflowX: "scroll",
-    gridAutoFlow: "column",
-    scrollSnapType: "x mandatory",
-    scrollbarWidth: "none" /* Firefox */,
-    scrollSnapAlign: "start",
-    scrollPadding: "0 var(--ms-1)",
-    "&::-webkit-scrollbar": {
-      display: "none" /* Safari and Chrome */,
-    },
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      columnGap: 90,
-    },
-  }),
-)
+const TimeLine = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  gridRow: "1/1",
+  width: "100%",
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "nowrap",
+  columnGap: 60,
+  overflowX: "scroll",
+  gridAutoFlow: "column",
+  scrollSnapType: "x mandatory",
+  scrollbarWidth: "none" /* Firefox */,
+  scrollSnapAlign: "start",
+  scrollPadding: "0 var(--ms-1)",
+  "&::-webkit-scrollbar": {
+    display: "none" /* Safari and Chrome */,
+  },
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    columnGap: 90,
+  },
+}))
 
 const TimeLineEntry = styled("div")(({ theme, isAsset }) => ({
   "& img": {
@@ -109,42 +105,38 @@ const Date = styled("h4")(({ theme, backgroundColour }) => ({
   [theme.breakpoints.up("lg")]: {},
 }))
 
-const Text = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
-    backgroundColor: backgroundColour?.value,
-    "& p": {
-      margin: "0!important",
-      padding: "0!important",
-    },
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Text = styled("div")(({ theme, backgroundColour }) => ({
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  backgroundColor: backgroundColour?.value,
+  "& p": {
+    margin: "0!important",
+    padding: "0!important",
+  },
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {},
+}))
 
-const Line = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    gridRow: "1/1",
-    display: "flex",
-    alignItems: "center",
-    "& svg": {
-      maxWidth: "100vw",
-      path: {
-        strokeWidth: "6",
-        [theme.breakpoints.up("lg")]: {
-          strokeWidth: "12",
-        },
+const Line = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  gridRow: "1/1",
+  display: "flex",
+  alignItems: "center",
+  "& svg": {
+    maxWidth: "100vw",
+    path: {
+      strokeWidth: "6",
+      [theme.breakpoints.up("lg")]: {
+        strokeWidth: "12",
       },
     },
-    [theme.breakpoints.up("sm")]: {},
-  }),
-)
+  },
+  [theme.breakpoints.up("sm")]: {},
+}))
 
 export const TimelineSection = props => {
   const theme = useTheme()
 
-  const { times, _type, backgroundColour } = props
+  const { times, backgroundColour } = props
 
   return (
     <ModuleContainer {...props}>

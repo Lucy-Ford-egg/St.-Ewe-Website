@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import { styled } from "@mui/material/styles"
 import Image from "gatsby-plugin-sanity-image"
@@ -8,220 +8,161 @@ import { ModuleContainer } from "./moduleContainer"
 import { contrastBrandPalette } from "../utils/colours"
 import { Typography } from "@mui/material"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, alignment }) => ({
-    gridColumn: "1/25",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    //gridTemplateRows: "repeat(6, 1fr)",
-    alignItems: "center",
-    [theme.breakpoints.up("sm")]: {
-      gridRowGap: "var(--ms4)",
-    },
-    [theme.breakpoints.up("lg")]: {
-      gridRowGap: "unset",
-    },
-  }),
-)
+const Wrapper = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  display: "grid",
+  gridTemplateColumns: "subgrid",
+  alignItems: "center",
+  [theme.breakpoints.up("sm")]: {
+    gridRowGap: "var(--ms4)",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+  },
+}))
 
-const Tile = styled("div")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    gridColumn: "2/24",
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    gridRow: "1/4",
-    alignItems: "center",
-    borderRadius: "var(--ms3)",
-    backgroundColor: testimonialColour?.value,
-    overflow: "hidden",
-    [theme.breakpoints.up("sm")]: {
-      gridRowGap: "var(--ms4)",
-    },
-    [theme.breakpoints.up("lg")]: {
-      gridRowGap: "unset",
-      gridColumn: "3/23",
-    },
-  }),
-)
+const Tile = styled("div")(({ theme, testimonialColour }) => ({
+  gridColumn: "2/24",
+  display: "grid",
+  gridTemplateColumns: "subgrid",
+  gridRow: "1/4",
+  alignItems: "center",
+  borderRadius: "var(--ms3)",
+  backgroundColor: testimonialColour?.value,
+  overflow: "hidden",
+  [theme.breakpoints.up("sm")]: {
+    gridRowGap: "var(--ms4)",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridRowGap: "unset",
+    gridColumn: "3/23",
+  },
+}))
 
-const Quote = styled("blockquote")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    display: "grid",
-    gridTemplateColumns: "subgrid",
-    gridColumn: "2/24",
-    gridRow: "1/4",
-    zIndex: 1,
-    color: contrastBrandPalette[testimonialColour?.label]?.contrastText,
-    padding: 0,
-    margin: 0,
+const Quote = styled("blockquote")(({ theme, testimonialColour }) => ({
+  display: "grid",
+  gridTemplateColumns: "subgrid",
+  gridColumn: "2/24",
+  gridRow: "1/4",
+  zIndex: 1,
+  color: contrastBrandPalette[testimonialColour?.label]?.contrastText,
+  padding: 0,
+  margin: 0,
+  justifyContent: "center",
+  textAlign: "center",
+  flexDirection: "column",
+  "& .mark": {
     justifyContent: "center",
     textAlign: "center",
-    flexDirection: "column",
-    "& .mark": {
-      justifyContent: "center",
-      textAlign: "center",
-      paddingBottom: "var(--ms1)",
-      gridColumn: "10/11",
-      paddingTop: "var(--ms4)",
-      [theme.breakpoints.up("lg")]: {
-        gridColumn: "1/17",
-      },
-    },
-    p: {
-      textAlign: "center",
-      fontSize: "var(--ms3)",
-      lineHeight: "var(--ms3)",
-      fontFamily: "var(--font-primary)",
-      [theme.breakpoints.up("lg")]: {
-        fontSize: "var(--ms5)",
-        lineHeight: "var(--ms5)",
-      },
-    },
-    "& .quoteText": {
-      gridColumn: "1/21",
-    },
-    [theme.breakpoints.up("sm")]: {
-      gridColumn: "2/22",
-    },
+    paddingBottom: "var(--ms1)",
+    gridColumn: "10/11",
+    paddingTop: "var(--ms4)",
     [theme.breakpoints.up("lg")]: {
-      gridColumn: "3/19",
+      gridColumn: "1/17",
     },
-  }),
-)
+  },
+  p: {
+    textAlign: "center",
+    fontSize: "var(--ms3)",
+    lineHeight: "var(--ms3)",
+    fontFamily: "var(--font-primary)",
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "var(--ms5)",
+      lineHeight: "var(--ms5)",
+    },
+  },
+  "& .quoteText": {
+    gridColumn: "1/21",
+  },
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "2/22",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "3/19",
+  },
+}))
 
-const TextureLayer = styled("div")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    display: "grid",
-    gridColumn: "1/24",
-    gridRow: "1/4",
-    zIndex: 0,
-    mixBlendMode: "multiply",
-    opacity: 0.2,
-    svg: {
-      height: "100%",
-      [theme.breakpoints.up("lg")]: {
-        width: "100%",
-        height: "fit-content",
-      },
-    },
+const TextureLayer = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridColumn: "1/24",
+  gridRow: "1/4",
+  zIndex: 0,
+  mixBlendMode: "multiply",
+  opacity: 0.2,
+  svg: {
     height: "100%",
-    [theme.breakpoints.up("sm")]: {},
     [theme.breakpoints.up("lg")]: {
-      gridColumn: "1/25",
-      height: "auto",
+      width: "100%",
+      height: "fit-content",
     },
-  }),
-)
-
-const Cite = styled("cite")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    display: "grid",
+  },
+  height: "100%",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
     gridColumn: "1/25",
-    gridRow: "auto",
-    zIndex: 1,
-    fontFamily: "var(--font-secondary)",
-    fontSize: "var(--ms0)",
-    fontWeight: "700",
-    textAlign: "left",
-    fontStyle: "unset",
+    height: "auto",
+  },
+}))
 
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      fontSize: "var(--ms1)",
-    },
-  }),
-)
+const Cite = styled("cite")(({ theme }) => ({
+  display: "grid",
+  gridColumn: "1/25",
+  gridRow: "auto",
+  zIndex: 1,
+  fontFamily: "var(--font-secondary)",
+  fontSize: "var(--ms0)",
+  fontWeight: "700",
+  textAlign: "left",
+  fontStyle: "unset",
 
-const Position = styled(Typography)(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    display: "grid",
-    gridColumn: "1/25",
-    gridRow: "auto",
-    zIndex: 1,
-    fontSize: "var(--ms-1) !important",
-    fontWeight: 400,
-    fontFamily: "var(--font-secondary)",
-    [theme.breakpoints.up("sm")]: {},
-    [theme.breakpoints.up("lg")]: {
-      fontSize: "var(--ms0) !important",
-    },
-  }),
-)
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "var(--ms1)",
+  },
+}))
 
-const LeftAsset = styled("div")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    gridColumn: "1/4",
-    gridRow: "3/4",
-    zIndex: 2,
-    display: "none",
-    justifyContent: "center",
-    [theme.breakpoints.up("sm")]: {
-      display: "flex",
-      alignSelf: "end",
-    },
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Position = styled(Typography)(({ theme }) => ({
+  display: "grid",
+  gridColumn: "1/25",
+  gridRow: "auto",
+  zIndex: 1,
+  fontSize: "var(--ms-1) !important",
+  fontWeight: 400,
+  fontFamily: "var(--font-secondary)",
+  [theme.breakpoints.up("sm")]: {},
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "var(--ms0) !important",
+  },
+}))
 
-const RightAsset = styled("div")(
-  ({
-    theme,
-    borderDirection,
-    testimonialColour,
-    joiningColour,
-    alignment,
-  }) => ({
-    gridColumn: "19/25",
-    gridRow: "1/2",
-    zIndex: 2,
+const LeftAsset = styled("div")(({ theme }) => ({
+  gridColumn: "1/4",
+  gridRow: "3/4",
+  zIndex: 2,
+  display: "none",
+  justifyContent: "center",
+  [theme.breakpoints.up("sm")]: {
     display: "flex",
-    alignSelf: "start",
-    justifyContent: "end",
-    [theme.breakpoints.up("sm")]: {
-      gridColumn: "22/25",
-    },
-    [theme.breakpoints.up("lg")]: {
-      gridColumn: "22/25",
-      justifyContent: "center",
-    },
-  }),
-)
+    alignSelf: "end",
+  },
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+const RightAsset = styled("div")(({ theme }) => ({
+  gridColumn: "19/25",
+  gridRow: "1/2",
+  zIndex: 2,
+  display: "flex",
+  alignSelf: "start",
+  justifyContent: "end",
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "22/25",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "22/25",
+    justifyContent: "center",
+  },
+}))
 
 const Footer = styled("div")(
   ({

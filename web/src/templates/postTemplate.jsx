@@ -2,14 +2,12 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import { Seo } from "../components/seo"
 import Modules from "../components/modules"
-import { useTheme } from "@mui/material"
 //Preview
 import { useQuery } from "../../sanity/store"
 import { POST_QUERY } from "../queries/documentQueries"
 
 const PostTemplate = props => {
   const { data, pageContext, initial, location } = props
-  const theme = useTheme()
 
   // Preview
   const { data: previewData } = useQuery(
