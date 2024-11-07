@@ -131,7 +131,7 @@ export const HotspotSection = props => {
                 width={mobile ? 390 : tablet ? 732 : 732}
                 height={mobile ? 245 : tablet ? 438 : 438}
                 style={{
-                  objectFit: "cover",
+                  objectFit: "contain",
                   width: "100%",
                   height: "100%",
                 }}
