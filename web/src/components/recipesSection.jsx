@@ -52,17 +52,19 @@ const GridContainer = styled("div")(({ theme }) => ({
     },
     [theme.breakpoints.up("md")]: {
       //gridTemplateRows: "1fr 1fr",
-      gridColumn: "span 5",
-      gridColumnGap: 21,
+      gridColumn: "span 6",
     },
   },
   "& .featuredItem": {
     gridArea: "1 / 1 /  1 / 25",
     height: "100%",
     [theme.breakpoints.up("md")]: {
-      gridArea: "1 / 1 / 3 / 11",
+      gridArea: "1 / 1 / 3 / 13",
       height: "auto",
     },
+  },
+  [theme.breakpoints.up("md")]: {
+    gridColumnGap: 21,
   },
 }))
 
