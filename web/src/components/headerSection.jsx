@@ -18,52 +18,46 @@ import {
   TwitterShareButton,
 } from "react-share"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
+const Wrapper = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  gridColumn: "1/25",
+  gridTemplateRows: "400px 1fr",
+  position: "relative",
+  maskImage: "unset",
+  [theme.breakpoints.up("sm")]: {
+    gridTemplateRows: "700px 1fr",
+  },
+  [theme.breakpoints.up("lg")]: {
+    height: "100%",
+    gridTemplateRows: "1fr",
+    maskRepeat: "no-repeat",
+    maskSize: "cover",
+    maskImage: `url(${mask})`,
+  },
+}))
+
+const BackgroundImage = styled("div")(({ theme }) => ({
+  gridColumn: "1/25",
+  gridRow: "1/1",
+  [theme.breakpoints.up("sm")]: {
+    gridRow: "1/2",
+    maxHeight: "unset",
+  },
+}))
+
+const Overlay = styled("div")(({ theme }) => ({
+  display: "none",
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "1/25",
     display: "grid",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    gridColumn: "1/25",
-    gridTemplateRows: "400px 1fr",
-    position: "relative",
-    maskImage: "unset",
-    [theme.breakpoints.up("sm")]: {
-      gridTemplateRows: "700px 1fr",
-    },
-    [theme.breakpoints.up("lg")]: {
-      height: "100%",
-      gridTemplateRows: "1fr",
-      maskRepeat: "no-repeat",
-      maskSize: "cover",
-      maskImage: `url(${mask})`,
-    },
-  }),
-)
+    backgroundColor: "rgba(0,0,0,0.2)",
+    zIndex: 1,
+    gridRow: "1/2",
+  },
+}))
 
-const BackgroundImage = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    gridColumn: "1/25",
-    gridRow: "1/1",
-    [theme.breakpoints.up("sm")]: {
-      gridRow: "1/2",
-      maxHeight: "unset",
-    },
-  }),
-)
-
-const Overlay = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      gridColumn: "1/25",
-      display: "grid",
-      backgroundColor: "rgba(0,0,0,0.2)",
-      zIndex: 1,
-      gridRow: "1/2",
-    },
-  }),
-)
-
-const Content = styled("div")(({ alignment, theme, backgroundColour }) => ({
+const Content = styled("div")(({ alignment, theme }) => ({
   gridRow: "2/2",
   gridColumn: alignment === "left" ? "3/22" : "3/22",
   textAlign: alignment === "left" ? "left" : "center",
@@ -95,71 +89,63 @@ const Actions = styled("div")(({ theme, alignment }) => ({
   },
 }))
 
-const Title = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
-    [theme.breakpoints.up("lg")]: {
-      color: "white",
-    },
-  }),
-)
+const Title = styled("div")(({ theme, backgroundColour }) => ({
+  color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
+  [theme.breakpoints.up("lg")]: {
+    color: "white",
+  },
+}))
 
-const RecipeDetails = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    // color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
-    gridColumn: "2/24",
-    gridRow: "1/1",
-    display: "flex",
-    alignSelf: "end",
-    justifyContent: "space-between",
-    paddingBottom: "var(--ms2)",
-    [theme.breakpoints.up("lg")]: {
-      paddingBottom: "var(--ms7)",
-    },
-  }),
-)
+const RecipeDetails = styled("div")(({ theme }) => ({
+  // color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
+  gridColumn: "2/24",
+  gridRow: "1/1",
+  display: "flex",
+  alignSelf: "end",
+  justifyContent: "space-between",
+  paddingBottom: "var(--ms2)",
+  [theme.breakpoints.up("lg")]: {
+    paddingBottom: "var(--ms7)",
+  },
+}))
 
-const Meta = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    // color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
-    backgroundColor: "var(--original-primary)",
-    borderRadius: "999px",
-    padding: "var(--ms0)",
-    maxWidth: "fit-content",
-    display: "flex",
-    alignItems: "center",
-    columnGap: "var(--ms0)",
-    color: "var(--white)",
-    "& svg": {
-      width: 24,
-      height: 24,
-    },
-    [theme.breakpoints.up("lg")]: {
-      // color: "white",
-    },
-  }),
-)
+const Meta = styled("div")(({ theme }) => ({
+  // color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
+  backgroundColor: "var(--original-primary)",
+  borderRadius: "999px",
+  padding: "var(--ms0)",
+  maxWidth: "fit-content",
+  display: "flex",
+  alignItems: "center",
+  columnGap: "var(--ms0)",
+  color: "var(--white)",
+  "& svg": {
+    width: 24,
+    height: 24,
+  },
+  [theme.breakpoints.up("lg")]: {
+    // color: "white",
+  },
+}))
 
-const Sharing = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    // color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
-    backgroundColor: "var(--original-primary)",
-    borderRadius: "999px",
-    padding: "var(--ms0)",
-    maxWidth: "fit-content",
-    display: "flex",
-    alignItems: "center",
-    columnGap: "var(--ms0)",
-    color: "var(--white)",
-    "& svg": {
-      width: 24,
-      height: 24,
-    },
-    [theme.breakpoints.up("lg")]: {
-      // color: "white",
-    },
-  }),
-)
+const Sharing = styled("div")(({ theme }) => ({
+  // color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
+  backgroundColor: "var(--original-primary)",
+  borderRadius: "999px",
+  padding: "var(--ms0)",
+  maxWidth: "fit-content",
+  display: "flex",
+  alignItems: "center",
+  columnGap: "var(--ms0)",
+  color: "var(--white)",
+  "& svg": {
+    width: 24,
+    height: 24,
+  },
+  [theme.breakpoints.up("lg")]: {
+    // color: "white",
+  },
+}))
 
 export const HeaderSection = props => {
   const theme = useTheme()
