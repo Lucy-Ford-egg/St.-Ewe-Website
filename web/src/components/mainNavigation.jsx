@@ -76,24 +76,6 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
     alignItems: "center",
     maxWidth: "23%",
   },
-  "& ul": {
-    listStyle: "none",
-    paddingTop: "var(--ms0)",
-    paddingBottom: "var(--ms0)",
-    paddingLeft: 0,
-    marginLeft: 0,
-    [theme.breakpoints.up("lg")]: {
-      position: "absolute",
-      top: "50%",
-      transform: "translateX(-50%) translateY(-50%)",
-      left: "35%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      paddingTop: "unset",
-      paddingBottom: "unset",
-    },
-  },
   "&:hover": {
     "& > ul": {
       flexDirection: "column",
@@ -108,6 +90,31 @@ const LinkWrapper = styled("span")(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     flexDirection: "row",
     alignItems: "center",
+  },
+}))
+
+const ChildUl = styled(motion.ul)(({ theme, activeMenu, index }) => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  opacity: activeMenu === index ? 1 : 0,
+  height: activeMenu === index ? "100%" : 0,
+  pointerEvents: activeMenu === index ? "visible" : "none",
+  paddingTop: activeMenu === index ? "var(--ms0)" : 0,
+  paddingBottom: activeMenu === index ? "var(--ms0)" : 0,
+  listStyle: "none",
+  paddingLeft: 0,
+  marginLeft: 0,
+  [theme.breakpoints.up("lg")]: {
+    position: "absolute",
+    top: "50%",
+    transform: `translateX(${activeMenu === index ? "0%" : "100%"}) translateY(-50%)`,
+    left: "35%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    paddingTop: "unset",
+    paddingBottom: "unset",
   },
 }))
 
@@ -249,14 +256,7 @@ const MainNavigation = props => {
                 link={menuItem?.link}
               >
                 {menuItem.childItems && menuItem.childItems.length > 0 && (
-                  <motion.ul
-                    style={{
-                      opacity: activeMenu === index ? 1 : 0,
-                      height: activeMenu === index ? "100%" : 0,
-                      paddingTop: activeMenu === index ? "var(--ms0)" : 0,
-                      paddingBottom: activeMenu === index ? "var(--ms0)" : 0,
-                    }}
-                  >
+                  <ChildUl activeMenu={activeMenu} index={index}>
                     {menuItem.childItems.map(child => {
                       return (
                         <ChildItem key={child._key} index={index}>
@@ -269,7 +269,7 @@ const MainNavigation = props => {
                         </ChildItem>
                       )
                     })}
-                  </motion.ul>
+                  </ChildUl>
                 )}
               </LinkType>
             </LinkWrapper>
