@@ -109,7 +109,7 @@ const ChildUl = styled(motion.ul)(({ theme, activeMenu, index }) => ({
     position: "absolute",
     top: "50%",
     transform: `translateX(${activeMenu === index ? "0%" : "100%"}) translateY(-50%)`,
-    left: "35%",
+    left: "25%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
