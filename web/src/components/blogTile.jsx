@@ -16,9 +16,12 @@ const Wrapper = styled("div")(({ theme }) => ({
     display: "grid",
     gridTemplateColumns: "repeat(1, 1fr)",
     gridTemplateRows: "auto 1fr",
+    [theme.breakpoints.up("sm")]: {
+      gridTemplateRows: "minmax(303px, auto)1fr",
+    },
   },
   [theme.breakpoints.up("sm")]: {
-    gridColumn: "span 6",
+    gridColumn: "span 9",
   },
   [theme.breakpoints.up("lg")]: {
     gridColumn: "span 6",
