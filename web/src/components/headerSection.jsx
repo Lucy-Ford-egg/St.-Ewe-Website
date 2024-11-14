@@ -208,7 +208,7 @@ export const HeaderSection = props => {
           </BackgroundImage>
         )}
 
-        {imageLoaded && text && (
+        {text && (
           <Content alignment={alignment} theme={theme}>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
