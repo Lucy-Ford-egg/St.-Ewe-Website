@@ -86,12 +86,16 @@ export const RecipesSection = ({
   paddingTop = 11,
   paddingBottom = 11,
   pageContext,
+  amountToShow,
 }) => {
   const [filtersPosts, setFilterData] = useState(null)
 
   const theme = useTheme()
 
-  const definedAllSanityRecipes = allSanityRecipes?.nodes
+  const definedAllSanityRecipes =
+    amountToShow === true
+      ? allSanityRecipes?.nodes?.slice(1, 6)
+      : allSanityRecipes?.nodes
 
   useEffect(() => {
     setFilterData(definedAllSanityRecipes)
@@ -203,6 +207,7 @@ export const query = graphql`
       topPadding
       bottomPadding
     }
+    amountToShow
     showRecipesArchive {
       setArchive
       archive {

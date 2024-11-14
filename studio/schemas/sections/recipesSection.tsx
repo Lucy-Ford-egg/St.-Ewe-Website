@@ -1,6 +1,6 @@
-import React from 'react';
-import { defineField, defineType } from 'sanity'
-import { LiaFile } from 'react-icons/lia'
+import React from 'react'
+import {defineField, defineType} from 'sanity'
+import {LiaFile} from 'react-icons/lia'
 // Optional: import Rule from '@sanity/types' if needed
 
 export default defineType({
@@ -8,6 +8,12 @@ export default defineType({
   type: 'object',
   title: 'Recipes Section',
   fields: [
+    defineField({
+      title: 'Show first 5',
+      type: 'boolean',
+      name: 'amountToShow',
+      description: 'Displays the latest 5 recipes',
+    }),
     defineField({
       title: 'Background Colour',
       name: 'backgroundColour',
@@ -30,9 +36,10 @@ export default defineType({
       title: 'title',
       subtitle: 'caseStudies',
       backgroundColour: 'backgroundColour',
+      amountToShow: 'amountToShow',
     },
     prepare(selection) {
-      const { title, subtitle, backgroundColour } = selection;
+      const {title, subtitle, backgroundColour, amountToShow} = selection
       const thumb = (
         <span
           style={{
@@ -44,16 +51,14 @@ export default defineType({
             backgroundColor: backgroundColour?.value,
           }}
         >
-          <LiaFile style={{ color: 'white' }} />
+          <LiaFile style={{color: 'white'}} />
         </span>
-      );
+      )
       return {
-        title: `${
-          subtitle && subtitle?.length > 0 ? 'Curated Recipe' : 'All Recipes'
-        }`,
+        title: `${subtitle && subtitle?.length > 0 ? 'Curated Recipe' : `All Recipes ${amountToShow === true ? 'Showing latest 5' : ''}`}`,
         subtitle: `Recipes Section`,
         media: thumb, // Check if JSX is allowed or handle icons differently
-      };
+      }
     },
   },
-});
+})
