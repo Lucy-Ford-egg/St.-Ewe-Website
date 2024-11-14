@@ -27,43 +27,72 @@ const GridContainer = styled("div")(({ theme }) => ({
   gridTemplateColumns: "repeat(24, 1fr)",
   "& .gridItem": {
     gridColumn: "1/25",
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
+      gridColumn: "span 8",
       "&:first-of-type": {
-        gridArea: "1 / 11 / 2 / 16",
+        gridArea: "1/17/2/25",
+        gridRow: "1 / 1",
         height: "100%",
       },
       "&:nth-child(2)": {
-        gridArea: "1 / 16 / 2 / 25",
+        gridArea: "1/17/2/25",
+        gridRow: "1 / 1",
         height: "100%",
       },
       "&:nth-child(3)": {
-        gridArea: "2 / 11 / 3 / 16",
+        gridArea: "1/17/3/25",
+
+        gridRow: "2 / 2",
         height: "100%",
       },
       "&:nth-child(4)": {
-        gridArea: "2 / 16 / 3 / 25",
+        gridArea: "1/1/1/9",
+
+        gridRow: "3 / 3",
         height: "100%",
       },
     },
-    [theme.breakpoints.between("sm", "md")]: {
-      gridTemplateRows: "unset",
-      gridColumn: "span 10",
-      gridColumnGap: 21,
-    },
     [theme.breakpoints.up("md")]: {
-      //gridTemplateRows: "1fr 1fr",
       gridColumn: "span 6",
+      "&:first-of-type": {
+        gridArea: "1 / 11 / 2 / 16",
+
+        gridRow: "1 / 1",
+        height: "100%",
+      },
+      "&:nth-child(2)": {
+        gridArea: "1/13/2/19",
+
+        gridRow: "1 / 1",
+        height: "100%",
+      },
+      "&:nth-child(3)": {
+        gridArea: "2/13/3/19",
+
+        gridRow: "2 / 2",
+        height: "100%",
+      },
+      "&:nth-child(4)": {
+        gridArea: "2/19/3/25",
+
+        gridRow: "2 / 2",
+        height: "100%",
+      },
     },
   },
   "& .featuredItem": {
     gridArea: "1 / 1 /  1 / 25",
     height: "100%",
+    [theme.breakpoints.up("sm")]: {
+      gridArea: "1 / 1 / 3 / 17",
+      height: "auto",
+    },
     [theme.breakpoints.up("md")]: {
       gridArea: "1 / 1 / 3 / 13",
       height: "auto",
     },
   },
-  [theme.breakpoints.up("md")]: {
+  [theme.breakpoints.up("sm")]: {
     gridColumnGap: 21,
   },
 }))

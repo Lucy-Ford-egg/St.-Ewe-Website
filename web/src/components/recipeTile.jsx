@@ -28,7 +28,11 @@ const ImageWrapper = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   overflow: "hidden",
+  [theme.breakpoints.up("sm")]: {
+    height: "100%",
+  },
   [theme.breakpoints.up("md")]: {
+    height: "unset",
     flexBasis: "100%",
     alignItems: "flex-start",
   },
@@ -43,7 +47,11 @@ const Details = styled("div")(({ theme, backgroundColour }) => ({
   flex: "1 0 0",
   alignSelf: "stretch",
   alignItems: "flex-start",
+  [theme.breakpoints.up("sm")]: {
+    maxHeight: "fit-content",
+  },
   [theme.breakpoints.up("md")]: {
+    maxHeight: "unset",
     flex: "1 0 0",
     alignSelf: "stretch",
     alignItems: "flex-start",
