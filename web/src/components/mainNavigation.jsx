@@ -27,7 +27,7 @@ const Navigation = styled(motion.ul)(({ theme }) => ({
   },
 }))
 
-const ParentItem = styled(motion.li)(({ theme }) => ({
+const ParentItem = styled(motion.li)(({ theme, active }) => ({
   color: "var(--white)",
   fontSize: "var(--ms2)",
   fontStyle: "normal",
@@ -41,6 +41,12 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
   listStyle: "none",
   fontFamily: "Roboto Slab",
   fontWeight: 500,
+  "& > a, button": {
+    borderBottom: active ? `1px solid ${theme.palette.primary.main}` : "unset",
+    [theme.breakpoints.up("lg")]: {
+      borderBottom: "unset",
+    },
+  },
   "& a, button": {
     fontFamily: "inherit",
     fontWeight: "inherit",
@@ -59,6 +65,7 @@ const ParentItem = styled(motion.li)(({ theme }) => ({
     justifyContent: "start",
     alignItems: "start",
     textAlign: "left",
+
     "&:hover": {
       backgroundSize: "100% 100%",
       color: theme.palette.primary.main,
@@ -247,7 +254,11 @@ const MainNavigation = props => {
     >
       {data?.map((menuItem, index) => {
         return (
-          <ParentItem key={menuItem._id || menuItem._key} whileHover="hover">
+          <ParentItem
+            key={menuItem._id || menuItem._key}
+            whileHover="hover"
+            active={activeMenu === index}
+          >
             <LinkWrapper>
               <LinkType
                 index={index}
