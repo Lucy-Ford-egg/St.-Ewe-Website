@@ -47,7 +47,7 @@ const Container = styled("div")(({ theme }) => ({
 }))
 
 const Logo = styled("div")(({ theme }) => ({
-  gridColumn: "3/16",
+  gridColumn: "2/16",
   display: "grid",
   justifyContent: "center",
   pointerEvents: "visible",
