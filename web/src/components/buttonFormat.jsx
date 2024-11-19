@@ -9,11 +9,11 @@ export const ButtonFormat = props => {
 
   let definedInternal = node?.link?.internal?.slug?.current
   const definedExternal = node?.link?.external
-
+  debugger
   if (node?.link?.internal?._type === "post") {
     definedInternal = `blog/${node?.link?.internal?.category?.slug?.current}/${definedInternal}`
   }
-  if (node?.link?.internal?._type === "Recipe") {
+  if (node?.link?.internal?._type === "recipe") {
     definedInternal = `/recipe/${definedInternal}`
   }
   if (node?.link?.internal?._type === "teamMembers") {
