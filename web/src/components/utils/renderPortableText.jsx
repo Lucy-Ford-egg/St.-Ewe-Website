@@ -30,7 +30,7 @@ export const RenderPortableText = props => {
     value,
     textAlign,
   } = props
-
+  debugger
   const theme = useTheme()
 
   const block = {
@@ -140,13 +140,9 @@ export const RenderPortableText = props => {
 
   const marks = {
     em: ({ children }) => (
-      <Typography
-        sx={{ color: value.value, fontStyle: "italic" }}
-        variant="body1"
-        component="span"
-      >
+      <span style={{ color: value.value, fontStyle: "italic" }}>
         {children}
-      </Typography>
+      </span>
     ),
     strong: ({ children }) => {
       return (
