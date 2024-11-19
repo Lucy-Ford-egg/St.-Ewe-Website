@@ -90,8 +90,8 @@ const Actions = styled("div")(({ theme, alignment }) => ({
 }))
 
 const Title = styled("div")(({ theme, backgroundColour }) => ({
-  color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText}`,
-  [theme.breakpoints.up("lg")]: {
+  color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText} !important`,
+  [theme.breakpoints.up("sm")]: {
     color: "white",
   },
 }))

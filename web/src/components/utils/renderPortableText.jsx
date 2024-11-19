@@ -146,14 +146,13 @@ export const RenderPortableText = props => {
     ),
     strong: ({ children }) => {
       return (
-        <Box
-          component="span"
-          sx={{
+        <span
+          style={{
             fontWeight: 900,
           }}
         >
           {children}
-        </Box>
+        </span>
       )
     },
 

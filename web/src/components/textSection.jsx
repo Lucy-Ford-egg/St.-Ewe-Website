@@ -67,7 +67,8 @@ const Actions = styled("div")(({ theme, alignment }) => ({
     alignItems: "start",
     justifyContent: "start",
     width: "100%",
-    gridColumn: "2/24",
+    gridColumn: "5/19",
+    gridRow: "auto",
     paddingTop: "var(--ms0)",
   },
 }))
