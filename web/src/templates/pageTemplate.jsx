@@ -13,9 +13,9 @@ const PageTemplate = props => {
 
   // Preview
   const definedSlug =
-    (props.data.sanityPage && props.data.sanityPage.slug.current !== "home-page"
+    (props.data.sanityPage && props.data.sanityPage.slug.current !== "home"
       ? props.data.sanityPage
-      : { slug: { current: "home-page" } }) ||
+      : { slug: { current: "home" } }) ||
     props.data.sanityPost ||
     props.data.sanityTeamMember ||
     props.data.sanityRecipes

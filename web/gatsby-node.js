@@ -426,7 +426,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
   }
 
   result.data.allSanityPage.nodes.forEach(node => {
-    if (node.slug.current === "home-page") {
+    if (node.slug.current === "home") {
       createPage({
         path: `/`,
         component: require.resolve(`./src/templates/pageTemplate.jsx`),

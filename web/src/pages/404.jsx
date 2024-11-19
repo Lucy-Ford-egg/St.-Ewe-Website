@@ -141,7 +141,7 @@ export const homeQuery = graphql`
         ...RecipeTileFragment
       }
     }
-    sanityPage(slug: { current: { eq: "home-page" } }) {
+    sanityPage(slug: { current: { eq: "home" } }) {
       slug {
         current
       }
