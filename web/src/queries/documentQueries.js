@@ -73,6 +73,9 @@ const TEXT_SECTION = `
       reference->{
         ...,
       },
+      asset->{
+        ...,
+      },
     },
   }
 `
