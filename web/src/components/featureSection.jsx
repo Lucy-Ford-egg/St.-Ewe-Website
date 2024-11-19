@@ -85,7 +85,7 @@ const Asset = styled(motion.div)(({ mirror, theme }) => ({
     alignItems: "end",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: mirror ? "10/13" : "10/13",
+    gridColumn: mirror ? "13/15" : "10/13",
     gridRow: "1/1",
     alignItems: "end",
   },
