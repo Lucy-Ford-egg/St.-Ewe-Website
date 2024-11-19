@@ -41,7 +41,7 @@ const ParentItem = styled(motion.li)(({ theme, active }) => ({
   listStyle: "none",
   fontFamily: "Roboto Slab",
   fontWeight: 500,
-  "& > a, button": {
+  "& .parentItemLink": {
     borderBottom: active ? `1px solid ${theme.palette.primary.main}` : "unset",
     [theme.breakpoints.up("lg")]: {
       borderBottom: "unset",
@@ -202,11 +202,12 @@ const MainNavigation = props => {
   }
 
   const LinkType = props => {
-    const { link, children, index, disableSubMenu } = props
+    const { link, children, index, disableSubMenu, className } = props
     return (
       <>
         {link?.link?.internal ? (
           <GatsbyButton
+            className={className}
             variant="text"
             disableElevation
             onMouseEnter={() => !disableSubMenu && handleMouseOver(index)}
@@ -218,6 +219,7 @@ const MainNavigation = props => {
           </GatsbyButton>
         ) : (
           <Button
+            className={className}
             variant="text"
             disableElevation
             onMouseEnter={() => !disableSubMenu && handleMouseOver(index)}
@@ -263,7 +265,7 @@ const MainNavigation = props => {
               <LinkType
                 index={index}
                 disableSubMenu={false}
-                className="hoverUnderline"
+                className="hoverUnderline parentItemLink"
                 link={menuItem?.link}
               >
                 {menuItem.childItems && menuItem.childItems.length > 0 && (
