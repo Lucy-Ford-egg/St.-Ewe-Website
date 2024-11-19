@@ -30,7 +30,7 @@ export const RenderPortableText = props => {
     value,
     textAlign,
   } = props
-  debugger
+
   const theme = useTheme()
 
   const block = {
