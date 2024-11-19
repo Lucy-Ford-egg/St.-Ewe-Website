@@ -93,7 +93,11 @@ export const PAGE_BUILDER = `
     excerpt[]->{
       ...,
     },
-    ${TEXT_SECTION}
+    ${TEXT_SECTION},
+    links[]{
+      ${LINK},
+    },
+    
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
