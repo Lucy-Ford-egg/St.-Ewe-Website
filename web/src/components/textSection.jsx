@@ -31,7 +31,7 @@ const Content = styled("div")(({ theme, alignment, backgroundColour }) => ({
   justifyContent: "center",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up("sm")]: {
-    gridColumn: "1/25",
+    gridColumn: "1/20",
   },
   [theme.breakpoints.up("lg")]: {
     gridColumn: "6/20",
@@ -45,14 +45,15 @@ const RightAsset = styled("div")(({ theme }) => ({
   gridRow: "2/2",
   justifyContent: "start",
   [theme.breakpoints.up("sm")]: {
-    gridRow: "1/1",
-    gridColumn: "19/24",
+    gridRow: "2/2",
+    gridColumn: "21/24",
   },
   [theme.breakpoints.up("lg")]: {
+    gridRow: "1/1",
     alignItems: "center",
     justifyContent: "end",
     height: "100%",
-    gridColumn: "19/24",
+    gridColumn: "21/24",
   },
 }))
 
