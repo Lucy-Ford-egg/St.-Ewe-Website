@@ -25,13 +25,13 @@ const LeftAsset = styled("div")(({ alignment }) => ({
   justifyContent: "start",
 }))
 
-const Content = styled("div")(({ theme, alignment, backgroundColour }) => ({
+const Content = styled("div")(({ theme, backgroundColour, rightAsset }) => ({
   gridColumn: "2/24",
   display: "flex",
   justifyContent: "center",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up("sm")]: {
-    gridColumn: "1/20",
+    gridColumn: rightAsset ? "1/20" : "1/25",
   },
   [theme.breakpoints.up("lg")]: {
     gridColumn: "6/20",
@@ -118,7 +118,10 @@ export const TextSection = props => {
             )}
           </LeftAsset>
         )}
-        <Content backgroundColour={backgroundColour}>
+        <Content
+          backgroundColour={backgroundColour}
+          rightAsset={sideAssets?.rightAsset}
+        >
           {text && (
             <RenderPortableText
               previewData={text}
