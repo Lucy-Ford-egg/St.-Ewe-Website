@@ -191,12 +191,14 @@ const MainNavigation = props => {
         }
       } else {
         // Navigate immediately if there are no children
-        navigate(e?.currentTarget?.pathname)
+        navigate(e?.currentTarget?.baseURI)
         handleCloseNavMenu()
       }
     } else {
       // For non-mobile, close menu and navigate
+
       setActiveMenu(null)
+      navigate(e?.currentTarget?.baseURI)
       handleCloseNavMenu()
     }
   }
@@ -209,11 +211,12 @@ const MainNavigation = props => {
   }
 
   const LinkType = props => {
-    const { children, index, disableSubMenu, className, node, label } = props
+    const { children, index, disableSubMenu, className, node, label, link } =
+      props
 
     return (
       <>
-        {node?.link?.internal ? (
+        {link?.internal ? (
           <GatsbyButton
             className={className}
             variant="text"
@@ -221,7 +224,7 @@ const MainNavigation = props => {
             onMouseEnter={() => !disableSubMenu && handleMouseOver(index)}
             onClick={e => handleClick(index, e, node?.childItems?.length > 0)}
             size="large"
-            to={`/${node?.link?.internal?.slug?.current}`}
+            to={`/${link?.internal?.slug?.current}`}
           >
             {label}
           </GatsbyButton>
@@ -233,7 +236,7 @@ const MainNavigation = props => {
             onMouseEnter={() => !disableSubMenu && handleMouseOver(index)}
             onClick={e => handleClick(index, e, node?.childItems?.length > 0)}
             size="large"
-            href={node?.link?.external}
+            href={link?.external}
           >
             {label}
           </Button>
@@ -272,6 +275,7 @@ const MainNavigation = props => {
                 disableSubMenu={false}
                 className="hoverUnderline parentItemLink"
                 node={menuItem}
+                link={menuItem?.link?.link}
                 label={menuItem?.link?.text}
               >
                 {menuItem.childItems && menuItem.childItems.length > 0 && (
@@ -284,6 +288,7 @@ const MainNavigation = props => {
                             index={index}
                             className="hoverUnderline"
                             node={child}
+                            link={child?.link}
                             label={child?.text}
                           />
                         </ChildItem>
