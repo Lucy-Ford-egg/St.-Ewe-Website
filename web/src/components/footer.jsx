@@ -2,6 +2,7 @@ import React from "react"
 // import { CookieNotice } from "gatsby-cookie-notice"
 import { useStaticQuery, graphql } from "gatsby"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
+import { useMenuContext } from "./utils/useMenuContext"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import Link from "@mui/material/Link"
@@ -11,92 +12,84 @@ import { SocialIcon } from "react-social-icons"
 
 import { styled } from "@mui/material/styles"
 
-const Wrapper = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    display: "grid",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    gridColumn: "1/25",
-    backgroundColor: "var(--original-large)",
-    paddingTop: "var(--ms5)",
-    paddingBottom: "var(--ms4)",
-    [theme.breakpoints.up("lg")]: {},
-  }),
-)
+const Wrapper = styled("div")(({ theme, navOpen }) => ({
+  display: navOpen ? "none" : "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  gridColumn: "1/25",
+  backgroundColor: "var(--original-large)",
+  paddingTop: "var(--ms5)",
+  paddingBottom: "var(--ms4)",
+  [theme.breakpoints.up("lg")]: {},
+}))
 
-const Container = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    display: "grid",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    gridColumn: "2/22",
-    rowGap: "var(--ms4)",
-    [theme.breakpoints.up("lg")]: {
-      gridColumn: "3/23",
-      rowGap: "unset",
-    },
-  }),
-)
+const Container = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  gridColumn: "2/22",
+  rowGap: "var(--ms4)",
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "3/23",
+    rowGap: "unset",
+  },
+}))
 
-const FooterMenu = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    display: "flex",
-    flexDirection: "column",
-    gridColumn: "span 25",
-    [theme.breakpoints.up("sm")]: {
-      gridColumn: "span 12",
-    },
+const FooterMenu = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gridColumn: "span 25",
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "span 12",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "span 6",
+  },
+  "&.noData": {
+    display: "none",
     [theme.breakpoints.up("lg")]: {
-      gridColumn: "span 6",
+      display: "flex",
     },
-    "&.noData": {
-      display: "none",
-      [theme.breakpoints.up("lg")]: {
+  },
+  "& ul": {
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+    "& li": {
+      display: "block",
+
+      "& a": {
+        fontFamily: "var(--font-secondary)",
+        fontWeight: 500,
         display: "flex",
-      },
-    },
-    "& ul": {
-      listStyle: "none",
-      padding: 0,
-      margin: 0,
-      "& li": {
-        display: "block",
-
-        "& a": {
-          fontFamily: "var(--font-secondary)",
-          fontWeight: 500,
-          display: "flex",
-          paddingTop: "var(--ms-3)",
-          paddingBottom: "var(--ms-3)",
-          paddingLeft: 0,
-          paddingRight: 0,
-          minWidth: "unset",
-          "&:hover": {
-            cursor: "pointer",
-            color: "var(--rich-yolk-primary) !important",
-          },
+        paddingTop: "var(--ms-3)",
+        paddingBottom: "var(--ms-3)",
+        paddingLeft: 0,
+        paddingRight: 0,
+        minWidth: "unset",
+        "&:hover": {
+          cursor: "pointer",
+          color: "var(--rich-yolk-primary) !important",
         },
       },
     },
-  }),
-)
+  },
+}))
 
-const Credit = styled("div")(
-  ({ theme, borderDirection, backgroundColour, joiningColour, mirror }) => ({
-    display: "flex",
-    flexDirection: "column",
-    gridColumn: "2/24",
-    alignItems: "center",
+const Credit = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  gridColumn: "2/24",
+  alignItems: "center",
+  fontSize: "var(--ms-1)",
+  textAlign: "center",
+  marginTop: "var(--ms6)",
+  [theme.breakpoints.up("lg")]: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     fontSize: "var(--ms-1)",
-    textAlign: "center",
+    textAlign: "unset",
     marginTop: "var(--ms6)",
-    [theme.breakpoints.up("lg")]: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      fontSize: "var(--ms-1)",
-      textAlign: "unset",
-      marginTop: "var(--ms6)",
-    },
-  }),
-)
+  },
+}))
 
 const SocialIconWrapper = styled(SocialIcon)(({ theme }) => ({
   "&:first-of-type": {
@@ -139,6 +132,8 @@ const LogoWrapper = styled("a")(({ theme }) => ({
 
 export const Footer = () => {
   const theme = useTheme()
+
+  const { navOpen } = useMenuContext()
 
   const data = useStaticQuery(graphql`
     query FooterMenu {
@@ -217,7 +212,7 @@ export const Footer = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper navOpen={navOpen}>
       <Container>
         <FooterMenu
           className={
