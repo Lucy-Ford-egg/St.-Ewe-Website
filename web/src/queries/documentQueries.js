@@ -77,6 +77,9 @@ const TEXT_SECTION = `
         ...,
       },
     },
+  },
+  link{
+      ${LINK},
   }
 `
 export const PAGE_BUILDER = `
@@ -97,7 +100,6 @@ export const PAGE_BUILDER = `
     links[]{
       ${LINK},
     },
-    
 }`
 
 export const SITE_SETTINGS = groq`*[_type == "siteSettings"] {
