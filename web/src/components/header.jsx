@@ -79,7 +79,7 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
   alignItems: "center",
   marginTop: "var(--ms9)",
   height: "fit-content",
-  overflowY: "scroll",
+  overflowY: "auto",
   [theme.breakpoints.up("lg")]: {
     marginTop: 0,
     top: "50%",
