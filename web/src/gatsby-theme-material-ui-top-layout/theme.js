@@ -201,8 +201,8 @@ let clientTheme = createTheme({
           box-sizing: border-box;
         }
 ::-webkit-scrollbar {
-  width: var(--m-5);
-  height: var(--m-5);
+  width: var(--ms-5);
+  height: var(--ms-5);
 }
 
 /* Track */

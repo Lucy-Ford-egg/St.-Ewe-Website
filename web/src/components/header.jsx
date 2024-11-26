@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import { Link } from "gatsby-theme-material-ui"
 import IconButton from "@mui/material/IconButton"
@@ -6,6 +6,7 @@ import { LiaBarsSolid, LiaTimesSolid } from "react-icons/lia"
 import MainNavigation from "./mainNavigation"
 import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
+import { useMenuContext } from "../components/utils/useMenuContext"
 
 const Wrapper = styled("div")(({ theme, navOpen }) => ({
   display: "grid",
@@ -77,6 +78,8 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
   justifyContent: "center",
   alignItems: "center",
   marginTop: "var(--ms9)",
+  height: "fit-content",
+  overflowY: "scroll",
   [theme.breakpoints.up("lg")]: {
     marginTop: 0,
     top: "50%",
@@ -85,15 +88,7 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
 }))
 
 const Header = props => {
-  const [navOpen, setNavOpen] = useState(false)
-
-  const toggleOpenNavMenu = toggle => {
-    setNavOpen(toggle)
-  }
-
-  const handleCloseNavMenu = () => {
-    setNavOpen(null)
-  }
+  const { navOpen, toggleOpenNavMenu, handleCloseNavMenu } = useMenuContext()
 
   const data = useStaticQuery(graphql`
     query MainNavigationQuery {

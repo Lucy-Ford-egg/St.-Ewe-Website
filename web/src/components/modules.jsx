@@ -2,23 +2,7 @@ import React from "react"
 import { Box, styled } from "@mui/material"
 import { StaticImage } from "gatsby-plugin-image"
 import Typography from "@mui/material/Typography"
-
-// import { EmbedSection } from "./embedSection";
-// import { TitleSection } from "./titleSection";
-// import { TextSection } from "./textSection";
-// import { BorderSection } from "./borderSection";
-// import { BlogSection } from "./blogSection";
-// import { HeaderSection } from './headerSection';
-// import { TimelineSection } from './timelineSection';
-// import { VideoSection } from './videoSection';
-// import { CtaSection } from './ctaSection';
-// import { TestimonialSection } from './testimonialSection';
-// import { ImageSection } from './imageSection';
-// import { LocationSection } from './locationSection';
-// import { ContactSection } from './contactSection';
-// import { TeamSection } from './teamSection';
-// import { RecipesSection } from './recipesSection';
-// import { NewsletterSection } from './newsletterSection';
+import { useMenuContext } from "./utils/useMenuContext"
 const HeroHeaderSection = React.lazy(() =>
   import("./heroHeaderSection").then(module => ({
     default: module.HeroHeaderSection,
@@ -89,12 +73,12 @@ const RecipeBodySection = React.lazy(() =>
   })),
 )
 
-const Main = styled("main")({
-  display: "grid",
+const Main = styled("main")(({ navOpen }) => ({
   gridTemplateColumns: "repeat(24, 1fr)",
   gridTemplateRows: "auto-rows",
   gap: 0,
-})
+  display: navOpen ? "none" : "grid",
+}))
 
 const Modules = props => {
   const {
@@ -108,6 +92,9 @@ const Modules = props => {
     sanitySiteSettings,
     location,
   } = props
+
+  const { navOpen } = useMenuContext()
+
   function isModule(moduletype, testname) {
     console.log(`Modules - ${moduletype} | ${testname}`)
 
@@ -138,7 +125,7 @@ const Modules = props => {
           </Box>
         }
       >
-        <Main data-content="main">
+        <Main data-content="main" navOpen={navOpen}>
           {modules &&
             modules.map((module, i) => {
               if (isModule(module, "blogSection")) {
