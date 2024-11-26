@@ -18,11 +18,11 @@ import {
   TwitterShareButton,
 } from "react-share"
 
-const Wrapper = styled("div")(({ theme }) => ({
+const Wrapper = styled("div")(({ theme, image }) => ({
   display: "grid",
   gridTemplateColumns: "repeat(24, 1fr)",
   gridColumn: "1/25",
-  gridTemplateRows: "400px 1fr",
+  gridTemplateRows: !image ? "90px 1fr" : "400px 1fr",
   position: "relative",
   maskImage: "unset",
   [theme.breakpoints.up("sm")]: {
@@ -31,6 +31,7 @@ const Wrapper = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     height: "100%",
     gridTemplateRows: "1fr",
+    paddingTop: !image ? "var(--ms8)" : "unset",
     maskRepeat: "no-repeat",
     maskSize: "cover",
     maskImage: `url(${mask})`,
@@ -253,8 +254,8 @@ export const HeaderSection = props => {
             </motion.div>
           </Content>
         )}
-        <RecipeDetails>
-          {pageContext?.node?.duration && (
+        {pageContext?.node?.duration && (
+          <RecipeDetails>
             <>
               <Meta backgroundColour={backgroundColour}>
                 <LuClock5 />
@@ -342,8 +343,8 @@ export const HeaderSection = props => {
                 </PinterestShareButton>
               </Sharing>
             </>
-          )}
-        </RecipeDetails>
+          </RecipeDetails>
+        )}
       </Wrapper>
     </ModuleContainer>
   )
