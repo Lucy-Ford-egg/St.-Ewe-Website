@@ -60,7 +60,6 @@ const ParentItem = styled(motion.li)(({ theme, active }) => ({
     transition: "background-size .3s ease",
     backgroundImage: `linear-gradient(transparent calc(100% - 1px),${theme.palette.primary.main} 1px)`,
     backgroundRepeat: "no-repeat",
-    cursor: "pointer",
     padding: "var(--ms-1) 0",
     justifyContent: "start",
     alignItems: "start",
@@ -70,11 +69,13 @@ const ParentItem = styled(motion.li)(({ theme, active }) => ({
       backgroundSize: "100% 100%",
       color: theme.palette.primary.main,
       fontSize: "inherit !important",
+      cursor: "pointer !important",
     },
   },
   "& button": {
     "&:hover": {
       color: theme.palette.primary.main,
+      cursor: "pointer",
     },
   },
   [theme.breakpoints.up("lg")]: {
@@ -177,18 +178,24 @@ const MainNavigation = props => {
 
   const [activeMenu, setActiveMenu] = useState(null)
 
-  const handleClick = (i, e) => {
+  const handleClick = (i, e, hasChildren) => {
     if (mobile) {
       e.preventDefault()
-      setActiveMenu(i) // Open the submenu
 
-      if (activeMenu === i) {
-        setActiveMenu(null) // Close if already active
+      if (hasChildren) {
+        // Handle submenu toggle
+        if (activeMenu === i) {
+          setActiveMenu(null) // Close if already active
+        } else {
+          setActiveMenu(i) // Open the submenu
+        }
+      } else {
+        // Navigate immediately if there are no children
         navigate(e?.currentTarget?.pathname)
         handleCloseNavMenu()
       }
-    }
-    if (!mobile) {
+    } else {
+      // For non-mobile, close menu and navigate
       setActiveMenu(null)
       handleCloseNavMenu()
     }
@@ -202,20 +209,21 @@ const MainNavigation = props => {
   }
 
   const LinkType = props => {
-    const { link, children, index, disableSubMenu, className } = props
+    const { children, index, disableSubMenu, className, node, label } = props
+
     return (
       <>
-        {link?.link?.internal ? (
+        {node?.link?.internal ? (
           <GatsbyButton
             className={className}
             variant="text"
             disableElevation
             onMouseEnter={() => !disableSubMenu && handleMouseOver(index)}
-            onClick={e => handleClick(index, e)}
+            onClick={e => handleClick(index, e, node?.childItems?.length > 0)}
             size="large"
-            to={`/${link?.link?.internal?.slug?.current}`}
+            to={`/${node?.link?.internal?.slug?.current}`}
           >
-            {link?.text}
+            {label}
           </GatsbyButton>
         ) : (
           <Button
@@ -223,11 +231,11 @@ const MainNavigation = props => {
             variant="text"
             disableElevation
             onMouseEnter={() => !disableSubMenu && handleMouseOver(index)}
-            onClick={e => handleClick(index, e)}
+            onClick={e => handleClick(index, e, node?.childItems?.length > 0)}
             size="large"
-            href={link?.link?.external}
+            href={node?.link?.external}
           >
-            {link?.text}
+            {label}
           </Button>
         )}
         {children}
@@ -245,10 +253,7 @@ const MainNavigation = props => {
       opacity: 0,
     },
   }
-
-  //!
   return (
-    //! Refactor
     <Navigation
       menu={activeMenu}
       initial={"hover"}
@@ -266,7 +271,8 @@ const MainNavigation = props => {
                 index={index}
                 disableSubMenu={false}
                 className="hoverUnderline parentItemLink"
-                link={menuItem?.link}
+                node={menuItem}
+                label={menuItem?.link?.text}
               >
                 {menuItem.childItems && menuItem.childItems.length > 0 && (
                   <ChildUl activeMenu={activeMenu} index={index}>
@@ -277,7 +283,8 @@ const MainNavigation = props => {
                             disableSubMenu={true}
                             index={index}
                             className="hoverUnderline"
-                            link={child}
+                            node={child}
+                            label={child?.text}
                           />
                         </ChildItem>
                       )
