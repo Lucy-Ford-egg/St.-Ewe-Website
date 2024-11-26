@@ -68,6 +68,7 @@ const FooterMenu = styled("div")(
           paddingBottom: "var(--ms-3)",
           paddingLeft: 0,
           paddingRight: 0,
+          minWidth: "unset",
           "&:hover": {
             cursor: "pointer",
             color: "var(--rich-yolk-primary) !important",
