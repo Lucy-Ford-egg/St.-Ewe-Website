@@ -84,6 +84,8 @@ const ParentItem = styled(motion.li)(({ theme, active }) => ({
     flexDirection: "row",
     alignItems: "center",
     maxWidth: "23%",
+    fontSize: "var(--ms2)",
+    lineHeight: "var(--ms2)",
   },
   "&:hover": {
     "& > ul": {

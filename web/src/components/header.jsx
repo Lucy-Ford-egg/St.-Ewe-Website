@@ -54,6 +54,9 @@ const Logo = styled("div")(({ theme }) => ({
   display: "grid",
   justifyContent: "center",
   pointerEvents: "visible",
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "5/9",
+  },
   [theme.breakpoints.up("lg")]: {
     gridColumn: "5/8",
   },
@@ -84,6 +87,7 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
   overflowY: "scroll",
 
   [theme.breakpoints.up("lg")]: {
+    overflowY: "unset",
     marginTop: 0,
     top: "50%",
     transform: "translateY(-50%)",
