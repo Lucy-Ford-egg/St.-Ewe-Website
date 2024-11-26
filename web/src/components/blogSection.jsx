@@ -73,6 +73,9 @@ const PaginationArrows = styled(Button)(({ theme, backgroundColour }) => ({
 
 const Numbers = styled("div")(({ theme, backgroundColour }) => ({
   fontSize: "var(--ms0)",
+  display: "flex",
+  justifyContent: "space-between",
+  columnGap: "var(--ms0)",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   [theme.breakpoints.up("lg")]: {},
 }))
@@ -217,7 +220,7 @@ export const BlogSection = props => {
             </PaginationArrows>
 
             <Numbers backgroundColour={backgroundColour}>
-              <Number
+              {/* <Number
                 backgroundColour={backgroundColour}
                 style={{
                   color:
@@ -238,8 +241,8 @@ export const BlogSection = props => {
                 >
                   {1}
                 </GatsbyLink>
-              </Number>
-              {chunkIndex > 0 && "..."}
+              </Number> */}
+              {/* {chunkIndex > 0 && "..."}
               {pagination &&
                 pagination[chunkIndex] &&
                 pagination[chunkIndex].map((node, i) => {
@@ -269,7 +272,42 @@ export const BlogSection = props => {
                       </GatsbyLink>
                     </Number>
                   )
-                })}
+                })} */}
+
+              {/* {props.pageContext.numberOfPages > 5 && */}
+              {Array.from({ length: props.pageContext.numberOfPages }).map(
+                (_, index) => (
+                  <Number
+                    key={`pagination-${index}`}
+                    backgroundColour={backgroundColour}
+                    style={{
+                      borderRadius: "9999px",
+                      padding: "0 var(--ms-1)",
+                      borderWidth:
+                        index + 1 === props.pageContext.humanPageNumber
+                          ? "1px"
+                          : "0px",
+                      borderStyle: "solid",
+                      borderColor:
+                        index + 1 === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                      color:
+                        index + 1 === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                      "&:hover": {
+                        cursor: "pointer",
+                        color: theme.palette.primary.main,
+                      },
+                    }}
+                  >
+                    <GatsbyLink to={`/news/${index === 0 ? "" : index + 1}`}>
+                      {index + 1}
+                    </GatsbyLink>
+                  </Number>
+                ),
+              )}
             </Numbers>
 
             <PaginationArrows
