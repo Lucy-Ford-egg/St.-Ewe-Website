@@ -13,7 +13,7 @@ const Navigation = styled(motion.ul)(({ theme }) => ({
   gridTemplateColumns: "repeat(24, 1fr)",
   display: "grid",
   flexDirection: "column",
-  gridColumn: "3/23",
+  gridColumn: "3/20",
   position: "relative",
   top: "0%",
   left: 0,
@@ -24,6 +24,7 @@ const Navigation = styled(motion.ul)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     top: "50%",
     transform: "translateY(-50%)",
+    gridColumn: "3/23",
   },
 }))
 
