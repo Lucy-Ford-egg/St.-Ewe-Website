@@ -38,6 +38,10 @@ const Title = styled(motion.div)(({ theme }) => ({
   fontSize: "var(--ms5)",
   lineHeight: "var(--ms5)",
   //marginTop: "var(--ms1)",
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "var(--ms7)",
+    lineHeight: "var(--ms7)",
+  },
   [theme.breakpoints.up("lg")]: {
     gridRow: "1/4",
     fontSize: "var(--ms9)",
