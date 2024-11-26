@@ -20,7 +20,7 @@ const Wrapper = styled("div")(
 
 const GridContainer = styled("div")(({ theme }) => ({
   display: "grid",
-  gridColumn: "3/23",
+  gridColumn: "2/24",
   gridTemplateRows: "1fr",
 
   gridRowGap: 21,
@@ -94,6 +94,7 @@ const GridContainer = styled("div")(({ theme }) => ({
   },
   [theme.breakpoints.up("sm")]: {
     gridColumnGap: 21,
+    gridColumn: "3/23",
   },
 }))
 
@@ -106,7 +107,7 @@ const GridItem = styled("div")({
 })
 const RecipeFilter = styled("div")({
   display: "grid",
-  gridColumn: "3/23",
+  gridColumn: "3/25",
 })
 
 export const RecipesSection = ({

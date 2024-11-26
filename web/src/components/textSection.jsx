@@ -58,9 +58,9 @@ const RightAsset = styled("div")(({ theme }) => ({
 
 const Actions = styled("div")(({ theme, alignment }) => ({
   justifyContent: "start",
-  gridColumn: "21/24",
+  gridColumn: "2/24",
   alignItems: "center",
-  gridRow: "1/2",
+  gridRow: "2/2",
   paddingTop: "unset",
   [theme.breakpoints.up("sm")]: {
     display: "flex",

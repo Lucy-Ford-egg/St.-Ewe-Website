@@ -15,19 +15,19 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
   gridTemplateRows: "1fr 1fr 1fr 1fr",
   overflow: "hidden",
   alignItems: "center",
-  height: "48vh",
+  height: "100vh",
   position: "relative",
   marginTop: "var(--ms9)",
   [theme.breakpoints.up("lg")]: {
     marginTop: "unset",
-    height: "110vh",
+    height: "150vh",
   },
 }))
 
 const Title = styled(motion.div)(({ theme }) => ({
   gridColumn: "4/22",
   gridRow: "1/2",
-  alignSelf: "center",
+  // alignSelf: "center",
   zIndex: 1,
   color: "var(--original-large)",
   textAlign: "center",
@@ -37,6 +37,7 @@ const Title = styled(motion.div)(({ theme }) => ({
   textTransform: "uppercase",
   fontSize: "var(--ms5)",
   lineHeight: "var(--ms5)",
+  //marginTop: "var(--ms1)",
   [theme.breakpoints.up("lg")]: {
     gridRow: "1/4",
     fontSize: "var(--ms9)",
@@ -52,25 +53,25 @@ const Layer = styled(motion.div)(({ theme }) => ({
   left: 0,
   right: 0,
   bottom: 0,
-  height: "130vh",
+  height: "100vh",
   paddingTop: "var(--ms5)",
   [theme.breakpoints.up("lg")]: {
     paddingTop: "unset",
-    height: "110vh",
+    height: "150vh",
   },
   img: {
     "&:last-of-type": {
-      borderBottom: "1000px solid var(--super-eggs-primary)",
+      borderBottom: "1000px solid #066F9E",
     },
   },
 }))
 
 const Base = styled(motion.div)(({ theme }) => ({
-  display: "none",
+  // display: "none",
   [theme.breakpoints.up("lg")]: {
     width: "100%",
-    height: "1000px",
-    backgroundColor: "var(--super-eggs-primary)",
+    height: "10px",
+    backgroundColor: "#066F9E",
   },
 }))
 
@@ -117,20 +118,22 @@ export const HeroHeaderSection = props => {
     offset: ["start start", "end start"],
   })
   const transforms = [
-    useTransform(scrollYProgress, [0, 1], ["0%", "0%"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "80%"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "10%"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "-90%"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "0px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "350px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "300px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "250px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "250px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "180px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "160px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "140px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "80px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "80px"]),
   ]
   // Map x from these values:
   // Into these values:
   const contentOpacity = useTransform(scrollYProgress, [1, 0], ["0%", "100%"])
   //const titleOpacity = useTransform(scrollYProgress, [1, 0], ["0%", "100%"]);
-  const content = useTransform(scrollYProgress, [0, 1], [0, 20])
+  const content = useTransform(scrollYProgress, [0, 1], ["0px", "300px"])
   //const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
 
   return (
