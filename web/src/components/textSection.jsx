@@ -67,9 +67,12 @@ const Actions = styled("div")(({ theme, alignment }) => ({
     alignItems: "start",
     justifyContent: "start",
     width: "100%",
-    gridColumn: "6/20",
+    gridColumn: "1/24",
     gridRow: "auto",
     paddingTop: "var(--ms0)",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "6/20",
   },
 }))
 
