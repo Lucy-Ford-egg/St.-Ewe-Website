@@ -14,7 +14,7 @@ const Wrapper = styled("div")(({ theme, navOpen }) => ({
   gridTemplateRows: navOpen ? "repeat(12, 1fr)" : "unset",
   position: "fixed",
   top: 0,
-  paddingTop: "var(--ms1)",
+  paddingTop: "var(--ms0)",
   left: 0,
   right: 0,
   bottom: navOpen && 0,
@@ -23,6 +23,7 @@ const Wrapper = styled("div")(({ theme, navOpen }) => ({
   backgroundColor: navOpen && "var(--original-primary)",
   transition: "all 0.2s ease-in-out 0s",
   pointerEvents: "none",
+  paddingBottom: "var(--ms4)",
   [theme.breakpoints.up("lg")]: {
     paddingTop: "var(--ms4)",
   },
@@ -36,19 +37,20 @@ const Container = styled("div")(({ theme }) => ({
   backgroundColor: contrastBrandPalette["Original Large"]?.value,
   borderRadius: "99px",
   border: "3px solid rgba(255, 255, 255, 0.60)",
-  padding: "var(--ms0)",
+  padding: "var(--ms-1)",
   justifyContent: "flex-end",
   alignItems: "center",
   maxHeight: "fit-content",
   position: "relative",
   zIndex: 10,
   [theme.breakpoints.up("lg")]: {
+    padding: "var(--ms0)",
     gridColumn: "9/17",
   },
 }))
 
 const Logo = styled("div")(({ theme }) => ({
-  gridColumn: "2/16",
+  gridColumn: "5/10",
   display: "grid",
   justifyContent: "center",
   pointerEvents: "visible",
@@ -77,9 +79,10 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
   zIndex: 3,
   justifyContent: "center",
   alignItems: "center",
-  marginTop: "var(--ms9)",
+  marginTop: "var(--ms8)",
   height: "fit-content",
-  overflowY: "auto",
+  overflowY: "scroll",
+
   [theme.breakpoints.up("lg")]: {
     marginTop: 0,
     top: "50%",

@@ -30,9 +30,9 @@ const Navigation = styled(motion.ul)(({ theme }) => ({
 
 const ParentItem = styled(motion.li)(({ theme, active }) => ({
   color: "var(--white)",
-  fontSize: "var(--ms2)",
+  fontSize: "var(--ms1)",
   fontStyle: "normal",
-  lineHeight: "var(--ms2)",
+  lineHeight: "var(--ms1)",
   letterSpacing: 1.4,
   textTransform: "uppercase",
   display: "inline-flex",
