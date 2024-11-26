@@ -201,7 +201,7 @@ const MainNavigation = props => {
       // For non-mobile, close menu and navigate
 
       setActiveMenu(null)
-      navigate(e?.currentTarget?.baseURI)
+      // navigate(e?.currentTarget?.baseURI)
       handleCloseNavMenu()
     }
   }
