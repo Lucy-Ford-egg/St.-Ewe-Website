@@ -182,7 +182,7 @@ const MainNavigation = props => {
   const [activeMenu, setActiveMenu] = useState(null)
 
   const handleClick = (i, e, hasChildren) => {
-    if (mobile) {
+    if (mobile || tablet) {
       e.preventDefault()
 
       if (hasChildren) {
