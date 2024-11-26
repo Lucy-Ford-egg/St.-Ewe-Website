@@ -12,7 +12,7 @@ import { contrastBrandPalette } from "../utils/colours"
 const Wrapper = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
   display: "grid",
-  gridTemplateColumns: "repeat(22, 1fr)",
+  gridTemplateColumns: "repeat(24, 1fr)",
   [theme.breakpoints.up("sm")]: {
     gridColumn: "2/24",
   },
@@ -34,7 +34,7 @@ const Content = styled("div")(({ theme, alignment, backgroundColour }) => ({
     gridColumn: "1/25",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "5/19",
+    gridColumn: "6/20",
     color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
   },
 }))
@@ -67,7 +67,7 @@ const Actions = styled("div")(({ theme, alignment }) => ({
     alignItems: "start",
     justifyContent: "start",
     width: "100%",
-    gridColumn: "5/19",
+    gridColumn: "6/20",
     gridRow: "auto",
     paddingTop: "var(--ms0)",
   },
@@ -118,9 +118,9 @@ export const TextSection = props => {
           {text && (
             <RenderPortableText
               previewData={text}
-              //   sanityConfig={sanityConfig}
               setAsHeading={false}
               value={text}
+              backgroundColour={backgroundColour}
             />
           )}
         </Content>

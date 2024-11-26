@@ -29,6 +29,7 @@ export const RenderPortableText = props => {
     sanityConfig,
     value,
     textAlign,
+    backgroundColour,
   } = props
 
   const theme = useTheme()
@@ -158,14 +159,28 @@ export const RenderPortableText = props => {
 
     link: ({ children, value }) => {
       return (
-        <PortableTextInlineLink color={value.value} value={value}>
+        <PortableTextInlineLink
+          color={
+            backgroundColour?.label === "Super Eggs Secondary Accent"
+              ? "var(--original-large)"
+              : value.value
+          }
+          value={value}
+        >
           {children}
         </PortableTextInlineLink>
       )
     },
     internalLink: ({ children, value }) => {
       return (
-        <PortableTextInlineLink color={value.value} value={value}>
+        <PortableTextInlineLink
+          color={
+            backgroundColour?.label === "Super Eggs Secondary Accent"
+              ? "var(--original-large)"
+              : value.value
+          }
+          value={value}
+        >
           {children}
         </PortableTextInlineLink>
       )

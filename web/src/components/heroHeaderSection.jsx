@@ -94,7 +94,7 @@ const renderLayer = (layer, index, transform, mobile, contentOpacity) => (
       height={mobile ? 300 : 2210}
       asset={layer?._id ? urlFor(layer).url() : layer?.asset}
       style={{
-        objectFit: "cover",
+        //objectFit: "cover",
         maxWidth: "100%",
         height: "auto",
       }}

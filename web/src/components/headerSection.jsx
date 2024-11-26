@@ -91,6 +91,7 @@ const Actions = styled("div")(({ theme, alignment }) => ({
 
 const Title = styled("div")(({ theme, backgroundColour }) => ({
   color: `${contrastBrandPalette[backgroundColour?.label]?.contrastText} !important`,
+  whiteSpace: "wrap",
   [theme.breakpoints.up("sm")]: {
     color: "white",
   },
