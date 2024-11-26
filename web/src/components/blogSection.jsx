@@ -203,10 +203,20 @@ export const BlogSection = props => {
             <PaginationArrows
               backgroundColour={backgroundColour}
               variant="text"
+              style={{
+                color:
+                  props.pageContext.humanPageNumber === 1 && true
+                    ? "var(--grand-primary)"
+                    : contrastBrandPalette[backgroundColour?.label]
+                        ?.contrastText,
+              }}
               startIcon={
                 <ChevronLeftIcon
                   color={
-                    contrastBrandPalette[backgroundColour?.label]?.contrastText
+                    props.pageContext.humanPageNumber === 1 && true
+                      ? "var(--grand-primary)"
+                      : contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastText
                   }
                   sx={{
                     opacity: props.pageContext.humanPageNumber === 1 && 0.2,
@@ -313,10 +323,22 @@ export const BlogSection = props => {
             <PaginationArrows
               backgroundColour={backgroundColour}
               variant="text"
+              style={{
+                color:
+                  props.pageContext.humanPageNumber ===
+                    props.pageContext.numberOfPages && true
+                    ? "var(--grand-primary)"
+                    : contrastBrandPalette[backgroundColour?.label]
+                        ?.contrastText,
+              }}
               endIcon={
                 <ChevronRightIcon
                   color={
-                    contrastBrandPalette[backgroundColour?.label]?.contrastText
+                    props.pageContext.humanPageNumber ===
+                      props.pageContext.numberOfPages && true
+                      ? "var(--grand-primary)"
+                      : contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastText
                   }
                   sx={{
                     opacity:
