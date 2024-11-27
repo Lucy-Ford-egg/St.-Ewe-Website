@@ -64,7 +64,7 @@ const Quote = styled("blockquote")(({ theme, testimonialColour }) => ({
   },
   p: {
     textAlign: "center",
-    fontSize: "var(--ms3)",
+    fontSize: "var(--ms2)",
     lineHeight: "var(--ms3)",
     fontFamily: "var(--font-primary)",
     [theme.breakpoints.up("lg")]: {
