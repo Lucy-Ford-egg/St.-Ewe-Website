@@ -40,6 +40,9 @@ const FooterMenu = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
     gridColumn: "span 12",
   },
+  [theme.breakpoints.up("md")]: {
+    gridColumn: "span 6",
+  },
   [theme.breakpoints.up("lg")]: {
     gridColumn: "span 6",
   },
