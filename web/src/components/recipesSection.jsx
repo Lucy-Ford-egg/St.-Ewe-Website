@@ -94,6 +94,9 @@ const GridContainer = styled("div")(({ theme }) => ({
   },
   [theme.breakpoints.up("sm")]: {
     gridColumnGap: 21,
+    gridColumn: "2/24",
+  },
+  [theme.breakpoints.up("lg")]: {
     gridColumn: "3/23",
   },
 }))
@@ -105,10 +108,36 @@ const FeaturedItem = styled("div")({
 const GridItem = styled("div")({
   display: "grid",
 })
-const RecipeFilter = styled("div")({
+const RecipeFilter = styled("div")(({ theme, backgroundColour }) => ({
   display: "grid",
-  gridColumn: "3/25",
-})
+  gridColumn: "2/24",
+  overflowX: "hidden",
+  position: "relative",
+  "&:after": {
+    position: "absolute",
+    content: "''",
+    //backgroundColor: backgroundColour?.value,
+    backgroundImage: `linear-gradient(to right, transparent, ${backgroundColour?.value} 65%)`,
+    width: "var(--ms6)",
+    height: "100%",
+    right: "-26px",
+    pointerEvents: "none",
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "3/23",
+    position: "relative",
+    "&:after": {
+      position: "absolute",
+      content: "''",
+      //backgroundColor: backgroundColour?.value,
+      backgroundImage: `linear-gradient(to right, transparent, ${backgroundColour?.value} 65%)`,
+      width: "var(--ms6)",
+      height: "100%",
+      right: "-26px",
+      pointerEvents: "none",
+    },
+  },
+}))
 
 export const RecipesSection = ({
   allSanityRecipes,
@@ -166,7 +195,7 @@ export const RecipesSection = ({
       paddingTop={theme.spacing(paddingTop)}
       paddingBottom={theme.spacing(paddingBottom)}
     >
-      <RecipeFilter>
+      <RecipeFilter backgroundColour={backgroundColour}>
         <Filter
           backgroundColour={backgroundColour}
           className="component-filter"
