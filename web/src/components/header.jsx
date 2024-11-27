@@ -78,6 +78,9 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
   gridRow: "2/2",
   position: "fixed",
   left: 0,
+  visibility: !navOpen ? "hidden" : "visible",
+  opacity: !navOpen ? 0 : 1,
+  pointerEvents: !navOpen ? "none" : "auto",
   right: 0,
   bottom: 0,
   top: 0,
@@ -362,7 +365,7 @@ const Header = props => {
         </Container>
       </Wrapper>
       {/* {navOpen && ( */}
-      <Navigation>
+      <Navigation navOpen={navOpen}>
         <MainNavigation
           navOpen={navOpen}
           data={data?.sanityNavigation?.items}
