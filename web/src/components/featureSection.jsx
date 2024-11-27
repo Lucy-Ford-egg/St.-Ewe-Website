@@ -30,7 +30,8 @@ const FeatureImage = styled(motion.div)(({ theme, mirror }) => ({
   // gridTemplateColumns: "repeat(22, 1fr)",
   overflow: "hidden",
   [theme.breakpoints.up("sm")]: {
-    gridColumn: "2/24",
+    gridRow: "1/1",
+    gridColumn: mirror ? "2/12" : "14/24",
   },
   [theme.breakpoints.up("lg")]: {
     gridRow: "1/1",
@@ -52,7 +53,7 @@ const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
     textTransform: "uppercase",
   },
   [theme.breakpoints.up("sm")]: {
-    gridColumn: "2/24",
+    gridColumn: mirror ? "14/24" : "2/14",
   },
   [theme.breakpoints.up("lg")]: {
     gridColumn: mirror ? "14/24" : "2/14",
