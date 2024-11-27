@@ -22,6 +22,9 @@ const ListWrapper = styled("div")(({ theme }) => ({
   flexDirection: "column",
   height: "fit-content",
   gridRow: "1/auto",
+  [theme.breakpoints.up("sm")]: {
+    gridColumn: "15/23",
+  },
   [theme.breakpoints.up("md")]: {
     gridColumn: "15/23",
     display: "flex",
@@ -41,7 +44,7 @@ const List = styled("div")(({ theme, backgroundColour }) => ({
   backgroundColor: contrastBrandPalette[backgroundColour?.label]?.contrastBase,
   padding: "0 var(--ms2)",
   [theme.breakpoints.up("lg")]: {
-    adding: "0 var(--ms3)",
+    padding: "0 var(--ms3)",
   },
   "& ul": {
     listStyle: "none",
@@ -103,6 +106,9 @@ const Content = styled("div")(({ mirror, theme }) => ({
     paddingTop: "var(--ms4)",
     paddingBottom: "var(--ms4)",
     fontSize: "var(--ms2)",
+    [theme.breakpoints.up("md")]: {
+      paddingTop: "0",
+    },
     [theme.breakpoints.up("lg")]: {
       paddingTop: "var(--ms6)",
     },
@@ -123,6 +129,10 @@ const Content = styled("div")(({ mirror, theme }) => ({
     },
   },
   [theme.breakpoints.up("sm")]: {
+    gridColumn: mirror ? "3/13" : "3/13",
+  },
+  [theme.breakpoints.up("md")]: {
+    gridRow: "1/auto",
     gridColumn: mirror ? "3/13" : "3/13",
   },
   [theme.breakpoints.up("lg")]: {
