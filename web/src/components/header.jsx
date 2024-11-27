@@ -7,6 +7,7 @@ import MainNavigation from "./mainNavigation"
 import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
 import { useMenuContext } from "../components/utils/useMenuContext"
+import { motion } from "framer-motion"
 
 const Wrapper = styled("div")(({ theme, navOpen }) => ({
   display: "grid",
@@ -63,7 +64,7 @@ const Logo = styled("div")(({ theme }) => ({
   },
 }))
 
-const MenuButton = styled("div")(({ theme }) => ({
+const MenuButton = styled(motion.div)(({ theme }) => ({
   gridColumn: "18/24",
   display: "grid",
   pointerEvents: "visible",
@@ -351,7 +352,7 @@ const Header = props => {
             </Link>
           </Logo>
 
-          <MenuButton>
+          <MenuButton whileTap={{ scale: 0.97 }}>
             <IconButton
               size="large"
               aria-label="open menu"

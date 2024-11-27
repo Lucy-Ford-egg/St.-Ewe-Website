@@ -4,12 +4,28 @@ import { navigate } from "gatsby"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import { useTheme } from "@mui/material"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
-import { motion } from "framer-motion"
+import { delay, motion } from "framer-motion"
 import { styled } from "@mui/material/styles"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 
-// const Navigation = styled(motion.ul)(({ theme }) => ())
+const Navigation = styled(motion.ul)(({ theme }) => ({
+  gridTemplateColumns: "repeat(24, 1fr)",
+  display: "grid",
+  flexDirection: "column",
+  gridColumn: "3/23",
+  position: "relative",
+  top: "0%",
+  width: "100%",
+  gridTemplateRows: "auto",
+  margin: 0,
+  padding: 0,
+  [theme.breakpoints.up("lg")]: {
+    top: "50%",
+    transform: "translateY(-50%)",
+    gridColumn: "3/23",
+  },
+}))
 
 const ParentItem = styled(motion.li)(({ theme, isActive }) => ({
   color: "var(--white)",
@@ -114,7 +130,7 @@ const ChildUl = styled(motion.ul)(({ theme, activeMenu, index }) => ({
   },
 }))
 
-const ChildItem = styled("li")(({ theme, menu, headerColour }) => ({
+const ChildItem = styled(motion.li)(({ theme, menu, headerColour }) => ({
   color:
     headerColour === "light" || menu === false
       ? "white"
@@ -239,10 +255,11 @@ const MainNavigation = props => {
       opacity: 1,
       pointerEvents: "auto",
       transition: {
-        when: "beforeChildren",
+        // when: "beforeChildren",
         type: "spring",
         bounce: 0,
         duration: 0.7,
+        delay: 0.3,
         delayChildren: 0.3,
         staggerChildren: 0.05,
       },
@@ -260,6 +277,7 @@ const MainNavigation = props => {
     visible: {
       opacity: 1,
       pointerEvents: "auto",
+      y: 0,
       transition: { type: "spring", stiffness: 300, damping: 24 },
     },
     hidden: {
@@ -270,35 +288,40 @@ const MainNavigation = props => {
     },
   }
 
+  const childList = {
+    visible: {
+      opacity: 1,
+      pointerEvents: "auto",
+      transition: {
+        when: "beforeChildren",
+        type: "spring",
+        bounce: 0,
+        duration: 0.1,
+        delayChildren: 0.1,
+        staggerChildren: 0.05,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      pointerEvents: "none",
+      transition: {
+        when: "afterChildren",
+      },
+    },
+  }
+
   return (
-    <motion.ul
+    <Navigation
       menu={activeMenu}
       variants={parentList}
       initial={"hidden"}
-      animate={navOpen === true ? "visible" : "hidden"}
-      style={{
-        gridTemplateColumns: "repeat(24, 1fr)",
-        display: "grid",
-        flexDirection: "column",
-        gridColumn: "3/23",
-        position: "relative",
-        top: "0%",
-        width: "100%",
-        gridTemplateRows: "auto",
-        margin: 0,
-        padding: 0,
-        [theme.breakpoints.up("lg")]: {
-          top: "50%",
-          transform: "translateY(-50%)",
-          gridColumn: "3/23",
-        },
-      }}
+      animate={navOpen ? "visible" : "hidden"}
     >
       {data?.map((menuItem, index) => {
         return (
           <ParentItem
             key={menuItem._id || menuItem._key}
-            whileHover="hover"
+            // whileHover="hover"
             isActive={activeMenu === index}
             variants={parentItem}
           >
@@ -312,10 +335,20 @@ const MainNavigation = props => {
                 label={menuItem?.link?.text}
               >
                 {menuItem.childItems && menuItem.childItems.length > 0 && (
-                  <ChildUl activeMenu={activeMenu} index={index}>
+                  <ChildUl
+                    activeMenu={activeMenu}
+                    index={index}
+                    variants={childList}
+                    initial={"hidden"}
+                    animate={activeMenu === index ? "visible" : "hidden"}
+                  >
                     {menuItem.childItems.map(child => {
                       return (
-                        <ChildItem key={child._key} index={index}>
+                        <ChildItem
+                          key={child._key}
+                          index={index}
+                          variants={parentItem}
+                        >
                           <LinkType
                             disableSubMenu={true}
                             index={index}
@@ -367,7 +400,7 @@ const MainNavigation = props => {
           </ParentItem>
         )
       })}
-    </motion.ul>
+    </Navigation>
   )
 }
 
