@@ -194,14 +194,14 @@ const MainNavigation = props => {
         }
       } else {
         // Navigate immediately if there are no children
-        navigate(e?.currentTarget?.baseURI)
+        navigate(e?.currentTarget?.href)
         handleCloseNavMenu()
       }
     } else {
       // For non-mobile, close menu and navigate
 
       setActiveMenu(null)
-      // navigate(e?.currentTarget?.baseURI)
+      navigate(e?.currentTarget?.href)
       handleCloseNavMenu()
     }
   }
