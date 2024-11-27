@@ -283,7 +283,6 @@ const MainNavigation = props => {
         gridColumn: "3/23",
         position: "relative",
         top: "0%",
-        left: 0,
         width: "100%",
         gridTemplateRows: "auto",
         margin: 0,
