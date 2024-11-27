@@ -17,7 +17,7 @@ const Wrapper = styled("div")(({ theme, navOpen }) => ({
   paddingTop: "var(--ms0)",
   left: 0,
   right: 0,
-  bottom: navOpen && 0,
+  bottom: navOpen ? 0 : "unset",
   zIndex: 3,
   width: "100vw",
   backgroundColor: navOpen && "var(--original-primary)",
@@ -41,6 +41,7 @@ const Container = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
   alignItems: "center",
   maxHeight: "fit-content",
+  height: "fit-content",
   position: "relative",
   zIndex: 10,
   [theme.breakpoints.up("lg")]: {
@@ -78,15 +79,15 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
   position: "fixed",
   left: 0,
   right: 0,
-  top: "0%",
+  bottom: 0,
+  top: 0,
   zIndex: 3,
   justifyContent: "center",
   alignItems: "center",
   marginTop: "var(--ms8)",
-  height: "fit-content",
   overflowY: "scroll",
-
   [theme.breakpoints.up("lg")]: {
+    height: "fit-content",
     overflowY: "unset",
     marginTop: 0,
     top: "50%",
@@ -360,15 +361,16 @@ const Header = props => {
           </MenuButton>
         </Container>
       </Wrapper>
-      {navOpen && (
-        <Navigation>
-          <MainNavigation
-            data={data?.sanityNavigation?.items}
-            // style={{ color: setColor }}
-            handleCloseNavMenu={handleCloseNavMenu}
-          />
-        </Navigation>
-      )}
+      {/* {navOpen && ( */}
+      <Navigation>
+        <MainNavigation
+          navOpen={navOpen}
+          data={data?.sanityNavigation?.items}
+          // style={{ color: setColor }}
+          handleCloseNavMenu={handleCloseNavMenu}
+        />
+      </Navigation>
+      {/* )} */}
     </>
   )
 }

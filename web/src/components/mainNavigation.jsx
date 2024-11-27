@@ -9,26 +9,9 @@ import { styled } from "@mui/material/styles"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 
-const Navigation = styled(motion.ul)(({ theme }) => ({
-  gridTemplateColumns: "repeat(24, 1fr)",
-  display: "grid",
-  flexDirection: "column",
-  gridColumn: "3/20",
-  position: "relative",
-  top: "0%",
-  left: 0,
-  width: "100%",
-  gridTemplateRows: "auto",
-  margin: 0,
-  padding: 0,
-  [theme.breakpoints.up("lg")]: {
-    top: "50%",
-    transform: "translateY(-50%)",
-    gridColumn: "3/23",
-  },
-}))
+// const Navigation = styled(motion.ul)(({ theme }) => ())
 
-const ParentItem = styled(motion.li)(({ theme, active }) => ({
+const ParentItem = styled(motion.li)(({ theme, isActive }) => ({
   color: "var(--white)",
   fontSize: "var(--ms1)",
   fontStyle: "normal",
@@ -43,7 +26,9 @@ const ParentItem = styled(motion.li)(({ theme, active }) => ({
   fontFamily: "Roboto Slab",
   fontWeight: 500,
   "& .parentItemLink": {
-    borderBottom: active ? `1px solid ${theme.palette.primary.main}` : "unset",
+    borderBottom: isActive
+      ? `1px solid ${theme.palette.primary.main}`
+      : "unset",
     [theme.breakpoints.up("lg")]: {
       borderBottom: "unset",
     },
@@ -154,13 +139,13 @@ const ChildItem = styled("li")(({ theme, menu, headerColour }) => ({
 const MenuImage = styled("div")(({ theme }) => ({
   display: "none",
   [theme.breakpoints.up("lg")]: {
-    gridColumn: "10/23",
+    gridColumn: "14/25",
     display: "grid",
     position: "absolute",
     top: "50%",
     transform: "translateY(-50%)",
     gap: "var(--ms-3)",
-    maxWidth: 618,
+    //maxWidth: 618,
     right: 0,
     zIndex: 3,
     transition: "all 0.2s ease-in-out 0s",
@@ -173,7 +158,7 @@ const MenuImage = styled("div")(({ theme }) => ({
 }))
 
 const MainNavigation = props => {
-  const { data, handleCloseNavMenu } = props
+  const { data, handleCloseNavMenu, navOpen } = props
 
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
@@ -249,28 +234,74 @@ const MainNavigation = props => {
     )
   }
 
-  const navigationVariants = {
-    hover: {
-      display: "flex",
+  const parentList = {
+    visible: {
       opacity: 1,
+      pointerEvents: "auto",
+      transition: {
+        when: "beforeChildren",
+        type: "spring",
+        bounce: 0,
+        duration: 0.7,
+        delayChildren: 0.3,
+        staggerChildren: 0.05,
+      },
     },
     hidden: {
-      display: "none",
       opacity: 0,
+      pointerEvents: "none",
+      transition: {
+        when: "afterChildren",
+      },
     },
   }
+
+  const parentItem = {
+    visible: {
+      opacity: 1,
+      pointerEvents: "auto",
+      transition: { type: "spring", stiffness: 300, damping: 24 },
+    },
+    hidden: {
+      opacity: 0,
+      pointerEvents: "none",
+      y: 20,
+      transition: { duration: 0.2 },
+    },
+  }
+
   return (
-    <Navigation
+    <motion.ul
       menu={activeMenu}
-      initial={"hover"}
-      variants={navigationVariants}
+      variants={parentList}
+      initial={"hidden"}
+      animate={navOpen === true ? "visible" : "hidden"}
+      style={{
+        gridTemplateColumns: "repeat(24, 1fr)",
+        display: "grid",
+        flexDirection: "column",
+        gridColumn: "3/23",
+        position: "relative",
+        top: "0%",
+        left: 0,
+        width: "100%",
+        gridTemplateRows: "auto",
+        margin: 0,
+        padding: 0,
+        [theme.breakpoints.up("lg")]: {
+          top: "50%",
+          transform: "translateY(-50%)",
+          gridColumn: "3/23",
+        },
+      }}
     >
       {data?.map((menuItem, index) => {
         return (
           <ParentItem
             key={menuItem._id || menuItem._key}
             whileHover="hover"
-            active={activeMenu === index}
+            isActive={activeMenu === index}
+            variants={parentItem}
           >
             <LinkWrapper>
               <LinkType
@@ -304,29 +335,40 @@ const MainNavigation = props => {
 
             {menuItem?.image?.asset?._id && activeMenu === index && (
               <MenuImage className={`menuItemImage menuItemImage-${index}`}>
-                <Image
-                  crop={menuItem?.image?.crop}
-                  hotspot={menuItem?.image?.hotspot}
-                  alt={menuItem?.image?.asset?.altText}
-                  asset={
-                    (menuItem?.image?._id &&
-                      urlFor(menuItem?.image?.asset).width(618).url()) ||
-                    menuItem?.image?.asset
-                  }
-                  width={mobile ? 20 : tablet ? 400 : 618}
-                  height={mobile ? 20 : tablet ? 200 : 428}
-                  style={{
-                    objectFit: "cover",
-                    width: "100%",
-                    height: "100%",
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: 10,
                   }}
-                />
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                >
+                  <Image
+                    crop={menuItem?.image?.crop}
+                    hotspot={menuItem?.image?.hotspot}
+                    alt={menuItem?.image?.asset?.altText}
+                    asset={
+                      (menuItem?.image?._id &&
+                        urlFor(menuItem?.image?.asset).width(618).url()) ||
+                      menuItem?.image?.asset
+                    }
+                    width={mobile ? 20 : tablet ? 400 : 618}
+                    height={mobile ? 20 : tablet ? 200 : 428}
+                    style={{
+                      objectFit: "cover",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  />
+                </motion.div>
               </MenuImage>
             )}
           </ParentItem>
         )
       })}
-    </Navigation>
+    </motion.ul>
   )
 }
 
