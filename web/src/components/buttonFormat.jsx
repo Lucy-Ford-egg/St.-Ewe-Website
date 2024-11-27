@@ -9,15 +9,15 @@ export const ButtonFormat = props => {
 
   let definedInternal = node?.link?.internal?.slug?.current
   const definedExternal = node?.link?.external
-
+  debugger
   if (node?.link?.internal?._type === "post") {
-    definedInternal = `blog/${node?.link?.internal?.category?.slug?.current}/${definedInternal}`
+    definedInternal = `news/${node?.link?.internal?.categories[0]?.slug?.current}/${definedInternal}`
   }
   if (node?.link?.internal?._type === "recipe") {
-    definedInternal = `/recipe/${definedInternal}`
+    definedInternal = `recipe/${definedInternal}`
   }
   if (node?.link?.internal?._type === "teamMembers") {
-    definedInternal = `/team-members/${definedInternal}`
+    definedInternal = `team-members/${definedInternal}`
   }
   console.log(
     `What Colour? -- ${contrastBrandPalette[backgroundColour?.label]?.contrastButton[variant]}`,

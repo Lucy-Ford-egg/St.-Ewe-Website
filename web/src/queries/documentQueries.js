@@ -10,8 +10,10 @@ link{
       current,
       _type
     },
-    category-> {
-      ...,
+    categories[]->{
+      slug{
+        current
+      },
     },
     _type,
     id,             
@@ -79,7 +81,7 @@ const TEXT_SECTION = `
     },
   },
   link{
-      ${LINK},
+    ${LINK},
   }
 `
 export const PAGE_BUILDER = `
