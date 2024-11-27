@@ -64,6 +64,7 @@ const AccordSummary = styled(AccordionSummary)(
 const Summary = styled("div")({
   display: "flex",
   flexDirection: "column",
+  flexBasis: "70%",
   "& .title": {
     marginBottom: 0,
   },
