@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useRef } from "react"
 import { graphql } from "gatsby"
 import { useTheme } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import Image from "gatsby-plugin-sanity-image"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { urlFor } from "../utils/imageHelpers"
 import { contrastBrandPalette } from "../utils/colours"
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
+import { LiaArrowRightSolid } from "react-icons/lia"
 
 const Wrapper = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
@@ -79,9 +81,9 @@ const TimeLineEntry = styled("div")(({ theme, isAsset }) => ({
   },
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {
-    flexBasis: "30%",
-    width: "30%",
-    minWidth: "30%",
+    flexBasis: "27%",
+    width: "27%",
+    minWidth: "27%",
     rowGap: "var(--ms2)",
   },
 }))
@@ -126,14 +128,43 @@ const Line = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {},
 }))
 
+const ArrowRight = styled("div")(({ theme, backgroundColour }) => ({
+  gridColumn: "2/24",
+  gridRow: "1/1",
+  display: "flex",
+  alignItems: "center",
+  height: "fit-content",
+  position: "relative",
+  zIndex: 2,
+  "& svg": {
+    maxWidth: "100%",
+    height: "auto",
+    width: "100%",
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+    borderRadius: "9999px",
+    padding: "var(--ms0)",
+    backgroundColor: "rgba(255,255,255,0.6)",
+  },
+  [theme.breakpoints.up("sm")]: {},
+}))
+
 export const TimelineSection = props => {
   const theme = useTheme()
-
+  const timelineRef = useRef()
   const { times, backgroundColour } = props
+
+  const { scrollXProgress } = useScroll({ container: timelineRef })
+
+  const opacity = useTransform(scrollXProgress, [0, 0.2], [1, 0])
 
   return (
     <ModuleContainer {...props}>
       <Wrapper theme={theme} backgroundColour={backgroundColour}>
+        <ArrowRight backgroundColour={backgroundColour}>
+          <motion.span style={{ opacity }}>
+            <LiaArrowRightSolid />
+          </motion.span>
+        </ArrowRight>
         <Line>
           <svg
             fill="none"
@@ -151,7 +182,7 @@ export const TimelineSection = props => {
             />
           </svg>
         </Line>
-        <TimeLine>
+        <TimeLine ref={timelineRef}>
           {times?.map(node => {
             return (
               <TimeLineEntry isAsset={node?.isAsset}>
