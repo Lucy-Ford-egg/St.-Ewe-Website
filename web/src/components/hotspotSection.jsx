@@ -45,11 +45,17 @@ const Hotspot = styled("div")(({ x, y, theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   "& svg": {
-    width: 66,
-    height: 73.19,
+    width: 33,
+    height: 33,
+    [theme.breakpoints.up("sm")]: {
+      width: 44,
+      height: 44,
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: 66,
+      height: 73.19,
+    },
   },
-  [theme.breakpoints.up("sm")]: {},
-  [theme.breakpoints.up("lg")]: {},
 }))
 
 const HotspotDetail = styled(motion.div)(({ theme }) => ({
@@ -128,11 +134,13 @@ export const HotspotSection = props => {
                 }
                 // width={mobile ? 390 : tablet ? 732 : 732}
                 // height={mobile ? 245 : tablet ? 438 : 438}
-                style={{
-                  objectFit: "contain",
-                  width: "100%",
-                  height: "100%",
-                }}
+                style={
+                  {
+                    // objectFit: "contain",
+                    // width: "100%",
+                    // height: "100%",
+                  }
+                }
               />
             )}
             {hotspotData?.hotspots?.map((node, i) => {
@@ -209,7 +217,7 @@ export const HotspotSection = props => {
                   // width={mobile ? 362 : tablet ? 732 : 732}
                   // height={mobile ? 241 : tablet ? 438 : 438}
                   style={{
-                    objectFit: "cover",
+                    //objectFit: "cover",
                     width: "100%",
                     height: "100%",
                   }}
