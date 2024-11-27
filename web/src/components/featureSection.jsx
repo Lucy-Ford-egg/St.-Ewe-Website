@@ -61,14 +61,13 @@ const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
 }))
 
 const Asset = styled(motion.div)(({ mirror, theme }) => ({
-  display: "grid",
   gridTemplateColumns: "repeat(22, 1fr)",
   gridColumn: "1/3",
   gridRow: "3/4",
   position: "relative",
   zIndex: 1,
   alignItems: "start",
-
+  display: "none",
   "& img": {
     transform: "translateX(-10px) translateY(100px) ",
     maxWidth: 110,
@@ -81,12 +80,13 @@ const Asset = styled(motion.div)(({ mirror, theme }) => ({
   },
 
   [theme.breakpoints.up("sm")]: {
+    display: "grid",
     gridColumn: "21/24",
     gridRow: "1/1",
     alignItems: "end",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: mirror ? "13/15" : "13/15",
+    gridColumn: mirror ? "10/15" : "13/15",
     gridRow: "1/1",
     alignItems: "end",
   },
