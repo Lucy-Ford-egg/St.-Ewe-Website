@@ -53,10 +53,10 @@ const Content = styled("div")(({ mirror, theme, backgroundColour }) => ({
     textTransform: "uppercase",
   },
   [theme.breakpoints.up("sm")]: {
-    gridColumn: mirror ? "14/24" : "2/14",
+    gridColumn: mirror ? "14/24" : "2/12",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: mirror ? "14/24" : "2/14",
+    gridColumn: mirror ? "14/24" : "2/12",
   },
 }))
 
@@ -86,7 +86,7 @@ const Asset = styled(motion.div)(({ mirror, theme }) => ({
     alignItems: "end",
   },
   [theme.breakpoints.up("lg")]: {
-    gridColumn: mirror ? "13/15" : "10/13",
+    gridColumn: mirror ? "13/15" : "13/15",
     gridRow: "1/1",
     alignItems: "end",
   },
