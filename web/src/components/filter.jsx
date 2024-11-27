@@ -22,7 +22,7 @@ const ScrollFilter = styled("div")(({ props, theme }) => ({
   display: "flex",
   flexWrap: "nowrap",
   overflowX: "auto",
-
+  columnGap: "var(--ms0)",
   "&::-webkit-scrollbar": {
     width: "var(--ms-4)",
   },
@@ -32,6 +32,7 @@ const ScrollFilter = styled("div")(({ props, theme }) => ({
 const FilterButton = styled(Button)(({ props, theme }) => ({
   fontFamily: "Roboto Serif",
   fontSize: 12,
+  textTransform: "unset",
   letterSpaceing: 1.2,
   [theme.breakpoints.up("lg")]: {},
 }))
