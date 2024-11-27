@@ -64,7 +64,7 @@ const Logo = styled("div")(({ theme }) => ({
   },
 }))
 
-const MenuButton = styled(motion.div)(({ theme }) => ({
+const MenuButton = styled("div")(({ theme }) => ({
   gridColumn: "18/24",
   display: "grid",
   pointerEvents: "visible",
@@ -352,7 +352,7 @@ const Header = props => {
             </Link>
           </Logo>
 
-          <MenuButton whileTap={{ scale: 0.97 }}>
+          <MenuButton>
             <IconButton
               size="large"
               aria-label="open menu"
