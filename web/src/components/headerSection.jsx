@@ -22,12 +22,9 @@ const Wrapper = styled("div")(({ theme, image }) => ({
   display: "grid",
   gridTemplateColumns: "repeat(24, 1fr)",
   gridColumn: "1/25",
-  gridTemplateRows: !image ? "90px 1fr" : "400px 1fr",
+  gridTemplateRows: "1fr",
   position: "relative",
   maskImage: "unset",
-  [theme.breakpoints.up("sm")]: {
-    gridTemplateRows: "700px 1fr",
-  },
   [theme.breakpoints.up("lg")]: {
     height: "100%",
     gridTemplateRows: "1fr",
@@ -40,7 +37,8 @@ const Wrapper = styled("div")(({ theme, image }) => ({
 
 const BackgroundImage = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
-  gridRow: "1/1",
+  gridRow: "1/2",
+  zIndex: 0,
   [theme.breakpoints.up("sm")]: {
     gridRow: "1/2",
     maxHeight: "unset",
@@ -48,21 +46,18 @@ const BackgroundImage = styled("div")(({ theme }) => ({
 }))
 
 const Overlay = styled("div")(({ theme }) => ({
-  display: "none",
-  [theme.breakpoints.up("sm")]: {
-    gridColumn: "1/25",
-    display: "grid",
-    backgroundColor: "rgba(0,0,0,0.2)",
-    zIndex: 1,
-    gridRow: "1/2",
-  },
+  gridColumn: "1/25",
+  display: "grid",
+  backgroundColor: "rgba(0,0,0,0.2)",
+  zIndex: 1,
+  gridRow: "1/2",
 }))
 
 const Content = styled("div")(({ alignment, theme }) => ({
-  gridRow: "2/2",
   gridColumn: alignment === "left" ? "3/22" : "3/22",
   textAlign: alignment === "left" ? "left" : "center",
   display: "grid",
+  gridRow: "1/2",
   justifyContent: "center",
   alignItems: alignment === "left" ? "center" : "center",
   zIndex: 2,
