@@ -434,6 +434,26 @@ export const Footer = () => {
             Gendall
           </Link>
         </Typography>
+
+        <Typography
+          color="white.main"
+          variant="caption"
+          sx={{ color: "rgba(255,255,255,0.6)" }}
+        >
+          {`Illustrations by`}{" "}
+          <Link
+            rel="noopener"
+            target="_blank"
+            color="white.main"
+            className="link-animation"
+            href="https://www.jenniferarmitage.co.uk/"
+            style={{
+              color: "white",
+            }}
+          >
+            Jennifer Armitage
+          </Link>
+        </Typography>
       </Credit>
 
       {/* {data?.socialMenu?.items &&
