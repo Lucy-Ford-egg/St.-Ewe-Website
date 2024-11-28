@@ -47,6 +47,7 @@ const AccordSummary = styled(AccordionSummary)(
     flexDirection: "column-reverse",
     alignItems: "start",
     columnGap: "var(--ms3)",
+    rowGap: "var(--ms0)",
     [theme.breakpoints.up("md")]: {
       flexDirection: "row-reverse",
       alignItems: "center",
@@ -54,9 +55,18 @@ const AccordSummary = styled(AccordionSummary)(
     },
     "& .MuiAccordionSummary-content": {
       justifyContent: "space-between",
-      alignItems: "center",
+      alignItems: "start",
       width: "100%",
       flexBasis: "100%",
+      flexDirection: "column",
+      rowGap: "var(--ms1)",
+      marginTop: 0,
+      marginBottom: 0,
+      [theme.breakpoints.up("md")]: {
+        flexDirection: "row",
+        alignItems: "center",
+        rowGap: 0,
+      },
     },
   }),
 )
