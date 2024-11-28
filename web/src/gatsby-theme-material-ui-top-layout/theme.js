@@ -257,13 +257,32 @@ let clientTheme = createTheme({
           display: flex;
           column-gap: ${defaultTheme.spacing(6)};
           row-gap: ${defaultTheme.spacing(6)};
-        }
-        ${[defaultTheme.breakpoints.down("md")]}{
-          .cookie-notice{
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-end;
+          justify-content: end;
+          flex-direction: column;
+          ${[defaultTheme.breakpoints.up("md")]}{
+              flex-direction: row;
+              align-items: flex-start;
+              justify-content: flex-end;
           }
+        }
+        .CookieButton-text{
+          outline: none;
+          border: none;
+          background-color: transparent;
+          font-family: Roboto Condensed;
+          border-radius: 100;
+          text-transform: uppercase;
+          letterspacing: 2%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          font-weight: 400;
+          padding: var(--ms0)  var(--ms0);
+          font-size: var(--ms0);
+          box-shadow: none;
+          color: var(--original-large);
+
         }
         .backgroundClasses{
           display: flex;
@@ -295,8 +314,8 @@ let clientTheme = createTheme({
           color: ${defaultTheme.palette.primary.main};
         }
         .buttonTertiary{
-          border: 1px solid ${defaultTheme.palette.white.main};
-          color: ${defaultTheme.palette.white.main};
+          border: 1px solid var(--rich-yolk-primary);
+          color: var(--rich-yolk-primary);
           align-self: center;
         }
         .acceptButtonClasses{
@@ -304,39 +323,82 @@ let clientTheme = createTheme({
           color: white;
         }
         .cookie-list{
-          color: ${defaultTheme.palette.white.main};
+          color: var(--oringinal-large);
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          column-gap: var(--ms2);
+          row-gap: var(--ms0);
+          margin-top: var(--ms0);
+          ${[defaultTheme.breakpoints.up("md")]}{
+            grid-template-columns: repeat(3, 1fr);
+          }
+          & > div{
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            column-gap: var(--ms0);
+            input{
+              grid-column: 1 / 2;
+              grid-row: 1 / 1;
+            }
+              label{
+              grid-column: 2 / 13;
+              grid-row: 1 / 1;
+              font-weight: 700;
+              }
+              p{
+               grid-column: 1 / 13;
+              grid-row: 2 / 2;
+              }
+              button{
+                grid-column: span 13;
+                max-height: fit-content;
+              }
+          }
         }
         .bg-cookie{
+          display: grid;
+          grid-column: 1/25;
+          grid-template-columns: repeat(24, 1fr);
+          padding-top: var(--ms0);
+          padding-bottom: var(--ms2);
+          background-color:var(--original-medium);
+          .container{
+              grid-column: 2/24;
+          }
           .btn-primary, .btn-secondary {             
-            outline: none;
-            border: none;
-            font-family: Open Sans;
-            border-radius: 1000;
-            text-transform: uppercase;
-            letterspacing: 0.075rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: max-content;
-            font-weight: 400;
-            font-size: ${defaultTheme.spacing(2)}; 
+            background-color: transparent;
+          font-family: Roboto Condensed;
+          border-radius: 100px;
+          text-transform: uppercase;
+          letterspacing: 2%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          font-weight: 400;
+          padding: var(--ms0)  var(--ms0);
+          font-size: var(--ms0);
+          box-shadow: none;
+          color: var(--original-large); 
             &:hover{
               cursor: pointer;
             }           
           }
           .btn-primary {
-            color: ${defaultTheme.palette.white.main};
-            background-color: ${defaultTheme.palette.primary.main};
+            color: var(--white);
+            border: 1px solid var(--rich-yolk-primary);
+            background-color: var(--rich-yolk-primary);
           }
           .btn-secondary {
-            color: ${defaultTheme.palette.white.main};
+            color: var(--oringinal-large);
             background-color: transparent;
-            border: 1px solid ${defaultTheme.palette.primary.main};
+            border: 1px solid var(--original-large);
           }
           
           .float-end{
             display: flex;
-            column-gap: 6;
+            column-gap: var(--ms2);
+           
           }
         }
       `,
@@ -558,6 +620,9 @@ let clientTheme = createTheme({
             color: defaultTheme.palette.primary.main,
             backgroundColor: "transparent",
           },
+        },
+        text: {
+          fontSize: "var(--ms4)",
         },
       },
     },

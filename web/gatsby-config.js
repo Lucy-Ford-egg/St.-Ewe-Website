@@ -38,6 +38,10 @@ module.exports = {
           key: `Content-Security-Policy: frame-src`,
           value: `https://fresnel.vimeocdn.com`,
         },
+        {
+          key: `Content-Security-Policy`,
+          value: `form-action 'self' https://google.com;`,
+        },
       ],
     },
   ],
@@ -151,6 +155,56 @@ module.exports = {
           "SanityCoverImage",
           "SanityImageAlt",
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-gdpr-cookies`,
+      options: {
+        googleConsent: {
+          adStorage: "gatsby-gdpr-google-ad-storage", // default
+          analyticsStorage: "gatsby-gdpr-google-analytics-storage", // default
+          functionalityStorage: "gatsby-gdpr-google-functionality-storage", // default
+          personalizationStorage: "gatsby-gdpr-google-personalization-storage", // default
+          adUserData: "gatsby-gdpr-google-ad-user-data", // default
+          adPersonalization: "gatsby-gdpr-google-ad-personalization", // default
+          waitForUpdate: 500, // default
+        },
+        googleAnalytics: {
+          trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID, // leave empty if you want to disable the tracker
+          anonymize: true, // default
+          allowAdFeatures: false, // default
+        },
+        googleTagManager: {
+          trackingId: process.env.GOOGLE_TAG_MANAGER_TRACKING_ID, // leave empty if you want to disable the tracker
+          dataLayerName: "dataLayer", // default
+        },
+        googleTag: {
+          trackingIds: ["YOUR_GOOGLE_TAG_IDS"],
+        },
+        facebookPixel: {
+          pixelId: process.env.FACEBOOK_PIXEL_ID, // leave empty if you want to disable the tracker
+          cookieName: "gatsby-gdpr-facebook-pixel", // default
+        },
+        tikTokPixel: {
+          pixelId: process.env.TIKTOK_PIXEL_ID, // leave empty if you want to disable the tracker
+          cookieName: "gatsby-gdpr-tiktok-pixel", // default
+        },
+        // hotjar: {
+        //   hjid: "YOUR_HOTJAR_ID",
+        //   hjsv: "YOUR_HOTJAR_SNIPPET_VERSION",
+        //   cookieName: "gatsby-gdpr-hotjar", // default
+        // },
+        // linkedin: {
+        //   trackingId: "YOUR_LINKEDIN_TRACKING_ID", // leave empty if you want to disable the tracker
+        //   cookieName: "gatsby-gdpr-linkedin", // default
+        // },
+        // hubspot: {
+        //   trackingId: "YOUR_HUBSPOT_TRACKING_ID", // leave empty if you want to disable the tracker
+        //   cookieName: "gatsby-gdpr-hubspot", // default
+        // },
+        // defines the environments where the tracking should be available  - default is ["production"]
+        environments: ["production", "development"],
+        iframeSandbox: "allow-forms allow-scripts allow-same-origin",
       },
     },
     {

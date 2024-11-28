@@ -8,6 +8,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/montserrat": "^5.0.15",
+    "@mobile-reality/gatsby-plugin-gdpr-cookies": "^0.2.5",
     "@mui/icons-material": "^5.14.14",
     "@mui/material": "^5.14.14",
     "@popperjs/core": "^2.11.8",

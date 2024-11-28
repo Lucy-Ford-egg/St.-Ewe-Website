@@ -4,6 +4,7 @@ import Header from "./header"
 import { Footer } from "./footer"
 import { VisualEditing } from "./visualEditing"
 import { MenuProvider } from "./utils/useMenuContext"
+import { CookieBanner } from "./cookieBanner"
 
 export const Layout = props => {
   const { children, data } = props
@@ -37,6 +38,7 @@ export const Layout = props => {
           })}
         </>
         <Footer />
+        <CookieBanner />
       </MenuProvider>
     </div>
   )
