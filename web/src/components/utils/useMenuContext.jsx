@@ -6,6 +6,7 @@ const MenuContext = createContext()
 // Create the provider
 export const MenuProvider = ({ children }) => {
   const [navOpen, setNavOpen] = useState(false)
+  const [activeMenu, setActiveMenu] = useState(null)
 
   const toggleOpenNavMenu = toggle => {
     setNavOpen(toggle)
@@ -17,7 +18,13 @@ export const MenuProvider = ({ children }) => {
 
   return (
     <MenuContext.Provider
-      value={{ navOpen, toggleOpenNavMenu, handleCloseNavMenu }}
+      value={{
+        navOpen,
+        toggleOpenNavMenu,
+        handleCloseNavMenu,
+        activeMenu,
+        setActiveMenu,
+      }}
     >
       {children}
     </MenuContext.Provider>

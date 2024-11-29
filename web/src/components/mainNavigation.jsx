@@ -8,6 +8,7 @@ import { delay, motion } from "framer-motion"
 import { styled } from "@mui/material/styles"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
+import { useMenuContext } from "../components/utils/useMenuContext"
 
 const Navigation = styled(motion.ul)(({ theme }) => ({
   gridTemplateColumns: "repeat(24, 1fr)",
@@ -23,7 +24,7 @@ const Navigation = styled(motion.ul)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     top: "50%",
     transform: "translateY(-50%)",
-    gridColumn: "3/23",
+    //gridColumn: "3/23",
   },
 }))
 
@@ -174,13 +175,18 @@ const MenuImage = styled("div")(({ theme }) => ({
 }))
 
 const MainNavigation = props => {
-  const { data, handleCloseNavMenu, navOpen } = props
+  const { data } = props
+  const {
+    navOpen,
+    toggleOpenNavMenu,
+    handleCloseNavMenu,
+    activeMenu,
+    setActiveMenu,
+  } = useMenuContext()
 
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
   const tablet = useMediaQuery(theme.breakpoints.between("sm", "md"))
-
-  const [activeMenu, setActiveMenu] = useState(null)
 
   const handleClick = (i, e, hasChildren) => {
     if (mobile || tablet) {
@@ -267,9 +273,9 @@ const MainNavigation = props => {
     hidden: {
       opacity: 0,
       pointerEvents: "none",
-      transition: {
-        when: "afterChildren",
-      },
+      // transition: {
+      //   when: "afterChildren",
+      // },
     },
   }
 

@@ -100,7 +100,13 @@ const Navigation = styled("div")(({ theme, navOpen }) => ({
 }))
 
 const Header = props => {
-  const { navOpen, toggleOpenNavMenu, handleCloseNavMenu } = useMenuContext()
+  const { navOpen, toggleOpenNavMenu, handleCloseNavMenu, setActiveMenu } =
+    useMenuContext()
+
+  const menuButtonEvents = () => {
+    setActiveMenu(null)
+    toggleOpenNavMenu(!navOpen)
+  }
 
   const data = useStaticQuery(graphql`
     query MainNavigationQuery {
@@ -356,7 +362,7 @@ const Header = props => {
             <IconButton
               size="large"
               aria-label="open menu"
-              onClick={e => toggleOpenNavMenu(!navOpen)}
+              onClick={e => menuButtonEvents()}
               color="white"
               disableRipple={true}
             >
