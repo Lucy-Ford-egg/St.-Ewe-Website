@@ -40,6 +40,7 @@ const Title = styled(motion.div)(({ theme }) => ({
   lineHeight: "var(--ms5)",
   //marginTop: "var(--ms1)",
   position: "fixed",
+  pointerEvents: "none",
   left: 0,
   right: 0,
   [theme.breakpoints.up("sm")]: {
