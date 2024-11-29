@@ -15,7 +15,7 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
   gridTemplateRows: "1fr 1fr 1fr 1fr",
   overflow: "hidden",
   alignItems: "center",
-  height: "100vh",
+  height: "600px",
   position: "relative",
   marginTop: "var(--ms9)",
   [theme.breakpoints.up("lg")]: {
@@ -38,6 +38,9 @@ const Title = styled(motion.div)(({ theme }) => ({
   fontSize: "var(--ms5)",
   lineHeight: "var(--ms5)",
   //marginTop: "var(--ms1)",
+  position: "fixed",
+  left: 0,
+  right: 0,
   [theme.breakpoints.up("sm")]: {
     fontSize: "var(--ms7)",
     lineHeight: "var(--ms7)",
@@ -46,6 +49,8 @@ const Title = styled(motion.div)(({ theme }) => ({
     gridRow: "1/3",
     fontSize: "var(--ms9)",
     lineHeight: "var(--ms9)",
+    maxWidth: "90vh",
+    margin: "0 auto",
   },
 }))
 
@@ -57,7 +62,7 @@ const Layer = styled(motion.div)(({ theme }) => ({
   left: 0,
   right: 0,
   bottom: 0,
-  height: "100vh",
+  //height: "1911px",
   paddingTop: "var(--ms5)",
   [theme.breakpoints.up("lg")]: {
     paddingTop: "unset",
@@ -95,7 +100,7 @@ const renderLayer = (layer, index, transform, mobile, contentOpacity) => (
       hotspot={layer?.hotspot}
       alt={layer?.altText}
       width={mobile ? 390 : 1440}
-      height={mobile ? 300 : 1911}
+      height={mobile ? 600 : 1911}
       asset={layer?._id ? urlFor(layer).url() : layer?.asset}
       style={{
         //objectFit: "cover",
@@ -122,22 +127,26 @@ export const HeroHeaderSection = props => {
     offset: ["start start", "end start"],
   })
   const transforms = [
-    useTransform(scrollYProgress, [0, 1], ["0%", "0px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "350px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "300px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "250px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "250px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "180px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "350px"]), // Clouds
+    useTransform(scrollYProgress, [0, 1], ["0%", "750px"]), // Sun
+    useTransform(scrollYProgress, [0, 1], ["0%", "760px"]), // Left field
+    useTransform(scrollYProgress, [0, 1], ["0%", "460px"]), // Right Field
+    useTransform(scrollYProgress, [0, 1], ["0%", "420px"]), // Church
+    useTransform(scrollYProgress, [0, 1], ["0%", "410px"]),
     useTransform(scrollYProgress, [0, 1], ["0%", "160px"]),
     useTransform(scrollYProgress, [0, 1], ["0%", "140px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "80px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "80px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "100px" : "180px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "-100px" : "-240px"]),
   ]
   // Map x from these values:
   // Into these values:
-  const contentOpacity = useTransform(scrollYProgress, [1, 0], ["0%", "100%"])
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.25],
+    ["100%", "0%"],
+  )
   //const titleOpacity = useTransform(scrollYProgress, [1, 0], ["0%", "100%"]);
-  const content = useTransform(scrollYProgress, [0, 1], ["0px", "300px"])
+  const content = useTransform(scrollYProgress, [0, 1], ["0px", "500px"])
   //const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
 
   return (
@@ -164,7 +173,7 @@ export const HeroHeaderSection = props => {
           <Title
             style={{
               opacity: contentOpacity,
-              y: content,
+              //y: content,
             }}
             // style={{
             //     opacity: contentOpacity ,
