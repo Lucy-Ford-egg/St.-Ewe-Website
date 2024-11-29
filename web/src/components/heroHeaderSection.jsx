@@ -3,7 +3,8 @@ import { graphql } from "gatsby"
 import { useTheme, useMediaQuery } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, easeInSine } from "framer-motion"
+
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
 
@@ -127,16 +128,39 @@ export const HeroHeaderSection = props => {
     offset: ["start start", "end start"],
   })
   const transforms = [
-    useTransform(scrollYProgress, [0, 1], ["0%", "350px"]), // Clouds
-    useTransform(scrollYProgress, [0, 1], ["0%", "750px"]), // Sun
-    useTransform(scrollYProgress, [0, 1], ["0%", "760px"]), // Left field
-    useTransform(scrollYProgress, [0, 1], ["0%", "460px"]), // Right Field
-    useTransform(scrollYProgress, [0, 1], ["0%", "420px"]), // Church
-    useTransform(scrollYProgress, [0, 1], ["0%", "410px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "160px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", "140px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "100px" : "180px"]),
-    useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "-100px" : "-240px"]),
+    useTransform(scrollYProgress, [0, 1], ["0%", "750px"], {
+      ease: easeInSine,
+    }), // Clouds
+    useTransform(scrollYProgress, [0, 1], ["0%", "750px"], {
+      ease: easeInSine,
+    }), // Sun
+    useTransform(scrollYProgress, [0, 1], ["0%", "760px"], {
+      ease: easeInSine,
+    }), // Left field
+    useTransform(scrollYProgress, [0, 1], ["0%", "460px"], {
+      ease: easeInSine,
+    }), // Right Field
+    useTransform(scrollYProgress, [0, 1], ["0%", "420px"], {
+      ease: easeInSine,
+    }), // Church
+    useTransform(scrollYProgress, [0, 1], ["0%", "410px"], {
+      ease: easeInSine,
+    }),
+    useTransform(scrollYProgress, [0, 1], ["0%", "160px"], {
+      ease: easeInSine,
+    }),
+    useTransform(scrollYProgress, [0, 1], ["0%", "140px"], {
+      ease: easeInSine,
+    }),
+    useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "100px" : "180px"], {
+      ease: easeInSine,
+    }),
+    useTransform(
+      scrollYProgress,
+      [0, 1],
+      ["0%", mobile ? "-100px" : "-240px"],
+      { ease: easeInSine },
+    ),
   ]
   // Map x from these values:
   // Into these values:
@@ -145,9 +169,6 @@ export const HeroHeaderSection = props => {
     [0, 0.25],
     ["100%", "0%"],
   )
-  //const titleOpacity = useTransform(scrollYProgress, [1, 0], ["0%", "100%"]);
-  const content = useTransform(scrollYProgress, [0, 1], ["0px", "500px"])
-  //const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
 
   return (
     <ModuleContainer
