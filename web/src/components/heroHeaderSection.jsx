@@ -20,7 +20,7 @@ const Wrapper = styled(motion.div)(({ theme }) => ({
   marginTop: "var(--ms9)",
   [theme.breakpoints.up("lg")]: {
     marginTop: "unset",
-    height: "150vh",
+    height: "1911px",
   },
 }))
 
@@ -43,7 +43,7 @@ const Title = styled(motion.div)(({ theme }) => ({
     lineHeight: "var(--ms7)",
   },
   [theme.breakpoints.up("lg")]: {
-    gridRow: "1/4",
+    gridRow: "1/3",
     fontSize: "var(--ms9)",
     lineHeight: "var(--ms9)",
   },
@@ -61,7 +61,7 @@ const Layer = styled(motion.div)(({ theme }) => ({
   paddingTop: "var(--ms5)",
   [theme.breakpoints.up("lg")]: {
     paddingTop: "unset",
-    height: "150vh",
+    height: "1911px",
   },
   img: {
     "&:last-of-type": {
@@ -94,8 +94,8 @@ const renderLayer = (layer, index, transform, mobile, contentOpacity) => (
       crop={layer?.crop}
       hotspot={layer?.hotspot}
       alt={layer?.altText}
-      width={mobile ? 390 : 2880}
-      height={mobile ? 300 : 2210}
+      width={mobile ? 390 : 1440}
+      height={mobile ? 300 : 1911}
       asset={layer?._id ? urlFor(layer).url() : layer?.asset}
       style={{
         //objectFit: "cover",
