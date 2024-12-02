@@ -271,7 +271,7 @@ let clientTheme = createTheme({
           border: none;
           background-color: transparent;
           font-family: Roboto Condensed;
-          border-radius: 100;
+          border-radius: 0px;
           text-transform: uppercase;
           letterspacing: 2%;
           display: flex;
@@ -283,6 +283,7 @@ let clientTheme = createTheme({
           font-size: var(--ms0);
           box-shadow: none;
           color: var(--original-large);
+          text-decoration: underline;
         }
         .backgroundClasses{
           display: flex;
