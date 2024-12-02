@@ -242,7 +242,7 @@ let clientTheme = createTheme({
           color: inherit;
           text-decoration: none;
         }
-        .backgroundWrapperClasses{
+        .fixed-bottom{
           position: fixed;
           z-index: 10;
           left: 0;
@@ -252,6 +252,7 @@ let clientTheme = createTheme({
           background-color: ${defaultTheme.palette.secondary.mid};
           display: flex;
           align-items: flex-end;
+          box-shadow 0px 0px 14px -2px rgba(0,0,0,00.3);
         }
         .cookie-notice {
           display: flex;
@@ -282,7 +283,6 @@ let clientTheme = createTheme({
           font-size: var(--ms0);
           box-shadow: none;
           color: var(--original-large);
-
         }
         .backgroundClasses{
           display: flex;
