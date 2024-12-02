@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { Script } from "gatsby"
+import { PreviewContext } from "../context/previewContext"
 
-export const HeadScripts = props => {
-  const { activePreview } = props
+export const HeadScripts = () => {
+  const { activePreview } = useContext(PreviewContext)
+  debugger
 
   const [preview, setPreview] = useState(activePreview || null)
 
@@ -11,6 +13,7 @@ export const HeadScripts = props => {
   }, [activePreview])
 
   console.log(`Preview Active = ${preview}`)
+  debugger
   return (
     <>
       {!preview ? (

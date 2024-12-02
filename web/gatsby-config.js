@@ -42,6 +42,10 @@ module.exports = {
           key: `Content-Security-Policy`,
           value: `form-action 'self' https://google.com;`,
         },
+        {
+          key: `Content-Security-Policy: frame-src`,
+          value: `js-eu1.hs-scripts.com`,
+        },
       ],
     },
   ],
