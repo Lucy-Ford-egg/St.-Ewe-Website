@@ -25,6 +25,7 @@ const ColumnCount = styled("span")(({ value }) => ({
 
 const ReactPlayerWrapper = styled("div")(({ value }) => ({
   width: "100% !important",
+  minWidth: "60vw",
   height: "300px !important",
   "@media only screen and (min-width: 600px)": {
     width: "100% !important",
