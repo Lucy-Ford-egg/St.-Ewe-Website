@@ -28,7 +28,7 @@ export const MailChimp = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    debugger
+
     const addResult = await addToMailchimp(email, {
       "gdpr[127727]": marketingConsent ? "Y" : "N",
     })
