@@ -11,7 +11,6 @@ const FeatureSection = React.lazy(() =>
     default: module.FeatureSection,
   })),
 )
-// const EmbedSection = React.lazy(() => import("./embedSection").then(module => ({ default: module.EmbedSection })));
 const TitleSection = React.lazy(() =>
   import("./titleSection").then(module => ({ default: module.TitleSection })),
 )
@@ -42,7 +41,7 @@ const TimelineSection = React.lazy(() =>
     default: module.TimelineSection,
   })),
 )
-// const VideoSection = React.lazy(() => import('./videoSection').then(module => ({ default: module.VideoSection })));
+
 const CtaSection = React.lazy(() =>
   import("./ctaSection").then(module => ({ default: module.CtaSection })),
 )
@@ -54,8 +53,6 @@ const TestimonialSection = React.lazy(() =>
 const ImageSection = React.lazy(() =>
   import("./imageSection").then(module => ({ default: module.ImageSection })),
 )
-// const LocationSection = React.lazy(() => import('./locationSection').then(module => ({ default: module.LocationSection })));
-// const ContactSection = React.lazy(() => import('./contactSection').then(module => ({ default: module.ContactSection })));
 const TeamSection = React.lazy(() =>
   import("./teamSection").then(module => ({ default: module.TeamSection })),
 )
@@ -64,7 +61,6 @@ const RecipesSection = React.lazy(() =>
     default: module.RecipesSection,
   })),
 )
-// const NewsletterSection = React.lazy(() => import('./newsletterSection').then(module => ({ default: module.NewsletterSection })));
 const RecipeBodySection = React.lazy(() =>
   import("./recipeBodySection").then(module => ({
     default: module.RecipeBodySection,
@@ -131,7 +127,7 @@ const Modules = props => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_2151_23103)">
+              <g clipPath="url(#clip0_2151_23103)">
                 <path
                   d="M167.42 30.0999C168.34 25.3699 173.93 23.1099 178.75 23.1399C181.1 23.1499 183.67 23.6299 185.16 25.4499C187.53 28.3599 185.84 32.6699 184.07 35.9799C186.23 34.5799 189.31 36.1899 190.37 38.5399C191.43 40.8899 191.06 43.5999 190.67 46.1499C190.43 47.6699 190.18 49.2299 189.38 50.5299C188.58 51.8299 187.08 52.8399 185.57 52.5899C189.35 51.8999 193.41 54.7699 194.02 58.5599C194.63 62.3499 191.68 66.3499 187.88 66.8899C191.79 68.2199 194.45 72.5199 193.88 76.6199C193.74 77.5999 193.44 78.5699 192.85 79.3599C191.05 81.7699 187.48 81.7099 184.48 81.3999C185.82 83.6599 187.97 84.9399 188.58 87.4999C189.03 89.4099 189.2 91.4799 188.07 93.0899C186.94 94.6999 182.93 96.3099 182.05 94.5499C181.71 96.8999 181.34 99.3399 180.03 101.33C178.72 103.32 176.19 104.71 173.94 103.95C166.23 90.2899 164.43 74.1999 162.36 58.6599C161.66 53.4199 160.92 48.1399 161.4 42.8799C161.88 37.6199 163.73 32.2999 167.52 28.6199"
                   fill="#D8D8D8"
