@@ -10,7 +10,6 @@ import {
   FormControlLabel,
   Checkbox,
   FormGroup,
-  FormLabel,
   Link,
 } from "@mui/material"
 
@@ -149,14 +148,6 @@ export const MailChimp = () => {
                 columnGap: "var(--ms2)",
               }}
             >
-              {/* <FormLabel
-                  component="legend"
-                  sx={{
-                    color: "white.main",
-                  }}
-                >
-                  Marketing Permissions
-                </FormLabel> */}
               <Typography
                 variant="small"
                 gutterBottom
@@ -233,48 +224,6 @@ export const MailChimp = () => {
               about Mailchimp's privacy practices.
             </Typography>
           </Box>
-
-          {/* <FormControlLabel
-                required
-                control={<Checkbox sx={{ color: "background.main" }} />}
-                label="I'd like to recieve emails from St Ewe Free Range Eggs and agree to the Privacy Policy."
-                sx={{
-                  color: "background.main",
-                  flexBasis: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-                name="opt-in"
-                labelPlacement="end"
-              />
-            </Box>
-
-            <FormControl
-              sx={{
-                rowGap: "var(--ms-2)",
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-              }}
-              component="fieldset"
-              variant="standard"
-            >
-              <FormHelperText
-                sx={{
-                  color: "background.main",
-                  fontSize: "var(--ms-1)",
-                  flexBasis: "100%",
-                }}
-              >
-                You can change your mind at any time by clicking the unsubscribe
-                link in the footer of the email you receive from us, or by
-                contacting our Marketing Department at marketing@stewe.co.uk.
-                For more information about our privacy practices please visit
-                our website. By submitting, you agree that we may process your
-                information in accordance with these terms.
-              </FormHelperText>
-            </FormControl> */}
 
           <Signup
             sx={{ my: { xs: 3, sm: 6 } }}
