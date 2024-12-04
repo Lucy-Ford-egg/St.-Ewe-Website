@@ -189,6 +189,9 @@ const XScroll = styled("div")(({ theme }) => ({
     scrollSnapAlign: "start",
     borderRadius: "var(--ms2)",
     overflow: "hidden",
+    "& a": {
+      padding: 0,
+    },
     [theme.breakpoints.up("md")]: {
       flexBasis: "28%",
       width: "28%",
