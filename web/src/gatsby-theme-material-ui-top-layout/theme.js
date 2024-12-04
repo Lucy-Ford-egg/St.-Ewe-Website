@@ -473,49 +473,6 @@ let clientTheme = createTheme({
         },
       },
     },
-    MuiFilledInput: {
-      styleOverrides: {
-        root: {
-          backgroundColor: defaultTheme.palette.white.main,
-          "&:before": {
-            borderBottom: "unset !important",
-          },
-        },
-        underline: {
-          borderBottomColor: "transparent !important",
-        },
-        input: {
-          borderBottomColor: "transparent !important",
-        },
-      },
-    },
-    MuiTextFeild: {
-      styleOverrides: {
-        root: {
-          "& fieldset": {
-            borderRadius: 0,
-          },
-          borderRadius: 0,
-        },
-      },
-    },
-    MuiFormControl: {
-      styleOverrides: {
-        root: {
-          marginTop: defaultTheme.spacing(0),
-        },
-      },
-    },
-    MuiFormLabel: {
-      styleOverrides: {
-        root: {
-          fontFamily: "Open Sans",
-          fontSize: `${defaultTheme.spacing(2)} !important`,
-          lineHeight: 1.5,
-          letterSpacing: "0em",
-        },
-      },
-    },
 
     MuiIconButton: {
       styleOverrides: {
@@ -632,18 +589,59 @@ let clientTheme = createTheme({
         //backgroundColor: orange[700]
       },
     },
-    // MuiTab: {
-    //   styleOverrides: {
-    //     root: {
-    //       fontFamily: 'Open Sans',
-    //       fontSize: `${clientSpacing[2]} !important`,
-    //       fontWeight: 400,
-    //       lineHeight: 1.5,
-    //       textTransform: 'uppercase',
-    //       letterSpacing: 0.3,
-    //     },
-    //   },
-    // },
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: defaultTheme.palette.white.main,
+          "&:before": {
+            borderBottom: "unset !important",
+          },
+        },
+        underline: {
+          borderBottomColor: "transparent !important",
+        },
+        input: {
+          borderBottomColor: "transparent !important",
+        },
+      },
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          backgroundColor: defaultTheme.palette.white.main,
+        },
+        colorWhite: {
+          color: defaultTheme.palette.white.main,
+        },
+      },
+    },
+    MuiTextFeild: {
+      styleOverrides: {
+        root: {
+          "& fieldset": {
+            borderRadius: 0,
+          },
+          borderRadius: 0,
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          marginTop: defaultTheme.spacing(0),
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Open Sans",
+          fontSize: `${defaultTheme.spacing(2)} !important`,
+          lineHeight: 1.5,
+          letterSpacing: "0em",
+        },
+      },
+    },
     MuiTypography: {
       styleOverrides: {
         root: {},
