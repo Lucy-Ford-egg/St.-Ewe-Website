@@ -57,8 +57,12 @@ const HOTSPOT = `
         ...,
       }
     },
-    links[]{
-      ${LINK},
+    hotspots[]{
+      ...,
+      links[]{
+        ...,
+        ${LINK},
+      },
     },
   }
 `
