@@ -72,7 +72,7 @@ export const Filter = ({ type, pageContext, backgroundColour }) => {
         color={contrastBrandPalette[backgroundColour?.label]?.contrastText}
         sx={{ mr: 4 }}
       >
-        Filter Posts:
+        Filter {type === "recipes" ? "Recipes" : "Posts"}:
       </Typography>
       <ScrollFilter>
         <FilterButton
