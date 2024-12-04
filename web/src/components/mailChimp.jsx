@@ -113,7 +113,11 @@ export const MailChimp = () => {
             >
               <InputWrapper sx={{ width: "100%", flexBasis: "100%" }}>
                 <TextField
-                  id="email"
+                  id="mce-EMAIL"
+                  name="EMAIL"
+                  label="Email Address"
+                  type="email"
+                  required
                   disableUnderline={true}
                   variant="filled"
                   color="white"
@@ -122,7 +126,6 @@ export const MailChimp = () => {
                     fullWidth: true,
                     hiddenLabel: true,
                   }}
-                  required
                   sx={{
                     border: "none",
                     backgroundColor: "white.main",
@@ -130,9 +133,8 @@ export const MailChimp = () => {
                     width: "inherit",
                     minWidth: { xs: "100%", sm: 307 },
                     mb: { xs: 0, sm: 0 },
+                    fontSize: "var(--ms0)",
                   }}
-                  name="email"
-                  type="email"
                   placeholder="Enter your email address"
                 />
                 <MyFormHelperText />

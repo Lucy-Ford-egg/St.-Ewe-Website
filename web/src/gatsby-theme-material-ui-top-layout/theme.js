@@ -636,7 +636,7 @@ let clientTheme = createTheme({
       styleOverrides: {
         root: {
           fontFamily: "Open Sans",
-          fontSize: `${defaultTheme.spacing(2)} !important`,
+          //fontSize: `${defaultTheme.spacing(2)} !important`,
           lineHeight: 1.5,
           letterSpacing: "0em",
         },
