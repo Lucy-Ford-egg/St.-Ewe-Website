@@ -4,7 +4,6 @@ import { PreviewContext } from "../context/previewContext"
 
 export const HeadScripts = () => {
   const { activePreview } = useContext(PreviewContext)
-  debugger
 
   const [preview, setPreview] = useState(activePreview || null)
 
@@ -13,7 +12,7 @@ export const HeadScripts = () => {
   }, [activePreview])
 
   console.log(`Preview Active = ${preview}`)
-  debugger
+
   return (
     <>
       {!preview ? (

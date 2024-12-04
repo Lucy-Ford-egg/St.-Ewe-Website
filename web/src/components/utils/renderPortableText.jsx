@@ -12,6 +12,7 @@ import { PortableTextInlineLink } from "./portableInlineLink"
 import Image from "gatsby-plugin-sanity-image"
 import { getGatsbyImageData } from "gatsby-source-sanity"
 import { styled } from "@mui/material/styles"
+import ReactPlayer from "react-player"
 
 const ColumnCount = styled("span")(({ value }) => ({
   display: "block",
@@ -19,6 +20,21 @@ const ColumnCount = styled("span")(({ value }) => ({
     columnGap: 21,
     columnCount: value?.columns,
     columnFill: "balance",
+  },
+}))
+
+const ReactPlayerWrapper = styled("div")(({ value }) => ({
+  width: "100% !important",
+  height: "300px !important",
+  "@media only screen and (min-width: 600px)": {
+    width: "100% !important",
+    height: "600px !important",
+    paddingTop: "var(--ms0)",
+    paddingBottom: "var(--ms0)",
+  },
+  "& .react-player": {
+    width: "100% !important",
+    height: "100% !important",
   },
 }))
 
@@ -221,6 +237,21 @@ export const RenderPortableText = props => {
 
   const standardPortableText = {
     types: {
+      youTube: ({ value }) => {
+        const { url } = value
+        return (
+          <ReactPlayerWrapper>
+            <ReactPlayer
+              className="react-player"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+              }}
+              url={url}
+            />
+          </ReactPlayerWrapper>
+        )
+      },
       // ! Old Image block for deprecation
       image: ({ value }) => {
         return (

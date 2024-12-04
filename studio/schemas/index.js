@@ -36,6 +36,7 @@ import textColumns from './parts/textColumns'
 import imageLink from './parts/imageLink'
 import textAlign from './parts/textAlign'
 import alignment from './parts/alignment'
+import youTube from './parts/youTube'
 
 import cite from './components/cite'
 import externalCite from './components/externalCite'
@@ -114,6 +115,7 @@ export const schema = {
     alignment,
     textAlign,
     linkLabelBasic,
+    youTube,
     // Atoms
     ingredient,
     recipesCategory,
