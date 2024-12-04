@@ -8880,17 +8880,6 @@ const Modules = props => {
                   />
                 )
               }
-
-              // if (isModule(module, 'contactSection')) {
-              //     return (
-              //         <ContactSection
-              //             previewData={previewData && previewData[i]}
-              //             sanityConfig={sanityConfig}
-              //             key={module._key + i}
-              //             {...module} />
-              //     )
-              // }
-
               return null
             })}
         </Main>
