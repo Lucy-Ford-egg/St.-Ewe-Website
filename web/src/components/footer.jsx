@@ -1,5 +1,4 @@
 import React from "react"
-// import { CookieNotice } from "gatsby-cookie-notice"
 import { useStaticQuery, graphql } from "gatsby"
 import { Button as GatsbyButton } from "gatsby-theme-material-ui"
 import { useMenuContext } from "./utils/useMenuContext"
@@ -102,7 +101,6 @@ const SocialIconWrapper = styled(SocialIcon)(({ theme }) => ({
     margin: "0 var(--ms-3)",
   },
   "&:hover": {
-    // filter: 'brightness(1.3) invert(0.17) saturate(2.6) sepia(0.25) url("#gold-sunset")',
     cursor: "pointer !important",
     "& .social-svg-icon": {
       fill: "var(--rich-yolk-primary) !important",
@@ -123,11 +121,7 @@ const LogoWrapper = styled("a")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   transition: "opacity 0.2s ease-in-out 0s",
-  [theme.breakpoints.up("lg")]: {
-    // height:
-  },
   "&:hover": {
-    // filter: 'brightness(1.3) invert(0.17) saturate(2.6) sepia(0.25) url("#gold-sunset")',
     cursor: "pointer !important",
     opacity: 0.6,
   },
@@ -455,37 +449,6 @@ export const Footer = () => {
           </Link>
         </Typography>
       </Credit>
-
-      {/* {data?.socialMenu?.items &&
-        data.socialMenu.items.map((node, i) => {
-          return (
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: { xs: "flex-start", md: "flex-end" },
-              }}
-              key={node?._key}
-            >
-              
-            </Box>
-          )
-        })} */}
     </Wrapper>
   )
 }
-
-// function topFunction() {
-//   if (document) {
-//     document.body.scrollTo({
-//       top: 0,
-//       left: 0,
-//       behavior: "smooth",
-//     }) // For Safari
-//     document.documentElement.scrollTo({
-//       top: 0,
-//       left: 0,
-//       behavior: "smooth",
-//     }) // For Chrome, Firefox, IE and Opera
-//   }
-// }
