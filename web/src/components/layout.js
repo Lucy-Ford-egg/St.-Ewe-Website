@@ -19,10 +19,8 @@ export const Layout = props => {
           {React.Children.map(children, child => {
             // Clone the child element and pass additional props
             if (React.isValidElement(child)) {
-              //console.log("React Vaild")
               return React.cloneElement(child, { previewData: data })
             } else {
-              //console.log("React InVaild")
               // Handle if child is not a React element (regular object)
               return (
                 <div
