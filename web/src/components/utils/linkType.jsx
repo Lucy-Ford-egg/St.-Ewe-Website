@@ -8,10 +8,13 @@ export const LinkType = props => {
   let definedInternal = node?.internal?.slug?.current
   const definedExternal = node?.external
 
+  if (node?.internal?._type === "page") {
+    definedInternal = node?.internal?.slug?.current
+  }
   if (node?.internal?._type === "post") {
     definedInternal = `blog/${node?.internal?.category?.slug?.current}/${definedInternal}`
   }
-  if (node?.internal?._type === "Recipe") {
+  if (node?.internal?._type === "recipe") {
     definedInternal = `/recipe/${definedInternal}`
   }
   if (node?.internal?._type === "teamMembers") {

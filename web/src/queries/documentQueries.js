@@ -66,6 +66,12 @@ const HOTSPOT = `
 const RECIPE_SECTION = `
   instructions[]{...}
 `
+const IMAGES_SECTION = `
+  images[]{
+    ...,
+    ${LINK},
+  }
+`
 
 const TEXT_SECTION = `
   text[]{
@@ -95,6 +101,7 @@ export const PAGE_BUILDER = `
     ${HOTSPOT},
     ${TIMELINE},
     ${RECIPE_SECTION},
+    ${IMAGES_SECTION},
     excerpt[]->{
       ...,
     },
