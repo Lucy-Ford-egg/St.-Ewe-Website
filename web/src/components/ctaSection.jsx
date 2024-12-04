@@ -91,11 +91,12 @@ const ImageAsset = styled("div")(({ theme }) => ({
 
 const ShowForm = styled("div")(({ theme }) => ({
   backgroundColor: "var(--original-large)",
-  padding: "var(--ms4) var(--ms4)",
+  padding: "var(--ms2) var(--ms2)",
   width: "100%",
+  borderRadius: "var(--ms2)",
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {
-    borderRadius: "var(--ms2)",
+    padding: "var(--ms4) var(--ms4)",
   },
 }))
 

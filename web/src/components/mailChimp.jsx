@@ -11,9 +11,11 @@ import {
   Checkbox,
   FormGroup,
   FormLabel,
+  Link,
 } from "@mui/material"
-import { styled } from "@mui/material/styles"
 
+import { styled } from "@mui/material/styles"
+import { Link as GatsbyLink } from "gatsby-theme-material-ui"
 import FormControl from "@mui/material/FormControl"
 import CheckIcon from "@mui/icons-material/Check"
 
@@ -51,10 +53,6 @@ export const MailChimp = () => {
   // or wherever.  (Personally, I recommend storing in state).
 
   const [MCResult, setMCResult] = useState(null)
-  const [marketing, setMarketing] = useState({
-    email: false,
-    customisedOnlineAdvertising: false,
-  })
 
   // 2. via `async/await`
   const handleSubmit = async e => {
@@ -65,10 +63,6 @@ export const MailChimp = () => {
     // but you can do whatever you want
 
     setMCResult({ MCResult, ...addResult })
-  }
-
-  const handleChange = event => {
-    setMarketing(...marketing, { [event.target.name]: event.target.checked })
   }
 
   function MyFormHelperText() {
@@ -111,12 +105,13 @@ export const MailChimp = () => {
             <Box
               sx={{
                 display: "flex",
+                flexDirection: "column",
                 columnGap: "var(--ms2)",
                 width: "100%",
                 marginBottom: "var(--ms0)",
               }}
             >
-              <InputWrapper sx={{ width: "100%" }}>
+              <InputWrapper sx={{ width: "100%", flexBasis: "100%" }}>
                 <TextField
                   id="email"
                   disableUnderline={true}
@@ -142,12 +137,114 @@ export const MailChimp = () => {
                 />
                 <MyFormHelperText />
               </InputWrapper>
+            </Box>
+            {/* GDPR Marketing Permissions */}
+            <Box marginTop={2}>
+              <FormControl
+                required
+                sx={{
+                  color: "white.main",
+                  display: "flex",
+                  flexDirection: "row",
+                  columnGap: "var(--ms2)",
+                }}
+              >
+                {/* <FormLabel
+                  component="legend"
+                  sx={{
+                    color: "white.main",
+                  }}
+                >
+                  Marketing Permissions
+                </FormLabel> */}
+                <Typography
+                  variant="small"
+                  gutterBottom
+                  sx={{
+                    color: "white.main",
+                    flexBasis: "80%",
+                    textAlign: "left",
+                  }}
+                >
+                  Please select all the ways you would like to hear from St Ewe
+                  Free Range Eggs:
+                </Typography>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        id="gdpr_127727"
+                        name="gdpr[127727]"
+                        sx={{
+                          color: "white.main",
+                        }}
+                      />
+                    }
+                    label="Email"
+                    sx={{
+                      color: "white.main",
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  />
+                </FormGroup>
+              </FormControl>
+              <Typography
+                variant="small"
+                gutterBottom
+                sx={{
+                  color: "white.main",
+                  textAlign: "left",
+                  display: "block",
+                  fontSize: "var(--ms-1)",
+                }}
+              >
+                You can unsubscribe at any time by clicking the link in the
+                footer of our emails. For information about our privacy
+                practices, please visit our{" "}
+                <GatsbyLink to="/privacy-policy">privacy policy</GatsbyLink>.
+              </Typography>
+            </Box>
 
-              <FormControlLabel
+            {/* Legal Information */}
+            <Box marginTop={2}>
+              <Typography
+                variant="small"
+                sx={{
+                  color: "white.main",
+                  textAlign: "left",
+                  display: "block",
+                  fontSize: "var(--ms-1)",
+                }}
+              >
+                We use Mailchimp as our marketing platform. By clicking below to
+                subscribe, you acknowledge that your information will be
+                transferred to Mailchimp for processing.{" "}
+                <Link
+                  href="https://mailchimp.com/legal/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    color: "white.main",
+                  }}
+                >
+                  Learn more
+                </Link>{" "}
+                about Mailchimp's privacy practices.
+              </Typography>
+            </Box>
+
+            {/* <FormControlLabel
                 required
                 control={<Checkbox sx={{ color: "background.main" }} />}
-                label="Join the flock opt-in"
-                sx={{ color: "background.main", flexBasis: "50%" }}
+                label="I'd like to recieve emails from St Ewe Free Range Eggs and agree to the Privacy Policy."
+                sx={{
+                  color: "background.main",
+                  flexBasis: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
                 name="opt-in"
                 labelPlacement="end"
               />
@@ -163,59 +260,6 @@ export const MailChimp = () => {
               component="fieldset"
               variant="standard"
             >
-              {/* <Typography
-                variant="body1"
-                sx={{ color: "background.main", textAlign: "left" }}
-              >
-                St Ewe Free Range Eggs will use the information you provide to
-                stay in touch and provide company updates, latest news and
-                marketing. Please let us know the way(s) you would like to hear
-                from us:
-              </Typography> */}
-              <FormGroup
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  flexBasis: "100%",
-                }}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{
-                    color: "background.main",
-                    textAlign: "left",
-                    flexBasis: "100%",
-                  }}
-                >
-                  How would you like to hear from us?
-                </Typography>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={marketing?.email}
-                      onChange={handleChange}
-                      name="email"
-                      sx={{ color: "background.main" }}
-                    />
-                  }
-                  label="Email"
-                  sx={{ color: "background.main" }}
-                  labelPlacement="end"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={marketing?.customisedOnlineAdvertising}
-                      onChange={handleChange}
-                      name="customisedOnlineAdvertising"
-                      sx={{ color: "background.main" }}
-                    />
-                  }
-                  label="Customised online advertising"
-                  labelPlacement="end"
-                  sx={{ color: "background.main" }}
-                />
-              </FormGroup>
               <FormHelperText
                 sx={{
                   color: "background.main",
@@ -230,7 +274,7 @@ export const MailChimp = () => {
                 our website. By submitting, you agree that we may process your
                 information in accordance with these terms.
               </FormHelperText>
-            </FormControl>
+            </FormControl> */}
 
             <Signup
               sx={{ my: { xs: 3, sm: 6 } }}
