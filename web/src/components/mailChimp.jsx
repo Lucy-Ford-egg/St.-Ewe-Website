@@ -57,8 +57,10 @@ export const MailChimp = () => {
   // 2. via `async/await`
   const handleSubmit = async e => {
     e.preventDefault()
-
-    const addResult = await addToMailchimp(e.currentTarget[0].value)
+    debugger
+    const addResult = await addToMailchimp(e.currentTarget[0].value, {
+      "gdpr[127727]": e.currentTarget[1].value,
+    })
     // I recommend setting `result` to React state
     // but you can do whatever you want
 
@@ -85,73 +87,69 @@ export const MailChimp = () => {
   return (
     <Wrapper>
       {!MCResult && (
-        <Box
-          component="form"
+        <FormControl
           noValidate
           autoComplete="off"
           onSubmit={e => handleSubmit(e)}
-          sx={{ display: "flex", width: "100%" }}
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: { xs: "center", md: "center" },
+            flexDirection: { xs: "column", sm: "column" },
+            columnGap: 4,
+          }}
         >
-          <FormControl
+          <Box
             sx={{
-              width: "inherit",
               display: "flex",
-              justifyContent: "center",
-              alignItems: { xs: "center", md: "center" },
-              flexDirection: { xs: "column", sm: "column" },
-              columnGap: 4,
+              flexDirection: "column",
+              columnGap: "var(--ms2)",
+              width: "100%",
+              marginBottom: "var(--ms0)",
             }}
           >
-            <Box
+            <InputWrapper sx={{ width: "100%", flexBasis: "100%" }}>
+              <TextField
+                id="mce-EMAIL"
+                name="EMAIL"
+                label="Email Address"
+                type="email"
+                required
+                disableUnderline={true}
+                variant="filled"
+                color="white"
+                InputProps={{
+                  disableUnderline: true,
+                  fullWidth: true,
+                  hiddenLabel: true,
+                }}
+                sx={{
+                  border: "none",
+                  backgroundColor: "white.main",
+                  borderColor: "white",
+                  width: "inherit",
+                  minWidth: { xs: "100%", sm: 307 },
+                  mb: { xs: 0, sm: 0 },
+                  fontSize: "var(--ms0)",
+                }}
+                placeholder="Enter your email address"
+              />
+              <MyFormHelperText />
+            </InputWrapper>
+          </Box>
+          {/* GDPR Marketing Permissions */}
+          <Box marginTop={2}>
+            <FormControl
+              required
               sx={{
+                color: "white.main",
                 display: "flex",
-                flexDirection: "column",
+                flexDirection: "row",
                 columnGap: "var(--ms2)",
-                width: "100%",
-                marginBottom: "var(--ms0)",
               }}
             >
-              <InputWrapper sx={{ width: "100%", flexBasis: "100%" }}>
-                <TextField
-                  id="mce-EMAIL"
-                  name="EMAIL"
-                  label="Email Address"
-                  type="email"
-                  required
-                  disableUnderline={true}
-                  variant="filled"
-                  color="white"
-                  InputProps={{
-                    disableUnderline: true,
-                    fullWidth: true,
-                    hiddenLabel: true,
-                  }}
-                  sx={{
-                    border: "none",
-                    backgroundColor: "white.main",
-                    borderColor: "white",
-                    width: "inherit",
-                    minWidth: { xs: "100%", sm: 307 },
-                    mb: { xs: 0, sm: 0 },
-                    fontSize: "var(--ms0)",
-                  }}
-                  placeholder="Enter your email address"
-                />
-                <MyFormHelperText />
-              </InputWrapper>
-            </Box>
-            {/* GDPR Marketing Permissions */}
-            <Box marginTop={2}>
-              <FormControl
-                required
-                sx={{
-                  color: "white.main",
-                  display: "flex",
-                  flexDirection: "row",
-                  columnGap: "var(--ms2)",
-                }}
-              >
-                {/* <FormLabel
+              {/* <FormLabel
                   component="legend"
                   sx={{
                     color: "white.main",
@@ -159,84 +157,84 @@ export const MailChimp = () => {
                 >
                   Marketing Permissions
                 </FormLabel> */}
-                <Typography
-                  variant="small"
-                  gutterBottom
-                  sx={{
-                    color: "white.main",
-                    flexBasis: "80%",
-                    textAlign: "left",
-                  }}
-                >
-                  Please select all the ways you would like to hear from St Ewe
-                  Free Range Eggs:
-                </Typography>
-                <FormGroup>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        id="gdpr_127727"
-                        name="gdpr[127727]"
-                        sx={{
-                          color: "white.main",
-                        }}
-                      />
-                    }
-                    label="Email"
-                    sx={{
-                      color: "white.main",
-                      display: "flex",
-                      flexDirection: "row",
-                    }}
-                  />
-                </FormGroup>
-              </FormControl>
               <Typography
                 variant="small"
                 gutterBottom
                 sx={{
                   color: "white.main",
+                  flexBasis: "80%",
                   textAlign: "left",
-                  display: "block",
-                  fontSize: "var(--ms-1)",
                 }}
               >
-                You can unsubscribe at any time by clicking the link in the
-                footer of our emails. For information about our privacy
-                practices, please visit our{" "}
-                <GatsbyLink to="/privacy-policy">privacy policy</GatsbyLink>.
+                Please select all the ways you would like to hear from St Ewe
+                Free Range Eggs:
               </Typography>
-            </Box>
-
-            {/* Legal Information */}
-            <Box marginTop={2}>
-              <Typography
-                variant="small"
-                sx={{
-                  color: "white.main",
-                  textAlign: "left",
-                  display: "block",
-                  fontSize: "var(--ms-1)",
-                }}
-              >
-                We use Mailchimp as our marketing platform. By clicking below to
-                subscribe, you acknowledge that your information will be
-                transferred to Mailchimp for processing.{" "}
-                <Link
-                  href="https://mailchimp.com/legal/terms"
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      id="gdpr_127727"
+                      name="gdpr[127727]"
+                      sx={{
+                        color: "white.main",
+                      }}
+                    />
+                  }
+                  label="Email"
                   sx={{
                     color: "white.main",
+                    display: "flex",
+                    flexDirection: "row",
                   }}
-                >
-                  Learn more
-                </Link>{" "}
-                about Mailchimp's privacy practices.
-              </Typography>
-            </Box>
+                />
+              </FormGroup>
+            </FormControl>
+            <Typography
+              variant="small"
+              gutterBottom
+              sx={{
+                color: "white.main",
+                textAlign: "left",
+                display: "block",
+                fontSize: "var(--ms-1)",
+              }}
+            >
+              You can unsubscribe at any time by clicking the link in the footer
+              of our emails. For information about our privacy practices, please
+              visit our{" "}
+              <GatsbyLink to="/privacy-policy">privacy policy</GatsbyLink>.
+            </Typography>
+          </Box>
 
-            {/* <FormControlLabel
+          {/* Legal Information */}
+          <Box marginTop={2}>
+            <Typography
+              variant="small"
+              sx={{
+                color: "white.main",
+                textAlign: "left",
+                display: "block",
+                fontSize: "var(--ms-1)",
+              }}
+            >
+              We use Mailchimp as our marketing platform. By clicking below to
+              subscribe, you acknowledge that your information will be
+              transferred to Mailchimp for processing.{" "}
+              <Link
+                href="https://mailchimp.com/legal/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "white.main",
+                }}
+              >
+                Learn more
+              </Link>{" "}
+              about Mailchimp's privacy practices.
+            </Typography>
+          </Box>
+
+          {/* <FormControlLabel
                 required
                 control={<Checkbox sx={{ color: "background.main" }} />}
                 label="I'd like to recieve emails from St Ewe Free Range Eggs and agree to the Privacy Policy."
@@ -278,16 +276,15 @@ export const MailChimp = () => {
               </FormHelperText>
             </FormControl> */}
 
-            <Signup
-              sx={{ my: { xs: 3, sm: 6 } }}
-              type="submit"
-              variant="contained"
-              color="primary"
-            >
-              Signup
-            </Signup>
-          </FormControl>
-        </Box>
+          <Signup
+            sx={{ my: { xs: 3, sm: 6 } }}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
+            Signup
+          </Signup>
+        </FormControl>
       )}
       {MCResult?.result === "success" && (
         <Box display="flex" alignItems="center">
