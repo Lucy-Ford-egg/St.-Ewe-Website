@@ -187,21 +187,16 @@ let clientTheme = createTheme({
         //   border: 1px solid tomato;
         // }
 
-        // * Step Markers *//
-
-        .step-marker{
-          display: none;
-        }
         /* width */
         ::-moz-scrollbar-button, ::-webkit-scrollbar-button {
-          width: 0px;
-          display: none;
+          width: var(--ms0);
+       
         }
         *{
           box-sizing: border-box;
         }
 ::-webkit-scrollbar {
-  width: 0;
+   width: var(--ms-4);
   height: 0;
 }
 
