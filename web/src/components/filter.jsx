@@ -35,6 +35,9 @@ const FilterButton = styled(Button)(({ props, theme }) => ({
   textTransform: "unset",
   letterSpaceing: 1.2,
   [theme.breakpoints.up("lg")]: {},
+  "&:last-of-type": {
+    marginRight: "var(--ms2)",
+  },
 }))
 
 export const Filter = ({ type, pageContext, backgroundColour }) => {
