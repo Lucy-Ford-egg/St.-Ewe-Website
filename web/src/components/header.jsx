@@ -103,6 +103,10 @@ const Header = props => {
   const { navOpen, toggleOpenNavMenu, handleCloseNavMenu, setActiveMenu } =
     useMenuContext()
 
+  const logoClick = () => {
+    setActiveMenu(null)
+    toggleOpenNavMenu(false)
+  }
   const menuButtonEvents = () => {
     setActiveMenu(null)
     toggleOpenNavMenu(!navOpen)
@@ -198,9 +202,11 @@ const Header = props => {
           <Logo>
             <Link
               to="/"
+              onClick={e => logoClick()}
               sx={{
                 display: "flex",
                 width: { xs: "auto", sm: "auto", md: "auto", lg: "auto" },
+                pointerEvents: "visible",
                 svg: {
                   maxWidth: "100%",
                 },
