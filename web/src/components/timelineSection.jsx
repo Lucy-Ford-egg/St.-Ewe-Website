@@ -136,6 +136,7 @@ const ArrowRight = styled("div")(({ theme, backgroundColour }) => ({
   height: "fit-content",
   position: "relative",
   zIndex: 2,
+  columnGap: "var(--ms0)",
   "& svg": {
     maxWidth: "100%",
     height: "auto",
@@ -144,6 +145,12 @@ const ArrowRight = styled("div")(({ theme, backgroundColour }) => ({
     borderRadius: "9999px",
     padding: "var(--ms0)",
     backgroundColor: "rgba(255,255,255,0.6)",
+  },
+  "& p": {
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+    padding: 0,
+    paddingBottom: "var(--ms-3)",
+    margin: 0,
   },
   [theme.breakpoints.up("sm")]: {},
 }))
@@ -161,6 +168,9 @@ export const TimelineSection = props => {
     <ModuleContainer {...props}>
       <Wrapper theme={theme} backgroundColour={backgroundColour}>
         <ArrowRight backgroundColour={backgroundColour}>
+          <motion.span style={{ opacity }}>
+            <p>Scroll this way</p>
+          </motion.span>
           <motion.span style={{ opacity }}>
             <LiaArrowRightSolid />
           </motion.span>
