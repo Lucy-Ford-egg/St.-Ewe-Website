@@ -33,9 +33,9 @@ const FilterButton = styled(Button)(({ props, theme }) => ({
   fontFamily: "Roboto Serif",
   fontSize: 12,
   textTransform: "unset",
-  letterSpaceing: 1.2,
+  letterSpacing: 1.2,
   "&:last-of-type": {
-    marginRight: "var(--ms4)",
+    marginRight: "var(--ms6)",
   },
   [theme.breakpoints.up("lg")]: {
     "&:last-of-type": {
