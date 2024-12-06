@@ -33,7 +33,6 @@ const FilterButton = styled(Button)(({ props, theme }) => ({
   fontFamily: "Roboto Serif",
   fontSize: 12,
   textTransform: "unset",
-  letterSpacing: 1.2,
   "&:last-of-type": {
     marginRight: "var(--ms4)",
   },
