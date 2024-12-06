@@ -4,7 +4,7 @@ import { Seo } from "../components/seo"
 import Modules from "../components/modules"
 //Preview
 import { useQuery } from "../../sanity/store"
-import { PAGE_QUERY } from "../queries/documentQueries"
+import { CATEGORY_PAGE_QUERY } from "../queries/documentQueries"
 import { getSanityClient } from "../../sanityUtils/sanity"
 
 const CategoryArchiveTemplate = props => {
@@ -12,7 +12,7 @@ const CategoryArchiveTemplate = props => {
 
   // Preview
   const { data: previewData } = useQuery(
-    PAGE_QUERY,
+    CATEGORY_PAGE_QUERY,
     { slug: data?.sanityCategories?.slug?.current },
     { initial },
   )

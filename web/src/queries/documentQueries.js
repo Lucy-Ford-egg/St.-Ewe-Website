@@ -307,3 +307,8 @@ export const PAGE_QUERY = groq`*[_type == "page" && slug.current == $slug][0] {
   ...,
   ${PAGE_BUILDER},
 }`
+
+export const CATEGORY_PAGE_QUERY = groq`*[_type == "categories" && slug.current == $slug][0] {
+  ...,
+  ${PAGE_BUILDER},
+}`
