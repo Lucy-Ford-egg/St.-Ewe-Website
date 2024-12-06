@@ -26,21 +26,16 @@ const ScrollFilter = styled("div")(({ props, theme }) => ({
   "&::-webkit-scrollbar": {
     width: "var(--ms-4)",
   },
-  [theme.breakpoints.up("lg")]: {},
+  paddingRight: "var(--ms2)",
+  [theme.breakpoints.up("lg")]: {
+    paddingRight: "var(--ms2)",
+  },
 }))
 
 const FilterButton = styled(Button)(({ props, theme }) => ({
   fontFamily: "Roboto Serif",
   fontSize: 12,
   textTransform: "unset",
-  "&:last-of-type": {
-    marginRight: "26px",
-  },
-  [theme.breakpoints.up("lg")]: {
-    "&:last-of-type": {
-      marginRight: "var(--ms2)",
-    },
-  },
 }))
 
 export const Filter = ({ type, pageContext, backgroundColour }) => {
