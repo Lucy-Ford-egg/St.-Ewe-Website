@@ -62,7 +62,7 @@ export const blogArchiveTemplateQuery = graphql`
           current
         }
         title
-        date(formatString: "MMMM do YYYY")
+        date
         categories {
           _id
           name

@@ -296,7 +296,7 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
           slug {
             current
           }
-          date(formatString: "MMMM do YYYY")
+          date
           featuredMedia {
             asset {
               _id

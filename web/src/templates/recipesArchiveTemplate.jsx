@@ -74,7 +74,7 @@ export const RecipeArchiveTemplateQuery = graphql`
           current
         }
         excerpt: _rawExcerpt(resolveReferences: { maxDepth: 3 })
-        date(formatString: "MMMM do YYYY")
+        date
         categories {
           name
           _id
