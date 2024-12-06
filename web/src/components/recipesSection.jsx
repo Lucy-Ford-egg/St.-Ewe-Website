@@ -5,6 +5,7 @@ import { Filter } from "./filter"
 import { useTheme } from "@mui/material"
 import { RecipeTile } from "./recipeTile"
 import { useInView } from "framer-motion"
+import { ModuleContainer } from "./moduleContainer"
 
 const Wrapper = styled("div")(
   ({ backgroundColour, paddingTop, paddingBottom }) => ({
@@ -12,8 +13,6 @@ const Wrapper = styled("div")(
     gridTemplateColumns: "repeat(24, 1fr)",
     gridColumn: "1/25",
     backgroundColor: backgroundColour?.value,
-    paddingTop: paddingTop,
-    paddingBottom: paddingBottom,
     overflowX: "hidden",
   }),
 )
@@ -139,14 +138,15 @@ const RecipeFilter = styled("div")(({ theme, backgroundColour }) => ({
   },
 }))
 
-export const RecipesSection = ({
-  allSanityRecipes,
-  backgroundColour,
-  paddingTop = 11,
-  paddingBottom = 11,
-  pageContext,
-  amountToShow,
-}) => {
+export const RecipesSection = props => {
+  const {
+    allSanityRecipes,
+    backgroundColour,
+    paddingTop = 11,
+    paddingBottom = 11,
+    pageContext,
+    amountToShow,
+  } = props
   const [filtersPosts, setFilterData] = useState(null)
 
   const theme = useTheme()
@@ -188,72 +188,74 @@ export const RecipesSection = ({
   }
 
   return (
-    <Wrapper
-      ref={isInViewRef}
-      backgroundColour={backgroundColour}
-      paddingTop={theme.spacing(paddingTop)}
-      paddingBottom={theme.spacing(paddingBottom)}
-    >
-      <RecipeFilter backgroundColour={backgroundColour}>
-        <Filter
-          backgroundColour={backgroundColour}
-          className="component-filter"
-          type="recipes"
-          // allData={getAllPosts.nodes}
-          filtersData={filtersPosts}
-          setFilterData={setFilterData}
-          pageContext={pageContext}
-        />
-      </RecipeFilter>
+    <ModuleContainer {...props}>
+      <Wrapper
+        ref={isInViewRef}
+        backgroundColour={backgroundColour}
+        paddingTop={theme.spacing(paddingTop)}
+        paddingBottom={theme.spacing(paddingBottom)}
+      >
+        <RecipeFilter backgroundColour={backgroundColour}>
+          <Filter
+            backgroundColour={backgroundColour}
+            className="component-filter"
+            type="recipes"
+            // allData={getAllPosts.nodes}
+            filtersData={filtersPosts}
+            setFilterData={setFilterData}
+            pageContext={pageContext}
+          />
+        </RecipeFilter>
 
-      {filtersPosts && (
-        <GridContainer
-          theme={theme}
-          animate={isInView && "visible"}
-          initial="hidden"
-          variants={variants}
-        >
-          {filtersPosts &&
-            filtersPosts?.map((tile, i) => {
-              if (i === 0) {
-                return (
-                  <FeaturedItem
-                    className="featuredItem"
-                    variants={item}
-                    key={`${tile.title}-${i}`}
-                  >
-                    <RecipeTile
-                      backgroundColour={backgroundColour}
-                      variant="h3"
-                      {...tile}
-                      i={i}
-                      showMeta={true}
-                    />
-                  </FeaturedItem>
-                )
-              } else {
-                return (
-                  <GridItem
-                    className="gridItem"
-                    variants={item}
-                    key={`${tile.title}-${i}`}
-                  >
-                    <RecipeTile
-                      backgroundColour={backgroundColour}
-                      variant="h4"
-                      {...tile}
-                      i={i}
-                      showMeta={false}
-                    />
-                  </GridItem>
-                )
-              }
-            })}
-        </GridContainer>
-      )}
+        {filtersPosts && (
+          <GridContainer
+            theme={theme}
+            animate={isInView && "visible"}
+            initial="hidden"
+            variants={variants}
+          >
+            {filtersPosts &&
+              filtersPosts?.map((tile, i) => {
+                if (i === 0) {
+                  return (
+                    <FeaturedItem
+                      className="featuredItem"
+                      variants={item}
+                      key={`${tile.title}-${i}`}
+                    >
+                      <RecipeTile
+                        backgroundColour={backgroundColour}
+                        variant="h3"
+                        {...tile}
+                        i={i}
+                        showMeta={true}
+                      />
+                    </FeaturedItem>
+                  )
+                } else {
+                  return (
+                    <GridItem
+                      className="gridItem"
+                      variants={item}
+                      key={`${tile.title}-${i}`}
+                    >
+                      <RecipeTile
+                        backgroundColour={backgroundColour}
+                        variant="h4"
+                        {...tile}
+                        i={i}
+                        showMeta={false}
+                      />
+                    </GridItem>
+                  )
+                }
+              })}
+          </GridContainer>
+        )}
 
-      {/* <Pagination pageContext={pageContext}/> */}
-    </Wrapper>
+        {/* <Pagination pageContext={pageContext}/> */}
+      </Wrapper>
+    </ModuleContainer>
   )
 }
 
