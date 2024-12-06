@@ -41,9 +41,8 @@ const Title = styled(motion.div)(({ theme }) => ({
   //marginTop: "var(--ms1)",
   position: "fixed",
   pointerEvents: "none",
-  left: 0,
-  right: 0,
-  maxWidth: "90vh",
+  left: "var(--ms1)",
+  right: "var(--ms1)",
   [theme.breakpoints.up("sm")]: {
     fontSize: "var(--ms7)",
     lineHeight: "var(--ms7)",
@@ -52,8 +51,8 @@ const Title = styled(motion.div)(({ theme }) => ({
     gridRow: "1/3",
     fontSize: "var(--ms9)",
     lineHeight: "var(--ms9)",
-    maxWidth: "100vh",
-    margin: "0 auto",
+    left: "var(--ms4)",
+    right: "var(--ms4)",
   },
 }))
 
