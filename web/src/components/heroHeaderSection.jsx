@@ -44,6 +44,7 @@ const Title = styled(motion.div)(({ theme }) => ({
   left: "var(--ms1)",
   right: "var(--ms1)",
   [theme.breakpoints.up("sm")]: {
+    gridRow: "1/3",
     fontSize: "var(--ms7)",
     lineHeight: "var(--ms7)",
   },
