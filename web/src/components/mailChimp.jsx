@@ -35,19 +35,6 @@ export const MailChimp = () => {
     setMCResult(addResult)
   }
 
-  const MyFormHelperText = () => {
-    const helperText = useMemo(() => "Don't worry, we won't spam you", [])
-    return (
-      <FormHelperText
-        sx={{
-          color: "var(--original-medium)",
-        }}
-      >
-        {helperText}
-      </FormHelperText>
-    )
-  }
-
   return (
     <Wrapper>
       {!MCResult && (
@@ -73,7 +60,6 @@ export const MailChimp = () => {
               variant="outlined"
               placeholder="Enter your email address"
             />
-            <MyFormHelperText />
           </Box>
 
           {/* GDPR Marketing Permissions */}
@@ -100,6 +86,7 @@ export const MailChimp = () => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    required
                     checked={marketingConsent}
                     onChange={e => setMarketingConsent(e.target.checked)}
                     sx={{
