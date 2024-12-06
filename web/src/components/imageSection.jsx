@@ -192,6 +192,34 @@ const XScroll = styled("div")(({ theme }) => ({
     "& a": {
       padding: 0,
     },
+    [theme.breakpoints.up("sm")]: {
+      flexBasis: "28%",
+      width: "28%",
+      minWidth: "28%",
+      "&:first-of-type": {
+        marginLeft: "unset",
+      },
+      "&:last-of-type": {
+        marginRight: "unset",
+      },
+    },
+    "&:first-of-type": {
+      marginLeft: "var(--ms-1)",
+    },
+    "&:last-of-type": {
+      marginRight: "var(--ms-1)",
+    },
+    "&:nth-child(even)": {
+      marginBottom: "var(--ms5)",
+    },
+    "&:nth-child(odd)": {
+      marginTop: "var(--ms5)",
+    },
+    "&:hover": {
+      "& img": {
+        transform: "scale(1.1)",
+      },
+    },
     [theme.breakpoints.up("md")]: {
       flexBasis: "28%",
       width: "28%",
