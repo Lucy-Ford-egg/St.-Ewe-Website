@@ -151,14 +151,13 @@ export const RecipesSection = ({
 
   const theme = useTheme()
 
-  const definedAllSanityRecipes =
-    amountToShow === true
-      ? allSanityRecipes?.nodes?.slice(1, 6)
-      : allSanityRecipes?.nodes
+  const definedAllSanityRecipes = amountToShow
+    ? allSanityRecipes?.nodes?.slice(1, 6) || []
+    : allSanityRecipes?.nodes || []
 
   useEffect(() => {
     setFilterData(definedAllSanityRecipes)
-  }, [definedAllSanityRecipes, setFilterData])
+  }, [definedAllSanityRecipes])
 
   const isInViewRef = useRef(null)
   const isInView = useInView(isInViewRef, { once: true })

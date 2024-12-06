@@ -6,6 +6,7 @@ import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
 import { RenderPortableText } from "../components/utils/renderPortableText"
 import { styled } from "@mui/material/styles"
+import { format } from "date-fns"
 
 const Wrapper = styled("div")(({ theme }) => ({
   display: "grid",
@@ -62,7 +63,7 @@ const Category = styled("div")(({ props }) => ({
   color: "white",
 }))
 
-const Date = styled("div")(({ props }) => ({
+const PublishedDate = styled("div")(({ props }) => ({
   color: "var(--grand-primary)",
   paddingTop: "var(--ms-1)",
 }))
@@ -102,6 +103,25 @@ export const BlogTile = props => {
   const { post, previewData } = props
 
   const { tileImage, categories, title, date, slug, excerpt, _key } = post
+
+  const formattedDate = date => {
+    if (!date) {
+      throw new Error("Date value is undefined or invalid")
+    }
+    const setDate = new Date(date) // Ensure a Date object is created
+    if (isNaN(setDate)) {
+      throw new Error("Invalid date format")
+    }
+
+    return format(setDate, "M MMM yyyy")
+  }
+  let formatted = ""
+  try {
+    formatted = formattedDate(date)
+    console.log("Formatted Date:", formatted)
+  } catch (error) {
+    console.error(error.message)
+  }
 
   return (
     <Wrapper
@@ -146,16 +166,11 @@ export const BlogTile = props => {
             )}
 
             {date && (
-              <Date>
-                <Typography
-                  variant="caption"
-                  component="p"
-                  //color={contrastColour(tileColor).textColour}
-                >
-                  {date}
-                  {/* formattedDate(date) */}
+              <PublishedDate>
+                <Typography variant="caption" component="p">
+                  {formatted}
                 </Typography>
-              </Date>
+              </PublishedDate>
             )}
 
             {excerpt && activeTile && (
