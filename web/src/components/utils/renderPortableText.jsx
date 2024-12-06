@@ -393,11 +393,11 @@ export const RenderPortableText = props => {
           sx={{
             color: "inherit",
             pl: 0,
-            alignItems: "center",
+            alignItems: "start",
             columnGap: 0,
           }}
         >
-          <ListItemIcon sx={{ mt: 2, minWidth: 16 }}>
+          <ListItemIcon sx={{ mt: "var(--ms-1)", minWidth: 16 }}>
             <CircleIcon
               color="inherit"
               sx={{ color: "inherit", width: 4, height: 4 }}
