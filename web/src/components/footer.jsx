@@ -81,15 +81,15 @@ const Credit = styled("div")(({ theme }) => ({
   flexDirection: "column",
   gridColumn: "2/24",
   alignItems: "center",
-  fontSize: "var(--ms-1)",
   textAlign: "center",
   marginTop: "var(--ms6)",
+  fontSize: "var(--ms-2) !important",
   [theme.breakpoints.up("lg")]: {
     flexDirection: "row",
     justifyContent: "space-between",
-    fontSize: "var(--ms-1)",
     textAlign: "unset",
     marginTop: "var(--ms6)",
+    columnGap: "var(--ms2)",
   },
 }))
 
@@ -406,15 +406,15 @@ export const Footer = () => {
         </FooterMenu>
       </Container>
       <Credit>
-        <Typography color="white.main" variant="caption">
+        <Typography color="white.main" variant="small">
           {`${data?.allSanityFooterContent?.nodes[0]?.incorparated}. Copyright © ${new Date().getFullYear()} ${data?.allSanityFooterContent?.nodes[0]?.companyName}`}
         </Typography>
         <Typography
           color="white.main"
-          variant="caption"
+          variant="small"
           sx={{ color: "rgba(255,255,255,0.6)" }}
         >
-          {`Designed & Built`}{" "}
+          {`Designed & Built by`}{" "}
           <Link
             rel="noopener"
             target="_blank"
@@ -431,7 +431,7 @@ export const Footer = () => {
 
         <Typography
           color="white.main"
-          variant="caption"
+          variant="small"
           sx={{ color: "rgba(255,255,255,0.6)" }}
         >
           {`Illustrations by`}{" "}
