@@ -406,9 +406,20 @@ export const Footer = () => {
         </FooterMenu>
       </Container>
       <Credit>
-        <Typography color="white.main" variant="small">
-          {`${data?.allSanityFooterContent?.nodes[0]?.incorparated}. Copyright © ${new Date().getFullYear()} ${data?.allSanityFooterContent?.nodes[0]?.companyName}`}
-        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography color="white.main" variant="small">
+            {`${data?.allSanityFooterContent?.nodes[0]?.incorparated}`}
+          </Typography>
+          <Typography color="white.main" variant="small">
+            Copyright © ${new Date().getFullYear()}
+            {data?.allSanityFooterContent?.nodes[0]?.companyName}
+          </Typography>
+        </div>
         <Typography
           color="white.main"
           variant="small"
