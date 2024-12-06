@@ -24,18 +24,28 @@ const ColumnCount = styled("span")(({ value }) => ({
 }))
 
 const ReactPlayerWrapper = styled("div")(({ value }) => ({
-  width: "100% !important",
-  minWidth: "60vw",
-  height: "300px !important",
-  "@media only screen and (min-width: 600px)": {
-    width: "100% !important",
-    height: "600px !important",
-    paddingTop: "var(--ms0)",
-    paddingBottom: "var(--ms0)",
+  position: "relative", // Essential for absolute positioning
+  width: "100%",
+  maxWidth: "100%", // Ensures the wrapper never exceeds its container width
+  height: "0", // Height controlled by padding
+  paddingTop: "56.25%", // 16:9 aspect ratio (adjust as needed)
+  overflow: "hidden",
+
+  "& iframe": {
+    position: "absolute",
+    top: "0",
+    left: "0",
+    width: "100%", // The iframe will stretch to fill the parent's width
+    height: "100%", // Maintains the aspect ratio set by the padding
+    maxWidth: "100%", // Ensures it doesn’t exceed the parent container’s width
   },
   "& .react-player": {
     width: "100% !important",
     height: "100% !important",
+  },
+
+  "@media only screen and (min-width: 600px)": {
+    paddingTop: "56.25%", // For wider aspect ratios like 21:9, adjust as needed
   },
 }))
 
@@ -242,14 +252,7 @@ export const RenderPortableText = props => {
         const { url } = value
         return (
           <ReactPlayerWrapper>
-            <ReactPlayer
-              className="react-player"
-              style={{
-                maxWidth: "100%",
-                height: "auto",
-              }}
-              url={url}
-            />
+            <ReactPlayer className="react-player" url={url} />
           </ReactPlayerWrapper>
         )
       },

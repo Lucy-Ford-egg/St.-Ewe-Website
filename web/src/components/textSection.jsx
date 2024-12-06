@@ -30,6 +30,10 @@ const Content = styled("div")(({ theme, backgroundColour, rightAsset }) => ({
   display: "flex",
   justifyContent: "center",
   color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  "&>div": {
+    width: "100% !important",
+    height: "100% !important",
+  },
   [theme.breakpoints.up("sm")]: {
     gridColumn: rightAsset ? "1/20" : "1/25",
   },
