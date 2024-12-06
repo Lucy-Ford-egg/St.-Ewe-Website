@@ -51,8 +51,8 @@ const Title = styled(motion.div)(({ theme }) => ({
     gridRow: "1/3",
     fontSize: "var(--ms9)",
     lineHeight: "var(--ms9)",
-    left: "var(--ms4)",
-    right: "var(--ms4)",
+    left: "10vw",
+    right: "10vw",
   },
 }))
 
