@@ -157,7 +157,7 @@ export const RecipesSection = ({
 
   useEffect(() => {
     setFilterData(definedAllSanityRecipes)
-  }, [definedAllSanityRecipes])
+  }, [])
 
   const isInViewRef = useRef(null)
   const isInView = useInView(isInViewRef, { once: true })
