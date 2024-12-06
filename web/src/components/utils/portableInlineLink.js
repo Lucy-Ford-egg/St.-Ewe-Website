@@ -32,8 +32,8 @@ export const PortableTextInlineLink = ({ value, children, color }) => {
   if (isExternal) {
     linkType = (
       <Link
-        rel={value?.blank && "noopener"}
-        target={value?.blank && "_blank"}
+        rel="noopener"
+        target="_blank"
         sx={{
           a: { "&:hover": { cursor: "pointer" } },
           color: color,
