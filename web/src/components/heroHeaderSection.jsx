@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { useTheme, useMediaQuery } from "@mui/material"
 import Image from "gatsby-plugin-sanity-image"
 import { urlFor } from "../utils/imageHelpers"
-import { motion, useScroll, useTransform, easeInSine } from "framer-motion"
+import { motion, useScroll, useTransform, easeOut } from "framer-motion"
 
 import { ModuleContainer } from "./moduleContainer"
 import { styled } from "@mui/material/styles"
@@ -29,7 +29,7 @@ const Title = styled(motion.div)(({ theme }) => ({
   gridColumn: "4/22",
   gridRow: "1/2",
   // alignSelf: "center",
-  zIndex: 1,
+  zIndex: 5,
   color: "var(--original-large)",
   textAlign: "center",
   fontFamily: "Colby Narrow",
@@ -43,6 +43,7 @@ const Title = styled(motion.div)(({ theme }) => ({
   pointerEvents: "none",
   left: 0,
   right: 0,
+  maxWidth: "90vh",
   [theme.breakpoints.up("sm")]: {
     fontSize: "var(--ms7)",
     lineHeight: "var(--ms7)",
@@ -51,7 +52,7 @@ const Title = styled(motion.div)(({ theme }) => ({
     gridRow: "1/3",
     fontSize: "var(--ms9)",
     lineHeight: "var(--ms9)",
-    maxWidth: "90vh",
+    maxWidth: "100vh",
     margin: "0 auto",
   },
 }))
@@ -93,7 +94,9 @@ const renderLayer = (layer, index, transform, mobile, contentOpacity) => (
     style={{
       opacity: index < 3 ? contentOpacity : 1,
       y: transform,
+      //transform: `translate3d(0, ${transform}, 0)`,
       zIndex: index,
+      willChange: "transform, opacity",
     }}
   >
     <Image
@@ -105,10 +108,11 @@ const renderLayer = (layer, index, transform, mobile, contentOpacity) => (
       height={mobile ? 600 : 1911}
       asset={layer?._id ? urlFor(layer).url() : layer?.asset}
       style={{
-        //objectFit: "cover",
-        maxWidth: "100%",
+        objectFit: "cover",
+        width: "100%",
         height: "auto",
       }}
+      placeholder="none"
     />
     <Base className="baseLayer" />
   </Layer>
@@ -130,37 +134,37 @@ export const HeroHeaderSection = props => {
   })
   const transforms = [
     useTransform(scrollYProgress, [0, 1], ["0%", "750px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }), // Clouds
     useTransform(scrollYProgress, [0, 1], ["0%", "750px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }), // Sun
     useTransform(scrollYProgress, [0, 1], ["0%", "760px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }), // Left field
     useTransform(scrollYProgress, [0, 1], ["0%", "460px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }), // Right Field
     useTransform(scrollYProgress, [0, 1], ["0%", "420px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }), // Church
     useTransform(scrollYProgress, [0, 1], ["0%", "410px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }),
     useTransform(scrollYProgress, [0, 1], ["0%", "160px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }),
     useTransform(scrollYProgress, [0, 1], ["0%", "140px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }),
     useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "100px" : "180px"], {
-      ease: easeInSine,
+      ease: easeOut,
     }),
     useTransform(
       scrollYProgress,
       [0, 1],
       ["0%", mobile ? "-100px" : "-240px"],
-      { ease: easeInSine },
+      { ease: easeOut },
     ),
   ]
   // Map x from these values:
