@@ -166,9 +166,7 @@ export const TextSection = props => {
                 style={{
                   objectFit: "cover",
                   width: "100%",
-                  height: "100%",
-                  flexGrow: 1,
-                  minHeight: "100%",
+                  height: "auto%",
                 }}
               />
             </Asset>
