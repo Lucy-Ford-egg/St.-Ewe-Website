@@ -416,8 +416,7 @@ export const Footer = () => {
             {`${data?.allSanityFooterContent?.nodes[0]?.incorparated}`}
           </Typography>
           <Typography color="white.main" variant="small">
-            Copyright © {new Date().getFullYear()}
-            {}
+            Copyright © {new Date().getFullYear()}{" "}
             {data?.allSanityFooterContent?.nodes[0]?.companyName}
           </Typography>
         </div>
