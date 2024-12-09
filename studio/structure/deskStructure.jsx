@@ -15,6 +15,7 @@ import {
   LiaQuestionCircle,
   LiaCrosshairsSolid,
   LiaCarrotSolid,
+  LiaCompassSolid,
 } from 'react-icons/lia'
 
 export const deskStructure = (S, context) => {
@@ -22,6 +23,17 @@ export const deskStructure = (S, context) => {
     .title('Site Content')
     .items([
       SiteSettingsMenu(S),
+
+      S.listItem()
+        .title('Redirects')
+        .icon(LiaCompassSolid)
+        .child(
+          S.documentTypeList('redirects')
+            .title('Redirects')
+            .child((id) => S.document().schemaType('redirects').documentId(id))
+            .defaultOrdering([{field: 'source', direction: 'asc'}]),
+        ),
+
       S.divider(),
 
       S.listItem()

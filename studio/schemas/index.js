@@ -8,6 +8,7 @@ import categories from './taxonomies/categories'
 import siteSettings, {companyDetail, companyDetails, newsletter} from './siteSettings'
 import footerContent, {footerMenu, accreditations, accreditation} from './footerContent'
 import designSystemColor from './designSystemColor'
+import redirects from './redirects'
 // import faqs from '../schemas/faqs'
 import showArchive from './showArchive'
 // Docs
@@ -99,7 +100,7 @@ export const schema = {
     companyDetails,
     newsletter,
     designSystemColor,
-
+    redirects,
     imageOptions,
     // Parts
     duration,
