@@ -33,18 +33,18 @@ const GridContainer = styled("div")(({ theme }) => ({
         gridRow: "1 / 1",
         height: "100%",
       },
-      "&:nth-child(2)": {
+      "&:nth-of-type(2)": {
         gridArea: "1/17/2/25",
         gridRow: "1 / 1",
         height: "100%",
       },
-      "&:nth-child(3)": {
+      "&:nth-of-type(3)": {
         gridArea: "1/17/3/25",
 
         gridRow: "2 / 2",
         height: "100%",
       },
-      "&:nth-child(4)": {
+      "&:nth-of-type(4)": {
         gridArea: "1/1/1/9",
 
         gridRow: "3 / 3",
@@ -59,19 +59,19 @@ const GridContainer = styled("div")(({ theme }) => ({
         gridRow: "1 / 1",
         height: "100%",
       },
-      "&:nth-child(2)": {
+      "&:nth-of-type(2)": {
         gridArea: "1/13/2/19",
 
         gridRow: "1 / 1",
         height: "100%",
       },
-      "&:nth-child(3)": {
+      "&:nth-of-type(3)": {
         gridArea: "2/13/3/19",
 
         gridRow: "2 / 2",
         height: "100%",
       },
-      "&:nth-child(4)": {
+      "&:nth-of-type(4)": {
         gridArea: "2/19/3/25",
 
         gridRow: "2 / 2",
