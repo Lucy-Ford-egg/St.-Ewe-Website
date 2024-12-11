@@ -46,7 +46,7 @@ export const HeadScripts = () => {
             }}
           />
 
-          <Script
+          {/* <Script
             id="hs-script-loader"
             async
             defer
@@ -54,7 +54,7 @@ export const HeadScripts = () => {
             src={`https://js-eu1.hs-scripts.com/${process.env.GATSBY_HUBSPOT_ID}.js`}
             //strategy="off-main-thread"
             // forward={[`gtag`]}
-          />
+          /> */}
           {/* <Script
             id="gtag-config"
             strategy="off-main-thread"
