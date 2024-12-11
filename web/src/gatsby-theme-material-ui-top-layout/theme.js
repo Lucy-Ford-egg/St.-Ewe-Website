@@ -237,18 +237,6 @@ let clientTheme = createTheme({
           color: inherit;
           text-decoration: none;
         }
-        .fixed-bottom{
-          position: fixed;
-          z-index: 10;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          padding: ${defaultTheme.spacing(6)};
-          background-color: ${defaultTheme.palette.secondary.mid};
-          display: flex;
-          align-items: flex-end;
-          box-shadow 0px 0px 14px -2px rgba(0,0,0,00.3);
-        }
         .cookie-notice {
           display: flex;
           column-gap: ${defaultTheme.spacing(6)};
