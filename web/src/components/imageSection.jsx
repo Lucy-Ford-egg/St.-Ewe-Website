@@ -209,10 +209,10 @@ const XScroll = styled("div")(({ theme }) => ({
     "&:last-of-type": {
       marginRight: "var(--ms-1)",
     },
-    "&:nth-child(even)": {
+    "&:nth-of-type(even)": {
       marginBottom: "var(--ms5)",
     },
-    "&:nth-child(odd)": {
+    "&:nth-of-type(odd)": {
       marginTop: "var(--ms5)",
     },
     "&:hover": {

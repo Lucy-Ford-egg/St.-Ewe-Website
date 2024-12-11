@@ -8,6 +8,7 @@ import { urlFor } from "../utils/imageHelpers"
 import { styled } from "@mui/material/styles"
 import { ButtonFormat } from "./buttonFormat"
 import { contrastBrandPalette } from "../utils/colours"
+import { format } from "date-fns"
 
 const Wrapper = styled("div")(({ backgroundColour }) => ({
   gridColumn: "1/25",
@@ -82,6 +83,25 @@ export const TitleSection = props => {
     pageContext,
   } = props
 
+  const formattedDate = date => {
+    if (!date) {
+      throw new Error("Date value is undefined or invalid")
+    }
+    const setDate = new Date(date) // Ensure a Date object is created
+    if (isNaN(setDate)) {
+      throw new Error("Invalid date format")
+    }
+
+    return format(setDate, "M MMM yyyy")
+  }
+  let formatted = ""
+  try {
+    formatted = formattedDate(pageContext?.date)
+    console.log("Formatted Date:", formatted)
+  } catch (error) {
+    console.error(error.message)
+  }
+
   return (
     <ModuleContainer {...props}>
       <Wrapper backgroundColour={backgroundColour}>
@@ -140,7 +160,7 @@ export const TitleSection = props => {
                   fontWeight: 900,
                 }}
               >
-                {pageContext?.date}
+                {formatted}
               </Typography>
             )}
             {isRecipe && (

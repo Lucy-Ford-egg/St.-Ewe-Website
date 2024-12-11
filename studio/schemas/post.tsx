@@ -50,16 +50,14 @@ export default defineType({
     defineField({
       name: 'slug',
       type: 'slug',
-      // options: {
-      //   source: 'title',
-      //   maxLength: 96,
-      //   isUnique: (value, context) => {
-
-      //     return (
-      //     context.defaultIsUnique(value, context)
-      //   )},
-      // },
-      // validation: (rule) => rule.required(),
+      options: {
+        source: 'title',
+        maxLength: 96,
+        isUnique: (value, context) => {
+          return context.defaultIsUnique(value, context)
+        },
+      },
+      validation: (rule) => rule.required(),
       group: 'pageContent',
     }),
     defineField({

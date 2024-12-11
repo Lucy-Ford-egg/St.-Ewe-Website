@@ -24,10 +24,10 @@ const Wrapper = styled("div")(({ theme }) => ({
 
 const FeatureImage = styled(motion.div)(({ theme }) => ({
   gridColumn: "1/25",
-  display: "grid",
   gridRow: "1/1",
   //gridTemplateColumns: "repeat(22, 1fr)",
   overflow: "hidden",
+  width: "100%",
   position: "relative",
   zIndex: 0,
   [theme.breakpoints.up("sm")]: {},
@@ -64,6 +64,7 @@ const HotspotDetail = styled(motion.div)(({ theme }) => ({
   backgroundColor: " var(--quirky-quail-secondary)",
   gridTemplateColumns: "repeat(8, 1fr)",
   padding: "var(--ms2) var(--ms1)",
+  position: "relative",
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {
     zIndex: 1,
@@ -72,13 +73,14 @@ const HotspotDetail = styled(motion.div)(({ theme }) => ({
   },
 }))
 
-const DetailImage = styled(motion.div)(({ theme }) => ({
+const DetailImage = styled("div")(({ theme }) => ({
   gridColumn: "1/25",
   display: "grid",
   gridRow: "1/1",
   overflow: "hidden",
-  position: "relative",
+
   zIndex: 0,
+  minHeight: "fit-content",
   paddingBottom: "var(--ms-3)",
   [theme.breakpoints.up("sm")]: {},
   [theme.breakpoints.up("lg")]: {
@@ -94,12 +96,12 @@ const Title = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {},
 }))
 
-const Close = styled(LiaTimesCircle)(({ theme }) => ({
+const Close = styled(LiaTimesCircle)(({ theme, image }) => ({
   position: "absolute",
   top: "var(--ms0)",
   right: "var(--ms0)",
   zIndex: 2,
-  fill: "var(--white)",
+  fill: !image ? "var(--primary-large)" : "var(--white)",
   width: 24,
   height: 24,
   [theme.breakpoints.up("sm")]: {},
@@ -134,13 +136,11 @@ export const HotspotSection = props => {
                 }
                 // width={mobile ? 390 : tablet ? 732 : 732}
                 // height={mobile ? 245 : tablet ? 438 : 438}
-                style={
-                  {
-                    // objectFit: "contain",
-                    // width: "100%",
-                    // height: "100%",
-                  }
-                }
+                style={{
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%",
+                }}
               />
             )}
             {hotspotData?.hotspots?.map((node, i) => {
@@ -202,9 +202,12 @@ export const HotspotSection = props => {
               y: 0,
             }}
           >
-            {spotSelected?.image && (
-              <DetailImage>
-                <Close onClick={() => setSpotSelected(null)} />
+            <DetailImage>
+              <Close
+                image={spotSelected?.image}
+                onClick={() => setSpotSelected(null)}
+              />
+              {spotSelected?.image && (
                 <Image
                   crop={spotSelected?.image?.crop}
                   hotspot={spotSelected?.image?.hotspot}
@@ -222,8 +225,9 @@ export const HotspotSection = props => {
                     height: "100%",
                   }}
                 />
-              </DetailImage>
-            )}
+              )}
+            </DetailImage>
+
             {spotSelected?.title && (
               <Title variant="h4">{spotSelected?.title}</Title>
             )}

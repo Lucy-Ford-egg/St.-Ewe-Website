@@ -43,9 +43,20 @@ exports.createSchemaCustomization = ({ actions }) => {
 }
 
 exports.createPages = async function ({ graphql, actions, reporter }) {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
   const result = await graphql(`
     query SanityAllData {
+      allSanityRedirects {
+        nodes {
+          source {
+            current
+          }
+          destination {
+            current
+          }
+          permanent
+        }
+      }
       allSanityPage(
         filter: { slug: { current: { nin: ["news", "recipes"] } } }
       ) {
@@ -354,6 +365,18 @@ exports.createPages = async function ({ graphql, actions, reporter }) {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
+  const redirects = result.data?.allSanityRedirects.nodes || []
+
+  redirects.forEach(node => {
+    if (!node?.source?.current || !node?.destination?.current) {
+      console.error("Invalid redirect node:", node)
+      return
+    }
+    createRedirect({
+      fromPath: node.source.current,
+      toPath: node.destination.current,
+    })
+  })
 
   // Fetch your items (blog posts, categories, etc).
   // What needs paginating or looping
