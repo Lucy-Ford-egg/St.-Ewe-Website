@@ -135,6 +135,7 @@ const Sharing = styled("div")(({ theme }) => ({
   alignItems: "center",
   columnGap: "var(--ms0)",
   color: "var(--white)",
+  zIndex: 10,
   "& svg": {
     width: 24,
     height: 24,
