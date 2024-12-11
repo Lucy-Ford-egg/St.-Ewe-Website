@@ -23,8 +23,9 @@ export const HeadScripts = () => {
             forward={[`gtag`]}
           /> */}
 
-          {/* <Script
+          <Script
             id="FBPixel"
+            strategy="off-main-thread"
             dangerouslySetInnerHTML={{
               __html: `
             !function(f,b,e,v,n,t,s) {
@@ -43,7 +44,7 @@ export const HeadScripts = () => {
             <noscript><img height="1" width="1" style="display:none"src="https://www.facebook.com/tr?id=1050078168975279&ev=PageView&noscript=1"/></noscript>
             `,
             }}
-          /> */}
+          />
 
           <Script
             id="hs-script-loader"
