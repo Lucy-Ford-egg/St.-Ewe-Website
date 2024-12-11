@@ -80,7 +80,7 @@ export const MailChimp = () => {
                 flexbasis: "80%",
               }}
             >
-              Please select all the ways you would like to hear from us:
+              Please check the box to confirm how you'd like to hear from us:
             </Typography>
             <FormGroup>
               <FormControlLabel
