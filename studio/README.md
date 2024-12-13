@@ -20,3 +20,9 @@ npx sanity@latest migration run import-wp --dataset {dataset} --project {project
  # Bulk deleting docs
 
  sanity documents delete --dataset={dataset} "id" "id" ...
+
+ ## Bulk deleting by document type + dataset
+
+ sanity documents query "*[_type == 'redirects']._id" --dataset beta --apiVersion 2022-03-07 \
+  | jq -r '.[] | gsub(","; "")' \
+  | xargs -I {} sanity documents delete {} --dataset beta --apiVersion 2022-03-07
