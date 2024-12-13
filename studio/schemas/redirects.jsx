@@ -25,6 +25,9 @@ export default defineType({
       name: 'destination',
       type: 'slug',
       validation: (rule) => slugValidator(rule),
+      options: {
+        isUnique: () => true, // Disable uniqueness check
+      },
     }),
     defineField({
       name: 'permanent',
