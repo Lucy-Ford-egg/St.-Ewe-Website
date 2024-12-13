@@ -101,6 +101,7 @@ const RecipeDetails = styled("div")(({ theme }) => ({
   alignSelf: "end",
   justifyContent: "space-between",
   paddingBottom: "var(--ms2)",
+  zIndex: 10,
   [theme.breakpoints.up("lg")]: {
     paddingBottom: "var(--ms7)",
   },
@@ -135,7 +136,7 @@ const Sharing = styled("div")(({ theme }) => ({
   alignItems: "center",
   columnGap: "var(--ms0)",
   color: "var(--white)",
-  zIndex: 10,
+
   "& svg": {
     width: 24,
     height: 24,
