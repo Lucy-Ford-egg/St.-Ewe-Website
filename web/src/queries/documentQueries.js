@@ -37,6 +37,19 @@ const ILLUSTRATIONS = `
 const ACCORDION = `
   accordion[]->{
     ...,
+    answer[]{
+      ...,
+      markDefs[]{
+        ...,
+        reference->{
+          ...,
+        },
+        asset->{
+          ...,
+        },
+      },
+    },
+   
   }
 `
 const TIMELINE = `
