@@ -261,7 +261,9 @@ export const ImageSection = props => {
   const { type, images, sideAssets, icons = null } = props
 
   const theme = useTheme()
+  const xs = useMediaQuery(theme.breakpoints.down("xs"))
   const sm = useMediaQuery(theme.breakpoints.down("sm"))
+  const md = useMediaQuery(theme.breakpoints.down("md"))
   // Motion
   const ref = useRef(null)
   const { scrollYProgress } = useScroll()
@@ -353,6 +355,7 @@ export const ImageSection = props => {
                         }
                         alt={setImageNode?.asset?.altText}
                         //width={1200}
+                        maxWidth={xs ? 390 : sm ? 768 : 1440}
                       />
                     </LinkType>
                   </motion.div>
@@ -375,8 +378,8 @@ export const ImageSection = props => {
                     images[0]?.image?.asset
                   }
                   alt={images[0]?.image?.asset?.altText}
-                  width={1440}
-                  height={790}
+                  maxWidth={xs ? 390 : sm ? 768 : 1440}
+                  // height={790}
                   style={{
                     objectFit: "cover",
                     width: "100%",
@@ -410,8 +413,8 @@ export const ImageSection = props => {
                           setImageNode?.asset
                         }
                         alt={setImageNode?.asset?.altText}
-                        width={400}
-                        height={400}
+                        maxWidth={xs ? 390 : sm ? 768 : 768}
+                        heighth={xs ? 390 : sm ? 768 : 768}
                       />
                     )}
                   </LinkType>
