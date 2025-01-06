@@ -168,7 +168,7 @@ export const RenderPortableText = props => {
 
   const marks = {
     em: ({ children }) => (
-      <span style={{ color: value.value, fontStyle: "italic" }}>
+      <span style={{ color: value?.value, fontStyle: "italic" }}>
         {children}
       </span>
     ),
@@ -204,7 +204,7 @@ export const RenderPortableText = props => {
           color={
             backgroundColour?.label === "Super Eggs Secondary Accent"
               ? "var(--original-large)"
-              : value.value
+              : value?.value
           }
           value={value}
         >
@@ -226,7 +226,7 @@ export const RenderPortableText = props => {
     ),
     // Color
     textColor: ({ children, value }) => (
-      <span style={{ color: value.value }}>{children}</span>
+      <span style={{ color: value?.value }}>{children}</span>
     ),
     textColumns: ({ children, value }) => {
       return <ColumnCount value={value}>{children}</ColumnCount>
@@ -364,31 +364,34 @@ export const RenderPortableText = props => {
         )
       },
     },
-    list: ({ value, children }) =>
-      // console.log("list", props) ||
-      value.listItem === "bullet" ? (
-        <List
-          sx={{ listStyle: "inside", pt: { xs: 0 }, mt: { xs: "-4px" } }}
-          component="ul"
-          dense={true}
-        >
-          {children}
-        </List>
-      ) : (
-        <List
-          sx={{
-            listStyle: "decimal inside",
-            pt: { xs: 0 },
-            mt: { xs: "-4px" },
-          }}
-          component="ol"
-          dense={true}
-        >
-          {children}
-        </List>
-      ),
+    list: ({ value, children }) => {
+      return (
+        // console.log("list", props) ||
+        value?.listItem === "bullet" ? (
+          <List
+            sx={{ listStyle: "inside", pt: { xs: 0 }, mt: { xs: "-4px" } }}
+            component="ul"
+            dense={true}
+          >
+            {children}
+          </List>
+        ) : (
+          <List
+            sx={{
+              listStyle: "decimal inside",
+              pt: { xs: 0 },
+              mt: { xs: "-4px" },
+            }}
+            component="ol"
+            dense={true}
+          >
+            {children}
+          </List>
+        )
+      )
+    },
     listItem: ({ value, children, index }) => {
-      return value.listItem === "bullet" ? (
+      return value?.listItem === "bullet" ? (
         <ListItem
           sx={{
             color: "inherit",
@@ -438,11 +441,9 @@ export const RenderPortableText = props => {
 
   return (
     <div>
-      <PortableText value={value || []} components={standardPortableText} />
+      {value && (
+        <PortableText value={value || []} components={standardPortableText} />
+      )}
     </div>
   )
 }
-
-// components={standardPortableText}
-
-//! [@portabletext/react] Unknown block type "block", specify a component for it in the `components.types` prop
