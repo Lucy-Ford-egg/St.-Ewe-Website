@@ -152,13 +152,13 @@ export const RenderPortableText = props => {
           >
             {children}
           </Typography>
-          {value.cite && (
+          {value?.cite && (
             <Typography
               align="center"
               variant="subtitle1"
               component="figcaption"
             >
-              {value.cite}
+              {value?.cite}
             </Typography>
           )}
         </Box>
@@ -190,7 +190,7 @@ export const RenderPortableText = props => {
           color={
             backgroundColour?.label === "Super Eggs Secondary Accent"
               ? "var(--original-large)"
-              : value.value
+              : value?.value
           }
           value={value}
         >
@@ -281,7 +281,7 @@ export const RenderPortableText = props => {
             <Typography
               sx={{
                 pl: 1,
-                borderLeft: `1px solid ${theme.palette.tertiary.main}`,
+                borderLeft: `1px solid ${theme?.palette?.tertiary?.main}`,
               }}
               variant="body2"
             >
@@ -316,7 +316,7 @@ export const RenderPortableText = props => {
             <Typography
               sx={{
                 pl: 1,
-                borderLeft: `1px solid ${theme.palette.tertiary.main}`,
+                borderLeft: `1px solid ${theme?.palette?.tertiary?.main}`,
               }}
               variant="body2"
             >
@@ -341,9 +341,9 @@ export const RenderPortableText = props => {
             <Typography
               sx={{
                 py: { xs: 6, md: 6 },
-                color: value?.markDefs[0].value,
+                color: value?.markDefs[0]?.value,
                 pl: 1,
-                borderLeft: `1px solid ${theme.palette.highlight.main}`,
+                borderLeft: `1px solid ${theme?.palette?.highlight?.main}`,
               }}
               align="center"
               variant="h2"
