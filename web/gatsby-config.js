@@ -341,6 +341,19 @@ module.exports = {
         environments: ["production", "development"],
       },
     },
+    {
+      resolve: `gatsby-plugin-clarity`,
+      options: {
+        // String value for your clarity project id
+        // Project id is found in your clarity dashboard url
+        // https://clarity.microsoft.com/projects/view/{clarity_project_id}/
+        clarity_project_id: process.env.GATSBY_MICROSOFT_CLARITY_PROJECT_ID,
+        // Boolean value for enabling clarity while developing
+        // true will enable clarity tracking code on both development and production environments
+        // false will enable clarity tracking code on production environment only
+        enable_on_dev_env: true,
+      },
+    },
   ],
   partytownProxiedURLs: [
     `https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_TAG_MANAGER_TRACKING_ID}`,
