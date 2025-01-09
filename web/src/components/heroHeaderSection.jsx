@@ -157,7 +157,7 @@ export const HeroHeaderSection = props => {
     useTransform(scrollYProgress, [0, 1], ["0%", "140px"], {
       ease: easeOut,
     }),
-    useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "100px" : "180px"], {
+    useTransform(scrollYProgress, [0, 1], ["0%", mobile ? "100px" : "-60px"], {
       ease: easeOut,
     }),
     useTransform(
