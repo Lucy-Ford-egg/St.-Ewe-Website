@@ -8,18 +8,16 @@ import { styled } from "@mui/material/styles"
 import { useMediaQuery, useTheme } from "@mui/material"
 import { LinkType } from "./utils/linkType"
 
-const Wrapper = styled("div")(
-  ({ theme, navColour, menu, backgroundColour, verticalSpace }) => ({
-    // Base styles
-    backgroundColor: backgroundColour?.value,
-    //
-    gridColumn: "1/25",
-    gridTemplateColumns: "repeat(24, 1fr)",
-    gridTemplateRows: "repeat(4, 1fr)",
-    display: "grid",
-    alignItems: "center",
-  }),
-)
+const Wrapper = styled("div")(({ backgroundColour }) => ({
+  // Base styles
+  backgroundColor: backgroundColour?.value,
+  //
+  gridColumn: "1/25",
+  gridTemplateColumns: "repeat(24, 1fr)",
+  gridTemplateRows: "repeat(4, 1fr)",
+  display: "grid",
+  alignItems: "center",
+}))
 
 const Images = styled("div")(({ theme, images }) => ({
   gridColumn: "1/25",
@@ -203,18 +201,6 @@ const XScroll = styled("div")(({ theme }) => ({
         marginRight: "unset",
       },
     },
-    "&:first-of-type": {
-      marginLeft: "var(--ms-1)",
-    },
-    "&:last-of-type": {
-      marginRight: "var(--ms-1)",
-    },
-    "&:nth-of-type(even)": {
-      marginBottom: "var(--ms5)",
-    },
-    "&:nth-of-type(odd)": {
-      marginTop: "var(--ms5)",
-    },
     "&:hover": {
       "& img": {
         transform: "scale(1.1)",
@@ -237,10 +223,10 @@ const XScroll = styled("div")(({ theme }) => ({
     "&:last-of-type": {
       marginRight: "var(--ms-1)",
     },
-    "&:nth-child(even)": {
+    "&:nth-of-type(even)": {
       marginBottom: "var(--ms5)",
     },
-    "&:nth-child(odd)": {
+    "&:nth-of-type(odd)": {
       marginTop: "var(--ms5)",
     },
     "&:hover": {
@@ -337,7 +323,7 @@ export const ImageSection = props => {
 
                 return (
                   <motion.div
-                    key={node?.key}
+                    key={`${node?._key}`}
                     className="imageWrapper"
                     style={{
                       x: transforms[type === "mood" ? "mood" : "icons"][
@@ -402,7 +388,7 @@ export const ImageSection = props => {
               {images.map((node, index) => {
                 let setImageNode = node?.image
                 return (
-                  <LinkType node={node?.link} key={node?.key}>
+                  <LinkType node={node?.link} key={`${node?._key}`}>
                     {setImageNode && (
                       <Image
                         crop={setImageNode?.crop}

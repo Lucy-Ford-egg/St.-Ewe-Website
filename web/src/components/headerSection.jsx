@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 import { graphql } from "gatsby"
 import { useTheme, useMediaQuery, Typography } from "@mui/material"
 import { RenderPortableText } from "../components/utils/renderPortableText"
@@ -165,8 +165,6 @@ export const HeaderSection = props => {
 
   // Motion
 
-  const [imageLoaded, setImageLoaded] = useState(false) // Track image load state
-
   const ref = useRef(null)
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -201,7 +199,6 @@ export const HeaderSection = props => {
                 width: "100%",
                 height: "100%",
               }}
-              onLoad={() => setImageLoaded(true)}
             />
             <Overlay />
           </BackgroundImage>

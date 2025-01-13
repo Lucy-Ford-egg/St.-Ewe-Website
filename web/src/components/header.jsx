@@ -7,7 +7,6 @@ import MainNavigation from "./mainNavigation"
 import { contrastBrandPalette } from "../utils/colours"
 import { styled } from "@mui/material/styles"
 import { useMenuContext } from "../components/utils/useMenuContext"
-import { motion } from "framer-motion"
 
 const Wrapper = styled("div")(({ theme, navOpen }) => ({
   display: "grid",

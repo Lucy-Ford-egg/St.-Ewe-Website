@@ -85,11 +85,13 @@ export const TitleSection = props => {
 
   const formattedDate = date => {
     if (!date) {
-      throw new Error("Date value is undefined or invalid")
+      console.warn("Date value is undefined or null, returning default date.")
+      return null // or return new Date() for the current date, if that makes sense
     }
     const setDate = new Date(date) // Ensure a Date object is created
     if (isNaN(setDate)) {
-      throw new Error("Invalid date format")
+      console.warn("Invalid date format, returning null or default date.")
+      return null // or return new Date()
     }
 
     return format(setDate, "M MMM yyyy")
@@ -153,7 +155,7 @@ export const TitleSection = props => {
                 {pageData?.sanityRecipes?.title}
               </Typography>
             )}
-            {isPost && (
+            {isPost && pageContext?.date && (
               <Typography
                 variant="body"
                 sx={{
