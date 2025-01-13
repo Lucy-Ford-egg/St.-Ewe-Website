@@ -364,34 +364,38 @@ export const RenderPortableText = props => {
         )
       },
     },
-    list: ({ value, children }) => {
-      return (
-        // console.log("list", props) ||
-        value?.listItem === "bullet" ? (
-          <List
-            sx={{ listStyle: "inside", pt: { xs: 0 }, mt: { xs: "-4px" } }}
-            component="ul"
-            dense={true}
-          >
-            {children}
-          </List>
-        ) : (
-          <List
-            sx={{
-              listStyle: "decimal inside",
-              pt: { xs: 0 },
-              mt: { xs: "-4px" },
-            }}
-            component="ol"
-            dense={true}
-          >
-            {children}
-          </List>
-        )
-      )
+    list: {
+      // Ex. 1: customizing common list types
+      bullet: ({ children }) => (
+        <List
+          sx={{ listStyle: "inside", pt: { xs: 0 }, mt: { xs: "-4px" } }}
+          component="ul"
+          dense={true}
+        >
+          {children}
+        </List>
+      ),
+      number: ({ children }) => (
+        <List
+          sx={{
+            listStyle: "decimal inside",
+            pt: { xs: 0 },
+            mt: { xs: "-4px" },
+          }}
+          component="ol"
+          dense={true}
+        >
+          {children}
+        </List>
+      ),
+
+      // Ex. 2: rendering custom lists
+      // checkmarks: ({ children }) => (
+      //   <ol className="m-auto text-lg">{children}</ol>
+      // ),
     },
-    listItem: ({ value, children, index }) => {
-      return value?.listItem === "bullet" ? (
+    listItem: {
+      bullet: ({ value, children }) => (
         <ListItem
           sx={{
             color: "inherit",
@@ -407,6 +411,7 @@ export const RenderPortableText = props => {
             />
           </ListItemIcon>
           <Box
+            component="div"
             sx={{
               display: "block",
             }}
@@ -414,7 +419,8 @@ export const RenderPortableText = props => {
             {children}
           </Box>
         </ListItem>
-      ) : (
+      ),
+      number: ({ value, children, index }) => (
         <ListItem
           sx={{
             color: "inherit",
@@ -425,18 +431,21 @@ export const RenderPortableText = props => {
           }}
         >
           <Box
+            component="div"
             sx={{
               display: "inline-flex",
             }}
           >
             <span className="step-marker">{`- Step ${index + 1}`}</span>
+
             {children}
           </Box>
         </ListItem>
-      )
+      ),
     },
-    marks: marks,
+
     block: block,
+    marks: marks,
   }
 
   return (
