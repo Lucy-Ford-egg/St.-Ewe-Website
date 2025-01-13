@@ -3,32 +3,30 @@ import { Link } from "@mui/material"
 import { Link as GatsbyLink } from "gatsby-theme-material-ui"
 
 export const PortableTextInlineLink = ({ value, children, color }) => {
-  let linkType = ""
-  let definedInternal = value?.reference?.slug?.current
+  let linkType = null
+  let definedInternal =
+    value?.reference?.slug?.current ||
+    (value?.markDefs && value?.markDefs[0]?.reference?.slug?.current)
   const definedExternal = value?.href
 
   const isExternal = value?._type === "link"
-
-  function checkStringType(str) {
-    const validStrings = ["post", "recipe", "page", "teamMembers"]
-    return validStrings.includes(str)
-  }
-
-  const isInternal = checkStringType(value?.reference?._type)
+  const linkPath = value?.reference || (value?.markDefs && value?.markDefs[0])
+  const isInternal = value?._type === "internalLink"
   const isFile = value.reference?._type === "file"
 
-  if (value.reference?._type === "page") {
+  if (linkPath?._type === "page") {
     definedInternal = `/${definedInternal}`
   }
-  if (value.reference?._type === "post") {
+  if (linkPath?._type === "post") {
     definedInternal = `/news/${value?.reference?.categories?.slug?.current}/${definedInternal}`
   }
-  if (value.reference?._type === "recipe") {
+  if (linkPath?._type === "recipes") {
     definedInternal = `/recipe/${definedInternal}`
   }
-  if (value.reference?._type === "teamMembers") {
+  if (linkPath?._type === "teamMembers") {
     definedInternal = `/team-members/${definedInternal}`
   }
+
   if (isExternal) {
     linkType = (
       <Link
@@ -61,7 +59,6 @@ export const PortableTextInlineLink = ({ value, children, color }) => {
         to={definedInternal}
         aria-label={`Link to ${children}`}
       >
-        {" "}
         {children}
       </GatsbyLink>
     )
@@ -81,11 +78,11 @@ export const PortableTextInlineLink = ({ value, children, color }) => {
         href={definedExternal}
         aria-label={`Link to ${children}`}
       >
-        {" "}
         {children}
       </Link>
     )
   }
 
-  return linkType
+  // Default return if no linkType is set
+  return linkType || <span>{children}</span>
 }
