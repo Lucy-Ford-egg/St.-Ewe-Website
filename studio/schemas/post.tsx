@@ -167,7 +167,6 @@ export default defineType({
       categories: 'categories', // Use `->` to dereference the category and get its `name`
     },
     prepare({title, media, author, date, categories}) {
-      debugger
       const subtitles = [
         categories && `Referenced to ${categories.length} categories`, // Join category names
         author && `by ${author}`,
