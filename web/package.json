@@ -34,6 +34,7 @@
     "gatsby-plugin-gatsby-cloud": "^5.12.1",
     "gatsby-plugin-gdpr-cookies": "^2.0.9",
     "gatsby-plugin-image": "^3.12.2",
+    "gatsby-plugin-klaviyo": "^0.1.2",
     "gatsby-plugin-local-search": "^2.0.1",
     "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^5.12.2",

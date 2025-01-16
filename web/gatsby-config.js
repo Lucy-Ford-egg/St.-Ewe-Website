@@ -342,6 +342,13 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-klaviyo",
+      options: {
+        klaviyoKey: process.env.GATSBY_KLAVIYO_KEY,
+        enableDuringDevelop: true, // Optional. Disables Klaviyo when running Gatsby dev server. Defaults to true.
+      },
+    },
+    {
       resolve: `gatsby-plugin-clarity`,
       options: {
         // String value for your clarity project id
