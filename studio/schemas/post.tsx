@@ -66,7 +66,7 @@ export default defineType({
       //initialValue: () => new Date().toISOString(),
       group: 'pageContent',
       options: {
-        dateFormat: 'M MMM YYYY',
+        dateFormat: 'D MMM YYYY',
       },
     }),
     defineField({name: 'modified', type: 'datetime', group: 'pageContent'}),
