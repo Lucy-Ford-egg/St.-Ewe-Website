@@ -25,7 +25,7 @@ const BlogArchiveTemplate = props => {
       <Modules
         previewData={previewData?.pageBuilder}
         sanityConfig={getSanityClient}
-        allSanityPost={data.allSanityPost}
+        allSanityPost={data?.allSanityPost}
         pageContext={pageContext}
         modules={definedModules}
         location={location}
@@ -35,7 +35,7 @@ const BlogArchiveTemplate = props => {
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityPage} location={location} />
+  return <Seo seoContext={data?.sanityPage} location={location} />
 }
 
 export const blogArchiveTemplateQuery = graphql`
@@ -90,6 +90,15 @@ export const blogArchiveTemplateQuery = graphql`
       }
     }
     sanityPage(slug: { current: { eq: $slug } }) {
+      metaDescription
+      metaTitle
+      ogTitle
+      ogImage {
+        asset {
+          url
+        }
+      }
+      ogDescription
       slug {
         current
       }

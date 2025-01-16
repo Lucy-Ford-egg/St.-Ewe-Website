@@ -37,7 +37,9 @@ const CategoryArchiveTemplate = props => {
 }
 
 export const Head = ({ data, location }) => {
-  return <Seo seoContext={data.sanityPage} location={location} />
+  return (
+    <Seo seoContext={data?.sanityCategories?.sanityPage} location={location} />
+  )
 }
 
 export const blogArchiveTemplateQuery = graphql`
@@ -91,6 +93,15 @@ export const blogArchiveTemplateQuery = graphql`
       }
     }
     sanityCategories(slug: { current: { eq: $slug } }) {
+      metaDescription
+      metaTitle
+      ogTitle
+      ogImage {
+        asset {
+          url
+        }
+      }
+      ogDescription
       _id
       slug {
         current
