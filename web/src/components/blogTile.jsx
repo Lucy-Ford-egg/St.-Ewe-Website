@@ -113,7 +113,7 @@ export const BlogTile = props => {
       throw new Error("Invalid date format")
     }
 
-    return format(setDate, "M MMM yyyy")
+    return format(setDate, "dd MMM yyyy")
   }
   let formatted = ""
   try {
