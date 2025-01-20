@@ -1,9 +1,7 @@
-import React, { useState, useMemo } from "react"
-import addToMailchimp from "gatsby-plugin-mailchimp"
+import React, { useState } from "react"
 import {
   Typography,
   Button,
-  FormHelperText,
   Box,
   TextField,
   FormControlLabel,
@@ -26,13 +24,44 @@ export const MailChimp = () => {
   const [email, setEmail] = useState("")
   const [marketingConsent, setMarketingConsent] = useState(false)
 
+  // const handleSubmit = async e => {
+  //   e.preventDefault()
+
+  //   const addResult = await addToMailchimp(email, {
+  //     "gdpr[127727]": marketingConsent ? "Y" : "N",
+  //   })
+  //   setMCResult(addResult)
+  // }
+
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const addResult = await addToMailchimp(email, {
-      "gdpr[127727]": marketingConsent ? "Y" : "N",
-    })
-    setMCResult(addResult)
+    const response = await fetch(
+      `https://a.klaviyo.com/api/v2/list/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          api_key: process.env.KLAVIYO_PUBLIC_KEY,
+          profiles: [
+            {
+              email: email,
+              consent: marketingConsent ? "Y" : "N",
+            },
+          ],
+        }),
+      },
+    )
+
+    const result = await response.json()
+    debugger
+    setMCResult(result)
+
+    if (result.errors) {
+      console.error("Klaviyo subscription error:", result.errors)
+    }
   }
 
   return (
