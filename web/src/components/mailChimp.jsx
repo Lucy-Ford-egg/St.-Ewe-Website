@@ -36,32 +36,19 @@ export const MailChimp = () => {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch(
-      `https://a.klaviyo.com/api/v2/list/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          api_key: process.env.KLAVIYO_PUBLIC_KEY,
-          profiles: [
-            {
-              email: email,
-              consent: marketingConsent ? "Y" : "N",
-            },
-          ],
-        }),
+    const response = await fetch("/api/klaviyoSubscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    )
+      body: JSON.stringify({
+        email: email,
+        marketingConsent: marketingConsent,
+      }),
+    })
 
     const result = await response.json()
-    debugger
     setMCResult(result)
-
-    if (result.errors) {
-      console.error("Klaviyo subscription error:", result.errors)
-    }
   }
 
   return (
