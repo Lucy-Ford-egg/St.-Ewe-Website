@@ -70,7 +70,7 @@ export const MailChimp = () => {
         >
           <Box>
             <TextField
-              id="mce-EMAIL"
+              id="klv-EMAIL"
               name="EMAIL"
               label="Email Address"
               type="email"
@@ -134,9 +134,9 @@ export const MailChimp = () => {
               }}
             >
               By subscribing, you acknowledge your information will be
-              transferred to Mailchimp for processing.{" "}
+              transferred to Klaviyo for processing.{" "}
               <Link
-                href="https://mailchimp.com/legal/terms"
+                href="https://www.klaviyo.com/legal"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -185,7 +185,9 @@ export const MailChimp = () => {
             color: "white.main",
           }}
         >
-          {MCResult.msg}
+          {MCResult.msg
+            ? MCResult.msg
+            : "There has been a problem. Please try again later."}
         </Typography>
       )}
     </Wrapper>
