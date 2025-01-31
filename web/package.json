@@ -68,6 +68,7 @@
     "sass": "1.70.0"
   },
   "devDependencies": {
+    "@netlify/plugin-gatsby": "^3.8.2",
     "prettier": "3.2.4"
   },
   "keywords": [
