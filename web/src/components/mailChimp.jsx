@@ -36,17 +36,22 @@ export const MailChimp = () => {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch("/src/netlify/functions/klaviyoSubscribe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:8000/.netlify/functions/klaviyoSubscribe"
+        : "/api/klaviyoSubscribe",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          marketingConsent: marketingConsent,
+        }),
       },
-      body: JSON.stringify({
-        email: email,
-        marketingConsent: marketingConsent,
-      }),
-    })
-
+    )
+    debugger
     const result = await response?.json()
     setMCResult(result)
   }
