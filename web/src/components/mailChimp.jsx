@@ -36,7 +36,7 @@ export const MailChimp = () => {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch("/api/klaviyoSubscribe", {
+    const response = await fetch("/src/netlify/functions/klaviyoSubscribe", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const MailChimp = () => {
       }),
     })
 
-    const result = await response.json()
+    const result = await response?.json()
     setMCResult(result)
   }
 
