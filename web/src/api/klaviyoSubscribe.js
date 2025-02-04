@@ -75,7 +75,7 @@ export default async function handler(req, res) {
                 data: {
                   type: "profile",
                   attributes: {
-                    email: "test@texample.com", // dynamic email value
+                    email: email, // dynamic email value
                     ...subscriptions,
                   },
                 },
