@@ -51,12 +51,11 @@ export default async function handler(req, res) {
       {
         method: "POST",
         headers: {
-          Authorization: `Klaviyo-API-Key ${process.env.GATSBY_KLAVIYO_PRIVATE_KEY}`,
+          Authorization: `Klaviyo-API-Key ${process.env.GATSBY_KLAVIYO_KEY}`,
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          api_key: process.env.GATSBY_KLAVIYO_KEY, // Use a secure private key
           profiles: [
             {
               email,
