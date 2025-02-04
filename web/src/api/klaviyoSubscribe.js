@@ -46,25 +46,48 @@ export default async function handler(req, res) {
 
     console.log(`List ID = ${process.env.GATSBY_KLAVIYO_LIST_ID}`)
 
+    const subscriptions = marketingConsent
+      ? {
+          subscriptions: {
+            email: {
+              marketing: {
+                consent: "SUBSCRIBED",
+              },
+            },
+          },
+        }
+      : {}
     const response = await fetch(
-      `https://a.klaviyo.com/api/lists/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe/`,
+      `https://a.klaviyo.com/client/subscriptions?company_id=${process.env.GATSBY_KLAVIYO_SITE_ID}`,
       {
         method: "POST",
         headers: {
           Authorization: `Klaviyo-API-Key ${process.env.GATSBY_KLAVIYO_KEY}`,
-          "Content-Type": "application/json",
+          "Content-Type": "application/vnd.api+json",
           Accept: "application/json",
+          Revision: "2025-01-15",
         },
         body: JSON.stringify({
           data: {
-            type: "list-subscription",
+            type: "subscription",
             attributes: {
-              profiles: [
-                {
-                  email,
-                  consent: marketingConsent ? ["email"] : [],
+              profile: {
+                data: {
+                  type: "profile",
+                  attributes: {
+                    email: "test@texample.com", // dynamic email value
+                    ...subscriptions,
+                  },
                 },
-              ],
+              },
+            },
+            relationships: {
+              list: {
+                data: {
+                  type: "list",
+                  id: process.env.GATSBY_KLAVIYO_LIST_ID, // Replace with your actual list ID
+                },
+              },
             },
           },
         }),
