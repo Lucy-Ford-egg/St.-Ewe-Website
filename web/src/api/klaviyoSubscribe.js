@@ -47,7 +47,8 @@ export default async function handler(req, res) {
     console.log(`List ID = ${process.env.GATSBY_KLAVIYO_LIST_ID}`)
 
     const response = await fetch(
-      `https://a.klaviyo.com/api/lists/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe/`,
+      `https://a.klaviyo.com/api/v2/lists/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe/`
+      //`https://a.klaviyo.com/api/lists/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe/`,
       {
         method: "POST",
         headers: {
