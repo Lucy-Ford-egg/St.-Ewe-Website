@@ -56,9 +56,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-gatsby-cloud`,
-    },
-    {
       resolve: `gatsby-plugin-brotli`,
       options: {
         extensions: ["css", "html", "js", "svg"],
