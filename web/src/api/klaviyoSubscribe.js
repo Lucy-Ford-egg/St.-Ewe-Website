@@ -46,14 +46,14 @@ export default async function handler(req, res) {
 
     console.log(`List ID = ${process.env.GATSBY_KLAVIYO_LIST_ID}`)
     const response = await fetch(
-      `https://a.klaviyo.com/api/v2/list/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe`,
+      `https://a.klaviyo.com/api/v2/list/${process.env.GATSBY_KLAVIYO_LIST_ID}/subscribe?api_key=${process.env.GATSBY_KLAVIYO_KEY}`,
+
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          api_key: process.env.GATSBY_KLAVIYO_PRIVATE_KEY, // Use a secure private key
           profiles: [
             {
               email,
