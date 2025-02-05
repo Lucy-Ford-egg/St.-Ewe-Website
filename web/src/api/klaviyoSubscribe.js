@@ -75,8 +75,14 @@ export default async function handler(req, res) {
                 data: {
                   type: "profile",
                   attributes: {
-                    email: email, // dynamic email value
-                    ...subscriptions,
+                    email: "test@texample.com", // dynamic email value
+                    subscriptions: {
+                      email: {
+                        marketing: {
+                          consent: "SUBSCRIBED",
+                        },
+                      },
+                    },
                   },
                 },
               },
@@ -85,12 +91,36 @@ export default async function handler(req, res) {
               list: {
                 data: {
                   type: "list",
-                  id: process.env.GATSBY_KLAVIYO_LIST_ID, // Replace with your actual list ID
+                  id: "ThuhXw", // Replace with your actual list ID
                 },
               },
             },
           },
         }),
+        // body: JSON.stringify({
+        //   data: {
+        //     type: "subscription",
+        //     attributes: {
+        //       profile: {
+        //         data: {
+        //           type: "profile"
+        //           attributes: {
+        //             email: email, // dynamic email value
+        //             ...subscriptions,
+        //           },
+        //         },
+        //       },
+        //     },
+        //     relationships: {
+        //       list: {
+        //         data: {
+        //           type: "list",
+        //           id: process.env.GATSBY_KLAVIYO_LIST_ID, // Replace with your actual list ID
+        //         },
+        //       },
+        //     },
+        //   },
+        // }),
       },
     )
 
