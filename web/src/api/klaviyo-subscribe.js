@@ -42,16 +42,32 @@ export default async function handler(req, res) {
             data: {
               type: "profile",
               attributes: {
-                email, // Email should be inside profile attributes
+                email, // Ensure this field is present
+                meta: {
+                  patch_properties: {
+                    append: {
+                      source: "Newsletter Signup",
+                    },
+                  },
+                },
+                subscriptions: {
+                  email: {
+                    marketing: {
+                      consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
+                    },
+                  },
+                  sms: {
+                    marketing: {
+                      consent: "UNSUBSCRIBED",
+                    },
+                    transactional: {
+                      consent: "UNSUBSCRIBED",
+                    },
+                  },
+                },
               },
             },
           },
-          consent: [
-            {
-              channel: "EMAIL",
-              consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
-            },
-          ],
         },
         relationships: {
           list: {
