@@ -43,21 +43,21 @@ export default async function handler(req, res) {
               type: "profile",
               attributes: {
                 email, // Ensure this field is present
-              },
-            },
-          },
-          subscriptions: {
-            email: {
-              marketing: {
-                consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
-              },
-            },
-            sms: {
-              marketing: {
-                consent: "UNSUBSCRIBED",
-              },
-              transactional: {
-                consent: "UNSUBSCRIBED",
+                subscriptions: {
+                  email: {
+                    marketing: {
+                      consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
+                    },
+                  },
+                  sms: {
+                    marketing: {
+                      consent: "UNSUBSCRIBED",
+                    },
+                    transactional: {
+                      consent: "UNSUBSCRIBED",
+                    },
+                  },
+                },
               },
             },
           },
