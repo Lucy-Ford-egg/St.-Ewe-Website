@@ -24,83 +24,121 @@ export const MailChimp = () => {
   const [email, setEmail] = useState("")
   const [marketingConsent, setMarketingConsent] = useState(false)
 
-  // const handleSubmit = async e => {
-  //   e.preventDefault()
-
-  //   const addResult = await addToMailchimp(email, {
-  //     "gdpr[127727]": marketingConsent ? "Y" : "N",
-  //   })
-  //   setMCResult(addResult)
-  // }
-
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const response = await fetch(
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:8000/api/klaviyo-subscribe"
-        : "/api/klaviyo-subscribe",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          marketingConsent: marketingConsent,
-        }),
+    const companyId = process.env.GATSBY_KLAVIYO_COMPANY_ID
+    const listId = process.env.GATSBY_KLAVIYO_LIST_ID
+
+    if (!companyId || !listId) {
+      setMCResult({ result: "error", msg: "Missing Klaviyo configuration." })
+      return
+    }
+
+    const options = {
+      method: "POST",
+      headers: {
+        accept: "application/vnd.api+json",
+        revision: "2025-01-15",
+        "content-type": "application/vnd.api+json",
       },
-    )
-    debugger
-    const result = await response?.json()
-    setMCResult(result)
+      body: JSON.stringify({
+        data: {
+          type: "subscription",
+          attributes: {
+            profile: {
+              data: {
+                type: "profile",
+                attributes: {
+                  email: email,
+                  properties: {
+                    source: "Newsletter Signup",
+                  },
+                  meta: {
+                    patch_properties: {
+                      append: {
+                        source: "Newsletter Signup",
+                      },
+                    },
+                  },
+                  subscriptions: {
+                    email: {
+                      marketing: {
+                        consent: marketingConsent
+                          ? "SUBSCRIBED"
+                          : "UNSUBSCRIBED",
+                      },
+                    },
+                    sms: {
+                      marketing: {
+                        consent: "UNSUBSCRIBED",
+                      },
+                      transactional: {
+                        consent: "UNSUBSCRIBED",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+          relationships: {
+            list: {
+              data: {
+                type: "list",
+                id: process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID, // Ensure this is set
+              },
+            },
+          },
+        },
+      }),
+    }
+
+    try {
+      const response = await fetch(
+        `https://a.klaviyo.com/client/subscriptions?company_id=${companyId}`,
+        options,
+      )
+      const result = await response.json()
+
+      if (response.ok) {
+        setMCResult({ result: "success", msg: "Subscription successful!" })
+      } else {
+        setMCResult({
+          result: "error",
+          msg: result?.errors?.[0]?.detail || "Failed to subscribe.",
+        })
+      }
+    } catch (err) {
+      setMCResult({
+        result: "error",
+        msg: "An error occurred. Please try again later.",
+      })
+    }
   }
 
   return (
-    <Wrapper>
+    <Box>
       {!MCResult && (
         <form
           onSubmit={handleSubmit}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            rowGap: "var(--ms-4)",
-          }}
+          style={{ display: "flex", flexDirection: "column", rowGap: "16px" }}
         >
-          <Box>
-            <TextField
-              id="klv-EMAIL"
-              name="EMAIL"
-              label="Email Address"
-              type="email"
-              required
-              fullWidth
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              variant="outlined"
-              placeholder="Enter your email address"
-            />
-          </Box>
+          <TextField
+            id="klv-EMAIL"
+            name="EMAIL"
+            label="Email Address"
+            type="email"
+            required
+            fullWidth
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            variant="outlined"
+            placeholder="Enter your email address"
+          />
 
-          {/* GDPR Marketing Permissions */}
-          <Box
-            sx={{
-              display: "flex",
-              columnGap: "var(--ms0)",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="small"
-              gutterBottom
-              sx={{
-                color: "white.main",
-                textAlign: "left",
-                display: "block",
-                flexbasis: "80%",
-              }}
-            >
+          <Box display="flex" alignItems="center">
+            <Typography variant="body2" sx={{ flex: 1 }}>
               Please check the box to confirm how you'd like to hear from us:
             </Typography>
             <FormGroup>
@@ -110,87 +148,44 @@ export const MailChimp = () => {
                     required
                     checked={marketingConsent}
                     onChange={e => setMarketingConsent(e.target.checked)}
-                    sx={{
-                      color: "white.main",
-                    }}
                   />
                 }
                 label="Email"
-                sx={{
-                  color: "white.main",
-                }}
               />
             </FormGroup>
           </Box>
 
-          {/* Legal Information */}
-          <Box>
-            <Typography
-              variant="small"
-              sx={{
-                color: "white.main",
-                textAlign: "left",
-                display: "block",
-              }}
+          <Typography variant="caption">
+            By subscribing, you acknowledge your information will be transferred
+            to Klaviyo for processing.{" "}
+            <Link
+              href="https://www.klaviyo.com/legal"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              By subscribing, you acknowledge your information will be
-              transferred to Klaviyo for processing.{" "}
-              <Link
-                href="https://www.klaviyo.com/legal"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn more
-              </Link>
-            </Typography>
-          </Box>
+              Learn more
+            </Link>
+          </Typography>
 
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={{
-              marginTop: "var(--ms-1)",
-              alignSelf: "center",
-              px: "var(--ms3)",
-            }}
-          >
+          <Button type="submit" variant="contained" color="primary">
             Signup
           </Button>
         </form>
       )}
 
       {MCResult?.result === "success" && (
-        <Box
-          display="flex"
-          alignItems="center"
-          marginTop={2}
-          sx={{
-            color: "white.main",
-          }}
-        >
-          <Typography variant="body1" marginRight={1}>
-            {MCResult.msg}
-          </Typography>
+        <Box display="flex" alignItems="center" mt={2} color="success.main">
+          <Typography variant="body1">{MCResult.msg}</Typography>
           <CheckIcon color="primary" />
         </Box>
       )}
 
       {MCResult?.result === "error" && (
-        <Typography
-          variant="body2"
-          color="error"
-          marginTop={2}
-          sx={{
-            color: "white.main",
-          }}
-        >
-          {MCResult.msg
-            ? MCResult.msg
-            : "There has been a problem. Please try again later."}
+        <Typography variant="body2" color="error" mt={2}>
+          {MCResult.msg || "There has been a problem. Please try again later."}
         </Typography>
       )}
-    </Wrapper>
+    </Box>
   )
 }
 

@@ -343,7 +343,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-klaviyo",
       options: {
-        klaviyoKey: process.env.KLAVIYO_KEY,
+        klaviyoKey: process.env.GATSBY_KLAVIYO_COMPANY_ID,
         enableDuringDevelop: true, // Optional. Disables Klaviyo when running Gatsby dev server. Defaults to true.
       },
     },
