@@ -86,7 +86,10 @@ export const MailChimp = () => {
       if (response.ok) {
         const result =
           response.status === 202
-            ? { result: "success", msg: "Subscription successful!" }
+            ? {
+                result: "success",
+                msg: "Subscription successful! Please check you inbox to complete your subscription.",
+              }
             : await response.json()
         setMCResult(result)
       } else {
