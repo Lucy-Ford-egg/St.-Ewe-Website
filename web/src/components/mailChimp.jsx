@@ -38,8 +38,8 @@ export const MailChimp = () => {
 
     const response = await fetch(
       process.env.NODE_ENV === "development"
-        ? "http://localhost:8000/api/klaviyo-subscribe"
-        : "/api/klaviyo-subscribe",
+        ? `${process.env.GATSBY_FRONTEND}/api/klaviyo-subscribe`
+        : `${process.env.GATSBY_FRONTEND}/api/klaviyo-subscribe`,
       {
         method: "POST",
         headers: {
