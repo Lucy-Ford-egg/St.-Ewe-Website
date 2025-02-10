@@ -42,25 +42,16 @@ export default async function handler(req, res) {
             data: {
               type: "profile",
               attributes: {
-                email, // Ensure this field is present
-                subscriptions: {
-                  email: {
-                    marketing: {
-                      consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
-                    },
-                  },
-                  sms: {
-                    marketing: {
-                      consent: "UNSUBSCRIBED",
-                    },
-                    transactional: {
-                      consent: "UNSUBSCRIBED",
-                    },
-                  },
-                },
+                email, // Email should be inside profile attributes
               },
             },
           },
+          consent: [
+            {
+              channel: "EMAIL",
+              consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
+            },
+          ],
         },
         relationships: {
           list: {
