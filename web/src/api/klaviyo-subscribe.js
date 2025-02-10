@@ -42,21 +42,22 @@ export default async function handler(req, res) {
             data: {
               type: "profile",
               attributes: {
-                subscriptions: {
-                  email: {
-                    marketing: {
-                      consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
-                    },
-                  },
-                  sms: {
-                    marketing: {
-                      consent: "UNSUBSCRIBED",
-                    },
-                    transactional: {
-                      consent: "UNSUBSCRIBED",
-                    },
-                  },
-                },
+                email, // Ensure this field is present
+              },
+            },
+          },
+          subscriptions: {
+            email: {
+              marketing: {
+                consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
+              },
+            },
+            sms: {
+              marketing: {
+                consent: "UNSUBSCRIBED",
+              },
+              transactional: {
+                consent: "UNSUBSCRIBED",
               },
             },
           },
@@ -65,6 +66,7 @@ export default async function handler(req, res) {
           list: {
             data: {
               type: "list",
+              id: process.env.KLAVIYO_LIST_ID, // Ensure this is set
             },
           },
         },
