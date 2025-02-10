@@ -20,100 +20,78 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Email is required" })
     }
 
-    // (Optional) Log request for debugging
+    // Log incoming request for debugging
     console.log("Received request:", { email, marketingConsent })
 
-    // Simulate success response (replace with actual Klaviyo API call)
+    // Ensure environment variables exist
+    const LIST_ID = process.env.KLAVIYO_LIST_ID
+    const SITE_ID = process.env.KLAVIYO_SITE_ID
+    const API_KEY = process.env.KLAVIYO_KEY
 
-    console.log(`List ID = ${process.env.KLAVIYO_LIST_ID}`)
+    if (!LIST_ID || !SITE_ID || !API_KEY) {
+      console.error("Missing required environment variables")
+      return res.status(500).json({ error: "Server configuration error" })
+    }
 
-    const subscriptions = marketingConsent
-      ? {
+    // Construct the request body dynamically
+    const requestBody = {
+      data: {
+        type: "subscription",
+        attributes: {
+          profile: {
+            data: {
+              type: "profile",
+              attributes: {
+                email,
+              },
+            },
+          },
           subscriptions: {
             email: {
               marketing: {
-                consent: "SUBSCRIBED",
+                consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
               },
             },
           },
-        }
-      : {}
+        },
+        relationships: {
+          list: {
+            data: {
+              type: "list",
+              id: LIST_ID,
+            },
+          },
+        },
+      },
+    }
+
+    // Send request to Klaviyo API
     const response = await fetch(
-      `https://a.klaviyo.com/client/subscriptions?company_id=${process.env.KLAVIYO_SITE_ID}`,
+      `https://a.klaviyo.com/client/subscriptions?company_id=${SITE_ID}`,
       {
         method: "POST",
         headers: {
-          Authorization: `Klaviyo-API-Key ${process.env.KLAVIYO_KEY}`,
+          Authorization: `Klaviyo-API-Key ${API_KEY}`,
           "Content-Type": "application/vnd.api+json",
           Accept: "application/json",
-          Revision: "2025-01-15",
+          Revision: "2023-10-15",
         },
-        body: JSON.stringify({
-          data: {
-            type: "subscription",
-            attributes: {
-              profile: {
-                data: {
-                  type: "profile",
-                  attributes: {
-                    email: "test@texample.com", // dynamic email value
-                    subscriptions: {
-                      email: {
-                        marketing: {
-                          consent: "SUBSCRIBED",
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
-            relationships: {
-              list: {
-                data: {
-                  type: "list",
-                  id: "ThuhXw", // Replace with your actual list ID
-                },
-              },
-            },
-          },
-        }),
-        // body: JSON.stringify({
-        //   data: {
-        //     type: "subscription",
-        //     attributes: {
-        //       profile: {
-        //         data: {
-        //           type: "profile"
-        //           attributes: {
-        //             email: email, // dynamic email value
-        //             ...subscriptions,
-        //           },
-        //         },
-        //       },
-        //     },
-        //     relationships: {
-        //       list: {
-        //         data: {
-        //           type: "list",
-        //           id: process.env.KLAVIYO_LIST_ID, // Replace with your actual list ID
-        //         },
-        //       },
-        //     },
-        //   },
-        // }),
+        body: JSON.stringify(requestBody),
       },
     )
 
-    const data = await response.json()
+    const responseData = await response.json()
 
-    console.log("Klaviyo Response:", await response.text())
+    if (!response.ok) {
+      console.error("Klaviyo API error:", responseData)
+      return res.status(response.status).json({
+        error: "Failed to subscribe user",
+        details: responseData,
+      })
+    }
 
-    return res.status(response.status).json(data)
-
-    // return res
-    //   .status(200)
-    //   .json({ success: true, message: "Subscription successful" })
+    console.log("Klaviyo API success:", responseData)
+    return res.status(200).json({ success: true, data: responseData })
   } catch (error) {
     console.error("Error in Klaviyo function:", error)
     return res.status(500).json({ error: "Internal Server Error" })
