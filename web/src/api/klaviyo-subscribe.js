@@ -1,22 +1,3 @@
-// // src/api/klaviyoSubscribe.js
-// export default async function handler(req, res) {
-//   res.setHeader("Access-Control-Allow-Origin", "*")
-
-//   res.setHeader("Access-Control-Allow-Origin", "*") // Allow all origins or specify 'http://localhost:8000'
-//   res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type")
-
-//   if (req.method === "OPTIONS") {
-//     res.status(200).end()
-//     return
-//   }
-
-//   if (req.method !== "POST") {
-//     return res.status(405).json({ message: "Method Not Allowed" }) // 405 instead of 403
-//   }
-
-// }
-
 export default async function handler(req, res) {
   // Allow CORS for local development
   res.setHeader("Access-Control-Allow-Origin", "*")
@@ -44,7 +25,7 @@ export default async function handler(req, res) {
 
     // Simulate success response (replace with actual Klaviyo API call)
 
-    console.log(`List ID = ${process.env.GATSBY_KLAVIYO_LIST_ID}`)
+    console.log(`List ID = ${process.env.KLAVIYO_LIST_ID}`)
 
     const subscriptions = marketingConsent
       ? {
@@ -62,7 +43,7 @@ export default async function handler(req, res) {
       {
         method: "POST",
         headers: {
-          Authorization: `Klaviyo-API-Key ${process.env.GATSBY_KLAVIYO_KEY}`,
+          Authorization: `Klaviyo-API-Key ${process.env.KLAVIYO_KEY}`,
           "Content-Type": "application/vnd.api+json",
           Accept: "application/json",
           Revision: "2025-01-15",
@@ -115,7 +96,7 @@ export default async function handler(req, res) {
         //       list: {
         //         data: {
         //           type: "list",
-        //           id: process.env.GATSBY_KLAVIYO_LIST_ID, // Replace with your actual list ID
+        //           id: process.env.KLAVIYO_LIST_ID, // Replace with your actual list ID
         //         },
         //       },
         //     },
