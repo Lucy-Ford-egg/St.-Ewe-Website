@@ -107,7 +107,7 @@ export default async function handler(req, res) {
 
     const data = await response.json()
 
-    console.log(`Klaviyo Response - ${JSON.stringify(response)}`)
+    console.log("Klaviyo Response:", await response.text())
 
     return res.status(response.status).json(data)
 
