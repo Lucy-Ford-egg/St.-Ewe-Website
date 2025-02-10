@@ -39,7 +39,7 @@ export const MailChimp = () => {
     const response = await fetch(
       process.env.NODE_ENV === "development"
         ? `${process.env.GATSBY_FRONTEND}/api/klaviyo-subscribe`
-        : `${process.env.GATSBY_FRONTEND}/api/klaviyo-subscribe`,
+        : `https://deploy-preview-18--stewe.netlify.app/api/klaviyo-subscribe`,
       {
         method: "POST",
         headers: {
