@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         }
       : {}
     const response = await fetch(
-      `https://a.klaviyo.com/client/subscriptions?company_id=${process.env.GATSBY_KLAVIYO_SITE_ID}`,
+      `https://a.klaviyo.com/client/subscriptions?company_id=${process.env.KLAVIYO_SITE_ID}`,
       {
         method: "POST",
         headers: {
