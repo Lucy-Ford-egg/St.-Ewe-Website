@@ -51,30 +51,12 @@ export const MailChimp = () => {
                 type: "profile",
                 attributes: {
                   email: email,
-                  properties: {
-                    source: "Newsletter Signup",
-                  },
-                  meta: {
-                    patch_properties: {
-                      append: {
-                        source: "Newsletter Signup",
-                      },
-                    },
-                  },
                   subscriptions: {
                     email: {
                       marketing: {
                         consent: marketingConsent
                           ? "SUBSCRIBED"
                           : "UNSUBSCRIBED",
-                      },
-                    },
-                    sms: {
-                      marketing: {
-                        consent: "UNSUBSCRIBED",
-                      },
-                      transactional: {
-                        consent: "UNSUBSCRIBED",
                       },
                     },
                   },
@@ -86,7 +68,7 @@ export const MailChimp = () => {
             list: {
               data: {
                 type: "list",
-                id: process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID, // Ensure this is set
+                id: listId, // Ensure this is set
               },
             },
           },
@@ -99,11 +81,17 @@ export const MailChimp = () => {
         `https://a.klaviyo.com/client/subscriptions?company_id=${companyId}`,
         options,
       )
-      const result = await response.json()
 
+      // If response is OK but no body, handle accordingly
       if (response.ok) {
-        setMCResult({ result: "success", msg: "Subscription successful!" })
+        const result =
+          response.status === 202
+            ? { result: "success", msg: "Subscription successful!" }
+            : await response.json()
+        setMCResult(result)
       } else {
+        // Handle errors if the response is not OK
+        const result = await response.json()
         setMCResult({
           result: "error",
           msg: result?.errors?.[0]?.detail || "Failed to subscribe.",
@@ -118,11 +106,16 @@ export const MailChimp = () => {
   }
 
   return (
-    <Box>
+    <Wrapper>
       {!MCResult && (
         <form
           onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", rowGap: "16px" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            rowGap: "var(--ms-4)",
+          }}
         >
           <TextField
             id="klv-EMAIL"
@@ -137,8 +130,25 @@ export const MailChimp = () => {
             placeholder="Enter your email address"
           />
 
-          <Box display="flex" alignItems="center">
-            <Typography variant="body2" sx={{ flex: 1 }}>
+          <Box
+            display="flex"
+            alignItems="center"
+            sx={{
+              display: "flex",
+              columnGap: "var(--ms0)",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="small"
+              gutterBottom
+              sx={{
+                color: "white.main",
+                textAlign: "left",
+                display: "block",
+                flexbasis: "80%",
+              }}
+            >
               Please check the box to confirm how you'd like to hear from us:
             </Typography>
             <FormGroup>
@@ -148,6 +158,9 @@ export const MailChimp = () => {
                     required
                     checked={marketingConsent}
                     onChange={e => setMarketingConsent(e.target.checked)}
+                    sx={{
+                      color: "white.main",
+                    }}
                   />
                 }
                 label="Email"
@@ -155,7 +168,14 @@ export const MailChimp = () => {
             </FormGroup>
           </Box>
 
-          <Typography variant="caption">
+          <Typography
+            variant="caption"
+            sx={{
+              color: "white.main",
+              textAlign: "left",
+              display: "block",
+            }}
+          >
             By subscribing, you acknowledge your information will be transferred
             to Klaviyo for processing.{" "}
             <Link
@@ -167,25 +187,48 @@ export const MailChimp = () => {
             </Link>
           </Typography>
 
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            sx={{
+              marginTop: "var(--ms-1)",
+              alignSelf: "center",
+              px: "var(--ms3)",
+            }}
+          >
             Signup
           </Button>
         </form>
       )}
 
       {MCResult?.result === "success" && (
-        <Box display="flex" alignItems="center" mt={2} color="success.main">
+        <Box
+          display="flex"
+          alignItems="center"
+          marginTop={2}
+          sx={{
+            color: "white.main",
+          }}
+        >
           <Typography variant="body1">{MCResult.msg}</Typography>
           <CheckIcon color="primary" />
         </Box>
       )}
 
       {MCResult?.result === "error" && (
-        <Typography variant="body2" color="error" mt={2}>
+        <Typography
+          variant="body2"
+          color="error"
+          marginTop={2}
+          sx={{
+            color: "white.main",
+          }}
+        >
           {MCResult.msg || "There has been a problem. Please try again later."}
         </Typography>
       )}
-    </Box>
+    </Wrapper>
   )
 }
 
