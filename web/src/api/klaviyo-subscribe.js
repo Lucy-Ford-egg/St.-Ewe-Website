@@ -42,14 +42,21 @@ export default async function handler(req, res) {
             data: {
               type: "profile",
               attributes: {
-                email,
-              },
-            },
-          },
-          subscriptions: {
-            email: {
-              marketing: {
-                consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
+                subscriptions: {
+                  email: {
+                    marketing: {
+                      consent: marketingConsent ? "SUBSCRIBED" : "UNSUBSCRIBED",
+                    },
+                  },
+                  sms: {
+                    marketing: {
+                      consent: "UNSUBSCRIBED",
+                    },
+                    transactional: {
+                      consent: "UNSUBSCRIBED",
+                    },
+                  },
+                },
               },
             },
           },
@@ -58,7 +65,6 @@ export default async function handler(req, res) {
           list: {
             data: {
               type: "list",
-              id: LIST_ID,
             },
           },
         },
