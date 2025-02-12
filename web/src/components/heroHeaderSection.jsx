@@ -48,9 +48,6 @@ const Title = styled(motion.div)(({ theme }) => ({
     gridRow: "1/3",
     fontSize: "var(--ms7)",
     lineHeight: "var(--ms7)",
-    display: "flex",
-    height: "100%",
-    alignItems: "center",
   },
   [theme.breakpoints.up("lg")]: {
     gridRow: "1/3",
@@ -58,6 +55,11 @@ const Title = styled(motion.div)(({ theme }) => ({
     lineHeight: "var(--ms9)",
     left: "10vw",
     right: "10vw",
+    // ** Safari Fix
+    display: "flex",
+    height: "100%",
+    alignItems: "center",
+    // **
   },
 }))
 
