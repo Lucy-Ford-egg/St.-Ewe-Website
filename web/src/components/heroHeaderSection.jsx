@@ -43,13 +43,14 @@ const Title = styled(motion.div)(({ theme }) => ({
   pointerEvents: "none",
   left: "var(--ms1)",
   right: "var(--ms1)",
-  display: "flex",
-  height: "100%",
-  alignItems: "center",
+
   [theme.breakpoints.up("sm")]: {
     gridRow: "1/3",
     fontSize: "var(--ms7)",
     lineHeight: "var(--ms7)",
+    display: "flex",
+    height: "100%",
+    alignItems: "center",
   },
   [theme.breakpoints.up("lg")]: {
     gridRow: "1/3",
