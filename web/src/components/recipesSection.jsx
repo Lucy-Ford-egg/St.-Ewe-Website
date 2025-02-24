@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from "react"
 import { graphql } from "gatsby"
 import { styled } from "@mui/material/"
+import { Button, GatsbyLink } from "gatsby-theme-material-ui"
 import { Filter } from "./filter"
 import { useTheme } from "@mui/material"
 import { RecipeTile } from "./recipeTile"
 import { useInView } from "framer-motion"
 import { ModuleContainer } from "./moduleContainer"
+import { contrastBrandPalette } from "../utils/colours"
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
+import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 
 const Wrapper = styled("div")(
   ({ backgroundColour, paddingTop, paddingBottom }) => ({
@@ -137,7 +141,51 @@ const RecipeFilter = styled("div")(({ theme, backgroundColour }) => ({
     },
   },
 }))
+//Pagination
 
+const PageNavigation = styled("div")(({ theme, backgroundColour }) => ({
+  display: "flex",
+  gridColumn: "2/24",
+  justifyContent: "center",
+  alignItems: "center",
+  columnGap: "var(--ms2)",
+  paddingTop: "var(--ms4)",
+  paddingBottom: "var(--ms4)",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  [theme.breakpoints.up("lg")]: {
+    gridColumn: "1/25",
+    paddingLeft: "var(--ms4)",
+    paddingRight: "var(--ms4)",
+  },
+}))
+
+const PaginationArrows = styled(Button)(({ theme, backgroundColour }) => ({
+  "&.MuiButtonBase-root": {
+    fontSize: "var(--ms0) !important",
+    fontFamily: "var(--font-primary) !important",
+    padding: "0 !important",
+    color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  },
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+const Numbers = styled("div")(({ theme, backgroundColour }) => ({
+  fontSize: "var(--ms0)",
+  display: "flex",
+  justifyContent: "space-between",
+  columnGap: "var(--ms0)",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+const Number = styled("div")(({ theme, backgroundColour }) => ({
+  fontSize: "var(--ms0)",
+  fontFamily: "var(--font-primary)",
+  color: contrastBrandPalette[backgroundColour?.label]?.contrastText,
+  [theme.breakpoints.up("lg")]: {},
+}))
+
+//
 export const RecipesSection = props => {
   const {
     allSanityRecipes,
@@ -200,13 +248,11 @@ export const RecipesSection = props => {
             backgroundColour={backgroundColour}
             className="component-filter"
             type="recipes"
-            // allData={getAllPosts.nodes}
             filtersData={filtersPosts}
             setFilterData={setFilterData}
             pageContext={pageContext}
           />
         </RecipeFilter>
-
         {filtersPosts && (
           <GridContainer
             theme={theme}
@@ -252,8 +298,113 @@ export const RecipesSection = props => {
               })}
           </GridContainer>
         )}
+        //!
+        {props.pageContext.humanPageNumber && (
+          <PageNavigation theme={theme} backgroundColour={backgroundColour}>
+            <PaginationArrows
+              backgroundColour={backgroundColour}
+              variant="text"
+              style={{
+                color:
+                  props.pageContext.humanPageNumber === 1 && true
+                    ? "var(--grand-primary)"
+                    : contrastBrandPalette[backgroundColour?.label]
+                        ?.contrastText,
+              }}
+              startIcon={
+                <ChevronLeftIcon
+                  color={
+                    props.pageContext.humanPageNumber === 1 && true
+                      ? "var(--grand-primary)"
+                      : contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastText
+                  }
+                  sx={{
+                    opacity: props.pageContext.humanPageNumber === 1 && 0.2,
+                  }}
+                />
+              }
+              to={props.pageContext.previousPagePath}
+              disabled={props.pageContext.humanPageNumber === 1 && true}
+            >
+              Previous
+            </PaginationArrows>
 
-        {/* <Pagination pageContext={pageContext}/> */}
+            <Numbers backgroundColour={backgroundColour}>
+              {/* {props.pageContext.numberOfPages > 5 && */}
+              {Array.from({ length: props.pageContext.numberOfPages }).map(
+                (_, index) => (
+                  <Number
+                    key={`pagination-${index}`}
+                    backgroundColour={backgroundColour}
+                    style={{
+                      borderRadius: "9999px",
+                      padding: "0 var(--ms-1)",
+                      borderWidth:
+                        index + 1 === props.pageContext.humanPageNumber
+                          ? "1px"
+                          : "0px",
+                      borderStyle: "solid",
+                      borderColor:
+                        index + 1 === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                      color:
+                        index + 1 === props.pageContext.humanPageNumber
+                          ? "primary.main"
+                          : "inherit",
+                      "&:hover": {
+                        cursor: "pointer",
+                        color: theme.palette.primary.main,
+                      },
+                    }}
+                  >
+                    <GatsbyLink to={`/recipes/${index === 0 ? "" : index + 1}`}>
+                      {index + 1}
+                    </GatsbyLink>
+                  </Number>
+                ),
+              )}
+            </Numbers>
+
+            <PaginationArrows
+              backgroundColour={backgroundColour}
+              variant="text"
+              style={{
+                color:
+                  props.pageContext.humanPageNumber ===
+                    props.pageContext.numberOfPages && true
+                    ? "var(--grand-primary)"
+                    : contrastBrandPalette[backgroundColour?.label]
+                        ?.contrastText,
+              }}
+              endIcon={
+                <ChevronRightIcon
+                  color={
+                    props.pageContext.humanPageNumber ===
+                      props.pageContext.numberOfPages && true
+                      ? "var(--grand-primary)"
+                      : contrastBrandPalette[backgroundColour?.label]
+                          ?.contrastText
+                  }
+                  sx={{
+                    opacity:
+                      props.pageContext.humanPageNumber ===
+                        props.pageContext.numberOfPages && 0.2,
+                  }}
+                />
+              }
+              to={props.pageContext.nextPagePath}
+              disabled={
+                props.pageContext.humanPageNumber ===
+                  props.pageContext.numberOfPages && true
+              }
+            >
+              Next
+            </PaginationArrows>
+          </PageNavigation>
+        )}
+        //!
       </Wrapper>
     </ModuleContainer>
   )

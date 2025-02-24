@@ -156,7 +156,8 @@ export const RecipeTile = props => {
             <Meta backgroundColour={backgroundColour}>
               <LuClock5 />
               <Typography variant="body1" component="span" color="inherit">
-                {`${duration?.hours ? duration.hours + " hours" : ""} ${duration?.minutes ? duration.minutes + " mins" : ""}`}
+                {`${duration?.hours ? `${duration.hours} hour${duration.hours !== 1 ? "s" : ""}` : ""} 
+    ${duration?.minutes ? `${duration.minutes} minute${duration.minutes !== 1 ? "s" : ""}` : ""}`}
               </Typography>
             </Meta>
           )}
