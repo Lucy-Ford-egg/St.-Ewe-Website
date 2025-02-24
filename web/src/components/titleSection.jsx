@@ -94,7 +94,7 @@ export const TitleSection = props => {
       return null // or return new Date()
     }
 
-    return format(setDate, "M MMM yyyy")
+    return format(setDate, "dd MMM yyyy")
   }
   let formatted = ""
   try {

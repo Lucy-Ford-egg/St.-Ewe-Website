@@ -57,6 +57,7 @@ export const RenderPortableText = props => {
     value,
     textAlign,
     backgroundColour,
+    ol,
   } = props
 
   const theme = useTheme()
@@ -436,7 +437,9 @@ export const RenderPortableText = props => {
               display: "inline-flex",
             }}
           >
-            <span className="step-marker">{`- Step ${index + 1}`}</span>
+            {ol === "steps" && (
+              <span className="step-marker">{`- Step ${index + 1}`}</span>
+            )}
 
             {children}
           </Box>

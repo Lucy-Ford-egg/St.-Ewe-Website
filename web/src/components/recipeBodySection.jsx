@@ -151,7 +151,10 @@ export const RecipeBodySection = props => {
           <Typography variant="h4" className="title">
             Instructions
           </Typography>
-          <RenderPortableText value={data?.sanityRecipes?.instructions} />
+          <RenderPortableText
+            ol="steps"
+            value={data?.sanityRecipes?.instructions}
+          />
         </Content>
 
         <ListWrapper mirror={mirror} backgroundColour={backgroundColour}>
