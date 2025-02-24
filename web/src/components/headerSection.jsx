@@ -253,8 +253,10 @@ export const HeaderSection = props => {
             <>
               <Meta backgroundColour={backgroundColour}>
                 <LuClock5 />
+
                 <Typography variant="body1" component="span" color="inherit">
-                  {`${pageContext?.node?.duration?.hours ? pageContext?.node?.duration.hours + " hours" : ""} ${pageContext?.node?.duration?.minutes ? pageContext?.node?.duration.minutes + " mins" : ""}`}
+                  {`${pageContext?.node?.duration?.hours ? `${pageContext?.node?.duration.hours} hour${pageContext?.node?.duration.hours !== 1 ? "s" : ""}` : ""} 
+                    ${pageContext?.node?.duration?.minutes ? `${pageContext?.node?.duration.minutes} minute${pageContext?.node?.duration.minutes !== 1 ? "s" : ""}` : ""}`}
                 </Typography>
               </Meta>
               <Sharing>
