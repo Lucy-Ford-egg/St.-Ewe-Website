@@ -56,9 +56,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-gatsby-cloud`,
-    },
-    {
       resolve: `gatsby-plugin-brotli`,
       options: {
         extensions: ["css", "html", "js", "svg"],
@@ -228,6 +225,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-image`,
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -245,6 +243,7 @@ module.exports = {
         },
       },
     },
+
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -339,6 +338,13 @@ module.exports = {
         },
         // defines the environments where the tracking should be available  - default is ["production"]
         environments: ["production", "development"],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-klaviyo",
+      options: {
+        klaviyoKey: process.env.GATSBY_KLAVIYO_COMPANY_ID,
+        enableDuringDevelop: true, // Optional. Disables Klaviyo when running Gatsby dev server. Defaults to true.
       },
     },
     {
