@@ -206,10 +206,6 @@ export const schema = {
   ],
 }
 
-export const googleMaps = {
-  apiKey: 'AIzaSyD-iPk4tHZ8FEhcbTWFWLPopgVd6yqS0lI',
-}
-
 export const brandColors = {
   // Note: These are both optional
   defaultColorFormat: 'rgba',

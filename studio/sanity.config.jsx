@@ -3,10 +3,9 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {codeInput} from '@sanity/code-input'
 
-import {schema, brandColors, googleMaps} from './schemas'
+import {schema, brandColors} from './schemas'
 
 import {Logo} from './plugins/logo/logo'
-import {googleMapsInput} from '@sanity/google-maps-input'
 import {colorInput} from '@sanity/color-input'
 import {media} from 'sanity-plugin-media'
 import {deskStructure} from './structure/deskStructure'
@@ -37,7 +36,6 @@ const sharedConfig = {
     unsplashImageAsset(),
     colorInput(),
     codeInput(),
-    googleMapsInput(googleMaps),
     simplerColorInput(brandColors),
     imageHotspotArrayPlugin(),
     presentationTool({
