@@ -14,6 +14,15 @@ import { getGatsbyImageData } from "gatsby-source-sanity"
 import { styled } from "@mui/material/styles"
 import ReactPlayer from "react-player"
 
+// Utility to sanitize Portable Text blocks
+//blocks are array of objects from sanity - map over them - spread object - Only keep markDefs if it’s a real array — otherwise, default to [].
+const sanitizePortableText = blocks => {
+  return (blocks || []).map(block => ({
+    ...block,
+    markDefs: Array.isArray(block.markDefs) ? block.markDefs : [],
+  }))
+}
+
 const ColumnCount = styled("span")(({ value }) => ({
   display: "block",
   "@media only screen and (min-width: 600px)": {
@@ -61,6 +70,8 @@ export const RenderPortableText = props => {
   } = props
 
   const theme = useTheme()
+  // Sanitize the value before rendering using utility function so its allways an array and cant return null
+  const safeValue = sanitizePortableText(value)
 
   const block = {
     normal: ({ children }) => (
@@ -454,7 +465,10 @@ export const RenderPortableText = props => {
   return (
     <div>
       {value && (
-        <PortableText value={value || []} components={standardPortableText} />
+        <PortableText
+          value={safeValue || []}
+          components={standardPortableText}
+        />
       )}
     </div>
   )
