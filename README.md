@@ -1,3 +1,35 @@
+SOLVE HOW TO
+
+CMS Login here - https://st-ewe.sanity.studio/production/
+
+To run locally - clone repo (theres two githubs - one has a production branch (lower case) this is the correct one but may disappear due to last agency)
+
+In root of what you've just cloned - 
+```
+npm install
+```
+```
+npm run dev
+```
+(you may need to npm run graphql-deploy)
+
+This will let you run the backend locally
+
+For the frontend
+Open a new terminal tab/window at root
+```
+cd web
+```
+```
+npm run develop
+```
+
+(you shouldn't have to npm install as doing it on project root will cover it
+
+
+
+
+
 # The Kitchen Sink Studio
 
 A “[kitchen sink](https://stackoverflow.com/questions/33779296/what-is-exact-meaning-of-kitchen-sink-in-programming)” is a showcase of APIs and functionality. This is the example project that we at Sanity HQ use for demos. Hence, it will change and evolve over time with new feature releases.
